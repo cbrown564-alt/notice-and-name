@@ -55,6 +55,16 @@ The app utilizes a custom theme focused on warmth and education:
 - **Secondary**: Muted Sage (`#60846A`) - Represents calm, grounding, and growth.
 - **Typography**: Playfair Display for headers (editorial feel), Inter for body text (clarity).
 
+## 📋 Project docs
+
+Planning and status live in [`docs/`](./docs/):
+
+- [**Status report**](./docs/PROJECT_STATUS_REPORT.md) — current state, gaps, and risks
+- [**Implementation plan**](./docs/IMPLEMENTATION_PLAN.md) — roadmap to a polished release
+- [**Style bible**](./docs/design/STYLE_BIBLE.md) — visual identity (canonical draft)
+- [**Concept audit**](./docs/content/CONCEPT_AUDIT.md) — per-concept tracker
+- [**Documentation index**](./docs/README.md) — full doc map
+
 ## 📂 Project Structure
 
 - `/app`: Expo Router screens and layouts.

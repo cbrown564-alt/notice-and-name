@@ -34,10 +34,6 @@ export function ConceptCard({ concept, status, isCollected, onPress }: ConceptCa
   const isUnexplored = status === 'unexplored';
   const statusColor = getStatusColor(status);
 
-  // precise: Find the 'illustrate' slide to get the specific concept icon
-  const illustrateSlide = concept.slides?.find(s => s.type === 'illustrate');
-  const conceptIcon = illustrateSlide?.illustrationAsset;
-
   // Fallback to category icon if no specific icon found
   const getCategoryIcon = (category: string) => {
     switch (category.toLowerCase()) {
@@ -50,8 +46,9 @@ export function ConceptCard({ concept, status, isCollected, onPress }: ConceptCa
     }
   };
 
-  // Priority: 1. Specific Thumbnail, 2. Illustration Slide (Legacy), 3. Category Icon
-  const displayIcon = concept.thumbnail || conceptIcon || getCategoryIcon(concept.category);
+  // Priority: 1. Specific Thumbnail, 2. Category Icon
+  // Note: We intentionally do NOT use the 'illustrate' slide asset here, as that is for the detailed view
+  const displayIcon = concept.thumbnail || getCategoryIcon(concept.category);
 
   return (
     <TouchableOpacity

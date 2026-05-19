@@ -8,6 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "compress-assets": "node scripts/compress-assets.js",
+    "generate-concept-audit": "node scripts/generate-concept-audit.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"

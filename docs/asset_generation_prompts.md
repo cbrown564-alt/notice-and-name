@@ -332,3 +332,211 @@ This document catalogs the visual strategy and specific generation prompts for t
 > - Metaphor: Internal source -> Upward movement.
 > - Background: #F9F5F1.
 > - No text.
+
+## 🎥 Video & Motion Prompts (Veo 3.1 JSON)
+
+Use these structured JSON prompts for Google Veo 3.1 to ensure consistency, camera control, and audio generation.
+
+### 23. Spreading (Sensation)
+**Visual Idea**: Golden ripples.
+**JSON Prompt**:
+```json
+{
+  "version": "veo-3.1",
+  "scene_id": "sensation_spreading",
+  "parameters": { "resolution": "1080p", "duration": 8, "fps": 24 },
+  "visual_prompt": {
+    "subject": {
+      "description": "Abstract neural network geometry",
+      "attributes": ["golden bioluminescent fibers", "warm cream tissue background", "ingredient_texture_01"]
+    },
+    "action": "A central point pulses once, sending a slow, rhythmic ripple of golden light moving outward along the fibers. The light flows like liquid in a channel.",
+    "environment": "Macro biological landscape, soft global illumination, shallow depth of field",
+    "style": "Medical Luxury, high-end 3D render, ethereal, soft focus, creamy palette"
+  },
+  "camera": {
+    "type": "top_down",
+    "lens": "100mm_macro",
+    "motion": "static_camera_with_internal_motion"
+  },
+  "audio_prompt": {
+    "sfx": "Subtle, deep underwater resonance. Low frequency thrumming.",
+    "ambience": "Silence with a slow, distant heartbeat rhythm."
+  }
+}
+```
+
+### 24. Pulsing (Sensation)
+**Visual Idea**: Rhythmic contraction.
+**JSON Prompt**:
+```json
+{
+  "version": "veo-3.1",
+  "scene_id": "sensation_pulsing",
+  "parameters": { "resolution": "1080p", "duration": 8, "fps": 24 },
+  "visual_prompt": {
+    "subject": {
+      "description": "Organic muscle tissue surface",
+      "attributes": ["soft pink/coral tissue", "golden highlights", "ingredient_anatomy_pelvic_floor"]
+    },
+    "action": "The tissue contracts and expands concentrically in a slow, rhythmic heartbeat pattern (~60bpm). The golden highlights glow brighter during contraction.",
+    "environment": "Close-up biological surface, wet organic sheen",
+    "style": "Medical Luxury, high fidelity, organic motion"
+  },
+  "camera": {
+    "type": "close_up",
+    "lens": "50mm_prime",
+    "motion": "handheld_micro_movements"
+  },
+  "audio_prompt": {
+    "sfx": "Soft, wet biological contraction sound. A gentle 'whoosh' on the beat.",
+    "ambience": "Internal body soundscape, fluid movement."
+  }
+}
+```
+
+### 25. Edging (Sensation)
+**Visual Idea**: The rising wave near the peak.
+**JSON Prompt**:
+```json
+{
+  "version": "veo-3.1",
+  "scene_id": "sensation_edging",
+  "parameters": { "resolution": "1080p", "duration": 8, "fps": 24 },
+  "visual_prompt": {
+    "subject": {
+      "description": "A single glowing energy filament",
+      "attributes": ["intense golden light", "curved path trailer"]
+    },
+    "action": "The light travels rapidly up a steep curve, increasing in brightness/heat. It reaches a 'brink' at the top, hovers for a split second, then gently curves back down without breaking.",
+    "environment": "Abstract cream void, no background distractions",
+    "style": "Medical Luxury, motion graphics, clean lines"
+  },
+  "camera": {
+    "type": "dolly_in",
+    "lens": "35mm",
+    "motion": "tracking_the_light_head"
+  },
+  "audio_prompt": {
+    "sfx": "A rising synthesized tone (Shepard tone) that builds tension but resolves softly.",
+    "ambience": "Electric hum, rising pitch."
+  }
+}
+```
+
+### 26. Spontaneous Desire (Timing)
+**Visual Idea**: Bubbles rising from the deep.
+**JSON Prompt**:
+```json
+{
+  "version": "veo-3.1",
+  "scene_id": "timing_spontaneous",
+  "parameters": { "resolution": "1080p", "duration": 8, "fps": 24 },
+  "visual_prompt": {
+    "subject": {
+      "description": "Effervescent light bubbles",
+      "attributes": ["champagne gold", "soft glowing orbs"]
+    },
+    "action": "Bubbles of light spontaneously rise from the bottom of the frame to the top, originating from an unseen depth. Random, playful, abundant.",
+    "environment": "Abstract cream fluid/atmosphere",
+    "style": "Medical Luxury, macro beverage photography style, high contrast gold on cream"
+  },
+  "camera": {
+    "type": "static",
+    "lens": "85mm",
+    "motion": "slow_pan_up"
+  },
+  "audio_prompt": {
+    "sfx": "Delicate sparkling sounds, tiny bells or effervescent fizz.",
+    "ambience": "Airy, light, uplifting drone."
+  }
+}
+```
+
+### 27. Building (Sensation)
+**Visual Idea**: Thermographic filling.
+**JSON Prompt**:
+```json
+{
+  "version": "veo-3.1",
+  "scene_id": "sensation_building",
+  "parameters": { "resolution": "1080p", "duration": 8, "fps": 24 },
+  "visual_prompt": {
+    "subject": {
+      "description": "Vascular network vessel",
+      "attributes": ["translucent tubes", "ingredient_vascular_map"]
+    },
+    "action": "A pale, empty vessel slowly fills with rich, warm coral fluid. The fluid moves steadily, expanding the vessel slightly as it fills. The color transitions from cream to deep red.",
+    "environment": "Laboratory clean, soft backlighting",
+    "style": "Medical Luxury, time-lapse biology"
+  },
+  "camera": {
+    "type": "static",
+    "lens": "100mm_macro",
+    "motion": "static"
+  },
+  "audio_prompt": {
+    "sfx": "Hydraulic filling sound, deep liquid flow.",
+    "ambience": "Low constant hum building in volume."
+  }
+}
+```
+
+### 28. Warm-up Window (Timing)
+**Visual Idea**: The self-drawing graph.
+**JSON Prompt**:
+```json
+{
+  "version": "veo-3.1",
+  "scene_id": "timing_warmup",
+  "parameters": { "resolution": "1080p", "duration": 8, "fps": 24 },
+  "visual_prompt": {
+    "subject": {
+      "description": "Animated line graph",
+      "attributes": ["glowing ember line", "cork texture background"]
+    },
+    "action": "A line draws itself across the screen. It remains flat and low for the first 70% of the duration, then curves sharply upward at the end. The line glows hotter as it rises.",
+    "environment": "2D Abstract Surface, paper texture",
+    "style": "Medical Luxury, architectural sketch"
+  },
+  "camera": {
+    "type": "truck_right",
+    "lens": "50mm",
+    "motion": "follow_tip"
+  },
+  "audio_prompt": {
+    "sfx": "Scratching of pen on paper, turning into a sizzle as the line heats up.",
+    "ambience": "Quiet room tone."
+  }
+}
+```
+
+### 29. Plateauing (Sensation)
+**Visual Idea**: The charged battery.
+**JSON Prompt**:
+```json
+{
+  "version": "veo-3.1",
+  "scene_id": "sensation_plateauing",
+  "parameters": { "resolution": "1080p", "duration": 8, "fps": 24 },
+  "visual_prompt": {
+    "subject": {
+      "description": "Dense neural cluster",
+      "attributes": ["fully illuminated golden network", "ingredient_nerve_cluster"]
+    },
+    "action": "The network is already full of light. It vibrates and hums with energy, maintaining a constant, high-intensity glow without flickering or fading. Stable tension.",
+    "environment": "Darker background to highlight the glow",
+    "style": "Medical Luxury, electric biology"
+  },
+  "camera": {
+    "type": "Slow push in",
+    "lens": "Macro",
+    "motion": "very_slow_dolly_in"
+  },
+  "audio_prompt": {
+    "sfx": "High-tension electric hum (like a power line). Stable, non-fluctuating.",
+    "ambience": "Electric field static."
+  }
+}
+```
+

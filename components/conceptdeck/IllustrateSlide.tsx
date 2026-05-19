@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react';
 import { Dimensions, Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Animated, { FadeIn, ZoomIn } from 'react-native-reanimated';
 import { AnglingDiagram } from '../diagrams/AnglingDiagram';
+import { PairingDiagram } from '../diagrams/PairingDiagram';
 import { RockingDiagram } from '../diagrams/RockingDiagram';
 import { ShallowingDiagram } from '../diagrams/ShallowingDiagram';
 const { width } = Dimensions.get('window');
@@ -56,6 +57,14 @@ export const IllustrateSlide = ({ item, isActive = false, diagramType }: Illustr
             );
         }
 
+        if (diagramType === 'pairing') {
+            return (
+                <View style={styles.diagramContainer}>
+                    <PairingDiagram />
+                </View>
+            );
+        }
+
         // 2. Video Illustration
         if (item.illustrationVideo) {
             return (
@@ -83,8 +92,12 @@ export const IllustrateSlide = ({ item, isActive = false, diagramType }: Illustr
             );
         }
 
-        // 3. Static Image
-        if (item.illustrationAsset) {
+        // 3. Static Image (ONLY if no diagram and no video)
+        // If we have a diagramType or video, we should NOT show this
+        const hasInteractiveContent = diagramType && diagramType !== 'none';
+        const hasVideo = !!item.illustrationVideo;
+
+        if (item.illustrationAsset && !hasInteractiveContent && !hasVideo) {
             return (
                 <Animated.View entering={ZoomIn.delay(200).springify()} style={styles.illustrationContainer}>
                     <Image

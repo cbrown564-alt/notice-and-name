@@ -90,7 +90,6 @@ This technique can be particularly relevant because it allows for simultaneous i
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/rocking.png'),
-        illustrationVideo: require('@/assets/videos/rocking.mov'),
         illustrationCaption: 'External pressure against the pubic bone',
       },
       {
@@ -175,7 +174,7 @@ Pairing can happen in many ways - reaching down yourself, guiding a partner's ha
     ],
     relatedConcepts: ['angling', 'rocking', 'shallowing'],
     tier: 'free',
-    diagramType: 'none',
+    diagramType: 'pairing',
     slides: [
       {
         type: 'recognize',
@@ -381,6 +380,7 @@ Noticing spreading can enhance the experience of pleasure by expanding attention
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/thumbnails/spreading.png'),
+        illustrationVideo: require('@/assets/videos/spreading.mp4'),
         illustrationCaption: 'Sensation radiating outward like ripples',
       },
       {
