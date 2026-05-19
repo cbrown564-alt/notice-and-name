@@ -10,6 +10,7 @@
 |----------|---------|
 | [**PROJECT_STATUS_REPORT.md**](./PROJECT_STATUS_REPORT.md) | Snapshot of product, codebase, assets, gaps, and risks |
 | [**IMPLEMENTATION_PLAN.md**](./IMPLEMENTATION_PLAN.md) | Phased plan: identity, docs, audit, pipelines, ship |
+| [**QA_CHECKLIST.md**](./QA_CHECKLIST.md) | Manual device QA script (Phase 1.7 / 4.2) |
 
 ---
 
@@ -29,7 +30,8 @@
 | Document | Purpose |
 |----------|---------|
 | [**content/CONCEPT_AUDIT.md**](./content/CONCEPT_AUDIT.md) | Per-concept cross-surface tracker (auto-generated) |
-| [visual_content_strategy.md](./visual_content_strategy.md) | Format choice: interactive / static / video |
+| [**content/COPY_GUIDELINES.md**](./content/COPY_GUIDELINES.md) | Editorial voice and slide copy rules |
+| [**product/visual_content_strategy.md**](./product/visual_content_strategy.md) | Locked format per concept (Phase 1.2) |
 
 ---
 
@@ -38,6 +40,7 @@
 | Document | Purpose |
 |----------|---------|
 | [pipelines/IMAGE_GENERATION.md](./pipelines/IMAGE_GENERATION.md) | Illustration & thumbnail batch workflow |
+| [pipelines/prompts/PILOT_BATCH.md](./pipelines/prompts/PILOT_BATCH.md) | Phase 1.3 five-concept image pilot |
 | [pipelines/VIDEO_GENERATION.md](./pipelines/VIDEO_GENERATION.md) | Veo + ffmpeg transcode workflow |
 | [pipelines/ASSET_MANIFEST.md](./pipelines/ASSET_MANIFEST.md) | File inventory + wiring status |
 | [asset_generation_prompts.md](./asset_generation_prompts.md) | January prompts (migrate to `pipelines/prompts/`) |
@@ -49,9 +52,10 @@
 
 | Document | Purpose |
 |----------|---------|
-| [backend-refactor-complete.md](./backend-refactor-complete.md) | Repository pattern, migrations, validation |
+| [**architecture/backend.md**](./architecture/backend.md) | Backend quick reference |
+| [backend-refactor-complete.md](./backend-refactor-complete.md) | Full refactor narrative |
 | [DEVELOPMENT_TIMELINE.md](./DEVELOPMENT_TIMELINE.md) | Chronological git narrative |
-| [market_analysis.md](./market_analysis.md) | Positioning and competitive landscape |
+| [product/market_analysis.md](./product/market_analysis.md) | Positioning and competitive landscape |
 
 ---
 
@@ -59,9 +63,10 @@
 
 | Command | Purpose |
 |---------|---------|
-| `node scripts/generate-concept-audit.js` | Refresh `content/CONCEPT_AUDIT.md` |
+| `npm run generate-concept-audit` | Refresh `content/CONCEPT_AUDIT.md` |
+| `npm run validate-manifest` | Check format lock, wiring, and size budgets |
 | `./scripts/transcode-video.sh <input.mov>` | MP4 for app (≤1.5 MB target) |
-| `npm run compress-assets` | PNG compression |
+| `npm run compress-assets` | PNG compression (recursive: illustrations, thumbnails, UI) |
 
 ---
 
@@ -70,7 +75,7 @@
 | Document | Notes |
 |----------|-------|
 | [_archive/GAP_ANALYSIS.md](./_archive/GAP_ANALYSIS.md) | Superseded by PROJECT_STATUS_REPORT |
-| [PHASE_3_UI_UX_REVAMP.md](./PHASE_3_UI_UX_REVAMP.md) | Historical sprint |
+| [_archive/PHASE_3_UI_UX_REVAMP.md](./_archive/PHASE_3_UI_UX_REVAMP.md) | January 2026 sprint (archived) |
 | [asset_inventory.md](./asset_inventory.md) | Superseded by ASSET_MANIFEST + CONCEPT_AUDIT |
 | [_archive/](./_archive/) | Retired planning docs |
 
@@ -84,6 +89,9 @@
 | What's the plan? | `IMPLEMENTATION_PLAN.md` |
 | What should it look like? | `design/STYLE_BIBLE.md` |
 | What does each concept need? | `content/CONCEPT_AUDIT.md` |
+| How do I write copy? | `content/COPY_GUIDELINES.md` |
 | How do I generate images? | `pipelines/IMAGE_GENERATION.md` |
 | How do I generate videos? | `pipelines/VIDEO_GENERATION.md` |
 | What files exist? | `pipelines/ASSET_MANIFEST.md` |
+| How do I QA on device? | `QA_CHECKLIST.md` |
+| How does the backend work? | `architecture/backend.md` |

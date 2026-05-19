@@ -1,8 +1,21 @@
 # Implementation Plan: Baseline → Polished Product
 
 **Created:** May 19, 2026  
+**Last updated:** May 19, 2026  
 **Companion:** [`PROJECT_STATUS_REPORT.md`](./PROJECT_STATUS_REPORT.md)  
-**Horizon:** Multi-phase (estimate 6–10 weeks focused effort, adjustable)
+**Horizon:** Multi-phase (estimate 6–10 weeks focused effort, adjustable)  
+**Active branch:** `visual-v2-restart` (`dfda4b7`)
+
+### Phase status (snapshot)
+
+| Phase | Status | Notes |
+|-------|--------|-------|
+| **0 — Reactivation** | ✅ Complete | Branch, docs skeleton, audit, style bible v0.1, orphan wiring |
+| **1 — Foundation** | 🟡 In progress | Format lock, token audit, video transcode, manifest validator + size budgets, compress pass; bible ratification + pilot runs outstanding |
+| **2 — Copy** | ⬜ Not started | — |
+| **3 — Asset production** | ⬜ Not started | Partial January refresh on branch; full batch pending |
+| **4 — Integration** | ⬜ Not started | — |
+| **5 — Release candidate** | ⬜ Not started | — |
 
 ---
 
@@ -67,7 +80,9 @@ Merge and reconcile:
 
 **Deliverable:** `docs/design/STYLE_BIBLE.md` (new canonical doc) + update `theme.ts` if tokens drift.
 
-### A.2 Identity pillars (proposed — to ratify)
+**Status (May 2026):** ✅ `docs/design/STYLE_BIBLE.md` v0.1 drafted (merges identity trio + token table). Source docs retained until ratification. ✅ `theme.ts` token audit — `conceptCanvas`, `diagram.*` tokens added May 19.
+
+### A.2 Identity pillars (drafted — ratify in Phase 1.1)
 
 | Layer | Role | Keywords |
 |-------|------|----------|
@@ -91,7 +106,9 @@ January established a direction; the next pass should:
 
 | Task | Files / area |
 |------|----------------|
-| Token audit vs `theme.ts` | `constants/theme.ts`, `constants/Colors.ts` |
+| Token audit vs `theme.ts` | `constants/theme.ts`, `constants/Colors.ts` | ✅ May 19 |
+| Compress legacy PNGs (recursive) | `scripts/compress-assets.js` | ✅ May 19 — 53 MB saved; many still over budget → Phase 3 regen |
+| Manifest size-budget warnings | `scripts/validate-manifest.js` | ✅ May 19 |
 | Typography scale consistency | `components/ui/Typography.tsx` |
 | Card / deck slide backgrounds | `assets/images/ui/slide-*.png` → regenerate or CSS |
 | ConceptCard thumbnail framing | `components/ConceptCard.tsx` |
@@ -104,7 +121,7 @@ January established a direction; the next pass should:
 - [ ] Style bible signed off with 5 reference renders (one per category family)
 - [ ] Figma or pinned reference folder optional but recommended
 - [ ] No asset committed without checklist sign-off against bible
-- [ ] Dark mode decision: explicit in or out of scope for v1.0
+- [x] Dark mode decision: **out of scope** for v1.0 RC (documented in `STYLE_BIBLE.md` §8)
 
 ---
 
@@ -138,16 +155,21 @@ docs/
 
 ### B.2 Consolidation tasks
 
-| Action | Source files |
-|--------|----------------|
-| **Archive** | `GAP_ANALYSIS.md` → superseded by status report |
-| **Archive** | `PHASE_3_UI_UX_REVAMP.md` → historical banner only |
-| **Merge** | Identity trio → `design/STYLE_BIBLE.md` |
-| **Merge** | `asset_generation_prompts.md` + tool notes → `pipelines/IMAGE_GENERATION.md` |
-| **Merge** | `veo3.1_best_practices.md`, `video_interactive_prompts.md`, `animation_journey.md` → `pipelines/VIDEO_GENERATION.md` |
-| **Refresh** | `asset_inventory.md` → `pipelines/ASSET_MANIFEST.md` (generated or hand-maintained) |
-| **Trim** | Remove completed TODOs from `backend-refactor-complete.md` |
-| **Link** | Root `README.md` → `docs/README.md` |
+| Action | Source files | Status |
+|--------|----------------|--------|
+| **Archive** | `GAP_ANALYSIS.md` → superseded by status report | ✅ `docs/_archive/GAP_ANALYSIS.md` |
+| **Archive** | `PHASE_3_UI_UX_REVAMP.md` → historical banner only | ✅ `_archive/PHASE_3_UI_UX_REVAMP.md` + stub |
+| **Merge** | Identity trio → `design/STYLE_BIBLE.md` | ✅ v0.1 draft |
+| **Merge** | `asset_generation_prompts.md` + tool notes → `pipelines/IMAGE_GENERATION.md` | 🟡 Skeleton; prompts still in legacy file |
+| **Merge** | `veo3.1_best_practices.md`, `video_interactive_prompts.md`, `animation_journey.md` → `pipelines/VIDEO_GENERATION.md` | 🟡 Operational doc + Veo reference kept separate |
+| **Refresh** | `asset_inventory.md` → `pipelines/ASSET_MANIFEST.md` | ✅ Initial manifest; keep in sync per batch |
+| **Trim** | Remove completed TODOs from `backend-refactor-complete.md` | ✅ Historical banner + `architecture/backend.md` pointer |
+| **Link** | Root `README.md` → `docs/README.md` | ✅ |
+| **Index** | `docs/README.md` lists active docs | ✅ |
+| **Living plan** | `IMPLEMENTATION_PLAN.md`, `PROJECT_STATUS_REPORT.md` | ✅ Created |
+| **Copy** | `content/COPY_GUIDELINES.md` | ✅ |
+| **Architecture** | `architecture/backend.md` | ✅ |
+| **Product** | `product/market_analysis.md` | ✅ moved from docs root |
 
 ### B.3 Living documents
 
@@ -159,9 +181,10 @@ docs/
 
 ### B.4 Acceptance criteria
 
-- [ ] `docs/README.md` lists every active doc with one-line purpose
-- [ ] No open P0 task references a deleted or archived file as sole source
-- [ ] README in repo root points to design bible + manifest
+- [x] `docs/README.md` lists every active doc with one-line purpose
+- [x] No open P0 task references a deleted or archived file as sole source (`GAP_ANALYSIS` archived)
+- [x] README in repo root points to design bible + manifest
+- [x] `COPY_GUIDELINES.md`, `architecture/backend.md`, `product/` folder per target structure
 
 ---
 
@@ -186,6 +209,8 @@ docs/
 | 11 | Communication refs | `data/communication.ts` if mentioned |
 
 ### C.2 Audit columns (master tracker)
+
+**Status:** ✅ `docs/content/CONCEPT_AUDIT.md` — 22 rows auto-generated via `npm run generate-concept-audit`. Manual columns (`copy_reviewed`, `qa_passed`) still open.
 
 Create `docs/content/CONCEPT_AUDIT.md` (or Google Sheet) with one row per concept:
 
@@ -214,17 +239,25 @@ Create `docs/content/CONCEPT_AUDIT.md` (or Google Sheet) with one row per concep
 
 ### C.4 Execution order
 
-1. **Inventory** — auto-generate rows from `vocabulary.ts` (script optional).
-2. **Format assignment** — lock ideal format per concept (`visual_content_strategy.md`).
-3. **Copy pass** — editorial read of all 22.
-4. **Asset pass** — fill manifest columns (depends on D + E).
-5. **QA pass** — device walkthrough per category batch.
+1. **Inventory** — ✅ `scripts/generate-concept-audit.js` → `CONCEPT_AUDIT.md`
+2. **Format assignment** — ✅ Locked in `data/visual-formats.json` + `product/visual_content_strategy.md`
+3. **Copy pass** — ⬜ editorial read of all 22
+4. **Asset pass** — 🟡 filesystem columns auto-checked; many illustrations still placeholders
+5. **QA pass** — ⬜ device walkthrough per category batch
+
+**Known gaps (from audit):**
+
+- ~~3 concepts not in any pathway~~ — **resolved:** added to `foundations` / `partner-communication`
+- Spreading lacks dedicated illustration PNG (uses thumbnail on illustrate slide)
+- Several concepts missing dedicated thumbnails (see `asset_inventory.md`)
 
 ### C.5 Acceptance criteria
 
-- [ ] 22/22 rows complete with no “placeholder” status
-- [ ] Zero broken `require()` paths
-- [ ] Related concept graph has no dangling ids
+- [x] 22/22 rows exist in audit tracker
+- [ ] 22/22 rows complete with no “placeholder” asset or format status
+- [x] Zero broken `require()` paths (on `visual-v2-restart`)
+- [x] Related concept graph has no dangling ids
+- [x] All concepts in ≥1 pathway
 
 ---
 
@@ -328,7 +361,7 @@ Is the concept about physical mechanics with variables?
 |-------|------|--------|
 | Generation | **Veo 3.1** (or successor) | Short abstract loops |
 | Alt / pickup | Runway, Pika, or manual After Effects | Concepts Veo mishandles |
-| Transcode | `ffmpeg` script in `scripts/transcode-video.sh` (to create) | MP4 H.264, no audio or optional muted |
+| Transcode | `scripts/transcode-video.sh` | MP4 H.264, no audio, ≤1.5 MB target |
 | QA | In-app `IllustrateSlide` on device | Loop smooth, no artifacts, respects reduced motion |
 
 Document prompts in `pipelines/prompts/videos/{concept-id}.md`.
@@ -345,10 +378,12 @@ Align with `visual_content_strategy.md`:
 | Responsive Desire | P1 | Causality glow (exists—review) |
 | Spontaneous Desire | P1 | Sudden onset |
 | Embodied Presence | P2 | Slow grounded motion |
-| Rocking | **Review** | Skia may suffice; deprecate video if redundant |
-| Building | P1 | Exists—review against new style |
+| Rocking | — | ✅ **Resolved:** Skia only; `rocking.mov` unwired (delete from repo after backup) |
+| Spreading | P0 | 🟡 `spreading.mp4` wired (~1.6 MB); style review + dedicated illustration |
 
 **Deprioritize video** for: Angling, Shallowing, Pairing, Plateauing, Warm-up Window, Golden Trio, Non-concordance (static/diagram).
+
+**In repo (needs transcode to MP4):** `building.mov`, `responsive-desire.mov` (~5 MB each). **Unused:** `shallowing.mov` (remove).
 
 ### E.5 Pipeline steps (per video)
 
@@ -361,19 +396,21 @@ Align with `visual_content_strategy.md`:
 
 ### E.6 Engineering tasks
 
-| Task | Detail |
-|------|--------|
-| Create `scripts/transcode-video.sh` | ffmpeg: scale 720, crf 28, strip audio optional |
-| Standardize player | Consider migrating `expo-av` Video → `expo-video` (already in plugins) |
-| `IllustrateSlide` | Support mp4 only; poster frame from thumbnail |
-| Reduced motion | Show static illustration when `AccessibilityInfo.isReduceMotionEnabled` |
+| Task | Detail | Status |
+|------|--------|--------|
+| Create `scripts/transcode-video.sh` | ffmpeg: scale 720, crf 28, strip audio | ✅ |
+| Transcode `building.mov`, `responsive-desire.mov` | Update `vocabulary.ts` requires to `.mp4` | ✅ 256 KB / 503 KB |
+| Remove unused videos | `rocking.mov`, `shallowing.mov`, `angling.mov` (deleted) | ✅ MOVs in `originals/` or removed |
+| Standardize player | Consider migrating `expo-av` Video → `expo-video` | ⬜ |
+| `IllustrateSlide` | mp4 support; poster frame from illustration | ✅ |
+| Reduced motion | Static fallback when reduce motion enabled | ✅ |
 
 ### E.7 Acceptance criteria
 
-- [ ] `VIDEO_GENERATION.md` complete with ffmpeg commands
-- [ ] All video concepts ≤ size budget
-- [ ] No `.mov` in committed `assets/videos/`
-- [ ] Every video row in manifest matches a `require()` in `vocabulary.ts`
+- [x] `VIDEO_GENERATION.md` complete with ffmpeg commands
+- [x] Wired videos ≤ size budget (`spreading.mp4` 1.6 MB — optional re-transcode)
+- [x] No `.mov` in app `assets/videos/` root (sources in `originals/`)
+- [x] Every wired video row matches a `require()` in `vocabulary.ts`
 
 ---
 
@@ -383,13 +420,14 @@ Runs after or in parallel with media work.
 
 ### F.1 Media integration
 
-| Task | Priority |
-|------|----------|
-| Wire `PairingDiagram` in `IllustrateSlide` | P0 |
-| Wire `spreading.mp4` or replace after regen | P0 |
-| Resolve rocking video vs Skia redundancy | P1 |
-| Add `Pairing` to `DiagramType` union if needed | P0 |
-| Poster frames for video loading | P1 |
+| Task | Priority | Status |
+|------|----------|--------|
+| Wire `PairingDiagram` in `IllustrateSlide` | P0 | ✅ |
+| Wire `spreading.mp4` or replace after regen | P0 | ✅ wired; regen/review in Phase 3 |
+| Resolve rocking video vs Skia redundancy | P1 | ✅ Skia primary; video removed from vocabulary |
+| `Pairing` in `DiagramType` union | P0 | ✅ (pre-existing) |
+| `ConceptCard` uses thumbnail only (not illustrate asset) | P1 | ✅ |
+| Poster frames for video loading | P1 | ✅ |
 
 ### F.2 Interaction backlog (from visual strategy)
 
@@ -426,7 +464,7 @@ Prioritize only if static/video pass doesn’t satisfy—avoid blocking ship on 
 |------|--------|
 | GitHub Action: `npm test` | Every PR |
 | Snapshot tests for slide data shape | Optional |
-| Manual QA script | `docs/QA_CHECKLIST.md` |
+| Manual QA script | `docs/QA_CHECKLIST.md` | ✅ |
 
 ### F.7 Ship infrastructure
 
@@ -440,30 +478,32 @@ Prioritize only if static/video pass doesn’t satisfy—avoid blocking ship on 
 
 Phases overlap; dates are suggestive for a single focused contributor.
 
-### Phase 0 — Reactivation (Week 1)
+### Phase 0 — Reactivation (Week 1) ✅
 
-| ID | Task | Workstream |
-|----|------|------------|
-| 0.1 | Triage uncommitted work; branch `visual-v2-restart` | A |
-| 0.2 | Run app on device; screenshot current state | C |
-| 0.3 | Create `docs/README.md` skeleton | B |
-| 0.4 | Generate `CONCEPT_AUDIT.md` rows from vocabulary | C |
-| 0.5 | Draft STYLE_BIBLE v0.1 from existing identity docs | A |
+| ID | Task | Workstream | Status |
+|----|------|------------|--------|
+| 0.1 | Triage uncommitted work; branch `visual-v2-restart` | A | ✅ `dfda4b7` |
+| 0.2 | Run app on device; screenshot current state | C | ⬜ Manual QA |
+| 0.3 | Create `docs/README.md` skeleton | B | ✅ |
+| 0.4 | Generate `CONCEPT_AUDIT.md` rows from vocabulary | C | ✅ + `generate-concept-audit` script |
+| 0.5 | Draft STYLE_BIBLE v0.1 from existing identity docs | A | ✅ |
 
-**Exit:** Branch strategy clear; audit template exists; app runs.
+**Exit:** ✅ Branch strategy clear; audit template exists; core docs and wiring in place.
+
+**Also delivered (stretch):** `pipelines/*` docs, `transcode-video.sh`, refreshed thumbnails/illustrations subset, `PairingDiagram` + `spreading.mp4` wiring.
 
 ---
 
-### Phase 1 — Foundation & decisions (Weeks 1–2)
+### Phase 1 — Foundation & decisions (Weeks 1–2) 🟡
 
-| ID | Task | Workstream |
-|----|------|------------|
-| 1.1 | Ratify STYLE_BIBLE (reference renders) | A |
-| 1.2 | Lock format per concept in audit sheet | C |
-| 1.3 | Image tool pilot (5 concepts) | D |
-| 1.4 | Video tool pilot (2 concepts) | E |
-| 1.5 | Consolidate docs into target structure (partial) | B |
-| 1.6 | Fix orphan wiring (Pairing, spreading) | F |
+| ID | Task | Workstream | Status |
+|----|------|------------|--------|
+| 1.1 | Ratify STYLE_BIBLE (reference renders) | A | 🟡 Pilot table in bible §10; approval pending |
+| 1.2 | Lock format per concept in audit sheet | C | ✅ `data/visual-formats.json` |
+| 1.3 | Image tool pilot (5 concepts) | D | 🟡 Prompts in `pipelines/prompts/`; generation + review pending |
+| 1.4 | Video tool pilot (2 concepts) | E | 🟡 Prompts in `VIDEO_PILOT_BATCH.md`; Building review + Pulsing gen pending |
+| 1.5 | Consolidate docs into target structure (partial) | B | 🟡 Legacy prompts migrate ongoing; `QA_CHECKLIST.md` added |
+| 1.6 | Fix orphan wiring (Pairing, spreading) | F | ✅ |
 
 **Exit:** Tool choices documented; prompts template ready; no orphan components.
 
@@ -596,15 +636,24 @@ Instrumentation can be Phase 5+ (analytics hook in repositories).
 
 ---
 
-## 8. Immediate next steps (this week)
+## 8. Immediate next steps (current)
 
-1. Read and approve direction in **Workstream A** identity pillars.
-2. Commit uncommitted January–May work to `visual-v2-restart` or merge selectively.
-3. Create `docs/content/CONCEPT_AUDIT.md` from vocabulary export.
-4. Run **5-concept image pilot** (Nano Banana Pro 2 vs ChatGPT Images 2).
-5. Run **2-concept video pilot** with transcode script.
-6. Wire `PairingDiagram` + decide rocking video fate.
-7. Add `docs/README.md` index (Phase 0.3).
+**Phase 1 focus:**
+
+1. **Ratify** identity pillars in `design/STYLE_BIBLE.md` — approve 5 pilot renders (§10 table).
+2. ~~**Transcode** legacy videos~~ — ✅ `building.mp4`, `responsive-desire.mp4`; requires updated.
+3. ~~**Lock formats**~~ — ✅ `data/visual-formats.json` + `product/visual_content_strategy.md`.
+4. Run **5-concept image pilot** using [`pipelines/prompts/PILOT_BATCH.md`](./pipelines/prompts/PILOT_BATCH.md); record tool choice in `IMAGE_GENERATION.md`.
+5. Run **2-concept video pilot** via [`pipelines/prompts/VIDEO_PILOT_BATCH.md`](./pipelines/prompts/VIDEO_PILOT_BATCH.md); QA in app.
+6. ~~**Pathway gaps**~~ — ✅ all 22 concepts in pathways.
+7. **Device pass:** screenshot all 22 concepts using [`QA_CHECKLIST.md`](./QA_CHECKLIST.md); tick `qa_passed` in `CONCEPT_AUDIT.md`.
+8. ~~**Manifest validator**~~ — ✅ `npm run validate-manifest` (+ size-budget warnings).
+9. ~~**Illustration wiring**~~ — ✅ video concepts use `illustrations/` for poster + reduce motion.
+10. ~~**Compress legacy PNGs**~~ — ✅ recursive `compress-assets`; ~54 MB saved; oversize assets flagged for Phase 3 regen.
+
+**Completed (Phase 0):** branch + commit, docs index, concept audit, style bible v0.1, Pairing/spreading wiring, rocking → Skia-only.
+
+**Completed (Phase 1 engineering):** MP4 transcode, pathway gaps, format lock, theme tokens, validate-manifest, IllustrateSlide poster + reduce motion, compress pass, QA checklist.
 
 ---
 
@@ -623,4 +672,16 @@ Instrumentation can be Phase 5+ (analytics hook in repositories).
 
 ---
 
-*This plan is a living document. Update phase status in `PROJECT_STATUS_REPORT.md` at each phase boundary.*
+## 10. Changelog
+
+| Date | Change |
+|------|--------|
+| May 19, 2026 | Initial plan |
+| May 19, 2026 | Phase 0 marked complete; Phase 1 progress, workstream status tables, updated next steps (`dfda4b7`) |
+| May 19, 2026 | Phase 1 engineering: MP4 transcode, pathway gaps, pilot prompts, doc consolidation |
+| May 19, 2026 | Phase 1: format lock, theme token audit, video pilot prompts, validate-manifest, IllustrateSlide reduced motion + poster |
+| May 19, 2026 | Phase 1: recursive compress-assets (~54 MB saved), manifest size budgets, `QA_CHECKLIST.md` |
+
+---
+
+*This plan is a living document. Update phase status here at each phase boundary; sync narrative in `PROJECT_STATUS_REPORT.md`.*

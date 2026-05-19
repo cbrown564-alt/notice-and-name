@@ -3,17 +3,19 @@
 **Report date:** May 19, 2026  
 **Repository:** `pleasure-vocab` (private)  
 **Last committed release point:** January 6, 2026 (`e7bafe1`)  
-**Branch:** `main` (in sync with `origin/main`)
+**Active branch:** `visual-v2-restart` (Phase 1 in progress; uncommitted work on branch)
 
 ---
 
 ## Executive summary
 
-Pleasure Vocabulary Builder is a **feature-complete, local-first educational MVP** for learning and articulating sexual pleasure concepts through science-backed micro-lessons. The product went from scaffold to polished prototype in roughly **one week** of intensive development (late December 2025 through early January 2026), then paused with substantial **uncommitted visual and documentation work**.
+Pleasure Vocabulary Builder is a **feature-complete, local-first educational MVP** for learning and articulating sexual pleasure concepts through science-backed micro-lessons. The product went from scaffold to polished prototype in roughly **one week** of intensive development (late December 2025 through early January 2026), then paused. **Resumption (May 2026)** is underway on branch `visual-v2-restart` per `IMPLEMENTATION_PLAN.md` — Phase 0 complete, Phase 1 in progress.
 
-The codebase is in **strong architectural health**: repository pattern, schema migrations, Zod validation, React Context, and **198 passing unit tests** on the data layer. The primary gaps are not structural—they are **content/media completeness**, **visual coherence at scale**, **documentation drift**, and **distribution readiness** (no CI, no store pipeline).
+The codebase is in **strong architectural health**: repository pattern, schema migrations, Zod validation, React Context, and **198 passing unit tests** on the data layer. Recent Phase 1 work: **H.264 MP4 transcode**, **all 22 concepts in pathways**, **format lock** (`data/visual-formats.json`), **theme token audit** (`conceptCanvas`, `diagram.*`), **validate-manifest** script with size-budget warnings, **recursive compress-assets** (~54 MB saved), video/image pilot prompt packs, **IllustrateSlide** poster + reduce-motion fallback, **`QA_CHECKLIST.md`**.
 
-Resuming the project should treat five parallel workstreams as first-class:
+Remaining gaps: **pilot asset generation** (image + video), **style bible ratification**, **copy editorial pass**, **thumbnail/illustration regen** (many PNGs still over size budget after compress), **device QA pass**, **distribution readiness** (no CI, no store pipeline).
+
+Five parallel workstreams (see Implementation Plan):
 
 1. **Visual identity** — evolve beyond the January “Medical Luxury” pass into a unified, distinctive system.
 2. **Documentation** — audit, consolidate, and establish a single source of truth.
@@ -37,7 +39,7 @@ Help users (primarily women and partners) build a **precise vocabulary** and **s
 | Hook | Language and mastery through naming | Mood, stories, or explicit demonstration |
 | Tone | Warm, editorial, evidence-based | Clinical, entertainment, or generic wellness |
 
-See `docs/market_analysis.md` for competitive context.
+See `docs/product/market_analysis.md` for competitive context.
 
 ### Core user loop
 
@@ -81,12 +83,12 @@ All content is currently `tier: 'free'`; premium gating is typed but not enforce
 
 | Mechanism | Concepts | Implementation |
 |-----------|----------|----------------|
-| Skia interactive diagram | Angling, Rocking, Shallowing | `components/diagrams/*` |
-| Video loop | Rocking, Building, Responsive Desire | `expo-av` via `illustrationVideo` in slides |
+| Skia interactive diagram | Angling, Rocking, Shallowing, Pairing | `components/diagrams/*` |
+| Video loop | Building, Spreading, Responsive Desire | `expo-av` via `illustrationVideo` — **MP4 only** in app bundle |
 | Static illustration | Most others | PNG in `assets/images/concepts/illustrations/` |
 | Thumbnail (library/card) | Most | `assets/images/concepts/thumbnails/` |
 
-**Gaps:** `PairingDiagram` is implemented but **not wired** into `IllustrateSlide`. `spreading.mp4` exists on disk (uncommitted) but is **not referenced** in `vocabulary.ts`. `shallowing.mov` exists but is unused (Shallowing uses Skia only). Several concepts lack thumbnails or use placeholder illustrations (see `docs/asset_inventory.md`).
+**Gaps:** Several concepts still need copy review and QA sign-off (`content/CONCEPT_AUDIT.md`). Pulsing / Spontaneous Desire / Embodied Presence videos not yet generated. Legacy PNGs compressed but many still exceed size budget — flagged by `validate-manifest`. See `pipelines/ASSET_MANIFEST.md`.
 
 ### Tech stack
 
@@ -132,7 +134,10 @@ The working tree contains work **not on `main`** that represents a partial “vi
 |--------|-------------|
 | 7 illustration PNGs | Updated (golden-trio, plateauing, non-concordance, pairing, etc.) |
 | 5 thumbnails | New/regenerated (angling, clitoral-structure, nerve-density, rocking, shallowing) |
-| `spreading.mp4` | New video; not wired in data layer |
+| `spreading.mp4` | Wired in `vocabulary.ts` |
+| `building.mp4`, `responsive-desire.mp4` | Transcoded from MOVs (≤1.5 MB budget) |
+| Pathways | All 22 concepts now in ≥1 pathway |
+| Docs | `STYLE_BIBLE`, `COPY_GUIDELINES`, `architecture/backend.md`, pilot prompts |
 | UI tweaks | `ConceptCard.tsx`, `IllustrateSlide.tsx` |
 | New docs | `holistic_visual_identity.md`, `app_visual_identity.md`, `asset_visual_identities.md`, `asset_inventory.md`, `veo3.1_best_practices.md` |
 | Cleanup | Archive deletions, removed `angling.mov`, `insight-pattern.png` |
@@ -143,29 +148,18 @@ The working tree contains work **not on `main`** that represents a partial “vi
 
 ## Documentation health
 
-### Current doc set (18 markdown files)
+**Index:** `docs/README.md` — start here.
 
-| Category | Files |
-|----------|-------|
-| History / status | `DEVELOPMENT_TIMELINE.md`, `GAP_ANALYSIS.md` (stale) |
-| Architecture | `backend-refactor-complete.md` |
-| Product / market | `market_analysis.md` |
-| Visual / assets | `holistic_visual_identity.md`, `app_visual_identity.md`, `asset_visual_identities.md`, `asset_generation_prompts.md`, `asset_library.md`, `asset_inventory.md`, `visual_content_strategy.md`, `animation_journey.md`, `video_interactive_prompts.md`, `veo3.1_best_practices.md` |
-| Historical | `PHASE_3_UI_UX_REVAMP.md`, `_archive/*` |
+| Area | Canonical doc |
+|------|----------------|
+| Status + plan | `PROJECT_STATUS_REPORT.md`, `IMPLEMENTATION_PLAN.md` |
+| Visual | `design/STYLE_BIBLE.md` |
+| Concepts | `content/CONCEPT_AUDIT.md` (auto-generated), `content/COPY_GUIDELINES.md` |
+| Pipelines | `pipelines/IMAGE_GENERATION.md`, `VIDEO_GENERATION.md`, `ASSET_MANIFEST.md` |
+| Architecture | `architecture/backend.md` (+ full `backend-refactor-complete.md`) |
+| Product | `product/market_analysis.md` |
 
-### Known staleness
-
-`docs/GAP_ANALYSIS.md` (January 6) lists as open several items **already completed**:
-
-- Unit tests → done (198 tests)
-- Error boundary UI → done
-- Legacy `concepts_completed` column → removed
-
-`docs/PHASE_3_UI_UX_REVAMP.md` still describes resolved issues (dual state stores, `lib/events.ts`).
-
-`docs/backend-refactor-complete.md` still contains a “TODO: Show error state to user” that post-dates the error UI commit.
-
-**Recommendation:** Treat documentation consolidation as a dedicated phase—not a side task.
+**Archived:** `GAP_ANALYSIS.md`, `PHASE_3_UI_UX_REVAMP.md` → `_archive/`. Legacy prompts remain in `asset_generation_prompts.md` until migrated to `pipelines/prompts/`.
 
 ---
 
@@ -218,20 +212,18 @@ StorageAdapter
 |------|----------------|
 | Illustrations | ~most exist; quality mixed; January batch partially superseded in working tree |
 | Thumbnails | Several missing (spectatoring, embodied-presence, non-concordance, body-appreciation) |
-| Video | 3 wired in code; 1 on disk unwired; pipeline undocumented and inconsistent |
-| Interactive | 3 wired; Pairing built but unwired |
+| Video | 3 wired (`building`, `spreading`, `responsive-desire`) as MP4; transcode script + `VIDEO_GENERATION.md` |
+| Interactive | 4 wired (Angling, Rocking, Shallowing, Pairing) |
 
 Detailed per-concept table: `docs/asset_inventory.md`.  
 Format-by-concept rationale: `docs/visual_content_strategy.md`.
 
-### January video pipeline (problems observed)
+### Video pipeline (May 2026)
 
-- Mixed formats (`.mov` vs `.mp4`), large file sizes (~5 MB each)
-- Inconsistent naming and folder hygiene (`originals/` subfolder)
-- No manifest linking asset → concept → slide field
-- Generation tool prompts scattered (`video_interactive_prompts.md`, `veo3.1_best_practices.md`)
-- Videos created without clear acceptance criteria or compression pass before commit
-- Some videos generated for concepts that later received Skia diagrams (redundant paths)
+- **Resolved:** App bundle uses H.264 MP4 only; `scripts/transcode-video.sh` documents ffmpeg settings.
+- **Resolved:** Unused `rocking.mov` / `shallowing.mov` removed; ProRes sources in `assets/videos/originals/`.
+- **Open:** `spreading.mp4` at 1.6 MB (optional re-transcode); Pulsing / Spontaneous Desire / Embodied Presence videos not yet generated.
+- **Open:** Reduced-motion static fallback — ✅ implemented in IllustrateSlide (Phase 1).
 
 ---
 
@@ -255,8 +247,8 @@ Format-by-concept rationale: `docs/visual_content_strategy.md`.
 | **P0** | Full concept audit (copy, slides, assets, status labels) on every surface |
 | **P0** | Batch asset regeneration with modern tools + updated prompts |
 | **P0** | Video/motion pipeline definition and execution |
-| **P1** | Documentation consolidation + `STATUS.md` / doc index |
-| **P1** | Wire orphan assets (`spreading.mp4`, `PairingDiagram`) or remove |
+| **P1** | Documentation consolidation (partial — see `docs/README.md`) |
+| ~~**P1**~~ | ~~Wire orphan assets~~ — ✅ Pairing + spreading wired |
 | **P1** | Share flow polish + partner viral loop validation |
 | **P1** | CI (`npm test`) + EAS/TestFlight |
 | **P2** | Lottie resonance feedback |
@@ -294,11 +286,11 @@ Format-by-concept rationale: `docs/visual_content_strategy.md`.
 
 ## Recommended immediate actions
 
-1. **Commit or triage** uncommitted visual work on a dedicated branch.
-2. **Approve** a visual identity direction (extend `holistic_visual_identity.md` into binding spec).
-3. **Run** concept audit spreadsheet (see Implementation Plan, Workstream C).
-4. **Pilot** 3 assets through new image pipeline (thumbnail + illustration + one video) before full batch.
-5. **Refresh** `GAP_ANALYSIS.md` or replace with `STATUS.md` linked from `README.md`.
+1. **Commit** `visual-v2-restart` batch when ready (videos, pathways, docs, compressed assets).
+2. **Ratify** `design/STYLE_BIBLE.md` with 5 reference renders (one per category).
+3. **Run** image pilot per `pipelines/prompts/PILOT_BATCH.md`; record tool winners.
+4. **Device QA** all 22 concepts per `QA_CHECKLIST.md`; update `qa_passed` in `CONCEPT_AUDIT.md`.
+5. **Editorial pass** copy per `content/COPY_GUIDELINES.md` (Phase 2).
 
 ---
 
@@ -307,10 +299,11 @@ Format-by-concept rationale: `docs/visual_content_strategy.md`.
 | Document | Role |
 |----------|------|
 | `IMPLEMENTATION_PLAN.md` | Phased plan to reach polished, shippable product |
-| `DEVELOPMENT_TIMELINE.md` | Historical chronology |
-| `backend-refactor-complete.md` | Architecture reference |
-| `holistic_visual_identity.md` | Draft visual DNA (to be consolidated) |
+| `design/STYLE_BIBLE.md` | Canonical visual language (v0.1) |
+| `content/CONCEPT_AUDIT.md` | Per-concept tracker (`npm run generate-concept-audit`) |
+| `QA_CHECKLIST.md` | Manual device QA script |
+| `architecture/backend.md` | Backend quick reference |
 
 ---
 
-*This report supersedes `GAP_ANALYSIS.md` as the current status snapshot. Update or archive `GAP_ANALYSIS.md` when documentation consolidation begins.*
+*This report supersedes `_archive/GAP_ANALYSIS.md`. Sync with `IMPLEMENTATION_PLAN.md` at each phase boundary.*

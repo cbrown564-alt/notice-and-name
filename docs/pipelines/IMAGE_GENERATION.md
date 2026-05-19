@@ -16,6 +16,9 @@ See: `design/STYLE_BIBLE.md`, `asset_generation_prompts.md` (January prompts —
 
 **Phase 1.3 pilot:** Run 5 concepts (one per category) through both tools; record winner per asset type here.
 
+**Pilot pack:** [`prompts/PILOT_BATCH.md`](./prompts/PILOT_BATCH.md) — prompts in `prompts/illustrations/{concept-id}.md`.  
+**Format lock (prerequisite):** [`data/visual-formats.json`](../../data/visual-formats.json).
+
 ---
 
 ## Specs
@@ -43,6 +46,8 @@ Store per concept:
 docs/pipelines/prompts/illustrations/{concept-id}.md
 docs/pipelines/prompts/illustrations/{concept-id}-thumb.md
 ```
+
+**Pilot pack (5 concepts):** see [`prompts/PILOT_BATCH.md`](./prompts/PILOT_BATCH.md). Remaining concepts: migrate from `asset_generation_prompts.md` during Phase 2.4.
 
 ---
 
