@@ -1,22 +1,25 @@
 # Video & Motion Pipeline
 
-**Goal:** Repeatable abstract loops for sensation/psychology concepts; MP4-only in app; ≤1.5 MB per file.
+**Goal:** Gemini Omni videos for sensation loops, **scientific zoom journeys**, and process explainers; MP4-only in app.
 
-See also: `visual_content_strategy.md`, `design/STYLE_BIBLE.md` §7, `veo3.1_best_practices.md` (detailed Veo reference).
+See also: [`VIDEO_CONCEPT_CATALOG.md`](./VIDEO_CONCEPT_CATALOG.md), `visual_content_strategy.md`, `design/STYLE_BIBLE.md` §7, `gemini_omni_best_practices.md`.
 
 ---
 
 ## When to use video
 
 ```
-Physical mechanics with variables?  → Interactive Skia (not video)
-Temporal / rhythmic / emotional flow? → Abstract motion video
-Anatomical structure or comparison? → Rich static illustration
+Physical mechanics with variables?     → Interactive Skia (not video)
+Sensation rhythm / radiance?           → video · abstract-loop
+Anatomy, nerves, internal structure?   → video · scientific-journey (Omni scale zoom)
+Timelines, dual pathways, curves?        → video · process-explainer
+Desire / presence / attention?         → video · embodied-presence
+Simple metaphor with no motion need?   → Rich static illustration
 ```
 
-**P0 video candidates:** Building, Spreading, Pulsing  
-**P1:** Responsive Desire, Spontaneous Desire, Embodied Presence  
-**Deprioritize:** Angling, Shallowing, Pairing, Plateauing, charts (static)
+**P0 pilots:** Building, Pulsing (abstract-loop) **and** Clitoral Structure, Nerve Density (scientific-journey)  
+**P1:** Spreading, Responsive Desire, anatomy batch, Warm-up Window, Non-concordance, desire/presence  
+**Skia only:** Angling, Rocking, Shallowing, Pairing
 
 **Rocking:** Skia diagram is primary; `rocking.mov` is deprecated.
 
@@ -26,12 +29,14 @@ Anatomical structure or comparison? → Rich static illustration
 
 | Stage | Tool | Output |
 |-------|------|--------|
-| Generation | Veo 3.1 (or successor) | 8 s abstract loop |
-| Pickup | Runway / After Effects | Concepts Veo mishandles |
+| Static reference (optional) | Nano Banana (Gemini image) | Approved illustration PNG |
+| Generation + iteration | **Gemini Omni Flash** in [Google Flow](https://flow.google/) | ~10 s clip; multi-turn edits |
+| Pickup | Runway / After Effects | Only if Omni cannot hit loop/metaphor |
 | Transcode | `scripts/transcode-video.sh` | H.264 MP4, no audio |
 | QA | Device via `IllustrateSlide` | Loop smooth, muted default |
 
-Store prompts in `docs/pipelines/prompts/videos/{concept-id}.md` (create per concept).
+Store prompts in `docs/pipelines/prompts/videos/{concept-id}.md`.  
+**Pilots:** [`prompts/VIDEO_PILOT_BATCH.md`](./prompts/VIDEO_PILOT_BATCH.md) (dual track: sensation + anatomy journey).
 
 ---
 
@@ -44,32 +49,41 @@ Store prompts in `docs/pipelines/prompts/videos/{concept-id}.md` (create per con
 # Defaults: strip audio, scale to 720p, CRF 28, faststart
 ```
 
-**Target spec**
+**Target spec (by profile — see `data/visual-formats.json` → `videoProfiles`)**
 
-| Property | Value |
-|----------|-------|
+| Profile | Duration | Loop | Max size |
+|---------|----------|------|----------|
+| abstract-loop | 8–10 s | Yes | 1.5 MB |
+| scientific-journey | ~10 s | Optional | 2.5 MB |
+| process-explainer | ~10 s | Rare | 2.5 MB |
+| embodied-presence | ~10 s | Soft | 2.0 MB |
+
+| Property | All profiles |
+|----------|----------------|
 | Codec | H.264 (libx264) |
 | Resolution | ≤1280×720 |
-| Duration | 8–12 s loop |
 | Audio | None (`-an`) |
-| Max size | 1.5 MB |
 
-If over budget, raise CRF to 30 or trim in ffmpeg.
+If over budget, raise CRF to 30–32 or trim in ffmpeg. Journey clips may need higher CRF before rejecting concept.
 
 ---
 
-## Prompt template (abstract sensation)
+## Prompt templates
+
+See `gemini_omni_best_practices.md` §2 (scale traversal) and per-concept `prompts/videos/{id}.md`.
+
+**Abstract loop:**
 
 ```
-[STYLE BIBLE motion section: warm cream void, bioluminescent glow, no text, no bodies]
+Using image-0 as style reference: abstract {metaphor} on cream void #F9F5F1, bioluminescent coral glow.
+Seamless 10s loop, static camera, no text, no strobe.
+```
 
-Subject: {concept metaphor — e.g. ink diffusing in warm water, radiating rings}
+**Scientific journey:**
 
-Camera: static or slow push; 24fps cinematic
-
-Motion: seamless loop, {duration}s, gentle acceleration/deceleration
-
-Negative: anatomical realism, faces, text overlays, harsh cuts, clinical white
+```
+One continuous 10s shot, Scientific Warmth palette. Journey: {macro} → {cross-section} → {micro detail}.
+Accurate to {citation}. Non-explicit, no in-image text. Attach image-0 for palette.
 ```
 
 ---
@@ -77,12 +91,13 @@ Negative: anatomical realism, faces, text overlays, harsh cuts, clinical white
 ## Per-video workflow
 
 1. Write prompt → `pipelines/prompts/videos/{id}.md`
-2. Generate 3 variants (different seeds)
-3. Select best → transcode to `assets/videos/{id}.mp4`
-4. Wire `illustrationVideo` on **illustrate** slide only in `data/vocabulary.ts`
-5. Update `ASSET_MANIFEST.md`
-6. Test in Expo Go + one release build
-7. Delete or move `.mov` originals out of tracked `assets/videos/`
+2. Generate in Flow (attach illustration as reference when available)
+3. Iterate 2–4 turns on best candidate; optionally branch 2–3 initial concepts
+4. Select best → transcode to `assets/videos/{id}.mp4`
+5. Wire `illustrationVideo` on **illustrate** slide only in `data/vocabulary.ts`
+6. Update `ASSET_MANIFEST.md`
+7. Test in Expo Go + one release build
+8. Delete or move `.mov` originals out of tracked `assets/videos/`
 
 ---
 
@@ -91,10 +106,12 @@ Negative: anatomical realism, faces, text overlays, harsh cuts, clinical white
 | File | Wired | Action |
 |------|-------|--------|
 | `spreading.mp4` | ✅ | Review against style bible |
-| `building.mov` | ✅ | Transcode → `.mp4`, update require |
-| `responsive-desire.mov` | ✅ | Transcode → `.mp4` |
-| `rocking.mov` | ❌ removed | Archive / delete |
-| `shallowing.mov` | ❌ | Unused (Skia); remove from repo |
+| `building.mp4` | ✅ | 256 KB — wired |
+| `responsive-desire.mp4` | ✅ | 503 KB — wired |
+| `spreading.mp4` | ✅ | 1.6 MB — style review optional |
+| `rocking.mov` | ❌ | Removed (Skia only) |
+| `shallowing.mov` | ❌ | Removed (Skia only) |
+| `originals/*.mov` | — | ProRes sources; not in app bundle |
 
 ---
 

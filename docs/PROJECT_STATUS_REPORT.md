@@ -1,19 +1,32 @@
 # Pleasure Vocabulary Builder — Project Status Report
 
-**Report date:** May 19, 2026  
+**Report date:** May 20, 2026  
 **Repository:** `pleasure-vocab` (private)  
 **Last committed release point:** January 6, 2026 (`e7bafe1`)  
-**Active branch:** `visual-v2-restart` (Phase 1 in progress; uncommitted work on branch)
+**Active branch:** `visual-v2-restart` — **engineering track active** (§8b); asset production paused (§8a)
+
+### Phase snapshot (synced with `IMPLEMENTATION_PLAN.md`)
+
+| Phase | Status |
+|-------|--------|
+| 0 — Reactivation | ✅ Complete |
+| 1 — Foundation | 🟡 Partial (engineering ✅; pilots paused) |
+| 2 — Copy | ✅ Complete |
+| 3 — Asset production | ⏸ Postponed |
+| 4 — Integration | 🟡 In progress (asset-free items via §8b) |
+| 5 — Release candidate | ⬜ Not started |
 
 ---
 
 ## Executive summary
 
-Pleasure Vocabulary Builder is a **feature-complete, local-first educational MVP** for learning and articulating sexual pleasure concepts through science-backed micro-lessons. The product went from scaffold to polished prototype in roughly **one week** of intensive development (late December 2025 through early January 2026), then paused. **Resumption (May 2026)** is underway on branch `visual-v2-restart` per `IMPLEMENTATION_PLAN.md` — Phase 0 complete, Phase 1 in progress.
+Pleasure Vocabulary Builder is a **feature-complete, local-first educational MVP** for learning and articulating sexual pleasure concepts through science-backed micro-lessons. The product went from scaffold to polished prototype in roughly **one week** of intensive development (late December 2025 through early January 2026), then paused. **Resumption (May 2026)** is underway on branch `visual-v2-restart` per `IMPLEMENTATION_PLAN.md` — Phases 0 and 2 complete; **asset generation postponed** while the **engineering track** (QA, UI shell, EAS, share/Lottie) runs on existing media.
 
-The codebase is in **strong architectural health**: repository pattern, schema migrations, Zod validation, React Context, and **198 passing unit tests** on the data layer. Recent Phase 1 work: **H.264 MP4 transcode**, **all 22 concepts in pathways**, **format lock** (`data/visual-formats.json`), **theme token audit** (`conceptCanvas`, `diagram.*`), **validate-manifest** script with size-budget warnings, **recursive compress-assets** (~54 MB saved), video/image pilot prompt packs, **IllustrateSlide** poster + reduce-motion fallback, **`QA_CHECKLIST.md`**.
+The codebase is in **strong architectural health**: repository pattern, schema migrations, Zod validation, React Context, and **198 passing unit tests** on the data layer. Recent work: **Phase 2** (22/22 editorial copy, format lock, 22 illustration prompts, building/pulsing video prompts); **Gemini Omni** replaces Veo for video generation (`gemini_omni_best_practices.md`); **Phase 1 engineering** (H.264 MP4 transcode, all 22 concepts in pathways, theme token audit, validate-manifest, recursive compress-assets ~54 MB saved, IllustrateSlide poster + reduce-motion, CI, pilot workflow scripts).
 
-Remaining gaps: **pilot asset generation** (image + video), **style bible ratification**, **copy editorial pass**, **thumbnail/illustration regen** (many PNGs still over size budget after compress), **device QA pass**, **distribution readiness** (no CI, no store pipeline).
+**Active now (§8b):** device QA + citations, EAS/preview build, UI shell polish, share/Lottie/expo-video, plan hygiene.
+
+**Paused (§8a):** style-bible reference renders (1/5 approved), image/video pilots, full illustration/thumbnail/shell regen, Phase 3 batches.
 
 Five parallel workstreams (see Implementation Plan):
 
@@ -84,18 +97,18 @@ All content is currently `tier: 'free'`; premium gating is typed but not enforce
 | Mechanism | Concepts | Implementation |
 |-----------|----------|----------------|
 | Skia interactive diagram | Angling, Rocking, Shallowing, Pairing | `components/diagrams/*` |
-| Video loop | Building, Spreading, Responsive Desire | `expo-av` via `illustrationVideo` — **MP4 only** in app bundle |
+| Video loop | Building, Spreading, Responsive Desire | `expo-video` via `IllustrateVideo.tsx` — **MP4 only** in app bundle |
 | Static illustration | Most others | PNG in `assets/images/concepts/illustrations/` |
 | Thumbnail (library/card) | Most | `assets/images/concepts/thumbnails/` |
 
-**Gaps:** Several concepts still need copy review and QA sign-off (`content/CONCEPT_AUDIT.md`). Pulsing / Spontaneous Desire / Embodied Presence videos not yet generated. Legacy PNGs compressed but many still exceed size budget — flagged by `validate-manifest`. See `pipelines/ASSET_MANIFEST.md`.
+**Gaps:** Copy + citations complete; **device QA** still open. **Video scope expanded (May 20):** Omni enables **scientific-journey** videos (scale zoom) for anatomy + process explainers — see `VIDEO_CONCEPT_CATALOG.md`. P0 pilots now include Clitoral Structure + Nerve Density alongside Building/Pulsing. Most journey MP4s not yet generated (static poster fallback OK). See `pipelines/ASSET_MANIFEST.md`.
 
 ### Tech stack
 
 - **Expo SDK 54**, React 19, React Native 0.81, Expo Router 6
 - **Persistence:** SQLite (native) + AsyncStorage (web); platform adapters behind repository layer
 - **Validation:** Zod (`lib/validation.ts`)
-- **Animation:** Reanimated; **Skia** for diagrams; **Lottie** installed but unused
+- **Animation:** Reanimated; **Skia** for diagrams; **Lottie** (`ResonanceBurst` on Reflect slide)
 - **Assets on disk:** ~228 MB under `assets/` (162 image/video files)
 
 ### Quality and operations
@@ -104,8 +117,8 @@ All content is currently `tier: 'free'`; premium gating is typed but not enforce
 |------|--------|
 | Unit tests | ✅ 198 tests, 6 suites (repositories, validation, errors) |
 | Component / E2E tests | ❌ None |
-| CI/CD | ❌ No `.github/workflows` |
-| Store / EAS | ❌ No `eas.json`; `app.json` only |
+| CI/CD | ✅ `test` + `validate-manifest` on push/PR (`.github/workflows/ci.yml`) |
+| Store / EAS | 🟡 `eas.json` (dev/preview/prod); preview build not yet cut |
 | Error UI | ✅ Toast, full-screen, inline (Jan 6 commit) |
 
 ---
@@ -222,8 +235,9 @@ Format-by-concept rationale: `docs/visual_content_strategy.md`.
 
 - **Resolved:** App bundle uses H.264 MP4 only; `scripts/transcode-video.sh` documents ffmpeg settings.
 - **Resolved:** Unused `rocking.mov` / `shallowing.mov` removed; ProRes sources in `assets/videos/originals/`.
-- **Open:** `spreading.mp4` at 1.6 MB (optional re-transcode); Pulsing / Spontaneous Desire / Embodied Presence videos not yet generated.
-- **Open:** Reduced-motion static fallback — ✅ implemented in IllustrateSlide (Phase 1).
+- **Open (Phase 3 / §8a):** `spreading.mp4` at 1.6 MB (optional re-transcode); Pulsing / Spontaneous Desire / Embodied Presence videos not yet generated.
+- **Resolved:** Reduced-motion static fallback in IllustrateSlide (Phase 1).
+- **Resolved:** Video prompts for building/pulsing (`pipelines/prompts/videos/`).
 
 ---
 
@@ -241,19 +255,29 @@ Format-by-concept rationale: `docs/visual_content_strategy.md`.
 
 ### Still open (prioritized)
 
-| Priority | Gap |
-|----------|-----|
-| **P0** | Unified visual identity applied consistently across app shell + all concept assets |
-| **P0** | Full concept audit (copy, slides, assets, status labels) on every surface |
-| **P0** | Batch asset regeneration with modern tools + updated prompts |
-| **P0** | Video/motion pipeline definition and execution |
-| **P1** | Documentation consolidation (partial — see `docs/README.md`) |
-| ~~**P1**~~ | ~~Wire orphan assets~~ — ✅ Pairing + spreading wired |
-| **P1** | Share flow polish + partner viral loop validation |
-| **P1** | CI (`npm test`) + EAS/TestFlight |
-| **P2** | Lottie resonance feedback |
-| **P2** | Performance pass (profile insights, image loading) |
-| **P3** | Spaced repetition, search, premium, partner mode |
+**Engineering track (active — no new assets):**
+
+| Priority | Gap | Plan ref |
+|----------|-----|----------|
+| **P0** | Device QA all 22 concepts; tick `data/qa-passed.json` | §8b Batch 1 |
+| **P0** | EAS preview build (`npm run build:preview`) | §8b Batch 2 |
+| **P1** | Share smoke test (iOS + Android) | §8b Batch 1 / 4 |
+| ~~**P1**~~ | ~~UI shell polish (typography, deck chrome, profile, onboarding)~~ | ✅ §8b Batch 3 |
+| ~~**P1**~~ | ~~Share flow polish; Lottie; expo-video; profile memoization~~ | ✅ §8b Batch 4 |
+
+**Asset track (paused — §8a):**
+
+| Priority | Gap | Plan ref |
+|----------|-----|----------|
+| **P0** | Style bible ratification (1/5 reference renders; pilots pending) | Phase 1.1, 3.0 |
+| **P0** | Batch asset regeneration (illustrations, thumbnails, shell images) | Phase 3 |
+| **P0** | Video generation (pulsing, spontaneous-desire, embodied-presence) | Phase 3.4 |
+| ~~**P1**~~ | ~~Wire orphan assets~~ | ✅ Pairing + spreading wired |
+| ~~**P1**~~ | ~~CI (`npm test`)~~ | ✅ test + validate-manifest on PR |
+| ~~**P1**~~ | ~~Editorial copy pass~~ | ✅ Phase 2.1 |
+| ~~**P1**~~ | ~~Video pipeline docs + transcode~~ | ✅ `VIDEO_GENERATION.md`, MP4 wired |
+
+**Deferred (v1.0 out of scope):** Spaced repetition, search, premium, partner mode.
 
 ---
 
@@ -261,7 +285,8 @@ Format-by-concept rationale: `docs/visual_content_strategy.md`.
 
 | Risk | Mitigation |
 |------|------------|
-| Asset regeneration without style lock produces incoherent library | Approve style bible + 3–5 reference renders before batch |
+| Asset regeneration without style lock produces incoherent library | Approve style bible + 3–5 reference renders before batch (§8a; paused) |
+| Engineering polish blocked waiting on art | §8b runs on current assets; delta QA only after Phase 3 |
 | Scope creep across 22 concepts × 3 tiers | Phased batches by category; manifest-driven checklist |
 | Video cost/time | Reserve video for concepts where motion is essential; prefer diagram/static elsewhere |
 | Doc drift recurs | Single `docs/README.md` index; archive superseded files |
@@ -278,19 +303,29 @@ Format-by-concept rationale: `docs/visual_content_strategy.md`.
 | Content depth | **7/10** | 22 concepts complete in data; quality uneven |
 | Visual polish | **5/10** | Strong shell; asset tier inconsistent |
 | Engineering | **8/10** | Solid foundation; needs CI and component tests |
-| Ship readiness | **3/10** | No EAS, no CI, no user testing loop documented |
+| Ship readiness | **5/10** | CI ✅; EAS config ✅; preview build + device QA still open |
 
-**Overall:** Strong baseline prototype ready for a **focused production pass**, not a rewrite.
+**Overall:** Strong baseline prototype ready for a **focused production pass**, not a rewrite. Current sprint is **engineering-first**; visual batch resumes when §8a restarts.
 
 ---
 
 ## Recommended immediate actions
 
-1. **Commit** `visual-v2-restart` batch when ready (videos, pathways, docs, compressed assets).
-2. **Ratify** `design/STYLE_BIBLE.md` with 5 reference renders (one per category).
-3. **Run** image pilot per `pipelines/prompts/PILOT_BATCH.md`; record tool winners.
-4. **Device QA** all 22 concepts per `QA_CHECKLIST.md`; update `qa_passed` in `CONCEPT_AUDIT.md`.
-5. **Editorial pass** copy per `content/COPY_GUIDELINES.md` (Phase 2).
+**Active — engineering track (`IMPLEMENTATION_PLAN.md` §8b):**
+
+1. **Batch 1:** Device QA all 22 concepts per `QA_CHECKLIST.md`; set ids in `data/qa-passed.json`; `npm run generate-concept-audit`; share smoke test (iOS + Android).
+2. **Batch 2:** Run `npm run build:preview` (EAS); install on device; re-spot-check if needed.
+3. ~~**Batch 3:** UI shell polish~~ — ✅ deck typography tokens, IllustrateSlide, Profile, onboarding, ConceptCard.
+4. **Batch 4:** Lottie on resonance, share polish, `expo-av` → `expo-video`, profile insights memoization.
+5. **Batch 5:** Sync this report after each batch; optional video-doc merge.
+
+**When asset track resumes (§8a):**
+
+1. Complete pilots (STYLE_BIBLE renders, `PILOT_BATCH.md`, building/pulsing Veo).
+2. Run Phase 3 batches; update `ASSET_MANIFEST.md` same day as commits.
+3. Delta QA only on concepts whose assets changed.
+
+**Housekeeping:** Commit `visual-v2-restart` batch when ready (videos, pathways, docs, compressed assets).
 
 ---
 
@@ -298,7 +333,7 @@ Format-by-concept rationale: `docs/visual_content_strategy.md`.
 
 | Document | Role |
 |----------|------|
-| `IMPLEMENTATION_PLAN.md` | Phased plan to reach polished, shippable product |
+| `IMPLEMENTATION_PLAN.md` | Phased plan; **§8b** = active engineering track, **§8a** = paused assets |
 | `design/STYLE_BIBLE.md` | Canonical visual language (v0.1) |
 | `content/CONCEPT_AUDIT.md` | Per-concept tracker (`npm run generate-concept-audit`) |
 | `QA_CHECKLIST.md` | Manual device QA script |
@@ -307,3 +342,5 @@ Format-by-concept rationale: `docs/visual_content_strategy.md`.
 ---
 
 *This report supersedes `_archive/GAP_ANALYSIS.md`. Sync with `IMPLEMENTATION_PLAN.md` at each phase boundary.*
+
+**Changelog:** May 19, 2026 — Synced with plan resequence: Phase 2 complete, Phase 3 postponed, §8a/§8b tracks, engineering batches as recommended actions.

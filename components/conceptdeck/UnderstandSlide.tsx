@@ -1,5 +1,5 @@
 import { Text } from '@/components/ui/Typography';
-import { borderRadius, colors, shadows, spacing, typography } from '@/constants/theme';
+import { borderRadius, colors, shadows, spacing } from '@/constants/theme';
 import { ConceptSlide } from '@/types';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
@@ -42,7 +42,7 @@ export const UnderstandSlide = ({ item }: UnderstandSlideProps) => {
                     {/* Subtle quote mark for "Evidence" feel */}
                     <Ionicons name="book-outline" size={24} color={colors.primary[200]} style={styles.quoteMark} />
 
-                    <Text style={styles.text}>
+                    <Text variant="deckLead" color={colors.text.secondary}>
                         {item.content}
                     </Text>
                 </Animated.View>
@@ -99,12 +99,5 @@ const styles = StyleSheet.create({
     quoteMark: {
         marginBottom: spacing.sm,
         opacity: 0.6,
-    },
-    text: {
-        fontSize: 20,
-        lineHeight: 32, // Relaxed line height for readability
-        color: colors.text.secondary,
-        fontFamily: typography.fontFamily.body, // Switched to Body font for readability
-        fontWeight: '400',
     },
 });

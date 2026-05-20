@@ -19,7 +19,7 @@
 | **Shell** | Host; never competes with content | Editorial serif, sand paper, coral/sage, whitespace | `constants/theme.ts`, tab screens, deck chrome |
 | **Concept plates** | Teach *what it is* | Anatomical clarity, cream canvas `#F9F5F1`, bioluminescent emphasis, **no in-image text** | `assets/images/concepts/illustrations/` |
 | **Thumbnails** | Recognize at a glance | Simplified glyph of plate; consistent crop, border, glow accent | `assets/images/concepts/thumbnails/`, `ConceptCard` |
-| **Motion** | Teach *how it feels* | Abstract loops; avoid literal bodies where possible | `assets/videos/*.mp4` |
+| **Motion** | Teach *how it feels* and *how it works* | Abstract loops + **scientific zoom journeys** (Omni); non-explicit | `assets/videos/*.mp4` |
 | **Interactive** | Teach *mechanics* | Skia diagrams; restrained palette matching plates | `components/diagrams/*` |
 
 ### Category families (subtle cues, one style system)
@@ -49,19 +49,24 @@ Use the **same** plate language for all 22 concepts. Differentiate only through:
 
 ## 4. Color tokens (implemented)
 
-From `constants/theme.ts`:
+From `constants/theme.ts` (token audit May 19, 2026):
 
 | Token | Hex | Use |
 |-------|-----|-----|
 | `primary[500]` | `#E8603C` | Active touch, highlights, CTAs |
 | `secondary[500]` | `#60846A` | Calm, grounding, success |
-| `neutral[50]` | `#FCFAF9` | App background |
+| `neutral[50]` | `#FCFAF9` | App background (`background.primary`) |
+| `neutral[100]` | `#F5F2EF` | Secondary surfaces |
+| `conceptCanvas` | `#F9F5F1` | Generated illustration plates |
 | `text.primary` | `#1C1B1A` | Body copy |
-| `text.tertiary` | — | Captions on illustrate slide |
+| `diagram.passive` | `#DCD8D3` | Skia inactive anatomy |
+| `diagram.active` | `#E8603C` | Skia user/active stroke |
+| `diagram.glow` | `#FFC5B5` | Skia emphasis halo |
+| `diagram.detachment` | `#7A7AFF` | Mind/split (sparingly) |
 
-**Interactive diagrams:** passive anatomy `neutral[300]`; active/user `primary[500]` with glow (`BlurMask`).
+**Interactive diagrams:** use `colors.diagram.*` where possible; legacy hard-coded values may remain in older diagrams until Phase 4 polish.
 
-**Detachment / mind:** cool metallic blue (sparingly) vs warm embodiment — see `PairingDiagram`, Non-concordance plates.
+**Detachment / mind:** cool accent vs warm embodiment — see `PairingDiagram`, Non-concordance plates.
 
 ---
 
@@ -85,9 +90,11 @@ From `constants/theme.ts`:
 ## 7. Motion & video
 
 - **Format:** H.264 MP4 only in repo (ProRes/MOV in `assets/videos/originals/` or cloud).
-- **Spec:** 720p max, 8–12 s loop, ≤1.5 MB, muted in app.
-- **Transcode:** `./scripts/transcode-video.sh`
-- **Reduced motion:** Show static illustration when `AccessibilityInfo.isReduceMotionEnabled` (Phase 4).
+- **Profiles:** `abstract-loop` (≤1.5 MB) · `scientific-journey` / `process-explainer` (≤2.5 MB) — see `pipelines/VIDEO_CONCEPT_CATALOG.md`.
+- **Scientific journeys:** Continuous zoom / cross-section; **Scientific Warmth** palette; citation-verified; non-explicit; no in-image text.
+- **Transcode:** `./scripts/transcode-video.sh` (strip audio).
+- **Reduced motion:** Static illustration poster when `AccessibilityInfo.isReduceMotionEnabled`.
+- **Generation:** Gemini Omni Flash in Google Flow — `gemini_omni_best_practices.md`.
 
 ---
 
@@ -115,16 +122,26 @@ Before committing any generated asset:
 
 ---
 
-## 10. Reference renders (Phase 1.1 — pending)
+## 10. Reference renders (Phase 1.1 — pending approval)
 
-Pin one approved concept per family as north-star comparisons:
+Pin one approved concept per family after image pilot review ([`PILOT_BATCH.md`](../pipelines/prompts/PILOT_BATCH.md)):
 
-1. Technique — Angling or Pairing  
-2. Sensation — Spreading  
-3. Timing — Warm-up Window  
-4. Psychological — Non-concordance  
-5. Anatomy — Clitoral Structure  
+| Family | Pilot concept | Status | Illustration prompt |
+|--------|---------------|--------|---------------------|
+| Technique | Angling | ❌ Pilot rejected (in-image text); regen | `pipelines/prompts/illustrations/angling.md` |
+| Sensation | Spreading | ⬜ Gemini clinical next | `pipelines/prompts/illustrations/spreading.md` |
+| Timing | Warm-up Window | ⬜ Gemini clinical next | `pipelines/prompts/illustrations/warmup-window.md` |
+| Psychological | Non-concordance | ✅ Approved — in production (221 KB) | `pipelines/prompts/illustrations/non-concordance.md` |
+| Anatomy | Clitoral Structure | ⬜ Gemini clinical next | `pipelines/prompts/illustrations/clitoral-structure.md` |
+
+**Ratification:** After all five pass §9 checklist in-app, run `npm run swap-pilot-winner` for approved pilots; mark bible status **v1.0 ratified**.
 
 ---
 
 *Supersedes scattered identity docs once ratified. Until then, keep `holistic_visual_identity.md` et al. in sync when this bible changes.*
+
+---
+
+## 11. Alternative styles archive
+
+For alternative visual styles explored during Phase 1.3 pilots (such as the Botanical/Coral Metaphor and the Hand-Drawn Sketchbook), see [ALTERNATIVE_STYLES.md](file:///Users/cobro/code/Pleasure%20Vocabulary%20Builder/docs/design/ALTERNATIVE_STYLES.md).

@@ -16,7 +16,7 @@ export default function WelcomeScreen() {
     <View style={styles.container}>
       {/* Rich, warm gradient background */}
       <LinearGradient
-        colors={[colors.primary[50], '#FFF0EA', colors.background.primary]}
+        colors={[colors.primary[50], colors.primary[100], colors.background.primary]}
         locations={[0, 0.4, 1]}
         style={StyleSheet.absoluteFill}
       />
@@ -32,11 +32,11 @@ export default function WelcomeScreen() {
             <Ionicons name="sparkles" size={28} color={colors.primary[600]} />
           </View>
 
-          <Text variant="h1" align="center" style={styles.title}>
+          <Text variant="h1" align="center" style={styles.titleSpacing}>
             Find the words for what feels good.
           </Text>
 
-          <Text variant="body" align="center" color={colors.text.secondary} style={styles.subtitle}>
+          <Text variant="body" align="center" color={colors.text.secondary} style={styles.subtitleSpacing}>
             A vocabulary builder for understanding and communicating your pleasure.
           </Text>
         </View>
@@ -107,15 +107,10 @@ const styles = StyleSheet.create({
     shadowRadius: 20,
     elevation: 8,
   },
-  title: {
-    fontSize: 40,
-    lineHeight: 48,
+  titleSpacing: {
     marginBottom: spacing.lg,
-    color: colors.text.primary,
   },
-  subtitle: {
-    fontSize: 18,
-    lineHeight: 28,
+  subtitleSpacing: {
     maxWidth: 280,
   },
   footer: {

@@ -11,30 +11,27 @@ const VOCAB_PATH = path.join(ROOT, 'data/vocabulary.ts');
 const PATHWAYS_PATH = path.join(ROOT, 'data/pathways.ts');
 const OUT_PATH = path.join(ROOT, 'docs/content/CONCEPT_AUDIT.md');
 
-const FORMAT_BY_ID = {
-  angling: 'interactive',
-  rocking: 'interactive',
-  shallowing: 'interactive',
-  pairing: 'interactive',
-  building: 'video',
-  plateauing: 'static',
-  edging: 'interactive (planned)',
-  spreading: 'video',
-  pulsing: 'video',
-  'warmup-window': 'static',
-  'responsive-desire': 'video',
-  'spontaneous-desire': 'video',
-  'golden-trio': 'static',
-  spectatoring: 'interactive (planned)',
-  'embodied-presence': 'video',
-  'non-concordance': 'static',
-  'sexual-self-esteem': 'static',
-  'body-appreciation': 'static',
-  'clitoral-structure': 'static',
-  'nerve-density': 'static',
-  clitourethrovaginal: 'static',
-  'internal-stimulation': 'static',
-};
+const FORMAT_LOCK_PATH = path.join(ROOT, 'data/visual-formats.json');
+const COPY_REVIEW_PATH = path.join(ROOT, 'data/copy-review.json');
+const QA_PASSED_PATH = path.join(ROOT, 'data/qa-passed.json');
+
+function loadCopyReviewedIds() {
+  if (!fs.existsSync(COPY_REVIEW_PATH)) return new Set();
+  const raw = JSON.parse(fs.readFileSync(COPY_REVIEW_PATH, 'utf8'));
+  return new Set(raw.concepts || []);
+}
+
+function loadQaPassedIds() {
+  if (!fs.existsSync(QA_PASSED_PATH)) return new Set();
+  const raw = JSON.parse(fs.readFileSync(QA_PASSED_PATH, 'utf8'));
+  const passed = raw.passed || {};
+  return new Set(Object.keys(passed).filter((id) => passed[id] === true));
+}
+
+function loadFormatById() {
+  const raw = JSON.parse(fs.readFileSync(FORMAT_LOCK_PATH, 'utf8'));
+  return raw.formats;
+}
 
 function fileExists(rel) {
   return fs.existsSync(path.join(ROOT, rel));
@@ -66,6 +63,7 @@ function parseConcepts(source) {
       videoFile: videoMatch ? `${videoMatch[1]}.${videoMatch[2]}` : null,
       slideTypes,
       related,
+      block,
     });
   }
   return concepts;
@@ -105,12 +103,22 @@ function assetStatus(concept) {
   return { thumb, ill, rich };
 }
 
+function citationsOk(block) {
+  const hasResearch = /researchBasis:\s*\n\s*'/.test(block);
+  const hasSource = /source: '[^']+'/.test(block);
+  const hasUnderstand = /type: 'understand'/.test(block);
+  return hasResearch && hasSource && hasUnderstand;
+}
+
 function main() {
+  const FORMAT_BY_ID = loadFormatById();
   const vocab = fs.readFileSync(VOCAB_PATH, 'utf8');
   const pathways = fs.readFileSync(PATHWAYS_PATH, 'utf8');
   const concepts = parseConcepts(vocab);
   const pathwayMap = parsePathwayMembership(pathways);
   const allIds = new Set(concepts.map((c) => c.id));
+  const copyReviewed = loadCopyReviewedIds();
+  const qaPassed = loadQaPassedIds();
 
   const lines = [
     '# Concept Audit (Master Tracker)',
@@ -118,10 +126,10 @@ function main() {
     `**Generated:** ${new Date().toISOString().slice(0, 10)}`,
     '**Regenerate:** `node scripts/generate-concept-audit.js`',
     '',
-    'One row per concept. Update `format_choice` and QA columns as Phase 1–4 progress.',
+    'One row per concept. `format_choice` locked in `data/visual-formats.json` (Phase 1.2). Update QA columns as Phase 2–4 progress.',
     '',
-    '| id | category | format_choice | thumbnail | illustration | rich_media | slides | pathways | copy_reviewed | qa_passed |',
-    '|----|----------|---------------|-----------|--------------|------------|--------|----------|---------------|-----------|',
+    '| id | category | format_choice | thumbnail | illustration | rich_media | slides | pathways | copy_reviewed | citations_ok | qa_passed |',
+    '|----|----------|---------------|-----------|--------------|------------|--------|----------|---------------|--------------|-----------|',
   ];
 
   for (const c of concepts) {
@@ -139,8 +147,11 @@ function main() {
     const dangling = relatedIds.filter((rid) => !allIds.has(rid));
     const relatedNote = dangling.length ? ` ⚠️ dangling: ${dangling.join(', ')}` : '';
 
+    const copyCol = copyReviewed.has(c.id) ? '✅' : '☐';
+    const citationsCol = citationsOk(c.block) ? '✅' : '☐';
+    const qaCol = qaPassed.has(c.id) ? '✅' : '☐';
     lines.push(
-      `| ${c.id} | ${c.category} | ${format} | ${thumb} | ${ill} | ${rich} | ${slides} | ${pathwaysCol} | ☐ | ☐ |${relatedNote ? '' : ''}`
+      `| ${c.id} | ${c.category} | ${format} | ${thumb} | ${ill} | ${rich} | ${slides} | ${pathwaysCol} | ${copyCol} | ${citationsCol} | ${qaCol} |${relatedNote ? '' : ''}`
     );
     if (relatedNote) {
       lines[lines.length - 1] += ` <!--${relatedNote}-->`;
@@ -148,9 +159,15 @@ function main() {
   }
 
   lines.push('', '## Notes', '');
-  lines.push('- **Pathways gap:** `spontaneous-desire`, `clitourethrovaginal`, `internal-stimulation` are not in any pathway yet.');
-  lines.push('- **Rocking:** Skia diagram is primary; `rocking.mov` deprecated (remove after batch transcode).');
-  lines.push('- **Spreading:** `spreading.mp4` wired; dedicated illustration PNG still needed.');
+  lines.push('- **Videos:** App bundle uses H.264 MP4 only (`building.mp4`, `responsive-desire.mp4`, `spreading.mp4`). ProRes/MOV sources live in `assets/videos/originals/`.');
+  lines.push('- **Rocking:** Skia diagram only; no video in repo.');
+  lines.push('- **Spreading:** `spreading.mp4` wired; illustration at `illustrations/spreading.png` (compress before ship).');
+  const orphanPathways = concepts.filter((c) => !pathwayMap[c.id]);
+  if (orphanPathways.length) {
+    lines.push(`- **Pathways gap:** ${orphanPathways.map((c) => `\`${c.id}\``).join(', ')} not in any pathway.`);
+  } else {
+    lines.push('- **Pathways:** All 22 concepts appear in ≥1 pathway.');
+  }
 
   fs.mkdirSync(path.dirname(OUT_PATH), { recursive: true });
   fs.writeFileSync(OUT_PATH, lines.join('\n') + '\n');

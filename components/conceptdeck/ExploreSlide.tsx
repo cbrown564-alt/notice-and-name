@@ -1,5 +1,5 @@
 import { Text } from '@/components/ui/Typography';
-import { colors, spacing, typography } from '@/constants/theme';
+import { colors, spacing } from '@/constants/theme';
 import { ConceptSlide } from '@/types';
 import React from 'react';
 import { Dimensions, Image, StyleSheet, View } from 'react-native';
@@ -30,14 +30,14 @@ export const ExploreSlide = ({ item }: ExploreSlideProps) => {
 
                 {/* Title */}
                 <Animated.View entering={FadeInDown.delay(300).springify()}>
-                    <Text variant="h2" align="center" style={styles.title}>
+                    <Text variant="h2" align="center" style={styles.titleSpacing}>
                         {item.title || 'Try this'}
                     </Text>
                 </Animated.View>
 
                 {/* Body Text */}
                 <Animated.View entering={FadeInDown.delay(400).springify()} style={styles.bodyContainer}>
-                    <Text align="center" style={styles.bodyText}>
+                    <Text variant="deckLead" align="center">
                         {item.content}
                     </Text>
                 </Animated.View>
@@ -87,20 +87,12 @@ const styles = StyleSheet.create({
         height: 64,
         resizeMode: 'contain'
     },
-    title: {
-        fontSize: 32,
-        color: colors.text.primary,
+    titleSpacing: {
         marginBottom: spacing.lg,
-        fontFamily: typography.fontFamily.heading,
     },
     bodyContainer: {
-        marginBottom: spacing['3xl'], // More space below text
+        marginBottom: spacing['3xl'],
         paddingHorizontal: spacing.sm,
-    },
-    bodyText: {
-        fontSize: 22,
-        lineHeight: 34,
-        color: colors.text.primary,
     },
     swipeCue: {
         marginTop: spacing.xl,

@@ -1,5 +1,7 @@
 # Asset Generation Strategy: Medical Luxury
 
+> **Historical (January 2026).** Canonical prompts now live in `docs/pipelines/prompts/illustrations/{concept-id}.md` — see [`PROMPT_INDEX.md`](./pipelines/prompts/PROMPT_INDEX.md). Use this file only for Veo JSON blocks and January reference; do not add new concept prompts here.
+
 This document catalogs the visual strategy and specific generation prompts for the application's concept illustrations.
 
 ## 🎨 Global Style Guidelines

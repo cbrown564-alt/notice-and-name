@@ -14,12 +14,26 @@ const FORMAT_PATH = path.join(ROOT, 'data/visual-formats.json');
 const errors = [];
 const warnings = [];
 
-/** Post-compress budgets — STYLE_BIBLE / IMAGE_GENERATION.md */
+/** Post-compress budgets — STYLE_BIBLE / VIDEO_GENERATION.md */
 const SIZE_BUDGET = {
   illustration: 400 * 1024,
   thumbnail: 80 * 1024,
-  video: 1.5 * 1024 * 1024,
+  videoAbstract: 1.5 * 1024 * 1024,
+  videoJourney: 2.5 * 1024 * 1024,
+  videoPresence: 2.0 * 1024 * 1024,
 };
+
+const VIDEO_TIER_BUDGET = {
+  'abstract-loop': SIZE_BUDGET.videoAbstract,
+  'scientific-journey': SIZE_BUDGET.videoJourney,
+  'process-explainer': SIZE_BUDGET.videoJourney,
+  'embodied-presence': SIZE_BUDGET.videoPresence,
+};
+
+function videoBudgetForConcept(conceptId, videoProfiles) {
+  const tier = videoProfiles?.[conceptId]?.tier;
+  return VIDEO_TIER_BUDGET[tier] || SIZE_BUDGET.videoAbstract;
+}
 
 function fileBytes(rel) {
   const p = path.join(ROOT, rel);
@@ -63,7 +77,9 @@ function parseConcepts(source) {
 }
 
 function main() {
-  const formats = JSON.parse(fs.readFileSync(FORMAT_PATH, 'utf8')).formats;
+  const formatLock = JSON.parse(fs.readFileSync(FORMAT_PATH, 'utf8'));
+  const formats = formatLock.formats;
+  const videoProfiles = formatLock.videoProfiles || {};
   const vocab = fs.readFileSync(VOCAB_PATH, 'utf8');
   const concepts = parseConcepts(vocab);
   const formatIds = new Set(Object.keys(formats));
@@ -103,7 +119,7 @@ function main() {
       if (!exists(vp)) {
         errors.push(`${c.id}: wired video missing on disk: ${vp}`);
       } else {
-        warnIfOverBudget(vp, SIZE_BUDGET.video, c.id);
+        warnIfOverBudget(vp, videoBudgetForConcept(c.id, videoProfiles), c.id);
       }
       if (c.videoFile.endsWith('.mov')) {
         errors.push(`${c.id}: .mov in vocabulary — use MP4 only: ${vp}`);

@@ -110,6 +110,9 @@ function GoalCard({
       style={[styles.goalCard, isSelected && styles.goalCardSelected]}
       onPress={onSelect}
       activeOpacity={0.9}
+      accessibilityRole="radio"
+      accessibilityState={{ selected: isSelected }}
+      accessibilityLabel={`${goal.title}. ${goal.description}`}
     >
       <View style={[styles.iconContainer, isSelected && styles.iconContainerSelected]}>
         <Ionicons
@@ -120,8 +123,8 @@ function GoalCard({
       </View>
       <View style={styles.goalText}>
         <Text
-          variant="h4"
-          style={{ fontSize: 18, marginBottom: 4 }}
+          variant="h3"
+          style={styles.goalTitle}
           color={isSelected ? colors.primary[700] : colors.text.primary}
         >
           {goal.title}
@@ -188,6 +191,9 @@ const styles = StyleSheet.create({
   goalText: {
     flex: 1,
     paddingRight: spacing.sm,
+  },
+  goalTitle: {
+    marginBottom: 4,
   },
   goalDescription: {
     lineHeight: 20,

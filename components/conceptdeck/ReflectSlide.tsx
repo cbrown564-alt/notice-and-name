@@ -1,9 +1,10 @@
+import { ResonanceBurst } from '@/components/ui/ResonanceBurst';
 import { PulseHeart } from '@/components/ui/PulseHeart';
 import { Text } from '@/components/ui/Typography';
 import { borderRadius, colors, shadows, spacing } from '@/constants/theme';
 import { ConceptSlide, ConceptStatus } from '@/types';
 import { Ionicons } from '@expo/vector-icons';
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { Dimensions, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 
@@ -18,18 +19,26 @@ interface ReflectSlideProps {
 }
 
 export const ReflectSlide = ({ onFinish, onSetStatus, currentStatus, savingStatus }: ReflectSlideProps) => {
+    const [showBurst, setShowBurst] = useState(false);
+
+    const finishDeck = useCallback(() => {
+        setShowBurst(false);
+        onFinish();
+    }, [onFinish]);
 
     const handleSelect = async (status: ConceptStatus) => {
-        // Start the saving process
         const savePromise = onSetStatus(status);
 
-        // UX: Small delay to show selection, then finish
-        // We wait for BOTH the minimum delay AND the save to complete
+        if (status === 'resonates') {
+            await savePromise;
+            setShowBurst(true);
+            return;
+        }
+
         await Promise.all([
             savePromise,
-            new Promise(resolve => setTimeout(resolve, 300))
+            new Promise((resolve) => setTimeout(resolve, 300)),
         ]);
-
         onFinish();
     };
 
@@ -41,8 +50,9 @@ export const ReflectSlide = ({ onFinish, onSetStatus, currentStatus, savingStatu
 
     return (
         <View style={styles.container}>
-            <View style={styles.content}>
+            <ResonanceBurst visible={showBurst} onComplete={finishDeck} />
 
+            <View style={styles.content}>
                 <Animated.View entering={FadeInDown.delay(200).springify()}>
                     <Text variant="h2" align="center" style={styles.title}>
                         How does this land for you?
@@ -50,7 +60,7 @@ export const ReflectSlide = ({ onFinish, onSetStatus, currentStatus, savingStatu
                 </Animated.View>
 
                 <Animated.View entering={FadeInDown.delay(300).springify()} style={styles.cardsContainer}>
-                    {statusOptions.map((option, index) => {
+                    {statusOptions.map((option) => {
                         const isSelected = currentStatus === option.status;
 
                         return (
@@ -58,16 +68,20 @@ export const ReflectSlide = ({ onFinish, onSetStatus, currentStatus, savingStatu
                                 key={option.status}
                                 style={[
                                     styles.card,
-                                    isSelected && styles.cardSelected
+                                    isSelected && styles.cardSelected,
                                 ]}
                                 onPress={() => handleSelect(option.status)}
-                                disabled={savingStatus !== null}
+                                disabled={savingStatus !== null || showBurst}
                                 activeOpacity={0.7}
                             >
                                 <View style={styles.cardHeader}>
                                     <View style={{ marginRight: spacing.sm }}>
                                         {option.status === 'resonates' ? (
-                                            <PulseHeart active={isSelected} size={24} color={isSelected ? colors.primary[500] : colors.text.tertiary} />
+                                            <PulseHeart
+                                                active={isSelected}
+                                                size={24}
+                                                color={isSelected ? colors.primary[500] : colors.text.tertiary}
+                                            />
                                         ) : (
                                             <Ionicons
                                                 name={option.status === 'curious' ? 'bulb-outline' : 'close-circle-outline'}
@@ -76,7 +90,10 @@ export const ReflectSlide = ({ onFinish, onSetStatus, currentStatus, savingStatu
                                             />
                                         )}
                                     </View>
-                                    <Text variant="label" color={isSelected ? colors.primary[700] : colors.text.primary} style={styles.optionLabel}>
+                                    <Text
+                                        variant="bodyBold"
+                                        color={isSelected ? colors.primary[700] : colors.text.primary}
+                                    >
                                         {option.label}
                                     </Text>
                                     {isSelected && option.status !== 'resonates' && (
@@ -89,7 +106,6 @@ export const ReflectSlide = ({ onFinish, onSetStatus, currentStatus, savingStatu
                         );
                     })}
                 </Animated.View>
-
             </View>
         </View>
     );
@@ -108,7 +124,6 @@ const styles = StyleSheet.create({
         paddingVertical: 60,
     },
     title: {
-        fontSize: 32,
         marginBottom: spacing['3xl'],
         color: colors.text.primary,
     },
@@ -126,20 +141,16 @@ const styles = StyleSheet.create({
         borderColor: 'transparent',
         ...shadows.sm,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     cardSelected: {
         borderColor: colors.primary[500],
-        backgroundColor: colors.primary[50], // Very subtle tint
+        backgroundColor: colors.primary[50],
     },
     cardHeader: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        gap: spacing.sm
+        gap: spacing.sm,
     },
-    optionLabel: {
-        fontSize: 18,
-        fontWeight: '600',
-    }
 });

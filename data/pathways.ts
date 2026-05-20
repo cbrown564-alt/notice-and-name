@@ -11,8 +11,15 @@ export const pathways: Pathway[] = [
       'Start here. Core vocabulary and anatomy basics that inform everything else.',
     icon: 'compass',
     image: require('../assets/images/pathways/foundations.png'),
-    conceptIds: ['pairing', 'clitoral-structure', 'nerve-density', 'building'],
-    estimatedTime: '15-20 min',
+    conceptIds: [
+      'pairing',
+      'clitoral-structure',
+      'nerve-density',
+      'clitourethrovaginal',
+      'internal-stimulation',
+      'building',
+    ],
+    estimatedTime: '22-28 min',
   },
   {
     id: 'solo-exploration',
@@ -39,11 +46,12 @@ export const pathways: Pathway[] = [
     image: require('../assets/images/pathways/partner-communication.png'),
     conceptIds: [
       'responsive-desire',
+      'spontaneous-desire',
       'warmup-window',
       'spectatoring',
       'sexual-self-esteem',
     ],
-    estimatedTime: '15-20 min',
+    estimatedTime: '18-22 min',
   },
   {
     id: 'expanding-repertoire',

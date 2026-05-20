@@ -1,0 +1,4 @@
+{
+  "comment": "Set concept id to true after device QA per docs/QA_CHECKLIST.md. Regenerate audit: npm run generate-concept-audit",
+  "passed": {}
+}

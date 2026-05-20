@@ -1,15 +1,15 @@
+import { IllustrateVideo } from '@/components/conceptdeck/IllustrateVideo';
 import { Text } from '@/components/ui/Typography';
 import { borderRadius, colors, shadows, spacing } from '@/constants/theme';
 import { ConceptSlide } from '@/types';
-import { Ionicons } from '@expo/vector-icons';
-import { Audio, ResizeMode, Video } from 'expo-av';
 import React, { useEffect, useState } from 'react';
-import { Dimensions, Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { AccessibilityInfo, Dimensions, Image, StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, ZoomIn } from 'react-native-reanimated';
 import { AnglingDiagram } from '../diagrams/AnglingDiagram';
 import { PairingDiagram } from '../diagrams/PairingDiagram';
 import { RockingDiagram } from '../diagrams/RockingDiagram';
 import { ShallowingDiagram } from '../diagrams/ShallowingDiagram';
+
 const { width } = Dimensions.get('window');
 
 interface IllustrateSlideProps {
@@ -19,19 +19,19 @@ interface IllustrateSlideProps {
 }
 
 export const IllustrateSlide = ({ item, isActive = false, diagramType }: IllustrateSlideProps) => {
-    const [isMuted, setIsMuted] = useState(false);
+    const [isMuted, setIsMuted] = useState(true);
+    const [reduceMotion, setReduceMotion] = useState(false);
 
     useEffect(() => {
-        // Enable audio playback in silent mode
-        Audio.setAudioModeAsync({
-            playsInSilentModeIOS: true,
-        });
+        AccessibilityInfo.isReduceMotionEnabled().then(setReduceMotion);
+        const subscription = AccessibilityInfo.addEventListener(
+            'reduceMotionChanged',
+            setReduceMotion
+        );
+        return () => subscription.remove();
     }, []);
 
-    // Render content based on availability
-    // Priority: 1. Interactive Diagram, 2. Video, 3. Static Image
     const renderContent = () => {
-        // 1. Interactive Diagram
         if (diagramType === 'angling') {
             return (
                 <View style={styles.diagramContainer}>
@@ -40,15 +40,12 @@ export const IllustrateSlide = ({ item, isActive = false, diagramType }: Illustr
             );
         }
         if (diagramType === 'shallowing') {
-            // Import dynamically or explicitly at top? Explicit is better.
-            // But for now let's assume we import it.
             return (
                 <View style={styles.diagramContainer}>
                     <ShallowingDiagram />
                 </View>
             );
         }
-
         if (diagramType === 'rocking') {
             return (
                 <View style={styles.diagramContainer}>
@@ -56,7 +53,6 @@ export const IllustrateSlide = ({ item, isActive = false, diagramType }: Illustr
                 </View>
             );
         }
-
         if (diagramType === 'pairing') {
             return (
                 <View style={styles.diagramContainer}>
@@ -65,35 +61,30 @@ export const IllustrateSlide = ({ item, isActive = false, diagramType }: Illustr
             );
         }
 
-        // 2. Video Illustration
         if (item.illustrationVideo) {
-            return (
-                <Animated.View entering={ZoomIn.delay(200).springify()} style={styles.illustrationContainer}>
-                    <Video
-                        source={item.illustrationVideo}
-                        style={styles.illustration}
-                        resizeMode={ResizeMode.CONTAIN}
-                        shouldPlay={isActive}
-                        isLooping
-                        isMuted={isMuted}
-                    />
-                    <TouchableOpacity
-                        style={styles.muteButton}
-                        onPress={() => setIsMuted(!isMuted)}
-                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-                    >
-                        <Ionicons
-                            name={isMuted ? "volume-mute" : "volume-high"}
-                            size={20}
-                            color={colors.text.primary}
+            if (reduceMotion && item.illustrationAsset) {
+                return (
+                    <Animated.View entering={ZoomIn.delay(200).springify()} style={styles.illustrationContainer}>
+                        <Image
+                            source={item.illustrationAsset}
+                            style={styles.illustration}
+                            resizeMode="contain"
                         />
-                    </TouchableOpacity>
-                </Animated.View>
+                    </Animated.View>
+                );
+            }
+
+            return (
+                <IllustrateVideo
+                    source={item.illustrationVideo}
+                    poster={item.illustrationAsset}
+                    isActive={isActive}
+                    isMuted={isMuted}
+                    onToggleMute={() => setIsMuted(!isMuted)}
+                />
             );
         }
 
-        // 3. Static Image (ONLY if no diagram and no video)
-        // If we have a diagramType or video, we should NOT show this
         const hasInteractiveContent = diagramType && diagramType !== 'none';
         const hasVideo = !!item.illustrationVideo;
 
@@ -115,10 +106,8 @@ export const IllustrateSlide = ({ item, isActive = false, diagramType }: Illustr
     return (
         <View style={styles.container}>
             <View style={styles.content}>
-
                 {renderContent()}
 
-                {/* Caption */}
                 {item.illustrationCaption && (
                     <Animated.View entering={FadeIn.delay(500).duration(600)} style={styles.captionContainer}>
                         <Text
@@ -132,20 +121,15 @@ export const IllustrateSlide = ({ item, isActive = false, diagramType }: Illustr
                     </Animated.View>
                 )}
 
-                {/* Content text (if provided) */}
                 {item.content && (
                     <Animated.View entering={FadeIn.delay(600).duration(600)} style={styles.textContainer}>
-                        <Text
-                            align="center"
-                            style={styles.text}
-                        >
+                        <Text align="center" variant="body">
                             {item.content}
                         </Text>
                     </Animated.View>
                 )}
-
-            </View >
-        </View >
+            </View>
+        </View>
     );
 };
 
@@ -156,7 +140,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: spacing.lg,
         paddingTop: 80,
         paddingBottom: 60,
-        backgroundColor: colors.background.primary, // Clean cream
+        backgroundColor: colors.background.primary,
     },
     content: {
         flex: 1,
@@ -165,21 +149,25 @@ const styles = StyleSheet.create({
     },
     illustrationContainer: {
         width: '100%',
-        aspectRatio: 1, // Square by default, image will fit within
+        aspectRatio: 1,
         maxHeight: '60%',
         marginBottom: spacing.xl,
         borderRadius: borderRadius.xl,
         overflow: 'hidden',
-        backgroundColor: colors.background.surface,
+        backgroundColor: colors.conceptCanvas,
+        borderWidth: 1,
+        borderColor: colors.neutral[200],
         ...shadows.sm,
     },
     diagramContainer: {
         width: '100%',
-        aspectRatio: 1, // Keep square
+        aspectRatio: 1,
         marginBottom: spacing.md,
         borderRadius: borderRadius.lg,
         overflow: 'hidden',
-        backgroundColor: colors.neutral[50],
+        backgroundColor: colors.conceptCanvas,
+        borderWidth: 1,
+        borderColor: colors.neutral[200],
         ...shadows.sm,
         justifyContent: 'center',
         alignItems: 'center',
@@ -188,28 +176,17 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
     },
-    muteButton: {
-        position: 'absolute',
-        bottom: spacing.sm,
-        right: spacing.sm,
-        backgroundColor: 'rgba(255, 255, 255, 0.8)',
-        padding: spacing.xs,
-        borderRadius: borderRadius.lg, // Fixed: round doesn't exist, using lg for circle effect
-        ...shadows.sm,
-    },
     captionContainer: {
+        marginTop: spacing.md,
         marginBottom: spacing.md,
         paddingHorizontal: spacing.lg,
+        maxWidth: '92%',
     },
     caption: {
         fontStyle: 'italic',
     },
     textContainer: {
         paddingHorizontal: spacing.md,
-    },
-    text: {
-        fontSize: 18,
-        lineHeight: 28,
-        color: colors.text.secondary,
+        maxWidth: '92%',
     },
 });

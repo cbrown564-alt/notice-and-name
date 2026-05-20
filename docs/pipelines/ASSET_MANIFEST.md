@@ -1,8 +1,9 @@
 # Asset Manifest
 
 **Living inventory** — update same day as any asset batch merge.  
-**Regenerate audit rows:** `node scripts/generate-concept-audit.js`  
-**Detailed tracker:** `content/CONCEPT_AUDIT.md`
+**Regenerate audit rows:** `npm run generate-concept-audit`  
+**Detailed tracker:** `content/CONCEPT_AUDIT.md`  
+**Video scope (Omni):** [`VIDEO_CONCEPT_CATALOG.md`](./VIDEO_CONCEPT_CATALOG.md) — anatomy concepts target **scientific-journey** MP4s (≤2.5 MB).
 
 ---
 
@@ -14,12 +15,18 @@
 | rocking | ✅ | ✅ | interactive (Skia) | Video removed; Skia only |
 | shallowing | ✅ | ✅ | interactive (Skia) | Complete |
 | pairing | ✅ | ✅ | interactive (PairingDiagram) | Wired Phase 0 |
-| building | ✅ | ⚠️ thumb reuse | video building.mov | Transcode → mp4 |
-| spreading | ✅ | 🔴 missing dedicated | video spreading.mp4 | Wired Phase 0 |
-| responsive-desire | ✅ | ✅ | video responsive-desire.mov | Transcode → mp4 |
+| building | ✅ | ✅ illustrations/building.png | video **building.mp4** (256 KB) | Compress illustration; video pilot regen optional |
+| spreading | ✅ | ✅ illustrations/spreading.png | video **spreading.mp4** (1.6 MB) | P0 pilot regen; compress PNGs |
+| responsive-desire | ✅ | ✅ | video **responsive-desire.mp4** (503 KB) | Transcoded May 2026 |
 | plateauing | ✅ | ✅ | static | Regen chart plate |
-| pulsing | ✅ | ⚠️ placeholder | video TBD | P0 gen |
-| spontaneous-desire | ✅ | ✅ | video TBD | P1 gen |
+| pulsing | ✅ | ⚠️ placeholder | video TBD | P0 abstract-loop |
+| clitoral-structure | ✅ | ✅ | video TBD | **P0 scientific-journey** |
+| nerve-density | ✅ | ✅ | video TBD | **P0 scientific-journey** |
+| clitourethrovaginal | ✅ | ✅ | video TBD | P1 journey |
+| internal-stimulation | ✅ | ✅ | video TBD | P1 journey |
+| warmup-window | ✅ | ✅ | video TBD | P1 process-explainer |
+| non-concordance | ✅ | ✅ | video TBD | P1 process-explainer |
+| spontaneous-desire | ✅ | ✅ | video TBD | P1 embodied-presence |
 
 *Full 22-row status: see `content/CONCEPT_AUDIT.md`.*
 
@@ -41,7 +48,7 @@
   rich_media:
     type: video
     path: assets/videos/spreading.mp4
-    generator: veo-3.1
+    generator: gemini-omni-flash
     duration_sec: 10
     bytes: 1682298
     wired: data/vocabulary.ts#slides[illustrate]
@@ -52,13 +59,14 @@
 
 ## Video files on disk
 
-| path | wired | next step |
-|------|-------|-----------|
-| assets/videos/spreading.mp4 | ✅ | Style review |
-| assets/videos/building.mov | ✅ | `./scripts/transcode-video.sh` → building.mp4 |
-| assets/videos/responsive-desire.mov | ✅ | transcode |
-| assets/videos/rocking.mov | ❌ | delete after backup |
-| assets/videos/shallowing.mov | ❌ | delete (unused) |
+| path | wired | status |
+|------|-------|--------|
+| assets/videos/building.mp4 | ✅ | 256 KB, H.264 |
+| assets/videos/responsive-desire.mp4 | ✅ | 503 KB, H.264 |
+| assets/videos/spreading.mp4 | ✅ | 1.6 MB — style review / optional re-transcode |
+| assets/videos/originals/*.mov | — | ProRes sources; not bundled in app |
+
+**Removed from repo:** `rocking.mov`, `shallowing.mov` (unused; Skia concepts).
 
 ---
 
@@ -66,4 +74,4 @@
 
 See legacy table in `asset_inventory.md` (UI, pathways, explainers) — migrate row-by-row as batches land.
 
-**Future:** `scripts/validate-manifest.js` — fail CI if manifest ≠ filesystem ≠ `require()` paths.
+**Validation:** `npm run validate-manifest` — format lock, filesystem, wiring checks (warnings for TBD videos).

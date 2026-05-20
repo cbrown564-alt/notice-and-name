@@ -66,10 +66,21 @@ export const colors = {
   error: '#C94524',
   info: '#5C5CFF',
 
+  // Concept plates (generated illustrations) — STYLE_BIBLE §3
+  conceptCanvas: '#F9F5F1',
+
+  // Skia diagrams & motion accents — STYLE_BIBLE §4, §7
+  diagram: {
+    passive: '#DCD8D3', // neutral[300]
+    active: '#E8603C', // primary[500]
+    glow: '#FFC5B5', // primary[200]
+    detachment: '#7A7AFF', // accent[400] — mind/split sparingly
+  },
+
   // Background aliases
   background: {
-    primary: '#FCFAF9', // Cream/Paper
-    secondary: '#F5F2EF', // Slightly darker cream
+    primary: '#FCFAF9', // Cream/Paper (neutral[50])
+    secondary: '#F5F2EF', // Slightly darker cream (neutral[100])
     tertiary: '#EBE8E3', // Borders/Separators
     surface: '#FFFFFF', // Card backgrounds (Pure white for pop)
     dark: '#1C1B1A',
@@ -224,5 +235,18 @@ export const textStyles = {
     fontSize: typography.fontSize.sm,
     lineHeight: typography.fontSize.sm * typography.lineHeight.tight,
     color: colors.text.secondary,
+  },
+  /** ConceptDeck — Recognize prompt, Name/Understand/Explore body copy */
+  deckPrompt: {
+    fontFamily: typography.fontFamily.headingItalic,
+    fontSize: typography.fontSize.xl,
+    lineHeight: typography.fontSize.xl * typography.lineHeight.relaxed,
+    color: colors.text.secondary,
+  },
+  deckLead: {
+    fontFamily: typography.fontFamily.body,
+    fontSize: typography.fontSize.lg,
+    lineHeight: typography.fontSize.lg * typography.lineHeight.relaxed,
+    color: colors.text.primary,
   },
 };

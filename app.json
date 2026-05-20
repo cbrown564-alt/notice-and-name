@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Vocab",
+    "name": "Pleasure Vocabulary",
     "slug": "pleasure-vocab",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -11,12 +11,14 @@
     "splash": {
       "image": "./assets/images/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#FDF8F5"
+      "backgroundColor": "#FCFAF9"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.pleasurevocab.app"
     },
     "android": {
+      "package": "com.pleasurevocab.app",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"

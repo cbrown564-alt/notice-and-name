@@ -51,8 +51,11 @@ export default function ProfileScreen() {
   const totalCount = concepts.length;
   const progress = totalCount > 0 ? exploredCount / totalCount : 0;
 
-  // Group concepts
-  const resonatesConcepts = userConcepts.filter((c) => c.status === 'resonates');
+  // Resonating concepts — memoized to stabilize downstream insights
+  const resonatesConcepts = useMemo(
+    () => userConcepts.filter((c) => c.status === 'resonates'),
+    [userConcepts]
+  );
 
   // Calculate pattern insights
   const patternInsights = useMemo(() => {
@@ -180,8 +183,7 @@ export default function ProfileScreen() {
                 const concept = getConceptById(uc.concept_id);
                 if (!concept) return null;
 
-                const illustrationSlide = concept.slides?.find(s => s.type === 'illustrate');
-                const imageSource = illustrationSlide?.illustrationAsset || getCategoryIcon(concept.category);
+                const imageSource = concept.thumbnail || getCategoryIcon(concept.category);
 
                 return (
                   <TouchableOpacity
@@ -415,6 +417,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing.sm,
+    backgroundColor: colors.conceptCanvas,
+    borderRadius: borderRadius.md,
+    borderWidth: 1,
+    borderColor: colors.neutral[200],
   },
   collectionImage: {
     width: 90,

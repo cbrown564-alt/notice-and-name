@@ -40,11 +40,14 @@
 | Document | Purpose |
 |----------|---------|
 | [pipelines/IMAGE_GENERATION.md](./pipelines/IMAGE_GENERATION.md) | Illustration & thumbnail batch workflow |
+| [pipelines/prompts/PROMPT_INDEX.md](./pipelines/prompts/PROMPT_INDEX.md) | Per-concept illustration + thumbnail prompts (22/22) |
 | [pipelines/prompts/PILOT_BATCH.md](./pipelines/prompts/PILOT_BATCH.md) | Phase 1.3 five-concept image pilot |
-| [pipelines/VIDEO_GENERATION.md](./pipelines/VIDEO_GENERATION.md) | Veo + ffmpeg transcode workflow |
+| [pipelines/VIDEO_GENERATION.md](./pipelines/VIDEO_GENERATION.md) | Gemini Omni + ffmpeg transcode workflow |
+| [pipelines/VIDEO_CONCEPT_CATALOG.md](./pipelines/VIDEO_CONCEPT_CATALOG.md) | Expanded video scope (journeys + explainers) |
 | [pipelines/ASSET_MANIFEST.md](./pipelines/ASSET_MANIFEST.md) | File inventory + wiring status |
-| [asset_generation_prompts.md](./asset_generation_prompts.md) | January prompts (migrate to `pipelines/prompts/`) |
-| [veo3.1_best_practices.md](./veo3.1_best_practices.md) | Deep Veo reference |
+| [asset_generation_prompts.md](./asset_generation_prompts.md) | January archive + Veo JSON (illustration prompts migrated) |
+| [gemini_omni_best_practices.md](./gemini_omni_best_practices.md) | Gemini Omni prompting + editing reference |
+| [veo3.1_best_practices.md](./veo3.1_best_practices.md) | Deprecated — redirects to Omni doc |
 
 ---
 
@@ -64,7 +67,13 @@
 | Command | Purpose |
 |---------|---------|
 | `npm run generate-concept-audit` | Refresh `content/CONCEPT_AUDIT.md` |
+| `npm run mark-qa-batch -- <batch\|status\|list>` | Mark device-QA batches in `data/qa-passed.json` |
+| `npm run bundle-report` | Write `reports/BUNDLE_REPORT.md` (asset sizes) |
 | `npm run validate-manifest` | Check format lock, wiring, and size budgets |
+| `npm run pilot-review` | List Phase 1.3 pilot PNGs vs production |
+| `npm run swap-pilot-winner -- <concept> <generator>` | Promote pilot PNG to production + compress |
+| `npm run enrich-illustration-prompts` | Phase 2.3 — deck-align all illustration prompt `.md` files |
+| `npm run migrate-illustration-prompts` | Re-sync prompts from legacy doc (skips existing) |
 | `./scripts/transcode-video.sh <input.mov>` | MP4 for app (≤1.5 MB target) |
 | `npm run compress-assets` | PNG compression (recursive: illustrations, thumbnails, UI) |
 

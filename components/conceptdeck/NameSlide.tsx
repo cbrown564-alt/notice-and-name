@@ -1,5 +1,5 @@
 import { Text } from '@/components/ui/Typography';
-import { borderRadius, colors, shadows, spacing, typography } from '@/constants/theme';
+import { borderRadius, colors, shadows, spacing } from '@/constants/theme';
 import { Concept, ConceptSlide } from '@/types';
 import React from 'react';
 import { Dimensions, Image, StyleSheet, View } from 'react-native';
@@ -30,7 +30,8 @@ export const NameSlide = ({ item, concept }: NameSlideProps) => {
                     <Text
                         variant="h2"
                         align="center"
-                        style={styles.title}
+                        color={colors.primary[800]}
+                        style={styles.titleSpacing}
                     >
                         {item.title || 'The Word'}
                     </Text>
@@ -38,11 +39,7 @@ export const NameSlide = ({ item, concept }: NameSlideProps) => {
 
                 {/* Definition Body */}
                 <Animated.View entering={FadeIn.delay(500).duration(800)} style={styles.bodyContainer}>
-                    <Text
-                        variant="body"
-                        align="center"
-                        style={styles.bodyText}
-                    >
+                    <Text variant="deckLead" align="center">
                         {item.content}
                     </Text>
                 </Animated.View>
@@ -82,21 +79,13 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         // tintColor removed to prevent coloring background
     },
-    title: {
-        fontSize: 28,
-        color: colors.primary[800],
+    titleSpacing: {
         marginBottom: spacing.xl,
-        fontFamily: typography.fontFamily.heading,
     },
     bodyContainer: {
         maxWidth: '90%',
         padding: spacing.lg,
         backgroundColor: "rgba(255,255,255,0.6)",
         borderRadius: borderRadius.lg,
-    },
-    bodyText: {
-        fontSize: 20,
-        lineHeight: 32,
-        color: colors.text.primary,
     },
 });

@@ -66,7 +66,8 @@ export function ConceptCard({ concept, status, isCollected, onPress }: ConceptCa
           {displayIcon && (
             <Image
               source={displayIcon}
-              style={{ width: 72, height: 72, resizeMode: 'contain' }}
+              style={styles.thumbnail}
+              resizeMode="contain"
             />
           )}
         </View>
@@ -129,7 +130,17 @@ const styles = StyleSheet.create({
     marginRight: spacing.md,
     justifyContent: 'center',
     width: 80,
+    height: 80,
     alignItems: 'center',
+    backgroundColor: colors.conceptCanvas,
+    borderRadius: borderRadius.md,
+    borderWidth: 1,
+    borderColor: colors.neutral[200],
+    ...shadows.sm,
+  },
+  thumbnail: {
+    width: 64,
+    height: 64,
   },
   content: {
     flex: 1,

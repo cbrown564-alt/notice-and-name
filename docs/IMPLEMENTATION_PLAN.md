@@ -1,7 +1,7 @@
 # Implementation Plan: Baseline → Polished Product
 
 **Created:** May 19, 2026  
-**Last updated:** May 19, 2026  
+**Last updated:** May 20, 2026  
 **Companion:** [`PROJECT_STATUS_REPORT.md`](./PROJECT_STATUS_REPORT.md)  
 **Horizon:** Multi-phase (estimate 6–10 weeks focused effort, adjustable)  
 **Active branch:** `visual-v2-restart` (`dfda4b7`)
@@ -11,11 +11,13 @@
 | Phase | Status | Notes |
 |-------|--------|-------|
 | **0 — Reactivation** | ✅ Complete | Branch, docs skeleton, audit, style bible v0.1, orphan wiring |
-| **1 — Foundation** | 🟡 In progress | Format lock, token audit, video transcode, manifest validator + size budgets, compress pass; bible ratification + pilot runs outstanding |
-| **2 — Copy** | ⬜ Not started | — |
-| **3 — Asset production** | ⬜ Not started | Partial January refresh on branch; full batch pending |
-| **4 — Integration** | ⬜ Not started | — |
-| **5 — Release candidate** | ⬜ Not started | — |
+| **1 — Foundation** | 🟡 Partial | Engineering + format lock ✅; **pilots paused** (1.1, 1.3, 1.4 resume with Phase 3) |
+| **2 — Copy** | ✅ Complete | 22/22 copy, formats, illustration + video prompts ready for batch |
+| **3 — Asset production** | ⏸ Postponed | Resumes after engineering track (§8b); partial January refresh on branch |
+| **4 — Integration** | 🟡 In progress | Pulled forward **without assets** — QA, UI shell, EAS, share/Lottie (§8b) |
+| **5 — Release candidate** | ⬜ Not started | After Phase 3 + 4 exit criteria |
+
+**Active track:** §8b Engineering track (asset-independent). Asset track (§8a) resumes when generation restarts.
 
 ---
 
@@ -109,7 +111,7 @@ January established a direction; the next pass should:
 | Token audit vs `theme.ts` | `constants/theme.ts`, `constants/Colors.ts` | ✅ May 19 |
 | Compress legacy PNGs (recursive) | `scripts/compress-assets.js` | ✅ May 19 — 53 MB saved; many still over budget → Phase 3 regen |
 | Manifest size-budget warnings | `scripts/validate-manifest.js` | ✅ May 19 |
-| Typography scale consistency | `components/ui/Typography.tsx` |
+| Typography scale consistency | `components/ui/Typography.tsx`, deck slides (`deckPrompt`, `deckLead`) | ✅ May 20 |
 | Card / deck slide backgrounds | `assets/images/ui/slide-*.png` → regenerate or CSS |
 | ConceptCard thumbnail framing | `components/ConceptCard.tsx` |
 | Illustrate slide layout (caption, mute, diagram chrome) | `IllustrateSlide.tsx` |
@@ -160,8 +162,8 @@ docs/
 | **Archive** | `GAP_ANALYSIS.md` → superseded by status report | ✅ `docs/_archive/GAP_ANALYSIS.md` |
 | **Archive** | `PHASE_3_UI_UX_REVAMP.md` → historical banner only | ✅ `_archive/PHASE_3_UI_UX_REVAMP.md` + stub |
 | **Merge** | Identity trio → `design/STYLE_BIBLE.md` | ✅ v0.1 draft |
-| **Merge** | `asset_generation_prompts.md` + tool notes → `pipelines/IMAGE_GENERATION.md` | 🟡 Skeleton; prompts still in legacy file |
-| **Merge** | `veo3.1_best_practices.md`, `video_interactive_prompts.md`, `animation_journey.md` → `pipelines/VIDEO_GENERATION.md` | 🟡 Operational doc + Veo reference kept separate |
+| **Merge** | `asset_generation_prompts.md` + tool notes → `pipelines/IMAGE_GENERATION.md` | ✅ Illustration prompts in `pipelines/prompts/illustrations/`; Veo JSON still in legacy file |
+| **Merge** | `veo3.1_best_practices.md`, `video_interactive_prompts.md`, `animation_journey.md` → `pipelines/VIDEO_GENERATION.md` | ✅ Operational doc + `gemini_omni_best_practices.md` (Veo doc deprecated) |
 | **Refresh** | `asset_inventory.md` → `pipelines/ASSET_MANIFEST.md` | ✅ Initial manifest; keep in sync per batch |
 | **Trim** | Remove completed TODOs from `backend-refactor-complete.md` | ✅ Historical banner + `architecture/backend.md` pointer |
 | **Link** | Root `README.md` → `docs/README.md` | ✅ |
@@ -241,9 +243,9 @@ Create `docs/content/CONCEPT_AUDIT.md` (or Google Sheet) with one row per concep
 
 1. **Inventory** — ✅ `scripts/generate-concept-audit.js` → `CONCEPT_AUDIT.md`
 2. **Format assignment** — ✅ Locked in `data/visual-formats.json` + `product/visual_content_strategy.md`
-3. **Copy pass** — ⬜ editorial read of all 22
-4. **Asset pass** — 🟡 filesystem columns auto-checked; many illustrations still placeholders
-5. **QA pass** — ⬜ device walkthrough per category batch
+3. **Copy pass** — ✅ editorial read of all 22 (May 19 — `copy-review.json`)
+4. **Asset pass** — ⏸ deferred with Phase 3; filesystem columns auto-checked
+5. **QA pass** — 🟡 device walkthrough per category batch (§8b Batch 1)
 
 **Known gaps (from audit):**
 
@@ -359,8 +361,8 @@ Is the concept about physical mechanics with variables?
 
 | Stage | Tool | Output |
 |-------|------|--------|
-| Generation | **Veo 3.1** (or successor) | Short abstract loops |
-| Alt / pickup | Runway, Pika, or manual After Effects | Concepts Veo mishandles |
+| Generation | **Gemini Omni Flash** (Google Flow) | ~10 s abstract loops; conversational edits |
+| Alt / pickup | Runway, Pika, or manual After Effects | Concepts Omni mishandles |
 | Transcode | `scripts/transcode-video.sh` | MP4 H.264, no audio, ≤1.5 MB target |
 | QA | In-app `IllustrateSlide` on device | Loop smooth, no artifacts, respects reduced motion |
 
@@ -401,7 +403,7 @@ Align with `visual_content_strategy.md`:
 | Create `scripts/transcode-video.sh` | ffmpeg: scale 720, crf 28, strip audio | ✅ |
 | Transcode `building.mov`, `responsive-desire.mov` | Update `vocabulary.ts` requires to `.mp4` | ✅ 256 KB / 503 KB |
 | Remove unused videos | `rocking.mov`, `shallowing.mov`, `angling.mov` (deleted) | ✅ MOVs in `originals/` or removed |
-| Standardize player | Consider migrating `expo-av` Video → `expo-video` | ⬜ |
+| Standardize player | Consider migrating `expo-av` Video → `expo-video` | ✅ `IllustrateVideo.tsx` |
 | `IllustrateSlide` | mp4 support; poster frame from illustration | ✅ |
 | Reduced motion | Static fallback when reduce motion enabled | ✅ |
 
@@ -443,20 +445,19 @@ Prioritize only if static/video pass doesn’t satisfy—avoid blocking ship on 
 
 ### F.3 Resonance feedback
 
-- Implement Lottie on status change (dependency already installed)
+- ✅ Lottie on status change (`ResonanceBurst` on Reflect slide; respects reduce motion)
 - Subtle haptic on “Tried it” (optional)
 
 ### F.4 Share flow
 
-- Review `share.tsx` copy and formatting
-- Add preview before share
-- Test iOS + Android share sheet
+- ✅ Review `share.tsx` copy and formatting; auto-select on load; preview block
+- Test iOS + Android share sheet (manual QA)
 
 ### F.5 Performance
 
 - Memoize profile pattern insights
 - `expo-image` migration for thumbnails (optional)
-- Bundle size report after asset batch
+- Bundle size report — **✅** `npm run bundle-report` → `docs/reports/BUNDLE_REPORT.md`
 
 ### F.6 Testing & CI
 
@@ -498,57 +499,64 @@ Phases overlap; dates are suggestive for a single focused contributor.
 
 | ID | Task | Workstream | Status |
 |----|------|------------|--------|
-| 1.1 | Ratify STYLE_BIBLE (reference renders) | A | 🟡 Pilot table in bible §10; approval pending |
+| 1.1 | Ratify STYLE_BIBLE (reference renders) | A | 🟡 1/5 approved (non-concordance); angling rejected; 3 Gemini pending |
 | 1.2 | Lock format per concept in audit sheet | C | ✅ `data/visual-formats.json` |
-| 1.3 | Image tool pilot (5 concepts) | D | 🟡 Prompts in `pipelines/prompts/`; generation + review pending |
-| 1.4 | Video tool pilot (2 concepts) | E | 🟡 Prompts in `VIDEO_PILOT_BATCH.md`; Building review + Pulsing gen pending |
-| 1.5 | Consolidate docs into target structure (partial) | B | 🟡 Legacy prompts migrate ongoing; `QA_CHECKLIST.md` added |
+| 1.3 | Image tool pilot (5 concepts) | D | 🟡 1 promoted; angling regen; 3 Gemini pilots pending |
+| 1.4 | Video tool pilot (2 concepts) | E | 🟡 Prompts ready; building review + pulsing gen → `wire-concept-video` |
+| 1.5 | Consolidate docs into target structure (partial) | B | ✅ `PROMPT_INDEX.md`, 22 illustration prompts; Veo JSON migrate optional |
 | 1.6 | Fix orphan wiring (Pairing, spreading) | F | ✅ |
 
 **Exit:** Tool choices documented; prompts template ready; no orphan components.
 
 ---
 
-### Phase 2 — Content & copy (Weeks 2–3)
+### Phase 2 — Content & copy (Weeks 2–3) ✅
 
-| ID | Task | Workstream |
-|----|------|------------|
-| 2.1 | Editorial pass all 22 definitions + slides | C |
-| 2.2 | Update `visual_content_strategy.md` to match decisions | B |
-| 2.3 | Revise illustration prompts per concept | D |
-| 2.4 | Revise video prompts (candidates only) | E |
+| ID | Task | Workstream | Status |
+|----|------|------------|--------|
+| 2.1 | Editorial pass all 22 definitions + slides | C | ✅ May 19 — `data/copy-review.json` + slide copy in `vocabulary.ts` |
+| 2.2 | Update `visual_content_strategy.md` to match decisions | B | ✅ Aligned with `visual-formats.json` (Phase 1.2) |
+| 2.3 | Revise illustration prompts per concept | D | ✅ `npm run enrich-illustration-prompts` — 22/22 deck-aligned `.md` files |
+| 2.4 | Revise video prompts (candidates only) | E | ✅ `building.md`, `pulsing.md` — 3 Omni starter variants + pipeline steps each |
 
-**Exit:** Copy signed off before full image batch (avoids rework).
-
----
-
-### Phase 3 — Asset production (Weeks 3–6)
-
-| ID | Task | Workstream |
-|----|------|------------|
-| 3.1 | Image batch: Techniques → Sensations → Timing → Psych → Anatomy | D |
-| 3.2 | Thumbnail batch (derived from plates or ChatGPT Images 2) | D |
-| 3.3 | Pathway + explainer + UI shell images | D |
-| 3.4 | Video batch per candidate list | E |
-| 3.5 | Transcode + compress | D, E |
-| 3.6 | Update ASSET_MANIFEST after each batch | B |
-
-**Exit:** Manifest 100%; all requires resolve.
+**Exit:** ✅ Copy and prompts ready; full image batch can start without copy rework.
 
 ---
 
-### Phase 4 — Integration & polish (Weeks 6–8)
+### Phase 3 — Asset production (Weeks 3–6) ⏸ Postponed
 
-| ID | Task | Workstream |
-|----|------|------------|
-| 4.1 | UI pass: Home, Library, Deck, Profile, Onboarding | A, F |
-| 4.2 | Concept QA on device (category by category) | C |
-| 4.3 | Share flow polish | F |
-| 4.4 | Lottie + reduced motion | F |
-| 4.5 | Performance pass | F |
-| 4.6 | CI + EAS setup | F |
+**Paused** until engineering track (§8b) completes or generation capacity returns. Resume with Phase 1 pilots (1.1, 1.3, 1.4) then batch below.
 
-**Exit:** QA checklist green; CI green.
+| ID | Task | Workstream | Status |
+|----|------|------------|--------|
+| 3.0 | Complete pilots: 1.1 reference renders, 1.3 image pilot, 1.4 video pilot | A, D, E | ⏸ |
+| 3.1 | Image batch: Techniques → Sensations → Timing → Psych → Anatomy | D | ⏸ |
+| 3.2 | Thumbnail batch (derived from plates or ChatGPT Images 2) | D | ⏸ |
+| 3.3 | Pathway + explainer + UI shell images | D | ⏸ |
+| 3.4 | Video batch per candidate list | E | ⏸ |
+| 3.5 | Transcode + compress | D, E | ⏸ |
+| 3.6 | Update ASSET_MANIFEST after each batch | B | ⏸ |
+
+**Exit:** Manifest 100%; all requires resolve; re-run QA delta only on changed concepts.
+
+**Blocked items (do not schedule on engineering track):** style bible ratification renders, angling regen, 3 Gemini pilots, building/pulsing Veo gen, full illustration/thumbnail regen, shell image regen.
+
+---
+
+### Phase 4 — Integration & polish (Weeks 6–8) 🟡
+
+Asset-independent items run **now** via §8b. Shell image regen stays in Phase 3.
+
+| ID | Task | Workstream | Status |
+|----|------|------------|--------|
+| 4.1 | UI pass: typography, Deck chrome, Profile, Onboarding | A, F | 🟡 Deck typography ✅; IllustrateSlide, ConceptCard, profile, onboarding ✅ |
+| 4.2 | Concept QA on device (category by category) | C | 🟡 §8b Batch 1 |
+| 4.3 | Share flow polish | F | 🟡 Auto-select + copy refresh; device smoke test ☐ |
+| 4.4 | Lottie on resonance (+ reduced motion already ✅) | F | ✅ `ResonanceBurst` on Reflect slide |
+| 4.5 | Performance pass | F | 🟡 Profile memoization ✅; bundle report ☐ |
+| 4.6 | CI + EAS setup | F | 🟡 CI ✅; EAS `eas.json` ✅; preview build ☐ |
+
+**Exit:** QA checklist green on **current** assets; CI green; preview build installable. Final visual QA after Phase 3.
 
 ---
 
@@ -636,24 +644,99 @@ Instrumentation can be Phase 5+ (analytics hook in repositories).
 
 ---
 
-## 8. Immediate next steps (current)
+## 8. Immediate next steps
 
-**Phase 1 focus:**
+### 8a. Asset track ⏸ (resume when generation restarts)
 
-1. **Ratify** identity pillars in `design/STYLE_BIBLE.md` — approve 5 pilot renders (§10 table).
-2. ~~**Transcode** legacy videos~~ — ✅ `building.mp4`, `responsive-desire.mp4`; requires updated.
-3. ~~**Lock formats**~~ — ✅ `data/visual-formats.json` + `product/visual_content_strategy.md`.
-4. Run **5-concept image pilot** using [`pipelines/prompts/PILOT_BATCH.md`](./pipelines/prompts/PILOT_BATCH.md); record tool choice in `IMAGE_GENERATION.md`.
-5. Run **2-concept video pilot** via [`pipelines/prompts/VIDEO_PILOT_BATCH.md`](./pipelines/prompts/VIDEO_PILOT_BATCH.md); QA in app.
-6. ~~**Pathway gaps**~~ — ✅ all 22 concepts in pathways.
-7. **Device pass:** screenshot all 22 concepts using [`QA_CHECKLIST.md`](./QA_CHECKLIST.md); tick `qa_passed` in `CONCEPT_AUDIT.md`.
-8. ~~**Manifest validator**~~ — ✅ `npm run validate-manifest` (+ size-budget warnings).
-9. ~~**Illustration wiring**~~ — ✅ video concepts use `illustrations/` for poster + reduce motion.
-10. ~~**Compress legacy PNGs**~~ — ✅ recursive `compress-assets`; ~54 MB saved; oversize assets flagged for Phase 3 regen.
+1. **Ratify** STYLE_BIBLE reference renders — **1/5** approved (non-concordance ✅); angling **regen**; Gemini for spreading, warmup-window, clitoral-structure → [`GEMINI_CLINICAL_PROMPTS.md`](./pipelines/prompts/GEMINI_CLINICAL_PROMPTS.md) → `pilot/{id}-gemini.png` → `npm run pilot-review` → `npm run swap-pilot-winner`.
+2. **5-concept image pilot** — complete angling + 3 Gemini pilots; promote winners.
+3. **2-concept video pilot** — Veo variants for building/pulsing → transcode → `npm run wire-concept-video`.
+4. **Phase 3 batches** — illustrations → thumbnails → shell assets → videos → compress → manifest (see §3 Phase 3).
+5. **Delta QA** — re-walk only concepts whose assets changed; update `ASSET_MANIFEST.md` same day as commit.
 
-**Completed (Phase 0):** branch + commit, docs index, concept audit, style bible v0.1, Pairing/spreading wiring, rocking → Skia-only.
+---
 
-**Completed (Phase 1 engineering):** MP4 transcode, pathway gaps, format lock, theme tokens, validate-manifest, IllustrateSlide poster + reduce motion, compress pass, QA checklist.
+### 8b. Engineering track (active — no new assets required)
+
+Run in order; each batch has a clear exit before starting the next.
+
+#### Batch 1 — Verify & close the content loop (~1–2 days)
+
+| # | Task | Deliverable |
+|---|------|-------------|
+| 1 | Device QA all 22 concepts | [`QA_CHECKLIST.md`](./QA_CHECKLIST.md); category order Techniques → Anatomy |
+| 2 | Tick `qa_passed` + `copy_reviewed` | `data/qa-passed.json` → audit regen — **copy ✅ citations ✅** (22/22); qa ☐ pending device |
+| 3 | Citations pass (`citations_ok`) | Understand slides + `researchBasis` — **automated in `generate-concept-audit.js`** |
+| 4 | Share smoke test | iOS + one Android (QA checklist § Share) |
+
+**Exit:** Audit columns honest for copy/citations; device QA + share smoke still required.
+
+#### Batch 2 — Ship path & automation (~1 day)
+
+| # | Task | Deliverable |
+|---|------|-------------|
+| 1 | Add `eas.json` | development, preview, production profiles — **✅** |
+| 2 | Preview build | Install on device; re-spot-check Batch 1 if needed — **run `eas build --profile preview`** |
+| 3 | Confirm CI green | `test` + `validate-manifest` on branch — **✅** |
+| 4 | App Store metadata draft | Sensitive-category wording — **✅** [`app-store-metadata.md`](./product/app-store-metadata.md) |
+
+#### Batch 3 — UI shell polish (~2–3 days)
+
+| # | Task | Files |
+|---|------|-------|
+| 1 | Typography scale consistency | `components/ui/Typography.tsx`, deck slides — **✅** `deckPrompt` / `deckLead` tokens |
+| 2 | Illustrate slide chrome | `IllustrateSlide.tsx`, `IllustrateVideo.tsx` — **✅** conceptCanvas, mute, expo-video |
+| 3 | Profile Atelier refresh | `app/(tabs)/profile.tsx` — **✅** thumbnails on shelf, memoized resonates |
+| 4 | Onboarding visual pass | `app/onboarding/*` — **✅** welcome gradient tokens |
+| 5 | ConceptCard thumbnail framing | `ConceptCard.tsx` — **✅** canvas frame + border |
+
+**Defer to Phase 3:** `slide-*.png`, pathway/explainer hero regen.
+
+**Exit:** Shell matches STYLE_BIBLE tokens; deck readable on small phones.
+
+#### Batch 4 — Interaction & media code (~2 days)
+
+| # | Task | Notes |
+|---|------|-------|
+| 1 | Lottie on resonance status change | F.3 — **✅** `ResonanceBurst` + `resonance-burst.json` |
+| 2 | Share flow polish | Copy, formatting, optional preview — **✅** auto-select + copy refresh |
+| 3 | `expo-av` → `expo-video` | E.6 — **✅**; removed `expo-av` dep |
+| 4 | Memoize profile pattern insights | F.5 — **✅** |
+| 5 | Bundle size report | F.5 — **✅** `bundle-report.js` |
+| 6 | QA batch helper | Batch 1 — **✅** `mark-qa-batch.js` |
+| 7 | *(Optional)* Edging / Spectatoring Skia | F.2 — only if time; not blocking RC |
+
+**Exit:** App feels finished on **current** media; no Veo/Nano required.
+
+#### Batch 5 — Plan hygiene (~half day)
+
+| # | Task |
+|---|------|
+| 1 | Sync `PROJECT_STATUS_REPORT.md` with phase table |
+| 2 | Optional: merge `veo3.1_best_practices.md` into `pipelines/VIDEO_GENERATION.md` |
+
+**Exit:** Docs match branch reality when §8a resumes.
+
+#### Suggested calendar (asset pause)
+
+```
+Days 1–2   Batch 1 — Device QA + citations + share
+Day 3      Batch 2 — EAS + preview build
+Days 4–6   Batch 3 — UI shell
+Days 7–8   Batch 4 — Lottie, share, expo-video, perf
+Day 9      Batch 5 — Status report sync
+           ─── resume §8a asset track ───
+```
+
+---
+
+### Completed (reference)
+
+**Phase 0:** branch + commit, docs index, concept audit, style bible v0.1, Pairing/spreading wiring, rocking → Skia-only.
+
+**Phase 1 engineering:** MP4 transcode, pathway gaps, format lock, theme tokens, validate-manifest, IllustrateSlide poster + reduce motion, compress pass, QA checklist, CI.
+
+**Phase 2:** copy pass, 22 illustration prompts, building/pulsing video prompts.
 
 ---
 
@@ -663,6 +746,8 @@ Instrumentation can be Phase 5+ (analytics hook in repositories).
 |----------|-------|
 | Where are we? | `PROJECT_STATUS_REPORT.md` |
 | What’s the plan? | `IMPLEMENTATION_PLAN.md` (this file) |
+| What can I do without new assets? | §8b Engineering track (this file) |
+| When do assets resume? | §8a Asset track (this file) |
 | What should it look like? | `design/STYLE_BIBLE.md` |
 | What does each concept need? | `content/CONCEPT_AUDIT.md` |
 | How do I generate images? | `pipelines/IMAGE_GENERATION.md` |
@@ -681,6 +766,13 @@ Instrumentation can be Phase 5+ (analytics hook in repositories).
 | May 19, 2026 | Phase 1 engineering: MP4 transcode, pathway gaps, pilot prompts, doc consolidation |
 | May 19, 2026 | Phase 1: format lock, theme token audit, video pilot prompts, validate-manifest, IllustrateSlide reduced motion + poster |
 | May 19, 2026 | Phase 1: recursive compress-assets (~54 MB saved), manifest size budgets, `QA_CHECKLIST.md` |
+| May 19, 2026 | Phase 1: migrate 22 illustration prompts, `PROMPT_INDEX.md`, pilot folder + `pilot-review`, GitHub CI (test + validate-manifest) |
+| May 19, 2026 | Phase 2.1: editorial pass all 22 concepts (`vocabulary.ts` slides); `data/copy-review.json` |
+| May 19, 2026 | Phase 2.3–2.4: enrich 22 illustration prompts; revise building/pulsing video prompts; `swap-pilot-winner` + `enrich-illustration-prompts` scripts |
+| May 19, 2026 | Phase 1.3: non-concordance pilot promoted; angling pilot rejected (text); angling prompt regen; `wire-concept-video` script |
+| May 19, 2026 | §8b Batches 2–4 engineering: `eas.json`, citations audit column, IllustrateVideo (expo-video), Lottie resonance, share/profile/ConceptCard polish |
+| May 20, 2026 | §8b Batch 3: deck typography tokens (`deckPrompt`, `deckLead`); `data/qa-passed.json` + audit script hook for device QA |
+| May 20, 2026 | `bundle-report`, `mark-qa-batch` scripts; share/onboarding polish; `docs/reports/BUNDLE_REPORT.md` |
 
 ---
 

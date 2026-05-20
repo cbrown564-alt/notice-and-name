@@ -1,7 +1,7 @@
 # Manual QA Checklist
 
 **Phase:** 1.7 (device pass) → repeat in Phase 4.2 before RC  
-**Companion:** [`content/CONCEPT_AUDIT.md`](./content/CONCEPT_AUDIT.md) — tick `qa_passed` per concept after sign-off
+**Companion:** [`content/CONCEPT_AUDIT.md`](./content/CONCEPT_AUDIT.md) — set `"concept-id": true` in `data/qa-passed.json` after sign-off, then `npm run generate-concept-audit`
 
 Run on **iOS** (primary) and spot-check **one Android device**. Use a release or preview build when testing video loops and reduced motion.
 
@@ -62,7 +62,13 @@ Enable **Reduce Motion** in system settings:
 
 ## Category batches (suggested order)
 
-Tick `qa_passed` in `CONCEPT_AUDIT.md` after each batch:
+After each batch, run `npm run mark-qa-batch -- <batch>` (e.g. `techniques`), then `npm run generate-concept-audit`:
+
+```bash
+npm run mark-qa-batch -- techniques    # after Techniques QA
+npm run mark-qa-batch -- status        # progress summary
+npm run mark-qa-batch -- list          # batch → concept ids
+```
 
 1. **Techniques** — angling, rocking, shallowing, pairing  
 2. **Sensations** — building, plateauing, edging, spreading, pulsing  

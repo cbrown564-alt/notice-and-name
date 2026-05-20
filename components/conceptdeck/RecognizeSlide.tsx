@@ -1,5 +1,5 @@
 import { Text } from '@/components/ui/Typography';
-import { colors, spacing, typography } from '@/constants/theme';
+import { colors, spacing } from '@/constants/theme';
 import { Concept, ConceptSlide } from '@/types';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
@@ -23,7 +23,7 @@ export const RecognizeSlide = ({ item, concept }: RecognizeSlideProps) => {
                         variant="label"
                         color={colors.text.tertiary}
                         align="center"
-                        style={styles.label}
+                        style={styles.labelSpacing}
                     >
                         {concept.category.toUpperCase()}
                     </Text>
@@ -31,21 +31,14 @@ export const RecognizeSlide = ({ item, concept }: RecognizeSlideProps) => {
 
                 {/* Concept Name */}
                 <Animated.View entering={FadeInDown.delay(200).springify()}>
-                    <Text
-                        variant="h1"
-                        align="center"
-                        style={styles.title}
-                    >
+                    <Text variant="h1" align="center" style={styles.titleSpacing}>
                         {concept.name}
                     </Text>
                 </Animated.View>
 
                 {/* The Question/Prompt */}
                 <Animated.View entering={FadeInDown.delay(400).springify()} style={styles.questionContainer}>
-                    <Text
-                        align="center"
-                        style={styles.questionText}
-                    >
+                    <Text variant="deckPrompt" align="center">
                         {item.content}
                     </Text>
                 </Animated.View>
@@ -74,26 +67,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    label: {
+    labelSpacing: {
         letterSpacing: 2,
         marginBottom: spacing.sm,
-        fontSize: 12,
     },
-    title: {
-        fontSize: 42,
+    titleSpacing: {
         marginBottom: spacing['2xl'],
-        lineHeight: 48,
-        color: colors.text.primary,
     },
     questionContainer: {
         marginBottom: spacing['2xl'],
         paddingHorizontal: spacing.md,
-    },
-    questionText: {
-        fontSize: 26,
-        lineHeight: 38,
-        fontFamily: typography.fontFamily.headingItalic,
-        color: colors.text.secondary,
     },
     footer: {
         position: 'absolute',

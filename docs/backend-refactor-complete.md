@@ -1,5 +1,8 @@
 # Backend Refactoring - Complete
 
+> **Quick reference:** [`architecture/backend.md`](./architecture/backend.md)  
+> **Status:** Historical narrative (January 2026). No open implementation tasks — see Implementation Plan for current work.
+
 This document summarizes the backend refactoring work completed based on `backend-refactor-notes.md` and outlines considerations for future improvements.
 
 ---

@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Platform, ScrollView, Share, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -8,7 +8,16 @@ import { Button, Card, Text, ThemedView } from '@/components/ui';
 import { borderRadius, colors, spacing } from '@/constants/theme';
 import { getConceptById } from '@/data/vocabulary';
 import { useUserConcepts } from '@/hooks/useDatabase';
+import { logger } from '@/lib/logger';
 import { ConceptCategory } from '@/types';
+
+const CATEGORY_ORDER: ConceptCategory[] = [
+  'technique',
+  'sensation',
+  'timing',
+  'psychological',
+  'anatomy',
+];
 
 const categoryLabels: Record<ConceptCategory, string> = {
   technique: 'Techniques',
@@ -37,19 +46,27 @@ export default function ShareScreen() {
       .filter((c) => c.concept !== undefined);
   }, [userConcepts]);
 
-  // Group by category
-  const groupedConcepts = useMemo(() => {
-    const groups: Record<string, typeof resonatingConcepts> = {};
-    resonatingConcepts.forEach((c) => {
-      if (c.concept) {
-        const category = c.concept.category;
-        if (!groups[category]) {
-          groups[category] = [];
-        }
-        groups[category].push(c);
-      }
+  // Pre-select all resonating concepts on first load
+  useEffect(() => {
+    if (resonatingConcepts.length === 0) return;
+    setSelectedConcepts((prev) => {
+      if (prev.size > 0) return prev;
+      return new Set(resonatingConcepts.map((c) => c.concept_id));
     });
-    return groups;
+  }, [resonatingConcepts]);
+
+  const groupedConcepts = useMemo(() => {
+    const groups: Partial<Record<ConceptCategory, typeof resonatingConcepts>> = {};
+    resonatingConcepts.forEach((c) => {
+      if (!c.concept) return;
+      const category = c.concept.category;
+      if (!groups[category]) groups[category] = [];
+      groups[category].push(c);
+    });
+    return CATEGORY_ORDER.filter((cat) => groups[cat]?.length).map((cat) => ({
+      category: cat,
+      concepts: groups[cat]!,
+    }));
   }, [resonatingConcepts]);
 
   const toggleConcept = (conceptId: string) => {
@@ -70,61 +87,59 @@ export default function ShareScreen() {
     setSelectedConcepts(new Set());
   };
 
-  const generateShareText = () => {
+  const shareText = useMemo(() => {
     const selected = resonatingConcepts.filter((c) =>
       selectedConcepts.has(c.concept_id)
     );
-
     if (selected.length === 0) return '';
 
-    let text = "I've been exploring my pleasure vocabulary, and these concepts really resonate with me:\n\n";
+    let text = 'Concepts that resonate with me from Pleasure Vocabulary:\n\n';
 
-    // Group selected by category for the share text
-    const selectedByCategory: Record<string, typeof selected> = {};
+    const selectedByCategory: Partial<Record<ConceptCategory, typeof selected>> = {};
     selected.forEach((c) => {
-      if (c.concept) {
-        const category = c.concept.category;
-        if (!selectedByCategory[category]) {
-          selectedByCategory[category] = [];
-        }
-        selectedByCategory[category].push(c);
-      }
+      if (!c.concept) return;
+      const category = c.concept.category;
+      if (!selectedByCategory[category]) selectedByCategory[category] = [];
+      selectedByCategory[category].push(c);
     });
 
-    Object.entries(selectedByCategory).forEach(([category, concepts]) => {
-      text += `${categoryLabels[category as ConceptCategory].toUpperCase()}:\n`;
+    for (const category of CATEGORY_ORDER) {
+      const concepts = selectedByCategory[category];
+      if (!concepts?.length) continue;
+      text += `${categoryLabels[category].toUpperCase()}:\n`;
       concepts.forEach((c) => {
-        if (c.concept) {
-          text += `• ${c.concept.name}`;
-          if (includeDefinitions) {
-            text += `: ${c.concept.definition}`;
-          }
-          text += '\n';
+        if (!c.concept) return;
+        text += `• ${c.concept.name}`;
+        if (includeDefinitions) {
+          text += `: ${c.concept.definition}`;
         }
+        text += '\n';
       });
       text += '\n';
-    });
+    }
 
-    text += "I'd love to explore these together when we have time.";
-
+    text +=
+      'Shared from my private profile — happy to talk about any of these when it feels right.';
     return text;
-  };
+  }, [resonatingConcepts, selectedConcepts, includeDefinitions]);
+
+  const [sharing, setSharing] = useState(false);
 
   const handleShare = async () => {
-    const text = generateShareText();
-    if (!text) return;
+    if (!shareText || sharing) return;
 
+    setSharing(true);
     try {
       await Share.share({
-        message: text,
-        title: 'My Pleasure Profile',
+        message: shareText,
+        ...(Platform.OS === 'ios' ? { title: 'My Pleasure Profile' } : {}),
       });
     } catch (error) {
-      console.error('Error sharing:', error);
+      logger.error('ShareScreen', 'Native share failed', error);
+    } finally {
+      setSharing(false);
     }
   };
-
-  const previewText = generateShareText();
 
   return (
     <ThemedView style={styles.container}>
@@ -135,6 +150,8 @@ export default function ShareScreen() {
             onPress={() => router.back()}
             style={styles.backButton}
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            accessibilityRole="button"
+            accessibilityLabel="Go back"
           >
             <Ionicons name="arrow-back" size={24} color={colors.text.primary} />
           </TouchableOpacity>
@@ -189,10 +206,10 @@ export default function ShareScreen() {
 
             {/* Lists */}
             <View style={{ gap: spacing.lg }}>
-              {Object.entries(groupedConcepts).map(([category, concepts]) => (
+              {groupedConcepts.map(({ category, concepts }) => (
                 <View key={category}>
                   <Text variant="labelSmall" color={colors.text.tertiary} style={styles.categoryTitle}>
-                    {categoryLabels[category as ConceptCategory]}
+                    {categoryLabels[category]}
                   </Text>
 
                   <View style={styles.grid}>
@@ -207,6 +224,9 @@ export default function ShareScreen() {
                           ]}
                           onPress={() => toggleConcept(c.concept_id)}
                           activeOpacity={0.8}
+                          accessibilityRole="checkbox"
+                          accessibilityState={{ checked: isSelected }}
+                          accessibilityLabel={`${c.concept?.name}. ${isSelected ? 'Selected' : 'Not selected'}`}
                         >
                           <View style={styles.cardContent}>
                             <Text
@@ -244,6 +264,9 @@ export default function ShareScreen() {
                 style={styles.optionRow}
                 onPress={() => setIncludeDefinitions(!includeDefinitions)}
                 activeOpacity={0.7}
+                accessibilityRole="switch"
+                accessibilityState={{ checked: includeDefinitions }}
+                accessibilityLabel="Include definitions in shared text"
               >
                 <View style={[styles.switch, includeDefinitions && styles.switchActive]}>
                   <View style={[styles.switchKnob, includeDefinitions && styles.switchKnobActive]} />
@@ -258,7 +281,7 @@ export default function ShareScreen() {
                 <Text variant="h4" style={{ marginBottom: spacing.md }}>Preview</Text>
                 <Card variant="filled" style={styles.previewBubble} padding="lg">
                   <Text variant="bodySmall" style={styles.previewText}>
-                    {previewText}
+                    {shareText}
                   </Text>
                   <View style={styles.bubbleTail} />
                 </Card>
@@ -268,9 +291,15 @@ export default function ShareScreen() {
             {/* Share FAB Substitute (Sticky-ish bottom) */}
             <View style={styles.shareActionContainer}>
               <Button
-                title={selectedConcepts.size > 0 ? "Share Profile" : "Select concepts to share"}
+                title={
+                  sharing
+                    ? 'Opening share…'
+                    : selectedConcepts.size > 0
+                      ? 'Share Profile'
+                      : 'Select concepts to share'
+                }
                 onPress={handleShare}
-                disabled={selectedConcepts.size === 0}
+                disabled={selectedConcepts.size === 0 || sharing}
                 variant="primary"
                 fullWidth
               />
