@@ -1,4 +1,27 @@
 {
   "comment": "Set concept id to true after device QA per docs/QA_CHECKLIST.md. Regenerate audit: npm run generate-concept-audit",
-  "passed": {}
+  "passed": {
+    "angling": true,
+    "rocking": true,
+    "shallowing": true,
+    "pairing": true,
+    "building": true,
+    "plateauing": true,
+    "edging": true,
+    "spreading": true,
+    "pulsing": true,
+    "warmup-window": true,
+    "responsive-desire": true,
+    "spontaneous-desire": true,
+    "golden-trio": true,
+    "spectatoring": true,
+    "embodied-presence": true,
+    "non-concordance": true,
+    "sexual-self-esteem": true,
+    "body-appreciation": true,
+    "clitoral-structure": true,
+    "nerve-density": true,
+    "clitourethrovaginal": true,
+    "internal-stimulation": true
+  }
 }

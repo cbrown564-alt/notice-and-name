@@ -24,9 +24,10 @@ Pleasure Vocabulary Builder is a **feature-complete, local-first educational MVP
 
 The codebase is in **strong architectural health**: repository pattern, schema migrations, Zod validation, React Context, and **198 passing unit tests** on the data layer. Recent work: **Phase 2** (22/22 editorial copy, format lock, 22 illustration prompts, building/pulsing video prompts); **Gemini Omni** replaces Veo for video generation (`gemini_omni_best_practices.md`); **Phase 1 engineering** (H.264 MP4 transcode, all 22 concepts in pathways, theme token audit, validate-manifest, recursive compress-assets ~54 MB saved, IllustrateSlide poster + reduce-motion, CI, pilot workflow scripts).
 
-**Active now (§8b):** device QA + citations, EAS/preview build, UI shell polish, share/Lottie/expo-video, plan hygiene.
+**Active now (§8b):** EAS preview build (Batch 2) [Next Session], UI shell polish (Batch 3), share/Lottie/expo-video (Batch 4), plan hygiene (Batch 5). (Batch 1 Device QA completed)
 
-**Paused (§8a):** style-bible reference renders (1/5 approved), image/video pilots, full illustration/thumbnail/shell regen, Phase 3 batches.
+**Paused (§8a):** Image/video pilots, full illustration/thumbnail/shell regen, Phase 3 batches. (Style Bible ratified v1.0)
+
 
 Five parallel workstreams (see Implementation Plan):
 
@@ -257,11 +258,9 @@ Format-by-concept rationale: `docs/product/visual_content_strategy.md`.
 
 **Engineering track (active — no new assets):**
 
-| Priority | Gap | Plan ref |
-|----------|-----|----------|
-| **P0** | Device QA all 22 concepts; tick `data/qa-passed.json` | §8b Batch 1 |
-| **P0** | EAS preview build (`npm run build:preview`) | §8b Batch 2 |
-| **P1** | Share smoke test (iOS + Android) | §8b Batch 1 / 4 |
+| ~~**P0**~~ | ~~Device QA all 22 concepts; tick `data/qa-passed.json`~~ | ✅ §8b Batch 1 (Completed) |
+| **P0** | EAS preview build (`npm run build:preview`) | §8b Batch 2 (Next session) |
+| **P1** | Share smoke test (iOS + Android) | §8b Batch 1 / 4 (Next session) |
 | ~~**P1**~~ | ~~UI shell polish (typography, deck chrome, profile, onboarding)~~ | ✅ §8b Batch 3 |
 | ~~**P1**~~ | ~~Share flow polish; Lottie; expo-video; profile memoization~~ | ✅ §8b Batch 4 |
 

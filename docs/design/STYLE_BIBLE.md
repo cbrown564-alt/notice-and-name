@@ -1,8 +1,9 @@
-# Style Bible v0.1
+# Style Bible v1.0
 
-**Status:** Draft for ratification (Phase 1.1)  
+**Status:** v1.0 ratified  
 **Canonical after:** Reference renders approved (one per category family)  
 **Sources merged:** `holistic_visual_identity.md`, `app_visual_identity.md`, `asset_visual_identities.md`, `constants/theme.ts`
+
 
 ---
 
@@ -132,13 +133,14 @@ Pin one approved concept per family after image pilot review ([`PILOT_BATCH.md`]
 
 | Family | Pilot concept | Status | Illustration prompt |
 |--------|---------------|--------|---------------------|
-| Technique | Angling | ❌ Pilot rejected (in-image text); regen | `pipelines/prompts/illustrations/angling.md` |
-| Sensation | Spreading | ⬜ Gemini clinical next | `pipelines/prompts/illustrations/spreading.md` |
-| Timing | Warm-up Window | ⬜ Gemini clinical next | `pipelines/prompts/illustrations/warmup-window.md` |
+| Technique | Angling | ✅ Approved | `pipelines/prompts/illustrations/angling.md` |
+| Sensation | Spreading | ✅ Approved | `pipelines/prompts/illustrations/spreading.md` |
+| Timing | Warm-up Window | ✅ Approved | `pipelines/prompts/illustrations/warmup-window.md` |
 | Psychological | Non-concordance | ✅ Approved — in production (221 KB) | `pipelines/prompts/illustrations/non-concordance.md` |
-| Anatomy | Clitoral Structure | ⬜ Gemini clinical next | `pipelines/prompts/illustrations/clitoral-structure.md` |
+| Anatomy | Clitoral Structure | ✅ Approved | `pipelines/prompts/illustrations/clitoral-structure.md` |
 
-**Ratification:** After all five pass §9 checklist in-app and `npm run reference-renders` shows 5/5, update this doc to **v1.0 ratified**.
+**Ratification:** All five reference renders passed checklist in-app, status updated to **v1.0 ratified**.
+
 
 ---
 

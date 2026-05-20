@@ -8,28 +8,28 @@ One row per concept. `format_choice` locked in `data/visual-formats.json`. `thum
 
 | id | category | format_choice | thumbnail | thumb_wired | illustration | rich_media | video_wired | slides | pathways | copy_reviewed | citations_ok | qa_passed |
 |----|----------|---------------|-----------|-------------|--------------|------------|-------------|--------|----------|---------------|--------------|-----------|
-| angling | technique | interactive | ✅ | ✅ | ✅ | interactive (angling) | — | recognize, name, illustrate, understand, explore | expanding-repertoire | ✅ | ✅ | ☐ |
-| rocking | technique | interactive | ✅ | ✅ | ✅ | interactive (rocking) | — | recognize, name, illustrate, understand, explore | expanding-repertoire | ✅ | ✅ | ☐ |
-| shallowing | technique | interactive | ✅ | ✅ | ✅ | interactive (shallowing) | — | recognize, name, illustrate, understand, explore | expanding-repertoire | ✅ | ✅ | ☐ |
-| pairing | technique | interactive | ✅ | ✅ | ✅ | interactive (pairing) | — | recognize, name, illustrate, understand, explore | foundations | ✅ | ✅ | ☐ |
-| building | sensation | video | ✅ | ✅ | ✅ | video ✅ building.mp4 | ✅ | recognize, name, illustrate, understand, explore | foundations | ✅ | ✅ | ☐ |
-| plateauing | sensation | video | ✅ | ✅ | ✅ | static only | ☐ | recognize, name, illustrate, understand, explore | solo-exploration | ✅ | ✅ | ☐ |
-| edging | sensation | interactive (planned) | ✅ | ✅ | ✅ | static only | — | recognize, name, illustrate, understand, explore | solo-exploration | ✅ | ✅ | ☐ |
-| spreading | sensation | video | ✅ | ✅ | ✅ | video ✅ spreading.mp4 | ✅ | recognize, name, illustrate, understand, explore | solo-exploration | ✅ | ✅ | ☐ |
-| pulsing | sensation | video | ✅ | ✅ | ✅ | static only | ☐ | recognize, name, illustrate, understand, explore | solo-exploration | ✅ | ✅ | ☐ |
-| warmup-window | timing | video | ✅ | ✅ | ✅ | static only | ☐ | recognize, name, illustrate, understand, explore | partner-communication | ✅ | ✅ | ☐ |
-| responsive-desire | timing | video | ✅ | ✅ | ✅ | video ✅ responsive-desire.mp4 | ✅ | recognize, name, illustrate, understand, explore | partner-communication | ✅ | ✅ | ☐ |
-| spontaneous-desire | timing | video | ✅ | ✅ | ✅ | static only | ☐ | recognize, name, illustrate, understand, explore | partner-communication | ✅ | ✅ | ☐ |
-| golden-trio | timing | video | ✅ | ✅ | ✅ | static only | ☐ | recognize, name, illustrate, understand, explore | expanding-repertoire | ✅ | ✅ | ☐ |
-| spectatoring | psychological | video | ✅ | ✅ | ✅ | static only | ☐ | recognize, name, illustrate, understand, explore | partner-communication, mindful-presence | ✅ | ✅ | ☐ |
-| embodied-presence | psychological | video | ✅ | ✅ | ✅ | static only | ☐ | recognize, name, illustrate, understand, explore | solo-exploration, mindful-presence | ✅ | ✅ | ☐ |
-| non-concordance | psychological | video | ✅ | ✅ | ✅ | static only | ☐ | recognize, name, illustrate, understand, explore | mindful-presence | ✅ | ✅ | ☐ |
-| sexual-self-esteem | psychological | static | ✅ | ✅ | ✅ | static only | — | recognize, name, illustrate, understand, explore | partner-communication | ✅ | ✅ | ☐ |
-| body-appreciation | psychological | static | ✅ | ✅ | ✅ | static only | — | recognize, name, illustrate, understand, explore | mindful-presence | ✅ | ✅ | ☐ |
-| clitoral-structure | anatomy | video | ✅ | ✅ | ✅ | static only | ☐ | recognize, name, illustrate, understand, explore | foundations | ✅ | ✅ | ☐ |
-| nerve-density | anatomy | video | ✅ | ✅ | ✅ | static only | ☐ | recognize, name, illustrate, understand, explore | foundations | ✅ | ✅ | ☐ |
-| clitourethrovaginal | anatomy | video | ✅ | ✅ | ✅ | static only | ☐ | recognize, name, illustrate, understand, explore | foundations | ✅ | ✅ | ☐ |
-| internal-stimulation | anatomy | video | ✅ | ✅ | ✅ | static only | ☐ | recognize, name, illustrate, understand, explore | foundations | ✅ | ✅ | ☐ |
+| angling | technique | interactive | ✅ | ✅ | ✅ | interactive (angling) | — | recognize, name, illustrate, understand, explore | expanding-repertoire | ✅ | ✅ | ✅ |
+| rocking | technique | interactive | ✅ | ✅ | ✅ | interactive (rocking) | — | recognize, name, illustrate, understand, explore | expanding-repertoire | ✅ | ✅ | ✅ |
+| shallowing | technique | interactive | ✅ | ✅ | ✅ | interactive (shallowing) | — | recognize, name, illustrate, understand, explore | expanding-repertoire | ✅ | ✅ | ✅ |
+| pairing | technique | interactive | ✅ | ✅ | ✅ | interactive (pairing) | — | recognize, name, illustrate, understand, explore | foundations | ✅ | ✅ | ✅ |
+| building | sensation | video | ✅ | ✅ | ✅ | video ✅ building.mp4 | ✅ | recognize, name, illustrate, understand, explore | foundations | ✅ | ✅ | ✅ |
+| plateauing | sensation | video | ✅ | ✅ | ✅ | static only | ☐ | recognize, name, illustrate, understand, explore | solo-exploration | ✅ | ✅ | ✅ |
+| edging | sensation | interactive (planned) | ✅ | ✅ | ✅ | static only | — | recognize, name, illustrate, understand, explore | solo-exploration | ✅ | ✅ | ✅ |
+| spreading | sensation | video | ✅ | ✅ | ✅ | video ✅ spreading.mp4 | ✅ | recognize, name, illustrate, understand, explore | solo-exploration | ✅ | ✅ | ✅ |
+| pulsing | sensation | video | ✅ | ✅ | ✅ | static only | ☐ | recognize, name, illustrate, understand, explore | solo-exploration | ✅ | ✅ | ✅ |
+| warmup-window | timing | video | ✅ | ✅ | ✅ | static only | ☐ | recognize, name, illustrate, understand, explore | partner-communication | ✅ | ✅ | ✅ |
+| responsive-desire | timing | video | ✅ | ✅ | ✅ | video ✅ responsive-desire.mp4 | ✅ | recognize, name, illustrate, understand, explore | partner-communication | ✅ | ✅ | ✅ |
+| spontaneous-desire | timing | video | ✅ | ✅ | ✅ | static only | ☐ | recognize, name, illustrate, understand, explore | partner-communication | ✅ | ✅ | ✅ |
+| golden-trio | timing | video | ✅ | ✅ | ✅ | static only | ☐ | recognize, name, illustrate, understand, explore | expanding-repertoire | ✅ | ✅ | ✅ |
+| spectatoring | psychological | video | ✅ | ✅ | ✅ | static only | ☐ | recognize, name, illustrate, understand, explore | partner-communication, mindful-presence | ✅ | ✅ | ✅ |
+| embodied-presence | psychological | video | ✅ | ✅ | ✅ | static only | ☐ | recognize, name, illustrate, understand, explore | solo-exploration, mindful-presence | ✅ | ✅ | ✅ |
+| non-concordance | psychological | video | ✅ | ✅ | ✅ | static only | ☐ | recognize, name, illustrate, understand, explore | mindful-presence | ✅ | ✅ | ✅ |
+| sexual-self-esteem | psychological | static | ✅ | ✅ | ✅ | static only | — | recognize, name, illustrate, understand, explore | partner-communication | ✅ | ✅ | ✅ |
+| body-appreciation | psychological | static | ✅ | ✅ | ✅ | static only | — | recognize, name, illustrate, understand, explore | mindful-presence | ✅ | ✅ | ✅ |
+| clitoral-structure | anatomy | video | ✅ | ✅ | ✅ | static only | ☐ | recognize, name, illustrate, understand, explore | foundations | ✅ | ✅ | ✅ |
+| nerve-density | anatomy | video | ✅ | ✅ | ✅ | static only | ☐ | recognize, name, illustrate, understand, explore | foundations | ✅ | ✅ | ✅ |
+| clitourethrovaginal | anatomy | video | ✅ | ✅ | ✅ | static only | ☐ | recognize, name, illustrate, understand, explore | foundations | ✅ | ✅ | ✅ |
+| internal-stimulation | anatomy | video | ✅ | ✅ | ✅ | static only | ☐ | recognize, name, illustrate, understand, explore | foundations | ✅ | ✅ | ✅ |
 
 ## Notes
 

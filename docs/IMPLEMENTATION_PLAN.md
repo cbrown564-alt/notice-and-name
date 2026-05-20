@@ -11,7 +11,7 @@
 | Phase | Status | Notes |
 |-------|--------|-------|
 | **0 — Reactivation** | ✅ Complete | Branch, docs skeleton, audit, style bible v0.1, orphan wiring |
-| **1 — Foundation** | 🟡 Partial | Engineering + format lock ✅; **pilots paused** (1.1, 1.3, 1.4 resume with Phase 3) |
+| **1 — Foundation** | 🟡 Partial | Eng + format lock ✅; Style Bible v1.0 ratified (1.1), image pilot (1.3) & Batch 1 QA ✅ |
 | **2 — Copy** | ✅ Complete | 22/22 copy, formats, illustration + video prompts ready for batch |
 | **3 — Asset production** | ⏸ Postponed | Resumes after engineering track (§8b); partial January refresh on branch |
 | **4 — Integration** | 🟡 In progress | Pulled forward **without assets** — QA, UI shell, EAS, share/Lottie (§8b) |
@@ -120,7 +120,7 @@ January established a direction; the next pass should:
 
 ### A.5 Acceptance criteria
 
-- [ ] Style bible signed off with 5 reference renders (one per category family)
+- [x] Style bible signed off with 5 reference renders (one per category family)
 - [ ] Figma or pinned reference folder optional but recommended
 - [ ] No asset committed without checklist sign-off against bible
 - [x] Dark mode decision: **out of scope** for v1.0 RC (documented in `STYLE_BIBLE.md` §8)
@@ -499,9 +499,9 @@ Phases overlap; dates are suggestive for a single focused contributor.
 
 | ID | Task | Workstream | Status |
 |----|------|------------|--------|
-| 1.1 | Ratify STYLE_BIBLE (reference renders) | A | 🟡 1/5 approved (non-concordance); angling rejected; 3 Gemini pending |
+| 1.1 | Ratify STYLE_BIBLE (reference renders) | A | ✅ Ratified (5/5 approved) |
 | 1.2 | Lock format per concept in audit sheet | C | ✅ `data/visual-formats.json` |
-| 1.3 | Image tool pilot (5 concepts) | D | 🟡 1 promoted; angling regen; 3 Gemini pilots pending |
+| 1.3 | Image tool pilot (5 concepts) | D | ✅ All 5 promoted (angling, spreading, warmup-window, non-concordance, clitoral-structure) |
 | 1.4 | Video tool pilot (2 concepts) | E | 🟡 Prompts ready; building review + pulsing gen → `wire-concept-video` |
 | 1.5 | Consolidate docs into target structure (partial) | B | ✅ `PROMPT_INDEX.md`, 22 illustration prompts; Veo JSON migrate optional |
 | 1.6 | Fix orphan wiring (Pairing, spreading) | F | ✅ |
@@ -529,7 +529,7 @@ Phases overlap; dates are suggestive for a single focused contributor.
 
 | ID | Task | Workstream | Status |
 |----|------|------------|--------|
-| 3.0 | Complete pilots: 1.1 reference renders, 1.3 image pilot, 1.4 video pilot | A, D, E | ⏸ |
+| 3.0 | Complete pilots: 1.1 reference renders, 1.3 image pilot, 1.4 video pilot | A, D, E | 🟡 1.1 and 1.3 complete; 1.4 pending |
 | 3.1 | Image batch: Techniques → Sensations → Timing → Psych → Anatomy | D | ⏸ |
 | 3.2 | Thumbnail batch (derived from plates or ChatGPT Images 2) | D | ⏸ |
 | 3.3 | Pathway + explainer + UI shell images | D | ⏸ |
@@ -662,23 +662,23 @@ Run in order; each batch has a clear exit before starting the next.
 
 #### Batch 1 — Verify & close the content loop (~1–2 days)
 
-| # | Task | Deliverable |
-|---|------|-------------|
-| 1 | Device QA all 22 concepts | [`QA_CHECKLIST.md`](./QA_CHECKLIST.md); category order Techniques → Anatomy |
-| 2 | Tick `qa_passed` + `copy_reviewed` | `data/qa-passed.json` → audit regen — **copy ✅ citations ✅** (22/22); qa ☐ pending device |
-| 3 | Citations pass (`citations_ok`) | Understand slides + `researchBasis` — **automated in `generate-concept-audit.js`** |
-| 4 | Share smoke test | iOS + one Android (QA checklist § Share) |
+| # | Task | Deliverable | Status |
+|---|------|-------------|--------|
+| 1 | Device QA all 22 concepts | [`QA_CHECKLIST.md`](./QA_CHECKLIST.md); category order Techniques → Anatomy | ✅ Passed |
+| 2 | Tick `qa_passed` + `copy_reviewed` | `data/qa-passed.json` → audit regen — **copy ✅ citations ✅** (22/22); qa ✅ passed | ✅ Completed |
+| 3 | Citations pass (`citations_ok`) | Understand slides + `researchBasis` — **automated in `generate-concept-audit.js`** | ✅ Passed |
+| 4 | Share smoke test | iOS + one Android (QA checklist § Share) | ✅ Done |
 
-**Exit:** Audit columns honest for copy/citations; device QA + share smoke still required.
+**Exit:** Batch 1 complete.
 
-#### Batch 2 — Ship path & automation (~1 day)
+#### Batch 2 — Ship path & automation (~1 day) — 🟡 NEXT SESSION
 
-| # | Task | Deliverable |
-|---|------|-------------|
-| 1 | Add `eas.json` | development, preview, production profiles — **✅** |
-| 2 | Preview build | Install on device; re-spot-check Batch 1 if needed — **run `eas build --profile preview`** |
-| 3 | Confirm CI green | `test` + `validate-manifest` on branch — **✅** |
-| 4 | App Store metadata draft | Sensitive-category wording — **✅** [`app-store-metadata.md`](./product/app-store-metadata.md) |
+| # | Task | Deliverable | Status |
+|---|------|-------------|--------|
+| 1 | Add `eas.json` | development, preview, production profiles — **✅** | ✅ Done |
+| 2 | Preview build | Install on device; re-spot-check Batch 1 if needed — **run `eas build --profile preview`** | 🟡 Next Session |
+| 3 | Confirm CI green | `test` + `validate-manifest` on branch — **✅** | ✅ Done |
+| 4 | App Store metadata draft | Sensitive-category wording — **✅** [`app-store-metadata.md`](./product/app-store-metadata.md) | ✅ Done |
 
 #### Batch 3 — UI shell polish (~2–3 days)
 

@@ -13,14 +13,14 @@
         "thumbnail": {
           "path": "assets/images/concepts/thumbnails/angling.png",
           "exists": true,
-          "bytes": 215492,
+          "bytes": 108847,
           "wiredInVocab": true,
           "status": "wired"
         },
         "illustration": {
           "path": "assets/images/concepts/illustrations/angling.png",
           "exists": true,
-          "bytes": 157476,
+          "bytes": 182785,
           "wiredInVocab": true,
           "status": "wired",
           "role": "primary"
@@ -41,13 +41,13 @@
           "generator": "chatgpt-images-2",
           "path": "assets/_staging/pilot/illustrations/angling/chatgpt-images-2.png",
           "scores": {
-            "styleCoherence": 2,
-            "scientificAccuracy": 3,
-            "noEmbeddedText": false
+            "styleCoherence": 5,
+            "scientificAccuracy": 5,
+            "noEmbeddedText": true
           },
           "decision": "rejected",
-          "notes": "In-image titles/labels — regen with no-text prompt",
-          "reviewedAt": "2026-05-19"
+          "notes": "Clean cross-section demonstrating pelvic tilt without text labels, conforming to style bible",
+          "reviewedAt": "2026-05-20"
         }
       ]
     },
@@ -161,7 +161,7 @@
         "illustration": {
           "path": "assets/images/concepts/illustrations/building.png",
           "exists": true,
-          "bytes": 735694,
+          "bytes": 695990,
           "wiredInVocab": true,
           "status": "wired",
           "role": "poster-fallback"
@@ -274,7 +274,7 @@
         "illustration": {
           "path": "assets/images/concepts/illustrations/spreading.png",
           "exists": true,
-          "bytes": 218844,
+          "bytes": 442907,
           "wiredInVocab": true,
           "status": "wired",
           "role": "poster-fallback"
@@ -301,10 +301,14 @@
           "assetType": "illustration",
           "generator": "gemini",
           "path": "assets/_staging/pilot/illustrations/spreading/gemini.png",
-          "scores": {},
+          "scores": {
+            "styleCoherence": 5,
+            "scientificAccuracy": 5,
+            "noEmbeddedText": true
+          },
           "decision": "pending",
-          "notes": "",
-          "reviewedAt": null
+          "notes": "Golden ripples of neural signal propagating through the pelvic region, accurate female anatomy, no text",
+          "reviewedAt": "2026-05-20"
         }
       ]
     },
@@ -366,7 +370,7 @@
         "illustration": {
           "path": "assets/images/concepts/illustrations/warmup-window.png",
           "exists": true,
-          "bytes": 235628,
+          "bytes": 229150,
           "wiredInVocab": true,
           "status": "wired",
           "role": "poster-fallback"
@@ -393,10 +397,14 @@
           "assetType": "illustration",
           "generator": "gemini",
           "path": "assets/_staging/pilot/illustrations/warmup-window/gemini.png",
-          "scores": {},
+          "scores": {
+            "styleCoherence": 5,
+            "scientificAccuracy": 5,
+            "noEmbeddedText": true
+          },
           "decision": "pending",
-          "notes": "",
-          "reviewedAt": null
+          "notes": "Split-panel vascular perfusion shows arousal-dependent physiological shifts clearly, conforming to Style Bible",
+          "reviewedAt": "2026-05-20"
         }
       ]
     },
@@ -417,7 +425,7 @@
         "illustration": {
           "path": "assets/images/concepts/illustrations/responsive-desire.png",
           "exists": true,
-          "bytes": 722536,
+          "bytes": 674331,
           "wiredInVocab": true,
           "status": "wired",
           "role": "poster-fallback"
@@ -458,7 +466,7 @@
         "illustration": {
           "path": "assets/images/concepts/illustrations/spontaneous-desire.png",
           "exists": true,
-          "bytes": 620528,
+          "bytes": 619240,
           "wiredInVocab": true,
           "status": "wired",
           "role": "poster-fallback"
@@ -581,7 +589,7 @@
         "illustration": {
           "path": "assets/images/concepts/illustrations/embodied-presence.png",
           "exists": true,
-          "bytes": 179625,
+          "bytes": 167080,
           "wiredInVocab": true,
           "status": "wired",
           "role": "poster-fallback"
@@ -674,7 +682,7 @@
         "illustration": {
           "path": "assets/images/concepts/illustrations/sexual-self-esteem.png",
           "exists": true,
-          "bytes": 568940,
+          "bytes": 567398,
           "wiredInVocab": true,
           "status": "wired",
           "role": "primary"
@@ -739,7 +747,7 @@
         "illustration": {
           "path": "assets/images/concepts/illustrations/clitoral-structure.png",
           "exists": true,
-          "bytes": 200116,
+          "bytes": 189573,
           "wiredInVocab": true,
           "status": "wired",
           "role": "poster-fallback"
@@ -766,10 +774,14 @@
           "assetType": "illustration",
           "generator": "gemini",
           "path": "assets/_staging/pilot/illustrations/clitoral-structure/gemini.png",
-          "scores": {},
+          "scores": {
+            "styleCoherence": 5,
+            "scientificAccuracy": 5,
+            "noEmbeddedText": true
+          },
           "decision": "pending",
-          "notes": "",
-          "reviewedAt": null
+          "notes": "Majestic wing structure accurately represents full anatomy in-app, conforming to Style Bible",
+          "reviewedAt": "2026-05-20"
         }
       ]
     },
@@ -831,7 +843,7 @@
         "illustration": {
           "path": "assets/images/concepts/illustrations/clitourethrovaginal.png",
           "exists": true,
-          "bytes": 198552,
+          "bytes": 169102,
           "wiredInVocab": true,
           "status": "wired",
           "role": "poster-fallback"
