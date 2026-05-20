@@ -7,22 +7,43 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Card, Text, ThemedView } from '@/components/ui';
 import { borderRadius, colors, shadows, spacing } from '@/constants/theme';
 import {
+  buildScriptFromModules,
   communicationBarriers,
   conversationStarters,
   getScriptCategories,
+  getModulesByCategory,
   scriptExamples,
+  scriptModuleCategories,
 } from '@/data/communication';
 import { ConversationStarter } from '@/types';
 
-type TabType = 'starters' | 'scripts' | 'barriers';
+type TabType = 'starters' | 'scripts' | 'barriers' | 'builder';
 
 export default function CommunicateScreen() {
   const insets = useSafeAreaInsets();
   const [activeTab, setActiveTab] = useState<TabType>('starters');
   const [expandedStarter, setExpandedStarter] = useState<string | null>(null);
   const [expandedBarrier, setExpandedBarrier] = useState<string | null>(null);
+  const [selectedModules, setSelectedModules] = useState<string[]>([]);
 
   const scriptCategories = getScriptCategories();
+  const builtScript = buildScriptFromModules(selectedModules);
+
+  const toggleModule = (moduleId: string) => {
+    setSelectedModules((prev) =>
+      prev.includes(moduleId) ? prev.filter((id) => id !== moduleId) : [...prev, moduleId]
+    );
+  };
+
+  const handleShareScript = async () => {
+    if (!builtScript) return;
+    try {
+      const { Share } = await import('react-native');
+      await Share.share({ message: builtScript });
+    } catch {
+      // user cancelled
+    }
+  };
 
   const renderTab = (tab: TabType, label: string) => (
     <TouchableOpacity
@@ -159,6 +180,78 @@ export default function CommunicateScreen() {
     </View>
   );
 
+  const renderBuilder = () => (
+    <View style={styles.tabContent}>
+      <View style={styles.introRow}>
+        <Image
+          source={require('@/assets/images/ui/communicate/communicate-scripts.png')}
+          style={styles.introImage}
+          resizeMode="contain"
+        />
+        <Text variant="body" color={colors.text.secondary} style={styles.introText}>
+          Tap phrases to assemble your own script. Mix and match until it sounds like you.
+        </Text>
+      </View>
+
+      {scriptModuleCategories.map(({ id, label }) => (
+        <View key={id} style={styles.builderSection}>
+          <Text variant="labelSmall" color={colors.text.tertiary} style={styles.builderCategoryLabel}>
+            {label.toUpperCase()}
+          </Text>
+          <View style={styles.moduleGrid}>
+            {getModulesByCategory(id).map((mod) => {
+              const isSelected = selectedModules.includes(mod.id);
+              return (
+                <TouchableOpacity
+                  key={mod.id}
+                  style={[styles.moduleChip, isSelected && styles.moduleChipSelected]}
+                  onPress={() => toggleModule(mod.id)}
+                  accessibilityRole="button"
+                  accessibilityState={{ selected: isSelected }}
+                >
+                  <Text
+                    variant="caption"
+                    color={isSelected ? colors.primary[800] : colors.text.secondary}
+                  >
+                    {mod.label}
+                  </Text>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+        </View>
+      ))}
+
+      {builtScript.length > 0 && (
+        <View style={styles.builtScriptBox}>
+          <Text variant="labelSmall" color={colors.text.tertiary} style={{ marginBottom: spacing.sm }}>
+            YOUR SCRIPT
+          </Text>
+          <Text variant="body" style={styles.builtScriptText}>
+            "{builtScript}"
+          </Text>
+          <View style={styles.builderActions}>
+            <TouchableOpacity
+              style={styles.builderActionBtn}
+              onPress={() => setSelectedModules([])}
+            >
+              <Text variant="label" color={colors.text.secondary}>Clear</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.builderActionBtn, styles.builderShareBtn]}
+              onPress={handleShareScript}
+            >
+              <Ionicons name="share-outline" size={16} color={colors.text.inverse} />
+              <Text variant="label" color={colors.text.inverse} style={{ marginLeft: 4 }}>
+                Share
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      )}
+    </View>
+  );
+
   const renderBarriers = () => (
     <View style={styles.tabContent}>
       <View style={styles.introRow}>
@@ -255,6 +348,7 @@ export default function CommunicateScreen() {
           <View style={styles.tabTrack}>
             {renderTab('starters', 'Starters')}
             {renderTab('scripts', 'Scripts')}
+            {renderTab('builder', 'Builder')}
             {renderTab('barriers', 'Barriers')}
           </View>
         </View>
@@ -265,6 +359,7 @@ export default function CommunicateScreen() {
         >
           {activeTab === 'starters' && renderStarters()}
           {activeTab === 'scripts' && renderScripts()}
+          {activeTab === 'builder' && renderBuilder()}
           {activeTab === 'barriers' && renderBarriers()}
           <View style={{ height: 100 }} />
         </ScrollView>
@@ -465,5 +560,62 @@ const styles = StyleSheet.create({
     backgroundColor: colors.neutral[50],
     padding: spacing.md,
     borderRadius: borderRadius.md,
+  },
+
+  // Builder
+  builderSection: {
+    marginBottom: spacing.lg,
+  },
+  builderCategoryLabel: {
+    letterSpacing: 1,
+    marginBottom: spacing.sm,
+  },
+  moduleGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: spacing.sm,
+  },
+  moduleChip: {
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    borderRadius: borderRadius.full,
+    backgroundColor: colors.background.surface,
+    borderWidth: 1,
+    borderColor: colors.neutral[200],
+  },
+  moduleChipSelected: {
+    backgroundColor: colors.primary[50],
+    borderColor: colors.primary[400],
+  },
+  builtScriptBox: {
+    marginTop: spacing.md,
+    padding: spacing.lg,
+    backgroundColor: colors.primary[50],
+    borderRadius: borderRadius.lg,
+    borderLeftWidth: 4,
+    borderLeftColor: colors.primary[400],
+  },
+  builtScriptText: {
+    fontSize: 17,
+    lineHeight: 26,
+    fontStyle: 'italic',
+    color: colors.primary[900],
+    marginBottom: spacing.md,
+  },
+  builderActions: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    gap: spacing.sm,
+  },
+  builderActionBtn: {
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    borderRadius: borderRadius.full,
+  },
+  builderShareBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.primary[600],
+    paddingHorizontal: spacing.lg,
   },
 });

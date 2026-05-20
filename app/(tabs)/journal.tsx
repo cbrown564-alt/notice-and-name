@@ -1,9 +1,20 @@
 import { Button, EmptyState, Text, ThemedInput } from '@/components/ui';
 import { borderRadius, colors, shadows, spacing } from '@/constants/theme';
+import {
+  findMemoryEntry,
+  formatMemoryAge,
+  getJournalPromptSuggestions,
+  getMoodEmoji,
+  getMoodLabel,
+  getSuggestedConceptForJournal,
+  JOURNAL_MOODS,
+} from '@/data/journal';
 import { concepts } from '@/data/vocabulary';
-import { JournalEntryRow, useJournal } from '@/hooks/useDatabase';
+import { JournalEntryRow, useJournal, useUserConcepts } from '@/hooks/useDatabase';
+import { JournalMood } from '@/types';
 import { Ionicons } from '@expo/vector-icons';
-import React, { useState } from 'react';
+import { useLocalSearchParams } from 'expo-router';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   Alert,
   FlatList,
@@ -18,20 +29,51 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function JournalScreen() {
   const insets = useSafeAreaInsets();
+  const params = useLocalSearchParams<{ conceptId?: string; prompt?: string }>();
   const { entries, create, remove, update } = useJournal();
+  const { concepts: userConcepts } = useUserConcepts();
   const [showNewEntry, setShowNewEntry] = useState(false);
   const [newEntryText, setNewEntryText] = useState('');
   const [linkConceptId, setLinkConceptId] = useState<string | null>(null);
+  const [selectedMood, setSelectedMood] = useState<JournalMood | null>(null);
   const [showLinkPicker, setShowLinkPicker] = useState(false);
+  const [dismissedMemoryId, setDismissedMemoryId] = useState<string | null>(null);
 
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editText, setEditText] = useState('');
 
+  const suggestedConcept = useMemo(
+    () => getSuggestedConceptForJournal(userConcepts),
+    [userConcepts]
+  );
+
+  const promptSuggestions = useMemo(
+    () => getJournalPromptSuggestions(linkConceptId),
+    [linkConceptId]
+  );
+
+  const memoryEntry = useMemo(() => {
+    if (!linkConceptId || dismissedMemoryId) return null;
+    return findMemoryEntry(entries, linkConceptId);
+  }, [entries, linkConceptId, dismissedMemoryId]);
+
+  useEffect(() => {
+    if (params.conceptId) {
+      setLinkConceptId(params.conceptId);
+      setShowNewEntry(true);
+    }
+    if (params.prompt) {
+      setNewEntryText(params.prompt);
+      setShowNewEntry(true);
+    }
+  }, [params.conceptId, params.prompt]);
+
   const handleSave = async () => {
     if (newEntryText.trim()) {
-      await create(newEntryText.trim(), linkConceptId ?? undefined);
+      await create(newEntryText.trim(), linkConceptId ?? undefined, selectedMood);
       setNewEntryText('');
       setLinkConceptId(null);
+      setSelectedMood(null);
       setShowNewEntry(false);
       setShowLinkPicker(false);
     }
@@ -103,6 +145,31 @@ export default function JournalScreen() {
         )}
       </View>
 
+      {/* Suggested prompt from recent exploration */}
+      {!showNewEntry && !editingId && suggestedConcept && (
+        <TouchableOpacity
+          style={styles.suggestionBanner}
+          onPress={() => {
+            setLinkConceptId(suggestedConcept.id);
+            setNewEntryText(getJournalPromptSuggestions(suggestedConcept.id)[0] ?? '');
+            setShowNewEntry(true);
+          }}
+          accessibilityRole="button"
+          accessibilityLabel={`Journal about ${suggestedConcept.name}`}
+        >
+          <Ionicons name="bulb-outline" size={18} color={colors.primary[600]} />
+          <View style={{ flex: 1, marginLeft: spacing.sm }}>
+            <Text variant="caption" color={colors.primary[700]}>
+              You explored {suggestedConcept.name}
+            </Text>
+            <Text variant="bodySmall" color={colors.text.secondary}>
+              Tap to journal about it
+            </Text>
+          </View>
+          <Ionicons name="chevron-forward" size={16} color={colors.primary[400]} />
+        </TouchableOpacity>
+      )}
+
       {/* New Entry Compose */}
       {showNewEntry && (
         <View style={styles.composeContainer}>
@@ -117,6 +184,86 @@ export default function JournalScreen() {
             autoFocus
             accessibilityLabel="Journal entry text"
           />
+
+          {/* Prompt suggestions */}
+          <View style={styles.promptSection}>
+            <Text variant="labelSmall" color={colors.text.tertiary} style={styles.promptLabel}>
+              PROMPTS
+            </Text>
+            <View style={styles.promptList}>
+              {promptSuggestions.map((prompt) => (
+                <TouchableOpacity
+                  key={prompt}
+                  style={styles.promptChip}
+                  onPress={() => setNewEntryText(prompt)}
+                  accessibilityRole="button"
+                  accessibilityLabel={`Use prompt: ${prompt}`}
+                >
+                  <Text variant="caption" color={colors.text.secondary} numberOfLines={2}>
+                    {prompt}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          </View>
+
+          {/* Mood selection */}
+          <View style={styles.moodSection}>
+            <Text variant="labelSmall" color={colors.text.tertiary} style={styles.promptLabel}>
+              HOW ARE YOU FEELING? (OPTIONAL)
+            </Text>
+            <View style={styles.moodRow}>
+              {JOURNAL_MOODS.map((mood) => {
+                const isSelected = selectedMood === mood.id;
+                return (
+                  <TouchableOpacity
+                    key={mood.id}
+                    style={[styles.moodChip, isSelected && styles.moodChipSelected]}
+                    onPress={() => setSelectedMood(isSelected ? null : mood.id)}
+                    accessibilityRole="button"
+                    accessibilityState={{ selected: isSelected }}
+                    accessibilityLabel={`Mood: ${mood.label}`}
+                  >
+                    <Text style={styles.moodEmoji}>{mood.emoji}</Text>
+                    <Text
+                      variant="caption"
+                      color={isSelected ? colors.primary[700] : colors.text.tertiary}
+                    >
+                      {mood.label}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+          </View>
+
+          {/* Memory surfacing */}
+          {memoryEntry && memoryEntry.id !== dismissedMemoryId && (
+            <View style={styles.memoryBox}>
+              <View style={styles.memoryHeader}>
+                <Ionicons name="time-outline" size={16} color={colors.secondary[600]} />
+                <Text variant="caption" color={colors.secondary[700]} style={{ flex: 1, marginLeft: 4 }}>
+                  {formatMemoryAge(memoryEntry.created_at)} you wrote about{' '}
+                  {concepts.find((c) => c.id === linkConceptId)?.name}
+                </Text>
+                <TouchableOpacity
+                  onPress={() => setDismissedMemoryId(memoryEntry.id)}
+                  accessibilityRole="button"
+                  accessibilityLabel="Dismiss memory"
+                >
+                  <Ionicons name="close" size={16} color={colors.text.tertiary} />
+                </TouchableOpacity>
+              </View>
+              <Text variant="bodySmall" color={colors.text.secondary} style={{ fontStyle: 'italic' }}>
+                "{memoryEntry.content.length > 120
+                  ? memoryEntry.content.slice(0, 120) + '…'
+                  : memoryEntry.content}"
+              </Text>
+              <Text variant="caption" color={colors.text.tertiary} style={{ marginTop: spacing.xs }}>
+                Does it land differently now?
+              </Text>
+            </View>
+          )}
 
           {/* Concept Link */}
           <TouchableOpacity
@@ -186,6 +333,7 @@ export default function JournalScreen() {
                 setShowNewEntry(false);
                 setNewEntryText('');
                 setLinkConceptId(null);
+                setSelectedMood(null);
                 setShowLinkPicker(false);
               }}
             />
@@ -273,6 +421,8 @@ function JournalEntryRowItem({
   const linkedConcept = entry.concept_id
     ? concepts.find((c) => c.id === entry.concept_id)
     : null;
+  const moodLabel = getMoodLabel(entry.mood);
+  const moodEmoji = getMoodEmoji(entry.mood);
 
   if (isEditing) return null;
 
@@ -301,14 +451,23 @@ function JournalEntryRowItem({
         </Text>
 
         <View style={styles.entryFooter}>
-          {linkedConcept && (
-            <View style={styles.conceptTag}>
-              <Ionicons name="pricetag-outline" size={12} color={colors.primary[600]} />
-              <Text variant="caption" color={colors.primary[600]}>
-                {linkedConcept.name}
-              </Text>
-            </View>
-          )}
+          <View style={styles.entryTags}>
+            {moodLabel && (
+              <View style={styles.moodTag}>
+                <Text variant="caption" color={colors.secondary[700]}>
+                  {moodEmoji} {moodLabel}
+                </Text>
+              </View>
+            )}
+            {linkedConcept && (
+              <View style={styles.conceptTag}>
+                <Ionicons name="pricetag-outline" size={12} color={colors.primary[600]} />
+                <Text variant="caption" color={colors.primary[600]}>
+                  {linkedConcept.name}
+                </Text>
+              </View>
+            )}
+          </View>
 
           <View style={styles.entryActions}>
             <TouchableOpacity
@@ -355,6 +514,17 @@ const styles = StyleSheet.create({
     padding: spacing.xs,
     backgroundColor: colors.primary[50],
     borderRadius: 20,
+  },
+  suggestionBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginHorizontal: spacing.lg,
+    marginBottom: spacing.md,
+    padding: spacing.md,
+    backgroundColor: colors.primary[50],
+    borderRadius: borderRadius.md,
+    borderWidth: 1,
+    borderColor: colors.primary[100],
   },
 
   // Compose
@@ -405,6 +575,64 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
   },
 
+  // Prompts & mood
+  promptSection: {
+    marginBottom: spacing.md,
+  },
+  promptLabel: {
+    letterSpacing: 1,
+    marginBottom: spacing.sm,
+  },
+  promptList: {
+    gap: spacing.xs,
+  },
+  promptChip: {
+    padding: spacing.sm,
+    backgroundColor: colors.background.secondary,
+    borderRadius: borderRadius.sm,
+    borderWidth: 1,
+    borderColor: colors.neutral[100],
+  },
+  moodSection: {
+    marginBottom: spacing.md,
+  },
+  moodRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: spacing.xs,
+  },
+  moodChip: {
+    alignItems: 'center',
+    paddingHorizontal: spacing.sm,
+    paddingVertical: spacing.xs,
+    borderRadius: borderRadius.md,
+    backgroundColor: colors.background.secondary,
+    borderWidth: 1,
+    borderColor: colors.neutral[100],
+    minWidth: 72,
+  },
+  moodChipSelected: {
+    backgroundColor: colors.primary[50],
+    borderColor: colors.primary[300],
+  },
+  moodEmoji: {
+    fontSize: 18,
+    marginBottom: 2,
+  },
+  memoryBox: {
+    marginBottom: spacing.md,
+    padding: spacing.md,
+    backgroundColor: colors.secondary[50],
+    borderRadius: borderRadius.md,
+    borderLeftWidth: 3,
+    borderLeftColor: colors.secondary[400],
+  },
+  memoryHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: spacing.sm,
+  },
+
   // List
   list: {
     paddingHorizontal: spacing.lg,
@@ -441,6 +669,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  entryTags: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: spacing.xs,
+    flex: 1,
+  },
+  moodTag: {
+    backgroundColor: colors.secondary[50],
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    borderRadius: 4,
   },
   conceptTag: {
     flexDirection: 'row',

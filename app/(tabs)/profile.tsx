@@ -317,6 +317,16 @@ export default function ProfileScreen() {
               </View>
             </TouchableOpacity>
 
+            <TouchableOpacity style={styles.toolCard} onPress={() => router.push('/literacy-report')}>
+              <View style={styles.toolIconWrapper}>
+                <Ionicons name="document-text-outline" size={36} color={colors.primary[600]} />
+              </View>
+              <View style={styles.toolContent}>
+                <Text variant="bodyBold" style={{ textAlign: 'center' }}>Literacy</Text>
+                <Text variant="caption" color={colors.text.tertiary} style={{ textAlign: 'center' }}>Report</Text>
+              </View>
+            </TouchableOpacity>
+
             <TouchableOpacity style={styles.toolCard} onPress={() => router.push('/share')}>
               <View style={styles.toolIconWrapper}>
                 <Image
@@ -539,10 +549,13 @@ const styles = StyleSheet.create({
   // 5. Tools Grid
   toolsGrid: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     gap: spacing.md,
   },
   toolCard: {
-    flex: 1,
+    width: '30%',
+    flexGrow: 1,
+    minWidth: 100,
     backgroundColor: colors.background.surface, // WHITE
     padding: spacing.lg,
     borderRadius: borderRadius.lg,

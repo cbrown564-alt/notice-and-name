@@ -1,7 +1,7 @@
 // Communication toolkit content for Pleasure Vocabulary Builder
 // Conversation starters, scripts, and barrier reassurance
 
-import { ConversationStarter, ScriptExample, CommunicationBarrier } from '@/types';
+import { ConversationStarter, ScriptExample, CommunicationBarrier, ScriptModule } from '@/types';
 
 export const conversationStarters: ConversationStarter[] = [
   {
@@ -191,4 +191,42 @@ export function getScriptsByCategory(category: string): ScriptExample[] {
 // Get all unique script categories
 export function getScriptCategories(): string[] {
   return [...new Set(scriptExamples.map((s) => s.category))];
+}
+
+export const scriptModules: ScriptModule[] = [
+  { id: 'opener-soft', category: 'opener', label: 'Soft opener', phrase: 'Can we talk about something that\'s been on my mind?' },
+  { id: 'opener-curious', category: 'opener', label: 'Curious opener', phrase: 'I\'ve been learning about something and I\'d love to share it with you.' },
+  { id: 'opener-direct', category: 'opener', label: 'Direct opener', phrase: 'I want to tell you about something I\'ve noticed about myself.' },
+  { id: 'context-learning', category: 'context', label: 'Learning context', phrase: 'I\'ve been reading about how bodies work, and it helped me understand something.' },
+  { id: 'context-discovery', category: 'context', label: 'Discovery context', phrase: 'I tried paying attention to what I actually enjoy, and I noticed something.' },
+  { id: 'context-feeling', category: 'context', label: 'Feeling context', phrase: 'Something has been feeling different lately, and I want to name it.' },
+  { id: 'request-explore', category: 'request', label: 'Explore together', phrase: 'Would you be open to trying [specific thing] together?' },
+  { id: 'request-slow', category: 'request', label: 'Slow down', phrase: 'Can we slow down and take more time at the beginning?' },
+  { id: 'request-more', category: 'request', label: 'More of this', phrase: 'That thing you were doing felt really good. Can we do more of that?' },
+  { id: 'request-change', category: 'request', label: 'Try differently', phrase: 'Can we try something a little different? I think I need more [pressure/speed/etc.].' },
+  { id: 'feeling-good', category: 'feeling', label: 'Feels good', phrase: 'That feels amazing — exactly like that.' },
+  { id: 'feeling-curious', category: 'feeling', label: 'Curious feeling', phrase: 'I\'m curious about what would happen if we...' },
+  { id: 'feeling-vulnerable', category: 'feeling', label: 'Vulnerable share', phrase: 'This feels a little vulnerable to say, but I trust you.' },
+  { id: 'closer-no-pressure', category: 'closer', label: 'No pressure', phrase: 'No pressure — I just wanted you to know.' },
+  { id: 'closer-together', category: 'closer', label: 'Together', phrase: 'I\'d love to figure this out together, at our own pace.' },
+  { id: 'closer-thanks', category: 'closer', label: 'Gratitude', phrase: 'Thank you for being open to this conversation.' },
+];
+
+export const scriptModuleCategories: { id: ScriptModule['category']; label: string }[] = [
+  { id: 'opener', label: 'Open with' },
+  { id: 'context', label: 'Set context' },
+  { id: 'request', label: 'Make a request' },
+  { id: 'feeling', label: 'Share a feeling' },
+  { id: 'closer', label: 'Close with' },
+];
+
+export function getModulesByCategory(category: ScriptModule['category']): ScriptModule[] {
+  return scriptModules.filter((m) => m.category === category);
+}
+
+export function buildScriptFromModules(selectedIds: string[]): string {
+  return selectedIds
+    .map((id) => scriptModules.find((m) => m.id === id)?.phrase)
+    .filter(Boolean)
+    .join(' ');
 }

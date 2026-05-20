@@ -244,6 +244,9 @@ export function DataProvider({ children }: DataProviderProps) {
       exploredCount,
       resonatesCount,
       refreshAll,
+      streak,
+      streakLoading,
+      refreshStreak,
     }),
     [
       isDbReady,
@@ -261,6 +264,9 @@ export function DataProvider({ children }: DataProviderProps) {
       exploredCount,
       resonatesCount,
       refreshAll,
+      streak,
+      streakLoading,
+      refreshStreak,
     ]
   );
 

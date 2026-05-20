@@ -144,6 +144,14 @@ export interface CommunicationBarrier {
   tips: string[];
 }
 
+// Modular phrase for script builder
+export interface ScriptModule {
+  id: string;
+  category: 'opener' | 'context' | 'request' | 'feeling' | 'closer';
+  label: string;
+  phrase: string;
+}
+
 // Research explainer - accessible science summary
 export interface ResearchExplainer {
   id: string;
