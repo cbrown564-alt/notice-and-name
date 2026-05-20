@@ -3,18 +3,17 @@ import { borderRadius, colors, shadows, spacing } from '@/constants/theme';
 import { ConceptSlide } from '@/types';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import { Dimensions, Image, StyleSheet, View } from 'react-native';
+import { useWindowDimensions, Image, StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, FadeInUp, ZoomIn } from 'react-native-reanimated';
-
-const { width } = Dimensions.get('window');
 
 interface UnderstandSlideProps {
     item: ConceptSlide;
 }
 
 export const UnderstandSlide = ({ item }: UnderstandSlideProps) => {
+    const { width } = useWindowDimensions();
     return (
-        <View style={styles.container}>
+        <View style={[styles.containerBase, { width }]}>
             <View style={styles.content}>
 
                 {/* Icon Top/Centered - Less "Forced" */}
@@ -53,8 +52,7 @@ export const UnderstandSlide = ({ item }: UnderstandSlideProps) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        width,
+    containerBase: {
         flex: 1,
         paddingHorizontal: spacing.xl,
         paddingTop: 100,

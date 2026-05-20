@@ -1,24 +1,23 @@
 import { IllustrateVideo } from '@/components/conceptdeck/IllustrateVideo';
 import { Text } from '@/components/ui/Typography';
 import { borderRadius, colors, shadows, spacing } from '@/constants/theme';
-import { ConceptSlide } from '@/types';
+import { ConceptSlide, DiagramType } from '@/types';
 import React, { useEffect, useState } from 'react';
-import { AccessibilityInfo, Dimensions, Image, StyleSheet, View } from 'react-native';
+import { AccessibilityInfo, useWindowDimensions, Image, StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, ZoomIn } from 'react-native-reanimated';
 import { AnglingDiagram } from '../diagrams/AnglingDiagram';
 import { PairingDiagram } from '../diagrams/PairingDiagram';
 import { RockingDiagram } from '../diagrams/RockingDiagram';
 import { ShallowingDiagram } from '../diagrams/ShallowingDiagram';
 
-const { width } = Dimensions.get('window');
-
 interface IllustrateSlideProps {
     item: ConceptSlide;
     isActive?: boolean;
-    diagramType?: 'angling' | 'shallowing' | 'rocking' | 'pairing' | 'none';
+    diagramType?: DiagramType;
 }
 
 export const IllustrateSlide = ({ item, isActive = false, diagramType }: IllustrateSlideProps) => {
+    const { width } = useWindowDimensions();
     const [isMuted, setIsMuted] = useState(true);
     const [reduceMotion, setReduceMotion] = useState(false);
 
@@ -104,7 +103,7 @@ export const IllustrateSlide = ({ item, isActive = false, diagramType }: Illustr
     };
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.containerBase, { width }]}>
             <View style={styles.content}>
                 {renderContent()}
 
@@ -134,8 +133,7 @@ export const IllustrateSlide = ({ item, isActive = false, diagramType }: Illustr
 };
 
 const styles = StyleSheet.create({
-    container: {
-        width,
+    containerBase: {
         flex: 1,
         paddingHorizontal: spacing.lg,
         paddingTop: 80,

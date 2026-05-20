@@ -1,10 +1,9 @@
 import { Text, ThemedView } from '@/components/ui';
 import { borderRadius, colors, spacing } from '@/constants/theme';
-import { getAllExplainers } from '@/data/explainers';
-
 import { getPathwayById, pathways } from '@/data/pathways';
 import { concepts } from '@/data/vocabulary';
-import { useOnboarding, useStats, useUserConcepts } from '@/hooks/useDatabase';
+import { useOnboarding, useStats, useStreaks, useUserConcepts } from '@/hooks/useDatabase';
+import { getDailyPrompt } from '@/lib/notifications';
 import { Concept, ConceptCategory, ConceptStatus, UserGoal } from '@/types';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -32,6 +31,7 @@ export default function HomeScreen() {
   const { concepts: userConcepts } = useUserConcepts();
   const { goal } = useOnboarding();
   const { exploredCount } = useStats();
+  const { streak } = useStreaks();
 
   const totalCount = concepts.length;
 
@@ -102,9 +102,6 @@ export default function HomeScreen() {
   const suggestion = pickDailySuggestion(
     preferredConcepts.length > 0 ? preferredConcepts : concepts
   );
-
-  // Science articles
-  const articles = getAllExplainers().slice(0, 3);
 
   const orderedUserConcepts = useMemo(
     () =>
@@ -180,7 +177,7 @@ export default function HomeScreen() {
             {greeting}
           </Text>
           <Text variant="body" color={colors.text.secondary} style={{ marginTop: spacing.xs }}>
-            Ready to discover something new about yourself?
+            {getDailyPrompt(0, streak?.currentStreak ?? 0)}
           </Text>
         </View>
       </View>
@@ -191,6 +188,9 @@ export default function HomeScreen() {
         <TouchableOpacity
           activeOpacity={0.9}
           onPress={() => router.push(`/concept/${suggestion.id}`)}
+          accessibilityRole="button"
+          accessibilityLabel={`Daily suggestion: ${suggestion.name}`}
+          accessibilityHint="Double tap to explore this concept"
         >
           <LinearGradient
             colors={[colors.primary[600], colors.primary[700]]} // Rich Coral Gradient
@@ -220,7 +220,12 @@ export default function HomeScreen() {
 
             <View style={styles.heroFooter}>
               <Text variant="bodyBold" color={colors.text.inverse}>Start Exploring</Text>
-              <Ionicons name="arrow-forward" size={20} color={colors.text.inverse} />
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: spacing.xs }}>
+                <Text variant="caption" color={colors.text.inverse} style={{ opacity: 0.8 }}>
+                  ~90 seconds
+                </Text>
+                <Ionicons name="arrow-forward" size={20} color={colors.text.inverse} />
+              </View>
             </View>
           </LinearGradient>
         </TouchableOpacity>
@@ -250,6 +255,8 @@ export default function HomeScreen() {
         {/* Primary Action: Resume */}
         <TouchableOpacity
           style={styles.resumeCard}
+          accessibilityRole="button"
+          accessibilityLabel={resumeTarget ? `Continue ${resumeTarget.concept.name}` : 'Start a new path'}
           onPress={() =>
             resumeTarget
               ? router.push({
@@ -484,27 +491,5 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: spacing.lg,
-  },
-  articleCard: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: colors.background.primary,
-    padding: spacing.md,
-    borderRadius: borderRadius.md,
-    borderWidth: 1,
-    borderColor: colors.neutral[100],
-    marginBottom: spacing.md,
-  },
-  articleIcon: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    backgroundColor: colors.background.secondary,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: spacing.md,
-  },
-  articleContent: {
-    flex: 1,
   },
 });

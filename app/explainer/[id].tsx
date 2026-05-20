@@ -32,25 +32,75 @@ export default function ExplainerDetailScreen() {
   return (
     <View style={styles.container}>
       {/* Sticky Header */}
-      <View style={[styles.stickyHeader, { paddingTop: insets.top }]}>
+      <Animated.View style={[
+        styles.stickyHeader,
+        { paddingTop: insets.top },
+        {
+          backgroundColor: scrollY.interpolate({
+            inputRange: [0, 120, 200],
+            outputRange: ['rgba(252, 250, 249, 0)', 'rgba(252, 250, 249, 0.85)', 'rgba(252, 250, 249, 1)'],
+            extrapolate: 'clamp',
+          }),
+          borderBottomColor: scrollY.interpolate({
+            inputRange: [0, 200],
+            outputRange: ['rgba(245, 242, 239, 0)', 'rgba(245, 242, 239, 1)'],
+            extrapolate: 'clamp',
+          }),
+        },
+      ]}>
         <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
           <Ionicons name="arrow-back" size={24} color={colors.text.primary} />
         </TouchableOpacity>
-        <Text variant="labelSmall" style={styles.headerLabel}>SCIENCE & INSIGHT</Text>
+        <Animated.Text
+          style={[
+            styles.headerLabel,
+            {
+              opacity: scrollY.interpolate({
+                inputRange: [100, 200],
+                outputRange: [0, 1],
+                extrapolate: 'clamp',
+              }),
+              transform: [{
+                translateY: scrollY.interpolate({
+                  inputRange: [100, 200],
+                  outputRange: [10, 0],
+                  extrapolate: 'clamp',
+                }),
+              }],
+            },
+          ]}
+        >
+          {explainer.title.toUpperCase()}
+        </Animated.Text>
         <View style={{ width: 40 }} />
-      </View>
+      </Animated.View>
 
       <Animated.ScrollView
         contentContainerStyle={[styles.content, { paddingTop: insets.top + 60 }]}
         showsVerticalScrollIndicator={false}
-        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
+        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: true })}
         scrollEventThrottle={16}
       >
         {/* Editorial Header */}
         <View style={styles.articleHeader}>
           {explainer.image && (
             <View style={styles.heroImageContainer}>
-              <Image source={explainer.image} style={styles.heroImage} resizeMode="cover" />
+              <Animated.Image
+                source={explainer.image}
+                style={[
+                  styles.heroImage,
+                  {
+                    transform: [{
+                      scale: scrollY.interpolate({
+                        inputRange: [-200, 0, 300],
+                        outputRange: [1.15, 1.1, 1],
+                        extrapolate: 'clamp',
+                      }),
+                    }],
+                  },
+                ]}
+                resizeMode="cover"
+              />
             </View>
           )}
 

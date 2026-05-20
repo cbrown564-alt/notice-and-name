@@ -2,19 +2,18 @@ import { Text } from '@/components/ui/Typography';
 import { colors, spacing } from '@/constants/theme';
 import { ConceptSlide } from '@/types';
 import React from 'react';
-import { Dimensions, Image, StyleSheet, View } from 'react-native';
+import { useWindowDimensions, Image, StyleSheet, View } from 'react-native';
 import Animated, { FadeInDown, ZoomIn } from 'react-native-reanimated';
-
-const { width } = Dimensions.get('window');
 
 interface ExploreSlideProps {
     item: ConceptSlide;
 }
 
 export const ExploreSlide = ({ item }: ExploreSlideProps) => {
+    const { width } = useWindowDimensions();
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.containerBase, { width }]}>
 
             {/* Main Content Centered Vertically */}
             <View style={styles.content}>
@@ -55,8 +54,7 @@ export const ExploreSlide = ({ item }: ExploreSlideProps) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        width,
+    containerBase: {
         flex: 1,
         paddingHorizontal: spacing.xl,
         backgroundColor: '#F5F9F6', // Very light mint/sage tint

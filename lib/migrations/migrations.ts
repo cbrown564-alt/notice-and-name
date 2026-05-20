@@ -204,6 +204,30 @@ export const migrations: Migration[] = [
       }
     },
   },
+  {
+    version: 5,
+    description: 'Add mood column to journal_entries',
+    up: async (ctx) => {
+      if (ctx.platform === 'native' && ctx.executeSql) {
+        ctx.log('Adding mood column to journal_entries');
+        await ctx.executeSql(
+          'ALTER TABLE journal_entries ADD COLUMN mood TEXT'
+        );
+      } else if (ctx.platform === 'web' && ctx.getValue && ctx.setValue) {
+        ctx.log('Updating journal_entries schema for web');
+        const data = await ctx.getValue('@vocab:journals');
+        if (data) {
+          const entries = JSON.parse(data);
+          for (const key of Object.keys(entries)) {
+            if (entries[key].mood === undefined) {
+              entries[key].mood = null;
+            }
+          }
+          await ctx.setValue('@vocab:journals', JSON.stringify(entries));
+        }
+      }
+    },
+  },
 ];
 
 /**

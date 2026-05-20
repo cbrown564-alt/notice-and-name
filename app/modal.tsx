@@ -48,7 +48,12 @@ export default function SettingsModal() {
     <View style={[styles.container, { paddingTop: insets.top }]}>
       <View style={styles.header}>
         <Text variant="h3">Settings</Text>
-        <TouchableOpacity onPress={() => router.back()} style={styles.closeButton}>
+        <TouchableOpacity
+          onPress={() => router.back()}
+          style={styles.closeButton}
+          accessibilityRole="button"
+          accessibilityLabel="Close settings"
+        >
           <Ionicons name="close" size={24} color={colors.text.primary} />
         </TouchableOpacity>
       </View>
@@ -205,7 +210,13 @@ function SettingRow({
   destructive?: boolean;
 }) {
   return (
-    <TouchableOpacity style={styles.settingRow} onPress={onPress} activeOpacity={0.7}>
+    <TouchableOpacity
+      style={styles.settingRow}
+      onPress={onPress}
+      activeOpacity={0.7}
+      accessibilityRole="button"
+      accessibilityLabel={label}
+    >
       <View style={styles.settingLeft}>
         <Ionicons
           name={icon}

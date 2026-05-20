@@ -3,9 +3,18 @@ import { borderRadius, colors, shadows, spacing } from '@/constants/theme';
 import { useOnboarding } from '@/hooks/useDatabase';
 import { UserGoal } from '@/types';
 import { Ionicons } from '@expo/vector-icons';
+import * as Haptics from 'expo-haptics';
 import { router } from 'expo-router';
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withSpring,
+  withDelay,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface GoalOption {
@@ -41,11 +50,18 @@ export default function GoalsScreen() {
   const [selectedGoal, setSelectedGoal] = useState<UserGoal | null>(null);
   const insets = useSafeAreaInsets();
 
+  const [isCelebrating, setIsCelebrating] = useState(false);
+
   const handleContinue = async () => {
     if (selectedGoal) {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      setIsCelebrating(true);
       await update({ goal: selectedGoal });
       await completeOnboarding();
-      router.replace('/(tabs)');
+      // Allow celebration to be seen before navigation
+      setTimeout(() => {
+        router.replace('/(tabs)');
+      }, 1200);
     }
   };
 
@@ -80,7 +96,7 @@ export default function GoalsScreen() {
         <Button
           title="Continue"
           onPress={handleContinue}
-          disabled={!selectedGoal}
+          disabled={!selectedGoal || isCelebrating}
           fullWidth
           size="lg"
         />
@@ -92,6 +108,62 @@ export default function GoalsScreen() {
           style={styles.backButton}
         />
       </View>
+
+      {isCelebrating && <CelebrationOverlay goal={goals.find((g) => g.id === selectedGoal)!} />}
+    </View>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*                              CELEBRATION OVERLAY                           */
+/* -------------------------------------------------------------------------- */
+
+function CelebrationOverlay({ goal }: { goal: GoalOption }) {
+  const ringScale = useSharedValue(0);
+  const ringOpacity = useSharedValue(0.6);
+  const checkScale = useSharedValue(0);
+  const contentOpacity = useSharedValue(0);
+
+  React.useEffect(() => {
+    ringScale.value = withSequence(
+      withSpring(1.5, { damping: 12, stiffness: 150 }),
+      withTiming(2.5, { duration: 800 })
+    );
+    ringOpacity.value = withSequence(
+      withTiming(0.4, { duration: 200 }),
+      withTiming(0, { duration: 800 })
+    );
+    checkScale.value = withDelay(100, withSpring(1, { damping: 12, stiffness: 200 }));
+    contentOpacity.value = withDelay(200, withTiming(1, { duration: 400 }));
+  }, []);
+
+  const ringStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: ringScale.value }],
+    opacity: ringOpacity.value,
+  }));
+
+  const checkStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: checkScale.value }],
+  }));
+
+  const contentStyle = useAnimatedStyle(() => ({
+    opacity: contentOpacity.value,
+  }));
+
+  return (
+    <View style={styles.celebrationOverlay}>
+      <Animated.View style={[styles.celebrationRing, ringStyle]} />
+      <Animated.View style={[styles.celebrationCheck, checkStyle]}>
+        <Ionicons name="checkmark-circle" size={64} color={colors.primary[500]} />
+      </Animated.View>
+      <Animated.View style={[styles.celebrationContent, contentStyle]}>
+        <Text variant="h3" color={colors.primary[700]} style={{ marginTop: spacing.lg }}>
+          Welcome
+        </Text>
+        <Text variant="body" color={colors.text.secondary} style={{ marginTop: spacing.xs }}>
+          Your journey begins with {goal.title.toLowerCase()}
+        </Text>
+      </Animated.View>
     </View>
   );
 }
@@ -208,5 +280,28 @@ const styles = StyleSheet.create({
   },
   backButton: {
     marginTop: spacing.sm,
+  },
+  celebrationOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(252, 250, 249, 0.92)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 50,
+  },
+  celebrationRing: {
+    position: 'absolute',
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    borderWidth: 3,
+    borderColor: colors.primary[300],
+  },
+  celebrationCheck: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  celebrationContent: {
+    alignItems: 'center',
+    paddingHorizontal: spacing.xl,
   },
 });

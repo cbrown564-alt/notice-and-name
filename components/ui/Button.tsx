@@ -41,6 +41,8 @@ export function Button({
     <TouchableOpacity
       onPress={onPress}
       disabled={isDisabled}
+      accessibilityRole="button"
+      accessibilityState={{ disabled: isDisabled }}
       style={[
         styles.base,
         styles[variant],

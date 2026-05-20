@@ -1,9 +1,16 @@
 // Toast Component
 // Transient notification for mutation errors and warnings
+// Migrated to Reanimated for 60fps consistency with design system
 
 import { borderRadius, colors, shadows, spacing, typography } from '@/constants/theme';
-import React, { useEffect, useRef } from 'react';
-import { Animated, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  runOnJS,
+} from 'react-native-reanimated';
 
 export type ToastType = 'error' | 'warning' | 'info' | 'success';
 
@@ -50,26 +57,16 @@ const COLOR_MAP: Record<ToastType, { bg: string; border: string; icon: string }>
 };
 
 export function Toast({ toast, onDismiss }: ToastProps) {
-  const opacity = useRef(new Animated.Value(0)).current;
-  const translateY = useRef(new Animated.Value(-20)).current;
+  const opacity = useSharedValue(0);
+  const translateY = useSharedValue(-20);
 
   const colorScheme = COLOR_MAP[toast.type];
   const duration = toast.duration ?? 4000;
 
   useEffect(() => {
     // Animate in
-    Animated.parallel([
-      Animated.timing(opacity, {
-        toValue: 1,
-        duration: 200,
-        useNativeDriver: true,
-      }),
-      Animated.timing(translateY, {
-        toValue: 0,
-        duration: 200,
-        useNativeDriver: true,
-      }),
-    ]).start();
+    opacity.value = withTiming(1, { duration: 200 });
+    translateY.value = withTiming(0, { duration: 200 });
 
     // Auto dismiss
     const timer = setTimeout(() => {
@@ -80,21 +77,18 @@ export function Toast({ toast, onDismiss }: ToastProps) {
   }, []);
 
   const dismiss = () => {
-    Animated.parallel([
-      Animated.timing(opacity, {
-        toValue: 0,
-        duration: 150,
-        useNativeDriver: true,
-      }),
-      Animated.timing(translateY, {
-        toValue: -20,
-        duration: 150,
-        useNativeDriver: true,
-      }),
-    ]).start(() => {
-      onDismiss(toast.id);
+    opacity.value = withTiming(0, { duration: 150 }, (finished) => {
+      if (finished) {
+        runOnJS(onDismiss)(toast.id);
+      }
     });
+    translateY.value = withTiming(-20, { duration: 150 });
   };
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    opacity: opacity.value,
+    transform: [{ translateY: translateY.value }],
+  }));
 
   return (
     <Animated.View
@@ -103,9 +97,8 @@ export function Toast({ toast, onDismiss }: ToastProps) {
         {
           backgroundColor: colorScheme.bg,
           borderLeftColor: colorScheme.border,
-          opacity,
-          transform: [{ translateY }],
         },
+        animatedStyle,
       ]}
     >
       <View style={[styles.iconContainer, { backgroundColor: colorScheme.icon }]}>

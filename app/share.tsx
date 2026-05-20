@@ -4,7 +4,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Platform, ScrollView, Share, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { Button, Card, Text, ThemedView } from '@/components/ui';
+import { Button, Card, EmptyState, Text, ThemedView } from '@/components/ui';
 import { borderRadius, colors, spacing } from '@/constants/theme';
 import { getConceptById } from '@/data/vocabulary';
 import { useUserConcepts } from '@/hooks/useDatabase';
@@ -167,22 +167,13 @@ export default function ShareScreen() {
         showsVerticalScrollIndicator={false}
       >
         {resonatingConcepts.length === 0 ? (
-          <View style={styles.emptyState}>
-            <View style={styles.emptyIconCircle}>
-              <Ionicons name="heart-outline" size={48} color={colors.neutral[300]} />
-            </View>
-            <Text variant="h3" style={{ textAlign: 'center', marginBottom: spacing.sm }}>
-              Nothing here yet
-            </Text>
-            <Text variant="body" color={colors.text.secondary} style={{ textAlign: 'center', maxWidth: 300, marginBottom: spacing.xl }}>
-              Mark concepts as "Resonates" in the library to see them appear here.
-            </Text>
-            <Button
-              title="Explore Library"
-              onPress={() => router.push('/(tabs)/library')}
-              style={{ width: 200 }}
-            />
-          </View>
+          <EmptyState
+            title="Nothing here yet"
+            message='Mark concepts as "Resonates" in the library to see them appear here.'
+            icon="heart-outline"
+            actionLabel="Explore Library"
+            onAction={() => router.push('/(tabs)/library')}
+          />
         ) : (
           <>
             {/* Selection Controls */}
@@ -348,23 +339,6 @@ const styles = StyleSheet.create({
   content: {
     padding: spacing.lg,
     paddingBottom: spacing.xl,
-  },
-
-  // Empty State
-  emptyState: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: spacing['2xl'],
-    marginTop: spacing.xl,
-  },
-  emptyIconCircle: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    backgroundColor: colors.neutral[50],
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: spacing.lg,
   },
 
   // Selection Header

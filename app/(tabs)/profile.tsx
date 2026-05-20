@@ -1,7 +1,9 @@
-import { Card, Text, ThemedView } from '@/components/ui';
+import { Card, EmptyState, Text, ThemedView } from '@/components/ui';
+import { AuraVisualization } from '@/components/profile/AuraVisualization';
 import { borderRadius, colors, shadows, spacing } from '@/constants/theme';
 import { concepts, getConceptById } from '@/data/vocabulary';
-import { useOnboarding, useStats, useUserConcepts } from '@/hooks/useDatabase';
+import { useOnboarding, useStats, useStreaks, useUserConcepts } from '@/hooks/useDatabase';
+import { getLiteracyLevel, getStreakMessage } from '@/lib/streaks';
 import { ConceptCategory } from '@/types';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -40,12 +42,19 @@ export default function ProfileScreen() {
   const { concepts: userConcepts, reload: reloadConcepts } = useUserConcepts();
   const { goal } = useOnboarding();
   const { exploredCount, resonatesCount, reload: reloadStats } = useStats();
+  const { streak, reload: reloadStreak } = useStreaks();
 
   useFocusEffect(
     useCallback(() => {
       reloadConcepts();
       reloadStats();
-    }, [reloadConcepts, reloadStats])
+      reloadStreak();
+    }, [reloadConcepts, reloadStats, reloadStreak])
+  );
+
+  const literacyLevel = useMemo(
+    () => getLiteracyLevel(exploredCount, concepts.length),
+    [exploredCount]
   );
 
   const totalCount = concepts.length;
@@ -56,6 +65,20 @@ export default function ProfileScreen() {
     () => userConcepts.filter((c) => c.status === 'resonates'),
     [userConcepts]
   );
+
+  // Calculate category counts from ALL explored concepts (for aura visualization)
+  const exploredCategoryCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    userConcepts
+      .filter((uc) => uc.status !== 'unexplored')
+      .forEach((uc) => {
+        const concept = getConceptById(uc.concept_id);
+        if (concept) {
+          counts[concept.category] = (counts[concept.category] || 0) + 1;
+        }
+      });
+    return counts;
+  }, [userConcepts]);
 
   // Calculate pattern insights
   const patternInsights = useMemo(() => {
@@ -82,7 +105,7 @@ export default function ProfileScreen() {
   }, [resonatesConcepts]);
 
   return (
-    <ThemedView colorKey="background" style={styles.container}>
+    <ThemedView colorKey="primary" style={styles.container}>
       <ScrollView
         contentContainerStyle={[styles.scrollContent, { paddingTop: insets.top + spacing.lg }]}
         showsVerticalScrollIndicator={false}
@@ -96,6 +119,34 @@ export default function ProfileScreen() {
           <TouchableOpacity onPress={() => router.push('/modal')} style={styles.settingsButton}>
             <Ionicons name="settings-outline" size={24} color={colors.text.primary} />
           </TouchableOpacity>
+        </View>
+
+        {/* Aura Visualization */}
+        {exploredCount > 0 && (
+          <View style={styles.auraContainer}>
+            <AuraVisualization
+              categoryCounts={exploredCategoryCounts}
+              totalExplored={exploredCount}
+              size={180}
+            />
+          </View>
+        )}
+
+        {/* Literacy Level Banner */}
+        <View style={styles.levelBanner}>
+          <View style={styles.levelBadge}>
+            <Text variant="labelSmall" color={colors.primary[700]} style={{ letterSpacing: 1 }}>
+              {literacyLevel.label.toUpperCase()}
+            </Text>
+          </View>
+          <Text variant="body" color={colors.text.secondary} style={{ marginTop: spacing.xs }}>
+            {literacyLevel.description}
+          </Text>
+          {literacyLevel.nextThreshold !== null && (
+            <Text variant="caption" color={colors.text.tertiary} style={{ marginTop: 2 }}>
+              {literacyLevel.nextThreshold - exploredCount} more concept{literacyLevel.nextThreshold - exploredCount === 1 ? '' : 's'} to the next level
+            </Text>
+          )}
         </View>
 
         {/* 2. Core Vitals (Bento Box) */}
@@ -137,15 +188,35 @@ export default function ProfileScreen() {
               </View>
             </Card>
 
-            {/* Goal */}
+            {/* Streak */}
             <Card variant="outlined" style={styles.bentoSmall}>
-              <Text variant="labelSmall" color={colors.text.tertiary}>CURRENT GOAL</Text>
-              <Text variant="bodyBold" style={{ marginTop: 4 }} numberOfLines={2}>
-                {goalLabels[goal || 'self_discovery']}
-              </Text>
+              <View style={styles.rowCentered}>
+                <View style={[styles.bentoIconWrapperSmall, { backgroundColor: colors.primary[50], borderRadius: 28, alignItems: 'center', justifyContent: 'center' }]}>
+                  <Ionicons
+                    name={streak?.isPaused ? 'pause-circle' : streak && streak.currentStreak > 0 ? 'flame' : 'sunny-outline'}
+                    size={24}
+                    color={streak?.isPaused ? colors.text.tertiary : colors.primary[500]}
+                  />
+                </View>
+                <View style={{ flex: 1 }}>
+                  <Text variant="h3" color={colors.primary[700]}>
+                    {streak?.currentStreak ?? 0}
+                  </Text>
+                  <Text variant="caption">day streak</Text>
+                </View>
+              </View>
             </Card>
           </View>
         </View>
+
+        {/* Streak Message */}
+        {streak && (
+          <View style={styles.streakMessageBox}>
+            <Text variant="body" color={colors.text.secondary} style={{ fontStyle: 'italic' }}>
+              {getStreakMessage(streak)}
+            </Text>
+          </View>
+        )}
 
         {/* 3. Insight Spotlight */}
         {patternInsights && (
@@ -217,16 +288,13 @@ export default function ProfileScreen() {
               })}
             </ScrollView>
           ) : (
-            <View style={styles.emptyShelf}>
-              <Image
-                source={require('@/assets/images/ui/empty-collection.png')}
-                style={styles.emptyShelfIllustration}
-                resizeMode="contain"
-              />
-              <Text variant="bodySmall" style={{ fontStyle: 'italic', textAlign: 'center' }} color={colors.text.tertiary}>
-                Concepts that resonate with you will appear here.
-              </Text>
-            </View>
+            <EmptyState
+              title="Your collection is waiting"
+              message="Concepts that resonate with you will appear here. Explore the library to find what speaks to you."
+              icon="heart-outline"
+              actionLabel="Explore Library"
+              onAction={() => router.push('/(tabs)/library')}
+            />
           )}
         </View>
 
@@ -285,8 +353,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    marginBottom: spacing.xl,
+    marginBottom: spacing.md,
     marginTop: spacing.xs,
+  },
+  auraContainer: {
+    alignItems: 'center',
+    marginBottom: spacing.xl,
   },
   headerText: {
     flex: 1,
@@ -302,6 +374,32 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.neutral[200],
     ...shadows.sm,
+  },
+
+  // Literacy Level
+  levelBanner: {
+    marginBottom: spacing.xl,
+    alignItems: 'center',
+    paddingVertical: spacing.md,
+  },
+  levelBadge: {
+    backgroundColor: colors.primary[50],
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.xs,
+    borderRadius: borderRadius.full,
+    borderWidth: 1,
+    borderColor: colors.primary[200],
+  },
+
+  // Streak message
+  streakMessageBox: {
+    marginBottom: spacing['2xl'],
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    backgroundColor: colors.background.secondary,
+    borderRadius: borderRadius.md,
+    borderLeftWidth: 3,
+    borderLeftColor: colors.primary[300],
   },
 
   // 2. Bento Grid
@@ -438,23 +536,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center', // CENTERED
     marginBottom: 4,
   },
-  emptyShelf: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: spacing.lg,
-    backgroundColor: colors.background.surface,
-    borderRadius: borderRadius.lg,
-    borderWidth: 1,
-    borderColor: colors.neutral[200],
-    padding: spacing.xl,
-  },
-  emptyShelfIllustration: {
-    width: 64,
-    height: 64,
-    marginBottom: spacing.md,
-    opacity: 0.4,
-  },
-
   // 5. Tools Grid
   toolsGrid: {
     flexDirection: 'row',

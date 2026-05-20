@@ -1,14 +1,13 @@
-import { ResonanceBurst } from '@/components/ui/ResonanceBurst';
+import { ResonanceRitual } from '@/components/ui/ResonanceRitual';
 import { PulseHeart } from '@/components/ui/PulseHeart';
 import { Text } from '@/components/ui/Typography';
 import { borderRadius, colors, shadows, spacing } from '@/constants/theme';
 import { ConceptSlide, ConceptStatus } from '@/types';
 import { Ionicons } from '@expo/vector-icons';
+import * as Haptics from 'expo-haptics';
 import React, { useCallback, useState } from 'react';
-import { Dimensions, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { useWindowDimensions, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-
-const { width } = Dimensions.get('window');
 
 interface ReflectSlideProps {
     item: ConceptSlide;
@@ -19,14 +18,27 @@ interface ReflectSlideProps {
 }
 
 export const ReflectSlide = ({ onFinish, onSetStatus, currentStatus, savingStatus }: ReflectSlideProps) => {
+    const { width } = useWindowDimensions();
     const [showBurst, setShowBurst] = useState(false);
 
     const finishDeck = useCallback(() => {
         setShowBurst(false);
-        onFinish();
+        // Gentle pause after ritual before returning
+        setTimeout(() => {
+            onFinish();
+        }, 400);
     }, [onFinish]);
 
     const handleSelect = async (status: ConceptStatus) => {
+        // Haptic feedback on selection
+        if (status === 'resonates') {
+            Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+        } else if (status === 'curious') {
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        } else {
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        }
+
         const savePromise = onSetStatus(status);
 
         if (status === 'resonates') {
@@ -49,8 +61,8 @@ export const ReflectSlide = ({ onFinish, onSetStatus, currentStatus, savingStatu
     ];
 
     return (
-        <View style={styles.container}>
-            <ResonanceBurst visible={showBurst} onComplete={finishDeck} />
+        <View style={[styles.containerBase, { width }]}>
+            <ResonanceRitual visible={showBurst} onComplete={finishDeck} />
 
             <View style={styles.content}>
                 <Animated.View entering={FadeInDown.delay(200).springify()}>
@@ -112,8 +124,7 @@ export const ReflectSlide = ({ onFinish, onSetStatus, currentStatus, savingStatu
 };
 
 const styles = StyleSheet.create({
-    container: {
-        width,
+    containerBase: {
         flex: 1,
         paddingHorizontal: spacing.xl,
         backgroundColor: colors.background.primary,

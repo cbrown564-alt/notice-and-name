@@ -4,12 +4,11 @@ import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import React from 'react';
-import { Dimensions, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { useWindowDimensions, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const { width, height } = Dimensions.get('window');
-
 export default function WelcomeScreen() {
+  const { width, height } = useWindowDimensions();
   const insets = useSafeAreaInsets();
 
   return (
@@ -23,7 +22,7 @@ export default function WelcomeScreen() {
 
       {/* Decorative element - large organic shape */}
       <View style={styles.orbitContainer}>
-        <View style={styles.orbitCircle} />
+        <View style={[styles.orbitCircleBase, { width: width * 1.2, height: width * 1.2, borderRadius: (width * 1.2) / 2, top: -height * 0.15 }]} />
       </View>
 
       <View style={[styles.content, { paddingTop: insets.top + spacing['4xl'] }]}>
@@ -55,6 +54,8 @@ export default function WelcomeScreen() {
           onPress={() => router.push('/onboarding/privacy')}
           style={styles.privacyLink}
           activeOpacity={0.7}
+          accessibilityRole="button"
+          accessibilityLabel="Our Privacy Promise"
         >
           <Ionicons name="shield-checkmark-outline" size={14} color={colors.text.tertiary} />
           <Text variant="caption" color={colors.text.tertiary} style={styles.privacyText}>
@@ -76,13 +77,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  orbitCircle: {
-    width: width * 1.2,
-    height: width * 1.2,
-    borderRadius: (width * 1.2) / 2,
+  orbitCircleBase: {
     borderWidth: 1,
     borderColor: 'rgba(232, 96, 60, 0.1)', // Primary color very faint
-    top: -height * 0.15,
   },
   content: {
     flex: 1,

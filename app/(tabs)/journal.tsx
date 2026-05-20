@@ -1,36 +1,75 @@
-import { Button, Text, ThemedInput } from '@/components/ui';
+import { Button, EmptyState, Text, ThemedInput } from '@/components/ui';
 import { borderRadius, colors, shadows, spacing } from '@/constants/theme';
-import { getConceptById } from '@/data/vocabulary';
+import { concepts } from '@/data/vocabulary';
 import { JournalEntryRow, useJournal } from '@/hooks/useDatabase';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import {
+  Alert,
   FlatList,
-  Image,
+
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
   TouchableOpacity,
-  View
+  View,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function JournalScreen() {
   const insets = useSafeAreaInsets();
-  const { entries, create, remove } = useJournal();
+  const { entries, create, remove, update } = useJournal();
   const [showNewEntry, setShowNewEntry] = useState(false);
   const [newEntryText, setNewEntryText] = useState('');
+  const [linkConceptId, setLinkConceptId] = useState<string | null>(null);
+  const [showLinkPicker, setShowLinkPicker] = useState(false);
+
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editText, setEditText] = useState('');
 
   const handleSave = async () => {
     if (newEntryText.trim()) {
-      await create(newEntryText.trim());
+      await create(newEntryText.trim(), linkConceptId ?? undefined);
       setNewEntryText('');
+      setLinkConceptId(null);
       setShowNewEntry(false);
+      setShowLinkPicker(false);
     }
   };
 
-  const handleDelete = async (id: string) => {
-    await remove(id);
+  const handleDelete = (id: string) => {
+    Alert.alert(
+      'Delete Entry',
+      'Are you sure you want to delete this reflection? This cannot be undone.',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Delete',
+          style: 'destructive',
+          onPress: async () => {
+            await remove(id);
+          },
+        },
+      ]
+    );
+  };
+
+  const startEdit = (entry: JournalEntryRow) => {
+    setEditingId(entry.id);
+    setEditText(entry.content);
+  };
+
+  const handleUpdate = async () => {
+    if (editingId && editText.trim()) {
+      await update(editingId, editText.trim());
+      setEditingId(null);
+      setEditText('');
+    }
+  };
+
+  const cancelEdit = () => {
+    setEditingId(null);
+    setEditText('');
   };
 
   const formatDateDay = (dateString: string) => {
@@ -49,17 +88,22 @@ export default function JournalScreen() {
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
       <View style={styles.header}>
-        <Text variant="h2" style={styles.pageTitle}>Reflections</Text>
-        {!showNewEntry && (
+        <Text variant="h2" style={styles.pageTitle}>
+          Reflections
+        </Text>
+        {!showNewEntry && !editingId && (
           <TouchableOpacity
             style={styles.addButton}
             onPress={() => setShowNewEntry(true)}
+            accessibilityRole="button"
+            accessibilityLabel="Create new journal entry"
           >
             <Ionicons name="create-outline" size={24} color={colors.primary[600]} />
           </TouchableOpacity>
         )}
       </View>
 
+      {/* New Entry Compose */}
       {showNewEntry && (
         <View style={styles.composeContainer}>
           <ThemedInput
@@ -71,7 +115,68 @@ export default function JournalScreen() {
             value={newEntryText}
             onChangeText={setNewEntryText}
             autoFocus
+            accessibilityLabel="Journal entry text"
           />
+
+          {/* Concept Link */}
+          <TouchableOpacity
+            style={styles.linkRow}
+            onPress={() => setShowLinkPicker(!showLinkPicker)}
+            accessibilityRole="button"
+            accessibilityLabel={linkConceptId ? 'Change linked concept' : 'Link to a concept'}
+          >
+            <Ionicons
+              name={linkConceptId ? 'pricetag' : 'pricetag-outline'}
+              size={16}
+              color={linkConceptId ? colors.primary[600] : colors.text.tertiary}
+            />
+            <Text
+              variant="caption"
+              color={linkConceptId ? colors.primary[600] : colors.text.tertiary}
+              style={{ marginLeft: spacing.sm }}
+            >
+              {linkConceptId
+                ? concepts.find((c) => c.id === linkConceptId)?.name ?? 'Linked concept'
+                : 'Link to a concept (optional)'}
+            </Text>
+          </TouchableOpacity>
+
+          {showLinkPicker && (
+            <View style={styles.linkPicker}>
+              <TouchableOpacity
+                style={styles.linkOption}
+                onPress={() => {
+                  setLinkConceptId(null);
+                  setShowLinkPicker(false);
+                }}
+              >
+                <Text
+                  variant="caption"
+                  color={linkConceptId === null ? colors.primary[600] : colors.text.secondary}
+                >
+                  None
+                </Text>
+              </TouchableOpacity>
+              {concepts.map((c) => (
+                <TouchableOpacity
+                  key={c.id}
+                  style={styles.linkOption}
+                  onPress={() => {
+                    setLinkConceptId(c.id);
+                    setShowLinkPicker(false);
+                  }}
+                >
+                  <Text
+                    variant="caption"
+                    color={linkConceptId === c.id ? colors.primary[600] : colors.text.secondary}
+                  >
+                    {c.name}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          )}
+
           <View style={styles.composeActions}>
             <Button
               title="Cancel"
@@ -80,6 +185,8 @@ export default function JournalScreen() {
               onPress={() => {
                 setShowNewEntry(false);
                 setNewEntryText('');
+                setLinkConceptId(null);
+                setShowLinkPicker(false);
               }}
             />
             <Button
@@ -87,6 +194,32 @@ export default function JournalScreen() {
               size="sm"
               onPress={handleSave}
               disabled={!newEntryText.trim()}
+            />
+          </View>
+        </View>
+      )}
+
+      {/* Edit Inline */}
+      {editingId && (
+        <View style={styles.composeContainer}>
+          <ThemedInput
+            style={styles.input}
+            containerStyle={styles.inputContainer}
+            placeholder="Edit your reflection..."
+            placeholderTextColor={colors.text.tertiary}
+            multiline
+            value={editText}
+            onChangeText={setEditText}
+            autoFocus
+            accessibilityLabel="Edit journal entry text"
+          />
+          <View style={styles.composeActions}>
+            <Button title="Cancel" variant="ghost" size="sm" onPress={cancelEdit} />
+            <Button
+              title="Update"
+              size="sm"
+              onPress={handleUpdate}
+              disabled={!editText.trim()}
             />
           </View>
         </View>
@@ -100,6 +233,8 @@ export default function JournalScreen() {
             <JournalEntryRowItem
               entry={item}
               onDelete={() => handleDelete(item.id)}
+              onEdit={() => startEdit(item)}
+              isEditing={editingId === item.id}
               formatDateDay={formatDateDay}
               formatDateMonth={formatDateMonth}
             />
@@ -107,30 +242,14 @@ export default function JournalScreen() {
           contentContainerStyle={styles.list}
           showsVerticalScrollIndicator={false}
         />
-      ) : !showNewEntry ? (
-        <View style={styles.emptyState}>
-          <Image
-            source={require('@/assets/images/ui/empty-journal.png')}
-            style={styles.emptyIllustration}
-            resizeMode="contain"
-          />
-          <Text variant="h3" align="center" color={colors.text.secondary} style={{ marginBottom: spacing.sm }}>
-            Your personal space
-          </Text>
-          <Text
-            variant="bodySmall"
-            align="center"
-            color={colors.text.tertiary}
-            style={styles.emptyText}
-          >
-            Use this space to record thoughts, discoveries, and feelings. These are private to you.
-          </Text>
-          <Button
-            title="Write First Entry"
-            variant="outline"
-            onPress={() => setShowNewEntry(true)}
-          />
-        </View>
+      ) : !showNewEntry && !editingId ? (
+        <EmptyState
+          title="Your personal space"
+          message="Use this space to record thoughts, discoveries, and feelings. These are private to you."
+          icon="book-outline"
+          actionLabel="Write First Entry"
+          onAction={() => setShowNewEntry(true)}
+        />
       ) : null}
     </KeyboardAvoidingView>
   );
@@ -139,53 +258,77 @@ export default function JournalScreen() {
 function JournalEntryRowItem({
   entry,
   onDelete,
+  onEdit,
+  isEditing,
   formatDateDay,
-  formatDateMonth
+  formatDateMonth,
 }: {
   entry: JournalEntryRow;
   onDelete: () => void;
+  onEdit: () => void;
+  isEditing: boolean;
   formatDateDay: (d: string) => number;
   formatDateMonth: (d: string) => string;
 }) {
-  const [showActions, setShowActions] = useState(false);
   const linkedConcept = entry.concept_id
-    ? getConceptById(entry.concept_id)
+    ? concepts.find((c) => c.id === entry.concept_id)
     : null;
+
+  if (isEditing) return null;
 
   return (
     <View style={styles.entryRow}>
       {/* Date Column */}
       <View style={styles.dateColumn}>
-        <Text variant="h3" color={colors.text.primary} style={{ lineHeight: 28 }}>{formatDateDay(entry.created_at)}</Text>
-        <Text variant="labelSmall" color={colors.text.tertiary}>{formatDateMonth(entry.created_at).toUpperCase()}</Text>
+        <Text variant="h3" color={colors.text.primary} style={{ lineHeight: 28 }}>
+          {formatDateDay(entry.created_at)}
+        </Text>
+        <Text variant="labelSmall" color={colors.text.tertiary}>
+          {formatDateMonth(entry.created_at).toUpperCase()}
+        </Text>
       </View>
 
       {/* Content Column */}
       <TouchableOpacity
         style={styles.entryContentBox}
-        onLongPress={() => setShowActions(!showActions)}
+        onPress={onEdit}
         activeOpacity={0.9}
+        accessibilityRole="button"
+        accessibilityLabel={`Journal entry from ${formatDateMonth(entry.created_at)} ${formatDateDay(entry.created_at)}. Double tap to edit.`}
       >
         <Text variant="body" style={styles.entryText}>
           {entry.content}
         </Text>
 
-        {(linkedConcept || showActions) && (
-          <View style={styles.entryFooter}>
-            {linkedConcept && (
-              <View style={styles.conceptTag}>
-                <Ionicons name="pricetag-outline" size={12} color={colors.primary[600]} />
-                <Text variant="caption" color={colors.primary[600]}>{linkedConcept.name}</Text>
-              </View>
-            )}
+        <View style={styles.entryFooter}>
+          {linkedConcept && (
+            <View style={styles.conceptTag}>
+              <Ionicons name="pricetag-outline" size={12} color={colors.primary[600]} />
+              <Text variant="caption" color={colors.primary[600]}>
+                {linkedConcept.name}
+              </Text>
+            </View>
+          )}
 
-            {showActions && (
-              <TouchableOpacity onPress={onDelete} style={styles.deleteBtn}>
-                <Text variant="caption" color={colors.error}>Delete</Text>
-              </TouchableOpacity>
-            )}
+          <View style={styles.entryActions}>
+            <TouchableOpacity
+              onPress={onEdit}
+              style={styles.actionBtn}
+              accessibilityRole="button"
+              accessibilityLabel="Edit entry"
+            >
+              <Ionicons name="pencil-outline" size={14} color={colors.text.tertiary} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={onDelete}
+              style={styles.actionBtn}
+              accessibilityRole="button"
+              accessibilityLabel="Delete entry"
+            >
+              <Ionicons name="trash-outline" size={14} color={colors.error} />
+            </TouchableOpacity>
           </View>
-        )}
+        </View>
       </TouchableOpacity>
     </View>
   );
@@ -210,7 +353,7 @@ const styles = StyleSheet.create({
   },
   addButton: {
     padding: spacing.xs,
-    backgroundColor: colors.primary[50], // light circle
+    backgroundColor: colors.primary[50],
     borderRadius: 20,
   },
 
@@ -243,6 +386,25 @@ const styles = StyleSheet.create({
     borderTopColor: colors.neutral[100],
   },
 
+  // Concept Link
+  linkRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: spacing.sm,
+    marginBottom: spacing.sm,
+  },
+  linkPicker: {
+    maxHeight: 180,
+    backgroundColor: colors.background.secondary,
+    borderRadius: borderRadius.md,
+    paddingVertical: spacing.xs,
+    marginBottom: spacing.md,
+  },
+  linkOption: {
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+  },
+
   // List
   list: {
     paddingHorizontal: spacing.lg,
@@ -260,10 +422,10 @@ const styles = StyleSheet.create({
   },
   entryContentBox: {
     flex: 1,
-    backgroundColor: colors.background.primary, // white paper
+    backgroundColor: colors.background.primary,
     padding: spacing.lg,
-    borderRadius: borderRadius.md, // slightly rounded
-    borderBottomLeftRadius: 0, // editorial look
+    borderRadius: borderRadius.md,
+    borderBottomLeftRadius: 0,
     ...shadows.sm,
   },
   entryText: {
@@ -289,26 +451,14 @@ const styles = StyleSheet.create({
     paddingVertical: 2,
     borderRadius: 4,
   },
-  deleteBtn: {
+  entryActions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
+  },
+  actionBtn: {
     padding: 4,
   },
 
-  // Empty
-  emptyState: {
-    flex: 1,
-    padding: spacing.xl,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: -50,
-  },
-  emptyIllustration: {
-    width: 160,
-    height: 160,
-    marginBottom: spacing.lg,
-    opacity: 0.8,
-  },
-  emptyText: {
-    marginBottom: spacing.lg,
-    maxWidth: 260,
-  },
+  // Empty state now handled by <EmptyState /> component
 });

@@ -79,7 +79,7 @@ export class JournalRepository {
    * Create a new journal entry.
    * Returns the ID of the created entry.
    */
-  async create(content: string, conceptId?: string): Promise<string> {
+  async create(content: string, conceptId?: string, mood?: string | null): Promise<string> {
     try {
       const id = generateId();
       const now = new Date().toISOString();
@@ -88,6 +88,7 @@ export class JournalRepository {
         id,
         concept_id: conceptId ?? null,
         content,
+        mood: mood ?? null,
         created_at: now,
         updated_at: now,
       });
@@ -147,6 +148,7 @@ export class JournalRepository {
       id: row.id,
       conceptId: row.concept_id,
       content: row.content,
+      mood: (row.mood as JournalEntry['mood']) ?? null,
       createdAt: row.created_at,
       updatedAt: row.updated_at,
     };

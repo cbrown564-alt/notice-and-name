@@ -54,6 +54,9 @@ export function ConceptCard({ concept, status, isCollected, onPress }: ConceptCa
     <TouchableOpacity
       onPress={handlePress}
       activeOpacity={0.9}
+      accessibilityRole="button"
+      accessibilityLabel={`${concept.name}, ${concept.category}. ${status === 'unexplored' ? 'Not explored' : status}`}
+      accessibilityHint="Double tap to open concept details"
       style={[
         styles.card,
         !isUnexplored && { borderLeftColor: statusColor, borderLeftWidth: 4 },

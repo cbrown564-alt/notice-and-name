@@ -61,11 +61,21 @@ export interface UserConcept {
   updatedAt: string;            // ISO date string
 }
 
+// Journal mood tags
+export type JournalMood =
+  | 'curious'
+  | 'surprised'
+  | 'validating'
+  | 'uncertain'
+  | 'excited'
+  | 'reflective';
+
 // Journal entry
 export interface JournalEntry {
   id: string;
   conceptId: string | null;     // Optional link to a concept
   content: string;
+  mood: JournalMood | null;     // Optional mood tag
   createdAt: string;            // ISO date string
   updatedAt: string;            // ISO date string
 }

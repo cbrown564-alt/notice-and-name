@@ -3,10 +3,8 @@ import { colors, spacing } from '@/constants/theme';
 import { Concept, ConceptSlide } from '@/types';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { useWindowDimensions, StyleSheet, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-
-const { width } = Dimensions.get('window');
 
 interface RecognizeSlideProps {
     item: ConceptSlide;
@@ -14,8 +12,9 @@ interface RecognizeSlideProps {
 }
 
 export const RecognizeSlide = ({ item, concept }: RecognizeSlideProps) => {
+    const { width } = useWindowDimensions();
     return (
-        <View style={styles.container}>
+        <View style={[styles.containerBase, { width }]}>
             <View style={styles.content}>
                 {/* Category Label */}
                 <Animated.View entering={FadeInDown.delay(100).springify()}>
@@ -54,8 +53,7 @@ export const RecognizeSlide = ({ item, concept }: RecognizeSlideProps) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        width,
+    containerBase: {
         flex: 1,
         paddingHorizontal: spacing.xl,
         paddingTop: 100, // Space for progress bar

@@ -11,13 +11,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import React, { useMemo, useState } from 'react';
 import {
-  Dimensions,
   FlatList,
   Image,
   ScrollView,
   StyleSheet,
   TouchableOpacity,
   View,
+  useWindowDimensions,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -32,11 +32,10 @@ const categoryLabels: Record<ConceptCategory, string> = {
   anatomy: 'Anatomy',
 };
 
-const SCREEN_WIDTH = Dimensions.get('window').width;
-const CARD_WIDTH = (SCREEN_WIDTH - spacing.md * 3) / 2; // 2 columns with padding
-
 export default function LibraryScreen() {
   const insets = useSafeAreaInsets();
+  const { width: SCREEN_WIDTH } = useWindowDimensions();
+  const CARD_WIDTH = (SCREEN_WIDTH - spacing.md * 3) / 2; // 2 columns with padding
   const { concepts: userConcepts, getStatus: getDatabaseStatus, isMastered, masteredConcepts } = useUserConcepts();
   const [viewMode, setViewMode] = useState<ViewMode>('all');
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>('all');
@@ -220,10 +219,7 @@ export default function LibraryScreen() {
                 status={getDatabaseStatus(item.id) || 'unexplored'}
                 isCollected={isMastered(item.id)}
                 onPress={() =>
-                  router.push({
-                    pathname: `/concept/${item.id}`,
-                    params: { pathway: categoryFilter === 'all' ? 'default' : categoryFilter },
-                  })
+                  router.push(`/concept/${item.id}` as any)
                 }
               />
             </View>

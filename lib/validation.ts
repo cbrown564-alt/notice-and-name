@@ -55,6 +55,7 @@ export const JournalEntryRowSchema = z.object({
   id: z.string().min(1),
   concept_id: z.string().nullable(),
   content: z.string(),
+  mood: z.string().nullable().optional(),
   created_at: z.string(),
   updated_at: z.string(),
 });
@@ -166,6 +167,7 @@ export const DEFAULT_JOURNAL_ENTRY: ValidatedJournalEntryRow = {
   id: '',
   concept_id: null,
   content: '',
+  mood: null,
   created_at: new Date().toISOString(),
   updated_at: new Date().toISOString(),
 };

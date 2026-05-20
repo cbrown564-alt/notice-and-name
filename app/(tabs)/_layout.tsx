@@ -1,26 +1,27 @@
 import { colors } from '@/constants/theme';
+import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { Image, ImageSourcePropType } from 'react-native';
 
 function TabBarIcon({
+  name,
+  focusedName,
   color,
-  source,
+  size = 26,
   focused
 }: {
+  name: keyof typeof Ionicons.glyphMap;
+  focusedName: keyof typeof Ionicons.glyphMap;
   color: string;
-  source: ImageSourcePropType;
+  size?: number;
   focused: boolean;
 }) {
   return (
-    <Image
-      source={source}
-      style={{
-        width: 40,
-        height: 40,
-        opacity: focused ? 1 : 0.6,
-        resizeMode: 'contain'
-      }}
+    <Ionicons
+      name={focused ? focusedName : name}
+      size={size}
+      color={color}
+      style={{ marginBottom: 2 }}
     />
   );
 }
@@ -29,18 +30,20 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: colors.primary[600],
+        tabBarActiveTintColor: colors.primary[500],
         tabBarInactiveTintColor: colors.neutral[400],
         tabBarStyle: {
           backgroundColor: colors.background.primary,
           borderTopColor: colors.neutral[200],
-          height: 100, // Taller for larger icons
-          paddingTop: 14,
+          borderTopWidth: 1,
+          height: 84,
+          paddingBottom: 24,
+          paddingTop: 10,
         },
         tabBarLabelStyle: {
           fontFamily: 'Inter_500Medium',
-          fontSize: 12,
-          marginTop: 4, // Spacing between icon and text
+          fontSize: 11,
+          marginTop: 2,
         },
         headerShown: false,
       }}
@@ -51,7 +54,8 @@ export default function TabLayout() {
           title: 'Sanctuary',
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
-              source={require('@/assets/images/ui/tab-home.png')}
+              name="heart-outline"
+              focusedName="heart"
               color={color}
               focused={focused}
             />
@@ -64,7 +68,8 @@ export default function TabLayout() {
           title: 'Library',
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
-              source={require('@/assets/images/ui/tab-library.png')}
+              name="library-outline"
+              focusedName="library"
               color={color}
               focused={focused}
             />
@@ -77,7 +82,8 @@ export default function TabLayout() {
           title: 'Journal',
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
-              source={require('@/assets/images/ui/tab-journal.png')}
+              name="journal-outline"
+              focusedName="journal"
               color={color}
               focused={focused}
             />
@@ -90,7 +96,8 @@ export default function TabLayout() {
           title: 'Atelier',
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
-              source={require('@/assets/images/ui/tab-profile.png')}
+              name="sparkles-outline"
+              focusedName="sparkles"
               color={color}
               focused={focused}
             />

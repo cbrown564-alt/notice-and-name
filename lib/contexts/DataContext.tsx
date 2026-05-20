@@ -13,6 +13,7 @@ import { useError } from '@/components/error';
 import { db, initDatabase } from '../database/index';
 import { getErrorMessage } from '../errors';
 import { logger } from '../logger';
+import { loadStreakData, recordActivity, StreakData } from '../streaks';
 import {
   ValidatedOnboardingRow,
   ValidatedUserConceptRow,
@@ -47,6 +48,11 @@ interface DataContextValue {
 
   // Refresh all data
   refreshAll: () => Promise<void>;
+
+  // Streaks
+  streak: StreakData | null;
+  streakLoading: boolean;
+  refreshStreak: () => Promise<void>;
 }
 
 const DataContext = createContext<DataContextValue | null>(null);
@@ -76,6 +82,10 @@ export function DataProvider({ children }: DataProviderProps) {
   const [onboarding, setOnboarding] = useState<ValidatedOnboardingRow | null>(null);
   const [onboardingLoading, setOnboardingLoading] = useState(true);
   const [onboardingError, setOnboardingError] = useState<string | null>(null);
+
+  // Streaks state
+  const [streak, setStreak] = useState<StreakData | null>(null);
+  const [streakLoading, setStreakLoading] = useState(true);
 
   // Initialize database
   useEffect(() => {
@@ -166,10 +176,23 @@ export function DataProvider({ children }: DataProviderProps) {
     }
   }, [isDbReady, clearSectionError, setSectionError]);
 
+  // Refresh streak
+  const refreshStreak = useCallback(async () => {
+    setStreakLoading(true);
+    try {
+      const data = await loadStreakData();
+      setStreak(data);
+    } catch (err) {
+      log.error('Failed to load streak data', err);
+    } finally {
+      setStreakLoading(false);
+    }
+  }, []);
+
   // Refresh all data
   const refreshAll = useCallback(async () => {
-    await Promise.all([refreshConcepts(), refreshOnboarding()]);
-  }, [refreshConcepts, refreshOnboarding]);
+    await Promise.all([refreshConcepts(), refreshOnboarding(), refreshStreak()]);
+  }, [refreshConcepts, refreshOnboarding, refreshStreak]);
 
   // Load initial data when database is ready
   useEffect(() => {
@@ -177,6 +200,22 @@ export function DataProvider({ children }: DataProviderProps) {
       refreshAll();
     }
   }, [isDbReady, refreshAll]);
+
+  // Record app open activity once on startup
+  useEffect(() => {
+    if (isDbReady) {
+      let mounted = true;
+      recordActivity().then((updated) => {
+        if (mounted) {
+          setStreak(updated);
+          setStreakLoading(false);
+        }
+      });
+      return () => {
+        mounted = false;
+      };
+    }
+  }, [isDbReady]);
 
   // Compute stats from concepts
   const exploredCount = useMemo(() => {
@@ -303,5 +342,18 @@ export function useStatsContext() {
     resonatesCount,
     isLoading: conceptsLoading,
     reload: refreshConcepts,
+  };
+}
+
+/**
+ * Hook for streaks.
+ */
+export function useStreaksContext() {
+  const { streak, streakLoading, refreshStreak } = useData();
+
+  return {
+    streak,
+    isLoading: streakLoading,
+    reload: refreshStreak,
   };
 }

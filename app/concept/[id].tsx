@@ -4,6 +4,7 @@ import { Text as ThemedText } from '@/components/ui/Typography';
 import { getConceptById } from '@/data/vocabulary';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React from 'react';
+import { colors } from '@/constants/theme';
 import { StyleSheet, View } from 'react-native';
 
 export default function ConceptScreen() {
@@ -30,7 +31,7 @@ export default function ConceptScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FDF8F5',
+    backgroundColor: colors.background.primary,
   },
   center: {
     flex: 1,

@@ -2,10 +2,8 @@ import { Text } from '@/components/ui/Typography';
 import { borderRadius, colors, shadows, spacing } from '@/constants/theme';
 import { Concept, ConceptSlide } from '@/types';
 import React from 'react';
-import { Dimensions, Image, StyleSheet, View } from 'react-native';
+import { useWindowDimensions, Image, StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, FadeInUp, ZoomIn } from 'react-native-reanimated';
-
-const { width } = Dimensions.get('window');
 
 interface NameSlideProps {
     item: ConceptSlide;
@@ -13,8 +11,9 @@ interface NameSlideProps {
 }
 
 export const NameSlide = ({ item, concept }: NameSlideProps) => {
+    const { width } = useWindowDimensions();
     return (
-        <View style={styles.container}>
+        <View style={[styles.containerBase, { width }]}>
             <View style={styles.content}>
 
                 {/* Icon */}
@@ -50,8 +49,7 @@ export const NameSlide = ({ item, concept }: NameSlideProps) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        width,
+    containerBase: {
         flex: 1,
         paddingHorizontal: spacing.xl,
         paddingTop: 100,

@@ -13,7 +13,7 @@ config.resolver.sourceExts = [
   'web.tsx',
 ];
 
-// Add 'mov' to asset extensions
-config.resolver.assetExts = [...config.resolver.assetExts, 'mov'];
+// Asset extensions: video + expo-sqlite web (wa-sqlite.wasm)
+config.resolver.assetExts = [...config.resolver.assetExts, 'mov', 'wasm'];
 
 module.exports = config;

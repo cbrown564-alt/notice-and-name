@@ -216,8 +216,8 @@ export function useJournal(conceptId?: string) {
   }, [load]);
 
   const create = useCallback(
-    async (content: string, entryConceptId?: string) => {
-      const id = await db.journal.create(content, entryConceptId ?? conceptId);
+    async (content: string, entryConceptId?: string, mood?: string | null) => {
+      const id = await db.journal.create(content, entryConceptId ?? conceptId, mood);
       await load();
       return id;
     },
@@ -264,6 +264,22 @@ export function useStats() {
     resonatesCount,
     isLoading: conceptsLoading,
     reload: refreshConcepts,
+  };
+}
+
+// ============ Streaks Hook ============
+
+/**
+ * Hook for streak data.
+ * Uses DataContext for shared state.
+ */
+export function useStreaks() {
+  const { streak, streakLoading, refreshStreak } = useData();
+
+  return {
+    streak,
+    isLoading: streakLoading,
+    reload: refreshStreak,
   };
 }
 

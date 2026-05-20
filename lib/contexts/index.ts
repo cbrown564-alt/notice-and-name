@@ -7,4 +7,5 @@ export {
   useDbReady,
   useOnboardingContext,
   useStatsContext,
+  useStreaksContext,
 } from './DataContext';
