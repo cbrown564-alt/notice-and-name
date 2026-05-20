@@ -122,7 +122,11 @@ Before committing any generated asset:
 
 ---
 
-## 10. Reference renders (Phase 1.1 — pending approval)
+## 10. Reference renders (Phase 1.1)
+
+**Workflow:** [`pipelines/REFERENCE_RENDERS.md`](../pipelines/REFERENCE_RENDERS.md)  
+**Tracker:** `data/reference-renders.json` — `npm run reference-renders`  
+**Ratification:** 5/5 families approved → bible status **v1.0 ratified** → unblocks Phase 3 batch
 
 Pin one approved concept per family after image pilot review ([`PILOT_BATCH.md`](../pipelines/prompts/PILOT_BATCH.md)):
 
@@ -134,7 +138,7 @@ Pin one approved concept per family after image pilot review ([`PILOT_BATCH.md`]
 | Psychological | Non-concordance | ✅ Approved — in production (221 KB) | `pipelines/prompts/illustrations/non-concordance.md` |
 | Anatomy | Clitoral Structure | ⬜ Gemini clinical next | `pipelines/prompts/illustrations/clitoral-structure.md` |
 
-**Ratification:** After all five pass §9 checklist in-app, run `npm run swap-pilot-winner` for approved pilots; mark bible status **v1.0 ratified**.
+**Ratification:** After all five pass §9 checklist in-app and `npm run reference-renders` shows 5/5, update this doc to **v1.0 ratified**.
 
 ---
 

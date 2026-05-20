@@ -14,7 +14,7 @@
     "validate-manifest": "node scripts/validate-manifest.js",
     "validate-manifest:strict": "STRICT=1 node scripts/validate-manifest.js",
     "sync-registry": "node scripts/sync-registry.js",
-    "asset-dashboard": "node scripts/asset-dashboard.js",
+    "reference-renders": "node scripts/reference-renders.js",
     "build:preview": "eas build --profile preview",
     "migrate-illustration-prompts": "node scripts/migrate-illustration-prompts.js",
     "pilot-review": "node scripts/pilot-compare.js",

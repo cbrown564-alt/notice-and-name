@@ -1,0 +1,74 @@
+{
+  "_meta": {
+    "phase": "1.1",
+    "ratified": false,
+    "ratificationRequires": "All 5 families approved with styleCoherence ≥ 5",
+    "updated": "2026-05-20",
+    "workflow": "docs/pipelines/REFERENCE_RENDERS.md"
+  },
+  "families": {
+    "technique": {
+      "conceptId": "angling",
+      "promptRef": "docs/pipelines/prompts/illustrations/angling.md",
+      "generatorHint": "chatgpt-images-2",
+      "status": "rejected",
+      "referencePath": null,
+      "candidatePath": "assets/_staging/pilot/illustrations/angling/chatgpt-images-2.png",
+      "scores": {
+        "styleCoherence": 2,
+        "scientificAccuracy": 3,
+        "noEmbeddedText": false
+      },
+      "notes": "In-image titles/labels — regen with no-text prompt; save to assets/_staging/reference/technique/",
+      "approvedAt": null
+    },
+    "sensation": {
+      "conceptId": "spreading",
+      "promptRef": "docs/pipelines/prompts/illustrations/spreading.md",
+      "generatorHint": "gemini",
+      "status": "pending",
+      "referencePath": null,
+      "candidatePath": "assets/_staging/pilot/illustrations/spreading/gemini.png",
+      "scores": {},
+      "notes": "Gemini clinical prompt — score in-app before approve",
+      "approvedAt": null
+    },
+    "timing": {
+      "conceptId": "warmup-window",
+      "promptRef": "docs/pipelines/prompts/illustrations/warmup-window.md",
+      "generatorHint": "gemini",
+      "status": "pending",
+      "referencePath": null,
+      "candidatePath": "assets/_staging/pilot/illustrations/warmup-window/gemini.png",
+      "scores": {},
+      "notes": "Split-panel vascular perfusion — Gemini clinical",
+      "approvedAt": null
+    },
+    "psychological": {
+      "conceptId": "non-concordance",
+      "promptRef": "docs/pipelines/prompts/illustrations/non-concordance.md",
+      "generatorHint": "chatgpt-images-2",
+      "status": "approved",
+      "referencePath": "assets/images/concepts/illustrations/non-concordance.png",
+      "candidatePath": "assets/_staging/pilot/illustrations/non-concordance/chatgpt-images-2.png",
+      "scores": {
+        "styleCoherence": 4,
+        "scientificAccuracy": 5,
+        "noEmbeddedText": true
+      },
+      "notes": "Promoted to production May 19 — reference for psychological family",
+      "approvedAt": "2026-05-19"
+    },
+    "anatomy": {
+      "conceptId": "clitoral-structure",
+      "promptRef": "docs/pipelines/prompts/illustrations/clitoral-structure.md",
+      "generatorHint": "gemini",
+      "status": "pending",
+      "referencePath": null,
+      "candidatePath": "assets/_staging/pilot/illustrations/clitoral-structure/gemini.png",
+      "scores": {},
+      "notes": "P0 flagship anatomy reference — score ≥5 style before batch",
+      "approvedAt": null
+    }
+  }
+}

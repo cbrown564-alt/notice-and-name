@@ -54,7 +54,8 @@ Style: Scientific Warmth — cream canvas #F9F5F1, fine etching, coral accents. 
 | warmup-window | ❌ guardrails | Use Gemini prompt above |
 | clitoral-structure | ❌ guardrails | Use Gemini prompt above |
 
-Save pilots to: `assets/images/concepts/illustrations/pilot/{concept}-gemini.png`
+Save pilots to: `assets/_staging/pilot/illustrations/{concept}/{generator}.png`  
+(Optional reference copy: `assets/_staging/reference/{family}/{generator}.png`)
 
-Promote after review: `npm run swap-pilot-winner -- {concept} gemini`  
-(Or `chatgpt-images-2` for technique/psych pilots.)
+Promote after review: `npm run reference-renders -- promote {family} {generator}`  
+Or: `npm run swap-pilot-winner -- {concept} {generator}`

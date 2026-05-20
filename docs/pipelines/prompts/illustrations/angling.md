@@ -32,7 +32,7 @@ High-end gallery medical illustration demonstrating **Angling** (pelvic tilt). S
 
 **Primary:** ChatGPT Images 2 — [`CHATGPT_THINKING_PROMPTS.md`](../CHATGPT_THINKING_PROMPTS.md). **Alt:** Nano Banana Pro 2 for anatomy consistency.
 
-Pilot output path: `assets/images/concepts/illustrations/pilot/angling-{generator}.png`
+Pilot output path: `assets/_staging/pilot/illustrations/angling/{generator}.png`
 
 ## Review checklist (STYLE_BIBLE §9)
 

@@ -122,7 +122,7 @@ See [`prompts/PILOT_BATCH.md`](./prompts/PILOT_BATCH.md) for generation procedur
 
 ## Style bible reference renders (pre-batch)
 
-Before Phase 3 full regen, approve **3–5 reference renders** stored in `assets/_staging/reference/`. Each must score **5** on style coherence to lock the visual language.
+Before Phase 3 full regen, ratify **5/5 family references** via [`REFERENCE_RENDERS.md`](./REFERENCE_RENDERS.md) (`npm run reference-renders`). New references require style coherence **≥ 5** (stricter than general pilot promotion).
 
 ---
 

@@ -44,6 +44,7 @@
 | [pipelines/prompts/PILOT_BATCH.md](./pipelines/prompts/PILOT_BATCH.md) | Phase 1.3 five-concept image pilot |
 | [pipelines/VIDEO_GENERATION.md](./pipelines/VIDEO_GENERATION.md) | Gemini Omni + ffmpeg transcode workflow |
 | [pipelines/VIDEO_CONCEPT_CATALOG.md](./pipelines/VIDEO_CONCEPT_CATALOG.md) | Expanded video scope (journeys + explainers) |
+| [pipelines/REFERENCE_RENDERS.md](./pipelines/REFERENCE_RENDERS.md) | Style bible reference render workflow (Phase 1.1 gate) |
 | [pipelines/ASSET_EVALUATION.md](./pipelines/ASSET_EVALUATION.md) | Rubric + promotion gates for pilots |
 | [pipelines/ASSET_MANIFEST.md](./pipelines/ASSET_MANIFEST.md) | File inventory + wiring status |
 | [asset_generation_prompts.md](./asset_generation_prompts.md) | January archive + Veo JSON (illustration prompts migrated) |
@@ -73,6 +74,7 @@
 | `npm run validate-manifest` | Check format lock, wiring, and size budgets |
 | `npm run validate-manifest:strict` | Same checks; warnings fail CI (use before asset merges) |
 | `npm run sync-registry` | Refresh `data/asset-registry.json` from disk + vocab |
+| `npm run reference-renders` | Style bible reference render dashboard (Phase 1.1) |
 | `npm run asset-dashboard` | Terminal progress summary (`--write` for markdown report) |
 | `npm run pilot-compare` | List/score/decide pilot A/B variants ([rubric](./pipelines/ASSET_EVALUATION.md)) |
 | `npm run pilot-review` | Alias for `pilot-compare` |
@@ -104,7 +106,7 @@
 |----------|-------|
 | Where are we? | `PROJECT_STATUS_REPORT.md` |
 | What's the plan? | `IMPLEMENTATION_PLAN.md` |
-| What should it look like? | `design/STYLE_BIBLE.md` |
+| Is the visual language locked? | `npm run reference-renders` + `design/STYLE_BIBLE.md` |
 | What does each concept need? | `content/CONCEPT_AUDIT.md` |
 | How do I write copy? | `content/COPY_GUIDELINES.md` |
 | How do I generate images? | `pipelines/IMAGE_GENERATION.md` |
