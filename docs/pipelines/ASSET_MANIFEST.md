@@ -18,7 +18,7 @@
 | building | ✅ | ✅ illustrations/building.png | video **building.mp4** (256 KB) | Compress illustration; video pilot regen optional |
 | spreading | ✅ | ✅ illustrations/spreading.png | video **spreading.mp4** (1.6 MB) | P0 pilot regen; compress PNGs |
 | responsive-desire | ✅ | ✅ | video **responsive-desire.mp4** (503 KB) | Transcoded May 2026 |
-| plateauing | ✅ | ✅ | static | Regen chart plate |
+| plateauing | ✅ | ✅ | video TBD | P2 process-explainer (curve animation) |
 | pulsing | ✅ | ⚠️ placeholder | video TBD | P0 abstract-loop |
 | clitoral-structure | ✅ | ✅ | video TBD | **P0 scientific-journey** |
 | nerve-density | ✅ | ✅ | video TBD | **P0 scientific-journey** |
@@ -72,6 +72,15 @@
 
 ## Shell assets
 
-See legacy table in `asset_inventory.md` (UI, pathways, explainers) — migrate row-by-row as batches land.
+| area | path pattern | status |
+|------|--------------|--------|
+| Tab icons | `assets/images/ui/tab-*.png` | ✅ 4 tabs wired |
+| Deck chrome | `assets/images/ui/slide-*.png` | ✅ name, understand, explore |
+| Home / empty states | `home-welcome`, `daily-discovery`, `empty-journal`, `empty-collection` | ✅ on disk |
+| Category fallbacks | `assets/images/ui/category-*.png` | ✅ 5 categories |
+| Profile tools | `assets/images/ui/profile/` | ✅ stats + tools |
+| Communicate | `assets/images/ui/communicate/` | ✅ 3 screens |
+| Pathways | `assets/images/pathways/*.png` | ✅ 5 pathways |
+| Explainers | `assets/images/explainers/*.png` | ✅ 4 articles |
 
 **Validation:** `npm run validate-manifest` — format lock, filesystem, wiring checks (warnings for TBD videos).

@@ -85,7 +85,10 @@
 |----------|-------|
 | [_archive/GAP_ANALYSIS.md](./_archive/GAP_ANALYSIS.md) | Superseded by PROJECT_STATUS_REPORT |
 | [_archive/PHASE_3_UI_UX_REVAMP.md](./_archive/PHASE_3_UI_UX_REVAMP.md) | January 2026 sprint (archived) |
-| [asset_inventory.md](./asset_inventory.md) | Superseded by ASSET_MANIFEST + CONCEPT_AUDIT |
+| [asset_inventory.md](./asset_inventory.md) | Redirect → `_archive/`; use CONCEPT_AUDIT + ASSET_MANIFEST |
+| [asset_library.md](./asset_library.md) | Redirect → `_archive/`; use STYLE_BIBLE |
+| [animation_journey.md](./animation_journey.md) | Redirect → `_archive/`; use VIDEO_GENERATION |
+| [video_interactive_prompts.md](./video_interactive_prompts.md) | Redirect → `_archive/`; use prompts/ |
 | [_archive/](./_archive/) | Retired planning docs |
 
 ---

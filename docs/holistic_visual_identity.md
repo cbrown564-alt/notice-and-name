@@ -56,7 +56,7 @@ While the DNA is shared, the visual expression shifts depending on the *function
 *   **Movement**: Even if static, the shapes imply flow (liquid dynamics).
 
 ### Layer D: Interactive Diagrams (The Lab)
-*Defined in `animation_journey.md` & `visual_content_strategy.md`*
+*Defined in `product/visual_content_strategy.md` & `pipelines/VIDEO_CONCEPT_CATALOG.md`*
 
 **Role**: The Tool. Simplified for physics and clarity.
 *   **Vibe**: "Interactive Physics."

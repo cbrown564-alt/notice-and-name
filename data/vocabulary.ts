@@ -224,6 +224,7 @@ Understanding building as a named experience helps recognize that arousal doesn'
     ],
     relatedConcepts: ['plateauing', 'edging', 'warmup-window'],
     tier: 'free',
+    thumbnail: require('@/assets/images/concepts/thumbnails/building.png'),
     slides: [
       {
         type: 'recognize',
@@ -320,6 +321,7 @@ Edging requires body awareness - learning to recognize your own signs of approac
     ],
     relatedConcepts: ['building', 'plateauing', 'embodied-presence'],
     tier: 'free',
+    thumbnail: require('@/assets/images/concepts/thumbnails/edging.png'),
     slides: [
       {
         type: 'recognize',
@@ -367,6 +369,7 @@ Noticing spreading can enhance the experience of pleasure by expanding attention
     ],
     relatedConcepts: ['building', 'pulsing', 'embodied-presence'],
     tier: 'free',
+    thumbnail: require('@/assets/images/concepts/thumbnails/spreading.png'),
     slides: [
       {
         type: 'recognize',
@@ -415,6 +418,7 @@ Having language for this sensation helps recognize it when it's happening, and h
     ],
     relatedConcepts: ['building', 'spreading'],
     tier: 'free',
+    thumbnail: require('@/assets/images/concepts/thumbnails/pulsing.png'),
     slides: [
       {
         type: 'recognize',
@@ -512,6 +516,7 @@ Understanding responsive desire can be liberating. It means you don't need to "f
     ],
     relatedConcepts: ['spontaneous-desire', 'warmup-window'],
     tier: 'free',
+    thumbnail: require('@/assets/images/concepts/thumbnails/responsive-desire.png'),
     slides: [
       {
         type: 'recognize',
@@ -560,6 +565,7 @@ Understanding spontaneous desire as one pattern among others helps remove the ex
     ],
     relatedConcepts: ['responsive-desire'],
     tier: 'free',
+    thumbnail: require('@/assets/images/concepts/thumbnails/spontaneous-desire.png'),
     slides: [
       {
         type: 'recognize',
@@ -657,6 +663,7 @@ Spectatoring is common but interferes with arousal and pleasure. The good news i
     ],
     relatedConcepts: ['embodied-presence', 'sexual-self-esteem'],
     tier: 'free',
+    thumbnail: require('@/assets/images/concepts/thumbnails/spectatoring.png'),
     slides: [
       {
         type: 'recognize',
@@ -704,6 +711,7 @@ Cultivating embodied presence can significantly enhance sexual experience. When 
     ],
     relatedConcepts: ['spectatoring', 'body-appreciation'],
     tier: 'free',
+    thumbnail: require('@/assets/images/concepts/thumbnails/embodied-presence.png'),
     slides: [
       {
         type: 'recognize',
@@ -751,6 +759,7 @@ Understanding non-concordance is liberating. It means you can trust your felt ex
     ],
     relatedConcepts: ['responsive-desire', 'embodied-presence'],
     tier: 'free',
+    thumbnail: require('@/assets/images/concepts/thumbnails/non-concordance.png'),
     slides: [
       {
         type: 'recognize',
@@ -798,6 +807,7 @@ Sexual self-esteem can be affected by many factors: upbringing, past experiences
     ],
     relatedConcepts: ['body-appreciation', 'spectatoring'],
     tier: 'free',
+    thumbnail: require('@/assets/images/concepts/thumbnails/sexual-self-esteem.png'),
     slides: [
       {
         type: 'recognize',
@@ -845,6 +855,7 @@ Body appreciation isn't about thinking your body is perfect or ignoring appearan
     ],
     relatedConcepts: ['embodied-presence', 'sexual-self-esteem', 'spectatoring'],
     tier: 'free',
+    thumbnail: require('@/assets/images/concepts/thumbnails/body-appreciation.png'),
     slides: [
       {
         type: 'recognize',
@@ -894,6 +905,7 @@ This anatomical reality explains why external stimulation is important for most 
     ],
     relatedConcepts: ['nerve-density', 'clitourethrovaginal', 'internal-stimulation'],
     tier: 'free',
+    thumbnail: require('@/assets/images/concepts/thumbnails/clitoral-structure.png'),
     slides: [
       {
         type: 'recognize',
@@ -941,6 +953,7 @@ Understanding nerve density helps explain why clitoral stimulation is central to
     ],
     relatedConcepts: ['clitoral-structure', 'pairing'],
     tier: 'free',
+    thumbnail: require('@/assets/images/concepts/thumbnails/nerve-density.png'),
     slides: [
       {
         type: 'recognize',
@@ -988,6 +1001,7 @@ Understanding the CUV complex resolves debates about whether the G-spot "exists.
     ],
     relatedConcepts: ['clitoral-structure', 'internal-stimulation'],
     tier: 'free',
+    thumbnail: require('@/assets/images/concepts/thumbnails/clitourethrovaginal.png'),
     slides: [
       {
         type: 'recognize',
@@ -1035,6 +1049,7 @@ Techniques like angling and certain positions work because they optimize contact
     ],
     relatedConcepts: ['clitourethrovaginal', 'clitoral-structure', 'angling'],
     tier: 'free',
+    thumbnail: require('@/assets/images/concepts/thumbnails/internal-stimulation.png'),
     slides: [
       {
         type: 'recognize',

@@ -228,8 +228,8 @@ StorageAdapter
 | Video | 3 wired (`building`, `spreading`, `responsive-desire`) as MP4; transcode script + `VIDEO_GENERATION.md` |
 | Interactive | 4 wired (Angling, Rocking, Shallowing, Pairing) |
 
-Detailed per-concept table: `docs/asset_inventory.md`.  
-Format-by-concept rationale: `docs/visual_content_strategy.md`.
+Detailed per-concept table: `docs/content/CONCEPT_AUDIT.md` (`npm run generate-concept-audit`).  
+Format-by-concept rationale: `docs/product/visual_content_strategy.md`.
 
 ### Video pipeline (May 2026)
 

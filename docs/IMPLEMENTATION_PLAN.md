@@ -251,7 +251,7 @@ Create `docs/content/CONCEPT_AUDIT.md` (or Google Sheet) with one row per concep
 
 - ~~3 concepts not in any pathway~~ — **resolved:** added to `foundations` / `partner-communication`
 - Spreading lacks dedicated illustration PNG (uses thumbnail on illustrate slide)
-- Several concepts missing dedicated thumbnails (see `asset_inventory.md`)
+- ~~Several concepts missing dedicated thumbnails~~ — ✅ all 22 wired in `vocabulary.ts` (May 20 Phase A)
 
 ### C.5 Acceptance criteria
 
