@@ -1,0 +1,710 @@
+{
+  "_meta": {
+    "version": 1,
+    "updated": "2026-05-20",
+    "source": "npm run sync-registry",
+    "conceptCount": 22
+  },
+  "concepts": {
+    "angling": {
+      "format": "interactive",
+      "videoProfile": null,
+      "assets": {
+        "thumbnail": {
+          "path": "assets/images/concepts/thumbnails/angling.png",
+          "exists": true,
+          "bytes": 215492,
+          "wiredInVocab": true,
+          "status": "wired"
+        },
+        "illustration": {
+          "path": "assets/images/concepts/illustrations/angling.png",
+          "exists": true,
+          "bytes": 157476,
+          "wiredInVocab": true,
+          "status": "wired",
+          "role": "primary"
+        }
+      },
+      "evaluation": {
+        "deviceQA": false,
+        "notes": ""
+      }
+    },
+    "rocking": {
+      "format": "interactive",
+      "videoProfile": null,
+      "assets": {
+        "thumbnail": {
+          "path": "assets/images/concepts/thumbnails/rocking.png",
+          "exists": true,
+          "bytes": 57143,
+          "wiredInVocab": true,
+          "status": "wired"
+        },
+        "illustration": {
+          "path": "assets/images/concepts/illustrations/rocking.png",
+          "exists": true,
+          "bytes": 129660,
+          "wiredInVocab": true,
+          "status": "wired",
+          "role": "primary"
+        }
+      },
+      "evaluation": {
+        "deviceQA": false,
+        "notes": ""
+      }
+    },
+    "shallowing": {
+      "format": "interactive",
+      "videoProfile": null,
+      "assets": {
+        "thumbnail": {
+          "path": "assets/images/concepts/thumbnails/shallowing.png",
+          "exists": true,
+          "bytes": 413640,
+          "wiredInVocab": true,
+          "status": "wired"
+        },
+        "illustration": {
+          "path": "assets/images/concepts/illustrations/shallowing.png",
+          "exists": true,
+          "bytes": 129558,
+          "wiredInVocab": true,
+          "status": "wired",
+          "role": "primary"
+        }
+      },
+      "evaluation": {
+        "deviceQA": false,
+        "notes": ""
+      }
+    },
+    "pairing": {
+      "format": "interactive",
+      "videoProfile": null,
+      "assets": {
+        "thumbnail": {
+          "path": "assets/images/concepts/thumbnails/pairing.png",
+          "exists": true,
+          "bytes": 251079,
+          "wiredInVocab": true,
+          "status": "wired"
+        },
+        "illustration": {
+          "path": "assets/images/concepts/illustrations/pairing.png",
+          "exists": true,
+          "bytes": 192884,
+          "wiredInVocab": true,
+          "status": "wired",
+          "role": "primary"
+        }
+      },
+      "evaluation": {
+        "deviceQA": false,
+        "notes": ""
+      }
+    },
+    "building": {
+      "format": "video",
+      "videoProfile": {
+        "tier": "abstract-loop",
+        "priority": "P0"
+      },
+      "assets": {
+        "thumbnail": {
+          "path": "assets/images/concepts/thumbnails/building.png",
+          "exists": true,
+          "bytes": 287333,
+          "wiredInVocab": true,
+          "status": "wired"
+        },
+        "illustration": {
+          "path": "assets/images/concepts/illustrations/building.png",
+          "exists": true,
+          "bytes": 735694,
+          "wiredInVocab": true,
+          "status": "wired",
+          "role": "poster-fallback"
+        },
+        "video": {
+          "path": "assets/videos/building.mp4",
+          "exists": true,
+          "bytes": 261848,
+          "wiredInVocab": true,
+          "status": "wired"
+        }
+      },
+      "evaluation": {
+        "deviceQA": false,
+        "notes": ""
+      }
+    },
+    "plateauing": {
+      "format": "video",
+      "videoProfile": {
+        "tier": "process-explainer",
+        "priority": "P2"
+      },
+      "assets": {
+        "thumbnail": {
+          "path": "assets/images/concepts/thumbnails/plateauing.png",
+          "exists": true,
+          "bytes": 194325,
+          "wiredInVocab": true,
+          "status": "wired"
+        },
+        "illustration": {
+          "path": "assets/images/concepts/illustrations/plateauing.png",
+          "exists": true,
+          "bytes": 168275,
+          "wiredInVocab": true,
+          "status": "wired",
+          "role": "poster-fallback"
+        },
+        "video": {
+          "path": "assets/videos/plateauing.mp4",
+          "exists": false,
+          "bytes": null,
+          "wiredInVocab": false,
+          "status": "missing"
+        }
+      },
+      "evaluation": {
+        "deviceQA": false,
+        "notes": ""
+      }
+    },
+    "edging": {
+      "format": "interactive (planned)",
+      "videoProfile": null,
+      "assets": {
+        "thumbnail": {
+          "path": "assets/images/concepts/thumbnails/edging.png",
+          "exists": true,
+          "bytes": 447221,
+          "wiredInVocab": true,
+          "status": "wired"
+        },
+        "illustration": {
+          "path": "assets/images/concepts/illustrations/edging.png",
+          "exists": true,
+          "bytes": 397619,
+          "wiredInVocab": true,
+          "status": "wired",
+          "role": "primary"
+        }
+      },
+      "evaluation": {
+        "deviceQA": false,
+        "notes": ""
+      }
+    },
+    "spreading": {
+      "format": "video",
+      "videoProfile": {
+        "tier": "abstract-loop",
+        "priority": "P1"
+      },
+      "assets": {
+        "thumbnail": {
+          "path": "assets/images/concepts/thumbnails/spreading.png",
+          "exists": true,
+          "bytes": 314199,
+          "wiredInVocab": true,
+          "status": "wired"
+        },
+        "illustration": {
+          "path": "assets/images/concepts/illustrations/spreading.png",
+          "exists": true,
+          "bytes": 218844,
+          "wiredInVocab": true,
+          "status": "wired",
+          "role": "poster-fallback"
+        },
+        "video": {
+          "path": "assets/videos/spreading.mp4",
+          "exists": true,
+          "bytes": 1682298,
+          "wiredInVocab": true,
+          "status": "wired"
+        }
+      },
+      "evaluation": {
+        "deviceQA": false,
+        "notes": ""
+      }
+    },
+    "pulsing": {
+      "format": "video",
+      "videoProfile": {
+        "tier": "abstract-loop",
+        "priority": "P0"
+      },
+      "assets": {
+        "thumbnail": {
+          "path": "assets/images/concepts/thumbnails/pulsing.png",
+          "exists": true,
+          "bytes": 343411,
+          "wiredInVocab": true,
+          "status": "wired"
+        },
+        "illustration": {
+          "path": "assets/images/concepts/illustrations/pulsing.png",
+          "exists": true,
+          "bytes": 542690,
+          "wiredInVocab": true,
+          "status": "wired",
+          "role": "poster-fallback"
+        },
+        "video": {
+          "path": "assets/videos/pulsing.mp4",
+          "exists": false,
+          "bytes": null,
+          "wiredInVocab": false,
+          "status": "missing"
+        }
+      },
+      "evaluation": {
+        "deviceQA": false,
+        "notes": ""
+      }
+    },
+    "warmup-window": {
+      "format": "video",
+      "videoProfile": {
+        "tier": "process-explainer",
+        "priority": "P1"
+      },
+      "assets": {
+        "thumbnail": {
+          "path": "assets/images/concepts/thumbnails/warmup-window.png",
+          "exists": true,
+          "bytes": 319186,
+          "wiredInVocab": true,
+          "status": "wired"
+        },
+        "illustration": {
+          "path": "assets/images/concepts/illustrations/warmup-window.png",
+          "exists": true,
+          "bytes": 235628,
+          "wiredInVocab": true,
+          "status": "wired",
+          "role": "poster-fallback"
+        },
+        "video": {
+          "path": "assets/videos/warmup-window.mp4",
+          "exists": false,
+          "bytes": null,
+          "wiredInVocab": false,
+          "status": "missing"
+        }
+      },
+      "evaluation": {
+        "deviceQA": false,
+        "notes": ""
+      }
+    },
+    "responsive-desire": {
+      "format": "video",
+      "videoProfile": {
+        "tier": "process-explainer",
+        "priority": "P1"
+      },
+      "assets": {
+        "thumbnail": {
+          "path": "assets/images/concepts/thumbnails/responsive-desire.png",
+          "exists": true,
+          "bytes": 355207,
+          "wiredInVocab": true,
+          "status": "wired"
+        },
+        "illustration": {
+          "path": "assets/images/concepts/illustrations/responsive-desire.png",
+          "exists": true,
+          "bytes": 722536,
+          "wiredInVocab": true,
+          "status": "wired",
+          "role": "poster-fallback"
+        },
+        "video": {
+          "path": "assets/videos/responsive-desire.mp4",
+          "exists": true,
+          "bytes": 515350,
+          "wiredInVocab": true,
+          "status": "wired"
+        }
+      },
+      "evaluation": {
+        "deviceQA": false,
+        "notes": ""
+      }
+    },
+    "spontaneous-desire": {
+      "format": "video",
+      "videoProfile": {
+        "tier": "embodied-presence",
+        "priority": "P1"
+      },
+      "assets": {
+        "thumbnail": {
+          "path": "assets/images/concepts/thumbnails/spontaneous-desire.png",
+          "exists": true,
+          "bytes": 450597,
+          "wiredInVocab": true,
+          "status": "wired"
+        },
+        "illustration": {
+          "path": "assets/images/concepts/illustrations/spontaneous-desire.png",
+          "exists": true,
+          "bytes": 620528,
+          "wiredInVocab": true,
+          "status": "wired",
+          "role": "poster-fallback"
+        },
+        "video": {
+          "path": "assets/videos/spontaneous-desire.mp4",
+          "exists": false,
+          "bytes": null,
+          "wiredInVocab": false,
+          "status": "missing"
+        }
+      },
+      "evaluation": {
+        "deviceQA": false,
+        "notes": ""
+      }
+    },
+    "golden-trio": {
+      "format": "video",
+      "videoProfile": {
+        "tier": "process-explainer",
+        "priority": "P2"
+      },
+      "assets": {
+        "thumbnail": {
+          "path": "assets/images/concepts/thumbnails/golden-trio.png",
+          "exists": true,
+          "bytes": 170382,
+          "wiredInVocab": true,
+          "status": "wired"
+        },
+        "illustration": {
+          "path": "assets/images/concepts/illustrations/golden-trio.png",
+          "exists": true,
+          "bytes": 184763,
+          "wiredInVocab": true,
+          "status": "wired",
+          "role": "poster-fallback"
+        },
+        "video": {
+          "path": "assets/videos/golden-trio.mp4",
+          "exists": false,
+          "bytes": null,
+          "wiredInVocab": false,
+          "status": "missing"
+        }
+      },
+      "evaluation": {
+        "deviceQA": false,
+        "notes": ""
+      }
+    },
+    "spectatoring": {
+      "format": "video",
+      "videoProfile": {
+        "tier": "embodied-presence",
+        "priority": "P2"
+      },
+      "assets": {
+        "thumbnail": {
+          "path": "assets/images/concepts/thumbnails/spectatoring.png",
+          "exists": true,
+          "bytes": 339811,
+          "wiredInVocab": true,
+          "status": "wired"
+        },
+        "illustration": {
+          "path": "assets/images/concepts/illustrations/spectatoring.png",
+          "exists": true,
+          "bytes": 101985,
+          "wiredInVocab": true,
+          "status": "wired",
+          "role": "poster-fallback"
+        },
+        "video": {
+          "path": "assets/videos/spectatoring.mp4",
+          "exists": false,
+          "bytes": null,
+          "wiredInVocab": false,
+          "status": "missing"
+        }
+      },
+      "evaluation": {
+        "deviceQA": false,
+        "notes": ""
+      }
+    },
+    "embodied-presence": {
+      "format": "video",
+      "videoProfile": {
+        "tier": "embodied-presence",
+        "priority": "P1"
+      },
+      "assets": {
+        "thumbnail": {
+          "path": "assets/images/concepts/thumbnails/embodied-presence.png",
+          "exists": true,
+          "bytes": 219581,
+          "wiredInVocab": true,
+          "status": "wired"
+        },
+        "illustration": {
+          "path": "assets/images/concepts/illustrations/embodied-presence.png",
+          "exists": true,
+          "bytes": 179625,
+          "wiredInVocab": true,
+          "status": "wired",
+          "role": "poster-fallback"
+        },
+        "video": {
+          "path": "assets/videos/embodied-presence.mp4",
+          "exists": false,
+          "bytes": null,
+          "wiredInVocab": false,
+          "status": "missing"
+        }
+      },
+      "evaluation": {
+        "deviceQA": false,
+        "notes": ""
+      }
+    },
+    "non-concordance": {
+      "format": "video",
+      "videoProfile": {
+        "tier": "process-explainer",
+        "priority": "P1"
+      },
+      "assets": {
+        "thumbnail": {
+          "path": "assets/images/concepts/thumbnails/non-concordance.png",
+          "exists": true,
+          "bytes": 310525,
+          "wiredInVocab": true,
+          "status": "wired"
+        },
+        "illustration": {
+          "path": "assets/images/concepts/illustrations/non-concordance.png",
+          "exists": true,
+          "bytes": 226381,
+          "wiredInVocab": true,
+          "status": "wired",
+          "role": "poster-fallback"
+        },
+        "video": {
+          "path": "assets/videos/non-concordance.mp4",
+          "exists": false,
+          "bytes": null,
+          "wiredInVocab": false,
+          "status": "missing"
+        }
+      },
+      "evaluation": {
+        "deviceQA": false,
+        "notes": ""
+      }
+    },
+    "sexual-self-esteem": {
+      "format": "static",
+      "videoProfile": null,
+      "assets": {
+        "thumbnail": {
+          "path": "assets/images/concepts/thumbnails/sexual-self-esteem.png",
+          "exists": true,
+          "bytes": 445014,
+          "wiredInVocab": true,
+          "status": "wired"
+        },
+        "illustration": {
+          "path": "assets/images/concepts/illustrations/sexual-self-esteem.png",
+          "exists": true,
+          "bytes": 568940,
+          "wiredInVocab": true,
+          "status": "wired",
+          "role": "primary"
+        }
+      },
+      "evaluation": {
+        "deviceQA": false,
+        "notes": ""
+      }
+    },
+    "body-appreciation": {
+      "format": "static",
+      "videoProfile": null,
+      "assets": {
+        "thumbnail": {
+          "path": "assets/images/concepts/thumbnails/body-appreciation.png",
+          "exists": true,
+          "bytes": 406771,
+          "wiredInVocab": true,
+          "status": "wired"
+        },
+        "illustration": {
+          "path": "assets/images/concepts/illustrations/body-appreciation.png",
+          "exists": true,
+          "bytes": 207227,
+          "wiredInVocab": true,
+          "status": "wired",
+          "role": "primary"
+        }
+      },
+      "evaluation": {
+        "deviceQA": false,
+        "notes": ""
+      }
+    },
+    "clitoral-structure": {
+      "format": "video",
+      "videoProfile": {
+        "tier": "scientific-journey",
+        "priority": "P0"
+      },
+      "assets": {
+        "thumbnail": {
+          "path": "assets/images/concepts/thumbnails/clitoral-structure.png",
+          "exists": true,
+          "bytes": 558779,
+          "wiredInVocab": true,
+          "status": "wired"
+        },
+        "illustration": {
+          "path": "assets/images/concepts/illustrations/clitoral-structure.png",
+          "exists": true,
+          "bytes": 200116,
+          "wiredInVocab": true,
+          "status": "wired",
+          "role": "poster-fallback"
+        },
+        "video": {
+          "path": "assets/videos/clitoral-structure.mp4",
+          "exists": false,
+          "bytes": null,
+          "wiredInVocab": false,
+          "status": "missing"
+        }
+      },
+      "evaluation": {
+        "deviceQA": false,
+        "notes": ""
+      }
+    },
+    "nerve-density": {
+      "format": "video",
+      "videoProfile": {
+        "tier": "scientific-journey",
+        "priority": "P0"
+      },
+      "assets": {
+        "thumbnail": {
+          "path": "assets/images/concepts/thumbnails/nerve-density.png",
+          "exists": true,
+          "bytes": 342066,
+          "wiredInVocab": true,
+          "status": "wired"
+        },
+        "illustration": {
+          "path": "assets/images/concepts/illustrations/nerve-density.png",
+          "exists": true,
+          "bytes": 144670,
+          "wiredInVocab": true,
+          "status": "wired",
+          "role": "poster-fallback"
+        },
+        "video": {
+          "path": "assets/videos/nerve-density.mp4",
+          "exists": false,
+          "bytes": null,
+          "wiredInVocab": false,
+          "status": "missing"
+        }
+      },
+      "evaluation": {
+        "deviceQA": false,
+        "notes": ""
+      }
+    },
+    "clitourethrovaginal": {
+      "format": "video",
+      "videoProfile": {
+        "tier": "scientific-journey",
+        "priority": "P1"
+      },
+      "assets": {
+        "thumbnail": {
+          "path": "assets/images/concepts/thumbnails/clitourethrovaginal.png",
+          "exists": true,
+          "bytes": 120027,
+          "wiredInVocab": true,
+          "status": "wired"
+        },
+        "illustration": {
+          "path": "assets/images/concepts/illustrations/clitourethrovaginal.png",
+          "exists": true,
+          "bytes": 198552,
+          "wiredInVocab": true,
+          "status": "wired",
+          "role": "poster-fallback"
+        },
+        "video": {
+          "path": "assets/videos/clitourethrovaginal.mp4",
+          "exists": false,
+          "bytes": null,
+          "wiredInVocab": false,
+          "status": "missing"
+        }
+      },
+      "evaluation": {
+        "deviceQA": false,
+        "notes": ""
+      }
+    },
+    "internal-stimulation": {
+      "format": "video",
+      "videoProfile": {
+        "tier": "scientific-journey",
+        "priority": "P1"
+      },
+      "assets": {
+        "thumbnail": {
+          "path": "assets/images/concepts/thumbnails/internal-stimulation.png",
+          "exists": true,
+          "bytes": 127081,
+          "wiredInVocab": true,
+          "status": "wired"
+        },
+        "illustration": {
+          "path": "assets/images/concepts/illustrations/internal-stimulation.png",
+          "exists": true,
+          "bytes": 153482,
+          "wiredInVocab": true,
+          "status": "wired",
+          "role": "poster-fallback"
+        },
+        "video": {
+          "path": "assets/videos/internal-stimulation.mp4",
+          "exists": false,
+          "bytes": null,
+          "wiredInVocab": false,
+          "status": "missing"
+        }
+      },
+      "evaluation": {
+        "deviceQA": false,
+        "notes": ""
+      }
+    }
+  }
+}

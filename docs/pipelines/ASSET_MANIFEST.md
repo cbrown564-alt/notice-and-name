@@ -1,6 +1,8 @@
 # Asset Manifest
 
 **Living inventory** — update same day as any asset batch merge.  
+**Machine registry:** [`data/asset-registry.json`](../../data/asset-registry.json) — `npm run sync-registry`  
+**Progress dashboard:** `npm run asset-dashboard` (add `--write` for `reports/ASSET_DASHBOARD.md`)  
 **Regenerate audit rows:** `npm run generate-concept-audit`  
 **Detailed tracker:** `content/CONCEPT_AUDIT.md`  
 **Video scope (Omni):** [`VIDEO_CONCEPT_CATALOG.md`](./VIDEO_CONCEPT_CATALOG.md) — anatomy concepts target **scientific-journey** MP4s (≤2.5 MB).

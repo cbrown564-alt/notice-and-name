@@ -70,6 +70,9 @@
 | `npm run mark-qa-batch -- <batch\|status\|list>` | Mark device-QA batches in `data/qa-passed.json` |
 | `npm run bundle-report` | Write `reports/BUNDLE_REPORT.md` (asset sizes) |
 | `npm run validate-manifest` | Check format lock, wiring, and size budgets |
+| `npm run validate-manifest:strict` | Same checks; warnings fail CI (use before asset merges) |
+| `npm run sync-registry` | Refresh `data/asset-registry.json` from disk + vocab |
+| `npm run asset-dashboard` | Terminal progress summary (`--write` for markdown report) |
 | `npm run pilot-review` | List Phase 1.3 pilot PNGs vs production |
 | `npm run swap-pilot-winner -- <concept> <generator>` | Promote pilot PNG to production + compress |
 | `npm run enrich-illustration-prompts` | Phase 2.3 — deck-align all illustration prompt `.md` files |
@@ -104,6 +107,6 @@
 | How do I write copy? | `content/COPY_GUIDELINES.md` |
 | How do I generate images? | `pipelines/IMAGE_GENERATION.md` |
 | How do I generate videos? | `pipelines/VIDEO_GENERATION.md` |
-| What files exist? | `pipelines/ASSET_MANIFEST.md` |
+| What files exist? | `data/asset-registry.json` + `npm run asset-dashboard` |
 | How do I QA on device? | `QA_CHECKLIST.md` |
 | How does the backend work? | `architecture/backend.md` |

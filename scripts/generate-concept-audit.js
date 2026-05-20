@@ -5,69 +5,17 @@
 
 const fs = require('fs');
 const path = require('path');
+const {
+  ROOT,
+  fileExists,
+  loadConcepts,
+  loadVisualFormats,
+  loadCopyReviewedIds,
+  loadQaPassedIds,
+} = require('./lib/vocab-parse');
 
-const ROOT = path.join(__dirname, '..');
-const VOCAB_PATH = path.join(ROOT, 'data/vocabulary.ts');
 const PATHWAYS_PATH = path.join(ROOT, 'data/pathways.ts');
 const OUT_PATH = path.join(ROOT, 'docs/content/CONCEPT_AUDIT.md');
-
-const FORMAT_LOCK_PATH = path.join(ROOT, 'data/visual-formats.json');
-const COPY_REVIEW_PATH = path.join(ROOT, 'data/copy-review.json');
-const QA_PASSED_PATH = path.join(ROOT, 'data/qa-passed.json');
-
-function loadCopyReviewedIds() {
-  if (!fs.existsSync(COPY_REVIEW_PATH)) return new Set();
-  const raw = JSON.parse(fs.readFileSync(COPY_REVIEW_PATH, 'utf8'));
-  return new Set(raw.concepts || []);
-}
-
-function loadQaPassedIds() {
-  if (!fs.existsSync(QA_PASSED_PATH)) return new Set();
-  const raw = JSON.parse(fs.readFileSync(QA_PASSED_PATH, 'utf8'));
-  const passed = raw.passed || {};
-  return new Set(Object.keys(passed).filter((id) => passed[id] === true));
-}
-
-function loadFormatById() {
-  const raw = JSON.parse(fs.readFileSync(FORMAT_LOCK_PATH, 'utf8'));
-  return raw.formats;
-}
-
-function fileExists(rel) {
-  return fs.existsSync(path.join(ROOT, rel));
-}
-
-function parseConcepts(source) {
-  const concepts = [];
-  // Match concept closing `  },` only (2 spaces), not slide `      },`
-  const blockRe = /\{\s*\n\s*id: '([^']+)'([\s\S]*?)\n  \},(?=\s*\n\s*(?:\/\/|{|\]))/g;
-  let m;
-  const body = source.slice(source.indexOf('export const concepts'));
-  while ((m = blockRe.exec(body)) !== null) {
-    const id = m[1];
-    const block = m[2];
-    const category = (block.match(/category: '([^']+)'/) || [])[1] || '';
-    const diagramType = (block.match(/diagramType: '([^']+)'/) || [])[1] || '';
-    const hasThumb = /thumbnails\/[^']+\.png/.test(block);
-    const illMatch = block.match(/illustrations\/([^']+)\.png/);
-    const thumbIllMatch = block.match(/thumbnails\/([^']+)\.png/);
-    const videoMatch = block.match(/videos\/([^']+)\.(mov|mp4)/);
-    const slideTypes = [...block.matchAll(/type: '([^']+)'/g)].map((x) => x[1]);
-    const related = (block.match(/relatedConcepts: \[([^\]]*)\]/) || [])[1] || '';
-    concepts.push({
-      id,
-      category,
-      diagramType,
-      hasThumb,
-      illustrationId: illMatch ? illMatch[1] : thumbIllMatch ? thumbIllMatch[1] : null,
-      videoFile: videoMatch ? `${videoMatch[1]}.${videoMatch[2]}` : null,
-      slideTypes,
-      related,
-      block,
-    });
-  }
-  return concepts;
-}
 
 function parsePathwayMembership(pathwaysSource) {
   const map = {};
@@ -110,11 +58,15 @@ function citationsOk(block) {
   return hasResearch && hasSource && hasUnderstand;
 }
 
+function wiredCol(exists, wired) {
+  if (!exists) return '🔴 missing';
+  return wired ? '✅' : '⚠️ disk only';
+}
+
 function main() {
-  const FORMAT_BY_ID = loadFormatById();
-  const vocab = fs.readFileSync(VOCAB_PATH, 'utf8');
+  const { formats: FORMAT_BY_ID } = loadVisualFormats();
   const pathways = fs.readFileSync(PATHWAYS_PATH, 'utf8');
-  const concepts = parseConcepts(vocab);
+  const concepts = loadConcepts();
   const pathwayMap = parsePathwayMembership(pathways);
   const allIds = new Set(concepts.map((c) => c.id));
   const copyReviewed = loadCopyReviewedIds();
@@ -124,25 +76,30 @@ function main() {
     '# Concept Audit (Master Tracker)',
     '',
     `**Generated:** ${new Date().toISOString().slice(0, 10)}`,
-    '**Regenerate:** `node scripts/generate-concept-audit.js`',
+    '**Regenerate:** `npm run generate-concept-audit`',
+    '**Registry:** `data/asset-registry.json` (`npm run sync-registry`)',
     '',
-    'One row per concept. `format_choice` locked in `data/visual-formats.json` (Phase 1.2). Update QA columns as Phase 2–4 progress.',
+    'One row per concept. `format_choice` locked in `data/visual-formats.json`. `thumb_wired` / `video_wired` reflect `vocabulary.ts` require() bindings.',
     '',
-    '| id | category | format_choice | thumbnail | illustration | rich_media | slides | pathways | copy_reviewed | citations_ok | qa_passed |',
-    '|----|----------|---------------|-----------|--------------|------------|--------|----------|---------------|--------------|-----------|',
+    '| id | category | format_choice | thumbnail | thumb_wired | illustration | rich_media | video_wired | slides | pathways | copy_reviewed | citations_ok | qa_passed |',
+    '|----|----------|---------------|-----------|-------------|--------------|------------|-------------|--------|----------|---------------|--------------|-----------|',
   ];
 
   for (const c of concepts) {
     const { thumb, ill, rich } = assetStatus(c);
+    const thumbPath = `assets/images/concepts/thumbnails/${c.id}.png`;
+    const thumbExists = fileExists(thumbPath);
+    const thumbWired = wiredCol(thumbExists, c.conceptLevelThumb);
+    const format = FORMAT_BY_ID[c.id] || 'TBD';
+    const videoWired =
+      format === 'video' || c.videoFile ? (c.videoFile ? '✅' : '☐') : '—';
     const slides =
       c.slideTypes.length >= 5
         ? c.slideTypes.join(', ')
         : `⚠️ ${c.slideTypes.length}/5 (${c.slideTypes.join(', ')})`;
     const pw = pathwayMap[c.id];
     const pathwaysCol = pw?.length ? pw.join(', ') : '🔴 none';
-    const format = FORMAT_BY_ID[c.id] || 'TBD';
 
-  // Validate related concept ids
     const relatedIds = [...c.related.matchAll(/'([^']+)'/g)].map((x) => x[1]);
     const dangling = relatedIds.filter((rid) => !allIds.has(rid));
     const relatedNote = dangling.length ? ` ⚠️ dangling: ${dangling.join(', ')}` : '';
@@ -151,7 +108,7 @@ function main() {
     const citationsCol = citationsOk(c.block) ? '✅' : '☐';
     const qaCol = qaPassed.has(c.id) ? '✅' : '☐';
     lines.push(
-      `| ${c.id} | ${c.category} | ${format} | ${thumb} | ${ill} | ${rich} | ${slides} | ${pathwaysCol} | ${copyCol} | ${citationsCol} | ${qaCol} |${relatedNote ? '' : ''}`
+      `| ${c.id} | ${c.category} | ${format} | ${thumb} | ${thumbWired} | ${ill} | ${rich} | ${videoWired} | ${slides} | ${pathwaysCol} | ${copyCol} | ${citationsCol} | ${qaCol} |`
     );
     if (relatedNote) {
       lines[lines.length - 1] += ` <!--${relatedNote}-->`;
@@ -161,7 +118,7 @@ function main() {
   lines.push('', '## Notes', '');
   lines.push('- **Videos:** App bundle uses H.264 MP4 only (`building.mp4`, `responsive-desire.mp4`, `spreading.mp4`). ProRes/MOV sources live in `assets/videos/originals/`.');
   lines.push('- **Rocking:** Skia diagram only; no video in repo.');
-  lines.push('- **Spreading:** `spreading.mp4` wired; illustration at `illustrations/spreading.png` (compress before ship).');
+  lines.push('- **Spreading:** `spreading.mp4` wired; illustration at `illustrations/spreading.png`.');
   const orphanPathways = concepts.filter((c) => !pathwayMap[c.id]);
   if (orphanPathways.length) {
     lines.push(`- **Pathways gap:** ${orphanPathways.map((c) => `\`${c.id}\``).join(', ')} not in any pathway.`);
