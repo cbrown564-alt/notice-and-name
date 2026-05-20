@@ -28,8 +28,28 @@
       },
       "evaluation": {
         "deviceQA": false,
-        "notes": ""
-      }
+        "styleCoherence": null,
+        "scientificAccuracy": null,
+        "noEmbeddedText": null,
+        "motionClarity": null,
+        "promotionDecision": "rejected",
+        "notes": "In-image titles/labels — regen with no-text prompt"
+      },
+      "pilots": [
+        {
+          "assetType": "illustration",
+          "generator": "chatgpt-images-2",
+          "path": "assets/_staging/pilot/illustrations/angling/chatgpt-images-2.png",
+          "scores": {
+            "styleCoherence": 2,
+            "scientificAccuracy": 3,
+            "noEmbeddedText": false
+          },
+          "decision": "rejected",
+          "notes": "In-image titles/labels — regen with no-text prompt",
+          "reviewedAt": "2026-05-19"
+        }
+      ]
     },
     "rocking": {
       "format": "interactive",
@@ -53,8 +73,14 @@
       },
       "evaluation": {
         "deviceQA": false,
+        "styleCoherence": null,
+        "scientificAccuracy": null,
+        "noEmbeddedText": null,
+        "motionClarity": null,
+        "promotionDecision": "pending",
         "notes": ""
-      }
+      },
+      "pilots": []
     },
     "shallowing": {
       "format": "interactive",
@@ -78,8 +104,14 @@
       },
       "evaluation": {
         "deviceQA": false,
+        "styleCoherence": null,
+        "scientificAccuracy": null,
+        "noEmbeddedText": null,
+        "motionClarity": null,
+        "promotionDecision": "pending",
         "notes": ""
-      }
+      },
+      "pilots": []
     },
     "pairing": {
       "format": "interactive",
@@ -103,8 +135,14 @@
       },
       "evaluation": {
         "deviceQA": false,
+        "styleCoherence": null,
+        "scientificAccuracy": null,
+        "noEmbeddedText": null,
+        "motionClarity": null,
+        "promotionDecision": "pending",
         "notes": ""
-      }
+      },
+      "pilots": []
     },
     "building": {
       "format": "video",
@@ -138,8 +176,14 @@
       },
       "evaluation": {
         "deviceQA": false,
+        "styleCoherence": null,
+        "scientificAccuracy": null,
+        "noEmbeddedText": null,
+        "motionClarity": null,
+        "promotionDecision": "pending",
         "notes": ""
-      }
+      },
+      "pilots": []
     },
     "plateauing": {
       "format": "video",
@@ -173,8 +217,14 @@
       },
       "evaluation": {
         "deviceQA": false,
+        "styleCoherence": null,
+        "scientificAccuracy": null,
+        "noEmbeddedText": null,
+        "motionClarity": null,
+        "promotionDecision": "pending",
         "notes": ""
-      }
+      },
+      "pilots": []
     },
     "edging": {
       "format": "interactive (planned)",
@@ -198,8 +248,14 @@
       },
       "evaluation": {
         "deviceQA": false,
+        "styleCoherence": null,
+        "scientificAccuracy": null,
+        "noEmbeddedText": null,
+        "motionClarity": null,
+        "promotionDecision": "pending",
         "notes": ""
-      }
+      },
+      "pilots": []
     },
     "spreading": {
       "format": "video",
@@ -233,8 +289,24 @@
       },
       "evaluation": {
         "deviceQA": false,
+        "styleCoherence": null,
+        "scientificAccuracy": null,
+        "noEmbeddedText": null,
+        "motionClarity": null,
+        "promotionDecision": "pending",
         "notes": ""
-      }
+      },
+      "pilots": [
+        {
+          "assetType": "illustration",
+          "generator": "gemini",
+          "path": "assets/_staging/pilot/illustrations/spreading/gemini.png",
+          "scores": {},
+          "decision": "pending",
+          "notes": "",
+          "reviewedAt": null
+        }
+      ]
     },
     "pulsing": {
       "format": "video",
@@ -268,8 +340,14 @@
       },
       "evaluation": {
         "deviceQA": false,
+        "styleCoherence": null,
+        "scientificAccuracy": null,
+        "noEmbeddedText": null,
+        "motionClarity": null,
+        "promotionDecision": "pending",
         "notes": ""
-      }
+      },
+      "pilots": []
     },
     "warmup-window": {
       "format": "video",
@@ -303,8 +381,24 @@
       },
       "evaluation": {
         "deviceQA": false,
+        "styleCoherence": null,
+        "scientificAccuracy": null,
+        "noEmbeddedText": null,
+        "motionClarity": null,
+        "promotionDecision": "pending",
         "notes": ""
-      }
+      },
+      "pilots": [
+        {
+          "assetType": "illustration",
+          "generator": "gemini",
+          "path": "assets/_staging/pilot/illustrations/warmup-window/gemini.png",
+          "scores": {},
+          "decision": "pending",
+          "notes": "",
+          "reviewedAt": null
+        }
+      ]
     },
     "responsive-desire": {
       "format": "video",
@@ -338,8 +432,14 @@
       },
       "evaluation": {
         "deviceQA": false,
+        "styleCoherence": null,
+        "scientificAccuracy": null,
+        "noEmbeddedText": null,
+        "motionClarity": null,
+        "promotionDecision": "pending",
         "notes": ""
-      }
+      },
+      "pilots": []
     },
     "spontaneous-desire": {
       "format": "video",
@@ -373,8 +473,14 @@
       },
       "evaluation": {
         "deviceQA": false,
+        "styleCoherence": null,
+        "scientificAccuracy": null,
+        "noEmbeddedText": null,
+        "motionClarity": null,
+        "promotionDecision": "pending",
         "notes": ""
-      }
+      },
+      "pilots": []
     },
     "golden-trio": {
       "format": "video",
@@ -408,8 +514,14 @@
       },
       "evaluation": {
         "deviceQA": false,
+        "styleCoherence": null,
+        "scientificAccuracy": null,
+        "noEmbeddedText": null,
+        "motionClarity": null,
+        "promotionDecision": "pending",
         "notes": ""
-      }
+      },
+      "pilots": []
     },
     "spectatoring": {
       "format": "video",
@@ -443,8 +555,14 @@
       },
       "evaluation": {
         "deviceQA": false,
+        "styleCoherence": null,
+        "scientificAccuracy": null,
+        "noEmbeddedText": null,
+        "motionClarity": null,
+        "promotionDecision": "pending",
         "notes": ""
-      }
+      },
+      "pilots": []
     },
     "embodied-presence": {
       "format": "video",
@@ -478,8 +596,14 @@
       },
       "evaluation": {
         "deviceQA": false,
+        "styleCoherence": null,
+        "scientificAccuracy": null,
+        "noEmbeddedText": null,
+        "motionClarity": null,
+        "promotionDecision": "pending",
         "notes": ""
-      }
+      },
+      "pilots": []
     },
     "non-concordance": {
       "format": "video",
@@ -513,8 +637,28 @@
       },
       "evaluation": {
         "deviceQA": false,
-        "notes": ""
-      }
+        "styleCoherence": null,
+        "scientificAccuracy": null,
+        "noEmbeddedText": null,
+        "motionClarity": null,
+        "promotionDecision": "approved",
+        "notes": "Promoted to production May 19"
+      },
+      "pilots": [
+        {
+          "assetType": "illustration",
+          "generator": "chatgpt-images-2",
+          "path": "assets/_staging/pilot/illustrations/non-concordance/chatgpt-images-2.png",
+          "scores": {
+            "styleCoherence": 4,
+            "scientificAccuracy": 5,
+            "noEmbeddedText": true
+          },
+          "decision": "approved",
+          "notes": "Promoted to production May 19",
+          "reviewedAt": "2026-05-19"
+        }
+      ]
     },
     "sexual-self-esteem": {
       "format": "static",
@@ -538,8 +682,14 @@
       },
       "evaluation": {
         "deviceQA": false,
+        "styleCoherence": null,
+        "scientificAccuracy": null,
+        "noEmbeddedText": null,
+        "motionClarity": null,
+        "promotionDecision": "pending",
         "notes": ""
-      }
+      },
+      "pilots": []
     },
     "body-appreciation": {
       "format": "static",
@@ -563,8 +713,14 @@
       },
       "evaluation": {
         "deviceQA": false,
+        "styleCoherence": null,
+        "scientificAccuracy": null,
+        "noEmbeddedText": null,
+        "motionClarity": null,
+        "promotionDecision": "pending",
         "notes": ""
-      }
+      },
+      "pilots": []
     },
     "clitoral-structure": {
       "format": "video",
@@ -598,8 +754,24 @@
       },
       "evaluation": {
         "deviceQA": false,
+        "styleCoherence": null,
+        "scientificAccuracy": null,
+        "noEmbeddedText": null,
+        "motionClarity": null,
+        "promotionDecision": "pending",
         "notes": ""
-      }
+      },
+      "pilots": [
+        {
+          "assetType": "illustration",
+          "generator": "gemini",
+          "path": "assets/_staging/pilot/illustrations/clitoral-structure/gemini.png",
+          "scores": {},
+          "decision": "pending",
+          "notes": "",
+          "reviewedAt": null
+        }
+      ]
     },
     "nerve-density": {
       "format": "video",
@@ -633,8 +805,14 @@
       },
       "evaluation": {
         "deviceQA": false,
+        "styleCoherence": null,
+        "scientificAccuracy": null,
+        "noEmbeddedText": null,
+        "motionClarity": null,
+        "promotionDecision": "pending",
         "notes": ""
-      }
+      },
+      "pilots": []
     },
     "clitourethrovaginal": {
       "format": "video",
@@ -668,8 +846,14 @@
       },
       "evaluation": {
         "deviceQA": false,
+        "styleCoherence": null,
+        "scientificAccuracy": null,
+        "noEmbeddedText": null,
+        "motionClarity": null,
+        "promotionDecision": "pending",
         "notes": ""
-      }
+      },
+      "pilots": []
     },
     "internal-stimulation": {
       "format": "video",
@@ -703,8 +887,14 @@
       },
       "evaluation": {
         "deviceQA": false,
+        "styleCoherence": null,
+        "scientificAccuracy": null,
+        "noEmbeddedText": null,
+        "motionClarity": null,
+        "promotionDecision": "pending",
         "notes": ""
-      }
+      },
+      "pilots": []
     }
   }
 }

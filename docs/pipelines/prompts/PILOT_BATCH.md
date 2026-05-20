@@ -19,8 +19,8 @@
    - **Gemini clinical** for `spreading`, `warmup-window`, `clitoral-structure` — [`GEMINI_CLINICAL_PROMPTS.md`](./GEMINI_CLINICAL_PROMPTS.md) (ChatGPT blocks these)
    - Optional **Nano Banana Pro 2** comparison on any concept
 2. Generate **thumbnail** with ChatGPT Images 2 (simplified glyph of winning plate).
-3. Save pilots to `assets/images/concepts/illustrations/pilot/{concept}-{generator}.png`.
-4. Run `npm run pilot-review` — compare production vs pilot sizes.
+3. Save pilots to `assets/_staging/pilot/illustrations/{concept}/{generator}.png` (legacy: `illustrations/pilot/{concept}-{generator}.png`).
+4. Run `npm run pilot-compare` — compare production vs pilots; score with rubric in [`ASSET_EVALUATION.md`](../ASSET_EVALUATION.md).
 5. After in-app review: `npm run swap-pilot-winner -- {concept} {generator}` → compress → validate.
 6. Record winners below; update `pipelines/IMAGE_GENERATION.md` § Tooling.
 

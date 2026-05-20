@@ -13,6 +13,7 @@ const {
   describeAsset,
   assetPathFor,
 } = require('./lib/vocab-parse');
+const { listPilotIllustrations } = require('./lib/pilot-paths');
 
 const MANUAL_STATUSES = new Set(['approved', 'rejected', 'pilot', 'review']);
 
@@ -28,6 +29,35 @@ function mergeAsset(prev, next) {
   if (prev.promptRef) merged.promptRef = prev.promptRef;
   if (prev.notes) merged.notes = prev.notes;
   return merged;
+}
+
+function mergeEvaluation(prevEval, qaPassed) {
+  return {
+    deviceQA: qaPassed ? true : prevEval.deviceQA || false,
+    styleCoherence: prevEval.styleCoherence ?? null,
+    scientificAccuracy: prevEval.scientificAccuracy ?? null,
+    noEmbeddedText: prevEval.noEmbeddedText ?? null,
+    motionClarity: prevEval.motionClarity ?? null,
+    promotionDecision: prevEval.promotionDecision || 'pending',
+    notes: prevEval.notes || '',
+  };
+}
+
+function mergePilots(conceptId, prevPilots) {
+  const discovered = listPilotIllustrations(conceptId);
+  const byGen = Object.fromEntries((prevPilots || []).map((p) => [p.generator, p]));
+  return discovered.map((d) => {
+    const prev = byGen[d.generator] || {};
+    return {
+      assetType: 'illustration',
+      generator: d.generator,
+      path: d.path,
+      scores: prev.scores || {},
+      decision: prev.decision || 'pending',
+      notes: prev.notes || '',
+      reviewedAt: prev.reviewedAt || null,
+    };
+  });
 }
 
 function buildConceptEntry(concept, format, videoProfile, prevConcept, qaPassed) {
@@ -62,10 +92,8 @@ function buildConceptEntry(concept, format, videoProfile, prevConcept, qaPassed)
       }),
       ...(video ? { video: mergeAsset(prevAssets.video, video) } : {}),
     },
-    evaluation: {
-      deviceQA: qaPassed.has(concept.id) ? true : prevEval.deviceQA || false,
-      notes: prevEval.notes || '',
-    },
+    evaluation: mergeEvaluation(prevEval, qaPassed.has(concept.id)),
+    pilots: mergePilots(concept.id, prevConcept?.pilots),
   };
 }
 

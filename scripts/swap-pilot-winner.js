@@ -7,21 +7,20 @@
  * Example:
  *   node scripts/swap-pilot-winner.js non-concordance chatgpt-images-2
  *
- * Backs up current production to pilot/{concept}-production-backup.png
+ * Pilot paths (preferred): assets/_staging/pilot/illustrations/{concept}/{generator}.png
+ * Legacy fallback: assets/images/concepts/illustrations/pilot/{concept}-{generator}.png
  */
 
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
-
-const ROOT = path.join(__dirname, '..');
-const PILOT_CONCEPTS = [
-  'angling',
-  'spreading',
-  'warmup-window',
-  'non-concordance',
-  'clitoral-structure',
-];
+const { ROOT } = require('./lib/vocab-parse');
+const {
+  PILOT_BATCH_CONCEPTS,
+  resolvePilotIllustrationPath,
+  pilotIllustrationBackupPath,
+  legacyPilotBackupPath,
+} = require('./lib/pilot-paths');
 
 function usage() {
   console.error('Usage: node scripts/swap-pilot-winner.js <concept-id> <generator>');
@@ -33,31 +32,36 @@ function main() {
   const [conceptId, generator] = process.argv.slice(2);
   if (!conceptId || !generator) usage();
 
-  if (!PILOT_CONCEPTS.includes(conceptId)) {
+  if (!PILOT_BATCH_CONCEPTS.includes(conceptId)) {
     console.error(`Unknown pilot concept: ${conceptId}`);
-    console.error(`Expected one of: ${PILOT_CONCEPTS.join(', ')}`);
+    console.error(`Expected one of: ${PILOT_BATCH_CONCEPTS.join(', ')}`);
     process.exit(1);
   }
 
-  const pilotRel = `assets/images/concepts/illustrations/pilot/${conceptId}-${generator}.png`;
+  const pilotRel = resolvePilotIllustrationPath(conceptId, generator);
+  if (!pilotRel) {
+    console.error(`Pilot not found for ${conceptId}/${generator}`);
+    console.error('Run npm run pilot-compare to list available pilots.');
+    process.exit(1);
+  }
+
   const prodRel = `assets/images/concepts/illustrations/${conceptId}.png`;
-  const backupRel = `assets/images/concepts/illustrations/pilot/${conceptId}-production-backup.png`;
+  const backupRel = pilotIllustrationBackupPath(conceptId);
+  const legacyBackupRel = legacyPilotBackupPath(conceptId);
 
   const pilotPath = path.join(ROOT, pilotRel);
   const prodPath = path.join(ROOT, prodRel);
-  const backupPath = path.join(ROOT, backupRel);
-
-  if (!fs.existsSync(pilotPath)) {
-    console.error(`Pilot not found: ${pilotRel}`);
-    process.exit(1);
+  let backupPath = path.join(ROOT, backupRel);
+  if (!fs.existsSync(path.dirname(backupPath))) {
+    backupPath = path.join(ROOT, legacyBackupRel);
   }
 
-  const pilotDir = path.dirname(backupPath);
-  if (!fs.existsSync(pilotDir)) fs.mkdirSync(pilotDir, { recursive: true });
+  const backupDir = path.dirname(backupPath);
+  if (!fs.existsSync(backupDir)) fs.mkdirSync(backupDir, { recursive: true });
 
   if (fs.existsSync(prodPath)) {
     fs.copyFileSync(prodPath, backupPath);
-    console.log(`Backed up production → ${backupRel}`);
+    console.log(`Backed up production → ${path.relative(ROOT, backupPath)}`);
   }
 
   fs.copyFileSync(pilotPath, prodPath);
@@ -68,7 +72,7 @@ function main() {
 
   const bytes = fs.statSync(prodPath).size;
   console.log(`Production size: ${(bytes / 1024).toFixed(0)} KB`);
-  console.log('\nNext: review in app, update PILOT_BATCH.md winners table, run npm run validate-manifest');
+  console.log('\nNext: npm run sync-registry && npm run validate-manifest');
 }
 
 main();

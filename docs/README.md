@@ -44,6 +44,7 @@
 | [pipelines/prompts/PILOT_BATCH.md](./pipelines/prompts/PILOT_BATCH.md) | Phase 1.3 five-concept image pilot |
 | [pipelines/VIDEO_GENERATION.md](./pipelines/VIDEO_GENERATION.md) | Gemini Omni + ffmpeg transcode workflow |
 | [pipelines/VIDEO_CONCEPT_CATALOG.md](./pipelines/VIDEO_CONCEPT_CATALOG.md) | Expanded video scope (journeys + explainers) |
+| [pipelines/ASSET_EVALUATION.md](./pipelines/ASSET_EVALUATION.md) | Rubric + promotion gates for pilots |
 | [pipelines/ASSET_MANIFEST.md](./pipelines/ASSET_MANIFEST.md) | File inventory + wiring status |
 | [asset_generation_prompts.md](./asset_generation_prompts.md) | January archive + Veo JSON (illustration prompts migrated) |
 | [gemini_omni_best_practices.md](./gemini_omni_best_practices.md) | Gemini Omni prompting + editing reference |
@@ -73,7 +74,8 @@
 | `npm run validate-manifest:strict` | Same checks; warnings fail CI (use before asset merges) |
 | `npm run sync-registry` | Refresh `data/asset-registry.json` from disk + vocab |
 | `npm run asset-dashboard` | Terminal progress summary (`--write` for markdown report) |
-| `npm run pilot-review` | List Phase 1.3 pilot PNGs vs production |
+| `npm run pilot-compare` | List/score/decide pilot A/B variants ([rubric](./pipelines/ASSET_EVALUATION.md)) |
+| `npm run pilot-review` | Alias for `pilot-compare` |
 | `npm run swap-pilot-winner -- <concept> <generator>` | Promote pilot PNG to production + compress |
 | `npm run enrich-illustration-prompts` | Phase 2.3 — deck-align all illustration prompt `.md` files |
 | `npm run migrate-illustration-prompts` | Re-sync prompts from legacy doc (skips existing) |
@@ -108,5 +110,6 @@
 | How do I generate images? | `pipelines/IMAGE_GENERATION.md` |
 | How do I generate videos? | `pipelines/VIDEO_GENERATION.md` |
 | What files exist? | `data/asset-registry.json` + `npm run asset-dashboard` |
+| How do I evaluate assets? | `pipelines/ASSET_EVALUATION.md` |
 | How do I QA on device? | `QA_CHECKLIST.md` |
 | How does the backend work? | `architecture/backend.md` |
