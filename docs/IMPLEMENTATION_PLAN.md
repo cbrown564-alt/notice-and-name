@@ -17,7 +17,7 @@
 | **4 — Integration** | 🟡 In progress | Pulled forward **without assets** — QA, UI shell, EAS, share/Lottie (§8b) |
 | **5 — Release candidate** | ⬜ Not started | After Phase 3 + 4 exit criteria |
 
-**Active track:** §8b Engineering track (asset-independent). Asset track (§8a) resumes when generation restarts.
+**Active track:** §8a Asset track (Phase D — May 21, 2026). §8b engineering complete.
 
 ---
 
@@ -523,23 +523,23 @@ Phases overlap; dates are suggestive for a single focused contributor.
 
 ---
 
-### Phase 3 — Asset production (Weeks 3–6) ⏸ Postponed
+### Phase 3 — Asset production (Weeks 3–6) 🟡 Active (Phase D)
 
-**Paused** until engineering track (§8b) completes or generation capacity returns. Resume with Phase 1 pilots (1.1, 1.3, 1.4) then batch below.
+**Resumed May 21, 2026** per `pipelines/PHASE_D_RUNBOOK.md`. Pilots complete; batch generation in progress.
 
 | ID | Task | Workstream | Status |
 |----|------|------------|--------|
-| 3.0 | Complete pilots: 1.1 reference renders, 1.3 image pilot, 1.4 video pilot | A, D, E | 🟡 1.1 and 1.3 complete; 1.4 pending |
-| 3.1 | Image batch: Techniques → Sensations → Timing → Psych → Anatomy | D | ⏸ |
-| 3.2 | Thumbnail batch (derived from plates or ChatGPT Images 2) | D | ⏸ |
-| 3.3 | Pathway + explainer + UI shell images | D | ⏸ |
-| 3.4 | Video batch per candidate list | E | ⏸ |
-| 3.5 | Transcode + compress | D, E | ⏸ |
-| 3.6 | Update ASSET_MANIFEST after each batch | B | ⏸ |
+| 3.0 | Complete pilots: 1.1 reference renders, 1.3 image pilot, 1.4 video pilot | A, D, E | 🟡 1.1 ✅ 1.3 ✅; 1.4 P0 videos pending |
+| 3.1 | Image batch: Techniques → Sensations → Timing → Psych → Anatomy | D | 🟡 Queue: `npm run batch-asset-queue` |
+| 3.2 | Thumbnail batch (derived from plates or ChatGPT Images 2) | D | 🟡 Most over 80 KB — regen with plates |
+| 3.3 | Pathway + explainer + UI shell images | D | 🟡 Prompts in `prompts/shell/` |
+| 3.4 | Video batch per candidate list | E | 🟡 P0 + P1 presence prompts ready |
+| 3.5 | Transcode + compress | D, E | 🟡 `compress-assets` run May 21 |
+| 3.6 | Update ASSET_MANIFEST after each batch | B | 🟡 Per-batch |
 
 **Exit:** Manifest 100%; all requires resolve; re-run QA delta only on changed concepts.
 
-**Blocked items (do not schedule on engineering track):** style bible ratification renders, angling regen, 3 Gemini pilots, building/pulsing Veo gen, full illustration/thumbnail regen, shell image regen.
+**Runbook:** [`pipelines/PHASE_D_RUNBOOK.md`](./pipelines/PHASE_D_RUNBOOK.md)
 
 ---
 
@@ -646,13 +646,15 @@ Instrumentation can be Phase 5+ (analytics hook in repositories).
 
 ## 8. Immediate next steps
 
-### 8a. Asset track ⏸ (resume when generation restarts)
+### 8a. Asset track 🟡 Active (Phase D — May 21, 2026)
 
-1. **Ratify** STYLE_BIBLE reference renders — **1/5** approved (non-concordance ✅); angling **regen**; Gemini for spreading, warmup-window, clitoral-structure → [`GEMINI_CLINICAL_PROMPTS.md`](./pipelines/prompts/GEMINI_CLINICAL_PROMPTS.md) → `pilot/{id}-gemini.png` → `npm run pilot-review` → `npm run swap-pilot-winner`.
-2. **5-concept image pilot** — complete angling + 3 Gemini pilots; promote winners.
-3. **2-concept video pilot** — Veo variants for building/pulsing → transcode → `npm run wire-concept-video`.
-4. **Phase 3 batches** — illustrations → thumbnails → shell assets → videos → compress → manifest (see §3 Phase 3).
+1. **Ratify** STYLE_BIBLE reference renders — ✅ **5/5** (`data/reference-renders.json`).
+2. **5-concept image pilot** — ✅ complete; tooling split documented in `PILOT_BATCH.md`.
+3. **Video pilot** — 🟡 P0: building (placeholder OK), pulsing, clitoral-structure, nerve-density → Flow + `wire-concept-video`. P1: spontaneous-desire, embodied-presence prompts added.
+4. **Phase 3 batches** — `npm run batch-asset-queue` → illustrations → thumbnails → shell (`prompts/shell/`) → videos → compress → manifest.
 5. **Delta QA** — re-walk only concepts whose assets changed; update `ASSET_MANIFEST.md` same day as commit.
+
+**Runbook:** [`pipelines/PHASE_D_RUNBOOK.md`](./pipelines/PHASE_D_RUNBOOK.md)
 
 ---
 

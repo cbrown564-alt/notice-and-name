@@ -21,6 +21,8 @@
     "pilot-compare": "node scripts/pilot-compare.js",
     "swap-pilot-winner": "node scripts/swap-pilot-winner.js",
     "wire-concept-video": "node scripts/wire-concept-video.js",
+    "asset-dashboard": "node scripts/asset-dashboard.js",
+    "batch-asset-queue": "node scripts/batch-asset-queue.js",
     "enrich-illustration-prompts": "node scripts/enrich-illustration-prompts.js",
     "test": "jest",
     "test:watch": "jest --watch",

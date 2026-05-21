@@ -1,7 +1,7 @@
 {
   "_meta": {
     "version": 1,
-    "updated": "2026-05-20",
+    "updated": "2026-05-21",
     "source": "npm run sync-registry",
     "conceptCount": 22
   },
@@ -20,14 +20,14 @@
         "illustration": {
           "path": "assets/images/concepts/illustrations/angling.png",
           "exists": true,
-          "bytes": 182785,
+          "bytes": 179518,
           "wiredInVocab": true,
           "status": "wired",
           "role": "primary"
         }
       },
       "evaluation": {
-        "deviceQA": false,
+        "deviceQA": true,
         "styleCoherence": null,
         "scientificAccuracy": null,
         "noEmbeddedText": null,
@@ -72,7 +72,7 @@
         }
       },
       "evaluation": {
-        "deviceQA": false,
+        "deviceQA": true,
         "styleCoherence": null,
         "scientificAccuracy": null,
         "noEmbeddedText": null,
@@ -103,7 +103,7 @@
         }
       },
       "evaluation": {
-        "deviceQA": false,
+        "deviceQA": true,
         "styleCoherence": null,
         "scientificAccuracy": null,
         "noEmbeddedText": null,
@@ -134,7 +134,7 @@
         }
       },
       "evaluation": {
-        "deviceQA": false,
+        "deviceQA": true,
         "styleCoherence": null,
         "scientificAccuracy": null,
         "noEmbeddedText": null,
@@ -175,7 +175,7 @@
         }
       },
       "evaluation": {
-        "deviceQA": false,
+        "deviceQA": true,
         "styleCoherence": null,
         "scientificAccuracy": null,
         "noEmbeddedText": null,
@@ -216,7 +216,7 @@
         }
       },
       "evaluation": {
-        "deviceQA": false,
+        "deviceQA": true,
         "styleCoherence": null,
         "scientificAccuracy": null,
         "noEmbeddedText": null,
@@ -247,7 +247,7 @@
         }
       },
       "evaluation": {
-        "deviceQA": false,
+        "deviceQA": true,
         "styleCoherence": null,
         "scientificAccuracy": null,
         "noEmbeddedText": null,
@@ -274,7 +274,7 @@
         "illustration": {
           "path": "assets/images/concepts/illustrations/spreading.png",
           "exists": true,
-          "bytes": 442907,
+          "bytes": 412425,
           "wiredInVocab": true,
           "status": "wired",
           "role": "poster-fallback"
@@ -288,7 +288,7 @@
         }
       },
       "evaluation": {
-        "deviceQA": false,
+        "deviceQA": true,
         "styleCoherence": null,
         "scientificAccuracy": null,
         "noEmbeddedText": null,
@@ -343,7 +343,7 @@
         }
       },
       "evaluation": {
-        "deviceQA": false,
+        "deviceQA": true,
         "styleCoherence": null,
         "scientificAccuracy": null,
         "noEmbeddedText": null,
@@ -384,7 +384,7 @@
         }
       },
       "evaluation": {
-        "deviceQA": false,
+        "deviceQA": true,
         "styleCoherence": null,
         "scientificAccuracy": null,
         "noEmbeddedText": null,
@@ -439,7 +439,7 @@
         }
       },
       "evaluation": {
-        "deviceQA": false,
+        "deviceQA": true,
         "styleCoherence": null,
         "scientificAccuracy": null,
         "noEmbeddedText": null,
@@ -480,7 +480,7 @@
         }
       },
       "evaluation": {
-        "deviceQA": false,
+        "deviceQA": true,
         "styleCoherence": null,
         "scientificAccuracy": null,
         "noEmbeddedText": null,
@@ -521,7 +521,7 @@
         }
       },
       "evaluation": {
-        "deviceQA": false,
+        "deviceQA": true,
         "styleCoherence": null,
         "scientificAccuracy": null,
         "noEmbeddedText": null,
@@ -562,7 +562,7 @@
         }
       },
       "evaluation": {
-        "deviceQA": false,
+        "deviceQA": true,
         "styleCoherence": null,
         "scientificAccuracy": null,
         "noEmbeddedText": null,
@@ -603,7 +603,7 @@
         }
       },
       "evaluation": {
-        "deviceQA": false,
+        "deviceQA": true,
         "styleCoherence": null,
         "scientificAccuracy": null,
         "noEmbeddedText": null,
@@ -644,7 +644,7 @@
         }
       },
       "evaluation": {
-        "deviceQA": false,
+        "deviceQA": true,
         "styleCoherence": null,
         "scientificAccuracy": null,
         "noEmbeddedText": null,
@@ -689,7 +689,7 @@
         }
       },
       "evaluation": {
-        "deviceQA": false,
+        "deviceQA": true,
         "styleCoherence": null,
         "scientificAccuracy": null,
         "noEmbeddedText": null,
@@ -720,7 +720,7 @@
         }
       },
       "evaluation": {
-        "deviceQA": false,
+        "deviceQA": true,
         "styleCoherence": null,
         "scientificAccuracy": null,
         "noEmbeddedText": null,
@@ -747,7 +747,7 @@
         "illustration": {
           "path": "assets/images/concepts/illustrations/clitoral-structure.png",
           "exists": true,
-          "bytes": 189573,
+          "bytes": 183610,
           "wiredInVocab": true,
           "status": "wired",
           "role": "poster-fallback"
@@ -761,7 +761,7 @@
         }
       },
       "evaluation": {
-        "deviceQA": false,
+        "deviceQA": true,
         "styleCoherence": null,
         "scientificAccuracy": null,
         "noEmbeddedText": null,
@@ -816,7 +816,7 @@
         }
       },
       "evaluation": {
-        "deviceQA": false,
+        "deviceQA": true,
         "styleCoherence": null,
         "scientificAccuracy": null,
         "noEmbeddedText": null,
@@ -843,7 +843,7 @@
         "illustration": {
           "path": "assets/images/concepts/illustrations/clitourethrovaginal.png",
           "exists": true,
-          "bytes": 169102,
+          "bytes": 157206,
           "wiredInVocab": true,
           "status": "wired",
           "role": "poster-fallback"
@@ -857,7 +857,7 @@
         }
       },
       "evaluation": {
-        "deviceQA": false,
+        "deviceQA": true,
         "styleCoherence": null,
         "scientificAccuracy": null,
         "noEmbeddedText": null,
@@ -898,7 +898,7 @@
         }
       },
       "evaluation": {
-        "deviceQA": false,
+        "deviceQA": true,
         "styleCoherence": null,
         "scientificAccuracy": null,
         "noEmbeddedText": null,

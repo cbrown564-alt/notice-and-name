@@ -1,6 +1,6 @@
 # Asset Dashboard
 
-**Generated:** 2026-05-20
+**Generated:** 2026-05-21
 **Refresh:** `npm run asset-dashboard -- --write`
 
 ```
@@ -9,16 +9,16 @@ Asset production dashboard
 Concepts:              22
 Format lock:           22/22
 Copy reviewed:         22/22
-Device QA passed:      0/22
+Device QA passed:      22/22
 
 Thumbnails:            22 on disk / 22 wired
 Illustrations:         22 on disk
 Videos:                3/15 wired (format lock)
 Interactive:           4/5 wired
-Over size budget:      27 assets ⚠️
+Over size budget:      28 assets ⚠️
 
 Registry:              data/asset-registry.json
-Last synced:           2026-05-20
+Last synced:           2026-05-21
 
 P0 video concepts:
   building               ✅ wired

@@ -390,14 +390,16 @@ The app should feel:
 | Ambient slide tinting | 2 days | `components/ConceptDeck.tsx` |
 | Scroll-linked parallax (explainers) | 2 days | `app/explainer/[id].tsx` |
 
-### Phase D: Asset Track (When §8a Resumes) — Visual Coherence
+### Phase D: Asset Track — Visual Coherence 🟡 Started May 21, 2026
 
-| Task | Effort |
-|------|--------|
-| Batch regenerate all 22 illustrations + thumbnails | 3–4 weeks |
-| Generate remaining video loops (Pulsing, Spontaneous Desire, Embodied Presence) | 1 week |
-| Pathway hero images + explainer headers | 3 days |
-| UI shell image refresh (slide backgrounds, empty states) | 2 days |
+| Task | Effort | Status |
+|------|--------|--------|
+| Batch regenerate all 22 illustrations + thumbnails | 3–4 weeks | 🟡 Queue: `npm run batch-asset-queue` |
+| Generate remaining video loops (Pulsing, Spontaneous Desire, Embodied Presence) | 1 week | 🟡 Prompts ready; P0+P1 in `VIDEO_PILOT_BATCH.md` |
+| Pathway hero images + explainer headers | 3 days | 🟡 Prompts: `prompts/shell/pathways/`, `explainers/` |
+| UI shell image refresh (slide backgrounds, empty states) | 2 days | 🟡 Prompts: `prompts/shell/ui/` |
+
+**Runbook:** `docs/pipelines/PHASE_D_RUNBOOK.md`
 
 ---
 

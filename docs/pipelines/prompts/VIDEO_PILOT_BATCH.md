@@ -28,3 +28,10 @@
 | pulsing | abstract-loop | ☐ | — | — |
 | clitoral-structure | scientific-journey | ☐ | — | Scale traversal QA |
 | nerve-density | scientific-journey | ☐ | — | Density readable on phone? |
+
+## P1 presence track (after P0)
+
+| Concept | Prompt | Profile |
+|---------|--------|---------|
+| spontaneous-desire | [videos/spontaneous-desire.md](./videos/spontaneous-desire.md) | embodied-presence |
+| embodied-presence | [videos/embodied-presence.md](./videos/embodied-presence.md) | embodied-presence |

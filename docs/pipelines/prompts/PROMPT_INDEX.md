@@ -27,7 +27,10 @@ Per-concept prompts for Phase 2–3 image batches. Global rules: `design/STYLE_B
 | clitourethrovaginal | [clitourethrovaginal.md](./illustrations/clitourethrovaginal.md) | [clitourethrovaginal-thumb.md](./illustrations/clitourethrovaginal-thumb.md) |
 | internal-stimulation | [internal-stimulation.md](./illustrations/internal-stimulation.md) | [internal-stimulation-thumb.md](./illustrations/internal-stimulation-thumb.md) |
 
-**Pilot batch (5):** [`PILOT_BATCH.md`](./PILOT_BATCH.md)  
+**Pilot batch (5):** [`PILOT_BATCH.md`](./PILOT_BATCH.md) — ✅ complete (5/5 reference renders)  
+**Shell batch (Phase D):** [`shell/SHELL_BATCH.md`](./shell/SHELL_BATCH.md)  
+**Video prompts:** `videos/building.md`, `pulsing.md`, `clitoral-structure.md`, `nerve-density.md`, `spontaneous-desire.md`, `embodied-presence.md` — see [`VIDEO_PILOT_BATCH.md`](./VIDEO_PILOT_BATCH.md)  
+**Phase D runbook:** [`../PHASE_D_RUNBOOK.md`](../PHASE_D_RUNBOOK.md) · `npm run batch-asset-queue`  
 **ChatGPT one-liners:** [`CHATGPT_THINKING_PROMPTS.md`](./CHATGPT_THINKING_PROMPTS.md)  
 **Gemini clinical (guardrail fallback):** [`GEMINI_CLINICAL_PROMPTS.md`](./GEMINI_CLINICAL_PROMPTS.md)  
 **Enrich all prompts:** `npm run enrich-illustration-prompts` (Phase 2.3)  

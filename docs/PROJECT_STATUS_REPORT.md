@@ -3,7 +3,7 @@
 **Report date:** May 20, 2026  
 **Repository:** `pleasure-vocab` (private)  
 **Last committed release point:** January 6, 2026 (`e7bafe1`)  
-**Active branch:** `visual-v2-restart` — **engineering track active** (§8b); asset production paused (§8a)
+**Active branch:** `visual-v2-restart` — **asset track active** (§8a Phase D); engineering track (§8b) complete
 
 ### Phase snapshot (synced with `IMPLEMENTATION_PLAN.md`)
 
@@ -12,7 +12,7 @@
 | 0 — Reactivation | ✅ Complete |
 | 1 — Foundation | 🟡 Partial (engineering ✅; pilots paused) |
 | 2 — Copy | ✅ Complete |
-| 3 — Asset production | ⏸ Postponed |
+| 3 — Asset production | 🟡 Active (Phase D) |
 | 4 — Integration | 🟡 In progress (asset-free items via §8b) |
 | 5 — Release candidate | ⬜ Not started |
 
@@ -26,7 +26,7 @@ The codebase is in **strong architectural health**: repository pattern, schema m
 
 **Active now (§8b):** EAS preview build (Batch 2) [Next Session], UI shell polish (Batch 3), share/Lottie/expo-video (Batch 4), plan hygiene (Batch 5). (Batch 1 Device QA completed)
 
-**Paused (§8a):** Image/video pilots, full illustration/thumbnail/shell regen, Phase 3 batches. (Style Bible ratified v1.0)
+**Active (§8a Phase D):** Full illustration/thumbnail batch, shell regen prompts, P0/P1 video generation. Runbook: `pipelines/PHASE_D_RUNBOOK.md`. (Style Bible ratified v1.0; 5/5 reference renders)
 
 
 Five parallel workstreams (see Implementation Plan):
@@ -264,7 +264,7 @@ Format-by-concept rationale: `docs/product/visual_content_strategy.md`.
 | ~~**P1**~~ | ~~UI shell polish (typography, deck chrome, profile, onboarding)~~ | ✅ §8b Batch 3 |
 | ~~**P1**~~ | ~~Share flow polish; Lottie; expo-video; profile memoization~~ | ✅ §8b Batch 4 |
 
-**Asset track (paused — §8a):**
+**Asset track (active — §8a Phase D):**
 
 | Priority | Gap | Plan ref |
 |----------|-----|----------|
