@@ -807,7 +807,14 @@ private struct ContentBlockView: View {
     @ViewBuilder
     private var mediaAttachment: some View {
         if let media = model.media(withId: block.mediaId) {
-            MediaReferenceView(media: media)
+            if media.kind == .diagram,
+               let diagramId = ConceptDiagramView.diagramId(fromNativePath: media.path) {
+                // Native in-app vector diagram (never an image asset).
+                ConceptDiagramView(diagramId: diagramId, caption: media.caption ?? media.alt)
+            } else {
+                // Images, videos, and non-native diagrams keep the framed placeholder.
+                MediaReferenceView(media: media)
+            }
         } else if block.mediaId != nil {
             MissingMediaReferenceView()
         }
@@ -841,28 +848,8 @@ private struct MediaReferenceView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            RoundedRectangle(cornerRadius: 8)
-                .fill(AppColor.canvas)
-                .frame(maxWidth: .infinity)
-                .frame(height: 132)
-                .overlay {
-                    Image(systemName: iconName)
-                        .font(.system(size: 28, weight: .regular))
-                        .foregroundStyle(AppColor.gold)
-                        .accessibilityHidden(true)
-                }
-                .overlay {
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(AppColor.line, lineWidth: 1)
-                }
-            Text(displayText)
-                .font(AppFont.note)
-                .foregroundStyle(AppColor.secondaryInk)
-                .fixedSize(horizontal: false, vertical: true)
-        }
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel(displayText)
+        // Reuses the shared framed placeholder; identical look to P0/P1.
+        MediaPlaceholderCard(systemImage: iconName, text: displayText)
     }
 
     // Human-readable only: never surface `path` or `reducedMotionFallback`.
