@@ -424,6 +424,7 @@ private struct ConceptDetailView: View {
         ConceptPagesView(model: model, concept: concept)
             .navigationTitle(concept.name)
             .compactNavigationTitle()
+            .toolbarBackground(.hidden, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu {

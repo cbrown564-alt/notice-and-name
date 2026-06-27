@@ -83,6 +83,7 @@ struct ConceptPagesView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var currentPageID: String?
+    @State private var showIndex = false
 
     private var pages: [ConceptPage] { ConceptPage.pages(for: concept) }
 
@@ -95,11 +96,87 @@ struct ConceptPagesView: View {
                 pagedScroll
             }
         }
+        // The orientation layer: a faint dot column that expands, on demand,
+        // into a named index. Hidden at accessibility text sizes (which use the
+        // continuous scroll).
+        .overlay(alignment: .trailing) {
+            if !dynamicTypeSize.isAccessibilitySize && !showIndex {
+                dotColumn.padding(.trailing, 6)
+            }
+        }
+        .overlay {
+            if showIndex { indexSheet }
+        }
         .onAppear {
             if currentPageID == nil { currentPageID = pages.first?.id }
         }
         .onChange(of: currentPageID) { _, _ in
             NativeHaptics.selection()
+        }
+    }
+
+    // A quiet position cue: one mark per idea, the current one emphasized in its
+    // accent. Tapping reveals the named index.
+    private var dotColumn: some View {
+        Button {
+            withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.2)) { showIndex = true }
+        } label: {
+            VStack(spacing: 7) {
+                ForEach(pages) { page in
+                    let current = page.id == currentPageID
+                    Capsule()
+                        .fill(current ? page.accent : AppColor.secondaryInk.opacity(0.3))
+                        .frame(width: current ? 6 : 5, height: current ? 14 : 5)
+                }
+            }
+            .padding(10)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel("Show the concept's index")
+    }
+
+    // The on-demand named index. Tap an idea to descend straight to it.
+    private var indexSheet: some View {
+        ZStack(alignment: .trailing) {
+            Color.black.opacity(0.06)
+                .ignoresSafeArea()
+                .onTapGesture { withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.2)) { showIndex = false } }
+            VStack(alignment: .leading, spacing: 0) {
+                ForEach(pages) { page in
+                    let current = page.id == currentPageID
+                    Button {
+                        withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.45)) {
+                            currentPageID = page.id
+                        }
+                        withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.2)) { showIndex = false }
+                    } label: {
+                        HStack(spacing: 12) {
+                            Circle()
+                                .fill(page.accent)
+                                .frame(width: 6, height: 6)
+                                .opacity(current ? 1 : 0.35)
+                            Text(page.indexLabel)
+                                .font(AppFont.note)
+                                .foregroundStyle(current ? AppColor.ink : AppColor.secondaryInk)
+                            Spacer(minLength: 0)
+                        }
+                        .padding(.vertical, 9)
+                        .padding(.horizontal, 16)
+                        .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+            .padding(.vertical, 8)
+            .frame(minWidth: 168, alignment: .leading)
+            .background(AppColor.surface, in: RoundedRectangle(cornerRadius: 16))
+            .overlay {
+                RoundedRectangle(cornerRadius: 16).stroke(AppColor.line, lineWidth: 1)
+            }
+            .shadow(color: .black.opacity(0.10), radius: 14, y: 5)
+            .padding(.trailing, 14)
+            .transition(reduceMotion ? .opacity : .move(edge: .trailing).combined(with: .opacity))
         }
     }
 
