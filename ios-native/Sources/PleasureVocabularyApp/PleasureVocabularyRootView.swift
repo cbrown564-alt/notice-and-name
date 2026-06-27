@@ -420,24 +420,36 @@ private struct ConceptDetailView: View {
     @ObservedObject var model: PleasureVocabularyViewModel
     let concept: Concept
     @State private var draftNote = ""
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text(concept.category.displayName.uppercased())
+                        .font(AppFont.label)
+                        .tracking(1.6)
+                        .foregroundStyle(AppColor.secondaryInk)
+                        .accessibilityLabel("Category: \(concept.category.displayName)")
                     Text(concept.name)
                         .font(AppFont.title)
                         .foregroundStyle(AppColor.ink)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .accessibilityAddTraits(.isHeader)
                     Text(concept.definition)
                         .font(AppFont.body)
                         .foregroundStyle(AppColor.secondaryInk)
+                        .fixedSize(horizontal: false, vertical: true)
                     StatusPicker(status: model.status(for: concept.id)) { status in
                         model.setStatus(status, for: concept.id)
                     }
+                    .padding(.top, 4)
                 }
+                .padding(.bottom, 4)
 
-                ForEach(concept.blocks) { block in
+                ForEach(Array(concept.blocks.enumerated()), id: \.element.id) { index, block in
                     ContentBlockView(model: model, concept: concept, block: block)
+                        .blockEntrance(index: index, reduceMotion: reduceMotion)
                 }
 
                 Divider()
@@ -584,27 +596,226 @@ private struct SettingsView: View {
     }
 }
 
+/// Renders a single content block with a treatment intentional to its type:
+/// a soft per-type ambient tint, distinct typography, an accent bar for the
+/// evidence-style blocks, and quietly-surfaced citations. This replaces the
+/// previous one-size-fits-all card so the scroll has hierarchy and rhythm.
 private struct ContentBlockView: View {
     @ObservedObject var model: PleasureVocabularyViewModel
     let concept: Concept
     let block: ContentBlock
 
     var body: some View {
-        QuietCard {
-            VStack(alignment: .leading, spacing: 10) {
-                Label(block.title, systemImage: symbolName)
-                    .font(AppFont.section)
+        switch block.type {
+        case .recognize:
+            recognizeBlock
+        case .definition:
+            definitionBlock
+        case .mechanism:
+            mechanismBlock
+        case .media:
+            mediaBlock
+        case .reflection:
+            reflectionBlock
+        case .phrase:
+            phraseBlock
+        }
+    }
+
+    // MARK: - Recognize (an open, italic invitation rather than a card)
+
+    private var recognizeBlock: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            if !block.title.isEmpty {
+                Text(block.title.uppercased())
+                    .font(AppFont.label)
+                    .tracking(1.2)
+                    .foregroundStyle(accent)
+                    .accessibilityAddTraits(.isHeader)
+            }
+            Text(block.body)
+                .font(.system(.title3, design: .serif).italic())
+                .foregroundStyle(AppColor.ink)
+                .lineSpacing(3)
+                .fixedSize(horizontal: false, vertical: true)
+            mediaAttachment
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(18)
+        .background(accent.opacity(0.08), in: RoundedRectangle(cornerRadius: 12))
+    }
+
+    // MARK: - Definition (a dictionary-entry "the word" moment)
+
+    private var definitionBlock: some View {
+        HStack(alignment: .top, spacing: 0) {
+            accentBar
+            VStack(alignment: .leading, spacing: 8) {
+                if !block.title.isEmpty {
+                    blockLabel(block.title)
+                }
+                Text(concept.name)
+                    .font(.system(.title3, design: .serif, weight: .semibold))
                     .foregroundStyle(AppColor.ink)
+                    .fixedSize(horizontal: false, vertical: true)
                 Text(block.body)
-                    .font(AppFont.body)
+                    .font(.system(.body, design: .serif))
                     .foregroundStyle(AppColor.secondaryInk)
-                if let media = model.media(withId: block.mediaId) {
-                    MediaReferenceView(media: media)
-                } else if block.mediaId != nil {
-                    MissingMediaReferenceView()
+                    .lineSpacing(2)
+                    .fixedSize(horizontal: false, vertical: true)
+                citationsView
+                mediaAttachment
+            }
+            .padding(16)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(accent.opacity(0.06))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
+
+    // MARK: - Mechanism (evidence card: accent bar + citations)
+
+    private var mechanismBlock: some View {
+        HStack(alignment: .top, spacing: 0) {
+            accentBar
+            VStack(alignment: .leading, spacing: 10) {
+                blockLabel(block.title.isEmpty ? "The research" : block.title)
+                Text(block.body)
+                    .font(.system(.body, design: .serif).italic())
+                    .foregroundStyle(AppColor.secondaryInk)
+                    .lineSpacing(2)
+                    .fixedSize(horizontal: false, vertical: true)
+                citationsView
+                mediaAttachment
+            }
+            .padding(16)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(accent.opacity(0.07))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
+
+    // MARK: - Media (P0 framed placeholder, in a gold accent frame)
+
+    private var mediaBlock: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            blockLabel(block.title.isEmpty ? "Media" : block.title)
+            if !block.body.isEmpty {
+                Text(block.body)
+                    .font(AppFont.note)
+                    .foregroundStyle(AppColor.secondaryInk)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            mediaAttachment
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(16)
+        .background(accent.opacity(0.08), in: RoundedRectangle(cornerRadius: 12))
+        .overlay {
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(accent.opacity(0.25), lineWidth: 1)
+        }
+    }
+
+    // MARK: - Reflection (a quiet, italic prompt)
+
+    private var reflectionBlock: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            blockLabel(block.title.isEmpty ? "Reflection" : block.title)
+            Text(block.body)
+                .font(.system(.body, design: .serif).italic())
+                .foregroundStyle(AppColor.secondaryInk)
+                .lineSpacing(2)
+                .fixedSize(horizontal: false, vertical: true)
+            mediaAttachment
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(16)
+        .background(accent.opacity(0.06), in: RoundedRectangle(cornerRadius: 12))
+    }
+
+    // MARK: - Phrase (a quiet, gold-tinted prompt)
+
+    private var phraseBlock: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            blockLabel(block.title.isEmpty ? "Phrase" : block.title)
+            Text(block.body)
+                .font(.system(.body, design: .serif))
+                .foregroundStyle(AppColor.ink)
+                .lineSpacing(2)
+                .fixedSize(horizontal: false, vertical: true)
+            mediaAttachment
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(16)
+        .background(accent.opacity(0.07), in: RoundedRectangle(cornerRadius: 12))
+    }
+
+    // MARK: - Shared pieces
+
+    private var accent: Color { AppColor.blockAccent(for: block.type) }
+
+    private var accentBar: some View {
+        Rectangle()
+            .fill(accent.opacity(0.55))
+            .frame(width: 3)
+            .accessibilityHidden(true)
+    }
+
+    private func blockLabel(_ text: String) -> some View {
+        HStack(spacing: 8) {
+            Image(systemName: symbolName)
+                .font(AppFont.label)
+                .foregroundStyle(accent)
+            Text(text.uppercased())
+                .font(AppFont.label)
+                .tracking(1.0)
+                .foregroundStyle(accent)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(text)
+        .accessibilityAddTraits(.isHeader)
+    }
+
+    @ViewBuilder
+    private var citationsView: some View {
+        let citations = resolvedCitations
+        if !citations.isEmpty {
+            VStack(alignment: .leading, spacing: 6) {
+                Divider()
+                    .overlay(accent.opacity(0.3))
+                ForEach(citations) { citation in
+                    HStack(alignment: .firstTextBaseline, spacing: 6) {
+                        Image(systemName: "quote.opening")
+                            .font(AppFont.label)
+                            .foregroundStyle(accent)
+                            .accessibilityHidden(true)
+                        Text("\(citation.label) — \(citation.source)")
+                            .font(AppFont.label)
+                            .foregroundStyle(AppColor.secondaryInk)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    .accessibilityElement(children: .combine)
+                    .accessibilityLabel("Source: \(citation.label), \(citation.source)")
                 }
             }
+            .padding(.top, 2)
         }
+    }
+
+    @ViewBuilder
+    private var mediaAttachment: some View {
+        if let media = model.media(withId: block.mediaId) {
+            MediaReferenceView(media: media)
+        } else if block.mediaId != nil {
+            MissingMediaReferenceView()
+        }
+    }
+
+    private var resolvedCitations: [Citation] {
+        guard let ids = block.citationIds, !ids.isEmpty else { return [] }
+        return ids.compactMap { id in concept.citations.first { $0.id == id } }
     }
 
     private var symbolName: String {
@@ -614,7 +825,7 @@ private struct ContentBlockView: View {
         case .definition:
             return "textformat"
         case .mechanism:
-            return "brain.head.profile"
+            return "text.book.closed"
         case .media:
             return "photo"
         case .reflection:
@@ -923,5 +1134,52 @@ private struct InlineEmptyStateView: View {
         .frame(maxWidth: .infinity)
         .padding(.vertical, 24)
         .accessibilityElement(children: .combine)
+    }
+}
+
+extension ConceptCategory {
+    /// User-facing, capitalized label shown in the concept-detail header zone.
+    var displayName: String {
+        switch self {
+        case .technique:
+            return "Technique"
+        case .sensation:
+            return "Sensation"
+        case .timing:
+            return "Timing"
+        case .psychological:
+            return "Psychological"
+        case .anatomy:
+            return "Anatomy"
+        }
+    }
+}
+
+/// One-shot, staggered entrance for content blocks: a gentle fade plus a few
+/// points of upward drift, delayed by block index. Fully disabled under
+/// Reduce Motion (the block simply appears), and the `@State` flag keeps it
+/// from re-triggering on scroll re-appearance.
+private struct BlockEntrance: ViewModifier {
+    let index: Int
+    let reduceMotion: Bool
+    @State private var appeared = false
+
+    func body(content: Content) -> some View {
+        content
+            .opacity(reduceMotion || appeared ? 1 : 0)
+            .offset(y: reduceMotion || appeared ? 0 : 8)
+            .onAppear {
+                guard !reduceMotion, !appeared else { return }
+                let delay = min(Double(index) * 0.04, 0.4)
+                withAnimation(.easeOut(duration: 0.35).delay(delay)) {
+                    appeared = true
+                }
+            }
+    }
+}
+
+private extension View {
+    func blockEntrance(index: Int, reduceMotion: Bool) -> some View {
+        modifier(BlockEntrance(index: index, reduceMotion: reduceMotion))
     }
 }
