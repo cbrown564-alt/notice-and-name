@@ -246,15 +246,20 @@ struct ConceptPageView: View {
     let layout: Layout
 
     var body: some View {
-        PageScaffold(layout: layout) {
-            switch page.kind {
-            case .cover:      CoverPageBody(concept: concept, layout: layout)
-            case .recognize:  RecognizePageBody(page: page)
-            case .name:       NamePageBody(concept: concept, page: page)
-            case .see:        SeePageBody(model: model, page: page)
-            case .understand: UnderstandPageBody(concept: concept, page: page)
-            case .reflect:    ReflectPageBody(model: model, concept: concept, page: page)
-            case .keep:       KeepPageBody(model: model, concept: concept, page: page)
+        if case .cover = page.kind {
+            // The cover is a full-bleed mood image, so it bypasses the padded scaffold.
+            CoverPageBody(concept: concept, layout: layout)
+        } else {
+            PageScaffold(layout: layout) {
+                switch page.kind {
+                case .cover:      EmptyView()
+                case .recognize:  RecognizePageBody(page: page)
+                case .name:       NamePageBody(concept: concept, page: page)
+                case .see:        SeePageBody(model: model, concept: concept, page: page)
+                case .understand: UnderstandPageBody(concept: concept, page: page)
+                case .reflect:    ReflectPageBody(model: model, concept: concept, page: page)
+                case .keep:       KeepPageBody(model: model, concept: concept, page: page)
+                }
             }
         }
     }
@@ -267,12 +272,15 @@ private struct PageScaffold<Content: View>: View {
     @ViewBuilder var content: Content
 
     var body: some View {
-        let stack = VStack(alignment: .leading, spacing: 18) { content }
+        let stack = VStack(alignment: .leading, spacing: 20) { content }
         switch layout {
         case .page:
             stack
+                .padding(.horizontal, 30)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                .padding(.horizontal, 28)
+                // Reserve bottom space so content settles a touch above true center
+                // rather than marooned in the middle of a large screen.
+                .padding(.bottom, 72)
         case .flow:
             stack
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -296,28 +304,67 @@ private struct PageLabel: View {
 
 // MARK: - Page bodies
 
+/// The cover is an atmospheric "mood" image that opens the concept without
+/// naming it (the name is given its own page). Full-bleed in the paged layout.
 private struct CoverPageBody: View {
     let concept: Concept
     let layout: ConceptPageView.Layout
 
     var body: some View {
+        if layout == .page {
+            fullBleed
+        } else {
+            flow
+        }
+    }
+
+    private var fullBleed: some View {
+        ZStack(alignment: .bottomLeading) {
+            Group {
+                if let image = BundledMedia.thumbnail(forConceptId: concept.id) {
+                    image.resizable().scaledToFill()
+                } else {
+                    AppColor.canvas
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .clipped()
+
+            // Soft bottom scrim so the label and hint stay legible over the art.
+            LinearGradient(
+                colors: [AppColor.canvas.opacity(0.0), AppColor.canvas.opacity(0.85)],
+                startPoint: .center,
+                endPoint: .bottom
+            )
+
+            VStack(alignment: .leading, spacing: 12) {
+                Text(concept.category.displayName.uppercased())
+                    .font(AppFont.label)
+                    .tracking(2)
+                    .foregroundStyle(AppColor.secondaryInk)
+                SwipeHint()
+            }
+            .padding(.horizontal, 30)
+            .padding(.bottom, 40)
+        }
+        .clipped()
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(concept.name), \(concept.category.displayName)")
+    }
+
+    private var flow: some View {
         VStack(alignment: .leading, spacing: 16) {
+            if let image = BundledMedia.thumbnail(forConceptId: concept.id) {
+                image
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: .infinity)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+            }
             Text(concept.category.displayName.uppercased())
                 .font(AppFont.label)
                 .tracking(2)
                 .foregroundStyle(AppColor.secondaryInk)
-            Text(concept.name)
-                .font(.system(.largeTitle, design: .serif, weight: .semibold))
-                .foregroundStyle(AppColor.ink)
-                .fixedSize(horizontal: false, vertical: true)
-                .accessibilityAddTraits(.isHeader)
-            Text(concept.summary)
-                .font(AppFont.body)
-                .foregroundStyle(AppColor.secondaryInk)
-                .fixedSize(horizontal: false, vertical: true)
-            if layout == .page {
-                SwipeHint().padding(.top, 12)
-            }
         }
     }
 }
@@ -329,9 +376,9 @@ private struct RecognizePageBody: View {
         VStack(alignment: .leading, spacing: 16) {
             PageLabel(text: "Recognize", accent: page.accent)
             Text(page.block?.body ?? "")
-                .font(.system(.title2, design: .serif).italic())
+                .font(.system(.title, design: .serif).italic())
                 .foregroundStyle(AppColor.ink)
-                .lineSpacing(5)
+                .lineSpacing(7)
                 .fixedSize(horizontal: false, vertical: true)
         }
     }
@@ -360,7 +407,9 @@ private struct NamePageBody: View {
 
 private struct SeePageBody: View {
     @ObservedObject var model: PleasureVocabularyViewModel
+    let concept: Concept
     let page: ConceptPage
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
@@ -369,19 +418,21 @@ private struct SeePageBody: View {
         }
     }
 
+    // The pivotal "see how it works" moment: the demonstration video where one
+    // ships and motion is allowed, otherwise the native diagram, otherwise the
+    // mechanism illustration.
     @ViewBuilder
     private var mediaView: some View {
-        if let media = model.media(withId: page.block?.mediaId) {
-            if media.kind == .diagram,
-               let id = ConceptDiagramView.diagramId(fromNativePath: media.path) {
-                ConceptDiagramView(diagramId: id, caption: media.caption ?? media.alt)
-            } else if media.kind == .image {
-                IllustrationCard(media: media)
-            } else {
-                MediaPlaceholderCard(systemImage: "photo", text: media.caption ?? media.alt ?? "Illustration")
-            }
+        let media = model.media(withId: page.block?.mediaId)
+        if !reduceMotion, let videoURL = BundledMedia.videoURL(forConceptId: concept.id) {
+            ConceptVideoView(url: videoURL, caption: media?.caption ?? media?.alt)
+        } else if let media, media.kind == .diagram,
+                  let id = ConceptDiagramView.diagramId(fromNativePath: media.path) {
+            ConceptDiagramView(diagramId: id, caption: media.caption ?? media.alt)
+        } else if let media, media.kind == .image {
+            IllustrationCard(media: media)
         } else {
-            MediaPlaceholderCard(systemImage: "photo", text: "Illustration")
+            MediaPlaceholderCard(systemImage: "photo", text: media?.caption ?? media?.alt ?? "Illustration")
         }
     }
 }
@@ -394,9 +445,9 @@ private struct UnderstandPageBody: View {
         VStack(alignment: .leading, spacing: 14) {
             PageLabel(text: page.block?.title.isEmpty == false ? page.block!.title : "Understand", accent: page.accent)
             Text(page.block?.body ?? "")
-                .font(.system(.title3, design: .serif))
+                .font(.system(.title2, design: .serif))
                 .foregroundStyle(AppColor.ink)
-                .lineSpacing(4)
+                .lineSpacing(6)
                 .fixedSize(horizontal: false, vertical: true)
             CitationsView(concept: concept, block: page.block)
         }
@@ -412,9 +463,9 @@ private struct ReflectPageBody: View {
         VStack(alignment: .leading, spacing: 18) {
             PageLabel(text: "Reflect", accent: page.accent)
             Text(page.block?.body ?? "")
-                .font(.system(.title3, design: .serif).italic())
+                .font(.system(.title2, design: .serif).italic())
                 .foregroundStyle(AppColor.ink)
-                .lineSpacing(4)
+                .lineSpacing(6)
                 .fixedSize(horizontal: false, vertical: true)
             ResonanceControl(model: model, concept: concept)
             NoteComposer(model: model, concept: concept)

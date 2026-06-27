@@ -33,10 +33,10 @@ pages anchored at the end. A missing block simply drops its page.
 
 | Page | Source | Ambient wash | The feel |
 | --- | --- | --- | --- |
-| Cover | concept name · category · summary | warm canvas | the title you descend from |
+| Cover | atmospheric "mood" thumbnail (no name) | warm canvas | a feeling, before a word |
 | Recognize | `recognize` block | blush | a mirror: "have you ever…?" |
 | Name | `definition` block | plum | give it language |
-| See | `media` block (illustration or native diagram) | neutral canvas | the illuminating still point |
+| See | demonstration video, else native diagram, else mechanism illustration | neutral canvas | the illuminating still point |
 | Understand | `mechanism` block + citation | sage / moss | grounding |
 | Reflect | `reflection` block + note + resonance | quiet | the designed pause |
 | Keep | `phrase` block / phrase templates | gold | a phrase to carry; saving is the close |
@@ -73,12 +73,22 @@ pages anchored at the end. A missing block simply drops its page.
 
 ## Media
 
-- The 4 mechanism concepts (angling, rocking, shallowing, pairing) render the **native
-  SwiftUI diagram** as their See page — it is richer and gently animated.
-- The other 18 concepts render their **bundled illustration** (the optimized production
-  PNGs under `assets/images/concepts/illustrations/`, copied into the app bundle).
-- The framed placeholder remains only as a true fallback for genuinely missing assets.
-- Internal paths (`native://…`, `assets/…`) are never shown to the reader.
+Two distinct art sets ship, with distinct jobs:
+
+- **Cover** uses the square **"mood" thumbnail** (abstract, atmospheric) — every concept
+  has one. It opens the concept with a feeling and defers naming to the Name page.
+- **See** uses, in order of preference: a short muted **looping video** (the 6 concepts
+  that have one: angling, rocking, shallowing, building, spreading, responsive-desire),
+  else the **native SwiftUI diagram** (angling, rocking, shallowing, pairing), else the
+  semi-literal **mechanism illustration** (all 22). Under Reduce Motion the video is
+  skipped in favour of the diagram or illustration.
+- All three sets are bundled under `Resources/media/` (`thumbnails/`, `videos/`,
+  `illustrations/`) and resolved by concept id. The framed placeholder remains only as a
+  true fallback. Internal paths (`native://…`, `assets/…`) are never shown to the reader.
+
+> Build note: SwiftPM copies `Resources/media` into a module resource bundle. After adding
+> or changing bundled media, do a **clean** device build — an incremental build can reuse a
+> stale resource bundle and silently ship without the new assets.
 
 ## Implementation phases
 

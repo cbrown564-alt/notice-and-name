@@ -7,6 +7,10 @@ import UIKit
 import AppKit
 #endif
 
+#if canImport(AVFoundation)
+import AVFoundation
+#endif
+
 // MARK: - Entry point
 
 /// Renders one of the app's native vector diagrams for a `MediaItem` whose
@@ -123,6 +127,23 @@ struct MediaPlaceholderCard: View {
 enum BundledMedia {
     static func image(for media: MediaItem) -> Image? {
         guard media.kind == .image, let url = imageURL(for: media) else { return nil }
+        return image(at: url)
+    }
+
+    /// The abstract "mood" thumbnail that opens a concept (the cover). Keyed by
+    /// concept id (`media/thumbnails/<id>.png`).
+    static func thumbnail(forConceptId id: String) -> Image? {
+        guard let url = Bundle.module.url(forResource: id, withExtension: "png", subdirectory: "media/thumbnails") else { return nil }
+        return image(at: url)
+    }
+
+    /// The short demonstration video for a concept's "See" moment, if one ships
+    /// (`media/videos/<id>.mp4`). Only ~6 concepts have one.
+    static func videoURL(forConceptId id: String) -> URL? {
+        Bundle.module.url(forResource: id, withExtension: "mp4", subdirectory: "media/videos")
+    }
+
+    private static func image(at url: URL) -> Image? {
         #if canImport(UIKit)
         guard let platform = UIImage(contentsOfFile: url.path) else { return nil }
         return Image(uiImage: platform)
@@ -186,6 +207,78 @@ struct IllustrationCard: View {
         media.caption ?? media.alt ?? "Illustration"
     }
 }
+
+// MARK: - Looping video
+
+/// A calm, muted, seamlessly looping demonstration video for a concept's "See"
+/// page. Autoplays when shown, no controls, to stay restful. Callers only use
+/// this when Reduce Motion is off; otherwise a diagram or illustration is shown.
+struct ConceptVideoView: View {
+    let url: URL
+    let caption: String?
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            #if canImport(UIKit)
+            LoopingVideoView(url: url)
+                .frame(maxWidth: .infinity)
+                .frame(height: 260)
+                .background(AppColor.canvas)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .overlay {
+                    RoundedRectangle(cornerRadius: 8).stroke(AppColor.line, lineWidth: 1)
+                }
+                .accessibilityHidden(true)
+            #else
+            MediaPlaceholderCard(systemImage: "play.rectangle", text: caption ?? "Video")
+            #endif
+            if let caption {
+                Text(caption)
+                    .font(AppFont.note)
+                    .foregroundStyle(AppColor.secondaryInk)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(caption ?? "Demonstration video")
+        .accessibilityAddTraits(.isImage)
+    }
+}
+
+#if canImport(UIKit)
+private struct LoopingVideoView: UIViewRepresentable {
+    let url: URL
+    func makeUIView(context: Context) -> LoopingPlayerUIView { LoopingPlayerUIView(url: url) }
+    func updateUIView(_ uiView: LoopingPlayerUIView, context: Context) {}
+    static func dismantleUIView(_ uiView: LoopingPlayerUIView, coordinator: ()) { uiView.stop() }
+}
+
+private final class LoopingPlayerUIView: UIView {
+    private let queuePlayer = AVQueuePlayer()
+    private var looper: AVPlayerLooper?
+    private let playerLayer = AVPlayerLayer()
+
+    init(url: URL) {
+        super.init(frame: .zero)
+        let item = AVPlayerItem(url: url)
+        looper = AVPlayerLooper(player: queuePlayer, templateItem: item)
+        queuePlayer.isMuted = true
+        playerLayer.player = queuePlayer
+        playerLayer.videoGravity = .resizeAspect
+        layer.addSublayer(playerLayer)
+        queuePlayer.play()
+    }
+
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+
+    func stop() { queuePlayer.pause() }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        playerLayer.frame = bounds
+    }
+}
+#endif
 
 // MARK: - Diagram plumbing
 
