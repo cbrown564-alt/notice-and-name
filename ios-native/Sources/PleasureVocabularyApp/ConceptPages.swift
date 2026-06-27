@@ -481,13 +481,11 @@ private struct KeepPageBody: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             PageLabel(text: "Keep", accent: page.accent)
-            if let body = page.block?.body, !body.isEmpty {
-                Text(body)
-                    .font(.system(.title3, design: .serif))
-                    .foregroundStyle(AppColor.ink)
-                    .lineSpacing(3)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
+            Text("Words you might carry — for yourself, or to say out loud.")
+                .font(.system(.title3, design: .serif))
+                .foregroundStyle(AppColor.secondaryInk)
+                .lineSpacing(3)
+                .fixedSize(horizontal: false, vertical: true)
             ForEach(concept.phraseTemplates) { template in
                 PhraseKeepCard(model: model, concept: concept, template: template)
             }

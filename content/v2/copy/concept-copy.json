@@ -1,0 +1,247 @@
+{
+  "_note": "Per-concept, hand-written copy that overrides the generic frames in generate-v2-full-bundle.js. Warm & plain-spoken voice. Each concept: a diversified Recognize opener, an inward Reflection prompt, and five concept-specific phrases across the use cases (self-understanding, partner-request, boundary, curiosity, reassurance).",
+  "concepts": {
+    "angling": {
+      "recognize": "Ever tilted your hips mid-way to chase an angle that just landed better?",
+      "reflection": "When a small shift suddenly made things click, could you tell what changed — or did your body find it before you could name it?",
+      "phrases": [
+        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "A few degrees changes everything for me — the angle matters more than I used to admit." },
+        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "Can we play with tilting my hips a little and see what shifts? I'll show you when something lands." },
+        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "If I need to stop and adjust to find the angle, that's not a complaint — let me reposition." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I want to find the exact tilt that lights things up, instead of stumbling onto it by luck." },
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "There's no 'right' position here — we're just following what feels good, wherever that is." }
+      ]
+    },
+    "rocking": {
+      "recognize": "Notice that grinding or circling can land better than straight thrusting?",
+      "reflection": "Think of a time staying close and grinding felt better than movement with more distance. What was different about it for you?",
+      "phrases": [
+        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "Steady contact does more for me than big movement — closeness over friction." },
+        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "Could we stay pressed close and grind instead of pulling back and forth? I lose the good spot when we separate." },
+        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "If the pace gets to be too much, I'd rather slow down and keep contact than speed up." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I'm curious what happens if we keep constant pressure the whole time, not just in waves." },
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "Wanting to stay close and barely move isn't boring — it's exactly what works for me." }
+      ]
+    },
+    "shallowing": {
+      "recognize": "Noticed the first moments — right at the entrance — can be the most sensitive part?",
+      "reflection": "When you've lingered near the entrance, did it build something, or did you feel a pull to go deeper? What did you actually want?",
+      "phrases": [
+        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "The entrance is where I'm most sensitive — shallow isn't a warm-up, it's the good part." },
+        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "Can we spend real time just at the entrance before going deeper? It makes everything after feel better." },
+        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "Deeper isn't always more for me — if I ask to stay shallow, slow down rather than pushing deeper." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I'd like to see how long we can linger right at the edge before moving on." },
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "Staying shallow isn't teasing or holding back — it's genuinely what feels best." }
+      ]
+    },
+    "pairing": {
+      "recognize": "Found that penetration alone doesn't quite get you there, but adding clitoral touch changes everything?",
+      "reflection": "When you've combined penetration with outside touch, what shifted — and is it something you find easy to ask for?",
+      "phrases": [
+        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "Penetration plus clitoral touch is what actually works for me — together, not either-or." },
+        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "Can we add touch on my clit during penetration? That combination is what gets me there." },
+        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "If I reach down to touch myself, that's me helping — don't stop or take it as something being wrong." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I want to find the rhythm where the inside and outside touch work with each other." },
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "Needing both at once isn't asking for too much — it's just how my body adds up." }
+      ]
+    },
+    "building": {
+      "recognize": "Felt arousal start as barely anything — a little warmth — then slowly grow into something undeniable?",
+      "reflection": "Recall a time you let arousal build slowly instead of chasing the peak. What did the slow climb give you?",
+      "phrases": [
+        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "I get the most when I let it build slowly — rushing flattens it for me." },
+        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "Can we take the long way and let things build? The slower start pays off for me." },
+        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "If it's moving too fast for me, I'll ask you to slow down and let it gather again." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I want to see how high the build can go if we just don't rush it." },
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "Taking a while to warm up isn't a problem — it's where the good stuff comes from for me." }
+      ]
+    },
+    "plateauing": {
+      "recognize": "Reached a point where arousal just holds — steady, not fading, not climbing — like hovering?",
+      "reflection": "Next time you're at that hovering point, notice: do you want to savor it, or change something? What does your body seem to ask for?",
+      "phrases": [
+        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "That steady hover is its own kind of good — I don't always need it to tip over." },
+        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "Sometimes I want to just stay at this level for a while — can we hold here instead of pushing on?" },
+        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "If I've leveled off and want something different, I'll say so — it's not pressure, just information." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I'm curious whether staying on this plateau longer changes what comes after." },
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "Hovering without finishing isn't a letdown — sometimes it's exactly where I want to be." }
+      ]
+    },
+    "edging": {
+      "recognize": "Ever get almost there, ease off on purpose, then climb again — and found the release hit harder for the wait?",
+      "reflection": "When you've lingered at the edge, what did the waiting itself feel like — restless, delicious, both?",
+      "phrases": [
+        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "The pause is the point for me — I'd rather draw the climb out than rush the top." },
+        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "Could we slow right down each time I get close, then start again? I want to see how far the build goes." },
+        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "If the stop-and-start tips into teasing, just say so and we'll let it happen." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I keep wondering whether holding at the edge longer changes how the release feels." },
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "Some nights the edge tips over early — that's not a test I can fail." }
+      ]
+    },
+    "spreading": {
+      "recognize": "Felt pleasure travel outward from where you're touched — warmth moving through you like ripples?",
+      "reflection": "Think of a time sensation spread beyond where you were touched. Where did it go — and what let it travel?",
+      "phrases": [
+        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "When I stop chasing one spot, the feeling spreads through the rest of me — that's what I'm after." },
+        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "Can we slow down and let me feel it everywhere, not just in one place?" },
+        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "If it gets too intense in one spot, I'll ask you to move somewhere different and let it spread out." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I'd like to notice how far a sensation can travel if I just let it." },
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "It's okay if I go quiet and still — I'm following something moving through me." }
+      ]
+    },
+    "pulsing": {
+      "recognize": "Noticed a throbbing, wave-like beat during high arousal or orgasm — sensation pulsing through you?",
+      "reflection": "When you've felt that pulse, did a particular rhythm match it? What kind of touch met it best?",
+      "phrases": [
+        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "There's a rhythm my body wants — when touch matches that beat, it's a different level." },
+        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "Can you try matching a steady rhythm rather than changing it up? My body's got its own pulse." },
+        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "If the rhythm gets too fast or too much, I'll ask you to slow to something steadier." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I want to find the exact tempo my body wants to move with." },
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "Wanting the same steady rhythm over and over isn't dull — it's what carries me there." }
+      ]
+    },
+    "warmup-window": {
+      "recognize": "Noticed touch feels better once you've had time to warm up — and rushing makes it all feel like less?",
+      "reflection": "Think about how long it really takes you to warm up. What helps you get there — and what makes it harder to ask for the time?",
+      "phrases": [
+        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "I need real time to warm up before anything genital feels good — that's just my timing." },
+        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "Can we take a good while warming up first? Twenty unhurried minutes changes everything for me." },
+        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "If we jump to genital touch before I'm ready, I'd rather slow down than push through it." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I want to learn what actually warms me up — what my body needs before the rest feels right." },
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "Needing a long warm-up doesn't mean something's off — it's how my body gets there." }
+      ]
+    },
+    "responsive-desire": {
+      "recognize": "Notice you don't get many out-of-the-blue urges — but once things get going, you're all in?",
+      "reflection": "Think back to a time wanting showed up late, only after you'd started. What helped you get there — and what made it hard to trust it would come?",
+      "phrases": [
+        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "My wanting usually shows up after we start, not before — that's how I'm wired, not something to fix." },
+        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "I might not feel the spark up front. Can we start gently and let me warm into it, no pressure either way?" },
+        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "If I'm not feeling it once we've started, I want to be able to pause without it meaning something's wrong." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I'd like to learn what actually turns the key for me — what gets me from 'not thinking about it' to 'yes'." },
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "Not wanting it out of nowhere doesn't mean I don't want you. I just need a bit of an on-ramp." }
+      ]
+    },
+    "spontaneous-desire": {
+      "recognize": "Sometimes feel turned on out of nowhere — an urge with no obvious cause?",
+      "reflection": "When desire shows up unprompted, what do you tend to do with it? Does it feel welcome, or like it arrives at the wrong time?",
+      "phrases": [
+        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "When the urge hits me out of nowhere, I'd like to treat it as worth acting on, not ignoring." },
+        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "Sometimes I just want you out of the blue — can we make room for that when it strikes?" },
+        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "An urge isn't an obligation for either of us — either of us can pause or pass when the timing's off." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I'm curious what tends to spark those sudden urges for me — whether there's a pattern." },
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "However often these urges come — a lot or rarely — there's no right amount." }
+      ]
+    },
+    "golden-trio": {
+      "recognize": "Noticed that mixing kinds of touch — not penetration alone — makes things more intense?",
+      "reflection": "Think of an encounter that layered different kinds of touch. What combination did your body respond to most?",
+      "phrases": [
+        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "Variety is what works for me — one kind of touch alone rarely gets me all the way." },
+        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "Can we mix it up — hands, mouth, and penetration together rather than just one?" },
+        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "I don't want it to feel like ticking boxes — let's stop anything that turns into a chore and keep what feels good." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I'd like to find which combinations actually do it for me, not just try everything." },
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "Needing more than one thing isn't greedy or complicated — it's just what adds up for me." }
+      ]
+    },
+    "spectatoring": {
+      "recognize": "Ever caught yourself watching yourself during sex — how you look, how long you're taking, what they're thinking?",
+      "reflection": "When you've stepped outside the moment to watch yourself, what pulled you out — and what, if anything, brought you back?",
+      "phrases": [
+        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "When I'm in my head judging myself, I want to gently come back to what I'm actually feeling." },
+        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "Sometimes I get stuck in my head. A little reassurance, or just slowing down, helps me drop back in." },
+        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "If I go quiet and distant, it's not you — give me a moment to pause and come back to my body." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I'm curious what tends to pull me out of the moment — and what helps me stay." },
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "Drifting into my head sometimes doesn't mean I'm not enjoying you — I'm just learning to stay." }
+      ]
+    },
+    "embodied-presence": {
+      "recognize": "Had moments so absorbed in sensation that thinking just faded — fully in your body, not your head?",
+      "reflection": "Recall a time you were completely in your body. What let you get there, and what tends to call you back out?",
+      "phrases": [
+        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "When I drop fully into sensation, that's the best of it — I want to protect that, not perform." },
+        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "Can we go slow enough that I can really feel each thing? I want to be in it, not ahead of it." },
+        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "If I need quiet to stay present, that's not distance — if talking pulls me out, let's slow down and go wordless." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I want to learn what helps me stay in my body instead of drifting into my head." },
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "Getting lost in sensation and going quiet isn't checking out — it's me all the way here." }
+      ]
+    },
+    "non-concordance": {
+      "recognize": "Ever felt turned on in your head while your body showed nothing — or wet without actually being into it?",
+      "reflection": "When your body and your wanting didn't line up, which one did you trust? What would you want to trust next time?",
+      "phrases": [
+        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "What I feel matters more than what my body's doing — wetness isn't the same as wanting, for me." },
+        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "My body and my interest don't always match. Please check in with me, not just what you can see." },
+        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "Physical signs aren't a yes on their own — ask me, and if my words say stop, trust them over my body." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I want to get better at reading my own actual wanting, separate from the physical signs." },
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "If my body and my head disagree sometimes, nothing's broken — that mismatch is normal." }
+      ]
+    },
+    "sexual-self-esteem": {
+      "recognize": "How do you feel about yourself as a sexual person — confidence you bring in, or old beliefs that hold you back?",
+      "reflection": "Where did your beliefs about yourself as a sexual person come from? Which ones would you actually want to keep?",
+      "phrases": [
+        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "My pleasure is worth taking up space for — I'm allowed to want, and to ask." },
+        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "It helps me to hear what you enjoy about me — I'm still learning to believe I'm good in bed." },
+        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "I won't talk myself down in bed anymore — if I start, gently stop me rather than agreeing." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I'm curious who I am sexually when I'm not judging myself the whole time." },
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "I don't need to feel confident every day to deserve good sex — feeling entitled to pleasure is enough." }
+      ]
+    },
+    "body-appreciation": {
+      "recognize": "During sex, are you more caught up in how your body looks, or how it feels? Do appearance worries pull you out?",
+      "reflection": "Think of a moment you forgot how you looked and just felt. What made that possible?",
+      "phrases": [
+        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "I'd rather feel my body than watch it — what it can feel matters more than how it looks." },
+        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "When I get self-conscious about my body, it helps to be reminded you actually want to be here." },
+        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "I don't want to spend our time hiding how I look — keep the lights where I'm comfortable, and if I get self-conscious, let's not stop to fix it." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I want to find out how much more I feel when I'm not monitoring how I look." },
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "How my body looks doesn't decide whether I get to enjoy this — it doesn't." }
+      ]
+    },
+    "clitoral-structure": {
+      "recognize": "Did you know the part you can see is just the tip — the whole clitoris runs about 9cm inside?",
+      "reflection": "Does knowing the clitoris is mostly internal change where you'd expect to feel things? What might you explore differently?",
+      "phrases": [
+        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "Most of my clitoris is internal — so 'vaginal' pleasure and clitoral pleasure aren't really separate for me." },
+        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "There's way more clitoris than what's on the surface — pressure deeper and around it counts too." },
+        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "I know my own anatomy — if guessing isn't working, slow down and let me guide you to what reaches." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I want to explore the parts of the clitoris that aren't the obvious tip." },
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "If direct touch is too much, there's a whole internal structure to work with — there's no wrong build here." }
+      ]
+    },
+    "nerve-density": {
+      "recognize": "Noticed how intensely sensitive the clitoris is — how a tiny change in pressure changes everything?",
+      "reflection": "When touch has been just right — or way too much — what was the difference? What would you want to be able to say in the moment?",
+      "phrases": [
+        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "I'm extremely sensitive there — touch quality matters way more than pressure or speed." },
+        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "Lighter and more indirect usually works better for me — small changes make a big difference." },
+        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "If direct touch is too intense, pause and let me guide you somewhere nearby — it's sensitivity, not rejection." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I want to map exactly what kind of touch this sensitive spot actually likes." },
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "If it's sometimes 'too much,' that's just how many nerve endings are there — nothing's wrong." }
+      ]
+    },
+    "clitourethrovaginal": {
+      "recognize": "Felt a sensitivity on the front wall of the vagina that feels different from everywhere else?",
+      "reflection": "When the front wall has felt good, what kind of pressure reached it? Does it feel connected to the rest of your pleasure, or separate?",
+      "phrases": [
+        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "That front-wall feeling is real for me — it's connected internal tissue, not some separate magic spot." },
+        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "There's a spot on the front wall that responds to firm pressure — can we take time to find it?" },
+        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "Finding that spot takes patience — if it's not happening, let's stop and not force it." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I'm curious what angles and pressure actually reach that front-wall area for me." },
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "If we can't find a 'G-spot,' nothing's missing — it's connected tissue, and it varies for everyone." }
+      ]
+    },
+    "internal-stimulation": {
+      "recognize": "Noticed certain angles create pleasure on the front wall — different from deeper penetration?",
+      "reflection": "When front-wall stimulation has worked, what position or angle got you there? What would help you find it again?",
+      "phrases": [
+        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "What feels like a deep 'vaginal' thing is really internal clitoris for me — angle is everything." },
+        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "Aiming toward the front wall does more for me than going deep — can we play with angle?" },
+        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "Deeper isn't the goal for me — if it's not working, try a different angle rather than just going harder." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I want to find the angles that press right where the internal clitoris sits." },
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "If deep penetration alone doesn't do much, that's normal — it's about reaching the right tissue, not trying harder." }
+      ]
+    }
+  }
+}
