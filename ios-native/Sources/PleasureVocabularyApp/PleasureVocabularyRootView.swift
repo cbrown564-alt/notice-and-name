@@ -419,78 +419,33 @@ private struct PathwayDetailView: View {
 private struct ConceptDetailView: View {
     @ObservedObject var model: PleasureVocabularyViewModel
     let concept: Concept
-    @State private var draftNote = ""
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                VStack(alignment: .leading, spacing: 12) {
-                    Text(concept.category.displayName.uppercased())
-                        .font(AppFont.label)
-                        .tracking(1.6)
-                        .foregroundStyle(AppColor.secondaryInk)
-                        .accessibilityLabel("Category: \(concept.category.displayName)")
-                    Text(concept.name)
-                        .font(AppFont.title)
-                        .foregroundStyle(AppColor.ink)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .accessibilityAddTraits(.isHeader)
-                    Text(concept.definition)
-                        .font(AppFont.body)
-                        .foregroundStyle(AppColor.secondaryInk)
-                        .fixedSize(horizontal: false, vertical: true)
-                    StatusPicker(status: model.status(for: concept.id)) { status in
-                        model.setStatus(status, for: concept.id)
-                    }
-                    .padding(.top, 4)
-                }
-                .padding(.bottom, 4)
-
-                ForEach(Array(concept.blocks.enumerated()), id: \.element.id) { index, block in
-                    ContentBlockView(model: model, concept: concept, block: block)
-                        .blockEntrance(index: index, reduceMotion: reduceMotion)
-                }
-
-                Divider()
-                    .overlay(AppColor.line)
-                    .padding(.top, 4)
-
-                Text("Your response")
-                    .font(AppFont.section)
-                    .foregroundStyle(AppColor.ink)
-                    .accessibilityAddTraits(.isHeader)
-
-                QuietCard {
-                    VStack(alignment: .leading, spacing: 10) {
-                        Label("Field note", systemImage: "square.and.pencil")
-                            .font(AppFont.section)
-                        TextEditor(text: $draftNote)
-                            .font(AppFont.body)
-                            .frame(minHeight: 96)
-                            .padding(8)
-                            .background(AppColor.canvas, in: RoundedRectangle(cornerRadius: 8))
-                        Button {
-                            model.addFieldNote(body: draftNote, conceptId: concept.id)
-                            draftNote = ""
-                        } label: {
-                            Label("Save note", systemImage: "checkmark")
+        ConceptPagesView(model: model, concept: concept)
+            .navigationTitle(concept.name)
+            .compactNavigationTitle()
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Menu {
+                        ForEach(ConceptStatus.allCases, id: \.self) { item in
+                            Button {
+                                model.setStatus(item, for: concept.id)
+                            } label: {
+                                if model.status(for: concept.id) == item {
+                                    Label(item.displayName, systemImage: "checkmark")
+                                } else {
+                                    Text(item.displayName)
+                                }
+                            }
                         }
-                        .buttonStyle(SecondaryButtonStyle())
+                    } label: {
+                        Label("Change status", systemImage: "slider.horizontal.3")
                     }
                 }
-
-                PhraseTemplatesView(model: model, concept: concept)
-                SavedStateView(model: model, concept: concept)
             }
-            .padding(18)
-        }
-        .navigationTitle(concept.name)
-        .compactNavigationTitle()
-        .appScreenBackground()
-        .onAppear {
-            model.markOpened(concept.id)
-        }
+            .onAppear {
+                model.markOpened(concept.id)
+            }
     }
 }
 
