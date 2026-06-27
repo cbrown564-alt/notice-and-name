@@ -38,6 +38,10 @@ let package = Package(
         .testTarget(
             name: "PleasureVocabularyCoreTests",
             dependencies: ["PleasureVocabularyCore"]
+        ),
+        .testTarget(
+            name: "PleasureVocabularyAppTests",
+            dependencies: ["PleasureVocabularyApp"]
         )
     ]
 )

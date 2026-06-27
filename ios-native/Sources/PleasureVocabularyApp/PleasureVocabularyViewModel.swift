@@ -185,6 +185,10 @@ public final class PleasureVocabularyViewModel: ObservableObject {
         }
     }
 
+    public func clearExportPreview() {
+        exportText = nil
+    }
+
     public func deleteAllData() {
         do {
             try store?.deleteAllData()

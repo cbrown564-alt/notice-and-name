@@ -120,3 +120,32 @@ public enum MediaKind: String, Codable, Sendable {
     case video
     case diagram
 }
+
+public struct ContentBundleUpdatePlan: Equatable, Sendable {
+    public let fromBundleId: String
+    public let toBundleId: String
+    public let fromContentVersion: String
+    public let toContentVersion: String
+    public let schemaVersion: Int
+    public let retainedConceptIds: [String]
+    public let addedConceptIds: [String]
+    public let removedConceptIds: [String]
+
+    public var isSchemaCompatible: Bool {
+        schemaVersion == ContentBundleValidator.supportedSchemaVersion
+    }
+
+    public init(from oldBundle: ContentBundle, to newBundle: ContentBundle) {
+        let oldConceptIds = Set(oldBundle.concepts.map(\.id))
+        let newConceptIds = Set(newBundle.concepts.map(\.id))
+
+        self.fromBundleId = oldBundle.bundleId
+        self.toBundleId = newBundle.bundleId
+        self.fromContentVersion = oldBundle.contentVersion
+        self.toContentVersion = newBundle.contentVersion
+        self.schemaVersion = newBundle.schemaVersion
+        self.retainedConceptIds = newConceptIds.intersection(oldConceptIds).sorted()
+        self.addedConceptIds = newConceptIds.subtracting(oldConceptIds).sorted()
+        self.removedConceptIds = oldConceptIds.subtracting(newConceptIds).sorted()
+    }
+}

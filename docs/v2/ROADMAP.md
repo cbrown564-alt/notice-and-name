@@ -50,19 +50,21 @@ easier to maintain.
 
 Goal: make the prototype robust enough for sustained personal use.
 
+Hardening contract: [PHASE_5_HARDENING.md](PHASE_5_HARDENING.md).
+
 Guard against the repeated screen-fit failure mode: onboarding-adjacent SwiftUI views can
 collapse to their intrinsic content size after state transitions, leaving side bars or a
 partial-height canvas. First-run, app-lock, and recovery screens must take a full-window
 frame before painting the app canvas, then be checked on both current and smaller iPhones.
 
-- [ ] Finalize GRDB migration strategy and schema versioning.
-- [ ] Add automated persistence tests for concept state, notes, phrases, app lock, export, and deletion.
-- [ ] Add content bundle migration tests for future bundle updates.
-- [ ] Harden app lock behavior across cold launch, background/foreground, onboarding, and export flows.
-- [ ] Complete error and empty states for missing media, corrupt bundle, failed export, and locked database.
-- [ ] Add snapshot or UI smoke tests for core screens where feasible.
-- [ ] Verify full Dynamic Type, VoiceOver labels, Reduce Motion, and contrast.
-- [ ] Establish performance budgets for launch time, database operations, and media loading.
+- [x] Finalize GRDB migration strategy and schema versioning.
+- [x] Add automated persistence tests for concept state, notes, phrases, app lock, export, and deletion.
+- [x] Add content bundle migration tests for future bundle updates.
+- [x] Harden app lock behavior across cold launch, background/foreground, onboarding, and export flows.
+- [x] Complete error and empty states for missing media, corrupt bundle, failed export, and locked database.
+- [x] Add snapshot or UI smoke tests for core screens where feasible.
+- [x] Verify full Dynamic Type, VoiceOver labels, Reduce Motion, and contrast.
+- [x] Establish performance budgets for launch time, database operations, and media loading.
 
 Exit criteria:
 

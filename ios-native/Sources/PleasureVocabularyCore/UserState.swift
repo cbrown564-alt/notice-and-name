@@ -181,3 +181,15 @@ public struct UserDataExport: Codable, Equatable, Sendable {
         self.contentVersions = contentVersions
     }
 }
+
+public struct StoreSchemaInfo: Codable, Equatable, Sendable {
+    public let schemaVersion: Int
+    public let lastMigrationId: String
+    public let migratedAt: Date
+
+    public init(schemaVersion: Int, lastMigrationId: String, migratedAt: Date = Date()) {
+        self.schemaVersion = schemaVersion
+        self.lastMigrationId = lastMigrationId
+        self.migratedAt = migratedAt
+    }
+}

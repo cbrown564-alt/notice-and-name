@@ -97,6 +97,103 @@ import Testing
     #expect(settings.notificationPrivacyEnabled)
 }
 
+@Test func schemaMetadataIsVersioned() throws {
+    let store = try UserStore()
+
+    let schemaInfo = try store.schemaInfo()
+
+    #expect(schemaInfo.schemaVersion == UserStore.currentSchemaVersion)
+    #expect(schemaInfo.lastMigrationId == UserStore.currentMigrationId)
+}
+
+@Test func localStateSurvivesDatabaseReopen() throws {
+    let path = temporaryDatabasePath()
+    let openedAt = Date(timeIntervalSince1970: 4_000)
+    let updatedAt = Date(timeIntervalSince1970: 4_200)
+
+    do {
+        let store = try UserStore(path: path)
+        try store.acceptPrivacyPledge(appLockEnabled: true, acceptedAt: openedAt)
+        try store.markConceptOpened("spreading", openedAt: openedAt)
+        try store.setConceptStatus(.tried, for: "spreading", updatedAt: updatedAt)
+        try store.addFieldNote(
+            FieldNote(
+                id: "note-reopen",
+                conceptId: "spreading",
+                body: "A broader map helped.",
+                createdAt: openedAt,
+                updatedAt: updatedAt
+            )
+        )
+        try store.savePhrase(
+            SavedPhrase(
+                id: "phrase-reopen",
+                conceptId: "spreading",
+                body: "Could we slow down and broaden the touch?",
+                tone: .soft,
+                createdAt: updatedAt
+            )
+        )
+    }
+
+    let reopened = try UserStore(path: path)
+    let settings = try reopened.loadSettings()
+    let loadedState = try reopened.conceptState(for: "spreading")
+    let state = try #require(loadedState)
+
+    #expect(settings.completedOnboarding)
+    #expect(settings.appLockEnabled)
+    #expect(state.status == .tried)
+    #expect(state.lastOpenedAt == openedAt)
+    #expect(try reopened.fieldNotes(searchTerm: "broader").map(\.id) == ["note-reopen"])
+    #expect(try reopened.savedPhrases(conceptId: "spreading").map(\.id) == ["phrase-reopen"])
+    #expect(try reopened.schemaInfo().schemaVersion == UserStore.currentSchemaVersion)
+}
+
+@Test func contentVersionUpdateDoesNotDeleteLocalConceptState() throws {
+    let store = try UserStore()
+    let original = try ContentBundleLoader.load(from: fullBundleURL())
+    let updated = ContentBundle(
+        schemaVersion: original.schemaVersion,
+        bundleId: original.bundleId,
+        contentVersion: "2.1.0",
+        generatedAt: "2026-06-27T00:00:00Z",
+        concepts: Array(original.concepts.dropLast()),
+        pathways: original.pathways,
+        media: original.media
+    )
+
+    try store.setConceptStatus(.resonates, for: "responsive-desire")
+    try store.recordInstalledContent(bundle: original, installedAt: Date(timeIntervalSince1970: 5_000))
+    try store.recordInstalledContent(bundle: updated, installedAt: Date(timeIntervalSince1970: 5_500))
+
+    let loadedState = try store.conceptState(for: "responsive-desire")
+    let state = try #require(loadedState)
+    #expect(state.status == .resonates)
+    #expect(try store.contentVersions().first?.contentVersion == "2.1.0")
+}
+
+@Test func localStoreOperationsStayWithinPerformanceBudget() throws {
+    let store = try UserStore()
+    let start = ContinuousClock.now
+
+    for index in 0..<100 {
+        try store.setConceptStatus(.curious, for: "concept-\(index)")
+        try store.addFieldNote(
+            FieldNote(
+                id: "perf-note-\(index)",
+                conceptId: "concept-\(index)",
+                body: "Performance note \(index)."
+            )
+        )
+    }
+
+    _ = try store.exportJSONData()
+    let elapsed = start.duration(to: .now)
+
+    #expect(elapsed < .seconds(2), "100 writes plus export should stay below the local database budget.")
+}
+
 private func fullBundleURL() -> URL {
     URL(fileURLWithPath: #filePath)
         .deletingLastPathComponent()
@@ -104,4 +201,10 @@ private func fullBundleURL() -> URL {
         .deletingLastPathComponent()
         .deletingLastPathComponent()
         .appendingPathComponent("content/v2/bundles/v2-full.bundle.json")
+}
+
+private func temporaryDatabasePath() -> String {
+    URL(fileURLWithPath: NSTemporaryDirectory())
+        .appendingPathComponent("pleasure-vocabulary-\(UUID().uuidString).sqlite")
+        .path
 }

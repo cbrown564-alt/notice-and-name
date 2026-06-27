@@ -9,13 +9,15 @@ public enum ContentBundleLoader {
 }
 
 public struct ContentBundleValidator {
+    public static let supportedSchemaVersion = 1
+
     public init() {}
 
     public func validate(_ bundle: ContentBundle) -> [String] {
         var errors: [String] = []
 
-        if bundle.schemaVersion != 1 {
-            errors.append("schemaVersion must be 1")
+        if bundle.schemaVersion != Self.supportedSchemaVersion {
+            errors.append("schemaVersion must be \(Self.supportedSchemaVersion)")
         }
         if bundle.concepts.isEmpty {
             errors.append("concepts must not be empty")

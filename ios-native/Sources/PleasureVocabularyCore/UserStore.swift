@@ -2,6 +2,9 @@ import Foundation
 import GRDB
 
 public final class UserStore: @unchecked Sendable {
+    public static let currentSchemaVersion = 2
+    public static let currentMigrationId = "v2_schema_metadata"
+
     private let dbQueue: DatabaseQueue
 
     public convenience init() throws {
@@ -242,6 +245,19 @@ public final class UserStore: @unchecked Sendable {
         }
     }
 
+    public func schemaInfo() throws -> StoreSchemaInfo {
+        try dbQueue.read { db in
+            guard let row = try Row.fetchOne(db, sql: "SELECT * FROM app_metadata WHERE key = 'schema'") else {
+                return StoreSchemaInfo(
+                    schemaVersion: Self.currentSchemaVersion,
+                    lastMigrationId: Self.currentMigrationId,
+                    migratedAt: Date(timeIntervalSince1970: 0)
+                )
+            }
+            return makeSchemaInfo(from: row)
+        }
+    }
+
     public func exportData(exportedAt: Date = Date()) throws -> UserDataExport {
         try UserDataExport(
             exportedAt: exportedAt,
@@ -311,10 +327,13 @@ public final class UserStore: @unchecked Sendable {
     }
 }
 
+private let v1UserStateMigrationId = "v1_user_state"
+private let v2SchemaMetadataMigrationId = "v2_schema_metadata"
+
 private var migrator: DatabaseMigrator {
     var migrator = DatabaseMigrator()
 
-    migrator.registerMigration("v1_user_state") { db in
+    migrator.registerMigration(v1UserStateMigrationId) { db in
         try db.create(table: "concept_state", ifNotExists: true) { table in
             table.column("conceptId", .text).primaryKey()
             table.column("status", .text).notNull()
@@ -363,6 +382,31 @@ private var migrator: DatabaseMigrator {
             table.column("contentVersion", .text).notNull()
             table.column("installedAt", .double).notNull()
         }
+    }
+
+    migrator.registerMigration(v2SchemaMetadataMigrationId) { db in
+        try db.create(table: "app_metadata", ifNotExists: true) { table in
+            table.column("key", .text).primaryKey()
+            table.column("schemaVersion", .integer).notNull()
+            table.column("lastMigrationId", .text).notNull()
+            table.column("migratedAt", .double).notNull()
+        }
+
+        try db.execute(
+            sql: """
+                INSERT INTO app_metadata (key, schemaVersion, lastMigrationId, migratedAt)
+                VALUES ('schema', ?, ?, ?)
+                ON CONFLICT(key) DO UPDATE SET
+                    schemaVersion = excluded.schemaVersion,
+                    lastMigrationId = excluded.lastMigrationId,
+                    migratedAt = excluded.migratedAt
+                """,
+            arguments: [
+                UserStore.currentSchemaVersion,
+                UserStore.currentMigrationId,
+                Date().timeIntervalSince1970
+            ]
+        )
     }
 
     return migrator
@@ -423,6 +467,14 @@ private func contentVersion(from row: Row) -> InstalledContentVersion {
         bundleId: row["bundleId"],
         contentVersion: row["contentVersion"],
         installedAt: date(row["installedAt"]) ?? Date(timeIntervalSince1970: 0)
+    )
+}
+
+private func makeSchemaInfo(from row: Row) -> StoreSchemaInfo {
+    StoreSchemaInfo(
+        schemaVersion: row["schemaVersion"],
+        lastMigrationId: row["lastMigrationId"],
+        migratedAt: date(row["migratedAt"]) ?? Date(timeIntervalSince1970: 0)
     )
 }
 

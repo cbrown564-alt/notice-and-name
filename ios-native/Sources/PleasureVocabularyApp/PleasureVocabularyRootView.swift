@@ -7,23 +7,39 @@ import LocalAuthentication
 
 public struct PleasureVocabularyRootView: View {
     @StateObject private var model: PleasureVocabularyViewModel
+    @StateObject private var lockCoordinator: AppLockCoordinator
+    @Environment(\.scenePhase) private var scenePhase
 
     public init(model: PleasureVocabularyViewModel = PleasureVocabularyViewModel()) {
         _model = StateObject(wrappedValue: model)
+        _lockCoordinator = StateObject(wrappedValue: AppLockCoordinator(settings: model.settings))
     }
 
     public var body: some View {
         Group {
             if model.bundle.concepts.isEmpty {
-                LoadErrorView(message: model.loadError)
+                UnavailableStateView(
+                    symbol: "exclamationmark.lock",
+                    title: "Content unavailable",
+                    message: model.loadError ?? "The local content bundle could not be opened."
+                )
             } else if !model.settings.completedOnboarding {
                 OnboardingView(model: model)
             } else {
-                LockGateView(model: model)
+                LockGateView(model: model, coordinator: lockCoordinator)
             }
         }
         .tint(AppColor.plum)
         .fullScreenAppBackground()
+        .onChange(of: model.settings) { _, settings in
+            lockCoordinator.syncSettings(settings)
+        }
+        .onChange(of: scenePhase) { _, phase in
+            guard phase == .background || phase == .inactive else { return }
+            if lockCoordinator.lockForBackgroundPrivacy() {
+                model.clearExportPreview()
+            }
+        }
         .alert("Something needs attention", isPresented: errorBinding) {
             Button("OK") {
                 model.clearError()
@@ -51,20 +67,26 @@ public struct PleasureVocabularyNativeApp: App {
     }
 }
 
-private struct LoadErrorView: View {
+private struct UnavailableStateView: View {
+    let symbol: String
+    let title: String
     let message: String?
 
     var body: some View {
         VStack(spacing: 18) {
-            Image(systemName: "exclamationmark.lock")
+            Image(systemName: symbol)
                 .font(.system(size: 34, weight: .semibold))
                 .foregroundStyle(AppColor.blush)
-            Text("Content unavailable")
+                .accessibilityHidden(true)
+            Text(title)
                 .font(AppFont.title)
+                .foregroundStyle(AppColor.ink)
+                .multilineTextAlignment(.center)
             Text(message ?? "The local content bundle could not be opened.")
                 .font(AppFont.body)
                 .foregroundStyle(AppColor.secondaryInk)
                 .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
         }
         .padding(28)
         .fullScreenAppBackground()
@@ -125,6 +147,7 @@ private struct OnboardingView: View {
                 .background(AppColor.canvas)
             }
         }
+        .fullScreenAppBackground()
     }
 }
 
@@ -148,11 +171,11 @@ private struct PrivacyRow: View {
 
 private struct LockGateView: View {
     @ObservedObject var model: PleasureVocabularyViewModel
-    @State private var isUnlocked = false
+    @ObservedObject var coordinator: AppLockCoordinator
 
     var body: some View {
-        if model.settings.appLockEnabled && !isUnlocked {
-            LockScreen(isUnlocked: $isUnlocked)
+        if coordinator.isLocked {
+            LockScreen(coordinator: coordinator)
         } else {
             MainTabView(model: model)
         }
@@ -160,7 +183,7 @@ private struct LockGateView: View {
 }
 
 private struct LockScreen: View {
-    @Binding var isUnlocked: Bool
+    @ObservedObject var coordinator: AppLockCoordinator
     @State private var message = "Unlock your private vocabulary."
 
     var body: some View {
@@ -168,11 +191,14 @@ private struct LockScreen: View {
             Image(systemName: "lock.shield")
                 .font(.system(size: 40, weight: .semibold))
                 .foregroundStyle(AppColor.plum)
+                .accessibilityHidden(true)
             Text("Locked")
                 .font(AppFont.title)
             Text(message)
                 .font(AppFont.body)
                 .foregroundStyle(AppColor.secondaryInk)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
             Button {
                 authenticate()
             } label: {
@@ -180,6 +206,7 @@ private struct LockScreen: View {
             }
             .buttonStyle(PrimaryButtonStyle())
             .frame(maxWidth: 360)
+            .accessibilityHint("Uses the device passcode or biometric authentication.")
         }
         .padding(28)
         .fullScreenAppBackground()
@@ -194,18 +221,19 @@ private struct LockScreen: View {
                 Task { @MainActor in
                     if success {
                         NativeHaptics.success()
-                        isUnlocked = true
+                        coordinator.unlockSucceeded()
                     } else {
+                        coordinator.unlockFailed()
                         message = authError?.localizedDescription ?? "Could not unlock."
                     }
                 }
             }
         } else {
             NativeHaptics.selection()
-            isUnlocked = true
+            coordinator.unlockSucceeded()
         }
         #else
-        isUnlocked = true
+        coordinator.unlockSucceeded()
         #endif
     }
 }
@@ -288,9 +316,11 @@ private struct VocabularyView: View {
         NavigationStack {
             List {
                 if model.vocabularyConcepts.isEmpty {
-                    Text("Words you mark, note, or save will appear here.")
-                        .font(AppFont.body)
-                        .foregroundStyle(AppColor.secondaryInk)
+                    InlineEmptyStateView(
+                        symbol: "text.book.closed",
+                        title: "No saved words yet",
+                        message: "Words you mark, note, or save will appear here."
+                    )
                         .listRowBackground(AppColor.canvas)
                 } else {
                     ForEach(model.vocabularyConcepts) { concept in
@@ -456,9 +486,11 @@ private struct JournalView: View {
                 .listRowBackground(AppColor.canvas)
 
                 if model.filteredFieldNotes.isEmpty {
-                    Text("Private field notes will collect here.")
-                        .font(AppFont.body)
-                        .foregroundStyle(AppColor.secondaryInk)
+                    InlineEmptyStateView(
+                        symbol: model.journalSearchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? "note.text" : "magnifyingglass",
+                        title: model.journalSearchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? "No field notes yet" : "No matching notes",
+                        message: model.journalSearchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? "Private field notes will collect here." : "Try a different word or clear the search."
+                    )
                         .listRowBackground(AppColor.canvas)
                 } else {
                     ForEach(model.filteredFieldNotes) { note in
@@ -559,6 +591,8 @@ private struct ContentBlockView: View {
                     .foregroundStyle(AppColor.secondaryInk)
                 if let media = model.media(withId: block.mediaId) {
                     MediaReferenceView(media: media)
+                } else if block.mediaId != nil {
+                    MissingMediaReferenceView()
                 }
             }
         }
@@ -614,6 +648,29 @@ private struct MediaReferenceView: View {
         case .diagram:
             return "point.3.connected.trianglepath.dotted"
         }
+    }
+}
+
+private struct MissingMediaReferenceView: View {
+    var body: some View {
+        HStack(alignment: .top, spacing: 10) {
+            Image(systemName: "photo.badge.exclamationmark")
+                .foregroundStyle(AppColor.blush)
+                .frame(width: 24)
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Media unavailable")
+                    .font(AppFont.note)
+                    .foregroundStyle(AppColor.ink)
+                Text("The concept text is still available.")
+                    .font(AppFont.label)
+                    .foregroundStyle(AppColor.secondaryInk)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+        .padding(10)
+        .background(AppColor.canvas, in: RoundedRectangle(cornerRadius: 8))
+        .accessibilityElement(children: .combine)
     }
 }
 
@@ -808,5 +865,32 @@ private struct MetricTile: View {
         .frame(maxWidth: .infinity)
         .padding(.vertical, 12)
         .background(AppColor.canvas, in: RoundedRectangle(cornerRadius: 8))
+    }
+}
+
+private struct InlineEmptyStateView: View {
+    let symbol: String
+    let title: String
+    let message: String
+
+    var body: some View {
+        VStack(spacing: 10) {
+            Image(systemName: symbol)
+                .font(.system(.title2, weight: .semibold))
+                .foregroundStyle(AppColor.plum)
+                .accessibilityHidden(true)
+            Text(title)
+                .font(AppFont.cardTitle)
+                .foregroundStyle(AppColor.ink)
+                .multilineTextAlignment(.center)
+            Text(message)
+                .font(AppFont.body)
+                .foregroundStyle(AppColor.secondaryInk)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 24)
+        .accessibilityElement(children: .combine)
     }
 }

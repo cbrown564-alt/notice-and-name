@@ -37,6 +37,38 @@ import Testing
     #expect(errors.isEmpty, Comment(rawValue: errors.joined(separator: "\n")))
 }
 
+@Test func plansContentBundleUpdatesByStableConceptIdentity() throws {
+    let oldBundle = try ContentBundleLoader.load(from: goldenPathBundleURL())
+    let newBundle = try ContentBundleLoader.load(from: fullBundleURL())
+
+    let plan = ContentBundleUpdatePlan(from: oldBundle, to: newBundle)
+
+    #expect(plan.isSchemaCompatible)
+    #expect(plan.fromBundleId == "golden-path")
+    #expect(plan.toBundleId == "v2-full")
+    #expect(plan.retainedConceptIds.contains("responsive-desire"))
+    #expect(plan.addedConceptIds.contains("internal-stimulation"))
+    #expect(plan.removedConceptIds.isEmpty)
+}
+
+@Test func rejectsFutureContentSchemaUntilAMigrationExists() throws {
+    let bundle = try ContentBundleLoader.load(from: goldenPathBundleURL())
+    let futureBundle = ContentBundle(
+        schemaVersion: ContentBundleValidator.supportedSchemaVersion + 1,
+        bundleId: bundle.bundleId,
+        contentVersion: bundle.contentVersion,
+        generatedAt: bundle.generatedAt,
+        concepts: bundle.concepts,
+        pathways: bundle.pathways,
+        media: bundle.media
+    )
+
+    let errors = ContentBundleValidator().validate(futureBundle)
+
+    #expect(errors.contains("schemaVersion must be \(ContentBundleValidator.supportedSchemaVersion)"))
+    #expect(ContentBundleUpdatePlan(from: bundle, to: futureBundle).isSchemaCompatible == false)
+}
+
 private func goldenPathBundleURL() -> URL {
     URL(fileURLWithPath: #filePath)
         .deletingLastPathComponent()
