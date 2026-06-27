@@ -8,6 +8,8 @@ then repeat the persistence checks after force-quitting and reopening the app.
 - Onboarding opens directly into the privacy pledge.
 - App lock toggle is visible during onboarding.
 - Accepting the pledge lands on Today.
+- With app lock enabled, canceling the first authentication prompt after onboarding
+  leaves the Locked screen full-bleed with no white/black bars or partial-height panel.
 - If app lock is enabled, relaunching asks for device authentication or passcode.
 - Today shows one suggested concept and the saved counts.
 - Opening a concept marks it explored.

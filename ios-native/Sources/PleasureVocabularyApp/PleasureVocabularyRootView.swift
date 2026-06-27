@@ -23,7 +23,7 @@ public struct PleasureVocabularyRootView: View {
             }
         }
         .tint(AppColor.plum)
-        .appScreenBackground()
+        .fullScreenAppBackground()
         .alert("Something needs attention", isPresented: errorBinding) {
             Button("OK") {
                 model.clearError()
@@ -67,7 +67,7 @@ private struct LoadErrorView: View {
                 .multilineTextAlignment(.center)
         }
         .padding(28)
-        .appScreenBackground()
+        .fullScreenAppBackground()
     }
 }
 
@@ -182,7 +182,7 @@ private struct LockScreen: View {
             .frame(maxWidth: 360)
         }
         .padding(28)
-        .appScreenBackground()
+        .fullScreenAppBackground()
     }
 
     private func authenticate() {

@@ -26,18 +26,21 @@ public enum AppFont {
 }
 
 public enum NativeHaptics {
+    @MainActor
     public static func selection() {
         #if os(iOS)
         UISelectionFeedbackGenerator().selectionChanged()
         #endif
     }
 
+    @MainActor
     public static func success() {
         #if os(iOS)
         UINotificationFeedbackGenerator().notificationOccurred(.success)
         #endif
     }
 
+    @MainActor
     public static func warning() {
         #if os(iOS)
         UINotificationFeedbackGenerator().notificationOccurred(.warning)
@@ -94,6 +97,11 @@ struct QuietCard<Content: View>: View {
 extension View {
     func appScreenBackground() -> some View {
         background(AppColor.canvas.ignoresSafeArea())
+    }
+
+    func fullScreenAppBackground() -> some View {
+        frame(maxWidth: .infinity, maxHeight: .infinity)
+            .appScreenBackground()
     }
 
     @ViewBuilder
