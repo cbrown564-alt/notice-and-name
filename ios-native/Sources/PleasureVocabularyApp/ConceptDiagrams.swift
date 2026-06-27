@@ -113,6 +113,80 @@ struct MediaPlaceholderCard: View {
     }
 }
 
+// MARK: - Bundled illustration
+
+/// Resolves and loads the real illustration that ships in the app bundle for an
+/// image-kind `MediaItem`. The bundle's `path` (e.g.
+/// `assets/images/concepts/illustrations/angling.png`) is only used to derive the
+/// file's basename; the actual file is read from `media/illustrations` inside the
+/// module bundle. The internal path itself is never shown to the reader.
+enum BundledMedia {
+    static func image(for media: MediaItem) -> Image? {
+        guard media.kind == .image, let url = imageURL(for: media) else { return nil }
+        #if canImport(UIKit)
+        guard let platform = UIImage(contentsOfFile: url.path) else { return nil }
+        return Image(uiImage: platform)
+        #elseif canImport(AppKit)
+        guard let platform = NSImage(contentsOf: url) else { return nil }
+        return Image(nsImage: platform)
+        #else
+        return nil
+        #endif
+    }
+
+    private static func imageURL(for media: MediaItem) -> URL? {
+        let file = (media.path as NSString).lastPathComponent
+        let name = (file as NSString).deletingPathExtension
+        let ext = (file as NSString).pathExtension
+        guard !name.isEmpty, !ext.isEmpty else { return nil }
+        return Bundle.module.url(
+            forResource: name,
+            withExtension: ext,
+            subdirectory: "media/illustrations"
+        )
+    }
+}
+
+/// Renders the real bundled illustration in a calm framed tile with its caption
+/// beneath. Falls back to the framed placeholder if the asset cannot be loaded,
+/// so a missing or unbundled image never breaks the screen and never leaks a path.
+struct IllustrationCard: View {
+    let media: MediaItem
+
+    var body: some View {
+        if let image = BundledMedia.image(for: media) {
+            VStack(alignment: .leading, spacing: 8) {
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(maxWidth: .infinity)
+                    .frame(maxHeight: 260)
+                    .background(AppColor.canvas)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(AppColor.line, lineWidth: 1)
+                    }
+                    .accessibilityHidden(true)
+                Text(caption)
+                    .font(AppFont.note)
+                    .foregroundStyle(AppColor.secondaryInk)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel(caption)
+            .accessibilityAddTraits(.isImage)
+        } else {
+            MediaPlaceholderCard(systemImage: "photo", text: caption)
+        }
+    }
+
+    // Human-readable only: never the internal path.
+    private var caption: String {
+        media.caption ?? media.alt ?? "Illustration"
+    }
+}
+
 // MARK: - Diagram plumbing
 
 /// Calm surface every diagram is drawn on: rounded canvas tile with a soft

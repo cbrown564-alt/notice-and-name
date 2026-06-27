@@ -32,7 +32,8 @@ let package = Package(
             name: "PleasureVocabularyApp",
             dependencies: ["PleasureVocabularyCore"],
             resources: [
-                .process("Resources")
+                .process("Resources/v2-full.bundle.json"),
+                .copy("Resources/media")
             ]
         ),
         .testTarget(

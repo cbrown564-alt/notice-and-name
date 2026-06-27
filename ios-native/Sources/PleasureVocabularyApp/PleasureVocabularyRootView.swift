@@ -848,8 +848,14 @@ private struct MediaReferenceView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
-        // Reuses the shared framed placeholder; identical look to P0/P1.
-        MediaPlaceholderCard(systemImage: iconName, text: displayText)
+        if media.kind == .image {
+            // Render the real bundled illustration (falls back to the placeholder
+            // internally if the asset is missing).
+            IllustrationCard(media: media)
+        } else {
+            // Videos and any other non-rendered media keep the framed placeholder.
+            MediaPlaceholderCard(systemImage: iconName, text: displayText)
+        }
     }
 
     // Human-readable only: never surface `path` or `reducedMotionFallback`.
