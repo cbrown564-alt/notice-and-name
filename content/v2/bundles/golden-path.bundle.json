@@ -1,0 +1,365 @@
+{
+  "schemaVersion": 1,
+  "bundleId": "golden-path",
+  "contentVersion": "0.1.0",
+  "generatedAt": "2026-06-27T00:00:00Z",
+  "concepts": [
+    {
+      "id": "responsive-desire",
+      "name": "Responsive Desire",
+      "category": "timing",
+      "definition": "Sexual interest that arises in response to stimulation or erotic context, rather than appearing spontaneously beforehand.",
+      "summary": "Desire can arrive after touch, context, or connection begins. That pattern is common and valid.",
+      "blocks": [
+        {
+          "id": "responsive-desire-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "Do you rarely feel random urges for sex, but once things start, you get into it and enjoy yourself?"
+        },
+        {
+          "id": "responsive-desire-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "Desire research describes responsive desire as a common, healthy pattern, especially for women and in long-term relationships. Lack of spontaneous urge beforehand does not mean low libido; many people become interested once touch, mood, or connection engages them.",
+          "citationIds": ["basson-2000", "nagoski-2015"]
+        },
+        {
+          "id": "responsive-desire-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "What conditions help you become curious after you begin: comfort, pacing, emotional closeness, type of touch, or something else?",
+          "privateByDefault": true
+        },
+        {
+          "id": "responsive-desire-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "I do not always feel desire before we begin, but sometimes it shows up once there is warmth, touch, and no pressure."
+        }
+      ],
+      "relatedConceptIds": ["non-concordance", "spectatoring"],
+      "phraseTemplates": [
+        {
+          "id": "responsive-desire-soft-share",
+          "label": "Explain the pattern",
+          "body": "I have learned that desire often shows up for me responsively. I may not feel it before we start, but the right context can help it arrive.",
+          "tone": "soft"
+        }
+      ],
+      "citations": [
+        {
+          "id": "basson-2000",
+          "label": "Basson circular model of desire",
+          "source": "Basson, 2000"
+        },
+        {
+          "id": "nagoski-2015",
+          "label": "Responsive desire synthesis",
+          "source": "Nagoski, 2015"
+        }
+      ],
+      "mediaIds": ["responsive-desire-video"]
+    },
+    {
+      "id": "angling",
+      "name": "Angling",
+      "category": "technique",
+      "definition": "Rotating, raising, or lowering the pelvis during penetration to adjust where internal stimulation occurs.",
+      "summary": "Small changes in pelvic angle can redirect pressure and make a familiar position feel different.",
+      "blocks": [
+        {
+          "id": "angling-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "Have you ever shifted your hips during penetration to find an angle that felt better?"
+        },
+        {
+          "id": "angling-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "The OMGyes Pleasure Report identified angling as a named technique associated with enhanced pleasure. Naming the movement can help you notice it in the moment and repeat what works instead of relying on a vague memory of a position.",
+          "citationIds": ["hensel-2021"]
+        },
+        {
+          "id": "angling-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "What angle, height, or position tends to make internal pressure feel more focused for you?",
+          "privateByDefault": true
+        },
+        {
+          "id": "angling-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "A small change in angle can make a big difference for me. I may want to slow down and adjust my hips until the pressure lands right."
+        }
+      ],
+      "relatedConceptIds": ["pairing"],
+      "phraseTemplates": [
+        {
+          "id": "angling-direct-request",
+          "label": "Ask for adjustment",
+          "body": "Can we pause for a second while I adjust the angle? I think a small shift would help this feel better.",
+          "tone": "direct"
+        }
+      ],
+      "citations": [
+        {
+          "id": "hensel-2021",
+          "label": "OMGyes Pleasure Report",
+          "source": "Hensel et al., 2021, PLOS ONE"
+        }
+      ],
+      "mediaIds": ["angling-diagram", "angling-illustration"]
+    },
+    {
+      "id": "pairing",
+      "name": "Pairing",
+      "category": "technique",
+      "definition": "Adding external clitoral stimulation during penetration, either solo or with a partner.",
+      "summary": "Penetration and external clitoral touch can work together rather than competing for attention.",
+      "blocks": [
+        {
+          "id": "pairing-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "Have you found that penetration alone does not quite get you there, but adding clitoral touch changes everything?"
+        },
+        {
+          "id": "pairing-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "Research consistently links clitoral stimulation with higher orgasm likelihood during partnered sex. Pairing treats external touch as common, useful information about anatomy, not as a fix for something wrong.",
+          "citationIds": ["hensel-2021", "frederick-2018"]
+        },
+        {
+          "id": "pairing-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "What kind of external touch, pressure, rhythm, or tool tends to pair well with internal sensation for you?",
+          "privateByDefault": true
+        },
+        {
+          "id": "pairing-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "Penetration feels better for me when it is paired with clitoral touch. I would like that to be part of the experience, not an extra."
+        }
+      ],
+      "relatedConceptIds": ["angling"],
+      "phraseTemplates": [
+        {
+          "id": "pairing-curious-share",
+          "label": "Suggest pairing",
+          "body": "I am curious about pairing penetration with clitoral touch. Could we make room for both?",
+          "tone": "curious"
+        }
+      ],
+      "citations": [
+        {
+          "id": "hensel-2021",
+          "label": "OMGyes Pleasure Report",
+          "source": "Hensel et al., 2021, PLOS ONE"
+        },
+        {
+          "id": "frederick-2018",
+          "label": "Orgasm gap and stimulation patterns",
+          "source": "Frederick et al., 2018, Archives of Sexual Behavior"
+        }
+      ],
+      "mediaIds": ["pairing-diagram", "pairing-illustration"]
+    },
+    {
+      "id": "spectatoring",
+      "name": "Spectatoring",
+      "category": "psychological",
+      "definition": "Mentally watching and evaluating yourself during sex rather than staying present in the experience.",
+      "summary": "Self-monitoring can pull attention away from sensation and into performance commentary.",
+      "blocks": [
+        {
+          "id": "spectatoring-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "Have you caught yourself thinking about how you look, whether you are taking too long, or what your partner might be thinking?"
+        },
+        {
+          "id": "spectatoring-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "Masters and Johnson named spectatoring as a barrier to enjoyment. Later research links self-focused attention during sex with lower arousal and satisfaction, while mindfulness-based approaches can help redirect attention back to sensation.",
+          "citationIds": ["masters-johnson", "barlow-1986", "brotto-2018"]
+        },
+        {
+          "id": "spectatoring-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "What kind of thoughts tend to pull you out of your body? What sensory cue could help you come back?",
+          "privateByDefault": true
+        },
+        {
+          "id": "spectatoring-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "Sometimes I get in my head and start monitoring myself. Slowing down and focusing on sensation helps me come back."
+        }
+      ],
+      "relatedConceptIds": ["non-concordance", "responsive-desire"],
+      "phraseTemplates": [
+        {
+          "id": "spectatoring-reassuring-share",
+          "label": "Name the interruption",
+          "body": "I notice I sometimes start watching myself instead of feeling. If that happens, slowing down and making things less performative helps.",
+          "tone": "reassuring"
+        }
+      ],
+      "citations": [
+        {
+          "id": "masters-johnson",
+          "label": "Spectatoring",
+          "source": "Masters & Johnson"
+        },
+        {
+          "id": "barlow-1986",
+          "label": "Self-focused attention and arousal",
+          "source": "Barlow, 1986"
+        },
+        {
+          "id": "brotto-2018",
+          "label": "Mindfulness and sexuality",
+          "source": "Brotto, 2018"
+        }
+      ],
+      "mediaIds": ["spectatoring-illustration"]
+    },
+    {
+      "id": "non-concordance",
+      "name": "Non-concordance",
+      "category": "psychological",
+      "definition": "When physical arousal signs do not match the subjective feeling of being turned on, and vice versa.",
+      "summary": "Genital response and felt desire can diverge. Wanting is communicated, not inferred from physical signs.",
+      "blocks": [
+        {
+          "id": "non-concordance-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "Have you ever felt mentally aroused while your body showed few signs, or noticed physical response when you were not actually interested?"
+        },
+        {
+          "id": "non-concordance-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "Meta-analyses find only modest correlation between genital response and subjective arousal in women. Genital response can occur without desire, and desire can exist without obvious physical signs. Consent and wanting are communicated, not inferred.",
+          "citationIds": ["chivers-2010", "nagoski-2015"]
+        },
+        {
+          "id": "non-concordance-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "Where have you noticed a mismatch between body signals and felt wanting? What would help you trust your own experience?",
+          "privateByDefault": true
+        },
+        {
+          "id": "non-concordance-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "My body signals and my felt desire are not always the same thing. I want us to listen to what I say I want, not guess from physical signs."
+        }
+      ],
+      "relatedConceptIds": ["responsive-desire", "spectatoring"],
+      "phraseTemplates": [
+        {
+          "id": "non-concordance-direct-share",
+          "label": "Clarify consent",
+          "body": "Physical response is not the same as wanting for me. I want us to check in with words rather than assume.",
+          "tone": "direct"
+        }
+      ],
+      "citations": [
+        {
+          "id": "chivers-2010",
+          "label": "Arousal concordance meta-analysis",
+          "source": "Chivers et al., 2010"
+        },
+        {
+          "id": "nagoski-2015",
+          "label": "Arousal non-concordance synthesis",
+          "source": "Nagoski, 2015"
+        }
+      ],
+      "mediaIds": ["non-concordance-illustration"]
+    }
+  ],
+  "pathways": [
+    {
+      "id": "language-for-myself",
+      "name": "Language For Myself",
+      "summary": "A short path for naming desire, attention, and physical response without judgment.",
+      "conceptIds": ["responsive-desire", "non-concordance", "spectatoring"]
+    },
+    {
+      "id": "language-with-a-partner",
+      "name": "Language With A Partner",
+      "summary": "A practical path for turning personal discoveries into clear, kind requests.",
+      "conceptIds": ["responsive-desire", "angling", "pairing"]
+    }
+  ],
+  "media": [
+    {
+      "id": "responsive-desire-video",
+      "kind": "video",
+      "path": "assets/videos/responsive-desire.mp4",
+      "alt": "Abstract bloom showing desire emerging after context begins.",
+      "caption": "A spark of context, then desire blooming.",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/responsive-desire.png"
+    },
+    {
+      "id": "angling-diagram",
+      "kind": "diagram",
+      "path": "native://diagram/angling",
+      "alt": "Diagram showing how pelvic tilt redirects pressure.",
+      "caption": "How pelvic tilt redirects pressure.",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/angling.png"
+    },
+    {
+      "id": "angling-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/angling.png",
+      "alt": "Warm anatomical illustration for angling.",
+      "caption": "How pelvic tilt redirects pressure along the anterior wall.",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/angling.png"
+    },
+    {
+      "id": "pairing-diagram",
+      "kind": "diagram",
+      "path": "native://diagram/pairing",
+      "alt": "Diagram showing internal and external stimulation in parallel.",
+      "caption": "Internal and external stimulation in parallel.",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/pairing.png"
+    },
+    {
+      "id": "pairing-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/pairing.png",
+      "alt": "Warm anatomical illustration for pairing.",
+      "caption": "Internal and external stimulation in parallel.",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/pairing.png"
+    },
+    {
+      "id": "spectatoring-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/spectatoring.png",
+      "alt": "Illustration of attention split between body and inner critic.",
+      "caption": "Attention split between body and inner critic.",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/spectatoring.png"
+    },
+    {
+      "id": "non-concordance-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/non-concordance.png",
+      "alt": "Illustration of separate pathways for genital response and felt desire.",
+      "caption": "Separate pathways for genital response and felt desire.",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/non-concordance.png"
+    }
+  ]
+}

@@ -11,6 +11,7 @@
 | [**PROJECT_STATUS_REPORT.md**](./PROJECT_STATUS_REPORT.md) | Snapshot of product, codebase, assets, gaps, and risks |
 | [**IMPLEMENTATION_PLAN.md**](./IMPLEMENTATION_PLAN.md) | Phased plan: identity, docs, audit, pipelines, ship |
 | [**QA_CHECKLIST.md**](./QA_CHECKLIST.md) | Manual device QA script (Phase 1.7 / 4.2) |
+| [**v2/**](./v2/README.md) | Premium native rebuild track: product brief, SwiftUI architecture, content system |
 
 ---
 

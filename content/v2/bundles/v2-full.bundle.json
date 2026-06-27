@@ -1,0 +1,2033 @@
+{
+  "schemaVersion": 1,
+  "bundleId": "v2-full",
+  "contentVersion": "0.2.0",
+  "generatedAt": "2026-06-27T00:00:00Z",
+  "concepts": [
+    {
+      "id": "angling",
+      "name": "Angling",
+      "category": "technique",
+      "definition": "Rotating, raising, or lowering the pelvis during penetration to adjust where internal stimulation occurs.",
+      "summary": "Angling involves making subtle adjustments to pelvic position during penetrative activity.",
+      "blocks": [
+        {
+          "id": "angling-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "Have you ever shifted your hips during penetration to find an angle that felt better?"
+        },
+        {
+          "id": "angling-definition",
+          "type": "definition",
+          "title": "Name",
+          "body": "Angling is tilting your pelvis—forward, back, or side to side—to change where internal stimulation lands."
+        },
+        {
+          "id": "angling-media",
+          "type": "media",
+          "title": "See It",
+          "body": "How pelvic tilt redirects pressure along the anterior wall",
+          "mediaId": "angling-diagram"
+        },
+        {
+          "id": "angling-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "In the OMGyes Pleasure Report (Hensel et al., 2021), about nine in ten women reported using angling. Research suggests that naming a movement can help you notice it in the moment and repeat what works—instead of relying on vague “that felt good last time.”",
+          "citationIds": [
+            "angling-source-1"
+          ]
+        },
+        {
+          "id": "angling-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "Have you ever noticed yourself tilting your hips to change how something feels? What would you want to remember about your own experience?",
+          "privateByDefault": true
+        },
+        {
+          "id": "angling-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "I am curious about exploring angling slowly, with check-ins about what feels good and what does not."
+        }
+      ],
+      "relatedConceptIds": [
+        "rocking",
+        "pairing"
+      ],
+      "phraseTemplates": [
+        {
+          "id": "angling-direct-share",
+          "label": "Direct share",
+          "body": "I am curious about exploring angling slowly, with check-ins about what feels good and what does not.",
+          "tone": "direct"
+        }
+      ],
+      "citations": [
+        {
+          "id": "angling-source-1",
+          "label": "Hensel et al., 2021, PLOS ONE",
+          "source": "Hensel et al., 2021, PLOS ONE",
+          "note": "Identified in the OMGyes Pleasure Report research as one of four named techniques associated with enhanced pleasure. The research found that having language for this movement helped women recognize and replicate what works for them."
+        }
+      ],
+      "mediaIds": [
+        "angling-diagram",
+        "angling-illustration"
+      ]
+    },
+    {
+      "id": "rocking",
+      "name": "Rocking",
+      "category": "technique",
+      "definition": "A grinding or rocking motion that keeps consistent contact with external areas during penetration.",
+      "summary": "Rocking refers to a grinding, circular, or back-and-forth motion during penetrative activity that maintains continuous contact between bodies - particularly at the point where external sensitive areas meet a partner's body.",
+      "blocks": [
+        {
+          "id": "rocking-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "Have you noticed that grinding or circular movements sometimes feel better than thrusting?"
+        },
+        {
+          "id": "rocking-definition",
+          "type": "definition",
+          "title": "Name",
+          "body": "Rocking is a grinding or wave-like motion that keeps steady external contact during penetration—often without using your hands."
+        },
+        {
+          "id": "rocking-media",
+          "type": "media",
+          "title": "See It",
+          "body": "Compression and friction at the pubic mound",
+          "mediaId": "rocking-diagram"
+        },
+        {
+          "id": "rocking-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "Studies suggest most women need clitoral stimulation for orgasm; penetration alone often provides limited external contact. Rocking keeps bodies close so pressure on the clitoral area can stay continuous rather than breaking with each thrust (Hensel et al., 2021).",
+          "citationIds": [
+            "rocking-source-1"
+          ]
+        },
+        {
+          "id": "rocking-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "Have you noticed a difference between grinding/rocking motions versus thrusting? What would you want to remember about your own experience?",
+          "privateByDefault": true
+        },
+        {
+          "id": "rocking-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "I am curious about exploring rocking slowly, with check-ins about what feels good and what does not."
+        }
+      ],
+      "relatedConceptIds": [
+        "angling",
+        "pairing"
+      ],
+      "phraseTemplates": [
+        {
+          "id": "rocking-direct-share",
+          "label": "Direct share",
+          "body": "I am curious about exploring rocking slowly, with check-ins about what feels good and what does not.",
+          "tone": "direct"
+        }
+      ],
+      "citations": [
+        {
+          "id": "rocking-source-1",
+          "label": "Hensel et al., 2021, PLOS ONE",
+          "source": "Hensel et al., 2021, PLOS ONE",
+          "note": "Research shows that consistent external stimulation is important for pleasure for many women. Rocking was identified as a specific named technique that facilitates this during partnered penetrative activity."
+        }
+      ],
+      "mediaIds": [
+        "rocking-diagram",
+        "rocking-illustration"
+      ]
+    },
+    {
+      "id": "shallowing",
+      "name": "Shallowing",
+      "category": "technique",
+      "definition": "Focusing stimulation at or just inside the vaginal entrance rather than deeper penetration.",
+      "summary": "Shallowing describes pleasurable touch that focuses on the vaginal entrance and the area just inside - using fingertips, tongue, or the tip of a toy or partner rather than deeper penetration.",
+      "blocks": [
+        {
+          "id": "shallowing-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "Have you noticed that the first moments of penetration—right at the entrance—can feel especially sensitive?"
+        },
+        {
+          "id": "shallowing-definition",
+          "type": "definition",
+          "title": "Name",
+          "body": "Shallowing is focusing touch at the vaginal entrance and the first inch or two inside—not treating depth as the goal."
+        },
+        {
+          "id": "shallowing-media",
+          "type": "media",
+          "title": "See It",
+          "body": "Nerve-rich tissue at the introitus",
+          "mediaId": "shallowing-diagram"
+        },
+        {
+          "id": "shallowing-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "The introitus is densely innervated. In Hensel et al. (2021), shallowing was widely reported, and many participants said lingering at the entrance made later touch feel better—consistent with anatomy, not “just teasing.”",
+          "citationIds": [
+            "shallowing-source-1"
+          ]
+        },
+        {
+          "id": "shallowing-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "Have you noticed that the entrance area can feel especially sensitive? What would you want to remember about your own experience?",
+          "privateByDefault": true
+        },
+        {
+          "id": "shallowing-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "I am curious about exploring shallowing slowly, with check-ins about what feels good and what does not."
+        }
+      ],
+      "relatedConceptIds": [
+        "pairing"
+      ],
+      "phraseTemplates": [
+        {
+          "id": "shallowing-direct-share",
+          "label": "Direct share",
+          "body": "I am curious about exploring shallowing slowly, with check-ins about what feels good and what does not.",
+          "tone": "direct"
+        }
+      ],
+      "citations": [
+        {
+          "id": "shallowing-source-1",
+          "label": "Hensel et al., 2021, PLOS ONE",
+          "source": "Hensel et al., 2021, PLOS ONE",
+          "note": "The vaginal entrance (introitus) contains a high density of nerve endings. Research identified shallowing as a distinct technique that many women find pleasurable, challenging assumptions that deeper always means better."
+        }
+      ],
+      "mediaIds": [
+        "shallowing-diagram",
+        "shallowing-illustration"
+      ]
+    },
+    {
+      "id": "pairing",
+      "name": "Pairing",
+      "category": "technique",
+      "definition": "Adding external clitoral stimulation during penetration, either solo or with a partner.",
+      "summary": "Pairing means combining internal penetration with external clitoral stimulation - using your own hand, a partner's hand, a toy, or body positioning to add external touch during penetrative activity.",
+      "blocks": [
+        {
+          "id": "pairing-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "Have you found that penetration alone doesn't quite get you there—but adding clitoral touch changes everything?"
+        },
+        {
+          "id": "pairing-definition",
+          "type": "definition",
+          "title": "Name",
+          "body": "Pairing is combining penetration with clitoral stimulation—your hand, a partner's hand, a toy, or positioning that adds external touch."
+        },
+        {
+          "id": "pairing-media",
+          "type": "media",
+          "title": "See It",
+          "body": "Internal and external stimulation in parallel",
+          "mediaId": "pairing-diagram"
+        },
+        {
+          "id": "pairing-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "Research consistently links clitoral stimulation with higher orgasm likelihood during partnered sex. Frederick et al. (2018) and the OMGyes work (Hensel et al., 2021) report that many women pair penetration with external touch—not as a fix, but as a common, physiologically sensible pattern.",
+          "citationIds": [
+            "pairing-source-1",
+            "pairing-source-2"
+          ]
+        },
+        {
+          "id": "pairing-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "Do you find that penetration feels better when combined with external touch? What would you want to remember about your own experience?",
+          "privateByDefault": true
+        },
+        {
+          "id": "pairing-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "I am curious about exploring pairing slowly, with check-ins about what feels good and what does not."
+        }
+      ],
+      "relatedConceptIds": [
+        "angling",
+        "rocking",
+        "shallowing"
+      ],
+      "phraseTemplates": [
+        {
+          "id": "pairing-direct-share",
+          "label": "Direct share",
+          "body": "I am curious about exploring pairing slowly, with check-ins about what feels good and what does not.",
+          "tone": "direct"
+        }
+      ],
+      "citations": [
+        {
+          "id": "pairing-source-1",
+          "label": "Hensel et al., 2021, PLOS ONE",
+          "source": "Hensel et al., 2021, PLOS ONE",
+          "note": "Extensive research shows that the clitoris, not the vagina, is the primary site of orgasmic sensation for most women. Studies find that adding clitoral stimulation during penetration significantly increases likelihood of orgasm."
+        },
+        {
+          "id": "pairing-source-2",
+          "label": "Frederick et al., 2018",
+          "source": "Frederick et al., 2018",
+          "note": "Extensive research shows that the clitoris, not the vagina, is the primary site of orgasmic sensation for most women. Studies find that adding clitoral stimulation during penetration significantly increases likelihood of orgasm."
+        }
+      ],
+      "mediaIds": [
+        "pairing-diagram",
+        "pairing-illustration"
+      ]
+    },
+    {
+      "id": "building",
+      "name": "Building",
+      "category": "sensation",
+      "definition": "A gradual increase in arousal intensity over time, like a wave gathering strength.",
+      "summary": "Building describes the experience of arousal intensifying progressively - not jumping immediately to peak sensation, but allowing pleasure to accumulate and deepen over time.",
+      "blocks": [
+        {
+          "id": "building-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "Have you felt arousal start small—a hint of warmth, a whisper of tingling—then slowly intensify into something unmistakable?"
+        },
+        {
+          "id": "building-definition",
+          "type": "definition",
+          "title": "Name",
+          "body": "Building is arousal that gathers gradually—warmth and intensity increasing over time rather than arriving all at once."
+        },
+        {
+          "id": "building-media",
+          "type": "media",
+          "title": "See It",
+          "body": "Vascular and neural intensity rising over time",
+          "mediaId": "building-illustration"
+        },
+        {
+          "id": "building-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "Sexual response models describe an arousal-building phase before plateau or orgasm. Research suggests that allowing sensation to accumulate—rather than rushing—is often associated with stronger peaks (Masters & Johnson; Basson, 2000).",
+          "citationIds": [
+            "building-source-1",
+            "building-source-2"
+          ]
+        },
+        {
+          "id": "building-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "Have you noticed pleasure intensifying gradually rather than all at once? What would you want to remember about your own experience?",
+          "privateByDefault": true
+        },
+        {
+          "id": "building-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "I am learning to notice building as useful information about my pleasure, not something I need to force."
+        }
+      ],
+      "relatedConceptIds": [
+        "plateauing",
+        "edging",
+        "warmup-window"
+      ],
+      "phraseTemplates": [
+        {
+          "id": "building-soft-share",
+          "label": "Soft share",
+          "body": "I am learning to notice building as useful information about my pleasure, not something I need to force.",
+          "tone": "soft"
+        }
+      ],
+      "citations": [
+        {
+          "id": "building-source-1",
+          "label": "Masters & Johnson",
+          "source": "Masters & Johnson",
+          "note": "Research on sexual response cycles identifies arousal building as a distinct phase. Studies show that extended arousal periods often correlate with more satisfying experiences and stronger orgasms."
+        },
+        {
+          "id": "building-source-2",
+          "label": "Basson, 2000",
+          "source": "Basson, 2000",
+          "note": "Research on sexual response cycles identifies arousal building as a distinct phase. Studies show that extended arousal periods often correlate with more satisfying experiences and stronger orgasms."
+        }
+      ],
+      "mediaIds": [
+        "building-illustration",
+        "building-video"
+      ]
+    },
+    {
+      "id": "plateauing",
+      "name": "Plateauing",
+      "category": "sensation",
+      "definition": "Sustained arousal at a consistent level without increase - a holding pattern that may precede orgasm or signal a need for change.",
+      "summary": "Plateauing is the experience of arousal staying at a steady level - neither building toward climax nor fading. It's like reaching a landing on a staircase and staying there for a while.",
+      "blocks": [
+        {
+          "id": "plateauing-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "Have you reached a point where arousal stays steady—not fading, but not climbing either? Like hovering at a certain altitude?"
+        },
+        {
+          "id": "plateauing-definition",
+          "type": "definition",
+          "title": "Name",
+          "body": "Plateauing is arousal holding steady—neither climbing toward orgasm nor fading away."
+        },
+        {
+          "id": "plateauing-media",
+          "type": "media",
+          "title": "See It",
+          "body": "Sustained activation without a new peak",
+          "mediaId": "plateauing-illustration"
+        },
+        {
+          "id": "plateauing-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "Classic sexual response research describes a plateau phase—high arousal maintained without immediate climax (Masters & Johnson). Recognizing it helps you choose: savor the hover, or adjust stimulation if you want something to change.",
+          "citationIds": [
+            "plateauing-source-1"
+          ]
+        },
+        {
+          "id": "plateauing-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "Have you noticed arousal leveling off at a consistent intensity? What would you want to remember about your own experience?",
+          "privateByDefault": true
+        },
+        {
+          "id": "plateauing-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "I am learning to notice plateauing as useful information about my pleasure, not something I need to force."
+        }
+      ],
+      "relatedConceptIds": [
+        "building",
+        "edging"
+      ],
+      "phraseTemplates": [
+        {
+          "id": "plateauing-soft-share",
+          "label": "Soft share",
+          "body": "I am learning to notice plateauing as useful information about my pleasure, not something I need to force.",
+          "tone": "soft"
+        }
+      ],
+      "citations": [
+        {
+          "id": "plateauing-source-1",
+          "label": "Masters & Johnson sexual response cycle",
+          "source": "Masters & Johnson sexual response cycle",
+          "note": "Sexual response research identifies a plateau phase as common in arousal cycles. Understanding this phase helps differentiate between a natural pause and a signal that stimulation needs adjustment."
+        }
+      ],
+      "mediaIds": [
+        "plateauing-illustration"
+      ]
+    },
+    {
+      "id": "edging",
+      "name": "Edging",
+      "category": "sensation",
+      "definition": "Intentionally approaching the edge of orgasm, then easing back before it happens - often repeated multiple times.",
+      "summary": "Edging is the practice of bringing yourself (or being brought) close to orgasm, then deliberately pausing or slowing to pull back from the edge.",
+      "blocks": [
+        {
+          "id": "edging-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "Have you ever gotten close to orgasm, pulled back, then approached again—and noticed the eventual release felt more intense?"
+        },
+        {
+          "id": "edging-definition",
+          "type": "definition",
+          "title": "Name",
+          "body": "Edging is deliberately approaching orgasm, then easing back before you cross—often repeating the cycle."
+        },
+        {
+          "id": "edging-media",
+          "type": "media",
+          "title": "See It",
+          "body": "Intensity rising toward a threshold, then receding",
+          "mediaId": "edging-illustration"
+        },
+        {
+          "id": "edging-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "Research on orgasm delay suggests that prolonged arousal before release is often subjectively more intense for some people. Edging can also sharpen awareness of your own pre-orgasm signals—when to slow, pause, or change rhythm.",
+          "citationIds": [
+            "edging-source-1"
+          ]
+        },
+        {
+          "id": "edging-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "Have you ever intentionally paused right before orgasm to prolong the experience? What would you want to remember about your own experience?",
+          "privateByDefault": true
+        },
+        {
+          "id": "edging-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "I am learning to notice edging as useful information about my pleasure, not something I need to force."
+        }
+      ],
+      "relatedConceptIds": [
+        "building",
+        "plateauing",
+        "embodied-presence"
+      ],
+      "phraseTemplates": [
+        {
+          "id": "edging-soft-share",
+          "label": "Soft share",
+          "body": "I am learning to notice edging as useful information about my pleasure, not something I need to force.",
+          "tone": "soft"
+        }
+      ],
+      "citations": [
+        {
+          "id": "edging-source-1",
+          "label": "Research on orgasm delay and intensity",
+          "source": "Research on orgasm delay and intensity",
+          "note": "Studies on orgasm intensity suggest that delayed orgasm following extended arousal often feels more powerful. Edging is also studied as a technique for orgasm control and sexual mindfulness."
+        }
+      ],
+      "mediaIds": [
+        "edging-illustration"
+      ]
+    },
+    {
+      "id": "spreading",
+      "name": "Spreading",
+      "category": "sensation",
+      "definition": "The sensation of arousal radiating outward from its origin point through the body.",
+      "summary": "Spreading describes how pleasure can expand beyond the area being stimulated - radiating outward like ripples in water.",
+      "blocks": [
+        {
+          "id": "spreading-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "Have you felt pleasure radiate outward from where you're being touched—warmth or tingling traveling through your body like ripples in water?"
+        },
+        {
+          "id": "spreading-definition",
+          "type": "definition",
+          "title": "Name",
+          "body": "Spreading is arousal radiating outward from where you're touched—into the pelvis, spine, limbs, or whole body."
+        },
+        {
+          "id": "spreading-media",
+          "type": "media",
+          "title": "See It",
+          "body": "Neural signals propagating beyond the contact point",
+          "mediaId": "spreading-illustration"
+        },
+        {
+          "id": "spreading-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "Embodied sexuality research links attention to whole-body sensation with more satisfying sexual experiences. Spreading is one pattern people report when arousal feels less “localized” and more distributed.",
+          "citationIds": [
+            "spreading-source-1",
+            "spreading-source-2"
+          ]
+        },
+        {
+          "id": "spreading-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "Have you noticed pleasure traveling from one area through other parts of your body? What would you want to remember about your own experience?",
+          "privateByDefault": true
+        },
+        {
+          "id": "spreading-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "I am learning to notice spreading as useful information about my pleasure, not something I need to force."
+        }
+      ],
+      "relatedConceptIds": [
+        "building",
+        "pulsing",
+        "embodied-presence"
+      ],
+      "phraseTemplates": [
+        {
+          "id": "spreading-soft-share",
+          "label": "Soft share",
+          "body": "I am learning to notice spreading as useful information about my pleasure, not something I need to force.",
+          "tone": "soft"
+        }
+      ],
+      "citations": [
+        {
+          "id": "spreading-source-1",
+          "label": "Embodied sexuality research",
+          "source": "Embodied sexuality research",
+          "note": "Research on embodied sexuality notes that awareness of whole-body sensation often correlates with more satisfying sexual experiences. Spreading relates to concepts of body-wide arousal versus localized stimulation."
+        },
+        {
+          "id": "spreading-source-2",
+          "label": "sensate focus studies",
+          "source": "sensate focus studies",
+          "note": "Research on embodied sexuality notes that awareness of whole-body sensation often correlates with more satisfying sexual experiences. Spreading relates to concepts of body-wide arousal versus localized stimulation."
+        }
+      ],
+      "mediaIds": [
+        "spreading-illustration",
+        "spreading-video"
+      ]
+    },
+    {
+      "id": "pulsing",
+      "name": "Pulsing",
+      "category": "sensation",
+      "definition": "Rhythmic, wave-like sensations during high arousal or orgasm - a beating or throbbing quality.",
+      "summary": "Pulsing refers to the rhythmic quality that pleasure can take on - a beating, throbbing, or wave-like pattern.",
+      "blocks": [
+        {
+          "id": "pulsing-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "Have you noticed a rhythmic, throbbing quality during high arousal or orgasm—like waves of sensation beating through you?"
+        },
+        {
+          "id": "pulsing-definition",
+          "type": "definition",
+          "title": "Name",
+          "body": "Pulsing is a rhythmic, throbbing quality in arousal or orgasm—waves of sensation rather than a flat steady tone."
+        },
+        {
+          "id": "pulsing-media",
+          "type": "media",
+          "title": "See It",
+          "body": "Concentric contraction waves in pelvic floor tissue",
+          "mediaId": "pulsing-illustration"
+        },
+        {
+          "id": "pulsing-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "Physiology studies describe rhythmic pelvic muscle contractions during orgasm, often about once per second (Meston & Buss, 2009). Many people also notice pulse-like sensation earlier in arousal—and some prefer stimulation that matches or contrasts that rhythm.",
+          "citationIds": [
+            "pulsing-source-1",
+            "pulsing-source-2"
+          ]
+        },
+        {
+          "id": "pulsing-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "Have you noticed a rhythmic, beating quality to arousal or orgasm? What would you want to remember about your own experience?",
+          "privateByDefault": true
+        },
+        {
+          "id": "pulsing-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "I am learning to notice pulsing as useful information about my pleasure, not something I need to force."
+        }
+      ],
+      "relatedConceptIds": [
+        "building",
+        "spreading"
+      ],
+      "phraseTemplates": [
+        {
+          "id": "pulsing-soft-share",
+          "label": "Soft share",
+          "body": "I am learning to notice pulsing as useful information about my pleasure, not something I need to force.",
+          "tone": "soft"
+        }
+      ],
+      "citations": [
+        {
+          "id": "pulsing-source-1",
+          "label": "Meston & Buss, 2009",
+          "source": "Meston & Buss, 2009",
+          "note": "Orgasm research documents rhythmic pelvic muscle contractions occurring approximately every 0.8 seconds during orgasm. Many people report subjective experiences that correspond to these physical rhythms."
+        },
+        {
+          "id": "pulsing-source-2",
+          "label": "physiology of orgasm research",
+          "source": "physiology of orgasm research",
+          "note": "Orgasm research documents rhythmic pelvic muscle contractions occurring approximately every 0.8 seconds during orgasm. Many people report subjective experiences that correspond to these physical rhythms."
+        }
+      ],
+      "mediaIds": [
+        "pulsing-illustration"
+      ]
+    },
+    {
+      "id": "warmup-window",
+      "name": "Warm-up Window",
+      "category": "timing",
+      "definition": "The time needed for whole-body arousal before genital-focused stimulation feels best - often 20+ minutes.",
+      "summary": "The warm-up window refers to the period of time many bodies need for full arousal before genital-focused stimulation becomes most pleasurable.",
+      "blocks": [
+        {
+          "id": "warmup-window-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "Have you noticed that touch feels better after you've had time to warm up—and that rushing makes everything feel less enjoyable?"
+        },
+        {
+          "id": "warmup-window-definition",
+          "type": "definition",
+          "title": "Name",
+          "body": "The warm-up window is how long many bodies need for full arousal before genital-focused touch feels best—often twenty minutes or more of whole-body stimulation."
+        },
+        {
+          "id": "warmup-window-media",
+          "type": "media",
+          "title": "See It",
+          "body": "Engorgement and blood flow increasing over time",
+          "mediaId": "warmup-window-illustration"
+        },
+        {
+          "id": "warmup-window-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "Genital blood flow, lubrication, and subjective arousal often rise gradually (Chivers et al., 2010). Adequate warm-up is associated in research with greater comfort and reported pleasure—not a personal failing, but common physiology.",
+          "citationIds": [
+            "warmup-window-source-1",
+            "warmup-window-source-2"
+          ]
+        },
+        {
+          "id": "warmup-window-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "Do you find that touch feels better after you've had time to get warmed up? What would you want to remember about your own experience?",
+          "privateByDefault": true
+        },
+        {
+          "id": "warmup-window-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "My timing may follow warm-up window; I would like room for that pace instead of treating it as a problem."
+        }
+      ],
+      "relatedConceptIds": [
+        "building",
+        "responsive-desire"
+      ],
+      "phraseTemplates": [
+        {
+          "id": "warmup-window-reassuring-share",
+          "label": "Reassuring share",
+          "body": "My timing may follow warm-up window; I would like room for that pace instead of treating it as a problem.",
+          "tone": "reassuring"
+        }
+      ],
+      "citations": [
+        {
+          "id": "warmup-window-source-1",
+          "label": "Chivers et al., 2010",
+          "source": "Chivers et al., 2010",
+          "note": "Studies on genital blood flow and arousal timing show significant gender differences. Research indicates that adequate warm-up time correlates with better lubrication, comfort, and reported pleasure."
+        },
+        {
+          "id": "warmup-window-source-2",
+          "label": "arousal timing research",
+          "source": "arousal timing research",
+          "note": "Studies on genital blood flow and arousal timing show significant gender differences. Research indicates that adequate warm-up time correlates with better lubrication, comfort, and reported pleasure."
+        }
+      ],
+      "mediaIds": [
+        "warmup-window-illustration"
+      ]
+    },
+    {
+      "id": "responsive-desire",
+      "name": "Responsive Desire",
+      "category": "timing",
+      "definition": "Sexual interest that arises in response to stimulation or erotic context, rather than appearing spontaneously beforehand.",
+      "summary": "Responsive desire describes a pattern where sexual interest emerges in response to something - a partner's initiation, an erotic situation, or physical stimulation that's already begun - rather than arising spontaneously as an internal urge.",
+      "blocks": [
+        {
+          "id": "responsive-desire-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "Do you rarely feel random urges for sex—but once things start, you get into it and enjoy yourself fully?"
+        },
+        {
+          "id": "responsive-desire-definition",
+          "type": "definition",
+          "title": "Name",
+          "body": "Responsive desire is interest that shows up after stimulation, context, or connection—not as a spontaneous urge beforehand."
+        },
+        {
+          "id": "responsive-desire-media",
+          "type": "media",
+          "title": "See It",
+          "body": "A spark of context, then desire blooming",
+          "mediaId": "responsive-desire-illustration"
+        },
+        {
+          "id": "responsive-desire-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "Desire research (Basson, 2000; Nagoski, 2015) describes responsive desire as a common, healthy pattern—especially for women and in long-term relationships. Lack of spontaneous urge beforehand does not mean low libido; many people become interested once touch or mood engages them.",
+          "citationIds": [
+            "responsive-desire-source-1",
+            "responsive-desire-source-2"
+          ]
+        },
+        {
+          "id": "responsive-desire-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "Do you rarely feel spontaneous urges for sex, but enjoy it once you get started? What would you want to remember about your own experience?",
+          "privateByDefault": true
+        },
+        {
+          "id": "responsive-desire-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "My timing may follow responsive desire; I would like room for that pace instead of treating it as a problem."
+        }
+      ],
+      "relatedConceptIds": [
+        "spontaneous-desire",
+        "warmup-window"
+      ],
+      "phraseTemplates": [
+        {
+          "id": "responsive-desire-reassuring-share",
+          "label": "Reassuring share",
+          "body": "My timing may follow responsive desire; I would like room for that pace instead of treating it as a problem.",
+          "tone": "reassuring"
+        }
+      ],
+      "citations": [
+        {
+          "id": "responsive-desire-source-1",
+          "label": "Nagoski, 2015",
+          "source": "Nagoski, 2015",
+          "note": "Dr. Emily Nagoski's synthesis of desire research highlights responsive desire as a normal, common pattern. Studies show responsive desire is particularly common for women and doesn't indicate low libido."
+        },
+        {
+          "id": "responsive-desire-source-2",
+          "label": "Basson circular model of desire",
+          "source": "Basson circular model of desire",
+          "note": "Dr. Emily Nagoski's synthesis of desire research highlights responsive desire as a normal, common pattern. Studies show responsive desire is particularly common for women and doesn't indicate low libido."
+        }
+      ],
+      "mediaIds": [
+        "responsive-desire-illustration",
+        "responsive-desire-video"
+      ]
+    },
+    {
+      "id": "spontaneous-desire",
+      "name": "Spontaneous Desire",
+      "category": "timing",
+      "definition": "Sexual interest that arises on its own, without an external trigger - a seemingly random urge for sexual activity.",
+      "summary": "Spontaneous desire is sexual interest that appears to come from nowhere - an internal urge or wanting that arises without an obvious external stimulus.",
+      "blocks": [
+        {
+          "id": "spontaneous-desire-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "Do you sometimes feel sexually interested out of nowhere—an urge that appears without any obvious cause?"
+        },
+        {
+          "id": "spontaneous-desire-definition",
+          "type": "definition",
+          "title": "Name",
+          "body": "Spontaneous desire is interest that appears on its own—often described as “being in the mood” without an obvious trigger."
+        },
+        {
+          "id": "spontaneous-desire-media",
+          "type": "media",
+          "title": "See It",
+          "body": "Internal arousal signals rising independently",
+          "mediaId": "spontaneous-desire-illustration"
+        },
+        {
+          "id": "spontaneous-desire-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "Population studies suggest spontaneous desire is reported more often by men than women, and more often early in relationships (Basson, 2000). It is one valid pattern—not the only one. Many people experience a mix of spontaneous and responsive desire over time.",
+          "citationIds": [
+            "spontaneous-desire-source-1",
+            "spontaneous-desire-source-2"
+          ]
+        },
+        {
+          "id": "spontaneous-desire-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "Do you sometimes feel sexually interested without any obvious cause? What would you want to remember about your own experience?",
+          "privateByDefault": true
+        },
+        {
+          "id": "spontaneous-desire-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "My timing may follow spontaneous desire; I would like room for that pace instead of treating it as a problem."
+        }
+      ],
+      "relatedConceptIds": [
+        "responsive-desire"
+      ],
+      "phraseTemplates": [
+        {
+          "id": "spontaneous-desire-reassuring-share",
+          "label": "Reassuring share",
+          "body": "My timing may follow spontaneous desire; I would like room for that pace instead of treating it as a problem.",
+          "tone": "reassuring"
+        }
+      ],
+      "citations": [
+        {
+          "id": "spontaneous-desire-source-1",
+          "label": "Basson, 2000",
+          "source": "Basson, 2000",
+          "note": "Research distinguishes between spontaneous and responsive desire patterns. Studies show that spontaneous desire is more common in men but occurs in all genders, and often decreases in frequency during long-term relationships."
+        },
+        {
+          "id": "spontaneous-desire-source-2",
+          "label": "desire research",
+          "source": "desire research",
+          "note": "Research distinguishes between spontaneous and responsive desire patterns. Studies show that spontaneous desire is more common in men but occurs in all genders, and often decreases in frequency during long-term relationships."
+        }
+      ],
+      "mediaIds": [
+        "spontaneous-desire-illustration"
+      ]
+    },
+    {
+      "id": "golden-trio",
+      "name": "Golden Trio",
+      "category": "timing",
+      "definition": "Combining intercourse with manual and oral stimulation - a combination associated with 86% orgasm rates in research.",
+      "summary": "The Golden Trio refers to a specific combination of activities that research has found particularly effective for women's orgasms: vaginal intercourse combined with manual stimulation combined with oral sex (in the same session, not necessarily simultaneously).",
+      "blocks": [
+        {
+          "id": "golden-trio-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "Have you noticed that combining different kinds of stimulation—not just penetration—leads to more intense experiences?"
+        },
+        {
+          "id": "golden-trio-definition",
+          "type": "definition",
+          "title": "Name",
+          "body": "The golden trio is vaginal intercourse plus manual and oral stimulation in the same encounter—a combination linked in research to higher reported orgasm rates."
+        },
+        {
+          "id": "golden-trio-media",
+          "type": "media",
+          "title": "See It",
+          "body": "Three stimulation types in one session",
+          "mediaId": "golden-trio-illustration"
+        },
+        {
+          "id": "golden-trio-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "Frederick et al. (2018) found that women who received intercourse, manual genital stimulation, and oral sex in the same encounter reported orgasm more often than with intercourse alone. The takeaway is statistical, not prescriptive: variety and clitoral involvement are common in high-satisfaction reports.",
+          "citationIds": [
+            "golden-trio-source-1"
+          ]
+        },
+        {
+          "id": "golden-trio-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "Have you noticed that combining different types of touch leads to different experiences? What would you want to remember about your own experience?",
+          "privateByDefault": true
+        },
+        {
+          "id": "golden-trio-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "My timing may follow golden trio; I would like room for that pace instead of treating it as a problem."
+        }
+      ],
+      "relatedConceptIds": [
+        "pairing",
+        "warmup-window"
+      ],
+      "phraseTemplates": [
+        {
+          "id": "golden-trio-reassuring-share",
+          "label": "Reassuring share",
+          "body": "My timing may follow golden trio; I would like room for that pace instead of treating it as a problem.",
+          "tone": "reassuring"
+        }
+      ],
+      "citations": [
+        {
+          "id": "golden-trio-source-1",
+          "label": "Frederick et al., 2018, Archives of Sexual Behavior",
+          "source": "Frederick et al., 2018, Archives of Sexual Behavior",
+          "note": "Frederick et al. (2018) found that women who received genital stimulation, oral sex, and deep kissing in addition to vaginal intercourse reported the highest rates of orgasm during partnered sex."
+        }
+      ],
+      "mediaIds": [
+        "golden-trio-illustration"
+      ]
+    },
+    {
+      "id": "spectatoring",
+      "name": "Spectatoring",
+      "category": "psychological",
+      "definition": "Mentally watching and evaluating yourself during sex rather than staying present in the experience.",
+      "summary": "Spectatoring is the experience of mentally stepping outside yourself during sex to observe and judge what's happening - focusing on how you look, whether you're responding \"correctly,\" how long it's taking, or what your partner might be thinking.",
+      "blocks": [
+        {
+          "id": "spectatoring-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "Have you ever caught yourself watching yourself during sex—thinking about how you look, whether you're taking too long, or what your partner might be thinking?"
+        },
+        {
+          "id": "spectatoring-definition",
+          "type": "definition",
+          "title": "Name",
+          "body": "Spectatoring is watching and evaluating yourself during sex instead of staying with sensation—performance thoughts replacing presence."
+        },
+        {
+          "id": "spectatoring-media",
+          "type": "media",
+          "title": "See It",
+          "body": "Attention split between body and inner critic",
+          "mediaId": "spectatoring-illustration"
+        },
+        {
+          "id": "spectatoring-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "Masters and Johnson named spectatoring as a barrier to enjoyment; later work links self-focused attention during sex with lower arousal and satisfaction (Barlow, 1986). Mindfulness-based approaches often help redirect attention back to sensation (Brotto, 2018).",
+          "citationIds": [
+            "spectatoring-source-1",
+            "spectatoring-source-2"
+          ]
+        },
+        {
+          "id": "spectatoring-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "Do you sometimes find yourself watching yourself during sex as if from the outside? What would you want to remember about your own experience?",
+          "privateByDefault": true
+        },
+        {
+          "id": "spectatoring-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "I am noticing how spectatoring affects my pleasure, and it helps when we make the experience calmer and less performative."
+        }
+      ],
+      "relatedConceptIds": [
+        "embodied-presence",
+        "sexual-self-esteem"
+      ],
+      "phraseTemplates": [
+        {
+          "id": "spectatoring-reassuring-share",
+          "label": "Reassuring share",
+          "body": "I am noticing how spectatoring affects my pleasure, and it helps when we make the experience calmer and less performative.",
+          "tone": "reassuring"
+        }
+      ],
+      "citations": [
+        {
+          "id": "spectatoring-source-1",
+          "label": "Masters & Johnson",
+          "source": "Masters & Johnson",
+          "note": "Masters and Johnson identified spectatoring as a common barrier to sexual enjoyment. Research shows that self-focused attention during sex correlates with lower arousal, reduced pleasure, and increased sexual difficulties."
+        },
+        {
+          "id": "spectatoring-source-2",
+          "label": "Barlow, 1986",
+          "source": "Barlow, 1986",
+          "note": "Masters and Johnson identified spectatoring as a common barrier to sexual enjoyment. Research shows that self-focused attention during sex correlates with lower arousal, reduced pleasure, and increased sexual difficulties."
+        }
+      ],
+      "mediaIds": [
+        "spectatoring-illustration"
+      ]
+    },
+    {
+      "id": "embodied-presence",
+      "name": "Embodied Presence",
+      "category": "psychological",
+      "definition": "Focused attention on bodily sensations during intimacy - being fully in your body rather than in your head.",
+      "summary": "Embodied presence is the opposite of spectatoring - it's being fully in your body and present to sensations rather than caught up in thoughts, judgments, or mental chatter.",
+      "blocks": [
+        {
+          "id": "embodied-presence-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "Have you experienced moments of being so absorbed in physical sensation that thinking temporarily faded—fully in your body rather than your head?"
+        },
+        {
+          "id": "embodied-presence-definition",
+          "type": "definition",
+          "title": "Name",
+          "body": "Embodied presence is staying with bodily sensation during intimacy—attention in the body rather than in commentary or judgment."
+        },
+        {
+          "id": "embodied-presence-media",
+          "type": "media",
+          "title": "See It",
+          "body": "Attention filling the outline of the body",
+          "mediaId": "embodied-presence-illustration"
+        },
+        {
+          "id": "embodied-presence-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "Mindfulness-based interventions for sexual concerns show improvements in arousal and satisfaction in clinical studies (Brotto, 2018). Present-moment focus on touch is a skill—when the mind wanders, you can gently return.",
+          "citationIds": [
+            "embodied-presence-source-1",
+            "embodied-presence-source-2"
+          ]
+        },
+        {
+          "id": "embodied-presence-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "Have you experienced moments of being completely absorbed in physical sensation? What would you want to remember about your own experience?",
+          "privateByDefault": true
+        },
+        {
+          "id": "embodied-presence-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "I am noticing how embodied presence affects my pleasure, and it helps when we make the experience calmer and less performative."
+        }
+      ],
+      "relatedConceptIds": [
+        "spectatoring",
+        "body-appreciation"
+      ],
+      "phraseTemplates": [
+        {
+          "id": "embodied-presence-reassuring-share",
+          "label": "Reassuring share",
+          "body": "I am noticing how embodied presence affects my pleasure, and it helps when we make the experience calmer and less performative.",
+          "tone": "reassuring"
+        }
+      ],
+      "citations": [
+        {
+          "id": "embodied-presence-source-1",
+          "label": "Brotto, 2018",
+          "source": "Brotto, 2018",
+          "note": "Mindfulness-based interventions for sexual difficulties show significant improvements in arousal and satisfaction. Research links present-focused attention during sex to better outcomes across multiple measures."
+        },
+        {
+          "id": "embodied-presence-source-2",
+          "label": "mindfulness and sexuality research",
+          "source": "mindfulness and sexuality research",
+          "note": "Mindfulness-based interventions for sexual difficulties show significant improvements in arousal and satisfaction. Research links present-focused attention during sex to better outcomes across multiple measures."
+        }
+      ],
+      "mediaIds": [
+        "embodied-presence-illustration"
+      ]
+    },
+    {
+      "id": "non-concordance",
+      "name": "Non-concordance",
+      "category": "psychological",
+      "definition": "When physical arousal signs (lubrication, erection) don't match the subjective feeling of being turned on - and vice versa.",
+      "summary": "Non-concordance is the disconnect that can occur between physical arousal signals and how turned on you actually feel.",
+      "blocks": [
+        {
+          "id": "non-concordance-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "Have you ever felt mentally aroused while your body showed no physical signs—or noticed physical wetness when you weren't actually interested?"
+        },
+        {
+          "id": "non-concordance-definition",
+          "type": "definition",
+          "title": "Name",
+          "body": "Non-concordance is a mismatch between physical arousal signs (like lubrication) and how interested or turned on you actually feel."
+        },
+        {
+          "id": "non-concordance-media",
+          "type": "media",
+          "title": "See It",
+          "body": "Separate pathways for genital response and felt desire",
+          "mediaId": "non-concordance-illustration"
+        },
+        {
+          "id": "non-concordance-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "Meta-analyses find only modest correlation between genital response and subjective arousal in women—often cited around 10–30% overlap (Chivers et al., 2010; Nagoski, 2015). Genital response can occur without desire; desire can exist without obvious physical signs. Consent and wanting are communicated, not inferred from wetness or erection.",
+          "citationIds": [
+            "non-concordance-source-1",
+            "non-concordance-source-2"
+          ]
+        },
+        {
+          "id": "non-concordance-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "Have you ever felt turned on without your body showing typical signs of arousal? What would you want to remember about your own experience?",
+          "privateByDefault": true
+        },
+        {
+          "id": "non-concordance-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "I am noticing how non-concordance affects my pleasure, and it helps when we make the experience calmer and less performative."
+        }
+      ],
+      "relatedConceptIds": [
+        "responsive-desire",
+        "embodied-presence"
+      ],
+      "phraseTemplates": [
+        {
+          "id": "non-concordance-reassuring-share",
+          "label": "Reassuring share",
+          "body": "I am noticing how non-concordance affects my pleasure, and it helps when we make the experience calmer and less performative.",
+          "tone": "reassuring"
+        }
+      ],
+      "citations": [
+        {
+          "id": "non-concordance-source-1",
+          "label": "Chivers et al., 2010",
+          "source": "Chivers et al., 2010",
+          "note": "Chivers et al. meta-analysis found low correlation between genital response and subjective arousal in women (~10%). This non-concordance is now understood as normal rather than dysfunctional."
+        },
+        {
+          "id": "non-concordance-source-2",
+          "label": "Nagoski, 2015",
+          "source": "Nagoski, 2015",
+          "note": "Chivers et al. meta-analysis found low correlation between genital response and subjective arousal in women (~10%). This non-concordance is now understood as normal rather than dysfunctional."
+        }
+      ],
+      "mediaIds": [
+        "non-concordance-illustration"
+      ]
+    },
+    {
+      "id": "sexual-self-esteem",
+      "name": "Sexual Self-Esteem",
+      "category": "psychological",
+      "definition": "A positive self-concept around sexuality - feeling good about yourself as a sexual person.",
+      "summary": "Sexual self-esteem is how you feel about yourself as a sexual being - whether you view your sexuality positively, feel confident in your desirability, and have a healthy relationship with your own sexual self.",
+      "blocks": [
+        {
+          "id": "sexual-self-esteem-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "How do you feel about yourself as a sexual person? Do you carry confidence into intimate experiences—or do negative beliefs hold you back?"
+        },
+        {
+          "id": "sexual-self-esteem-definition",
+          "type": "definition",
+          "title": "Name",
+          "body": "Sexual self-esteem is how positively you see yourself as a sexual person—including confidence, worthiness of pleasure, and comfort with your sexuality."
+        },
+        {
+          "id": "sexual-self-esteem-media",
+          "type": "media",
+          "title": "See It",
+          "body": "Warm core sense of sexual confidence",
+          "mediaId": "sexual-self-esteem-illustration"
+        },
+        {
+          "id": "sexual-self-esteem-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "Research links sexual self-esteem with satisfaction, communication, and sexual function. Valuing your own pleasure and feeling entitled to it—not perfect confidence every day—is associated in studies with better outcomes over time.",
+          "citationIds": [
+            "sexual-self-esteem-source-1",
+            "sexual-self-esteem-source-2"
+          ]
+        },
+        {
+          "id": "sexual-self-esteem-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "How do you generally feel about yourself as a sexual person? What would you want to remember about your own experience?",
+          "privateByDefault": true
+        },
+        {
+          "id": "sexual-self-esteem-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "I am noticing how sexual self-esteem affects my pleasure, and it helps when we make the experience calmer and less performative."
+        }
+      ],
+      "relatedConceptIds": [
+        "body-appreciation",
+        "spectatoring"
+      ],
+      "phraseTemplates": [
+        {
+          "id": "sexual-self-esteem-reassuring-share",
+          "label": "Reassuring share",
+          "body": "I am noticing how sexual self-esteem affects my pleasure, and it helps when we make the experience calmer and less performative.",
+          "tone": "reassuring"
+        }
+      ],
+      "citations": [
+        {
+          "id": "sexual-self-esteem-source-1",
+          "label": "Sexuality research",
+          "source": "Sexuality research",
+          "note": "Research consistently links sexual self-esteem to sexual satisfaction and function. Studies show it predicts orgasm frequency, arousal, and relationship satisfaction."
+        },
+        {
+          "id": "sexual-self-esteem-source-2",
+          "label": "self-esteem and outcomes studies",
+          "source": "self-esteem and outcomes studies",
+          "note": "Research consistently links sexual self-esteem to sexual satisfaction and function. Studies show it predicts orgasm frequency, arousal, and relationship satisfaction."
+        }
+      ],
+      "mediaIds": [
+        "sexual-self-esteem-illustration"
+      ]
+    },
+    {
+      "id": "body-appreciation",
+      "name": "Body Appreciation",
+      "category": "psychological",
+      "definition": "Valuing your body for what it does and feels rather than evaluating its appearance.",
+      "summary": "Body appreciation is the practice of relating to your body based on sensation, function, and experience rather than visual evaluation.",
+      "blocks": [
+        {
+          "id": "body-appreciation-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "During sex, are you more focused on how your body looks—or how it feels? Do appearance concerns pull you out of sensation?"
+        },
+        {
+          "id": "body-appreciation-definition",
+          "type": "definition",
+          "title": "Name",
+          "body": "Body appreciation is valuing your body for sensation and capacity—not mainly for how it looks in the moment."
+        },
+        {
+          "id": "body-appreciation-media",
+          "type": "media",
+          "title": "See It",
+          "body": "Touch activating sensory response, not visual critique",
+          "mediaId": "body-appreciation-illustration"
+        },
+        {
+          "id": "body-appreciation-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "Body image research links appreciating body function during sex with greater satisfaction and less appearance distraction (Satinsky et al., 2012). Weight alone does not predict sexual function; how you relate to your body in the moment often matters more.",
+          "citationIds": [
+            "body-appreciation-source-1",
+            "body-appreciation-source-2"
+          ]
+        },
+        {
+          "id": "body-appreciation-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "During sex, are you more focused on how your body looks or how it feels? What would you want to remember about your own experience?",
+          "privateByDefault": true
+        },
+        {
+          "id": "body-appreciation-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "I am noticing how body appreciation affects my pleasure, and it helps when we make the experience calmer and less performative."
+        }
+      ],
+      "relatedConceptIds": [
+        "embodied-presence",
+        "sexual-self-esteem",
+        "spectatoring"
+      ],
+      "phraseTemplates": [
+        {
+          "id": "body-appreciation-reassuring-share",
+          "label": "Reassuring share",
+          "body": "I am noticing how body appreciation affects my pleasure, and it helps when we make the experience calmer and less performative.",
+          "tone": "reassuring"
+        }
+      ],
+      "citations": [
+        {
+          "id": "body-appreciation-source-1",
+          "label": "Body image and sexuality research",
+          "source": "Body image and sexuality research",
+          "note": "Studies link body appreciation and positive body image to better sexual satisfaction. Women who focus on body function versus appearance during sex report more orgasms and less distraction."
+        },
+        {
+          "id": "body-appreciation-source-2",
+          "label": "Satinsky et al., 2012",
+          "source": "Satinsky et al., 2012",
+          "note": "Studies link body appreciation and positive body image to better sexual satisfaction. Women who focus on body function versus appearance during sex report more orgasms and less distraction."
+        }
+      ],
+      "mediaIds": [
+        "body-appreciation-illustration"
+      ]
+    },
+    {
+      "id": "clitoral-structure",
+      "name": "Clitoral Structure",
+      "category": "anatomy",
+      "definition": "The full clitoral organ is approximately 9cm in size, with internal legs (crura) and bulbs extending inside the body.",
+      "summary": "The clitoris is much larger than it appears from the outside.",
+      "blocks": [
+        {
+          "id": "clitoral-structure-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "Did you know that what you can see of the clitoris is just the tip? The full structure extends about 9cm inside your body."
+        },
+        {
+          "id": "clitoral-structure-definition",
+          "type": "definition",
+          "title": "Name",
+          "body": "The clitoris is mostly internal: glans, shaft, crura (“legs”), and vestibular bulbs—about 9 cm total, not just the visible tip."
+        },
+        {
+          "id": "clitoral-structure-media",
+          "type": "media",
+          "title": "See It",
+          "body": "Crura and bulbs wrapping the vaginal canal",
+          "mediaId": "clitoral-structure-illustration"
+        },
+        {
+          "id": "clitoral-structure-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "MRI and dissection work mapped the full clitoral structure (O'Connell et al., 2005). Anterior vaginal sensitivity often reflects internal clitoral and urethral tissue—not a separate “spot.” Most vaginal pleasure is still clitoral stimulation, accessed indirectly.",
+          "citationIds": [
+            "clitoral-structure-source-1",
+            "clitoral-structure-source-2"
+          ]
+        },
+        {
+          "id": "clitoral-structure-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "Did you know the clitoris extends internally beyond what's visible? What would you want to remember about your own experience?",
+          "privateByDefault": true
+        },
+        {
+          "id": "clitoral-structure-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "Understanding clitoral structure helps me explain what kind of touch or pressure I may want to explore."
+        }
+      ],
+      "relatedConceptIds": [
+        "nerve-density",
+        "clitourethrovaginal",
+        "internal-stimulation"
+      ],
+      "phraseTemplates": [
+        {
+          "id": "clitoral-structure-curious-share",
+          "label": "Curious share",
+          "body": "Understanding clitoral structure helps me explain what kind of touch or pressure I may want to explore.",
+          "tone": "curious"
+        }
+      ],
+      "citations": [
+        {
+          "id": "clitoral-structure-source-1",
+          "label": "O'Connell et al., 2005",
+          "source": "O'Connell et al., 2005",
+          "note": "MRI imaging studies have mapped the full clitoral structure, revealing it to be approximately 9cm including internal tissue. This research transformed understanding of female genital anatomy."
+        },
+        {
+          "id": "clitoral-structure-source-2",
+          "label": "clitoral anatomy research",
+          "source": "clitoral anatomy research",
+          "note": "MRI imaging studies have mapped the full clitoral structure, revealing it to be approximately 9cm including internal tissue. This research transformed understanding of female genital anatomy."
+        }
+      ],
+      "mediaIds": [
+        "clitoral-structure-illustration"
+      ]
+    },
+    {
+      "id": "nerve-density",
+      "name": "Nerve Density",
+      "category": "anatomy",
+      "definition": "The clitoral glans contains over 8,000 nerve endings - approximately equal to the entire penis.",
+      "summary": "The clitoral glans (the visible external portion) contains more than 8,000 nerve endings - a remarkable concentration in a structure much smaller than the penis, which has approximately the same number spread across a larger area.",
+      "blocks": [
+        {
+          "id": "nerve-density-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "Have you noticed how incredibly sensitive the clitoral area can be—how subtle differences in pressure or touch create dramatically different sensations?"
+        },
+        {
+          "id": "nerve-density-definition",
+          "type": "definition",
+          "title": "Name",
+          "body": "Nerve density describes how packed with nerve endings the clitoral glans is—roughly 8,000 in a small area, comparable to the penis but more concentrated."
+        },
+        {
+          "id": "nerve-density-media",
+          "type": "media",
+          "title": "See It",
+          "body": "Dense neural network in the glans",
+          "mediaId": "nerve-density-illustration"
+        },
+        {
+          "id": "nerve-density-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "Anatomical studies count thousands of nerve endings in the clitoral glans (O'Connell et al.). That density helps explain why touch quality—pressure, rhythm, indirect vs direct—matters so much, and why intensity can feel “too much” for some people at the wrong moment.",
+          "citationIds": [
+            "nerve-density-source-1",
+            "nerve-density-source-2"
+          ]
+        },
+        {
+          "id": "nerve-density-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "Have you noticed how sensitive the clitoral area is to different types of touch? What would you want to remember about your own experience?",
+          "privateByDefault": true
+        },
+        {
+          "id": "nerve-density-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "Understanding nerve density helps me explain what kind of touch or pressure I may want to explore."
+        }
+      ],
+      "relatedConceptIds": [
+        "clitoral-structure",
+        "pairing"
+      ],
+      "phraseTemplates": [
+        {
+          "id": "nerve-density-curious-share",
+          "label": "Curious share",
+          "body": "Understanding nerve density helps me explain what kind of touch or pressure I may want to explore.",
+          "tone": "curious"
+        }
+      ],
+      "citations": [
+        {
+          "id": "nerve-density-source-1",
+          "label": "Clitoral anatomy research",
+          "source": "Clitoral anatomy research",
+          "note": "Anatomical studies have counted approximately 8,000 nerve endings in the clitoral glans. This exceeds nerve density in almost any other body part of similar size."
+        },
+        {
+          "id": "nerve-density-source-2",
+          "label": "O'Connell et al.",
+          "source": "O'Connell et al.",
+          "note": "Anatomical studies have counted approximately 8,000 nerve endings in the clitoral glans. This exceeds nerve density in almost any other body part of similar size."
+        }
+      ],
+      "mediaIds": [
+        "nerve-density-illustration"
+      ]
+    },
+    {
+      "id": "clitourethrovaginal",
+      "name": "CUV Complex",
+      "category": "anatomy",
+      "definition": "The integrated tissue cluster where clitoris, urethra, and anterior vaginal wall interact - explaining \"G-spot\" sensitivity.",
+      "summary": "The clitourethrovaginal (CUV) complex describes how the clitoris, urethra, and front vaginal wall are interconnected rather than separate structures.",
+      "blocks": [
+        {
+          "id": "clitourethrovaginal-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "Have you experienced sensitivity on the front wall of the vagina—an area that feels different from the rest?"
+        },
+        {
+          "id": "clitourethrovaginal-definition",
+          "type": "definition",
+          "title": "Name",
+          "body": "The CUV complex (clitourethrovaginal) is the integrated cluster of clitoris, urethra, and anterior vaginal wall—often discussed as the “G-spot” area."
+        },
+        {
+          "id": "clitourethrovaginal-media",
+          "type": "media",
+          "title": "See It",
+          "body": "Shared tissue and pressure between three structures",
+          "mediaId": "clitourethrovaginal-illustration"
+        },
+        {
+          "id": "clitourethrovaginal-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "Imaging studies show these structures are physically connected, not isolated (Jannini et al., 2014). Front-wall sensitivity is real because pressure there compresses internal clitoral and urethral tissue—there is no separate magic organ to hunt for.",
+          "citationIds": [
+            "clitourethrovaginal-source-1",
+            "clitourethrovaginal-source-2"
+          ]
+        },
+        {
+          "id": "clitourethrovaginal-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "Have you experienced sensitivity on the front wall of the vagina? What would you want to remember about your own experience?",
+          "privateByDefault": true
+        },
+        {
+          "id": "clitourethrovaginal-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "Understanding cuv complex helps me explain what kind of touch or pressure I may want to explore."
+        }
+      ],
+      "relatedConceptIds": [
+        "clitoral-structure",
+        "internal-stimulation"
+      ],
+      "phraseTemplates": [
+        {
+          "id": "clitourethrovaginal-curious-share",
+          "label": "Curious share",
+          "body": "Understanding cuv complex helps me explain what kind of touch or pressure I may want to explore.",
+          "tone": "curious"
+        }
+      ],
+      "citations": [
+        {
+          "id": "clitourethrovaginal-source-1",
+          "label": "Jannini et al., 2014",
+          "source": "Jannini et al., 2014",
+          "note": "Anatomical imaging and dissection studies show the clitoris, urethra, and vaginal wall form an integrated complex. Stimulation of one component affects the others."
+        },
+        {
+          "id": "clitourethrovaginal-source-2",
+          "label": "anatomical imaging studies",
+          "source": "anatomical imaging studies",
+          "note": "Anatomical imaging and dissection studies show the clitoris, urethra, and vaginal wall form an integrated complex. Stimulation of one component affects the others."
+        }
+      ],
+      "mediaIds": [
+        "clitourethrovaginal-illustration"
+      ]
+    },
+    {
+      "id": "internal-stimulation",
+      "name": "Internal Clitoral Stimulation",
+      "category": "anatomy",
+      "definition": "Stimulating internal clitoral tissue through the vaginal wall - what's often called \"G-spot\" sensation.",
+      "summary": "Internal clitoral stimulation refers to reaching the internal portions of the clitoris through the vaginal wall.",
+      "blocks": [
+        {
+          "id": "internal-stimulation-recognize",
+          "type": "recognize",
+          "title": "Recognize",
+          "body": "Have you noticed that certain angles or positions create pleasurable sensations on the front wall of the vagina—different from deeper penetration?"
+        },
+        {
+          "id": "internal-stimulation-definition",
+          "type": "definition",
+          "title": "Name",
+          "body": "Internal clitoral stimulation is reaching clitoral tissue through the vaginal wall—especially the anterior (front) wall toward the belly button."
+        },
+        {
+          "id": "internal-stimulation-media",
+          "type": "media",
+          "title": "See It",
+          "body": "Pressure on the anterior wall engaging internal crura",
+          "mediaId": "internal-stimulation-illustration"
+        },
+        {
+          "id": "internal-stimulation-mechanism",
+          "type": "mechanism",
+          "title": "Understand",
+          "body": "Research suggests many “vaginal” orgasms involve internal clitoral stimulation (Foldes & Buisson, 2009). Techniques like angling can improve contact with the anterior wall where crura and urethral sponge lie close to the surface.",
+          "citationIds": [
+            "internal-stimulation-source-1",
+            "internal-stimulation-source-2"
+          ]
+        },
+        {
+          "id": "internal-stimulation-reflection",
+          "type": "reflection",
+          "title": "Field Note",
+          "body": "Have you experienced pleasure from stimulation on the front wall of the vagina? What would you want to remember about your own experience?",
+          "privateByDefault": true
+        },
+        {
+          "id": "internal-stimulation-phrase",
+          "type": "phrase",
+          "title": "A Phrase To Keep",
+          "body": "Understanding internal clitoral stimulation helps me explain what kind of touch or pressure I may want to explore."
+        }
+      ],
+      "relatedConceptIds": [
+        "clitourethrovaginal",
+        "clitoral-structure",
+        "angling"
+      ],
+      "phraseTemplates": [
+        {
+          "id": "internal-stimulation-curious-share",
+          "label": "Curious share",
+          "body": "Understanding internal clitoral stimulation helps me explain what kind of touch or pressure I may want to explore.",
+          "tone": "curious"
+        }
+      ],
+      "citations": [
+        {
+          "id": "internal-stimulation-source-1",
+          "label": "Foldes & Buisson, 2009",
+          "source": "Foldes & Buisson, 2009",
+          "note": "Studies suggest that vaginal orgasms likely involve internal clitoral stimulation. The anterior vaginal wall's sensitivity corresponds to underlying clitoral and urethral tissue."
+        },
+        {
+          "id": "internal-stimulation-source-2",
+          "label": "G-spot research",
+          "source": "G-spot research",
+          "note": "Studies suggest that vaginal orgasms likely involve internal clitoral stimulation. The anterior vaginal wall's sensitivity corresponds to underlying clitoral and urethral tissue."
+        }
+      ],
+      "mediaIds": [
+        "internal-stimulation-illustration"
+      ]
+    }
+  ],
+  "pathways": [
+    {
+      "id": "foundations",
+      "name": "Foundations",
+      "summary": "Start here. Core vocabulary and anatomy basics that inform everything else.",
+      "conceptIds": [
+        "pairing",
+        "clitoral-structure",
+        "nerve-density",
+        "clitourethrovaginal",
+        "internal-stimulation",
+        "building"
+      ]
+    },
+    {
+      "id": "solo-exploration",
+      "name": "Solo Exploration",
+      "summary": "Concepts for self-discovery and masturbation - understanding your own responses.",
+      "conceptIds": [
+        "edging",
+        "plateauing",
+        "spreading",
+        "pulsing",
+        "embodied-presence"
+      ]
+    },
+    {
+      "id": "partner-communication",
+      "name": "Partner Communication",
+      "summary": "Understanding yourself to communicate better with partners.",
+      "conceptIds": [
+        "responsive-desire",
+        "spontaneous-desire",
+        "warmup-window",
+        "spectatoring",
+        "sexual-self-esteem"
+      ]
+    },
+    {
+      "id": "expanding-repertoire",
+      "name": "Expanding Repertoire",
+      "summary": "Techniques for variety and experimentation in partnered experiences.",
+      "conceptIds": [
+        "angling",
+        "rocking",
+        "shallowing",
+        "golden-trio"
+      ]
+    },
+    {
+      "id": "mindful-presence",
+      "name": "Mindful Presence",
+      "summary": "Psychological factors that shape pleasure - getting out of your head and into sensation.",
+      "conceptIds": [
+        "spectatoring",
+        "embodied-presence",
+        "non-concordance",
+        "body-appreciation"
+      ]
+    }
+  ],
+  "media": [
+    {
+      "id": "angling-diagram",
+      "kind": "diagram",
+      "path": "native://diagram/angling",
+      "alt": "Native diagram for Angling.",
+      "caption": "How pelvic tilt redirects pressure along the anterior wall",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/angling.png"
+    },
+    {
+      "id": "angling-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/angling.png",
+      "alt": "Warm educational illustration for Angling.",
+      "caption": "How pelvic tilt redirects pressure along the anterior wall",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/angling.png"
+    },
+    {
+      "id": "rocking-diagram",
+      "kind": "diagram",
+      "path": "native://diagram/rocking",
+      "alt": "Native diagram for Rocking.",
+      "caption": "Compression and friction at the pubic mound",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/rocking.png"
+    },
+    {
+      "id": "rocking-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/rocking.png",
+      "alt": "Warm educational illustration for Rocking.",
+      "caption": "Compression and friction at the pubic mound",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/rocking.png"
+    },
+    {
+      "id": "shallowing-diagram",
+      "kind": "diagram",
+      "path": "native://diagram/shallowing",
+      "alt": "Native diagram for Shallowing.",
+      "caption": "Nerve-rich tissue at the introitus",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/shallowing.png"
+    },
+    {
+      "id": "shallowing-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/shallowing.png",
+      "alt": "Warm educational illustration for Shallowing.",
+      "caption": "Nerve-rich tissue at the introitus",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/shallowing.png"
+    },
+    {
+      "id": "pairing-diagram",
+      "kind": "diagram",
+      "path": "native://diagram/pairing",
+      "alt": "Native diagram for Pairing.",
+      "caption": "Internal and external stimulation in parallel",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/pairing.png"
+    },
+    {
+      "id": "pairing-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/pairing.png",
+      "alt": "Warm educational illustration for Pairing.",
+      "caption": "Internal and external stimulation in parallel",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/pairing.png"
+    },
+    {
+      "id": "building-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/building.png",
+      "alt": "Warm educational illustration for Building.",
+      "caption": "Vascular and neural intensity rising over time",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/building.png"
+    },
+    {
+      "id": "building-video",
+      "kind": "video",
+      "path": "assets/videos/building.mp4",
+      "alt": "Motion study for Building.",
+      "caption": "Vascular and neural intensity rising over time",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/building.png"
+    },
+    {
+      "id": "plateauing-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/plateauing.png",
+      "alt": "Warm educational illustration for Plateauing.",
+      "caption": "Sustained activation without a new peak",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/plateauing.png"
+    },
+    {
+      "id": "edging-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/edging.png",
+      "alt": "Warm educational illustration for Edging.",
+      "caption": "Intensity rising toward a threshold, then receding",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/edging.png"
+    },
+    {
+      "id": "spreading-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/spreading.png",
+      "alt": "Warm educational illustration for Spreading.",
+      "caption": "Neural signals propagating beyond the contact point",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/spreading.png"
+    },
+    {
+      "id": "spreading-video",
+      "kind": "video",
+      "path": "assets/videos/spreading.mp4",
+      "alt": "Motion study for Spreading.",
+      "caption": "Neural signals propagating beyond the contact point",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/spreading.png"
+    },
+    {
+      "id": "pulsing-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/pulsing.png",
+      "alt": "Warm educational illustration for Pulsing.",
+      "caption": "Concentric contraction waves in pelvic floor tissue",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/pulsing.png"
+    },
+    {
+      "id": "warmup-window-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/warmup-window.png",
+      "alt": "Warm educational illustration for Warm-up Window.",
+      "caption": "Engorgement and blood flow increasing over time",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/warmup-window.png"
+    },
+    {
+      "id": "responsive-desire-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/responsive-desire.png",
+      "alt": "Warm educational illustration for Responsive Desire.",
+      "caption": "A spark of context, then desire blooming",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/responsive-desire.png"
+    },
+    {
+      "id": "responsive-desire-video",
+      "kind": "video",
+      "path": "assets/videos/responsive-desire.mp4",
+      "alt": "Motion study for Responsive Desire.",
+      "caption": "A spark of context, then desire blooming",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/responsive-desire.png"
+    },
+    {
+      "id": "spontaneous-desire-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/spontaneous-desire.png",
+      "alt": "Warm educational illustration for Spontaneous Desire.",
+      "caption": "Internal arousal signals rising independently",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/spontaneous-desire.png"
+    },
+    {
+      "id": "golden-trio-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/golden-trio.png",
+      "alt": "Warm educational illustration for Golden Trio.",
+      "caption": "Three stimulation types in one session",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/golden-trio.png"
+    },
+    {
+      "id": "spectatoring-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/spectatoring.png",
+      "alt": "Warm educational illustration for Spectatoring.",
+      "caption": "Attention split between body and inner critic",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/spectatoring.png"
+    },
+    {
+      "id": "embodied-presence-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/embodied-presence.png",
+      "alt": "Warm educational illustration for Embodied Presence.",
+      "caption": "Attention filling the outline of the body",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/embodied-presence.png"
+    },
+    {
+      "id": "non-concordance-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/non-concordance.png",
+      "alt": "Warm educational illustration for Non-concordance.",
+      "caption": "Separate pathways for genital response and felt desire",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/non-concordance.png"
+    },
+    {
+      "id": "sexual-self-esteem-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/sexual-self-esteem.png",
+      "alt": "Warm educational illustration for Sexual Self-Esteem.",
+      "caption": "Warm core sense of sexual confidence",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/sexual-self-esteem.png"
+    },
+    {
+      "id": "body-appreciation-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/body-appreciation.png",
+      "alt": "Warm educational illustration for Body Appreciation.",
+      "caption": "Touch activating sensory response, not visual critique",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/body-appreciation.png"
+    },
+    {
+      "id": "clitoral-structure-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/clitoral-structure.png",
+      "alt": "Warm educational illustration for Clitoral Structure.",
+      "caption": "Crura and bulbs wrapping the vaginal canal",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/clitoral-structure.png"
+    },
+    {
+      "id": "nerve-density-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/nerve-density.png",
+      "alt": "Warm educational illustration for Nerve Density.",
+      "caption": "Dense neural network in the glans",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/nerve-density.png"
+    },
+    {
+      "id": "clitourethrovaginal-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/clitourethrovaginal.png",
+      "alt": "Warm educational illustration for CUV Complex.",
+      "caption": "Shared tissue and pressure between three structures",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/clitourethrovaginal.png"
+    },
+    {
+      "id": "internal-stimulation-illustration",
+      "kind": "image",
+      "path": "assets/images/concepts/illustrations/internal-stimulation.png",
+      "alt": "Warm educational illustration for Internal Clitoral Stimulation.",
+      "caption": "Pressure on the anterior wall engaging internal crura",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/internal-stimulation.png"
+    }
+  ]
+}

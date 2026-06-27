@@ -228,6 +228,7 @@ describe('JournalRepository', () => {
         id: 'entry-1',
         conceptId: 'concept-1',
         content: 'Test journal content',
+        mood: null,
         createdAt: '2024-01-01T00:00:00Z',
         updatedAt: '2024-01-01T00:00:00Z',
       });

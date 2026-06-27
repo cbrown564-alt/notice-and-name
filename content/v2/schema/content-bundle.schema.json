@@ -1,0 +1,224 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pleasure-vocabulary-builder.local/schema/content-bundle.schema.json",
+  "title": "Pleasure Vocabulary Builder V2 Content Bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "bundleId", "contentVersion", "generatedAt", "concepts", "pathways", "media"],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "bundleId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "contentVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(-[a-z0-9.-]+)?$"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "concepts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/concept"
+      }
+    },
+    "pathways": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/pathway"
+      }
+    },
+    "media": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/mediaItem"
+      }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "concept": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "category", "definition", "summary", "blocks", "relatedConceptIds", "phraseTemplates", "citations"],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "category": {
+          "enum": ["technique", "sensation", "timing", "psychological", "anatomy"]
+        },
+        "definition": {
+          "type": "string",
+          "minLength": 1
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "blocks": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/block"
+          }
+        },
+        "relatedConceptIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "phraseTemplates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/phraseTemplate"
+          }
+        },
+        "citations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/citation"
+          }
+        },
+        "mediaIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        }
+      }
+    },
+    "block": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type", "title", "body"],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "enum": ["recognize", "definition", "mechanism", "media", "reflection", "phrase"]
+        },
+        "title": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "citationIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "mediaId": {
+          "$ref": "#/$defs/id"
+        },
+        "privateByDefault": {
+          "type": "boolean"
+        }
+      }
+    },
+    "phraseTemplate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "body", "tone"],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "label": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "tone": {
+          "enum": ["soft", "direct", "curious", "reassuring"]
+        }
+      }
+    },
+    "citation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "source"],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "label": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "pathway": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "summary", "conceptIds"],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "name": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "conceptIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        }
+      }
+    },
+    "mediaItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "path", "reducedMotionFallback"],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "kind": {
+          "enum": ["image", "video", "diagram"]
+        },
+        "path": {
+          "type": "string"
+        },
+        "alt": {
+          "type": "string"
+        },
+        "caption": {
+          "type": "string"
+        },
+        "reducedMotionFallback": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
