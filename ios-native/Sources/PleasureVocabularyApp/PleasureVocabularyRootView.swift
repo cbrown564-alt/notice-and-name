@@ -440,6 +440,15 @@ private struct ConceptDetailView: View {
                     ContentBlockView(model: model, concept: concept, block: block)
                 }
 
+                Divider()
+                    .overlay(AppColor.line)
+                    .padding(.top, 4)
+
+                Text("Your response")
+                    .font(AppFont.section)
+                    .foregroundStyle(AppColor.ink)
+                    .accessibilityAddTraits(.isHeader)
+
                 QuietCard {
                     VStack(alignment: .leading, spacing: 10) {
                         Label("Field note", systemImage: "square.and.pencil")
@@ -621,22 +630,44 @@ private struct MediaReferenceView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
-        HStack(alignment: .top, spacing: 10) {
-            Image(systemName: iconName)
-                .foregroundStyle(AppColor.gold)
-                .frame(width: 24)
-            VStack(alignment: .leading, spacing: 4) {
-                Text(media.caption ?? media.alt ?? "Media")
-                    .font(AppFont.note)
-                    .foregroundStyle(AppColor.ink)
-                Text(reduceMotion ? media.reducedMotionFallback : media.path)
-                    .font(AppFont.label)
-                    .foregroundStyle(AppColor.secondaryInk)
-                    .lineLimit(2)
-            }
+        VStack(alignment: .leading, spacing: 8) {
+            RoundedRectangle(cornerRadius: 8)
+                .fill(AppColor.canvas)
+                .frame(maxWidth: .infinity)
+                .frame(height: 132)
+                .overlay {
+                    Image(systemName: iconName)
+                        .font(.system(size: 28, weight: .regular))
+                        .foregroundStyle(AppColor.gold)
+                        .accessibilityHidden(true)
+                }
+                .overlay {
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(AppColor.line, lineWidth: 1)
+                }
+            Text(displayText)
+                .font(AppFont.note)
+                .foregroundStyle(AppColor.secondaryInk)
+                .fixedSize(horizontal: false, vertical: true)
         }
-        .padding(10)
-        .background(AppColor.canvas, in: RoundedRectangle(cornerRadius: 8))
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(displayText)
+    }
+
+    // Human-readable only: never surface `path` or `reducedMotionFallback`.
+    private var displayText: String {
+        media.caption ?? media.alt ?? genericLabel
+    }
+
+    private var genericLabel: String {
+        switch media.kind {
+        case .image:
+            return "Illustration"
+        case .video:
+            return reduceMotion ? "Illustration" : "Video"
+        case .diagram:
+            return "Diagram"
+        }
     }
 
     private var iconName: String {
