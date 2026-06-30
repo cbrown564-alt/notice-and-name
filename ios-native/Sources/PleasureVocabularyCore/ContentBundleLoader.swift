@@ -37,6 +37,12 @@ public struct ContentBundleValidator {
             if concept.blocks.isEmpty {
                 errors.append("\(concept.id).blocks must not be empty")
             }
+            if concept.reviewStatus != .approved {
+                errors.append("\(concept.id).reviewStatus must be approved")
+            }
+            if Set(concept.phraseTemplates.map(\.useCase)).count < 5 {
+                errors.append("\(concept.id).phraseTemplates must cover all Phase 6 use cases")
+            }
 
             appendDuplicateErrors(concept.blocks.map(\.id), label: "\(concept.id) block", to: &errors)
             appendDuplicateErrors(concept.phraseTemplates.map(\.id), label: "\(concept.id) phrase", to: &errors)

@@ -18,6 +18,7 @@ export type ConceptCategory =
 
 // Tier for future paywall
 export type ConceptTier = 'free' | 'premium';
+export type ConceptReviewStatus = 'draft' | 'reviewed' | 'approved' | 'retired';
 
 export type ConceptSlideType = 'recognize' | 'name' | 'illustrate' | 'understand' | 'explore' | 'reflect';
 
@@ -38,6 +39,7 @@ export interface Concept {
   id: string;
   name: string;
   category: ConceptCategory;
+  reviewStatus?: ConceptReviewStatus;
   thumbnail?: any;              // Abstract icon for library view
   definition: string;           // Short one-line definition
   description: string;          // Detailed explanation
@@ -101,10 +103,18 @@ export interface UserSettings {
 }
 
 // Learning pathway
+export type PathwayIntent =
+  | 'understand-body'
+  | 'notice-patterns'
+  | 'communicate'
+  | 'try-something'
+  | 'return-to-presence';
+
 export interface Pathway {
   id: string;
   name: string;
   description: string;
+  intent: PathwayIntent;
   icon: string;              // Ionicons icon name
   image?: any;               // Require path for local asset
   conceptIds: string[];      // Ordered sequence of concept IDs

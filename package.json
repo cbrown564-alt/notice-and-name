@@ -12,6 +12,8 @@
     "mark-qa-batch": "node scripts/mark-qa-batch.js",
     "bundle-report": "node scripts/bundle-report.js",
     "generate-v2-full-bundle": "node scripts/generate-v2-full-bundle.js",
+    "lint-v2-content": "node scripts/lint-v2-content.js",
+    "preview-v2-content": "node scripts/preview-v2-content.js",
     "validate-manifest": "node scripts/validate-manifest.js",
     "validate-manifest:strict": "STRICT=1 node scripts/validate-manifest.js",
     "validate-v2-bundle": "node scripts/validate-v2-bundle.js",

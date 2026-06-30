@@ -13,6 +13,21 @@ const KNOWN_CATEGORIES = new Set(['technique', 'sensation', 'timing', 'psycholog
 const KNOWN_BLOCK_TYPES = new Set(['recognize', 'definition', 'mechanism', 'media', 'reflection', 'phrase']);
 const KNOWN_MEDIA_KINDS = new Set(['image', 'video', 'diagram']);
 const KNOWN_TONES = new Set(['soft', 'direct', 'curious', 'reassuring']);
+const KNOWN_REVIEW_STATUSES = new Set(['draft', 'reviewed', 'approved', 'retired']);
+const KNOWN_PHRASE_USE_CASES = new Set([
+  'self-understanding',
+  'partner-request',
+  'boundary',
+  'curiosity',
+  'reassurance',
+]);
+const KNOWN_PATHWAY_INTENTS = new Set([
+  'understand-body',
+  'notice-patterns',
+  'communicate',
+  'try-something',
+  'return-to-presence',
+]);
 
 function readJson(filePath) {
   try {
@@ -88,6 +103,9 @@ function validateBundle(bundle) {
     if (!KNOWN_CATEGORIES.has(concept.category)) {
       errors.push(`${concept.id}.category is unknown: ${concept.category}`);
     }
+    if (!KNOWN_REVIEW_STATUSES.has(concept.reviewStatus)) {
+      errors.push(`${concept.id}.reviewStatus is unknown: ${concept.reviewStatus}`);
+    }
     if (!Array.isArray(concept.blocks) || concept.blocks.length === 0) {
       errors.push(`${concept.id}.blocks must be a non-empty array`);
     }
@@ -143,6 +161,9 @@ function validateBundle(bundle) {
       if (!KNOWN_TONES.has(phrase.tone)) {
         errors.push(`${concept.id}.${phrase.id}.tone is unknown: ${phrase.tone}`);
       }
+      if (!KNOWN_PHRASE_USE_CASES.has(phrase.useCase)) {
+        errors.push(`${concept.id}.${phrase.id}.useCase is unknown: ${phrase.useCase}`);
+      }
     }
 
     for (const citation of concept.citations || []) {
@@ -156,6 +177,9 @@ function validateBundle(bundle) {
     requireId(pathway.id, 'pathway.id', errors);
     requireString(pathway.name, `${pathway.id}.name`, errors);
     requireString(pathway.summary, `${pathway.id}.summary`, errors);
+    if (!KNOWN_PATHWAY_INTENTS.has(pathway.intent)) {
+      errors.push(`${pathway.id}.intent is unknown: ${pathway.intent}`);
+    }
     if (!Array.isArray(pathway.conceptIds) || pathway.conceptIds.length === 0) {
       errors.push(`${pathway.id}.conceptIds must be a non-empty array`);
     }
