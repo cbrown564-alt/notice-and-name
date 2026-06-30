@@ -30,6 +30,7 @@ public struct PleasureVocabularyRootView: View {
             }
         }
         .tint(AppColor.plum)
+        .appLightChrome()
         .fullScreenAppBackground()
         .onChange(of: model.settings) { _, settings in
             lockCoordinator.syncSettings(settings)
@@ -58,7 +59,9 @@ public struct PleasureVocabularyRootView: View {
 }
 
 public struct PleasureVocabularyNativeApp: App {
-    public init() {}
+    public init() {
+        AppTheme.configure()
+    }
 
     public var body: some Scene {
         WindowGroup {
@@ -333,9 +336,8 @@ private struct VocabularyView: View {
                     .listRowBackground(AppColor.surface)
                 }
             }
-            .scrollContentBackground(.hidden)
-            .background(AppColor.canvas)
             .navigationTitle("Vocabulary")
+            .appListScreen()
         }
     }
 }
@@ -360,6 +362,7 @@ private struct ExploreView: View {
                             }
                             .padding(.vertical, 6)
                         }
+                        .listRowBackground(AppColor.surface)
                     }
                 }
 
@@ -370,12 +373,12 @@ private struct ExploreView: View {
                         } label: {
                             ConceptSummaryRow(model: model, concept: concept)
                         }
+                        .listRowBackground(AppColor.surface)
                     }
                 }
             }
-            .scrollContentBackground(.hidden)
-            .background(AppColor.canvas)
             .navigationTitle("Explore")
+            .appListScreen()
         }
     }
 }
@@ -390,6 +393,7 @@ private struct PathwayDetailView: View {
                 Text(pathway.summary)
                     .font(AppFont.body)
                     .foregroundStyle(AppColor.secondaryInk)
+                    .listRowBackground(AppColor.surface)
             }
 
             Section("Words") {
@@ -406,13 +410,13 @@ private struct PathwayDetailView: View {
                         } label: {
                             ConceptSummaryRow(model: model, concept: concept)
                         }
+                        .listRowBackground(AppColor.surface)
                     }
                 }
             }
         }
-        .scrollContentBackground(.hidden)
-        .background(AppColor.canvas)
         .navigationTitle(pathway.name)
+        .appListScreen()
     }
 }
 
@@ -509,9 +513,8 @@ private struct JournalView: View {
                     }
                 }
             }
-            .scrollContentBackground(.hidden)
-            .background(AppColor.canvas)
             .navigationTitle("Journal")
+            .appListScreen()
         }
     }
 }
@@ -530,12 +533,14 @@ private struct SettingsView: View {
                     )) {
                         Label("App lock", systemImage: "lock")
                     }
+                    .listRowBackground(AppColor.surface)
                     Toggle(isOn: Binding(
                         get: { model.settings.reduceSensitivePreviews },
                         set: { model.setReduceSensitivePreviews($0) }
                     )) {
                         Label("Reduced previews", systemImage: "eye.slash")
                     }
+                    .listRowBackground(AppColor.surface)
                 }
 
                 Section("Data") {
@@ -544,11 +549,13 @@ private struct SettingsView: View {
                     } label: {
                         Label("Export local data", systemImage: "square.and.arrow.down")
                     }
+                    .listRowBackground(AppColor.surface)
                     Button(role: .destructive) {
                         confirmDelete = true
                     } label: {
                         Label("Delete all local data", systemImage: "trash")
                     }
+                    .listRowBackground(AppColor.surface)
                 }
 
                 if model.exportText != nil {
@@ -559,12 +566,12 @@ private struct SettingsView: View {
                         ))
                         .font(.system(.footnote, design: .monospaced))
                         .frame(minHeight: 220)
+                        .listRowBackground(AppColor.surface)
                     }
                 }
             }
-            .scrollContentBackground(.hidden)
-            .background(AppColor.canvas)
             .navigationTitle("Settings")
+            .appListScreen()
             .confirmationDialog("Delete all local data?", isPresented: $confirmDelete, titleVisibility: .visible) {
                 Button("Delete all data", role: .destructive) {
                     model.deleteAllData()
