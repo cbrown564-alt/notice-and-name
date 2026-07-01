@@ -1,6 +1,6 @@
 # Expo Retirement Plan
 
-**Status:** In progress  
+**Status:** Complete (optional items remain)  
 **Decision:** iOS-only. The SwiftUI app in `ios-native/` is the sole product client.
 
 The Expo / React Native prototype at the repo root is legacy. This document records what
@@ -62,9 +62,9 @@ removal sequence below.
 
 ### Phase 1 — Decouple tooling
 
-- [ ] Slim `package.json`: remove Expo entry, `expo start`, EAS scripts
-- [ ] Replace `tsconfig.json` (drop `expo/tsconfig.base`; scope to `data/`, `scripts/`)
-- [ ] Verify pipeline:
+- [x] Slim `package.json`: remove Expo entry, `expo start`, EAS scripts
+- [x] Replace `tsconfig.json` (drop `expo/tsconfig.base`; scope to `data/`, `scripts/`)
+- [x] Verify pipeline:
   ```bash
   npm run generate-v2-full-bundle
   npm run validate-v2-bundle:full
@@ -75,14 +75,14 @@ removal sequence below.
 
 ### Phase 2 — Delete Expo app layer
 
-- [ ] Remove `app/`, `components/`, `lib/`, `hooks/`, `constants/`, `__tests__/`
-- [ ] Remove Expo config files listed above
-- [ ] Trim `types/index.ts` to content-only types (drop `RootStackParamList`, etc.)
+- [x] Remove `app/`, `components/`, `lib/`, `hooks/`, `constants/`, `__tests__/`
+- [x] Remove Expo config files listed above
+- [x] Trim `types/index.ts` to content-only types (drop `RootStackParamList`, etc.)
 
 ### Phase 3 — Remove dependencies
 
-- [ ] Uninstall Expo + React Native stack; regenerate `package-lock.json`
-- [ ] Drop Jest / `jest-expo` unless script-level tests are added later
+- [x] Uninstall Expo + React Native stack; regenerate `package-lock.json`
+- [x] Drop Jest / `jest-expo` unless script-level tests are added later
 
 ### Phase 4 — CI migration
 

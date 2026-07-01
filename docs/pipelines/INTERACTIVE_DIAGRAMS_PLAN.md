@@ -2,8 +2,8 @@
 
 **Status:** Ready to execute (shift focus from static media regen)  
 **Why now:** Technique plates are acceptable but uninspiring; **explorable explanations** are the product differentiator (`animation_journey.md`, UI review § Skia diagrams).  
-**Platforms:** React Native (Expo) — `@shopify/react-native-skia` + gestures · iOS native — SwiftUI `Canvas` in `ConceptDiagrams.swift`  
-**Style:** `colors.diagram.*` in `constants/theme.ts` · plates remain reduce-motion posters only
+**Platforms:** iOS native — SwiftUI `Canvas` in `ConceptDiagrams.swift`  
+**Style:** Native diagram palette in `ios-native/Sources/PleasureVocabularyApp/Theme/` · plates remain reduce-motion posters only
 
 ---
 
