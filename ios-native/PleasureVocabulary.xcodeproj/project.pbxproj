@@ -155,7 +155,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/bin/env node \"${SRCROOT}/../scripts/sync-ios-media.js\"\n";
+			shellScript = "\"${SRCROOT}/../scripts/run-sync-ios-media.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

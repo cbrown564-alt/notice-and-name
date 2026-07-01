@@ -19,7 +19,7 @@ targets:
       - name: Sync iOS Media
         basedOnDependencyAnalysis: false
         script: |
-          /usr/bin/env node "${SRCROOT}/../scripts/sync-ios-media.js"
+          "${SRCROOT}/../scripts/run-sync-ios-media.sh"
     sources:
       - path: AppHost
         excludes:
