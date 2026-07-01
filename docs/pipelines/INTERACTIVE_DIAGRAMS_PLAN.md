@@ -57,20 +57,22 @@ flowchart LR
   P3 --> P4[Phase 4\nTiming + mind]
 ```
 
-### Phase 0 — Diagram kit & polish existing four
+### Phase 0 — Diagram kit & polish existing four ✅
 
 **Goal:** One shared foundation before new concepts.  
-**Duration:** ~1 week  
+**Status:** Complete (RN `DiagramFrame` + iOS touch parity, token audit, haptics, QA rows)  
 **Exit:** All four techniques pass device QA on Illustrate slide (RN + iOS).
+
+**Interaction parity:** **Option A** — iOS uses pan/tap gestures matching RN (auto-loops removed when motion enabled). Reduce Motion shows static teaching frames on both platforms.
 
 | Task | Deliverable |
 |------|-------------|
-| Extract `DiagramFrame` | Shared wrapper: canvas, border, height, reduce-motion hook |
-| Token audit | All paths use `colors.diagram.*` / `AppColor` equivalents |
-| Interaction parity decision | **Option A (recommended):** iOS adds touch where RN has gestures · **Option B:** keep iOS as calm demo loop, document intentional |
-| Haptics | Light impact on state thresholds (angling sweet spot, pairing complete) |
-| Accessibility | `accessibilityLabel` from `illustrationCaption`; diagram state changes announced sparingly |
-| QA script | Add diagram rows to `docs/QA_CHECKLIST.md` |
+| Extract `DiagramFrame` | ✅ `components/diagrams/DiagramFrame.tsx` — canvas, border, height, reduce-motion hook |
+| Token audit | ✅ All paths use `colors.diagram.*` / `AppColor.diagram*` equivalents |
+| Interaction parity decision | ✅ Option A — iOS touch where RN has gestures |
+| Haptics | ✅ Light impact on angling sweet spot + pairing complete |
+| Accessibility | ✅ `accessibilityLabel` from `illustrationCaption`; state changes announced sparingly |
+| QA script | ✅ Diagram rows in `docs/QA_CHECKLIST.md` |
 
 **No new concepts.** Polish only.
 
@@ -235,10 +237,11 @@ docs/QA_CHECKLIST.md                      ← device test rows
 
 ## 8. Immediate next steps
 
-1. **Phase 0 kickoff** — diagram kit extraction + token audit on four existing components  
+1. ~~**Phase 0 kickoff** — diagram kit extraction + token audit on four existing components~~ ✅
 2. **Write** `docs/pipelines/prompts/diagrams/edging.md` using § Phase 1 spec  
-3. **Decide iOS parity** — touch on iOS vs demo loop (recommend touch for Edging onward)  
-4. **Pause** Batch B image regen except static-only concepts  
+3. ~~**Decide iOS parity** — touch on iOS vs demo loop (recommend touch for Edging onward)~~ ✅ Option A
+4. **Device QA** — run Phase 0 diagram rows in `docs/QA_CHECKLIST.md` on iOS + Android
+5. **Pause** Batch B image regen except static-only concepts  
 
 ---
 

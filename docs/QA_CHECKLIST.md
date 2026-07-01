@@ -46,16 +46,45 @@ After deck: set **Tried it** / **Curious** / **Not for me** — confirm Profile 
 
 | Format | Concepts | Check |
 |--------|----------|-------|
-| **Interactive (Skia)** | angling, rocking, shallowing, pairing | Gesture works; diagram colors match theme |
+| **Interactive (Skia)** | angling, rocking, shallowing, pairing | Gesture works; `colors.diagram.*` tokens; feedback label in UI chrome (not in canvas) |
 | **Video** | building, spreading, responsive-desire | Loop smooth, muted, poster before play |
 | **Video (pending)** | pulsing, spontaneous-desire, embodied-presence | Static illustration fallback until MP4 wired |
 | **Static** | All others | Illustration fills frame; cream canvas tone |
+
+#### Interactive diagram device QA (Phase 0)
+
+Run on **iOS + Android** for each of the four technique diagrams:
+
+| Concept | Gesture | Pass criteria |
+|---------|---------|---------------|
+| **Angling** | Vertical pan | Pelvis tilts; coral glow at posterior tuck (~−10°); light haptic once at sweet spot; label reads "Posterior Tilt" in chrome |
+| **Rocking** | Drag wedge | Warmth builds at pubic contact; label updates Near → Contact |
+| **Shallowing** | Horizontal pan | Probe glow peaks at introitus; fades deep |
+| **Pairing** | Tap external + internal | Bridge glow when both on; light haptic on pair |
+
+**Tokens:** passive `#DCD8D3`, active `#E8603C`, glow `#FFC5B5` — no legacy hard-coded oranges/plums in diagram paths.
+
+**Accessibility:** VoiceOver label = deck `illustrationCaption`; state announcements sparing (threshold only).
+
+**Reduce motion (diagrams):**
+
+| Concept | Static teaching frame |
+|---------|----------------------|
+| Angling | Posterior tilt sweet spot |
+| Rocking | Full contact / grinding |
+| Shallowing | Probe at introitus |
+| Pairing | Both routes active, bridge visible |
+
+- [ ] All four diagrams pass the table above on iOS
+- [ ] All four diagrams pass the table above on Android (Expo)
+- [ ] Reduce Motion shows static frames (no auto-loop, gestures disabled)
 
 ### Reduced motion
 
 Enable **Reduce Motion** in system settings:
 
 - [ ] Video concepts show **static illustration** instead of autoplay video
+- [ ] Interactive diagrams show **static teaching frame** (no auto-loop; gestures disabled)
 - [ ] Deck transitions still usable (no nausea / excessive motion)
 
 ---
