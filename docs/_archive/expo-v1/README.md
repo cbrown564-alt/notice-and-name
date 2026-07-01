@@ -9,5 +9,8 @@ The production app is the SwiftUI client in [`../../ios-native/`](../../ios-nati
 | [PROJECT_STATUS_REPORT.md](./PROJECT_STATUS_REPORT.md) | Snapshot of Expo-era product, codebase, assets, gaps, and risks |
 | [IMPLEMENTATION_PLAN.md](./IMPLEMENTATION_PLAN.md) | Phased plan for the Expo MVP toward a polished release |
 | [QA_CHECKLIST.md](./QA_CHECKLIST.md) | Manual device QA script for the Expo app |
+| [UI_REVIEW_AND_CREATIVE_PLAN.md](./UI_REVIEW_AND_CREATIVE_PLAN.md) | Expo UI review and creative direction notes |
+| [pipelines/REFERENCE_RENDERS.md](./pipelines/REFERENCE_RENDERS.md) | Expo Go reference render workflow |
+| [pipelines/VIDEO_GENERATION.md](./pipelines/VIDEO_GENERATION.md) | Expo video integration checklist |
 
 See [EXPO_RETIREMENT.md](../../v2/EXPO_RETIREMENT.md) for the full retirement record.
