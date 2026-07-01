@@ -53,6 +53,12 @@ public enum AppColor {
     public static let moss = Color(red: 0.34, green: 0.43, blue: 0.35)
     public static let gold = Color(red: 0.82, green: 0.61, blue: 0.35)
     public static let line = Color(red: 0.86, green: 0.80, blue: 0.74)
+
+    /// Skia diagram tokens — mirrors `colors.diagram.*` in `constants/theme.ts` (STYLE_BIBLE §4).
+    public static let diagramPassive = Color(red: 220 / 255, green: 216 / 255, blue: 211 / 255)
+    public static let diagramActive = Color(red: 232 / 255, green: 96 / 255, blue: 60 / 255)
+    public static let diagramGlow = Color(red: 1, green: 197 / 255, blue: 181 / 255)
+    public static let diagramDetachment = Color(red: 122 / 255, green: 122 / 255, blue: 1)
 }
 
 extension AppColor {
@@ -105,6 +111,13 @@ public enum NativeHaptics {
     public static func warning() {
         #if os(iOS)
         UINotificationFeedbackGenerator().notificationOccurred(.warning)
+        #endif
+    }
+
+    @MainActor
+    public static func impactLight() {
+        #if os(iOS)
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
         #endif
     }
 }

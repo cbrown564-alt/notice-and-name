@@ -15,8 +15,9 @@ import AVFoundation
 
 /// Renders one of the app's native vector diagrams for a `MediaItem` whose
 /// `path` is `native://diagram/<id>`. These four concepts are drawn in-app
-/// (no image asset ships for them). The drawing is parameterised by a calm,
-/// slow looping animation that is fully disabled when Reduce Motion is on.
+/// (no image asset ships for them). When Reduce Motion is off, diagrams are
+/// user-driven (pan/tap) to match React Native; when on, a static teaching
+/// frame is shown. See `docs/pipelines/INTERACTIVE_DIAGRAMS_PLAN.md` Phase 0.
 ///
 /// An unrecognised id falls back to the same framed placeholder used for
 /// images/videos (`MediaPlaceholderCard`), so a new diagram id can ship before
@@ -282,10 +283,10 @@ private final class LoopingPlayerUIView: UIView {
 
 // MARK: - Diagram plumbing
 
-/// Calm surface every diagram is drawn on: rounded canvas tile with a soft
-/// border, matching the placeholder aesthetic.
+/// Shared diagram frame: concept canvas, 1px border, ~300pt height.
+/// React Native twin: `components/diagrams/DiagramFrame.tsx`.
 private struct DiagramSurface<Content: View>: View {
-    var height: CGFloat = 240
+    var height: CGFloat = 300
     @ViewBuilder var content: () -> Content
 
     var body: some View {
@@ -301,13 +302,6 @@ private struct DiagramSurface<Content: View>: View {
     }
 }
 
-/// A quiet, slow 0...1 oscillation derived from wall-clock time, used to gently
-/// animate the diagrams when motion is enabled.
-private func oscPhase(_ date: Date, period: Double) -> Double {
-    let t = date.timeIntervalSinceReferenceDate
-    return (sin(2 * .pi * t / period) + 1) / 2
-}
-
 /// Maps the diagram's natural coordinate space into the canvas, centred and
 /// aspect-fit. Stroke widths stay in screen points (not scaled).
 private func worldTransform(in size: CGSize, natural: CGSize) -> CGAffineTransform {
@@ -320,6 +314,18 @@ private func worldTransform(in size: CGSize, natural: CGSize) -> CGAffineTransfo
 private func smoothstep(_ edge0: Double, _ edge1: Double, _ x: Double) -> Double {
     let t = min(1, max(0, (x - edge0) / (edge1 - edge0)))
     return t * t * (3 - 2 * t)
+}
+
+private struct DiagramDragModifier<G: Gesture>: ViewModifier {
+    let enabled: Bool
+    let gesture: G
+    func body(content: Content) -> some View {
+        if enabled {
+            content.gesture(gesture)
+        } else {
+            content
+        }
+    }
 }
 
 private func circlePath(cx: CGFloat, cy: CGFloat, r: CGFloat) -> Path {
@@ -349,53 +355,63 @@ private extension GraphicsContext {
 
 // MARK: - Angling
 
-/// Pelvis tilt redirecting pressure along the anterior wall. A static spine and
-/// pivot; the pelvis bowl rotates and a "contact zone" arc glows as the pelvis
-/// reaches a posterior tilt (the sweet spot).
+/// Pelvis tilt redirecting pressure along the anterior wall. Drag vertically to
+/// tilt; glow intensifies at posterior tuck (sweet spot).
 private struct AnglingDiagramView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var angleDeg: Double = 0
+    @State private var dragBaseAngle: Double = 0
+    @State private var sweetSpotHaptic = false
+
     private let natural = CGSize(width: 300, height: 220)
     private let pivot = CGPoint(x: 150, y: 130)
 
     var body: some View {
         DiagramSurface {
-            if reduceMotion {
-                content(phase: 1) // representative "sweet spot" pose
-            } else {
-                TimelineView(.animation) { timeline in
-                    content(phase: oscPhase(timeline.date, period: 5))
+            let angle = reduceMotion ? -15.0 : angleDeg
+            let glow = smoothstep(4, 12, -angle)
+            ZStack(alignment: .top) {
+                Canvas { context, size in
+                    draw(context, size: size, angleDeg: angle, glow: glow)
                 }
+                Text(angle < -5 ? "Posterior tilt" : (angle > 5 ? "Anterior tilt" : "Neutral"))
+                    .font(AppFont.label)
+                    .foregroundStyle(AppColor.secondaryInk)
+                    .padding(.top, 12)
+                    .accessibilityHidden(true)
             }
+            .contentShape(Rectangle())
+            .modifier(DiagramDragModifier(enabled: !reduceMotion, gesture: dragGesture))
         }
     }
 
-    private func content(phase: Double) -> some View {
-        // phase 0 -> near neutral, phase 1 -> posterior tilt (tuck).
-        let angleDeg = -2 - 13 * phase            // 0° area -> ~ -15°
-        let glow = smoothstep(4, 12, -angleDeg)   // brightens toward the tuck
-        return ZStack(alignment: .top) {
-            Canvas { context, size in
-                draw(context, size: size, angleDeg: angleDeg, glow: glow)
+    private var dragGesture: some Gesture {
+        DragGesture(minimumDistance: 4)
+            .onChanged { value in
+                let delta = -Double(value.translation.height) / 5
+                angleDeg = min(20, max(-20, dragBaseAngle + delta))
+                let inSweetSpot = angleDeg < -10
+                if inSweetSpot && !sweetSpotHaptic {
+                    sweetSpotHaptic = true
+                    NativeHaptics.impactLight()
+                } else if !inSweetSpot {
+                    sweetSpotHaptic = false
+                }
             }
-            Text(glow > 0.5 ? "Posterior tilt" : "Neutral")
-                .font(AppFont.label)
-                .foregroundStyle(AppColor.secondaryInk)
-                .padding(.top, 12)
-                .accessibilityHidden(true)
-        }
+            .onEnded { _ in
+                dragBaseAngle = angleDeg
+            }
     }
 
     private func draw(_ context: GraphicsContext, size: CGSize, angleDeg: Double, glow: Double) {
         let world = worldTransform(in: size, natural: natural)
 
-        // Spine (static).
         var spine = Path()
         spine.move(to: CGPoint(x: 150, y: 40))
         spine.addQuadCurve(to: CGPoint(x: 150, y: 130), control: CGPoint(x: 150, y: 100))
-        context.stroke(spine.applying(world), with: .color(AppColor.line),
+        context.stroke(spine.applying(world), with: .color(AppColor.diagramPassive),
                        style: StrokeStyle(lineWidth: 4, lineCap: .round))
 
-        // Pelvis bowl (rotates around the pivot).
         var pelvis = Path()
         pelvis.move(to: CGPoint(x: 90, y: 130))
         pelvis.addQuadCurve(to: CGPoint(x: 210, y: 130), control: CGPoint(x: 150, y: 200))
@@ -415,80 +431,100 @@ private struct AnglingDiagramView: View {
         let contactScreen = contact.applying(rotation).applying(world)
 
         context.fill(pelvisScreen, with: .color(AppColor.surface))
-        context.stroke(pelvisScreen, with: .color(AppColor.secondaryInk.opacity(0.5)),
+        context.stroke(pelvisScreen, with: .color(AppColor.diagramPassive.opacity(0.85)),
                        style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
 
-        // Contact zone: quiet base + accent glow at the sweet spot.
-        context.stroke(contactScreen, with: .color(AppColor.line),
+        context.stroke(contactScreen, with: .color(AppColor.diagramPassive),
                        style: StrokeStyle(lineWidth: 4, lineCap: .round))
-        context.glowStroke(contactScreen, color: AppColor.blush,
+        context.glowStroke(contactScreen, color: AppColor.diagramActive,
                            lineWidth: 4 + 5 * glow, blur: 5, opacity: glow)
 
-        // Pivot point.
         let dot = circlePath(cx: pivot.x, cy: pivot.y, r: 4).applying(world)
-        context.fill(dot, with: .color(AppColor.plum.opacity(0.4)))
+        context.fill(dot, with: .color(AppColor.diagramPassive.opacity(0.5)))
     }
 }
 
 // MARK: - Rocking
 
-/// Compression and friction at the pubic mound. A static receiver pelvis with a
-/// contact point; a partner "wedge" gently rocks toward and away from that
-/// point while warmth builds at the contact.
+/// Compression and friction at the pubic mound. Drag the partner wedge toward
+/// the contact point; warmth builds at high contact.
 private struct RockingDiagramView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var partnerOffset = CGSize(width: -60, height: -40)
+    @State private var dragBaseOffset = CGSize(width: -60, height: -40)
+    @State private var contactHaptic = false
+
     private let natural = CGSize(width: 300, height: 220)
     private let pubic = CGPoint(x: 140, y: 150)
 
     var body: some View {
         DiagramSurface {
+            let intensity = contactIntensity(at: partnerOffset)
+            ZStack(alignment: .top) {
+                Canvas { context, size in
+                    draw(context, size: size, partnerOffset: partnerOffset, intensity: intensity)
+                }
+                Text(intensity > 0.6 ? "Contact" : (intensity > 0.1 ? "Near" : "No contact"))
+                    .font(AppFont.label)
+                    .foregroundStyle(AppColor.secondaryInk)
+                    .padding(.top, 12)
+                    .accessibilityHidden(true)
+            }
+            .contentShape(Rectangle())
+            .modifier(DiagramDragModifier(enabled: !reduceMotion, gesture: dragGesture))
+        }
+        .onAppear {
             if reduceMotion {
-                content(phase: 1) // full contact
-            } else {
-                TimelineView(.animation) { timeline in
-                    content(phase: oscPhase(timeline.date, period: 3.6))
+                partnerOffset = .zero
+                dragBaseOffset = .zero
+            }
+        }
+    }
+
+    private var dragGesture: some Gesture {
+        DragGesture(minimumDistance: 2)
+            .onChanged { value in
+                partnerOffset = CGSize(
+                    width: dragBaseOffset.width + value.translation.width,
+                    height: dragBaseOffset.height + value.translation.height
+                )
+                let intensity = contactIntensity(at: partnerOffset)
+                if intensity > 0.8 && !contactHaptic {
+                    contactHaptic = true
+                    NativeHaptics.impactLight()
+                } else if intensity <= 0.8 {
+                    contactHaptic = false
                 }
             }
-        }
-    }
-
-    private func content(phase: Double) -> some View {
-        let intensity = phase // 0 = apart, 1 = grinding contact
-        return ZStack(alignment: .top) {
-            Canvas { context, size in
-                draw(context, size: size, intensity: intensity)
+            .onEnded { _ in
+                dragBaseOffset = partnerOffset
             }
-            Text(intensity > 0.6 ? "Contact" : "Approach")
-                .font(AppFont.label)
-                .foregroundStyle(AppColor.secondaryInk)
-                .padding(.top, 12)
-                .accessibilityHidden(true)
-        }
     }
 
-    private func draw(_ context: GraphicsContext, size: CGSize, intensity: Double) {
+    private func contactIntensity(at offset: CGSize) -> Double {
+        let dx = offset.width
+        let dy = offset.height
+        let distance = sqrt(dx * dx + dy * dy)
+        return min(1, max(0, 1 - distance / 60))
+    }
+
+    private func draw(_ context: GraphicsContext, size: CGSize, partnerOffset: CGSize, intensity: Double) {
         let world = worldTransform(in: size, natural: natural)
 
-        // Receiver pelvis (static side-view schematic).
         var pelvis = Path()
         pelvis.move(to: CGPoint(x: pubic.x + 40, y: 90))
         pelvis.addQuadCurve(to: pubic, control: CGPoint(x: pubic.x, y: 130))
         pelvis.addLine(to: CGPoint(x: pubic.x + 20, y: pubic.y + 40))
-        context.stroke(pelvis.applying(world), with: .color(AppColor.line),
+        context.stroke(pelvis.applying(world), with: .color(AppColor.diagramPassive),
                        style: StrokeStyle(lineWidth: 6, lineCap: .round, lineJoin: .round))
 
-        // Warmth at the contact point.
         let heat = circlePath(cx: pubic.x, cy: pubic.y, r: 26).applying(world)
-        context.glowFill(heat, color: AppColor.blush, blur: 8 + 12 * intensity, opacity: 0.6 * intensity)
+        context.glowFill(heat, color: AppColor.diagramGlow, blur: 8 + 12 * intensity, opacity: 0.6 * intensity)
 
-        // Pubic mound marker.
         let mound = circlePath(cx: pubic.x, cy: pubic.y, r: 8).applying(world)
-        context.fill(mound, with: .color(AppColor.secondaryInk.opacity(0.6)))
+        context.fill(mound, with: .color(AppColor.diagramPassive))
 
-        // Partner wedge approaching from the upper-left; tip sits at `tip`.
-        let approach = CGPoint(x: -34 * (1 - intensity) - 6,
-                               y: -22 * (1 - intensity) - 4)
-        let tip = CGPoint(x: pubic.x + approach.x, y: pubic.y + approach.y)
+        let tip = CGPoint(x: pubic.x + partnerOffset.width, y: pubic.y + partnerOffset.height)
         var wedge = Path()
         wedge.move(to: CGPoint(x: 0, y: -28))
         wedge.addLine(to: CGPoint(x: 26, y: -28))
@@ -498,63 +534,75 @@ private struct RockingDiagramView: View {
         let wedgeScreen = wedge
             .applying(CGAffineTransform(translationX: tip.x, y: tip.y))
             .applying(world)
-        let wedgeColor = AppColor.plum.opacity(0.55 + 0.35 * intensity)
-        context.fill(wedgeScreen, with: .color(wedgeColor))
+        context.fill(wedgeScreen, with: .color(AppColor.diagramActive.opacity(0.55 + 0.35 * intensity)))
 
-        // Contact tip indicator.
-        let tipDot = circlePath(cx: tip.x, cy: tip.y, r: 4)
-            .applying(world)
+        let tipDot = circlePath(cx: tip.x, cy: tip.y, r: 4).applying(world)
         context.fill(tipDot, with: .color(AppColor.surface))
     }
 }
 
 // MARK: - Shallowing
 
-/// Shallow vs deep. Nerve-rich tissue is concentrated at the entrance
-/// (introitus); a probe travels the canal and its glow fades as it goes deep,
-/// reinforcing that the first inch carries the sensitivity.
+/// Shallow vs deep. Drag horizontally along the canal; glow peaks at the
+/// nerve-rich entrance (introitus).
 private struct ShallowingDiagramView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var probeX: CGFloat = 50
+    @State private var dragBaseX: CGFloat = 50
+
     private let natural = CGSize(width: 280, height: 240)
     private let entranceX: CGFloat = 50
     private let canalY: CGFloat = 150
+    private let canalLength: CGFloat = 240
 
     var body: some View {
         DiagramSurface {
-            if reduceMotion {
-                content(phase: 0) // probe parked at the sensitive entrance
-            } else {
-                TimelineView(.animation) { timeline in
-                    content(phase: oscPhase(timeline.date, period: 6))
+            GeometryReader { geo in
+                let intensity = probeIntensity(at: probeX)
+                ZStack(alignment: .top) {
+                    Canvas { context, size in
+                        draw(context, size: size, probeX: probeX, intensity: intensity)
+                    }
+                    Text(intensity > 0.5 ? "Shallow · sensitive" : "Deep · pressure")
+                        .font(AppFont.label)
+                        .foregroundStyle(AppColor.secondaryInk)
+                        .padding(.top, 12)
+                        .accessibilityHidden(true)
                 }
+                .contentShape(Rectangle())
+                .modifier(DiagramDragModifier(enabled: !reduceMotion, gesture: dragGesture(in: geo.size)))
+            }
+        }
+        .onAppear {
+            if reduceMotion {
+                probeX = entranceX
+                dragBaseX = entranceX
             }
         }
     }
 
-    private func content(phase: Double) -> some View {
-        // phase 0 -> entrance (shallow), phase 1 -> deep.
-        let probeX = entranceX + (240 - entranceX) * CGFloat(phase)
-        let intensity = smoothstep(170, Double(entranceX), Double(probeX)) // high near entrance
-        return ZStack(alignment: .top) {
-            Canvas { context, size in
-                draw(context, size: size, probeX: probeX, intensity: intensity)
+    private func dragGesture(in size: CGSize) -> some Gesture {
+        DragGesture(minimumDistance: 2)
+            .onChanged { value in
+                let scale = natural.width / max(1, size.width)
+                let x = dragBaseX + value.translation.width * scale
+                probeX = min(canalLength, max(0, x))
             }
-            Text(intensity > 0.5 ? "Shallow · sensitive" : "Deep · pressure")
-                .font(AppFont.label)
-                .foregroundStyle(AppColor.secondaryInk)
-                .padding(.top, 12)
-                .accessibilityHidden(true)
-        }
+            .onEnded { _ in
+                dragBaseX = probeX
+            }
+    }
+
+    private func probeIntensity(at x: CGFloat) -> Double {
+        smoothstep(170, Double(entranceX), Double(x))
     }
 
     private func draw(_ context: GraphicsContext, size: CGSize, probeX: CGFloat, intensity: Double) {
         let world = worldTransform(in: size, natural: natural)
 
-        // Soft nerve-rich emphasis at the entrance / first inch.
         let zone = circlePath(cx: entranceX + 10, cy: canalY, r: 48).applying(world)
-        context.glowFill(zone, color: AppColor.blush, blur: 22, opacity: 0.30)
+        context.glowFill(zone, color: AppColor.diagramGlow, blur: 22, opacity: 0.30)
 
-        // Canal walls.
         var top = Path()
         top.move(to: CGPoint(x: 0, y: 100))
         top.addQuadCurve(to: CGPoint(x: entranceX + 50, y: 112), control: CGPoint(x: entranceX, y: 100))
@@ -563,89 +611,114 @@ private struct ShallowingDiagramView: View {
         bottom.move(to: CGPoint(x: 0, y: 200))
         bottom.addQuadCurve(to: CGPoint(x: entranceX + 50, y: 188), control: CGPoint(x: entranceX, y: 200))
         bottom.addLine(to: CGPoint(x: 280, y: 188))
-        context.stroke(top.applying(world), with: .color(AppColor.line),
+        context.stroke(top.applying(world), with: .color(AppColor.diagramPassive),
                        style: StrokeStyle(lineWidth: 4, lineCap: .round))
-        context.stroke(bottom.applying(world), with: .color(AppColor.line),
+        context.stroke(bottom.applying(world), with: .color(AppColor.diagramPassive),
                        style: StrokeStyle(lineWidth: 4, lineCap: .round))
 
-        // Depth labels at the extremes (quiet axis cue).
-        drawTinyLabel(context, "shallow", at: CGPoint(x: entranceX + 6, y: 224), world: world)
-        drawTinyLabel(context, "deep", at: CGPoint(x: 250, y: 224), world: world)
-
-        // Probe + aura, colour warming toward the entrance.
         let aura = circlePath(cx: probeX, cy: canalY, r: 24).applying(world)
-        context.glowFill(aura, color: AppColor.blush, blur: 14, opacity: 0.45 * intensity)
+        context.glowFill(aura, color: AppColor.diagramGlow, blur: 14, opacity: 0.45 * intensity)
 
         let core = circlePath(cx: probeX, cy: canalY, r: 12).applying(world)
-        let coreColor = blend(AppColor.line, AppColor.blush, intensity)
+        let coreColor = blend(AppColor.diagramPassive, AppColor.diagramActive, intensity)
         context.fill(core, with: .color(coreColor))
         context.stroke(core, with: .color(AppColor.surface), style: StrokeStyle(lineWidth: 2))
-    }
-
-    private func drawTinyLabel(_ context: GraphicsContext, _ string: String, at point: CGPoint, world: CGAffineTransform) {
-        var resolved = context.resolve(Text(string).font(AppFont.label))
-        resolved.shading = .color(AppColor.secondaryInk.opacity(0.7))
-        context.draw(resolved, at: point.applying(world), anchor: .center)
     }
 }
 
 // MARK: - Pairing
 
-/// Two stimulation routes combined: the clitoral glans (external) and the
-/// crura/canal (internal). When both are "active" a soft bridge glow appears
-/// between them — the pairing bonus. Both pulse gently in sync.
+/// Two stimulation routes combined: tap external (glans) and internal (crura).
+/// When both are active a soft bridge glow appears — the pairing bonus.
 private struct PairingDiagramView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var externalOn = false
+    @State private var internalOn = false
+    @State private var pairedHaptic = false
+
     private let natural = CGSize(width: 300, height: 300)
 
     var body: some View {
-        DiagramSurface(height: 260) {
-            if reduceMotion {
-                content(phase: 1) // both active, bridge present
-            } else {
-                TimelineView(.animation) { timeline in
-                    content(phase: oscPhase(timeline.date, period: 4.5))
+        DiagramSurface(height: 300) {
+            let paired = reduceMotion ? 1.0 : (externalOn && internalOn ? 1.0 : 0.0)
+            ZStack {
+                Canvas { context, size in
+                    draw(
+                        context,
+                        size: size,
+                        externalOn: reduceMotion || externalOn,
+                        internalOn: reduceMotion || internalOn,
+                        paired: paired
+                    )
+                }
+                if !reduceMotion {
+                    VStack {
+                        Button("External · glans") { toggleExternal() }
+                            .buttonStyle(DiagramChipButtonStyle())
+                            .padding(.top, 10)
+                        Spacer()
+                        Button("Internal · crura") { toggleInternal() }
+                            .buttonStyle(DiagramChipButtonStyle())
+                            .padding(.bottom, 14)
+                    }
+                    .font(AppFont.label)
+                    .foregroundStyle(AppColor.secondaryInk)
+                    .accessibilityHidden(true)
+                } else {
+                    VStack {
+                        Text("External · glans").padding(.top, 10)
+                        Spacer()
+                        Text("Internal · crura").padding(.bottom, 14)
+                    }
+                    .font(AppFont.label)
+                    .foregroundStyle(AppColor.secondaryInk)
+                    .accessibilityHidden(true)
                 }
             }
         }
+        .onAppear {
+            if reduceMotion {
+                externalOn = true
+                internalOn = true
+            }
+        }
+        .onChange(of: externalOn) { _, _ in checkPairingHaptic() }
+        .onChange(of: internalOn) { _, _ in checkPairingHaptic() }
     }
 
-    private func content(phase: Double) -> some View {
-        // Both routes share one gentle activation pulse.
-        let activation = 0.45 + 0.55 * phase
-        let paired = smoothstep(0.55, 0.85, activation)
-        return ZStack {
-            Canvas { context, size in
-                draw(context, size: size, activation: activation, paired: paired)
-            }
-            VStack {
-                Text("External · glans")
-                    .padding(.top, 10)
-                Spacer()
-                Text("Internal · crura")
-                    .padding(.bottom, 14)
-            }
-            .font(AppFont.label)
-            .foregroundStyle(AppColor.secondaryInk)
-            .accessibilityHidden(true)
+    private func toggleExternal() {
+        externalOn.toggle()
+    }
+
+    private func toggleInternal() {
+        internalOn.toggle()
+    }
+
+    private func checkPairingHaptic() {
+        let isPaired = externalOn && internalOn
+        if isPaired && !pairedHaptic {
+            pairedHaptic = true
+            NativeHaptics.impactLight()
+        } else if !isPaired {
+            pairedHaptic = false
         }
     }
 
-    private func draw(_ context: GraphicsContext, size: CGSize, activation: Double, paired: Double) {
+    private func draw(_ context: GraphicsContext, size: CGSize, externalOn: Bool, internalOn: Bool, paired: Double) {
         let world = worldTransform(in: size, natural: natural)
         let cx: CGFloat = 150
+        let externalT = externalOn ? 1.0 : 0.0
+        let internalT = internalOn ? 1.0 : 0.0
 
-        // Canal (context tube).
         var canal = Path()
         canal.move(to: CGPoint(x: cx - 22, y: 140))
         canal.addLine(to: CGPoint(x: cx - 18, y: 250))
         canal.addQuadCurve(to: CGPoint(x: cx + 18, y: 250), control: CGPoint(x: cx, y: 264))
         canal.addLine(to: CGPoint(x: cx + 22, y: 140))
         let canalScreen = canal.applying(world)
-        context.fill(canalScreen, with: .color(AppColor.line.opacity(0.4)))
-        context.stroke(canalScreen, with: .color(AppColor.line), style: StrokeStyle(lineWidth: 2))
+        context.fill(canalScreen, with: .color(AppColor.diagramPassive.opacity(0.4)))
+        context.stroke(canalScreen, with: .color(AppColor.diagramPassive), style: StrokeStyle(lineWidth: 2))
 
-        // Crura / legs (internal) — a wishbone around the canal.
         var legs = Path()
         legs.move(to: CGPoint(x: cx - 10, y: 110))
         legs.addQuadCurve(to: CGPoint(x: cx - 50, y: 230), control: CGPoint(x: cx - 60, y: 150))
@@ -656,16 +729,23 @@ private struct PairingDiagramView: View {
         legs.addQuadCurve(to: CGPoint(x: cx + 30, y: 190), control: CGPoint(x: cx + 30, y: 236))
         legs.addQuadCurve(to: CGPoint(x: cx + 10, y: 116), control: CGPoint(x: cx + 30, y: 150))
         let legsScreen = legs.applying(world)
-        context.fill(legsScreen, with: .color(blend(AppColor.line, AppColor.plum, activation).opacity(0.65)))
+        context.fill(legsScreen, with: .color(blend(AppColor.diagramPassive, AppColor.diagramActive, internalT).opacity(0.65)))
 
-        // Glans (external) button.
         let glans = circlePath(cx: cx, cy: 92, r: 16).applying(world)
-        context.fill(glans, with: .color(blend(AppColor.line, AppColor.blush, activation)))
+        context.fill(glans, with: .color(blend(AppColor.diagramPassive, AppColor.diagramActive, externalT)))
 
-        // Bridge glow — the pairing bonus, only meaningful when both are active.
         let bridge = circlePath(cx: cx, cy: 108, r: 34).applying(world)
-        context.glowFill(bridge, color: AppColor.gold, blur: 24, opacity: 0.5 * paired)
-        context.glowFill(glans, color: AppColor.blush, blur: 8, opacity: 0.5 * paired)
+        context.glowFill(bridge, color: AppColor.diagramGlow, blur: 24, opacity: 0.5 * paired)
+        context.glowFill(glans, color: AppColor.diagramGlow, blur: 8, opacity: 0.5 * paired)
+    }
+}
+
+private struct DiagramChipButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding(.horizontal, 12)
+            .padding(.vertical, 8)
+            .background(Color.white.opacity(configuration.isPressed ? 0.65 : 0.85), in: Capsule())
     }
 }
 

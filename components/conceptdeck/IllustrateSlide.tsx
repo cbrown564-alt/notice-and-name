@@ -31,31 +31,34 @@ export const IllustrateSlide = ({ item, isActive = false, diagramType }: Illustr
     }, []);
 
     const renderContent = () => {
+        const diagramLabel = item.illustrationCaption ?? 'Interactive diagram';
+        const diagramProps = { accessibilityLabel: diagramLabel, reduceMotion };
+
         if (diagramType === 'angling') {
             return (
                 <View style={styles.diagramContainer}>
-                    <AnglingDiagram />
+                    <AnglingDiagram {...diagramProps} />
                 </View>
             );
         }
         if (diagramType === 'shallowing') {
             return (
                 <View style={styles.diagramContainer}>
-                    <ShallowingDiagram />
+                    <ShallowingDiagram {...diagramProps} />
                 </View>
             );
         }
         if (diagramType === 'rocking') {
             return (
                 <View style={styles.diagramContainer}>
-                    <RockingDiagram />
+                    <RockingDiagram {...diagramProps} />
                 </View>
             );
         }
         if (diagramType === 'pairing') {
             return (
                 <View style={styles.diagramContainer}>
-                    <PairingDiagram />
+                    <PairingDiagram {...diagramProps} />
                 </View>
             );
         }
@@ -159,14 +162,7 @@ const styles = StyleSheet.create({
     },
     diagramContainer: {
         width: '100%',
-        aspectRatio: 1,
         marginBottom: spacing.md,
-        borderRadius: borderRadius.lg,
-        overflow: 'hidden',
-        backgroundColor: colors.conceptCanvas,
-        borderWidth: 1,
-        borderColor: colors.neutral[200],
-        ...shadows.sm,
         justifyContent: 'center',
         alignItems: 'center',
     },

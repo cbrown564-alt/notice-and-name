@@ -1,4 +1,4 @@
-import { colors, textStyles } from '@/constants/theme';
+import { colors } from '@/constants/theme';
 import {
     BlurMask,
     Canvas,
@@ -8,8 +8,7 @@ import {
     Skia
 } from '@shopify/react-native-skia';
 import React from 'react';
-import { Text, useWindowDimensions, View } from 'react-native';
-import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import { Gesture } from 'react-native-gesture-handler';
 import {
     interpolate,
     interpolateColor,
@@ -18,50 +17,43 @@ import {
     useDerivedValue,
     useSharedValue
 } from 'react-native-reanimated';
+import { DiagramFrame, useDiagramCanvasSize } from './DiagramFrame';
+import { diagramColors, reduceMotionFrames } from './diagramConstants';
+import { useDiagramStateAnnouncer, useHapticLatch } from './useDiagramKit';
+import type { DiagramProps } from './types';
 
-export const AnglingDiagram = () => {
-    const { width } = useWindowDimensions();
-    const CANVAS_WIDTH = width - 40;
-    const CANVAS_HEIGHT = 300;
+export const AnglingDiagram = ({ accessibilityLabel, reduceMotion = false }: DiagramProps) => {
+    const teachingFrame = reduceMotionFrames.angling;
+    const { canvasWidth, canvasHeight } = useDiagramCanvasSize();
 
-    // --- Logic & State ---
-    const angle = useSharedValue(0);
-    const startAngle = useSharedValue(0);
-    const [feedback, setFeedback] = React.useState('Neutral');
+    const angle = useSharedValue(reduceMotion ? teachingFrame.angle : 0);
+    const startAngle = useSharedValue(reduceMotion ? teachingFrame.angle : 0);
+    const [feedback, setFeedback] = React.useState(
+        reduceMotion ? teachingFrame.feedback : 'Neutral'
+    );
+
+    const fireHaptic = useHapticLatch();
+    const announceState = useDiagramStateAnnouncer(!reduceMotion);
 
     const pan = Gesture.Pan()
+        .enabled(!reduceMotion)
         .onStart(() => {
             startAngle.value = angle.value;
         })
         .onUpdate((e) => {
-            // Dragging DOWN = Posterior Tilt (tuck) = Negative angle
             const delta = -e.translationY / 5;
             angle.value = Math.max(-20, Math.min(20, startAngle.value + delta));
-        })
-        .onEnd(() => {
-            // Optional: snap logic could go here
         });
 
-    // --- Derived Visuals ---
-    const transform = useDerivedValue(() => {
-        return [{ rotate: angle.value * (Math.PI / 180) }]; // Skia uses radians for some transforms, but Matrix uses deg? 
-        // Actually rendering logic: group transform property expects object similar to RN styles
-        // But Skia 'transform' prop on Group usually takes a generic transform list.
-    });
-
-    // Using simple derived transform for Skia Group
     const groupTransform = useDerivedValue(() => {
-        return [{ rotate: angle.value * (Math.PI / 180) }]; // Group transform prop takes radians usually?
-        // Wait, Skia's <Group transform={...}> uses Skia's transform format.
-        // Let's use origin + transform to rotate around pivot.
+        return [{ rotate: angle.value * (Math.PI / 180) }];
     });
 
     const glowColor = useDerivedValue(() => {
-        // "Sweet spot" at posterior tilt (-10 to -20)
         return interpolateColor(
             angle.value,
             [-20, -10, 0, 20],
-            [colors.primary[500], colors.primary[500], colors.neutral[300], colors.neutral[300]]
+            [diagramColors.active, diagramColors.active, diagramColors.passive, diagramColors.passive]
         );
     });
 
@@ -76,16 +68,18 @@ export const AnglingDiagram = () => {
     useAnimatedReaction(
         () => angle.value,
         (curr, prev) => {
-            if (curr !== prev) {
-                let text = 'Neutral';
-                if (curr > 5) text = 'Anterior Tilt (Arch)';
-                if (curr < -5) text = 'Posterior Tilt (Tuck)';
-                runOnJS(setFeedback)(text);
+            if (curr === prev) return;
+            runOnJS(fireHaptic)(curr < -10);
+            let text = 'Neutral';
+            if (curr > 5) text = 'Anterior Tilt (Arch)';
+            if (curr < -5) text = 'Posterior Tilt (Tuck)';
+            runOnJS(setFeedback)(text);
+            if (curr < -5 || curr > 5) {
+                runOnJS(announceState)(text);
             }
         }
     );
 
-    // --- Paths ---
     const spinePath = React.useMemo(() => {
         const p = Skia.Path.Make();
         p.moveTo(150, 40);
@@ -95,7 +89,6 @@ export const AnglingDiagram = () => {
 
     const pelvisPath = React.useMemo(() => {
         const p = Skia.Path.Make();
-        // M90 130 Q150 200 210 130 L200 130 Q150 180 100 130 Z
         p.moveTo(90, 130);
         p.quadTo(150, 200, 210, 130);
         p.lineTo(200, 130);
@@ -106,7 +99,6 @@ export const AnglingDiagram = () => {
 
     const contactZonePath = React.useMemo(() => {
         const p = Skia.Path.Make();
-        // M130 150 Q150 170 170 150
         p.moveTo(130, 150);
         p.quadTo(150, 170, 170, 150);
         return p;
@@ -116,54 +108,34 @@ export const AnglingDiagram = () => {
     const PIVOT_Y = 130;
 
     return (
-        <View style={{ alignItems: 'center' }}>
-            {/* Instruction Overlay */}
-            <View style={{ position: 'absolute', top: 10, zIndex: 10, alignItems: 'center' }}>
-                <Text style={[textStyles.label, { color: colors.text.secondary }]}>
-                    {feedback}
-                </Text>
-            </View>
+        <DiagramFrame
+            accessibilityLabel={accessibilityLabel}
+            feedback={feedback}
+            hint={reduceMotion ? undefined : 'Drag up/down to tilt'}
+            reduceMotion={reduceMotion}
+            gesture={pan}
+        >
+            <Canvas style={{ flex: 1, width: canvasWidth, height: canvasHeight }}>
+                <Path path={spinePath} style="stroke" strokeWidth={4} color={diagramColors.passive} strokeCap="round" />
 
-            <GestureDetector gesture={pan}>
-                <View style={{ width: CANVAS_WIDTH, height: CANVAS_HEIGHT, overflow: 'hidden', backgroundColor: colors.neutral[50], borderRadius: 12 }}>
-                    <Canvas style={{ flex: 1 }}>
-                        {/* 1. Spine (Static) */}
-                        <Path path={spinePath} style="stroke" strokeWidth={4} color={colors.neutral[300]} strokeCap="round" />
+                <Group origin={{ x: PIVOT_X, y: PIVOT_Y }} transform={groupTransform}>
+                    <Path path={pelvisPath} color={colors.neutral[100]} />
+                    <Path path={pelvisPath} style="stroke" strokeWidth={2} color={diagramColors.passive} />
+                    <Path path={contactZonePath} style="stroke" strokeWidth={4} color={diagramColors.passive} strokeCap="round" />
+                    <Path
+                        path={contactZonePath}
+                        style="stroke"
+                        strokeWidth={strokeWidth}
+                        color={glowColor}
+                        strokeCap="round"
+                        opacity={glowOpacity}
+                    >
+                        <BlurMask blur={4} style="normal" />
+                    </Path>
+                </Group>
 
-                        {/* 2. Pelvis Group (Rotates) */}
-                        <Group
-                            origin={{ x: PIVOT_X, y: PIVOT_Y }}
-                            transform={groupTransform}
-                        >
-                            {/* Pelvis Shape */}
-                            <Path path={pelvisPath} color={colors.neutral[100]} />
-                            <Path path={pelvisPath} style="stroke" strokeWidth={2} color={colors.neutral[400]} />
-
-                            {/* Contact Zone - Base */}
-                            <Path path={contactZonePath} style="stroke" strokeWidth={4} color={colors.neutral[300]} strokeCap="round" />
-
-                            {/* Contact Zone - Glow Overlay (Sweet Spot) */}
-                            <Path
-                                path={contactZonePath}
-                                style="stroke"
-                                strokeWidth={strokeWidth}
-                                color={glowColor}
-                                strokeCap="round"
-                                opacity={glowOpacity}
-                            >
-                                <BlurMask blur={4} style="normal" />
-                            </Path>
-                        </Group>
-
-                        {/* Pivot Point */}
-                        <Circle cx={PIVOT_X} cy={PIVOT_Y} r={4} color={colors.secondary[500]} opacity={0.5} />
-                    </Canvas>
-                </View>
-            </GestureDetector>
-
-            <Text style={[textStyles.caption, { marginTop: 10, color: colors.text.tertiary }]}>
-                Drag up/down to tilt
-            </Text>
-        </View>
+                <Circle cx={PIVOT_X} cy={PIVOT_Y} r={4} color={diagramColors.passive} opacity={0.5} />
+            </Canvas>
+        </DiagramFrame>
     );
 };
