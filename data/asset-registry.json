@@ -1,7 +1,7 @@
 {
   "_meta": {
     "version": 1,
-    "updated": "2026-05-21",
+    "updated": "2026-07-01",
     "source": "npm run sync-registry",
     "conceptCount": 22
   },
@@ -35,21 +35,7 @@
         "promotionDecision": "rejected",
         "notes": "In-image titles/labels — regen with no-text prompt"
       },
-      "pilots": [
-        {
-          "assetType": "illustration",
-          "generator": "chatgpt-images-2",
-          "path": "assets/_staging/pilot/illustrations/angling/chatgpt-images-2.png",
-          "scores": {
-            "styleCoherence": 5,
-            "scientificAccuracy": 5,
-            "noEmbeddedText": true
-          },
-          "decision": "rejected",
-          "notes": "Clean cross-section demonstrating pelvic tilt without text labels, conforming to style bible",
-          "reviewedAt": "2026-05-20"
-        }
-      ]
+      "pilots": []
     },
     "rocking": {
       "format": "interactive",
@@ -296,21 +282,7 @@
         "promotionDecision": "pending",
         "notes": ""
       },
-      "pilots": [
-        {
-          "assetType": "illustration",
-          "generator": "gemini",
-          "path": "assets/_staging/pilot/illustrations/spreading/gemini.png",
-          "scores": {
-            "styleCoherence": 5,
-            "scientificAccuracy": 5,
-            "noEmbeddedText": true
-          },
-          "decision": "pending",
-          "notes": "Golden ripples of neural signal propagating through the pelvic region, accurate female anatomy, no text",
-          "reviewedAt": "2026-05-20"
-        }
-      ]
+      "pilots": []
     },
     "pulsing": {
       "format": "video",
@@ -392,21 +364,7 @@
         "promotionDecision": "pending",
         "notes": ""
       },
-      "pilots": [
-        {
-          "assetType": "illustration",
-          "generator": "gemini",
-          "path": "assets/_staging/pilot/illustrations/warmup-window/gemini.png",
-          "scores": {
-            "styleCoherence": 5,
-            "scientificAccuracy": 5,
-            "noEmbeddedText": true
-          },
-          "decision": "pending",
-          "notes": "Split-panel vascular perfusion shows arousal-dependent physiological shifts clearly, conforming to Style Bible",
-          "reviewedAt": "2026-05-20"
-        }
-      ]
+      "pilots": []
     },
     "responsive-desire": {
       "format": "video",
@@ -652,21 +610,7 @@
         "promotionDecision": "approved",
         "notes": "Promoted to production May 19"
       },
-      "pilots": [
-        {
-          "assetType": "illustration",
-          "generator": "chatgpt-images-2",
-          "path": "assets/_staging/pilot/illustrations/non-concordance/chatgpt-images-2.png",
-          "scores": {
-            "styleCoherence": 4,
-            "scientificAccuracy": 5,
-            "noEmbeddedText": true
-          },
-          "decision": "approved",
-          "notes": "Promoted to production May 19",
-          "reviewedAt": "2026-05-19"
-        }
-      ]
+      "pilots": []
     },
     "sexual-self-esteem": {
       "format": "static",
@@ -769,21 +713,7 @@
         "promotionDecision": "pending",
         "notes": ""
       },
-      "pilots": [
-        {
-          "assetType": "illustration",
-          "generator": "gemini",
-          "path": "assets/_staging/pilot/illustrations/clitoral-structure/gemini.png",
-          "scores": {
-            "styleCoherence": 5,
-            "scientificAccuracy": 5,
-            "noEmbeddedText": true
-          },
-          "decision": "pending",
-          "notes": "Majestic wing structure accurately represents full anatomy in-app, conforming to Style Bible",
-          "reviewedAt": "2026-05-20"
-        }
-      ]
+      "pilots": []
     },
     "nerve-density": {
       "format": "video",

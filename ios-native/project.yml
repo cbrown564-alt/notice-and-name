@@ -15,6 +15,11 @@ targets:
     type: application
     platform: iOS
     deploymentTarget: "17.0"
+    preBuildScripts:
+      - name: Sync iOS Media
+        basedOnDependencyAnalysis: false
+        script: |
+          /usr/bin/env node "${SRCROOT}/../scripts/sync-ios-media.js"
     sources:
       - path: AppHost
         excludes:

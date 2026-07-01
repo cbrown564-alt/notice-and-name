@@ -72,6 +72,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE597A8CA65C8C79226FCF58 /* Build configuration list for PBXNativeTarget "PleasureVocabulary" */;
 			buildPhases = (
+				4455D3FA6AB6BEB4192EE5F9 /* Sync iOS Media */,
 				E214969B6E37CBCA864CD0F9 /* Sources */,
 				475EC7B805547CC3706984E6 /* Resources */,
 				4C3144728999B7E3542493AF /* Frameworks */,
@@ -135,6 +136,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4455D3FA6AB6BEB4192EE5F9 /* Sync iOS Media */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Sync iOS Media";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/bin/env node \"${SRCROOT}/../scripts/sync-ios-media.js\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E214969B6E37CBCA864CD0F9 /* Sources */ = {

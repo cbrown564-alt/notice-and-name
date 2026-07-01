@@ -86,3 +86,9 @@
 | Explainers | `assets/images/explainers/*.png` | ✅ 4 articles |
 
 **Validation:** `npm run validate-manifest` — format lock, filesystem, wiring checks (warnings for TBD videos).
+
+**iOS bundle sync:** Canonical concept media lives under `assets/`. Before native builds, run `npm run sync-ios-media` (also runs automatically as an Xcode pre-build step). Generated copies land in `ios-native/Sources/PleasureVocabularyApp/Resources/media/` and are gitignored.
+
+**Staging policy:** Production assets in `assets/images/concepts/` and `assets/videos/` are always canonical. Do not promote `_staging/` candidates over production.
+
+**Review outcomes (Jul 2026):** `data/media-review-decisions.json`, `data/media-regen-queue.json` — 7 keep, 12 regen plate, 3 regen thumbnail.

@@ -39,3 +39,11 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# iOS concept media — generated from assets/ via npm run sync-ios-media
+ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/*
+!ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/.gitkeep
+ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/*
+!ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/.gitkeep
+ios-native/Sources/PleasureVocabularyApp/Resources/media/videos/*
+!ios-native/Sources/PleasureVocabularyApp/Resources/media/videos/.gitkeep
