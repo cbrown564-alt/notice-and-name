@@ -322,6 +322,7 @@ Edging requires body awareness - learning to recognize your own signs of approac
     relatedConcepts: ['building', 'plateauing', 'embodied-presence'],
     tier: 'free',
     thumbnail: require('@/assets/images/concepts/thumbnails/edging.png'),
+    diagramType: 'edging',
     slides: [
       {
         type: 'recognize',

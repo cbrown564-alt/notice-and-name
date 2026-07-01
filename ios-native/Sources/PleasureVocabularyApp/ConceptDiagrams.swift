@@ -27,7 +27,7 @@ struct ConceptDiagramView: View {
     let caption: String?
 
     /// Ids this view knows how to draw natively.
-    static let knownDiagramIds: Set<String> = ["angling", "rocking", "shallowing", "pairing"]
+    static let knownDiagramIds: Set<String> = ["angling", "rocking", "shallowing", "pairing", "edging"]
 
     /// Returns the diagram id for a `native://diagram/<id>` path, or `nil` for
     /// any other path (so non-native diagrams keep the framed placeholder).
@@ -52,6 +52,8 @@ struct ConceptDiagramView: View {
             labeled { ShallowingDiagramView() }
         case "pairing":
             labeled { PairingDiagramView() }
+        case "edging":
+            labeled { EdgingDiagramView() }
         default:
             // Unknown id: reuse the shared framed placeholder.
             MediaPlaceholderCard(
@@ -746,6 +748,100 @@ private struct DiagramChipButtonStyle: ButtonStyle {
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
             .background(Color.white.opacity(configuration.isPressed ? 0.65 : 0.85), in: Capsule())
+    }
+}
+
+// MARK: - Edging
+
+/// Intensity throttle: drag up toward a coral threshold, release to recede.
+private struct EdgingDiagramView: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var intensity: Double = 0.12
+    @State private var dragBase: Double = 0.12
+    @State private var isReceding = false
+    @State private var thresholdHaptic = false
+    @State private var gestureActive = false
+
+    private let natural = CGSize(width: 280, height: 260)
+    private let threshold = 0.85
+    private let tank = CGRect(x: 90, y: 40, width: 100, height: 220)
+
+    var body: some View {
+        DiagramSurface {
+            let level = reduceMotion ? 0.8 : intensity
+            ZStack(alignment: .top) {
+                Canvas { context, size in
+                    draw(context, size: size, intensity: level)
+                }
+                Text(feedbackLabel(for: level, receding: isReceding && !reduceMotion))
+                    .font(AppFont.label)
+                    .foregroundStyle(AppColor.secondaryInk)
+                    .padding(.top, 12)
+                    .accessibilityHidden(true)
+            }
+            .contentShape(Rectangle())
+            .modifier(DiagramDragModifier(enabled: !reduceMotion, gesture: dragGesture))
+        }
+    }
+
+    private func feedbackLabel(for level: Double, receding: Bool) -> String {
+        if receding { return "Receding" }
+        if level >= threshold { return "At threshold" }
+        if level >= 0.65 { return "Approaching edge" }
+        if level >= 0.25 { return "Building" }
+        return "Low intensity"
+    }
+
+    private var dragGesture: some Gesture {
+        DragGesture(minimumDistance: 4)
+            .onChanged { value in
+                if !gestureActive {
+                    gestureActive = true
+                    dragBase = intensity
+                }
+                isReceding = false
+                let delta = -Double(value.translation.height) / tank.height
+                intensity = min(1, max(0, dragBase + delta))
+                if intensity >= threshold && !thresholdHaptic {
+                    thresholdHaptic = true
+                    NativeHaptics.impactLight()
+                } else if intensity < threshold {
+                    thresholdHaptic = false
+                }
+            }
+            .onEnded { _ in
+                gestureActive = false
+                isReceding = true
+                withAnimation(.spring(response: 0.7, dampingFraction: 0.82)) {
+                    intensity = 0.08
+                }
+                dragBase = 0.08
+            }
+    }
+
+    private func draw(_ context: GraphicsContext, size: CGSize, intensity: Double) {
+        let world = worldTransform(in: size, natural: natural)
+        let fillHeight = tank.height * intensity
+        let fillY = tank.maxY - fillHeight
+        let thresholdY = tank.minY + tank.height * (1 - threshold)
+
+        var outline = Path(roundedRect: tank, cornerRadius: 8)
+        context.stroke(outline.applying(world), with: .color(AppColor.diagramPassive),
+                       style: StrokeStyle(lineWidth: 2))
+
+        var thresholdLine = Path()
+        thresholdLine.addRect(CGRect(x: tank.minX + 1, y: thresholdY, width: tank.width - 2, height: 2))
+        context.fill(thresholdLine.applying(world), with: .color(AppColor.diagramActive))
+
+        let fillRect = CGRect(x: tank.minX + 4, y: fillY, width: tank.width - 8, height: fillHeight)
+        var fillPath = Path(roundedRect: fillRect, cornerRadius: 6)
+        let fillColor = blend(AppColor.diagramPassive, AppColor.diagramActive, smoothstep(0.35, threshold, intensity))
+        context.fill(fillPath.applying(world), with: .color(fillColor))
+
+        let glowOpacity = smoothstep(0.5, threshold, intensity) * 0.85
+        let glowRect = CGRect(x: fillRect.minX, y: fillRect.minY, width: fillRect.width, height: min(26, fillRect.height))
+        context.glowFill(Path(roundedRect: glowRect, cornerRadius: 6).applying(world),
+                         color: AppColor.diagramGlow, blur: 12, opacity: glowOpacity)
     }
 }
 

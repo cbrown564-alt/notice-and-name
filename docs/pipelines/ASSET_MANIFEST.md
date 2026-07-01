@@ -17,6 +17,7 @@
 | rocking | ✅ | ✅ | interactive (Skia) | Video removed; Skia only |
 | shallowing | ✅ | ✅ | interactive (Skia) | Complete |
 | pairing | ✅ | ✅ | interactive (PairingDiagram) | Wired Phase 0 |
+| edging | ✅ | ✅ | interactive (EdgingDiagram) | Wired Phase 1 |
 | building | ✅ | ✅ illustrations/building.png | video **building.mp4** (256 KB) | Compress illustration; video pilot regen optional |
 | spreading | ✅ | ✅ illustrations/spreading.png | video **spreading.mp4** (1.6 MB) | P0 pilot regen; compress PNGs |
 | responsive-desire | ✅ | ✅ | video **responsive-desire.mp4** (503 KB) | Transcoded May 2026 |

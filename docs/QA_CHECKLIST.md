@@ -46,7 +46,7 @@ After deck: set **Tried it** / **Curious** / **Not for me** — confirm Profile 
 
 | Format | Concepts | Check |
 |--------|----------|-------|
-| **Interactive (Skia)** | angling, rocking, shallowing, pairing | Gesture works; `colors.diagram.*` tokens; feedback label in UI chrome (not in canvas) |
+| **Interactive (Skia)** | angling, rocking, shallowing, pairing, edging | Gesture works; `colors.diagram.*` tokens; feedback label in UI chrome (not in canvas) |
 | **Video** | building, spreading, responsive-desire | Loop smooth, muted, poster before play |
 | **Video (pending)** | pulsing, spontaneous-desire, embodied-presence | Static illustration fallback until MP4 wired |
 | **Static** | All others | Illustration fills frame; cream canvas tone |
@@ -61,6 +61,7 @@ Run on **iOS + Android** for each of the four technique diagrams:
 | **Rocking** | Drag wedge | Warmth builds at pubic contact; label updates Near → Contact |
 | **Shallowing** | Horizontal pan | Probe glow peaks at introitus; fades deep |
 | **Pairing** | Tap external + internal | Bridge glow when both on; light haptic on pair |
+| **Edging** | Vertical pan up, release | Fill rises toward coral threshold; springs back on release; haptic at threshold |
 
 **Tokens:** passive `#DCD8D3`, active `#E8603C`, glow `#FFC5B5` — no legacy hard-coded oranges/plums in diagram paths.
 
@@ -74,9 +75,10 @@ Run on **iOS + Android** for each of the four technique diagrams:
 | Rocking | Full contact / grinding |
 | Shallowing | Probe at introitus |
 | Pairing | Both routes active, bridge visible |
+| Edging | ~80% fill, near threshold line |
 
-- [ ] All four diagrams pass the table above on iOS
-- [ ] All four diagrams pass the table above on Android (Expo)
+- [ ] All five diagrams pass the table above on iOS
+- [ ] All five diagrams pass the table above on Android (Expo)
 - [ ] Reduce Motion shows static frames (no auto-loop, gestures disabled)
 
 ### Reduced motion

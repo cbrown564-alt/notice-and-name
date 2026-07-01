@@ -15,7 +15,7 @@
 | Rocking | ✅ `RockingDiagram.tsx` | ✅ auto-loop approach | **Pan** — partner wedge proximity heat |
 | Shallowing | ✅ `ShallowingDiagram.tsx` | ✅ auto-loop probe | **Pan** — depth vs entrance intensity |
 | Pairing | ✅ `PairingDiagram.tsx` | ✅ auto-loop pulse | **Tap** — external + internal nodes, bridge glow |
-| Edging | — | — | `visual-formats.json`: `interactive (planned)` |
+| Edging | ✅ `EdgingDiagram.tsx` | ✅ vertical throttle | **Pan** — drag intensity up; release recedes |
 | All others | static / video on Illustrate | illustration or video | — |
 
 **Gaps today**
@@ -78,10 +78,10 @@ flowchart LR
 
 ---
 
-### Phase 1 — Edging (format-locked interactive)
+### Phase 1 — Edging (format-locked interactive) ✅
 
 **Goal:** First new diagram; validates the pipeline end-to-end.  
-**Duration:** ~1 week  
+**Status:** Shipped — RN + iOS wired, bundle regenerated  
 **Concept:** `edging` · caption: *Intensity rising toward a threshold, then receding*
 
 | Spec | Detail |

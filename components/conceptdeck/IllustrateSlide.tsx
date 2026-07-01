@@ -5,6 +5,7 @@ import { ConceptSlide, DiagramType } from '@/types';
 import React, { useEffect, useState } from 'react';
 import { AccessibilityInfo, useWindowDimensions, Image, StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, ZoomIn } from 'react-native-reanimated';
+import { EdgingDiagram } from '../diagrams/EdgingDiagram';
 import { AnglingDiagram } from '../diagrams/AnglingDiagram';
 import { PairingDiagram } from '../diagrams/PairingDiagram';
 import { RockingDiagram } from '../diagrams/RockingDiagram';
@@ -59,6 +60,13 @@ export const IllustrateSlide = ({ item, isActive = false, diagramType }: Illustr
             return (
                 <View style={styles.diagramContainer}>
                     <PairingDiagram {...diagramProps} />
+                </View>
+            );
+        }
+        if (diagramType === 'edging') {
+            return (
+                <View style={styles.diagramContainer}>
+                    <EdgingDiagram {...diagramProps} />
                 </View>
             );
         }

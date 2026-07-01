@@ -32,7 +32,7 @@ export interface ConceptSlide {
   illustrationCaption?: string; // Optional caption below illustration
 }
 
-export type DiagramType = 'angling' | 'rocking' | 'shallowing' | 'pairing' | 'iceberg' | 'nerve-density' | 'cuv-complex' | 'warmup-window' | 'none';
+export type DiagramType = 'angling' | 'rocking' | 'shallowing' | 'pairing' | 'edging' | 'iceberg' | 'nerve-density' | 'cuv-complex' | 'warmup-window' | 'none';
 
 // A vocabulary concept
 export interface Concept {
