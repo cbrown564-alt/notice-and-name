@@ -7,7 +7,7 @@ on:
     branches: [main, visual-v2-restart]
 
 jobs:
-  test-and-manifest:
+  content-pipeline:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,5 +16,20 @@ jobs:
           node-version: '20'
           cache: npm
       - run: npm ci
-      - run: npm test
       - run: npm run validate-manifest
+      - run: npm run generate-v2-full-bundle
+      - run: npm run validate-v2-bundle:full
+      - run: npm run lint-v2-content
+
+  swift-tests:
+    # SwiftUI + iOS/macOS-only Package.swift platforms — cannot run on Linux.
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      - run: npm run generate-v2-full-bundle
+      - run: cd ios-native && swift test

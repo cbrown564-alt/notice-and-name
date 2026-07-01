@@ -86,13 +86,11 @@ removal sequence below.
 
 ### Phase 4 — CI migration
 
-Replace `.github/workflows/ci.yml` baseline:
-
-- `validate-manifest`, `validate-v2-bundle:full`, `lint-v2-content`, `generate-v2-full-bundle`
-- `cd ios-native && swift test`
-- Optional macOS job: `xcodebuild` smoke build + `sync-ios-media`
-
-Remove: `npm test` (deleted Jest suite tied to `lib/`).
+- [x] Replace `.github/workflows/ci.yml` with native-first pipeline:
+  - Ubuntu job: `validate-manifest`, `generate-v2-full-bundle`, `validate-v2-bundle:full`, `lint-v2-content`
+  - macOS job: `npm ci`, `generate-v2-full-bundle`, `cd ios-native && swift test` (SwiftUI is not available on Linux)
+- [x] Remove `npm test` (deleted Jest suite tied to `lib/`)
+- [ ] Optional macOS job: `xcodebuild` smoke build + `sync-ios-media`
 
 ### Phase 5 — Documentation
 
