@@ -36,6 +36,9 @@ public enum AppTheme {
         tabBarProxy.scrollEdgeAppearance = tabBar
         tabBarProxy.tintColor = UIColor(red: 0.34, green: 0.22, blue: 0.32, alpha: 1)
         tabBarProxy.unselectedItemTintColor = UIColor(red: 0.39, green: 0.35, blue: 0.32, alpha: 1)
+
+        UITableView.appearance().backgroundColor = canvas
+        UITableViewCell.appearance().backgroundColor = surface
         #endif
     }
 }
@@ -167,10 +170,19 @@ extension View {
     }
 
     func appListScreen() -> some View {
-        scrollContentBackground(.hidden)
+        listStyle(.plain)
+            .environment(\.colorScheme, .light)
+            .scrollContentBackground(.hidden)
             .background(AppColor.canvas)
             .toolbarBackground(AppColor.canvas, for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
+    }
+
+    /// Scroll-based tab roots (Today, Settings) with no system list chrome.
+    func appTabScreen() -> some View {
+        compactNavigationTitle()
+            .environment(\.colorScheme, .light)
+            .appScreenBackground()
     }
 
     /// Tab roots use in-content headers with explicit ink colors instead of large

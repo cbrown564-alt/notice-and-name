@@ -307,7 +307,7 @@ private struct TodayView: View {
                 .padding(18)
             }
             .compactNavigationTitle()
-            .appScreenBackground()
+            .appTabScreen()
         }
     }
 }
@@ -365,6 +365,7 @@ private struct ExploreView: View {
                             VStack(alignment: .leading, spacing: 6) {
                                 Text(pathway.name)
                                     .font(AppFont.cardTitle)
+                                    .foregroundStyle(AppColor.ink)
                                 Text(pathway.summary)
                                     .font(AppFont.note)
                                     .foregroundStyle(AppColor.secondaryInk)
@@ -495,6 +496,7 @@ private struct JournalView: View {
                                 .foregroundStyle(AppColor.moss)
                             Text(note.body)
                                 .font(AppFont.body)
+                                .foregroundStyle(AppColor.ink)
                             Text(note.updatedAt, style: .date)
                                 .font(AppFont.label)
                                 .foregroundStyle(AppColor.secondaryInk)
@@ -515,57 +517,88 @@ private struct SettingsView: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                TabScreenHeaderRow(
-                    title: "Settings",
-                    subtitle: "Privacy and data on this device."
-                )
+            ScrollView {
+                VStack(alignment: .leading, spacing: 18) {
+                    HeaderBlock(
+                        title: "Settings",
+                        subtitle: "Privacy and data on this device."
+                    )
 
-                Section("Privacy") {
-                    Toggle(isOn: Binding(
-                        get: { model.settings.appLockEnabled },
-                        set: { model.setAppLockEnabled($0) }
-                    )) {
-                        Label("App lock", systemImage: "lock")
-                    }
-                    .listRowBackground(AppColor.surface)
-                    Toggle(isOn: Binding(
-                        get: { model.settings.reduceSensitivePreviews },
-                        set: { model.setReduceSensitivePreviews($0) }
-                    )) {
-                        Label("Reduced previews", systemImage: "eye.slash")
-                    }
-                    .listRowBackground(AppColor.surface)
-                }
+                    QuietCard {
+                        VStack(alignment: .leading, spacing: 14) {
+                            Text("Privacy")
+                                .font(AppFont.section)
+                                .foregroundStyle(AppColor.ink)
 
-                Section("Data") {
-                    Button {
-                        model.prepareExport()
-                    } label: {
-                        Label("Export local data", systemImage: "square.and.arrow.down")
-                    }
-                    .listRowBackground(AppColor.surface)
-                    Button(role: .destructive) {
-                        confirmDelete = true
-                    } label: {
-                        Label("Delete all local data", systemImage: "trash")
-                    }
-                    .listRowBackground(AppColor.surface)
-                }
+                            Toggle(isOn: Binding(
+                                get: { model.settings.appLockEnabled },
+                                set: { model.setAppLockEnabled($0) }
+                            )) {
+                                Label("App lock", systemImage: "lock")
+                                    .foregroundStyle(AppColor.ink)
+                            }
+                            .font(AppFont.cardTitle)
+                            .tint(AppColor.plum)
 
-                if model.exportText != nil {
-                    Section("Export") {
-                        TextEditor(text: Binding(
-                            get: { model.exportText ?? "" },
-                            set: { _ in }
-                        ))
-                        .font(.system(.footnote, design: .monospaced))
-                        .frame(minHeight: 220)
-                        .listRowBackground(AppColor.surface)
+                            Toggle(isOn: Binding(
+                                get: { model.settings.reduceSensitivePreviews },
+                                set: { model.setReduceSensitivePreviews($0) }
+                            )) {
+                                Label("Reduced previews", systemImage: "eye.slash")
+                                    .foregroundStyle(AppColor.ink)
+                            }
+                            .font(AppFont.cardTitle)
+                            .tint(AppColor.plum)
+                        }
+                    }
+
+                    QuietCard {
+                        VStack(alignment: .leading, spacing: 14) {
+                            Text("Data")
+                                .font(AppFont.section)
+                                .foregroundStyle(AppColor.ink)
+
+                            Button {
+                                model.prepareExport()
+                            } label: {
+                                Label("Export local data", systemImage: "square.and.arrow.down")
+                                    .font(AppFont.cardTitle)
+                                    .foregroundStyle(AppColor.plum)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+
+                            Button(role: .destructive) {
+                                confirmDelete = true
+                            } label: {
+                                Label("Delete all local data", systemImage: "trash")
+                                    .font(AppFont.cardTitle)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                        }
+                    }
+
+                    if model.exportText != nil {
+                        QuietCard {
+                            VStack(alignment: .leading, spacing: 10) {
+                                Text("Export")
+                                    .font(AppFont.section)
+                                    .foregroundStyle(AppColor.ink)
+                                TextEditor(text: Binding(
+                                    get: { model.exportText ?? "" },
+                                    set: { _ in }
+                                ))
+                                .font(.system(.footnote, design: .monospaced))
+                                .foregroundStyle(AppColor.ink)
+                                .frame(minHeight: 220)
+                                .padding(8)
+                                .background(AppColor.canvas, in: RoundedRectangle(cornerRadius: 8))
+                            }
+                        }
                     }
                 }
+                .padding(18)
             }
-            .appTabListScreen()
+            .appTabScreen()
             .confirmationDialog("Delete all local data?", isPresented: $confirmDelete, titleVisibility: .visible) {
                 Button("Delete all data", role: .destructive) {
                     model.deleteAllData()
@@ -632,6 +665,7 @@ private struct ConceptSummaryRow: View {
             HStack(alignment: .firstTextBaseline) {
                 Text(concept.name)
                     .font(AppFont.cardTitle)
+                    .foregroundStyle(AppColor.ink)
                 Spacer()
                 StatusPill(status: model.status(for: concept.id))
             }
