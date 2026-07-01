@@ -2,25 +2,25 @@
 
 **Caption:** Intensity rising toward a threshold, then receding  
 **Category:** sensation  
-**Mechanic:** Vertical drag — warmth rises in a soft vessel toward a glowing horizon; release and it recedes (approach & retreat).  
-**States:** idle (ember) → building → approaching edge (~70%) → at threshold (~85%+) → receding on release  
-**Reduce motion:** Frozen frame at ~80% threshold with caption context  
-**Tokens:** passive (vessel etching) / active (threshold glow) / glow (bioluminescent fill + bloom) / sage base (grounding ember)  
-**Do not:** rectangular gauges, ruler lines, numeric labels, alarm red, explicit anatomy, in-canvas caption text  
+**Mechanic:** Drag up to climb the **arousal curve** toward the crest (threshold); release and the glow recedes down the slope.  
+**States:** idle (origin ember) → building → approaching edge (~70%) → at threshold (~85%+) → receding on release  
+**Reduce motion:** Frozen frame at ~80% along the curve with caption context  
+**Tokens:** passive (full curve etching) / active (trace + orb) / glow (bioluminescent climb)  
+**Do not:** axis labels, numeric scale, chart chrome, explicit anatomy, in-canvas caption text  
 
 ## Visual language
 
-- **Vessel:** Soft chalice silhouette — organic sides, not a UI progress bar (Style Bible §2 sensation family).
-- **Fill:** Bioluminescent tide with turbulence texture; curved meniscus surface, not flat block.
-- **Threshold:** Glowing horizon arc with blur — the “edge,” not a mechanical red line.
-- **Rest state:** Subtle sage ember glow at the base.
+- **Rise curve:** Cubic path bottom-left → top-right — simplified sexual response **build** phase (pairs with future Building / Plateauing diagrams).
+- **Active trace:** Coral glow grows along the curve behind the traveler orb.
+- **Threshold:** Soft ring at ~85% arc length — the “edge.”
+- **After crest:** Faint **dashed** segment hinting the drop edging avoids — not interactive, no labels.
 
 ## Interaction (RN + iOS)
 
 | Input | Behavior |
 |-------|----------|
-| Pan up | Intensity increases (clamped 0–1) |
-| Release | Warmth springs back to ember level |
+| Pan up | Intensity increases (orb climbs curve, clamped 0–1) |
+| Release | Orb springs back toward origin |
 | Reduce Motion | Static frame at intensity 0.8, gestures off |
 
 ## Haptics

@@ -753,21 +753,22 @@ private struct DiagramChipButtonStyle: ButtonStyle {
 
 // MARK: - Edging
 
-/// Bioluminescent warmth rising in a soft vessel toward a glowing horizon; release to recede.
+/// Arousal curve — climb the rising path toward the crest, release to recede.
 private struct EdgingDiagramView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @State private var intensity: Double = 0.12
-    @State private var dragBase: Double = 0.12
+    @State private var intensity: Double = 0.1
+    @State private var dragBase: Double = 0.1
     @State private var isReceding = false
     @State private var thresholdHaptic = false
     @State private var gestureActive = false
 
     private let natural = CGSize(width: 280, height: 260)
     private let threshold = 0.85
-    private let interiorTop: CGFloat = 68
-    private let interiorBottom: CGFloat = 238
-    private let interiorCx: CGFloat = 140
-    private var interiorHeight: CGFloat { interiorBottom - interiorTop }
+    private let dragRange: Double = 170
+    private let riseP0 = CGPoint(x: 42, y: 232)
+    private let riseP1 = CGPoint(x: 72, y: 198)
+    private let riseP2 = CGPoint(x: 188, y: 108)
+    private let riseP3 = CGPoint(x: 232, y: 68)
 
     var body: some View {
         DiagramSurface {
@@ -803,7 +804,7 @@ private struct EdgingDiagramView: View {
                     dragBase = intensity
                 }
                 isReceding = false
-                let delta = -Double(value.translation.height) / Double(interiorHeight)
+                let delta = -Double(value.translation.height) / dragRange
                 intensity = min(1, max(0, dragBase + delta))
                 if intensity >= threshold && !thresholdHaptic {
                     thresholdHaptic = true
@@ -822,76 +823,73 @@ private struct EdgingDiagramView: View {
             }
     }
 
-    private func vesselPath() -> Path {
-        var p = Path()
-        p.move(to: CGPoint(x: 84, y: 226))
-        p.addCurve(to: CGPoint(x: 108, y: 74),
-                   control1: CGPoint(x: 78, y: 168), control2: CGPoint(x: 86, y: 98))
-        p.addQuadCurve(to: CGPoint(x: 172, y: 74), control: CGPoint(x: interiorCx, y: 54))
-        p.addCurve(to: CGPoint(x: 196, y: 226),
-                   control1: CGPoint(x: 194, y: 98), control2: CGPoint(x: 202, y: 168))
-        p.addQuadCurve(to: CGPoint(x: 84, y: 226), control: CGPoint(x: interiorCx, y: 246))
-        p.closeSubpath()
-        return p
+    private func cubicPoint(_ t: Double) -> CGPoint {
+        let u = 1 - t
+        let tt = t * t
+        let uu = u * u
+        let x = uu * u * riseP0.x + 3 * uu * t * riseP1.x + 3 * u * tt * riseP2.x + tt * t * riseP3.x
+        let y = uu * u * riseP0.y + 3 * uu * t * riseP1.y + 3 * u * tt * riseP2.y + tt * t * riseP3.y
+        return CGPoint(x: x, y: y)
     }
 
-    private func meniscusPath(fillY: CGFloat, level: Double) -> Path {
-        let dip = 4 + level * 6
-        var p = Path()
-        p.move(to: CGPoint(x: 92, y: fillY))
-        p.addQuadCurve(to: CGPoint(x: 188, y: fillY), control: CGPoint(x: interiorCx, y: fillY - dip))
-        p.addLine(to: CGPoint(x: 188, y: interiorBottom))
-        p.addQuadCurve(to: CGPoint(x: 92, y: interiorBottom), control: CGPoint(x: interiorCx, y: interiorBottom + 8))
-        p.closeSubpath()
-        return p
+    private func riseSamples(steps: Int = 64) -> [CGPoint] {
+        (0...steps).map { cubicPoint(Double($0) / Double(steps)) }
     }
 
-    private func thresholdArcPath(y: CGFloat) -> Path {
+    private func partialPath(from samples: [CGPoint], progress: Double) -> Path {
+        let idx = max(1, min(samples.count - 1, Int(progress * Double(samples.count - 1))))
         var p = Path()
-        p.move(to: CGPoint(x: 98, y: y))
-        p.addQuadCurve(to: CGPoint(x: 182, y: y), control: CGPoint(x: interiorCx, y: y - 6))
+        p.move(to: samples[0])
+        for i in 1...idx { p.addLine(to: samples[i]) }
         return p
     }
 
     private func draw(_ context: GraphicsContext, size: CGSize, intensity: Double) {
         let world = worldTransform(in: size, natural: natural)
-        let fillY = interiorBottom - interiorHeight * intensity
-        let thresholdY = interiorBottom - interiorHeight * threshold
-        let vessel = vesselPath().applying(world)
+        let samples = riseSamples()
+        let thresholdPt = cubicPoint(threshold)
+        let orb = cubicPoint(intensity)
 
-        // Dormant ember glow at base
-        let ember = circlePath(cx: interiorCx, cy: interiorBottom - 20, r: 44).applying(world)
-        context.glowFill(ember, color: AppColor.moss.opacity(0.35), blur: 28, opacity: 0.35)
+        // Dashed hint after crest
+        var after = Path()
+        after.move(to: riseP3)
+        after.addQuadCurve(to: CGPoint(x: 258, y: 98), control: CGPoint(x: 248, y: 72))
+        context.stroke(after.applying(world), with: .color(AppColor.diagramPassive.opacity(0.45)),
+                       style: StrokeStyle(lineWidth: 1.5, lineCap: .round, dash: [6, 8]))
 
-        context.drawLayer { layer in
-            layer.clip(to: vessel)
-            let fill = meniscusPath(fillY: fillY, level: intensity).applying(world)
-            let fillColor = blend(AppColor.diagramPassive, AppColor.diagramActive,
-                                  smoothstep(0.35, threshold, intensity))
-            layer.fill(fill, with: .color(fillColor.opacity(0.92)))
+        // Full rise curve
+        var rise = Path()
+        rise.move(to: samples[0])
+        for pt in samples.dropFirst() { rise.addLine(to: pt) }
+        context.stroke(rise.applying(world), with: .color(AppColor.diagramPassive),
+                       style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
 
-            var shimmer = Path()
-            shimmer.move(to: CGPoint(x: 96, y: fillY))
-            shimmer.addQuadCurve(to: CGPoint(x: 184, y: fillY), control: CGPoint(x: interiorCx, y: fillY - 8))
-            let shimmerOpacity = smoothstep(0.35, threshold, intensity) * 0.85
-            layer.addFilter(.blur(radius: 8))
-            layer.opacity = shimmerOpacity
-            layer.stroke(shimmer.applying(world), with: .color(AppColor.diagramGlow),
-                         style: StrokeStyle(lineWidth: 5, lineCap: .round))
-        }
+        // Active trace
+        let trace = partialPath(from: samples, progress: max(0.02, intensity))
+        let traceOpacity = smoothstep(0.3, threshold, intensity) * 0.9
+        let traceWidth = 3 + 5 * smoothstep(0, threshold, intensity)
+        context.glowStroke(trace.applying(world), color: AppColor.diagramActive,
+                           lineWidth: traceWidth, blur: 8, opacity: traceOpacity)
+        context.stroke(trace.applying(world), with: .color(AppColor.diagramGlow.opacity(traceOpacity)),
+                       style: StrokeStyle(lineWidth: traceWidth, lineCap: .round, lineJoin: .round))
 
-        let arc = thresholdArcPath(y: thresholdY).applying(world)
-        context.glowStroke(arc, color: AppColor.diagramActive, lineWidth: 3, blur: 5, opacity: 0.35)
-        context.stroke(arc, with: .color(AppColor.diagramGlow.opacity(smoothstep(0.5, threshold, intensity) * 0.75)),
-                       style: StrokeStyle(lineWidth: 1.5, lineCap: .round))
+        // Threshold marker
+        let marker = circlePath(cx: thresholdPt.x, cy: thresholdPt.y, r: 16).applying(world)
+        context.glowFill(marker, color: AppColor.diagramActive, blur: 10, opacity: 0.2)
+        let markerCore = circlePath(cx: thresholdPt.x, cy: thresholdPt.y, r: 5).applying(world)
+        context.fill(markerCore, with: .color(AppColor.diagramActive.opacity(0.55)))
 
-        let bloomR = 18 + 34 * smoothstep(0, threshold, intensity)
-        let bloom = circlePath(cx: interiorCx, cy: fillY, r: bloomR).applying(world)
-        context.glowFill(bloom, color: AppColor.diagramGlow, blur: 20,
-                         opacity: smoothstep(0.35, threshold, intensity) * 0.9)
+        // Traveler orb
+        let orbR = 7 + 7 * smoothstep(0, threshold, intensity)
+        let orbGlow = circlePath(cx: orb.x, cy: orb.y, r: orbR).applying(world)
+        context.glowFill(orbGlow, color: AppColor.diagramGlow, blur: 14, opacity: traceOpacity)
+        context.fill(orbGlow, with: .color(AppColor.diagramActive.opacity(0.85)))
 
-        context.stroke(vessel, with: .color(AppColor.diagramPassive),
-                       style: StrokeStyle(lineWidth: 1.5, lineJoin: .round))
+        // Origin ember
+        let origin = circlePath(cx: riseP0.x, cy: riseP0.y, r: 14).applying(world)
+        context.glowFill(origin, color: AppColor.moss, blur: 8, opacity: 0.25)
+        context.fill(circlePath(cx: riseP0.x, cy: riseP0.y, r: 6).applying(world),
+                       with: .color(AppColor.diagramPassive.opacity(0.7)))
     }
 }
 
