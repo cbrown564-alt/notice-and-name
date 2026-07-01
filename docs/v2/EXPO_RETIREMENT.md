@@ -97,14 +97,14 @@ Remove: `npm test` (deleted Jest suite tied to `lib/`).
 ### Phase 5 — Documentation
 
 - [x] This document
-- [ ] Rewrite root `README.md` for Xcode + TestFlight workflow
-- [ ] Update `docs/v2/*` to remove “Expo is source of truth” language
-- [ ] Archive Expo-era docs under `docs/_archive/expo-v1/`
+- [x] Rewrite root `README.md` for Xcode + TestFlight workflow
+- [x] Update `docs/v2/*` to remove “Expo is source of truth” language
+- [x] Archive Expo-era docs under `docs/_archive/expo-v1/`
 
 ### Phase 6 — Repo hygiene
 
-- [ ] Clean `.gitignore` (`.expo/`, `/ios`, `/android`, Metro entries)
-- [ ] Remove `expo.vscode-expo-tools` from `.vscode/extensions.json`
+- [x] Clean `.gitignore` (`.expo/`, `/ios`, `/android`, Metro entries)
+- [x] Remove `expo.vscode-expo-tools` from `.vscode/extensions.json`
 - [ ] Optional: rename `ios-native/` → `ios/`
 
 ## Explainers Pipeline (Post-Migration)

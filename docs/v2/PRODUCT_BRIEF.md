@@ -1,9 +1,8 @@
 # Pleasure Vocabulary Builder V2 Product Brief
 
 **Status:** Draft 0.1  
-**Track:** Premium native rebuild  
-**Source app:** Current Expo MVP in this repository  
-**Target expression:** iOS-first SwiftUI app, local-first by default
+**Track:** Premium native product  
+**Product client:** iOS SwiftUI app in `ios-native/`, local-first by default
 
 ## Product Spine
 
@@ -98,7 +97,7 @@ itself on device.
 
 ## Success Criteria
 
-- The app feels meaningfully calmer, safer, and more intimate than the Expo MVP.
+- The app feels meaningfully calmer, safer, and more intimate than a generic content deck.
 - Content can be updated without editing Swift views.
 - Private user state is local and deletable.
 - The golden path works on device without placeholder UI.

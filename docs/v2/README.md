@@ -1,8 +1,8 @@
 # V2 Premium Native Track
 
-This folder is the planning and architecture home for the **iOS-first premium rebuild**.
-The legacy Expo / React Native prototype at the repo root is being retired; see
-[EXPO_RETIREMENT.md](./EXPO_RETIREMENT.md).
+This folder is the planning and architecture home for the **iOS-first premium product**.
+The legacy Expo / React Native prototype has been retired; see
+[EXPO_RETIREMENT.md](./EXPO_RETIREMENT.md) for the migration record.
 
 ## Start Here
 

@@ -2,17 +2,18 @@
 
 **Start here** for project context, planning, and visual/asset work.
 
+The production client is the **SwiftUI app** in [`../ios-native/`](../ios-native/). Editorial content flows from `data/*.ts` through the v2 bundle pipeline into the native app.
+
 ---
 
 ## Primary (current)
 
 | Document | Purpose |
 |----------|---------|
-| [**PROJECT_STATUS_REPORT.md**](./PROJECT_STATUS_REPORT.md) | Snapshot of product, codebase, assets, gaps, and risks |
-| [**IMPLEMENTATION_PLAN.md**](./IMPLEMENTATION_PLAN.md) | Phased plan: identity, docs, audit, pipelines, ship |
-| [**QA_CHECKLIST.md**](./QA_CHECKLIST.md) | Manual device QA script (Phase 1.7 / 4.2) |
-| [**v2/**](./v2/README.md) | Premium native rebuild track: product brief, SwiftUI architecture, content system |
-| [**v2/EXPO_RETIREMENT.md**](./v2/EXPO_RETIREMENT.md) | Expo removal plan — iOS-only, explainers kept, literacy report dropped |
+| [**v2/**](./v2/README.md) | Product brief, SwiftUI architecture, content system, and roadmap |
+| [**v2/EXPO_RETIREMENT.md**](./v2/EXPO_RETIREMENT.md) | Expo retirement record — iOS-only, explainers kept, literacy report dropped |
+| [**../ios-native/TESTFLIGHT_RUNBOOK.md**](../ios-native/TESTFLIGHT_RUNBOOK.md) | Xcode archive and TestFlight distribution |
+| [**../ios-native/DEVICE_QA.md**](../ios-native/DEVICE_QA.md) | On-device QA checklist for the native app |
 
 ---
 
@@ -34,6 +35,7 @@
 | [**content/CONCEPT_AUDIT.md**](./content/CONCEPT_AUDIT.md) | Per-concept cross-surface tracker (auto-generated) |
 | [**content/COPY_GUIDELINES.md**](./content/COPY_GUIDELINES.md) | Editorial voice and slide copy rules |
 | [**product/visual_content_strategy.md**](./product/visual_content_strategy.md) | Locked format per concept (Phase 1.2) |
+| [**v2/CONTENT_SYSTEM.md**](./v2/CONTENT_SYSTEM.md) | Bundle model: `data/*.ts` → validated JSON bundles |
 
 ---
 
@@ -70,8 +72,12 @@
 
 | Command | Purpose |
 |---------|---------|
+| `npm run generate-v2-full-bundle` | Generate full v2 content bundle from `data/*.ts` |
+| `npm run validate-v2-bundle:full` | Validate the full bundle against schema |
+| `npm run lint-v2-content` | Editorial lint pass for bundle content |
+| `npm run preview-v2-content` | Static HTML preview for editorial review |
+| `npm run sync-ios-media` | Copy media into `ios-native/` resources |
 | `npm run generate-concept-audit` | Refresh `content/CONCEPT_AUDIT.md` |
-| `npm run mark-qa-batch -- <batch\|status\|list>` | Mark device-QA batches in `data/qa-passed.json` |
 | `npm run bundle-report` | Write `reports/BUNDLE_REPORT.md` (asset sizes) |
 | `npm run validate-manifest` | Check format lock, wiring, and size budgets |
 | `npm run validate-manifest:strict` | Same checks; warnings fail CI (use before asset merges) |
@@ -92,7 +98,8 @@
 
 | Document | Notes |
 |----------|-------|
-| [_archive/GAP_ANALYSIS.md](./_archive/GAP_ANALYSIS.md) | Superseded by PROJECT_STATUS_REPORT |
+| [_archive/expo-v1/](./_archive/expo-v1/README.md) | **Archived Expo v1 docs** — status report, implementation plan, QA checklist |
+| [_archive/GAP_ANALYSIS.md](./_archive/GAP_ANALYSIS.md) | Superseded by archived PROJECT_STATUS_REPORT |
 | [_archive/PHASE_3_UI_UX_REVAMP.md](./_archive/PHASE_3_UI_UX_REVAMP.md) | January 2026 sprint (archived) |
 | [asset_inventory.md](./asset_inventory.md) | Redirect → `_archive/`; use CONCEPT_AUDIT + ASSET_MANIFEST |
 | [asset_library.md](./asset_library.md) | Redirect → `_archive/`; use STYLE_BIBLE |
@@ -106,8 +113,10 @@
 
 | Question | Go to |
 |----------|-------|
-| Where are we? | `PROJECT_STATUS_REPORT.md` |
-| What's the plan? | `IMPLEMENTATION_PLAN.md` |
+| What is the product? | `v2/PRODUCT_BRIEF.md` |
+| How does the native app work? | `v2/NATIVE_ARCHITECTURE.md` |
+| How does content reach the app? | `v2/CONTENT_SYSTEM.md` + `npm run generate-v2-full-bundle` |
+| What's the build plan? | `v2/ROADMAP.md` |
 | Is the visual language locked? | `npm run reference-renders` + `design/STYLE_BIBLE.md` |
 | What does each concept need? | `content/CONCEPT_AUDIT.md` |
 | How do I write copy? | `content/COPY_GUIDELINES.md` |
@@ -115,5 +124,7 @@
 | How do I generate videos? | `pipelines/VIDEO_GENERATION.md` |
 | What files exist? | `data/asset-registry.json` + `npm run asset-dashboard` |
 | How do I evaluate assets? | `pipelines/ASSET_EVALUATION.md` |
-| How do I QA on device? | `QA_CHECKLIST.md` |
+| How do I QA on device? | `../ios-native/DEVICE_QA.md` |
+| How do I ship to TestFlight? | `../ios-native/TESTFLIGHT_RUNBOOK.md` |
 | How does the backend work? | `architecture/backend.md` |
+| Where are the old Expo docs? | `_archive/expo-v1/` |
