@@ -22,6 +22,6 @@ deck with more polish.
 
 ## Native Core
 
-The production iOS app lives in [`../../ios-native`](../../ios-native). It loads the full
+The production iOS app lives in [`../../ios`](../../ios). It loads the full
 v2 content bundle (22 concepts, 5 pathways, 4 research explainers) and persists user state
 with GRDB. Research explainers appear under **Explore → Research Explainers**.

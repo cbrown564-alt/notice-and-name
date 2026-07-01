@@ -21,7 +21,7 @@ Connect.
 Generate the project:
 
 ```bash
-cd ios-native
+cd ios
 xcodegen generate --spec project.yml
 ```
 
@@ -62,7 +62,7 @@ Open Xcode and complete:
 After that, retry:
 
 ```bash
-cd ios-native
+cd ios
 xcodebuild \
   -project PleasureVocabulary.xcodeproj \
   -scheme PleasureVocabulary \

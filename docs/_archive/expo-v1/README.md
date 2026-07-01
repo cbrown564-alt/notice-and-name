@@ -2,7 +2,7 @@
 
 These documents describe the **Expo / React Native prototype** that was the original product client. They are kept for historical reference only.
 
-The production app is the SwiftUI client in [`../../ios-native/`](../../ios-native/). For current planning and architecture, start at [`../../v2/README.md`](../../v2/README.md).
+The production app is the SwiftUI client in [`../../ios/`](../../ios/). For current planning and architecture, start at [`../../v2/README.md`](../../v2/README.md).
 
 | Document | Original purpose |
 | --- | --- |

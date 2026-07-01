@@ -2,7 +2,7 @@
 
 A premium, educational iOS app that helps adults build a private, precise vocabulary for sexual pleasure — through guided concepts, pathways, field notes, and partner-safe phrases.
 
-The production client is the **SwiftUI app** in [`ios-native/`](./ios-native/). Editorial content lives in TypeScript sources under `data/` and is compiled into validated JSON bundles consumed by the native app.
+The production client is the **SwiftUI app** in [`ios/`](./ios/). Editorial content lives in TypeScript sources under `data/` and is compiled into validated JSON bundles consumed by the native app.
 
 ## Features
 
@@ -41,24 +41,24 @@ This generates the full v2 content bundle from `data/*.ts` and writes it to `con
 ### Native app tests
 
 ```bash
-cd ios-native && swift test
+cd ios && swift test
 ```
 
-Open `ios-native/` in Xcode to run on a simulator or device. See the runbooks below for TestFlight and device QA.
+Open `ios/` in Xcode to run on a simulator or device. See the runbooks below for TestFlight and device QA.
 
 ## Documentation
 
 | Document | Purpose |
 | --- | --- |
 | [**docs/v2/README.md**](./docs/v2/README.md) | V2 product brief, architecture, content system, and roadmap |
-| [**ios-native/TESTFLIGHT_RUNBOOK.md**](./ios-native/TESTFLIGHT_RUNBOOK.md) | Xcode archive and TestFlight distribution |
-| [**ios-native/DEVICE_QA.md**](./ios-native/DEVICE_QA.md) | On-device QA checklist before release |
+| [**ios/TESTFLIGHT_RUNBOOK.md**](./ios/TESTFLIGHT_RUNBOOK.md) | Xcode archive and TestFlight distribution |
+| [**ios/DEVICE_QA.md**](./ios/DEVICE_QA.md) | On-device QA checklist before release |
 | [**docs/README.md**](./docs/README.md) | Full documentation index |
 
 ## Project Structure
 
 ```
-ios-native/          Production SwiftUI app (GRDB, content bundle loader)
+ios/          Production SwiftUI app (GRDB, content bundle loader)
 data/                Editorial TypeScript (vocabulary, pathways, explainers)
 content/v2/          Bundle schema, generated JSON, validation, preview
 assets/              Canonical media (illustrations, thumbnails, video)

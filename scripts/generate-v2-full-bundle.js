@@ -14,7 +14,7 @@ const conceptCopyPath = path.join(root, 'content/v2/copy/concept-copy.json');
 const bundlePath = path.join(root, 'content/v2/bundles/v2-full.bundle.json');
 const nativeResourcePath = path.join(
   root,
-  'ios-native/Sources/PleasureVocabularyApp/Resources/v2-full.bundle.json'
+  'ios/Sources/PleasureVocabularyApp/Resources/v2-full.bundle.json'
 );
 
 function loadTsExports(filePath) {

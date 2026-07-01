@@ -2,7 +2,7 @@
 
 **Status:** Draft 0.1  
 **Track:** Premium native product  
-**Product client:** iOS SwiftUI app in `ios-native/`, local-first by default
+**Product client:** iOS SwiftUI app in `ios/`, local-first by default
 
 ## Product Spine
 

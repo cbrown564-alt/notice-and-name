@@ -88,7 +88,7 @@
 
 **Validation:** `npm run validate-manifest` — format lock, filesystem, wiring checks (warnings for TBD videos).
 
-**iOS bundle sync:** Canonical concept media lives under `assets/`. Before native builds, run `npm run sync-ios-media` (also runs automatically as an Xcode pre-build step). Generated copies land in `ios-native/Sources/PleasureVocabularyApp/Resources/media/` and are gitignored.
+**iOS bundle sync:** Canonical concept media lives under `assets/`. Before native builds, run `npm run sync-ios-media` (also runs automatically as an Xcode pre-build step). Generated copies land in `ios/Sources/PleasureVocabularyApp/Resources/media/` and are gitignored.
 
 **Staging policy:** Production assets in `assets/images/concepts/` and `assets/videos/` are always canonical. Do not promote `_staging/` candidates over production.
 

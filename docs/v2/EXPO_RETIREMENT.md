@@ -1,7 +1,7 @@
 # Expo Retirement Plan
 
-**Status:** Complete (optional items remain)  
-**Decision:** iOS-only. The SwiftUI app in `ios-native/` is the sole product client.
+**Status:** Complete  
+**Decision:** iOS-only. The SwiftUI app in `ios/` is the sole product client.
 
 The Expo / React Native prototype at the repo root is legacy. This document records what
 to remove, what to keep, and the order to do it safely.
@@ -24,7 +24,7 @@ to remove, what to keep, and the order to do it safely.
 ## What Stays After Expo Removal
 
 ```
-ios-native/          Production iOS app (SwiftUI + GRDB)
+ios/          Production iOS app (SwiftUI + GRDB)
 data/                Editorial TypeScript (vocabulary, pathways, explainers)
 content/v2/          Bundle schema, generated JSON, validation
 assets/              Canonical media
@@ -58,7 +58,7 @@ removal sequence below.
 - [x] Confirm native app covers required v1 features
 - [x] Migrate research explainers into v2 bundle (`explainers` array, SwiftUI reader)
 - [x] Decide literacy report: **do not port**
-- [ ] Tag last Expo commit: `git tag expo-v1-final` (optional archive)
+- [x] Tag last Expo commit: `git tag expo-v1-final` at `c139e60`
 
 ### Phase 1 — Decouple tooling
 
@@ -70,7 +70,7 @@ removal sequence below.
   npm run validate-v2-bundle:full
   npm run lint-v2-content
   npm run sync-ios-media
-  cd ios-native && swift test
+  cd ios && swift test
   ```
 
 ### Phase 2 — Delete Expo app layer
@@ -88,9 +88,9 @@ removal sequence below.
 
 - [x] Replace `.github/workflows/ci.yml` with native-first pipeline:
   - Ubuntu job: `validate-manifest`, `generate-v2-full-bundle`, `validate-v2-bundle:full`, `lint-v2-content`
-  - macOS job: `npm ci`, `generate-v2-full-bundle`, `cd ios-native && swift test` (SwiftUI is not available on Linux)
+  - macOS job: `npm ci`, `generate-v2-full-bundle`, `sync-ios-media`, `cd ios && swift test`, `xcodebuild` smoke build
 - [x] Remove `npm test` (deleted Jest suite tied to `lib/`)
-- [ ] Optional macOS job: `xcodebuild` smoke build + `sync-ios-media`
+- [x] macOS job: `xcodebuild` smoke build + `sync-ios-media`
 
 ### Phase 5 — Documentation
 
@@ -103,7 +103,7 @@ removal sequence below.
 
 - [x] Clean `.gitignore` (`.expo/`, `/ios`, `/android`, Metro entries)
 - [x] Remove `expo.vscode-expo-tools` from `.vscode/extensions.json`
-- [ ] Optional: rename `ios-native/` → `ios/`
+- [x] Rename `ios-native/` → `ios/`
 
 ## Explainers Pipeline (Post-Migration)
 
@@ -124,9 +124,9 @@ After full removal:
 ```bash
 rg -i 'expo|react-native|@expo|eas build' --glob '!docs/_archive/**' --glob '!package-lock.json'
 npm ci && npm run generate-v2-full-bundle && npm run validate-v2-bundle:full
-cd ios-native && swift test
+cd ios && swift test
 ```
 
 ## Distribution
 
-Production builds use `ios-native/TESTFLIGHT_RUNBOOK.md` and Xcode — not EAS.
+Production builds use `ios/TESTFLIGHT_RUNBOOK.md` and Xcode — not EAS.

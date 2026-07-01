@@ -2,7 +2,7 @@
 
 **Start here** for project context, planning, and visual/asset work.
 
-The production client is the **SwiftUI app** in [`../ios-native/`](../ios-native/). Editorial content flows from `data/*.ts` through the v2 bundle pipeline into the native app.
+The production client is the **SwiftUI app** in [`../ios/`](../ios/). Editorial content flows from `data/*.ts` through the v2 bundle pipeline into the native app.
 
 ---
 
@@ -12,8 +12,8 @@ The production client is the **SwiftUI app** in [`../ios-native/`](../ios-native
 |----------|---------|
 | [**v2/**](./v2/README.md) | Product brief, SwiftUI architecture, content system, and roadmap |
 | [**v2/EXPO_RETIREMENT.md**](./v2/EXPO_RETIREMENT.md) | Expo retirement record — iOS-only, explainers kept, literacy report dropped |
-| [**../ios-native/TESTFLIGHT_RUNBOOK.md**](../ios-native/TESTFLIGHT_RUNBOOK.md) | Xcode archive and TestFlight distribution |
-| [**../ios-native/DEVICE_QA.md**](../ios-native/DEVICE_QA.md) | On-device QA checklist for the native app |
+| [**../ios/TESTFLIGHT_RUNBOOK.md**](../ios/TESTFLIGHT_RUNBOOK.md) | Xcode archive and TestFlight distribution |
+| [**../ios/DEVICE_QA.md**](../ios/DEVICE_QA.md) | On-device QA checklist for the native app |
 
 ---
 
@@ -76,7 +76,7 @@ The production client is the **SwiftUI app** in [`../ios-native/`](../ios-native
 | `npm run validate-v2-bundle:full` | Validate the full bundle against schema |
 | `npm run lint-v2-content` | Editorial lint pass for bundle content |
 | `npm run preview-v2-content` | Static HTML preview for editorial review |
-| `npm run sync-ios-media` | Copy media into `ios-native/` resources |
+| `npm run sync-ios-media` | Copy media into `ios/` resources |
 | `npm run generate-concept-audit` | Refresh `content/CONCEPT_AUDIT.md` |
 | `npm run bundle-report` | Write `reports/BUNDLE_REPORT.md` (asset sizes) |
 | `npm run validate-manifest` | Check format lock, wiring, and size budgets |
@@ -124,7 +124,7 @@ The production client is the **SwiftUI app** in [`../ios-native/`](../ios-native
 | How do I generate videos? | `pipelines/VIDEO_GENERATION.md` |
 | What files exist? | `data/asset-registry.json` + `npm run asset-dashboard` |
 | How do I evaluate assets? | `pipelines/ASSET_EVALUATION.md` |
-| How do I QA on device? | `../ios-native/DEVICE_QA.md` |
-| How do I ship to TestFlight? | `../ios-native/TESTFLIGHT_RUNBOOK.md` |
+| How do I QA on device? | `../ios/DEVICE_QA.md` |
+| How do I ship to TestFlight? | `../ios/TESTFLIGHT_RUNBOOK.md` |
 | How does the backend work? | `architecture/backend.md` |
 | Where are the old Expo docs? | `_archive/expo-v1/` |

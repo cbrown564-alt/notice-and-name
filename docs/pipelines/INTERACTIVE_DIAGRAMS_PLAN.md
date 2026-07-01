@@ -3,7 +3,7 @@
 **Status:** Ready to execute (shift focus from static media regen)  
 **Why now:** Technique plates are acceptable but uninspiring; **explorable explanations** are the product differentiator (`animation_journey.md`, UI review § Skia diagrams).  
 **Platforms:** iOS native — SwiftUI `Canvas` in `ConceptDiagrams.swift`  
-**Style:** Native diagram palette in `ios-native/Sources/PleasureVocabularyApp/Theme/` · plates remain reduce-motion posters only
+**Style:** Native diagram palette in `ios/Sources/PleasureVocabularyApp/Theme/` · plates remain reduce-motion posters only
 
 ---
 
@@ -170,7 +170,7 @@ For each new interactive concept:
 ```
 docs/pipelines/prompts/diagrams/{id}.md   ← interaction spec (mechanic, states, a11y)
 components/diagrams/{Id}Diagram.tsx       ← RN implementation
-ios-native/.../ConceptDiagrams.swift      ← {Id}DiagramView
+ios/.../ConceptDiagrams.swift      ← {Id}DiagramView
 types/index.ts                            ← DiagramType union
 data/vocabulary.ts                        ← diagramType field
 data/visual-formats.json                  ← format: interactive
@@ -245,4 +245,4 @@ docs/QA_CHECKLIST.md                      ← device test rows
 
 ---
 
-*Related: `docs/_archive/animation_journey.md` · `docs/product/visual_content_strategy.md` · `components/diagrams/*` · `ios-native/.../ConceptDiagrams.swift`*
+*Related: `docs/_archive/animation_journey.md` · `docs/product/visual_content_strategy.md` · `components/diagrams/*` · `ios/.../ConceptDiagrams.swift`*

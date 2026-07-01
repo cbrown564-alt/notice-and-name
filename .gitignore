@@ -28,11 +28,11 @@ yarn-error.*
 *.tsbuildinfo
 
 # iOS concept media — generated from assets/ via npm run sync-ios-media
-ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/*
-!ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/.gitkeep
-ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/*
-!ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/.gitkeep
-ios-native/Sources/PleasureVocabularyApp/Resources/media/videos/*
-!ios-native/Sources/PleasureVocabularyApp/Resources/media/videos/.gitkeep
-ios-native/Sources/PleasureVocabularyApp/Resources/media/explainers/*
-!ios-native/Sources/PleasureVocabularyApp/Resources/media/explainers/.gitkeep
+ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/*
+!ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/.gitkeep
+ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/*
+!ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/.gitkeep
+ios/Sources/PleasureVocabularyApp/Resources/media/videos/*
+!ios/Sources/PleasureVocabularyApp/Resources/media/videos/.gitkeep
+ios/Sources/PleasureVocabularyApp/Resources/media/explainers/*
+!ios/Sources/PleasureVocabularyApp/Resources/media/explainers/.gitkeep

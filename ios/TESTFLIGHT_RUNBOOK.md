@@ -12,7 +12,7 @@ Run these from the repository root:
 npm run generate-v2-full-bundle
 npm run validate-v2-bundle
 npm run validate-v2-bundle:full
-cd ios-native && swift test
+cd ios && swift test
 ```
 
 Confirm full Xcode is selected:
@@ -32,9 +32,9 @@ sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 
 Create an iOS SwiftUI app target named `PleasureVocabulary` and point it at:
 
-- `ios-native/AppHost/PleasureVocabularyHostApp.swift`
-- `ios-native/AppHost/Info.plist`
-- `ios-native/AppHost/PrivacyInfo.xcprivacy`
+- `ios/AppHost/PleasureVocabularyHostApp.swift`
+- `ios/AppHost/Info.plist`
+- `ios/AppHost/PrivacyInfo.xcprivacy`
 - local package product `PleasureVocabularyApp`
 
 Suggested target settings:
@@ -60,7 +60,7 @@ xcodebuild \
 xcodebuild \
   -exportArchive \
   -archivePath build/PleasureVocabulary.xcarchive \
-  -exportOptionsPlist ios-native/ExportOptions.plist \
+  -exportOptionsPlist ios/ExportOptions.plist \
   -exportPath build/TestFlight
 ```
 

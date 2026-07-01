@@ -32,4 +32,16 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run generate-v2-full-bundle
-      - run: cd ios-native && swift test
+      - run: npm run sync-ios-media
+      - run: cd ios && swift test
+      - name: Xcode smoke build
+        run: |
+          cd ios
+          xcodebuild \
+            -project PleasureVocabulary.xcodeproj \
+            -scheme PleasureVocabulary \
+            -configuration Debug \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath ../build/DerivedData \
+            CODE_SIGNING_ALLOWED=NO \
+            build
