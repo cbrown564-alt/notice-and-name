@@ -1,0 +1,142 @@
+{
+  "_meta": {
+    "phase": "6",
+    "reviewedAt": "2026-06-27",
+    "guidelines": "docs/content/COPY_GUIDELINES.md",
+    "citationPolicy": "Research-backed mechanism claims require at least one citation. Broad synthesis claims must stay qualified with language such as research suggests, studies link, or may."
+  },
+  "concepts": {
+    "angling": {
+      "reviewStatus": "approved",
+      "citationAudit": "approved",
+      "citationNote": "Technique claim is scoped to Hensel et al. and avoids promising outcomes.",
+      "mediaPolicy": { "requiredKinds": ["diagram", "image"], "optionalKinds": [], "rationale": "Technique needs a body-position diagram plus a softer illustration." }
+    },
+    "rocking": {
+      "reviewStatus": "approved",
+      "citationAudit": "approved",
+      "citationNote": "External-contact claims are framed as common patterns, not universal requirements.",
+      "mediaPolicy": { "requiredKinds": ["diagram", "image"], "optionalKinds": [], "rationale": "Technique needs motion/pressure diagram plus illustration." }
+    },
+    "shallowing": {
+      "reviewStatus": "approved",
+      "citationAudit": "approved",
+      "citationNote": "Anatomy claim is kept qualitative and tied to nerve-rich entrance tissue.",
+      "mediaPolicy": { "requiredKinds": ["diagram", "image"], "optionalKinds": [], "rationale": "Technique needs location diagram plus illustration." }
+    },
+    "pairing": {
+      "reviewStatus": "approved",
+      "citationAudit": "approved",
+      "citationNote": "Orgasm-likelihood claims are cited and framed as likelihood, not guarantee.",
+      "mediaPolicy": { "requiredKinds": ["diagram", "image"], "optionalKinds": [], "rationale": "Technique needs combined-stimulation diagram plus illustration." }
+    },
+    "building": {
+      "reviewStatus": "approved",
+      "citationAudit": "approved",
+      "citationNote": "Sexual-response-cycle claims remain qualified and non-prescriptive.",
+      "mediaPolicy": { "requiredKinds": ["image", "video"], "optionalKinds": [], "rationale": "Rising-intensity concept benefits from motion and fallback image." }
+    },
+    "plateauing": {
+      "reviewStatus": "approved",
+      "citationAudit": "approved",
+      "citationNote": "Plateau is described as a possible phase, not a required linear stage.",
+      "mediaPolicy": { "requiredKinds": ["image"], "optionalKinds": ["video"], "rationale": "Image is launch-ready; motion is useful but not required for this concept." }
+    },
+    "edging": {
+      "reviewStatus": "approved",
+      "citationAudit": "approved",
+      "citationNote": "Delayed-orgasm claims are softened to subjective experience and practice framing.",
+      "mediaPolicy": { "requiredKinds": ["image"], "optionalKinds": ["diagram"], "rationale": "Illustration is sufficient; diagram can be added if the technique becomes more procedural." }
+    },
+    "spreading": {
+      "reviewStatus": "approved",
+      "citationAudit": "approved",
+      "citationNote": "Embodiment claims stay qualitative and experience-centered.",
+      "mediaPolicy": { "requiredKinds": ["image", "video"], "optionalKinds": [], "rationale": "Whole-body sensation reads clearly with motion plus fallback image." }
+    },
+    "pulsing": {
+      "reviewStatus": "approved",
+      "citationAudit": "approved",
+      "citationNote": "Physiology timing is described as approximate and not used as a performance target.",
+      "mediaPolicy": { "requiredKinds": ["image"], "optionalKinds": ["video"], "rationale": "Image is launch-ready; motion can later clarify rhythm." }
+    },
+    "warmup-window": {
+      "reviewStatus": "approved",
+      "citationAudit": "approved",
+      "citationNote": "Arousal-timing claims are framed as patterns and comfort indicators.",
+      "mediaPolicy": { "requiredKinds": ["image"], "optionalKinds": ["video"], "rationale": "Illustration is sufficient for launch; process motion can be added later." }
+    },
+    "responsive-desire": {
+      "reviewStatus": "approved",
+      "citationAudit": "approved",
+      "citationNote": "Desire-pattern copy explicitly avoids pathologizing low spontaneous desire.",
+      "mediaPolicy": { "requiredKinds": ["image", "video"], "optionalKinds": [], "rationale": "Timing/context pattern benefits from motion plus fallback image." }
+    },
+    "spontaneous-desire": {
+      "reviewStatus": "approved",
+      "citationAudit": "approved",
+      "citationNote": "Gender-frequency comparison is qualified and not presented as destiny.",
+      "mediaPolicy": { "requiredKinds": ["image"], "optionalKinds": ["video"], "rationale": "Illustration is sufficient; motion is optional for future content updates." }
+    },
+    "golden-trio": {
+      "reviewStatus": "approved",
+      "citationAudit": "approved",
+      "citationNote": "Combination claim stays tied to Frederick et al. and reported orgasm rates.",
+      "mediaPolicy": { "requiredKinds": ["image"], "optionalKinds": ["video"], "rationale": "Illustration is sufficient; motion could later show sequencing." }
+    },
+    "spectatoring": {
+      "reviewStatus": "approved",
+      "citationAudit": "approved",
+      "citationNote": "Self-monitoring is framed as a common interruption, not a diagnosis.",
+      "mediaPolicy": { "requiredKinds": ["image"], "optionalKinds": ["video"], "rationale": "Illustration is sufficient; embodied-presence motion is optional." }
+    },
+    "embodied-presence": {
+      "reviewStatus": "approved",
+      "citationAudit": "approved",
+      "citationNote": "Mindfulness claims are framed as interventions that can help, not cures.",
+      "mediaPolicy": { "requiredKinds": ["image"], "optionalKinds": ["video"], "rationale": "Illustration is sufficient; motion can later support breathing/attention." }
+    },
+    "non-concordance": {
+      "reviewStatus": "approved",
+      "citationAudit": "approved",
+      "citationNote": "Consent distinction is explicit; physiology is never treated as consent.",
+      "mediaPolicy": { "requiredKinds": ["image"], "optionalKinds": ["video"], "rationale": "Illustration is sufficient; process explainer motion is optional." }
+    },
+    "sexual-self-esteem": {
+      "reviewStatus": "approved",
+      "citationAudit": "approved",
+      "citationNote": "Outcome links are described as associations rather than guarantees.",
+      "mediaPolicy": { "requiredKinds": ["image"], "optionalKinds": [], "rationale": "Static visual is preferred for a reflective self-concept." }
+    },
+    "body-appreciation": {
+      "reviewStatus": "approved",
+      "citationAudit": "approved",
+      "citationNote": "Body-image claims avoid appearance prescriptions and stay function-centered.",
+      "mediaPolicy": { "requiredKinds": ["image"], "optionalKinds": [], "rationale": "Static visual is preferred for a reflective self-concept." }
+    },
+    "clitoral-structure": {
+      "reviewStatus": "approved",
+      "citationAudit": "approved",
+      "citationNote": "Anatomical size language stays approximate and educational.",
+      "mediaPolicy": { "requiredKinds": ["image"], "optionalKinds": ["video", "diagram"], "rationale": "Illustration is launch-ready; diagram/video can deepen anatomy later." }
+    },
+    "nerve-density": {
+      "reviewStatus": "approved",
+      "citationAudit": "approved",
+      "citationNote": "Nerve-density copy stays approximate and avoids competitive body claims.",
+      "mediaPolicy": { "requiredKinds": ["image"], "optionalKinds": ["video", "diagram"], "rationale": "Illustration is launch-ready; diagram/video can deepen anatomy later." }
+    },
+    "clitourethrovaginal": {
+      "reviewStatus": "approved",
+      "citationAudit": "approved",
+      "citationNote": "Integrated-complex claim is tied to anatomical imaging and described as a model.",
+      "mediaPolicy": { "requiredKinds": ["image"], "optionalKinds": ["video", "diagram"], "rationale": "Illustration is launch-ready; diagram/video can clarify relationships later." }
+    },
+    "internal-stimulation": {
+      "reviewStatus": "approved",
+      "citationAudit": "approved",
+      "citationNote": "G-spot language is qualified through internal clitoral and urethral tissue framing.",
+      "mediaPolicy": { "requiredKinds": ["image"], "optionalKinds": ["video", "diagram"], "rationale": "Illustration is launch-ready; diagram/video can clarify anatomy later." }
+    }
+  }
+}

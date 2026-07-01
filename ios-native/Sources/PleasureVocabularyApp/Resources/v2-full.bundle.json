@@ -8,6 +8,7 @@
       "id": "angling",
       "name": "Angling",
       "category": "technique",
+      "reviewStatus": "approved",
       "definition": "Rotating, raising, or lowering the pelvis during penetration to adjust where internal stimulation occurs.",
       "summary": "Angling involves making subtle adjustments to pelvic position during penetrative activity.",
       "blocks": [
@@ -15,7 +16,7 @@
           "id": "angling-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Have you ever shifted your hips during penetration to find an angle that felt better?"
+          "body": "Ever tilted your hips mid-way to chase an angle that just landed better?"
         },
         {
           "id": "angling-definition",
@@ -43,14 +44,14 @@
           "id": "angling-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Have you ever noticed yourself tilting your hips to change how something feels? What would you want to remember about your own experience?",
+          "body": "When a small shift suddenly made things click, could you tell what changed — or did your body find it before you could name it?",
           "privateByDefault": true
         },
         {
           "id": "angling-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "I am curious about exploring angling slowly, with check-ins about what feels good and what does not."
+          "body": "A few degrees changes everything for me — the angle matters more than I used to admit."
         }
       ],
       "relatedConceptIds": [
@@ -59,10 +60,39 @@
       ],
       "phraseTemplates": [
         {
-          "id": "angling-direct-share",
-          "label": "Direct share",
-          "body": "I am curious about exploring angling slowly, with check-ins about what feels good and what does not.",
+          "id": "angling-self-understanding",
+          "useCase": "self-understanding",
+          "label": "For myself",
+          "body": "A few degrees changes everything for me — the angle matters more than I used to admit.",
+          "tone": "soft"
+        },
+        {
+          "id": "angling-partner-request",
+          "useCase": "partner-request",
+          "label": "Ask for support",
+          "body": "Can we play with tilting my hips a little and see what shifts? I'll show you when something lands.",
           "tone": "direct"
+        },
+        {
+          "id": "angling-boundary",
+          "useCase": "boundary",
+          "label": "Set a boundary",
+          "body": "If I need to stop and adjust to find the angle, that's not a complaint — let me reposition.",
+          "tone": "direct"
+        },
+        {
+          "id": "angling-curiosity",
+          "useCase": "curiosity",
+          "label": "Open curiosity",
+          "body": "I want to find the exact tilt that lights things up, instead of stumbling onto it by luck.",
+          "tone": "curious"
+        },
+        {
+          "id": "angling-reassurance",
+          "useCase": "reassurance",
+          "label": "Reassure",
+          "body": "There's no 'right' position here — we're just following what feels good, wherever that is.",
+          "tone": "reassuring"
         }
       ],
       "citations": [
@@ -82,6 +112,7 @@
       "id": "rocking",
       "name": "Rocking",
       "category": "technique",
+      "reviewStatus": "approved",
       "definition": "A grinding or rocking motion that keeps consistent contact with external areas during penetration.",
       "summary": "Rocking refers to a grinding, circular, or back-and-forth motion during penetrative activity that maintains continuous contact between bodies - particularly at the point where external sensitive areas meet a partner's body.",
       "blocks": [
@@ -89,7 +120,7 @@
           "id": "rocking-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Have you noticed that grinding or circular movements sometimes feel better than thrusting?"
+          "body": "Notice that grinding or circling can land better than straight thrusting?"
         },
         {
           "id": "rocking-definition",
@@ -117,14 +148,14 @@
           "id": "rocking-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Have you noticed a difference between grinding/rocking motions versus thrusting? What would you want to remember about your own experience?",
+          "body": "Think of a time staying close and grinding felt better than movement with more distance. What was different about it for you?",
           "privateByDefault": true
         },
         {
           "id": "rocking-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "I am curious about exploring rocking slowly, with check-ins about what feels good and what does not."
+          "body": "Steady contact does more for me than big movement — closeness over friction."
         }
       ],
       "relatedConceptIds": [
@@ -133,10 +164,39 @@
       ],
       "phraseTemplates": [
         {
-          "id": "rocking-direct-share",
-          "label": "Direct share",
-          "body": "I am curious about exploring rocking slowly, with check-ins about what feels good and what does not.",
+          "id": "rocking-self-understanding",
+          "useCase": "self-understanding",
+          "label": "For myself",
+          "body": "Steady contact does more for me than big movement — closeness over friction.",
+          "tone": "soft"
+        },
+        {
+          "id": "rocking-partner-request",
+          "useCase": "partner-request",
+          "label": "Ask for support",
+          "body": "Could we stay pressed close and grind instead of pulling back and forth? I lose the good spot when we separate.",
           "tone": "direct"
+        },
+        {
+          "id": "rocking-boundary",
+          "useCase": "boundary",
+          "label": "Set a boundary",
+          "body": "If the pace gets to be too much, I'd rather slow down and keep contact than speed up.",
+          "tone": "direct"
+        },
+        {
+          "id": "rocking-curiosity",
+          "useCase": "curiosity",
+          "label": "Open curiosity",
+          "body": "I'm curious what happens if we keep constant pressure the whole time, not just in waves.",
+          "tone": "curious"
+        },
+        {
+          "id": "rocking-reassurance",
+          "useCase": "reassurance",
+          "label": "Reassure",
+          "body": "Wanting to stay close and barely move isn't boring — it's exactly what works for me.",
+          "tone": "reassuring"
         }
       ],
       "citations": [
@@ -156,6 +216,7 @@
       "id": "shallowing",
       "name": "Shallowing",
       "category": "technique",
+      "reviewStatus": "approved",
       "definition": "Focusing stimulation at or just inside the vaginal entrance rather than deeper penetration.",
       "summary": "Shallowing describes pleasurable touch that focuses on the vaginal entrance and the area just inside - using fingertips, tongue, or the tip of a toy or partner rather than deeper penetration.",
       "blocks": [
@@ -163,7 +224,7 @@
           "id": "shallowing-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Have you noticed that the first moments of penetration—right at the entrance—can feel especially sensitive?"
+          "body": "Noticed the first moments — right at the entrance — can be the most sensitive part?"
         },
         {
           "id": "shallowing-definition",
@@ -191,14 +252,14 @@
           "id": "shallowing-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Have you noticed that the entrance area can feel especially sensitive? What would you want to remember about your own experience?",
+          "body": "When you've lingered near the entrance, did it build something, or did you feel a pull to go deeper? What did you actually want?",
           "privateByDefault": true
         },
         {
           "id": "shallowing-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "I am curious about exploring shallowing slowly, with check-ins about what feels good and what does not."
+          "body": "The entrance is where I'm most sensitive — shallow isn't a warm-up, it's the good part."
         }
       ],
       "relatedConceptIds": [
@@ -206,10 +267,39 @@
       ],
       "phraseTemplates": [
         {
-          "id": "shallowing-direct-share",
-          "label": "Direct share",
-          "body": "I am curious about exploring shallowing slowly, with check-ins about what feels good and what does not.",
+          "id": "shallowing-self-understanding",
+          "useCase": "self-understanding",
+          "label": "For myself",
+          "body": "The entrance is where I'm most sensitive — shallow isn't a warm-up, it's the good part.",
+          "tone": "soft"
+        },
+        {
+          "id": "shallowing-partner-request",
+          "useCase": "partner-request",
+          "label": "Ask for support",
+          "body": "Can we spend real time just at the entrance before going deeper? It makes everything after feel better.",
           "tone": "direct"
+        },
+        {
+          "id": "shallowing-boundary",
+          "useCase": "boundary",
+          "label": "Set a boundary",
+          "body": "Deeper isn't always more for me — if I ask to stay shallow, slow down rather than pushing deeper.",
+          "tone": "direct"
+        },
+        {
+          "id": "shallowing-curiosity",
+          "useCase": "curiosity",
+          "label": "Open curiosity",
+          "body": "I'd like to see how long we can linger right at the edge before moving on.",
+          "tone": "curious"
+        },
+        {
+          "id": "shallowing-reassurance",
+          "useCase": "reassurance",
+          "label": "Reassure",
+          "body": "Staying shallow isn't teasing or holding back — it's genuinely what feels best.",
+          "tone": "reassuring"
         }
       ],
       "citations": [
@@ -229,6 +319,7 @@
       "id": "pairing",
       "name": "Pairing",
       "category": "technique",
+      "reviewStatus": "approved",
       "definition": "Adding external clitoral stimulation during penetration, either solo or with a partner.",
       "summary": "Pairing means combining internal penetration with external clitoral stimulation - using your own hand, a partner's hand, a toy, or body positioning to add external touch during penetrative activity.",
       "blocks": [
@@ -236,7 +327,7 @@
           "id": "pairing-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Have you found that penetration alone doesn't quite get you there—but adding clitoral touch changes everything?"
+          "body": "Found that penetration alone doesn't quite get you there, but adding clitoral touch changes everything?"
         },
         {
           "id": "pairing-definition",
@@ -265,14 +356,14 @@
           "id": "pairing-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Do you find that penetration feels better when combined with external touch? What would you want to remember about your own experience?",
+          "body": "When you've combined penetration with outside touch, what shifted — and is it something you find easy to ask for?",
           "privateByDefault": true
         },
         {
           "id": "pairing-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "I am curious about exploring pairing slowly, with check-ins about what feels good and what does not."
+          "body": "Penetration plus clitoral touch is what actually works for me — together, not either-or."
         }
       ],
       "relatedConceptIds": [
@@ -282,10 +373,39 @@
       ],
       "phraseTemplates": [
         {
-          "id": "pairing-direct-share",
-          "label": "Direct share",
-          "body": "I am curious about exploring pairing slowly, with check-ins about what feels good and what does not.",
+          "id": "pairing-self-understanding",
+          "useCase": "self-understanding",
+          "label": "For myself",
+          "body": "Penetration plus clitoral touch is what actually works for me — together, not either-or.",
+          "tone": "soft"
+        },
+        {
+          "id": "pairing-partner-request",
+          "useCase": "partner-request",
+          "label": "Ask for support",
+          "body": "Can we add touch on my clit during penetration? That combination is what gets me there.",
           "tone": "direct"
+        },
+        {
+          "id": "pairing-boundary",
+          "useCase": "boundary",
+          "label": "Set a boundary",
+          "body": "If I reach down to touch myself, that's me helping — don't stop or take it as something being wrong.",
+          "tone": "direct"
+        },
+        {
+          "id": "pairing-curiosity",
+          "useCase": "curiosity",
+          "label": "Open curiosity",
+          "body": "I want to find the rhythm where the inside and outside touch work with each other.",
+          "tone": "curious"
+        },
+        {
+          "id": "pairing-reassurance",
+          "useCase": "reassurance",
+          "label": "Reassure",
+          "body": "Needing both at once isn't asking for too much — it's just how my body adds up.",
+          "tone": "reassuring"
         }
       ],
       "citations": [
@@ -311,6 +431,7 @@
       "id": "building",
       "name": "Building",
       "category": "sensation",
+      "reviewStatus": "approved",
       "definition": "A gradual increase in arousal intensity over time, like a wave gathering strength.",
       "summary": "Building describes the experience of arousal intensifying progressively - not jumping immediately to peak sensation, but allowing pleasure to accumulate and deepen over time.",
       "blocks": [
@@ -318,7 +439,7 @@
           "id": "building-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Have you felt arousal start small—a hint of warmth, a whisper of tingling—then slowly intensify into something unmistakable?"
+          "body": "Felt arousal start as barely anything — a little warmth — then slowly grow into something undeniable?"
         },
         {
           "id": "building-definition",
@@ -347,14 +468,14 @@
           "id": "building-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Have you noticed pleasure intensifying gradually rather than all at once? What would you want to remember about your own experience?",
+          "body": "Recall a time you let arousal build slowly instead of chasing the peak. What did the slow climb give you?",
           "privateByDefault": true
         },
         {
           "id": "building-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "I am learning to notice building as useful information about my pleasure, not something I need to force."
+          "body": "I get the most when I let it build slowly — rushing flattens it for me."
         }
       ],
       "relatedConceptIds": [
@@ -364,10 +485,39 @@
       ],
       "phraseTemplates": [
         {
-          "id": "building-soft-share",
-          "label": "Soft share",
-          "body": "I am learning to notice building as useful information about my pleasure, not something I need to force.",
+          "id": "building-self-understanding",
+          "useCase": "self-understanding",
+          "label": "For myself",
+          "body": "I get the most when I let it build slowly — rushing flattens it for me.",
           "tone": "soft"
+        },
+        {
+          "id": "building-partner-request",
+          "useCase": "partner-request",
+          "label": "Ask for support",
+          "body": "Can we take the long way and let things build? The slower start pays off for me.",
+          "tone": "direct"
+        },
+        {
+          "id": "building-boundary",
+          "useCase": "boundary",
+          "label": "Set a boundary",
+          "body": "If it's moving too fast for me, I'll ask you to slow down and let it gather again.",
+          "tone": "direct"
+        },
+        {
+          "id": "building-curiosity",
+          "useCase": "curiosity",
+          "label": "Open curiosity",
+          "body": "I want to see how high the build can go if we just don't rush it.",
+          "tone": "curious"
+        },
+        {
+          "id": "building-reassurance",
+          "useCase": "reassurance",
+          "label": "Reassure",
+          "body": "Taking a while to warm up isn't a problem — it's where the good stuff comes from for me.",
+          "tone": "reassuring"
         }
       ],
       "citations": [
@@ -393,6 +543,7 @@
       "id": "plateauing",
       "name": "Plateauing",
       "category": "sensation",
+      "reviewStatus": "approved",
       "definition": "Sustained arousal at a consistent level without increase - a holding pattern that may precede orgasm or signal a need for change.",
       "summary": "Plateauing is the experience of arousal staying at a steady level - neither building toward climax nor fading. It's like reaching a landing on a staircase and staying there for a while.",
       "blocks": [
@@ -400,7 +551,7 @@
           "id": "plateauing-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Have you reached a point where arousal stays steady—not fading, but not climbing either? Like hovering at a certain altitude?"
+          "body": "Reached a point where arousal just holds — steady, not fading, not climbing — like hovering?"
         },
         {
           "id": "plateauing-definition",
@@ -428,14 +579,14 @@
           "id": "plateauing-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Have you noticed arousal leveling off at a consistent intensity? What would you want to remember about your own experience?",
+          "body": "Next time you're at that hovering point, notice: do you want to savor it, or change something? What does your body seem to ask for?",
           "privateByDefault": true
         },
         {
           "id": "plateauing-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "I am learning to notice plateauing as useful information about my pleasure, not something I need to force."
+          "body": "That steady hover is its own kind of good — I don't always need it to tip over."
         }
       ],
       "relatedConceptIds": [
@@ -444,10 +595,39 @@
       ],
       "phraseTemplates": [
         {
-          "id": "plateauing-soft-share",
-          "label": "Soft share",
-          "body": "I am learning to notice plateauing as useful information about my pleasure, not something I need to force.",
+          "id": "plateauing-self-understanding",
+          "useCase": "self-understanding",
+          "label": "For myself",
+          "body": "That steady hover is its own kind of good — I don't always need it to tip over.",
           "tone": "soft"
+        },
+        {
+          "id": "plateauing-partner-request",
+          "useCase": "partner-request",
+          "label": "Ask for support",
+          "body": "Sometimes I want to just stay at this level for a while — can we hold here instead of pushing on?",
+          "tone": "direct"
+        },
+        {
+          "id": "plateauing-boundary",
+          "useCase": "boundary",
+          "label": "Set a boundary",
+          "body": "If I've leveled off and want something different, I'll say so — it's not pressure, just information.",
+          "tone": "direct"
+        },
+        {
+          "id": "plateauing-curiosity",
+          "useCase": "curiosity",
+          "label": "Open curiosity",
+          "body": "I'm curious whether staying on this plateau longer changes what comes after.",
+          "tone": "curious"
+        },
+        {
+          "id": "plateauing-reassurance",
+          "useCase": "reassurance",
+          "label": "Reassure",
+          "body": "Hovering without finishing isn't a letdown — sometimes it's exactly where I want to be.",
+          "tone": "reassuring"
         }
       ],
       "citations": [
@@ -466,6 +646,7 @@
       "id": "edging",
       "name": "Edging",
       "category": "sensation",
+      "reviewStatus": "approved",
       "definition": "Intentionally approaching the edge of orgasm, then easing back before it happens - often repeated multiple times.",
       "summary": "Edging is the practice of bringing yourself (or being brought) close to orgasm, then deliberately pausing or slowing to pull back from the edge.",
       "blocks": [
@@ -473,7 +654,7 @@
           "id": "edging-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Have you ever gotten close to orgasm, pulled back, then approached again—and noticed the eventual release felt more intense?"
+          "body": "Ever get almost there, ease off on purpose, then climb again — and found the release hit harder for the wait?"
         },
         {
           "id": "edging-definition",
@@ -501,14 +682,14 @@
           "id": "edging-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Have you ever intentionally paused right before orgasm to prolong the experience? What would you want to remember about your own experience?",
+          "body": "When you've lingered at the edge, what did the waiting itself feel like — restless, delicious, both?",
           "privateByDefault": true
         },
         {
           "id": "edging-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "I am learning to notice edging as useful information about my pleasure, not something I need to force."
+          "body": "The pause is the point for me — I'd rather draw the climb out than rush the top."
         }
       ],
       "relatedConceptIds": [
@@ -518,10 +699,39 @@
       ],
       "phraseTemplates": [
         {
-          "id": "edging-soft-share",
-          "label": "Soft share",
-          "body": "I am learning to notice edging as useful information about my pleasure, not something I need to force.",
+          "id": "edging-self-understanding",
+          "useCase": "self-understanding",
+          "label": "For myself",
+          "body": "The pause is the point for me — I'd rather draw the climb out than rush the top.",
           "tone": "soft"
+        },
+        {
+          "id": "edging-partner-request",
+          "useCase": "partner-request",
+          "label": "Ask for support",
+          "body": "Could we slow right down each time I get close, then start again? I want to see how far the build goes.",
+          "tone": "direct"
+        },
+        {
+          "id": "edging-boundary",
+          "useCase": "boundary",
+          "label": "Set a boundary",
+          "body": "If the stop-and-start tips into teasing, just say so and we'll let it happen.",
+          "tone": "direct"
+        },
+        {
+          "id": "edging-curiosity",
+          "useCase": "curiosity",
+          "label": "Open curiosity",
+          "body": "I keep wondering whether holding at the edge longer changes how the release feels.",
+          "tone": "curious"
+        },
+        {
+          "id": "edging-reassurance",
+          "useCase": "reassurance",
+          "label": "Reassure",
+          "body": "Some nights the edge tips over early — that's not a test I can fail.",
+          "tone": "reassuring"
         }
       ],
       "citations": [
@@ -540,6 +750,7 @@
       "id": "spreading",
       "name": "Spreading",
       "category": "sensation",
+      "reviewStatus": "approved",
       "definition": "The sensation of arousal radiating outward from its origin point through the body.",
       "summary": "Spreading describes how pleasure can expand beyond the area being stimulated - radiating outward like ripples in water.",
       "blocks": [
@@ -547,7 +758,7 @@
           "id": "spreading-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Have you felt pleasure radiate outward from where you're being touched—warmth or tingling traveling through your body like ripples in water?"
+          "body": "Felt pleasure travel outward from where you're touched — warmth moving through you like ripples?"
         },
         {
           "id": "spreading-definition",
@@ -576,14 +787,14 @@
           "id": "spreading-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Have you noticed pleasure traveling from one area through other parts of your body? What would you want to remember about your own experience?",
+          "body": "Think of a time sensation spread beyond where you were touched. Where did it go — and what let it travel?",
           "privateByDefault": true
         },
         {
           "id": "spreading-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "I am learning to notice spreading as useful information about my pleasure, not something I need to force."
+          "body": "When I stop chasing one spot, the feeling spreads through the rest of me — that's what I'm after."
         }
       ],
       "relatedConceptIds": [
@@ -593,10 +804,39 @@
       ],
       "phraseTemplates": [
         {
-          "id": "spreading-soft-share",
-          "label": "Soft share",
-          "body": "I am learning to notice spreading as useful information about my pleasure, not something I need to force.",
+          "id": "spreading-self-understanding",
+          "useCase": "self-understanding",
+          "label": "For myself",
+          "body": "When I stop chasing one spot, the feeling spreads through the rest of me — that's what I'm after.",
           "tone": "soft"
+        },
+        {
+          "id": "spreading-partner-request",
+          "useCase": "partner-request",
+          "label": "Ask for support",
+          "body": "Can we slow down and let me feel it everywhere, not just in one place?",
+          "tone": "direct"
+        },
+        {
+          "id": "spreading-boundary",
+          "useCase": "boundary",
+          "label": "Set a boundary",
+          "body": "If it gets too intense in one spot, I'll ask you to move somewhere different and let it spread out.",
+          "tone": "direct"
+        },
+        {
+          "id": "spreading-curiosity",
+          "useCase": "curiosity",
+          "label": "Open curiosity",
+          "body": "I'd like to notice how far a sensation can travel if I just let it.",
+          "tone": "curious"
+        },
+        {
+          "id": "spreading-reassurance",
+          "useCase": "reassurance",
+          "label": "Reassure",
+          "body": "It's okay if I go quiet and still — I'm following something moving through me.",
+          "tone": "reassuring"
         }
       ],
       "citations": [
@@ -622,6 +862,7 @@
       "id": "pulsing",
       "name": "Pulsing",
       "category": "sensation",
+      "reviewStatus": "approved",
       "definition": "Rhythmic, wave-like sensations during high arousal or orgasm - a beating or throbbing quality.",
       "summary": "Pulsing refers to the rhythmic quality that pleasure can take on - a beating, throbbing, or wave-like pattern.",
       "blocks": [
@@ -629,7 +870,7 @@
           "id": "pulsing-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Have you noticed a rhythmic, throbbing quality during high arousal or orgasm—like waves of sensation beating through you?"
+          "body": "Noticed a throbbing, wave-like beat during high arousal or orgasm — sensation pulsing through you?"
         },
         {
           "id": "pulsing-definition",
@@ -658,14 +899,14 @@
           "id": "pulsing-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Have you noticed a rhythmic, beating quality to arousal or orgasm? What would you want to remember about your own experience?",
+          "body": "When you've felt that pulse, did a particular rhythm match it? What kind of touch met it best?",
           "privateByDefault": true
         },
         {
           "id": "pulsing-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "I am learning to notice pulsing as useful information about my pleasure, not something I need to force."
+          "body": "There's a rhythm my body wants — when touch matches that beat, it's a different level."
         }
       ],
       "relatedConceptIds": [
@@ -674,10 +915,39 @@
       ],
       "phraseTemplates": [
         {
-          "id": "pulsing-soft-share",
-          "label": "Soft share",
-          "body": "I am learning to notice pulsing as useful information about my pleasure, not something I need to force.",
+          "id": "pulsing-self-understanding",
+          "useCase": "self-understanding",
+          "label": "For myself",
+          "body": "There's a rhythm my body wants — when touch matches that beat, it's a different level.",
           "tone": "soft"
+        },
+        {
+          "id": "pulsing-partner-request",
+          "useCase": "partner-request",
+          "label": "Ask for support",
+          "body": "Can you try matching a steady rhythm rather than changing it up? My body's got its own pulse.",
+          "tone": "direct"
+        },
+        {
+          "id": "pulsing-boundary",
+          "useCase": "boundary",
+          "label": "Set a boundary",
+          "body": "If the rhythm gets too fast or too much, I'll ask you to slow to something steadier.",
+          "tone": "direct"
+        },
+        {
+          "id": "pulsing-curiosity",
+          "useCase": "curiosity",
+          "label": "Open curiosity",
+          "body": "I want to find the exact tempo my body wants to move with.",
+          "tone": "curious"
+        },
+        {
+          "id": "pulsing-reassurance",
+          "useCase": "reassurance",
+          "label": "Reassure",
+          "body": "Wanting the same steady rhythm over and over isn't dull — it's what carries me there.",
+          "tone": "reassuring"
         }
       ],
       "citations": [
@@ -702,6 +972,7 @@
       "id": "warmup-window",
       "name": "Warm-up Window",
       "category": "timing",
+      "reviewStatus": "approved",
       "definition": "The time needed for whole-body arousal before genital-focused stimulation feels best - often 20+ minutes.",
       "summary": "The warm-up window refers to the period of time many bodies need for full arousal before genital-focused stimulation becomes most pleasurable.",
       "blocks": [
@@ -709,7 +980,7 @@
           "id": "warmup-window-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Have you noticed that touch feels better after you've had time to warm up—and that rushing makes everything feel less enjoyable?"
+          "body": "Noticed touch feels better once you've had time to warm up — and rushing makes it all feel like less?"
         },
         {
           "id": "warmup-window-definition",
@@ -738,14 +1009,14 @@
           "id": "warmup-window-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Do you find that touch feels better after you've had time to get warmed up? What would you want to remember about your own experience?",
+          "body": "Think about how long it really takes you to warm up. What helps you get there — and what makes it harder to ask for the time?",
           "privateByDefault": true
         },
         {
           "id": "warmup-window-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "My timing may follow warm-up window; I would like room for that pace instead of treating it as a problem."
+          "body": "I need real time to warm up before anything genital feels good — that's just my timing."
         }
       ],
       "relatedConceptIds": [
@@ -754,9 +1025,38 @@
       ],
       "phraseTemplates": [
         {
-          "id": "warmup-window-reassuring-share",
-          "label": "Reassuring share",
-          "body": "My timing may follow warm-up window; I would like room for that pace instead of treating it as a problem.",
+          "id": "warmup-window-self-understanding",
+          "useCase": "self-understanding",
+          "label": "For myself",
+          "body": "I need real time to warm up before anything genital feels good — that's just my timing.",
+          "tone": "soft"
+        },
+        {
+          "id": "warmup-window-partner-request",
+          "useCase": "partner-request",
+          "label": "Ask for support",
+          "body": "Can we take a good while warming up first? Twenty unhurried minutes changes everything for me.",
+          "tone": "direct"
+        },
+        {
+          "id": "warmup-window-boundary",
+          "useCase": "boundary",
+          "label": "Set a boundary",
+          "body": "If we jump to genital touch before I'm ready, I'd rather slow down than push through it.",
+          "tone": "direct"
+        },
+        {
+          "id": "warmup-window-curiosity",
+          "useCase": "curiosity",
+          "label": "Open curiosity",
+          "body": "I want to learn what actually warms me up — what my body needs before the rest feels right.",
+          "tone": "curious"
+        },
+        {
+          "id": "warmup-window-reassurance",
+          "useCase": "reassurance",
+          "label": "Reassure",
+          "body": "Needing a long warm-up doesn't mean something's off — it's how my body gets there.",
           "tone": "reassuring"
         }
       ],
@@ -782,6 +1082,7 @@
       "id": "responsive-desire",
       "name": "Responsive Desire",
       "category": "timing",
+      "reviewStatus": "approved",
       "definition": "Sexual interest that arises in response to stimulation or erotic context, rather than appearing spontaneously beforehand.",
       "summary": "Responsive desire describes a pattern where sexual interest emerges in response to something - a partner's initiation, an erotic situation, or physical stimulation that's already begun - rather than arising spontaneously as an internal urge.",
       "blocks": [
@@ -789,7 +1090,7 @@
           "id": "responsive-desire-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Do you rarely feel random urges for sex—but once things start, you get into it and enjoy yourself fully?"
+          "body": "Notice you don't get many out-of-the-blue urges — but once things get going, you're all in?"
         },
         {
           "id": "responsive-desire-definition",
@@ -818,14 +1119,14 @@
           "id": "responsive-desire-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Do you rarely feel spontaneous urges for sex, but enjoy it once you get started? What would you want to remember about your own experience?",
+          "body": "Think back to a time wanting showed up late, only after you'd started. What helped you get there — and what made it hard to trust it would come?",
           "privateByDefault": true
         },
         {
           "id": "responsive-desire-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "My timing may follow responsive desire; I would like room for that pace instead of treating it as a problem."
+          "body": "My wanting usually shows up after we start, not before — that's how I'm wired, not something to fix."
         }
       ],
       "relatedConceptIds": [
@@ -834,9 +1135,38 @@
       ],
       "phraseTemplates": [
         {
-          "id": "responsive-desire-reassuring-share",
-          "label": "Reassuring share",
-          "body": "My timing may follow responsive desire; I would like room for that pace instead of treating it as a problem.",
+          "id": "responsive-desire-self-understanding",
+          "useCase": "self-understanding",
+          "label": "For myself",
+          "body": "My wanting usually shows up after we start, not before — that's how I'm wired, not something to fix.",
+          "tone": "soft"
+        },
+        {
+          "id": "responsive-desire-partner-request",
+          "useCase": "partner-request",
+          "label": "Ask for support",
+          "body": "I might not feel the spark up front. Can we start gently and let me warm into it, no pressure either way?",
+          "tone": "direct"
+        },
+        {
+          "id": "responsive-desire-boundary",
+          "useCase": "boundary",
+          "label": "Set a boundary",
+          "body": "If I'm not feeling it once we've started, I want to be able to pause without it meaning something's wrong.",
+          "tone": "direct"
+        },
+        {
+          "id": "responsive-desire-curiosity",
+          "useCase": "curiosity",
+          "label": "Open curiosity",
+          "body": "I'd like to learn what actually turns the key for me — what gets me from 'not thinking about it' to 'yes'.",
+          "tone": "curious"
+        },
+        {
+          "id": "responsive-desire-reassurance",
+          "useCase": "reassurance",
+          "label": "Reassure",
+          "body": "Not wanting it out of nowhere doesn't mean I don't want you. I just need a bit of an on-ramp.",
           "tone": "reassuring"
         }
       ],
@@ -863,6 +1193,7 @@
       "id": "spontaneous-desire",
       "name": "Spontaneous Desire",
       "category": "timing",
+      "reviewStatus": "approved",
       "definition": "Sexual interest that arises on its own, without an external trigger - a seemingly random urge for sexual activity.",
       "summary": "Spontaneous desire is sexual interest that appears to come from nowhere - an internal urge or wanting that arises without an obvious external stimulus.",
       "blocks": [
@@ -870,7 +1201,7 @@
           "id": "spontaneous-desire-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Do you sometimes feel sexually interested out of nowhere—an urge that appears without any obvious cause?"
+          "body": "Sometimes feel turned on out of nowhere — an urge with no obvious cause?"
         },
         {
           "id": "spontaneous-desire-definition",
@@ -899,14 +1230,14 @@
           "id": "spontaneous-desire-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Do you sometimes feel sexually interested without any obvious cause? What would you want to remember about your own experience?",
+          "body": "When desire shows up unprompted, what do you tend to do with it? Does it feel welcome, or like it arrives at the wrong time?",
           "privateByDefault": true
         },
         {
           "id": "spontaneous-desire-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "My timing may follow spontaneous desire; I would like room for that pace instead of treating it as a problem."
+          "body": "When the urge hits me out of nowhere, I'd like to treat it as worth acting on, not ignoring."
         }
       ],
       "relatedConceptIds": [
@@ -914,9 +1245,38 @@
       ],
       "phraseTemplates": [
         {
-          "id": "spontaneous-desire-reassuring-share",
-          "label": "Reassuring share",
-          "body": "My timing may follow spontaneous desire; I would like room for that pace instead of treating it as a problem.",
+          "id": "spontaneous-desire-self-understanding",
+          "useCase": "self-understanding",
+          "label": "For myself",
+          "body": "When the urge hits me out of nowhere, I'd like to treat it as worth acting on, not ignoring.",
+          "tone": "soft"
+        },
+        {
+          "id": "spontaneous-desire-partner-request",
+          "useCase": "partner-request",
+          "label": "Ask for support",
+          "body": "Sometimes I just want you out of the blue — can we make room for that when it strikes?",
+          "tone": "direct"
+        },
+        {
+          "id": "spontaneous-desire-boundary",
+          "useCase": "boundary",
+          "label": "Set a boundary",
+          "body": "An urge isn't an obligation for either of us — either of us can pause or pass when the timing's off.",
+          "tone": "direct"
+        },
+        {
+          "id": "spontaneous-desire-curiosity",
+          "useCase": "curiosity",
+          "label": "Open curiosity",
+          "body": "I'm curious what tends to spark those sudden urges for me — whether there's a pattern.",
+          "tone": "curious"
+        },
+        {
+          "id": "spontaneous-desire-reassurance",
+          "useCase": "reassurance",
+          "label": "Reassure",
+          "body": "However often these urges come — a lot or rarely — there's no right amount.",
           "tone": "reassuring"
         }
       ],
@@ -942,6 +1302,7 @@
       "id": "golden-trio",
       "name": "Golden Trio",
       "category": "timing",
+      "reviewStatus": "approved",
       "definition": "Combining intercourse with manual and oral stimulation - a combination associated with 86% orgasm rates in research.",
       "summary": "The Golden Trio refers to a specific combination of activities that research has found particularly effective for women's orgasms: vaginal intercourse combined with manual stimulation combined with oral sex (in the same session, not necessarily simultaneously).",
       "blocks": [
@@ -949,7 +1310,7 @@
           "id": "golden-trio-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Have you noticed that combining different kinds of stimulation—not just penetration—leads to more intense experiences?"
+          "body": "Noticed that mixing kinds of touch — not penetration alone — makes things more intense?"
         },
         {
           "id": "golden-trio-definition",
@@ -977,14 +1338,14 @@
           "id": "golden-trio-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Have you noticed that combining different types of touch leads to different experiences? What would you want to remember about your own experience?",
+          "body": "Think of an encounter that layered different kinds of touch. What combination did your body respond to most?",
           "privateByDefault": true
         },
         {
           "id": "golden-trio-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "My timing may follow golden trio; I would like room for that pace instead of treating it as a problem."
+          "body": "Variety is what works for me — one kind of touch alone rarely gets me all the way."
         }
       ],
       "relatedConceptIds": [
@@ -993,9 +1354,38 @@
       ],
       "phraseTemplates": [
         {
-          "id": "golden-trio-reassuring-share",
-          "label": "Reassuring share",
-          "body": "My timing may follow golden trio; I would like room for that pace instead of treating it as a problem.",
+          "id": "golden-trio-self-understanding",
+          "useCase": "self-understanding",
+          "label": "For myself",
+          "body": "Variety is what works for me — one kind of touch alone rarely gets me all the way.",
+          "tone": "soft"
+        },
+        {
+          "id": "golden-trio-partner-request",
+          "useCase": "partner-request",
+          "label": "Ask for support",
+          "body": "Can we mix it up — hands, mouth, and penetration together rather than just one?",
+          "tone": "direct"
+        },
+        {
+          "id": "golden-trio-boundary",
+          "useCase": "boundary",
+          "label": "Set a boundary",
+          "body": "I don't want it to feel like ticking boxes — let's stop anything that turns into a chore and keep what feels good.",
+          "tone": "direct"
+        },
+        {
+          "id": "golden-trio-curiosity",
+          "useCase": "curiosity",
+          "label": "Open curiosity",
+          "body": "I'd like to find which combinations actually do it for me, not just try everything.",
+          "tone": "curious"
+        },
+        {
+          "id": "golden-trio-reassurance",
+          "useCase": "reassurance",
+          "label": "Reassure",
+          "body": "Needing more than one thing isn't greedy or complicated — it's just what adds up for me.",
           "tone": "reassuring"
         }
       ],
@@ -1015,6 +1405,7 @@
       "id": "spectatoring",
       "name": "Spectatoring",
       "category": "psychological",
+      "reviewStatus": "approved",
       "definition": "Mentally watching and evaluating yourself during sex rather than staying present in the experience.",
       "summary": "Spectatoring is the experience of mentally stepping outside yourself during sex to observe and judge what's happening - focusing on how you look, whether you're responding \"correctly,\" how long it's taking, or what your partner might be thinking.",
       "blocks": [
@@ -1022,7 +1413,7 @@
           "id": "spectatoring-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Have you ever caught yourself watching yourself during sex—thinking about how you look, whether you're taking too long, or what your partner might be thinking?"
+          "body": "Ever caught yourself watching yourself during sex — how you look, how long you're taking, what they're thinking?"
         },
         {
           "id": "spectatoring-definition",
@@ -1051,14 +1442,14 @@
           "id": "spectatoring-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Do you sometimes find yourself watching yourself during sex as if from the outside? What would you want to remember about your own experience?",
+          "body": "When you've stepped outside the moment to watch yourself, what pulled you out — and what, if anything, brought you back?",
           "privateByDefault": true
         },
         {
           "id": "spectatoring-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "I am noticing how spectatoring affects my pleasure, and it helps when we make the experience calmer and less performative."
+          "body": "When I'm in my head judging myself, I want to gently come back to what I'm actually feeling."
         }
       ],
       "relatedConceptIds": [
@@ -1067,9 +1458,38 @@
       ],
       "phraseTemplates": [
         {
-          "id": "spectatoring-reassuring-share",
-          "label": "Reassuring share",
-          "body": "I am noticing how spectatoring affects my pleasure, and it helps when we make the experience calmer and less performative.",
+          "id": "spectatoring-self-understanding",
+          "useCase": "self-understanding",
+          "label": "For myself",
+          "body": "When I'm in my head judging myself, I want to gently come back to what I'm actually feeling.",
+          "tone": "soft"
+        },
+        {
+          "id": "spectatoring-partner-request",
+          "useCase": "partner-request",
+          "label": "Ask for support",
+          "body": "Sometimes I get stuck in my head. A little reassurance, or just slowing down, helps me drop back in.",
+          "tone": "direct"
+        },
+        {
+          "id": "spectatoring-boundary",
+          "useCase": "boundary",
+          "label": "Set a boundary",
+          "body": "If I go quiet and distant, it's not you — give me a moment to pause and come back to my body.",
+          "tone": "direct"
+        },
+        {
+          "id": "spectatoring-curiosity",
+          "useCase": "curiosity",
+          "label": "Open curiosity",
+          "body": "I'm curious what tends to pull me out of the moment — and what helps me stay.",
+          "tone": "curious"
+        },
+        {
+          "id": "spectatoring-reassurance",
+          "useCase": "reassurance",
+          "label": "Reassure",
+          "body": "Drifting into my head sometimes doesn't mean I'm not enjoying you — I'm just learning to stay.",
           "tone": "reassuring"
         }
       ],
@@ -1095,6 +1515,7 @@
       "id": "embodied-presence",
       "name": "Embodied Presence",
       "category": "psychological",
+      "reviewStatus": "approved",
       "definition": "Focused attention on bodily sensations during intimacy - being fully in your body rather than in your head.",
       "summary": "Embodied presence is the opposite of spectatoring - it's being fully in your body and present to sensations rather than caught up in thoughts, judgments, or mental chatter.",
       "blocks": [
@@ -1102,7 +1523,7 @@
           "id": "embodied-presence-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Have you experienced moments of being so absorbed in physical sensation that thinking temporarily faded—fully in your body rather than your head?"
+          "body": "Had moments so absorbed in sensation that thinking just faded — fully in your body, not your head?"
         },
         {
           "id": "embodied-presence-definition",
@@ -1131,14 +1552,14 @@
           "id": "embodied-presence-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Have you experienced moments of being completely absorbed in physical sensation? What would you want to remember about your own experience?",
+          "body": "Recall a time you were completely in your body. What let you get there, and what tends to call you back out?",
           "privateByDefault": true
         },
         {
           "id": "embodied-presence-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "I am noticing how embodied presence affects my pleasure, and it helps when we make the experience calmer and less performative."
+          "body": "When I drop fully into sensation, that's the best of it — I want to protect that, not perform."
         }
       ],
       "relatedConceptIds": [
@@ -1147,9 +1568,38 @@
       ],
       "phraseTemplates": [
         {
-          "id": "embodied-presence-reassuring-share",
-          "label": "Reassuring share",
-          "body": "I am noticing how embodied presence affects my pleasure, and it helps when we make the experience calmer and less performative.",
+          "id": "embodied-presence-self-understanding",
+          "useCase": "self-understanding",
+          "label": "For myself",
+          "body": "When I drop fully into sensation, that's the best of it — I want to protect that, not perform.",
+          "tone": "soft"
+        },
+        {
+          "id": "embodied-presence-partner-request",
+          "useCase": "partner-request",
+          "label": "Ask for support",
+          "body": "Can we go slow enough that I can really feel each thing? I want to be in it, not ahead of it.",
+          "tone": "direct"
+        },
+        {
+          "id": "embodied-presence-boundary",
+          "useCase": "boundary",
+          "label": "Set a boundary",
+          "body": "If I need quiet to stay present, that's not distance — if talking pulls me out, let's slow down and go wordless.",
+          "tone": "direct"
+        },
+        {
+          "id": "embodied-presence-curiosity",
+          "useCase": "curiosity",
+          "label": "Open curiosity",
+          "body": "I want to learn what helps me stay in my body instead of drifting into my head.",
+          "tone": "curious"
+        },
+        {
+          "id": "embodied-presence-reassurance",
+          "useCase": "reassurance",
+          "label": "Reassure",
+          "body": "Getting lost in sensation and going quiet isn't checking out — it's me all the way here.",
           "tone": "reassuring"
         }
       ],
@@ -1175,6 +1625,7 @@
       "id": "non-concordance",
       "name": "Non-concordance",
       "category": "psychological",
+      "reviewStatus": "approved",
       "definition": "When physical arousal signs (lubrication, erection) don't match the subjective feeling of being turned on - and vice versa.",
       "summary": "Non-concordance is the disconnect that can occur between physical arousal signals and how turned on you actually feel.",
       "blocks": [
@@ -1182,7 +1633,7 @@
           "id": "non-concordance-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Have you ever felt mentally aroused while your body showed no physical signs—or noticed physical wetness when you weren't actually interested?"
+          "body": "Ever felt turned on in your head while your body showed nothing — or wet without actually being into it?"
         },
         {
           "id": "non-concordance-definition",
@@ -1211,14 +1662,14 @@
           "id": "non-concordance-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Have you ever felt turned on without your body showing typical signs of arousal? What would you want to remember about your own experience?",
+          "body": "When your body and your wanting didn't line up, which one did you trust? What would you want to trust next time?",
           "privateByDefault": true
         },
         {
           "id": "non-concordance-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "I am noticing how non-concordance affects my pleasure, and it helps when we make the experience calmer and less performative."
+          "body": "What I feel matters more than what my body's doing — wetness isn't the same as wanting, for me."
         }
       ],
       "relatedConceptIds": [
@@ -1227,9 +1678,38 @@
       ],
       "phraseTemplates": [
         {
-          "id": "non-concordance-reassuring-share",
-          "label": "Reassuring share",
-          "body": "I am noticing how non-concordance affects my pleasure, and it helps when we make the experience calmer and less performative.",
+          "id": "non-concordance-self-understanding",
+          "useCase": "self-understanding",
+          "label": "For myself",
+          "body": "What I feel matters more than what my body's doing — wetness isn't the same as wanting, for me.",
+          "tone": "soft"
+        },
+        {
+          "id": "non-concordance-partner-request",
+          "useCase": "partner-request",
+          "label": "Ask for support",
+          "body": "My body and my interest don't always match. Please check in with me, not just what you can see.",
+          "tone": "direct"
+        },
+        {
+          "id": "non-concordance-boundary",
+          "useCase": "boundary",
+          "label": "Set a boundary",
+          "body": "Physical signs aren't a yes on their own — ask me, and if my words say stop, trust them over my body.",
+          "tone": "direct"
+        },
+        {
+          "id": "non-concordance-curiosity",
+          "useCase": "curiosity",
+          "label": "Open curiosity",
+          "body": "I want to get better at reading my own actual wanting, separate from the physical signs.",
+          "tone": "curious"
+        },
+        {
+          "id": "non-concordance-reassurance",
+          "useCase": "reassurance",
+          "label": "Reassure",
+          "body": "If my body and my head disagree sometimes, nothing's broken — that mismatch is normal.",
           "tone": "reassuring"
         }
       ],
@@ -1255,6 +1735,7 @@
       "id": "sexual-self-esteem",
       "name": "Sexual Self-Esteem",
       "category": "psychological",
+      "reviewStatus": "approved",
       "definition": "A positive self-concept around sexuality - feeling good about yourself as a sexual person.",
       "summary": "Sexual self-esteem is how you feel about yourself as a sexual being - whether you view your sexuality positively, feel confident in your desirability, and have a healthy relationship with your own sexual self.",
       "blocks": [
@@ -1262,7 +1743,7 @@
           "id": "sexual-self-esteem-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "How do you feel about yourself as a sexual person? Do you carry confidence into intimate experiences—or do negative beliefs hold you back?"
+          "body": "How do you feel about yourself as a sexual person — confidence you bring in, or old beliefs that hold you back?"
         },
         {
           "id": "sexual-self-esteem-definition",
@@ -1291,14 +1772,14 @@
           "id": "sexual-self-esteem-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "How do you generally feel about yourself as a sexual person? What would you want to remember about your own experience?",
+          "body": "Where did your beliefs about yourself as a sexual person come from? Which ones would you actually want to keep?",
           "privateByDefault": true
         },
         {
           "id": "sexual-self-esteem-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "I am noticing how sexual self-esteem affects my pleasure, and it helps when we make the experience calmer and less performative."
+          "body": "My pleasure is worth taking up space for — I'm allowed to want, and to ask."
         }
       ],
       "relatedConceptIds": [
@@ -1307,9 +1788,38 @@
       ],
       "phraseTemplates": [
         {
-          "id": "sexual-self-esteem-reassuring-share",
-          "label": "Reassuring share",
-          "body": "I am noticing how sexual self-esteem affects my pleasure, and it helps when we make the experience calmer and less performative.",
+          "id": "sexual-self-esteem-self-understanding",
+          "useCase": "self-understanding",
+          "label": "For myself",
+          "body": "My pleasure is worth taking up space for — I'm allowed to want, and to ask.",
+          "tone": "soft"
+        },
+        {
+          "id": "sexual-self-esteem-partner-request",
+          "useCase": "partner-request",
+          "label": "Ask for support",
+          "body": "It helps me to hear what you enjoy about me — I'm still learning to believe I'm good in bed.",
+          "tone": "direct"
+        },
+        {
+          "id": "sexual-self-esteem-boundary",
+          "useCase": "boundary",
+          "label": "Set a boundary",
+          "body": "I won't talk myself down in bed anymore — if I start, gently stop me rather than agreeing.",
+          "tone": "direct"
+        },
+        {
+          "id": "sexual-self-esteem-curiosity",
+          "useCase": "curiosity",
+          "label": "Open curiosity",
+          "body": "I'm curious who I am sexually when I'm not judging myself the whole time.",
+          "tone": "curious"
+        },
+        {
+          "id": "sexual-self-esteem-reassurance",
+          "useCase": "reassurance",
+          "label": "Reassure",
+          "body": "I don't need to feel confident every day to deserve good sex — feeling entitled to pleasure is enough.",
           "tone": "reassuring"
         }
       ],
@@ -1335,6 +1845,7 @@
       "id": "body-appreciation",
       "name": "Body Appreciation",
       "category": "psychological",
+      "reviewStatus": "approved",
       "definition": "Valuing your body for what it does and feels rather than evaluating its appearance.",
       "summary": "Body appreciation is the practice of relating to your body based on sensation, function, and experience rather than visual evaluation.",
       "blocks": [
@@ -1342,7 +1853,7 @@
           "id": "body-appreciation-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "During sex, are you more focused on how your body looks—or how it feels? Do appearance concerns pull you out of sensation?"
+          "body": "During sex, are you more caught up in how your body looks, or how it feels? Do appearance worries pull you out?"
         },
         {
           "id": "body-appreciation-definition",
@@ -1371,14 +1882,14 @@
           "id": "body-appreciation-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "During sex, are you more focused on how your body looks or how it feels? What would you want to remember about your own experience?",
+          "body": "Think of a moment you forgot how you looked and just felt. What made that possible?",
           "privateByDefault": true
         },
         {
           "id": "body-appreciation-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "I am noticing how body appreciation affects my pleasure, and it helps when we make the experience calmer and less performative."
+          "body": "I'd rather feel my body than watch it — what it can feel matters more than how it looks."
         }
       ],
       "relatedConceptIds": [
@@ -1388,9 +1899,38 @@
       ],
       "phraseTemplates": [
         {
-          "id": "body-appreciation-reassuring-share",
-          "label": "Reassuring share",
-          "body": "I am noticing how body appreciation affects my pleasure, and it helps when we make the experience calmer and less performative.",
+          "id": "body-appreciation-self-understanding",
+          "useCase": "self-understanding",
+          "label": "For myself",
+          "body": "I'd rather feel my body than watch it — what it can feel matters more than how it looks.",
+          "tone": "soft"
+        },
+        {
+          "id": "body-appreciation-partner-request",
+          "useCase": "partner-request",
+          "label": "Ask for support",
+          "body": "When I get self-conscious about my body, it helps to be reminded you actually want to be here.",
+          "tone": "direct"
+        },
+        {
+          "id": "body-appreciation-boundary",
+          "useCase": "boundary",
+          "label": "Set a boundary",
+          "body": "I don't want to spend our time hiding how I look — keep the lights where I'm comfortable, and if I get self-conscious, let's not stop to fix it.",
+          "tone": "direct"
+        },
+        {
+          "id": "body-appreciation-curiosity",
+          "useCase": "curiosity",
+          "label": "Open curiosity",
+          "body": "I want to find out how much more I feel when I'm not monitoring how I look.",
+          "tone": "curious"
+        },
+        {
+          "id": "body-appreciation-reassurance",
+          "useCase": "reassurance",
+          "label": "Reassure",
+          "body": "How my body looks doesn't decide whether I get to enjoy this — it doesn't.",
           "tone": "reassuring"
         }
       ],
@@ -1416,6 +1956,7 @@
       "id": "clitoral-structure",
       "name": "Clitoral Structure",
       "category": "anatomy",
+      "reviewStatus": "approved",
       "definition": "The full clitoral organ is approximately 9cm in size, with internal legs (crura) and bulbs extending inside the body.",
       "summary": "The clitoris is much larger than it appears from the outside.",
       "blocks": [
@@ -1423,7 +1964,7 @@
           "id": "clitoral-structure-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Did you know that what you can see of the clitoris is just the tip? The full structure extends about 9cm inside your body."
+          "body": "Did you know the part you can see is just the tip — the whole clitoris runs about 9cm inside?"
         },
         {
           "id": "clitoral-structure-definition",
@@ -1452,14 +1993,14 @@
           "id": "clitoral-structure-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Did you know the clitoris extends internally beyond what's visible? What would you want to remember about your own experience?",
+          "body": "Does knowing the clitoris is mostly internal change where you'd expect to feel things? What might you explore differently?",
           "privateByDefault": true
         },
         {
           "id": "clitoral-structure-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "Understanding clitoral structure helps me explain what kind of touch or pressure I may want to explore."
+          "body": "Most of my clitoris is internal — so 'vaginal' pleasure and clitoral pleasure aren't really separate for me."
         }
       ],
       "relatedConceptIds": [
@@ -1469,10 +2010,39 @@
       ],
       "phraseTemplates": [
         {
-          "id": "clitoral-structure-curious-share",
-          "label": "Curious share",
-          "body": "Understanding clitoral structure helps me explain what kind of touch or pressure I may want to explore.",
+          "id": "clitoral-structure-self-understanding",
+          "useCase": "self-understanding",
+          "label": "For myself",
+          "body": "Most of my clitoris is internal — so 'vaginal' pleasure and clitoral pleasure aren't really separate for me.",
+          "tone": "soft"
+        },
+        {
+          "id": "clitoral-structure-partner-request",
+          "useCase": "partner-request",
+          "label": "Ask for support",
+          "body": "There's way more clitoris than what's on the surface — pressure deeper and around it counts too.",
+          "tone": "direct"
+        },
+        {
+          "id": "clitoral-structure-boundary",
+          "useCase": "boundary",
+          "label": "Set a boundary",
+          "body": "I know my own anatomy — if guessing isn't working, slow down and let me guide you to what reaches.",
+          "tone": "direct"
+        },
+        {
+          "id": "clitoral-structure-curiosity",
+          "useCase": "curiosity",
+          "label": "Open curiosity",
+          "body": "I want to explore the parts of the clitoris that aren't the obvious tip.",
           "tone": "curious"
+        },
+        {
+          "id": "clitoral-structure-reassurance",
+          "useCase": "reassurance",
+          "label": "Reassure",
+          "body": "If direct touch is too much, there's a whole internal structure to work with — there's no wrong build here.",
+          "tone": "reassuring"
         }
       ],
       "citations": [
@@ -1497,6 +2067,7 @@
       "id": "nerve-density",
       "name": "Nerve Density",
       "category": "anatomy",
+      "reviewStatus": "approved",
       "definition": "The clitoral glans contains over 8,000 nerve endings - approximately equal to the entire penis.",
       "summary": "The clitoral glans (the visible external portion) contains more than 8,000 nerve endings - a remarkable concentration in a structure much smaller than the penis, which has approximately the same number spread across a larger area.",
       "blocks": [
@@ -1504,7 +2075,7 @@
           "id": "nerve-density-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Have you noticed how incredibly sensitive the clitoral area can be—how subtle differences in pressure or touch create dramatically different sensations?"
+          "body": "Noticed how intensely sensitive the clitoris is — how a tiny change in pressure changes everything?"
         },
         {
           "id": "nerve-density-definition",
@@ -1533,14 +2104,14 @@
           "id": "nerve-density-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Have you noticed how sensitive the clitoral area is to different types of touch? What would you want to remember about your own experience?",
+          "body": "When touch has been just right — or way too much — what was the difference? What would you want to be able to say in the moment?",
           "privateByDefault": true
         },
         {
           "id": "nerve-density-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "Understanding nerve density helps me explain what kind of touch or pressure I may want to explore."
+          "body": "I'm extremely sensitive there — touch quality matters way more than pressure or speed."
         }
       ],
       "relatedConceptIds": [
@@ -1549,10 +2120,39 @@
       ],
       "phraseTemplates": [
         {
-          "id": "nerve-density-curious-share",
-          "label": "Curious share",
-          "body": "Understanding nerve density helps me explain what kind of touch or pressure I may want to explore.",
+          "id": "nerve-density-self-understanding",
+          "useCase": "self-understanding",
+          "label": "For myself",
+          "body": "I'm extremely sensitive there — touch quality matters way more than pressure or speed.",
+          "tone": "soft"
+        },
+        {
+          "id": "nerve-density-partner-request",
+          "useCase": "partner-request",
+          "label": "Ask for support",
+          "body": "Lighter and more indirect usually works better for me — small changes make a big difference.",
+          "tone": "direct"
+        },
+        {
+          "id": "nerve-density-boundary",
+          "useCase": "boundary",
+          "label": "Set a boundary",
+          "body": "If direct touch is too intense, pause and let me guide you somewhere nearby — it's sensitivity, not rejection.",
+          "tone": "direct"
+        },
+        {
+          "id": "nerve-density-curiosity",
+          "useCase": "curiosity",
+          "label": "Open curiosity",
+          "body": "I want to map exactly what kind of touch this sensitive spot actually likes.",
           "tone": "curious"
+        },
+        {
+          "id": "nerve-density-reassurance",
+          "useCase": "reassurance",
+          "label": "Reassure",
+          "body": "If it's sometimes 'too much,' that's just how many nerve endings are there — nothing's wrong.",
+          "tone": "reassuring"
         }
       ],
       "citations": [
@@ -1577,6 +2177,7 @@
       "id": "clitourethrovaginal",
       "name": "CUV Complex",
       "category": "anatomy",
+      "reviewStatus": "approved",
       "definition": "The integrated tissue cluster where clitoris, urethra, and anterior vaginal wall interact - explaining \"G-spot\" sensitivity.",
       "summary": "The clitourethrovaginal (CUV) complex describes how the clitoris, urethra, and front vaginal wall are interconnected rather than separate structures.",
       "blocks": [
@@ -1584,7 +2185,7 @@
           "id": "clitourethrovaginal-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Have you experienced sensitivity on the front wall of the vagina—an area that feels different from the rest?"
+          "body": "Felt a sensitivity on the front wall of the vagina that feels different from everywhere else?"
         },
         {
           "id": "clitourethrovaginal-definition",
@@ -1613,14 +2214,14 @@
           "id": "clitourethrovaginal-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Have you experienced sensitivity on the front wall of the vagina? What would you want to remember about your own experience?",
+          "body": "When the front wall has felt good, what kind of pressure reached it? Does it feel connected to the rest of your pleasure, or separate?",
           "privateByDefault": true
         },
         {
           "id": "clitourethrovaginal-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "Understanding cuv complex helps me explain what kind of touch or pressure I may want to explore."
+          "body": "That front-wall feeling is real for me — it's connected internal tissue, not some separate magic spot."
         }
       ],
       "relatedConceptIds": [
@@ -1629,10 +2230,39 @@
       ],
       "phraseTemplates": [
         {
-          "id": "clitourethrovaginal-curious-share",
-          "label": "Curious share",
-          "body": "Understanding cuv complex helps me explain what kind of touch or pressure I may want to explore.",
+          "id": "clitourethrovaginal-self-understanding",
+          "useCase": "self-understanding",
+          "label": "For myself",
+          "body": "That front-wall feeling is real for me — it's connected internal tissue, not some separate magic spot.",
+          "tone": "soft"
+        },
+        {
+          "id": "clitourethrovaginal-partner-request",
+          "useCase": "partner-request",
+          "label": "Ask for support",
+          "body": "There's a spot on the front wall that responds to firm pressure — can we take time to find it?",
+          "tone": "direct"
+        },
+        {
+          "id": "clitourethrovaginal-boundary",
+          "useCase": "boundary",
+          "label": "Set a boundary",
+          "body": "Finding that spot takes patience — if it's not happening, let's stop and not force it.",
+          "tone": "direct"
+        },
+        {
+          "id": "clitourethrovaginal-curiosity",
+          "useCase": "curiosity",
+          "label": "Open curiosity",
+          "body": "I'm curious what angles and pressure actually reach that front-wall area for me.",
           "tone": "curious"
+        },
+        {
+          "id": "clitourethrovaginal-reassurance",
+          "useCase": "reassurance",
+          "label": "Reassure",
+          "body": "If we can't find a 'G-spot,' nothing's missing — it's connected tissue, and it varies for everyone.",
+          "tone": "reassuring"
         }
       ],
       "citations": [
@@ -1657,6 +2287,7 @@
       "id": "internal-stimulation",
       "name": "Internal Clitoral Stimulation",
       "category": "anatomy",
+      "reviewStatus": "approved",
       "definition": "Stimulating internal clitoral tissue through the vaginal wall - what's often called \"G-spot\" sensation.",
       "summary": "Internal clitoral stimulation refers to reaching the internal portions of the clitoris through the vaginal wall.",
       "blocks": [
@@ -1664,7 +2295,7 @@
           "id": "internal-stimulation-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Have you noticed that certain angles or positions create pleasurable sensations on the front wall of the vagina—different from deeper penetration?"
+          "body": "Noticed certain angles create pleasure on the front wall — different from deeper penetration?"
         },
         {
           "id": "internal-stimulation-definition",
@@ -1693,14 +2324,14 @@
           "id": "internal-stimulation-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Have you experienced pleasure from stimulation on the front wall of the vagina? What would you want to remember about your own experience?",
+          "body": "When front-wall stimulation has worked, what position or angle got you there? What would help you find it again?",
           "privateByDefault": true
         },
         {
           "id": "internal-stimulation-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "Understanding internal clitoral stimulation helps me explain what kind of touch or pressure I may want to explore."
+          "body": "What feels like a deep 'vaginal' thing is really internal clitoris for me — angle is everything."
         }
       ],
       "relatedConceptIds": [
@@ -1710,10 +2341,39 @@
       ],
       "phraseTemplates": [
         {
-          "id": "internal-stimulation-curious-share",
-          "label": "Curious share",
-          "body": "Understanding internal clitoral stimulation helps me explain what kind of touch or pressure I may want to explore.",
+          "id": "internal-stimulation-self-understanding",
+          "useCase": "self-understanding",
+          "label": "For myself",
+          "body": "What feels like a deep 'vaginal' thing is really internal clitoris for me — angle is everything.",
+          "tone": "soft"
+        },
+        {
+          "id": "internal-stimulation-partner-request",
+          "useCase": "partner-request",
+          "label": "Ask for support",
+          "body": "Aiming toward the front wall does more for me than going deep — can we play with angle?",
+          "tone": "direct"
+        },
+        {
+          "id": "internal-stimulation-boundary",
+          "useCase": "boundary",
+          "label": "Set a boundary",
+          "body": "Deeper isn't the goal for me — if it's not working, try a different angle rather than just going harder.",
+          "tone": "direct"
+        },
+        {
+          "id": "internal-stimulation-curiosity",
+          "useCase": "curiosity",
+          "label": "Open curiosity",
+          "body": "I want to find the angles that press right where the internal clitoris sits.",
           "tone": "curious"
+        },
+        {
+          "id": "internal-stimulation-reassurance",
+          "useCase": "reassurance",
+          "label": "Reassure",
+          "body": "If deep penetration alone doesn't do much, that's normal — it's about reaching the right tissue, not trying harder.",
+          "tone": "reassuring"
         }
       ],
       "citations": [
@@ -1738,8 +2398,9 @@
   "pathways": [
     {
       "id": "foundations",
-      "name": "Foundations",
-      "summary": "Start here. Core vocabulary and anatomy basics that inform everything else.",
+      "name": "Understand My Body",
+      "summary": "Start with anatomy and core patterns that make pleasure feel less mysterious.",
+      "intent": "understand-body",
       "conceptIds": [
         "pairing",
         "clitoral-structure",
@@ -1751,8 +2412,9 @@
     },
     {
       "id": "solo-exploration",
-      "name": "Solo Exploration",
-      "summary": "Concepts for self-discovery and masturbation - understanding your own responses.",
+      "name": "Notice What Feels Good",
+      "summary": "Build language for your own sensations, timing, and the signals worth remembering.",
+      "intent": "notice-patterns",
       "conceptIds": [
         "edging",
         "plateauing",
@@ -1763,8 +2425,9 @@
     },
     {
       "id": "partner-communication",
-      "name": "Partner Communication",
-      "summary": "Understanding yourself to communicate better with partners.",
+      "name": "Find Words For A Partner",
+      "summary": "Turn personal discoveries into clear, kind explanations and requests.",
+      "intent": "communicate",
       "conceptIds": [
         "responsive-desire",
         "spontaneous-desire",
@@ -1775,8 +2438,9 @@
     },
     {
       "id": "expanding-repertoire",
-      "name": "Expanding Repertoire",
-      "summary": "Techniques for variety and experimentation in partnered experiences.",
+      "name": "Try A Different Approach",
+      "summary": "Explore small changes in touch, rhythm, angle, and combinations without making novelty the goal.",
+      "intent": "try-something",
       "conceptIds": [
         "angling",
         "rocking",
@@ -1786,8 +2450,9 @@
     },
     {
       "id": "mindful-presence",
-      "name": "Mindful Presence",
-      "summary": "Psychological factors that shape pleasure - getting out of your head and into sensation.",
+      "name": "Return To Presence",
+      "summary": "Name the mental loops that pull attention away from sensation, then practice coming back.",
+      "intent": "return-to-presence",
       "conceptIds": [
         "spectatoring",
         "embodied-presence",

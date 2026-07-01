@@ -1,6 +1,6 @@
 # V2 Content System
 
-**Status:** Draft 0.1  
+**Status:** Phase 6 baseline  
 **Purpose:** Separate product content from app runtime code.
 
 ## Goal
@@ -36,12 +36,13 @@ A v2 content bundle should include:
 
 - bundle metadata and semantic version
 - concept definitions
+- concept review status (`draft`, `reviewed`, `approved`, `retired`)
 - learning blocks
 - citations
 - reflection prompts
-- phrase templates
+- phrase templates by use case
 - related concept ids
-- pathway ordering
+- pathway ordering by user intent
 - media manifest entries
 
 It should not include:
@@ -99,10 +100,56 @@ It checks:
 - media ids resolve to manifest entries
 - share phrases do not include private-note fields by default
 
+## Phase 6 Editorial Controls
+
+The full v2 bundle is generated from the TypeScript content source plus:
+
+`content/v2/editorial-review.json`
+
+That registry records approved review status, citation-audit notes, and media policy for all
+22 launch concepts. The generated bundle carries `reviewStatus` so the native app never
+loads concepts with unknown editorial status.
+
+Run the Phase 6 lint pass with:
+
+```sh
+npm run lint-v2-content
+```
+
+The lint pass checks:
+
+- every concept has approved review metadata
+- every mechanism block cites at least one source
+- every concept includes all five phrase use cases:
+  `self-understanding`, `partner-request`, `boundary`, `curiosity`, `reassurance`
+- phrase copy does not reference private notes, journals, exports, or deletion flows
+- reflection blocks are private by default
+- media policy requirements are met by actual bundle media
+- over-strong claims such as guarantees or cures are rejected
+
+Media requirements are documented in:
+
+`docs/v2/MEDIA_POLICY.md`
+
+## Preview Workflow
+
+Generate a local editorial preview with:
+
+```sh
+npm run preview-v2-content
+```
+
+The preview is written to:
+
+`content/v2/preview/index.html`
+
+It is a static, outside-the-app review surface for concept copy, blocks, citations, phrases,
+pathways, review status, and media policy. It should be regenerated after bundle changes.
+
 ## Migration Approach
 
 1. Hand-author the golden path bundle from v1 content.
 2. Build a validator and run it in CI.
 3. Convert the remaining 17 concepts.
-4. Build a content preview tool.
-5. Only then let the SwiftUI app depend on the full content set.
+4. Maintain editorial review metadata for every concept.
+5. Validate, lint, and preview before shipping bundle changes.

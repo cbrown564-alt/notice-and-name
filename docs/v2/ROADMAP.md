@@ -77,14 +77,21 @@ Exit criteria:
 
 Goal: move from migrated content to editorially managed content.
 
-- [ ] Complete editorial QA on all 22 concepts in the v2 bundle.
-- [ ] Audit every citation and remove or qualify weak claims.
-- [ ] Add concept-level review metadata: `draft`, `reviewed`, `approved`, `retired`.
-- [ ] Add content linting for tone, private-note leakage, missing phrases, and missing citations.
-- [ ] Expand phrase templates by use case: self-understanding, partner request, boundary, curiosity, reassurance.
-- [ ] Rework pathways around user intent instead of legacy category grouping.
-- [ ] Define media policy: which concepts need image, diagram, video, or no media.
-- [ ] Build a lightweight content preview workflow outside the app.
+- [x] Complete editorial QA on all 22 concepts in the v2 bundle.
+- [x] Audit every citation and remove or qualify weak claims.
+- [x] Add concept-level review metadata: `draft`, `reviewed`, `approved`, `retired`.
+- [x] Add content linting for tone, private-note leakage, missing phrases, and missing citations.
+- [x] Expand phrase templates by use case: self-understanding, partner request, boundary, curiosity, reassurance.
+- [x] Rework pathways around user intent instead of legacy category grouping.
+- [x] Define media policy: which concepts need image, diagram, video, or no media.
+- [x] Build a lightweight content preview workflow outside the app.
+
+Phase 6 artifacts:
+
+- Editorial registry: [editorial-review.json](../../content/v2/editorial-review.json).
+- Media policy: [MEDIA_POLICY.md](MEDIA_POLICY.md).
+- Content lint: `npm run lint-v2-content`.
+- Preview workflow: `npm run preview-v2-content` writes `content/v2/preview/index.html`.
 
 Exit criteria:
 

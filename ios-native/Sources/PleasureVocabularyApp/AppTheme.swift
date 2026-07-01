@@ -1,4 +1,5 @@
 import SwiftUI
+import PleasureVocabularyCore
 
 #if os(iOS)
 import UIKit
@@ -49,6 +50,28 @@ public enum AppColor {
     public static let moss = Color(red: 0.34, green: 0.43, blue: 0.35)
     public static let gold = Color(red: 0.82, green: 0.61, blue: 0.35)
     public static let line = Color(red: 0.86, green: 0.80, blue: 0.74)
+}
+
+extension AppColor {
+    /// Soft per-block-type accent used for ambient tints and accent bars on the
+    /// concept-detail screen, so scrolling has gentle chromatic rhythm. Kept
+    /// within the existing calm palette — applied at low opacity by callers.
+    static func blockAccent(for type: ContentBlockType) -> Color {
+        switch type {
+        case .recognize:
+            return blush
+        case .definition:
+            return plum
+        case .mechanism:
+            return moss
+        case .media:
+            return gold
+        case .reflection:
+            return secondaryInk
+        case .phrase:
+            return gold
+        }
+    }
 }
 
 public enum AppFont {

@@ -423,57 +423,34 @@ private struct PathwayDetailView: View {
 private struct ConceptDetailView: View {
     @ObservedObject var model: PleasureVocabularyViewModel
     let concept: Concept
-    @State private var draftNote = ""
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(concept.name)
-                        .font(AppFont.title)
-                        .foregroundStyle(AppColor.ink)
-                    Text(concept.definition)
-                        .font(AppFont.body)
-                        .foregroundStyle(AppColor.secondaryInk)
-                    StatusPicker(status: model.status(for: concept.id)) { status in
-                        model.setStatus(status, for: concept.id)
-                    }
-                }
-
-                ForEach(concept.blocks) { block in
-                    ContentBlockView(model: model, concept: concept, block: block)
-                }
-
-                QuietCard {
-                    VStack(alignment: .leading, spacing: 10) {
-                        Label("Field note", systemImage: "square.and.pencil")
-                            .font(AppFont.section)
-                        TextEditor(text: $draftNote)
-                            .font(AppFont.body)
-                            .frame(minHeight: 96)
-                            .padding(8)
-                            .background(AppColor.canvas, in: RoundedRectangle(cornerRadius: 8))
-                        Button {
-                            model.addFieldNote(body: draftNote, conceptId: concept.id)
-                            draftNote = ""
-                        } label: {
-                            Label("Save note", systemImage: "checkmark")
+        ConceptPagesView(model: model, concept: concept)
+            .navigationTitle(concept.name)
+            .compactNavigationTitle()
+            .toolbarBackground(.hidden, for: .navigationBar)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Menu {
+                        ForEach(ConceptStatus.allCases, id: \.self) { item in
+                            Button {
+                                model.setStatus(item, for: concept.id)
+                            } label: {
+                                if model.status(for: concept.id) == item {
+                                    Label(item.displayName, systemImage: "checkmark")
+                                } else {
+                                    Text(item.displayName)
+                                }
+                            }
                         }
-                        .buttonStyle(SecondaryButtonStyle())
+                    } label: {
+                        Label("Change status", systemImage: "slider.horizontal.3")
                     }
                 }
-
-                PhraseTemplatesView(model: model, concept: concept)
-                SavedStateView(model: model, concept: concept)
             }
-            .padding(18)
-        }
-        .navigationTitle(concept.name)
-        .compactNavigationTitle()
-        .appScreenBackground()
-        .onAppear {
-            model.markOpened(concept.id)
-        }
+            .onAppear {
+                model.markOpened(concept.id)
+            }
     }
 }
 
@@ -578,197 +555,6 @@ private struct SettingsView: View {
                 }
                 Button("Cancel", role: .cancel) {}
             }
-        }
-    }
-}
-
-private struct ContentBlockView: View {
-    @ObservedObject var model: PleasureVocabularyViewModel
-    let concept: Concept
-    let block: ContentBlock
-
-    var body: some View {
-        QuietCard {
-            VStack(alignment: .leading, spacing: 10) {
-                Label(block.title, systemImage: symbolName)
-                    .font(AppFont.section)
-                    .foregroundStyle(AppColor.ink)
-                Text(block.body)
-                    .font(AppFont.body)
-                    .foregroundStyle(AppColor.secondaryInk)
-                if let media = model.media(withId: block.mediaId) {
-                    MediaReferenceView(media: media)
-                } else if block.mediaId != nil {
-                    MissingMediaReferenceView()
-                }
-            }
-        }
-    }
-
-    private var symbolName: String {
-        switch block.type {
-        case .recognize:
-            return "eye"
-        case .definition:
-            return "textformat"
-        case .mechanism:
-            return "brain.head.profile"
-        case .media:
-            return "photo"
-        case .reflection:
-            return "pencil.and.scribble"
-        case .phrase:
-            return "quote.bubble"
-        }
-    }
-}
-
-private struct MediaReferenceView: View {
-    let media: MediaItem
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
-
-    var body: some View {
-        HStack(alignment: .top, spacing: 10) {
-            Image(systemName: iconName)
-                .foregroundStyle(AppColor.gold)
-                .frame(width: 24)
-            VStack(alignment: .leading, spacing: 4) {
-                Text(media.caption ?? media.alt ?? "Media")
-                    .font(AppFont.note)
-                    .foregroundStyle(AppColor.ink)
-                Text(reduceMotion ? media.reducedMotionFallback : media.path)
-                    .font(AppFont.label)
-                    .foregroundStyle(AppColor.secondaryInk)
-                    .lineLimit(2)
-            }
-        }
-        .padding(10)
-        .background(AppColor.canvas, in: RoundedRectangle(cornerRadius: 8))
-    }
-
-    private var iconName: String {
-        switch media.kind {
-        case .image:
-            return "photo"
-        case .video:
-            return reduceMotion ? "photo" : "play.rectangle"
-        case .diagram:
-            return "point.3.connected.trianglepath.dotted"
-        }
-    }
-}
-
-private struct MissingMediaReferenceView: View {
-    var body: some View {
-        HStack(alignment: .top, spacing: 10) {
-            Image(systemName: "photo.badge.exclamationmark")
-                .foregroundStyle(AppColor.blush)
-                .frame(width: 24)
-                .accessibilityHidden(true)
-            VStack(alignment: .leading, spacing: 4) {
-                Text("Media unavailable")
-                    .font(AppFont.note)
-                    .foregroundStyle(AppColor.ink)
-                Text("The concept text is still available.")
-                    .font(AppFont.label)
-                    .foregroundStyle(AppColor.secondaryInk)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-        }
-        .padding(10)
-        .background(AppColor.canvas, in: RoundedRectangle(cornerRadius: 8))
-        .accessibilityElement(children: .combine)
-    }
-}
-
-private struct PhraseTemplatesView: View {
-    @ObservedObject var model: PleasureVocabularyViewModel
-    let concept: Concept
-
-    var body: some View {
-        QuietCard {
-            VStack(alignment: .leading, spacing: 12) {
-                Label("Phrase", systemImage: "quote.bubble")
-                    .font(AppFont.section)
-                ForEach(concept.phraseTemplates) { template in
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text(template.label)
-                            .font(AppFont.cardTitle)
-                        Text(template.body)
-                            .font(AppFont.body)
-                            .foregroundStyle(AppColor.secondaryInk)
-                        Button {
-                            model.savePhrase(template, conceptId: concept.id)
-                        } label: {
-                            Label("Save phrase", systemImage: "bookmark")
-                        }
-                        .buttonStyle(SecondaryButtonStyle())
-                    }
-                    .padding(.vertical, 6)
-                }
-            }
-        }
-    }
-}
-
-private struct SavedStateView: View {
-    @ObservedObject var model: PleasureVocabularyViewModel
-    let concept: Concept
-
-    var body: some View {
-        let phrases = model.phrases(for: concept.id)
-        let notes = model.notes(for: concept.id)
-
-        if !phrases.isEmpty || !notes.isEmpty {
-            QuietCard {
-                VStack(alignment: .leading, spacing: 12) {
-                    Label("Saved here", systemImage: "tray.full")
-                        .font(AppFont.section)
-                    ForEach(phrases) { phrase in
-                        Text(phrase.body)
-                            .font(AppFont.note)
-                            .padding(10)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .background(AppColor.canvas, in: RoundedRectangle(cornerRadius: 8))
-                    }
-                    ForEach(notes) { note in
-                        Text(note.body)
-                            .font(AppFont.note)
-                            .foregroundStyle(AppColor.secondaryInk)
-                            .padding(10)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .background(AppColor.canvas, in: RoundedRectangle(cornerRadius: 8))
-                    }
-                }
-            }
-        }
-    }
-}
-
-private struct StatusPicker: View {
-    let status: ConceptStatus
-    let onChange: (ConceptStatus) -> Void
-
-    var body: some View {
-        HStack {
-            StatusPill(status: status)
-            Spacer()
-            Menu {
-                ForEach(ConceptStatus.allCases, id: \.self) { item in
-                    Button(item.displayName) {
-                        onChange(item)
-                    }
-                }
-            } label: {
-                Label("Change status", systemImage: "slider.horizontal.3")
-            }
-            .font(AppFont.note)
-        }
-        .padding(12)
-        .background(AppColor.surface, in: RoundedRectangle(cornerRadius: 8))
-        .overlay {
-            RoundedRectangle(cornerRadius: 8)
-                .stroke(AppColor.line, lineWidth: 1)
         }
     }
 }
@@ -899,5 +685,23 @@ private struct InlineEmptyStateView: View {
         .frame(maxWidth: .infinity)
         .padding(.vertical, 24)
         .accessibilityElement(children: .combine)
+    }
+}
+
+extension ConceptCategory {
+    /// User-facing, capitalized label shown in the concept-detail header zone.
+    var displayName: String {
+        switch self {
+        case .technique:
+            return "Technique"
+        case .sensation:
+            return "Sensation"
+        case .timing:
+            return "Timing"
+        case .psychological:
+            return "Psychological"
+        case .anatomy:
+            return "Anatomy"
+        }
     }
 }

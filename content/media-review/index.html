@@ -1,0 +1,1573 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Media Review</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --canvas: #f3efe8;
+      --ink: #2a2420;
+      --muted: #6f645c;
+      --line: #ddd3c8;
+      --surface: #fffdf9;
+      --accent: #8b4a45;
+      --soft: #ebe1d8;
+      --ok: #4f6f55;
+      --warn: #9a6b2f;
+      --bad: #9a4545;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--canvas); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, sans-serif; line-height: 1.45; }
+    h1, h2 { margin: 0; font-family: Georgia, serif; line-height: 1.1; }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); }
+    h2 { font-size: 1.2rem; }
+    p { margin: 0; }
+    main { max-width: 1200px; margin: 0 auto; padding: 24px 18px 80px; }
+    .hero { display: grid; gap: 14px; padding-bottom: 16px; border-bottom: 1px solid var(--line); margin-bottom: 16px; }
+    .metaLine { color: var(--muted); font-size: 0.92rem; }
+    .taskList { display: grid; gap: 8px; margin: 0 0 16px; padding: 0; list-style: none; }
+    .taskList li { padding: 10px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; font-size: 0.92rem; }
+    .taskList strong { color: var(--accent); }
+    .toolbar {
+      position: sticky; top: 0; z-index: 20; display: grid; gap: 10px;
+      padding: 12px 14px; margin: 0 -18px 16px;
+      background: rgba(243,239,232,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+    }
+    .toolbarRow { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; }
+    .viewTabs { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--surface); }
+    .viewTabs button { border: 0; background: transparent; padding: 8px 12px; cursor: pointer; font: inherit; }
+    .viewTabs button[aria-selected="true"] { background: var(--accent); color: white; }
+    label { display: grid; gap: 4px; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+    input, select, button { font: inherit; color: var(--ink); }
+    input, select { min-height: 36px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); padding: 6px 10px; }
+    .panel { display: none; } .panel.active { display: block; }
+    .panelIntro { margin-bottom: 16px; padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; font-size: 0.92rem; }
+    .progressBar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 16px; font-size: 0.88rem; }
+    .progressBar strong { font-size: 1rem; }
+    .jumpNav { display: flex; flex-wrap: wrap; gap: 6px; max-height: 88px; overflow: auto; }
+    .jumpNav a { display: inline-flex; align-items: center; min-height: 28px; padding: 2px 8px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); text-decoration: none; font-size: 0.82rem; color: var(--ink); }
+    .jumpNav a.done { background: #e5efe7; border-color: #b8cfc0; }
+    .taskCard { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; scroll-margin-top: 100px; }
+    .taskCard + .taskCard { margin-top: 16px; }
+    .taskCard.reviewed { box-shadow: inset 0 0 0 2px rgba(79,111,85,0.25); }
+    .taskCard.hidden { display: none; }
+    .taskHeader { display: flex; justify-content: space-between; gap: 12px; align-items: start; margin-bottom: 10px; }
+    .taskHeader p { color: var(--muted); font-size: 0.88rem; margin-top: 4px; }
+    .taskPrompt { font-size: 0.88rem; color: var(--muted); margin-bottom: 12px; }
+    .compareRow { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 12px; }
+    .compareCol { background: #fffaf3; border: 2px solid var(--line); border-radius: 10px; overflow: hidden; display: grid; grid-template-rows: auto auto 1fr; }
+    .compareCol.production { border-color: var(--ok); }
+    .compareCol.staging { border-color: #c9a24a; }
+    .compareCol.secondary { border-color: #8aa4c9; }
+    .compareColHeader { padding: 8px 10px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--line); background: rgba(255,255,255,0.7); }
+    .compareCol.production .compareColHeader { color: var(--ok); background: #eef5ef; }
+    .compareCol.staging .compareColHeader { color: #8a6420; background: #fbf4e7; }
+    .compareCol.secondary .compareColHeader { color: #4a608a; background: #eef2f8; }
+    .previewButton { display: block; width: 100%; padding: 0; border: 0; background: #f8f4ee; cursor: zoom-in; }
+    .preview { display: block; width: 100%; aspect-ratio: 1; object-fit: contain; min-height: 240px; background: repeating-conic-gradient(#eee 0% 25%, #f8f8f8 0% 50%) 0 0 / 16px 16px; }
+    .preview.placeholder, .preview.placeholder.missing { display: grid; place-content: center; gap: 4px; color: var(--muted); font-size: 0.85rem; text-align: center; padding: 12px; min-height: 240px; }
+    .preview.placeholder.diagram { background: linear-gradient(135deg, #efe8df, #f7f2ea); }
+    .compareMeta { padding: 10px; display: grid; gap: 6px; }
+    .path { font-family: ui-monospace, Menlo, monospace; font-size: 0.68rem; color: var(--muted); word-break: break-all; }
+    .compareFacts, .notes { font-size: 0.82rem; color: var(--muted); }
+    .notes { border-left: 3px solid var(--line); padding-left: 8px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 6px; }
+    .badge { display: inline-flex; align-items: center; min-height: 22px; padding: 0 8px; border-radius: 999px; font-size: 0.7rem; text-transform: uppercase; background: var(--soft); color: var(--muted); }
+    .badge.fit-matches { background: #e5efe7; color: var(--ok); }
+    .decisionBar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
+    .decisionBtn { border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; background: var(--surface); cursor: pointer; font-size: 0.85rem; }
+    .decisionBtn.selected { background: var(--accent); border-color: var(--accent); color: white; }
+    .decisionStatus { margin-left: auto; font-size: 0.82rem; color: var(--muted); }
+    .decisionStatus.set { color: var(--ok); font-weight: 600; }
+    .styleLegend { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; font-size: 0.82rem; }
+    .styleLegend span { padding: 4px 8px; border-radius: 6px; background: var(--soft); }
+    .lightbox { position: fixed; inset: 0; display: none; place-items: center; padding: 24px; background: rgba(20,16,14,0.85); z-index: 100; }
+    .lightbox.open { display: grid; }
+    .lightboxInner { width: min(1100px, 100%); display: grid; gap: 10px; }
+    .lightboxCompare { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: 14px; }
+    .lightboxPanelLabel { color: #f5f0ea; font-size: 0.75rem; text-transform: uppercase; opacity: 0.9; }
+    .lightboxMedia { width: 100%; max-height: 70vh; object-fit: contain; background: #111; border-radius: 8px; }
+    .lightboxCaption { color: #f5f0ea; font-size: 0.82rem; word-break: break-all; }
+    .lightboxClose { position: fixed; top: 16px; right: 16px; border: 0; border-radius: 999px; width: 40px; height: 40px; background: rgba(255,255,255,0.15); color: white; font-size: 1.4rem; cursor: pointer; }
+    .panelTools { display: none; } .panelTools.active { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; }
+    @media (max-width: 760px) { main { padding-inline: 12px; } .toolbar { margin-inline: -12px; } .decisionStatus { margin-left: 0; width: 100%; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="hero">
+      <p class="metaLine">Generated 2026-07-01</p>
+      <h1>Media review</h1>
+      <ol class="taskList">
+        <li><strong>1 · Style audit</strong> — Review all 22 production concept plates for coherence.</li>
+        <li><strong>2 · Reference renders</strong> — Decide whether to keep or archive 5 style-bible candidates.</li>
+        <li><strong>3 · Video masters</strong> — Compare 4 video groups: shipped MP4 vs source files.</li>
+      </ol>
+    </header>
+
+    <div class="toolbar">
+      <div class="toolbarRow">
+        <div class="viewTabs" role="tablist">
+          <button type="button" role="tab" id="tab-style" aria-selected="true" aria-controls="panel-style">1 · Style audit</button>
+          <button type="button" role="tab" id="tab-reference" aria-selected="false" aria-controls="panel-reference">2 · References</button>
+          <button type="button" role="tab" id="tab-video" aria-selected="false" aria-controls="panel-video">3 · Video masters</button>
+        </div>
+        <label><span>&nbsp;</span><button type="button" id="exportDecisions">Export decisions</button></label>
+        <label><span>&nbsp;</span><button type="button" id="clearDecisions">Clear saved</button></label>
+      </div>
+      <div class="toolbarRow panelTools active" id="tools-style">
+        <label>Category <select id="filter-category"><option value="">All</option><option value="anatomy">anatomy</option><option value="psychological">psychological</option><option value="sensation">sensation</option><option value="technique">technique</option><option value="timing">timing</option></select></label>
+        <label>Plate style <select id="filter-style-family"><option value="">All</option><option value="ethereal-abstract">ethereal-abstract</option><option value="scientific-anatomical">scientific-anatomical</option><option value="scientific-warmth-plate">scientific-warmth-plate</option></select></label>
+        <label><span>&nbsp;</span><label style="text-transform:none;font-size:0.88rem;"><input type="checkbox" id="filter-unreviewed"> Unreviewed only</label></label>
+      </div>
+      <div class="toolbarRow panelTools" id="tools-video">
+        <label><span>&nbsp;</span><label style="text-transform:none;font-size:0.88rem;"><input type="checkbox" id="filter-orphans"> Orphans only (not shipped)</label></label>
+      </div>
+      <nav class="jumpNav" id="jumpNav"></nav>
+    </div>
+
+    <section class="panel active" id="panel-style" role="tabpanel">
+      <div class="panelIntro">Scan plates for style coherence. <em>Scientific-anatomical</em> (technique/anatomy) vs <em>ethereal-abstract</em> (psychological) should still share the same cream canvas and palette.</div>
+      <div class="styleLegend">
+        <span>scientific-anatomical — cross-section / clarity</span>
+        <span>ethereal-abstract — mood / metaphor</span>
+        <span>scientific-warmth-plate — sensation / timing</span>
+      </div>
+      <div class="progressBar" id="progress-style">Reviewed: <strong>0</strong> / 22</div>
+      <div id="styleCards">
+        <article class="taskCard styleCard" id="style-angling"
+          data-concept="angling"
+          data-category="technique"
+          data-style="scientific-anatomical"
+          data-fit="matches"
+          data-task="style:angling">
+          <header class="taskHeader">
+            <div>
+              <h2>angling</h2>
+              <p>technique · plate style: <strong>scientific-anatomical</strong></p>
+            </div>
+            <div class="badges">
+              <span class="badge slot">native diagram</span>
+              
+              <span class="badge fit fit-matches">matches</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Does this production plate match <em>Scientific Warmth</em> for its category? Thumbnail should feel related to the plate.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Production plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/angling.png" data-compare-group="style-angling" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/angling.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/angling.png</p>
+                <p class="compareFacts">175 KB · wired</p>
+                <p class="notes">In-image titles/labels — regen with no-text prompt</p>
+              </div>
+            </div>
+            <div class="compareCol production secondary">
+              <div class="compareColHeader">Production thumbnail</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/thumbnails/angling.png" data-compare-group="style-angling-thumb" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/thumbnails/angling.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/thumbnails/angling.png</p>
+                <p class="compareFacts">106 KB</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="style:angling"><button type="button" class="decisionBtn" data-task="style:angling" data-value="keep">Keep</button><button type="button" class="decisionBtn" data-task="style:angling" data-value="regen">Regen plate</button><button type="button" class="decisionBtn" data-task="style:angling" data-value="regen-thumb">Regen thumb only</button><span class="decisionStatus" data-task-status="style:angling">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard styleCard" id="style-body-appreciation"
+          data-concept="body-appreciation"
+          data-category="psychological"
+          data-style="ethereal-abstract"
+          data-fit="matches"
+          data-task="style:body-appreciation">
+          <header class="taskHeader">
+            <div>
+              <h2>body-appreciation</h2>
+              <p>psychological · plate style: <strong>ethereal-abstract</strong></p>
+            </div>
+            <div class="badges">
+              
+              
+              <span class="badge fit fit-matches">matches</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Does this production plate match <em>Scientific Warmth</em> for its category? Thumbnail should feel related to the plate.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Production plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/body-appreciation.png" data-compare-group="style-body-appreciation" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/body-appreciation.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/body-appreciation.png</p>
+                <p class="compareFacts">202 KB · wired</p>
+                
+              </div>
+            </div>
+            <div class="compareCol production secondary">
+              <div class="compareColHeader">Production thumbnail</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/thumbnails/body-appreciation.png" data-compare-group="style-body-appreciation-thumb" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/thumbnails/body-appreciation.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/thumbnails/body-appreciation.png</p>
+                <p class="compareFacts">397 KB</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="style:body-appreciation"><button type="button" class="decisionBtn" data-task="style:body-appreciation" data-value="keep">Keep</button><button type="button" class="decisionBtn" data-task="style:body-appreciation" data-value="regen">Regen plate</button><button type="button" class="decisionBtn" data-task="style:body-appreciation" data-value="regen-thumb">Regen thumb only</button><span class="decisionStatus" data-task-status="style:body-appreciation">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard styleCard" id="style-building"
+          data-concept="building"
+          data-category="sensation"
+          data-style="scientific-warmth-plate"
+          data-fit="matches"
+          data-task="style:building">
+          <header class="taskHeader">
+            <div>
+              <h2>building</h2>
+              <p>sensation · plate style: <strong>scientific-warmth-plate</strong></p>
+            </div>
+            <div class="badges">
+              
+              <span class="badge slot">has video</span>
+              <span class="badge fit fit-matches">matches</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Does this production plate match <em>Scientific Warmth</em> for its category? Thumbnail should feel related to the plate.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Production plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/building.png" data-compare-group="style-building" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/building.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/building.png</p>
+                <p class="compareFacts">680 KB · wired</p>
+                
+              </div>
+            </div>
+            <div class="compareCol production secondary">
+              <div class="compareColHeader">Production thumbnail</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/thumbnails/building.png" data-compare-group="style-building-thumb" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/thumbnails/building.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/thumbnails/building.png</p>
+                <p class="compareFacts">281 KB</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="style:building"><button type="button" class="decisionBtn" data-task="style:building" data-value="keep">Keep</button><button type="button" class="decisionBtn" data-task="style:building" data-value="regen">Regen plate</button><button type="button" class="decisionBtn" data-task="style:building" data-value="regen-thumb">Regen thumb only</button><span class="decisionStatus" data-task-status="style:building">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard styleCard" id="style-clitoral-structure"
+          data-concept="clitoral-structure"
+          data-category="anatomy"
+          data-style="scientific-anatomical"
+          data-fit="matches"
+          data-task="style:clitoral-structure">
+          <header class="taskHeader">
+            <div>
+              <h2>clitoral-structure</h2>
+              <p>anatomy · plate style: <strong>scientific-anatomical</strong></p>
+            </div>
+            <div class="badges">
+              
+              
+              <span class="badge fit fit-matches">matches</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Does this production plate match <em>Scientific Warmth</em> for its category? Thumbnail should feel related to the plate.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Production plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/clitoral-structure.png" data-compare-group="style-clitoral-structure" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/clitoral-structure.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/clitoral-structure.png</p>
+                <p class="compareFacts">179 KB · wired</p>
+                
+              </div>
+            </div>
+            <div class="compareCol production secondary">
+              <div class="compareColHeader">Production thumbnail</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/thumbnails/clitoral-structure.png" data-compare-group="style-clitoral-structure-thumb" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/thumbnails/clitoral-structure.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/thumbnails/clitoral-structure.png</p>
+                <p class="compareFacts">546 KB</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="style:clitoral-structure"><button type="button" class="decisionBtn" data-task="style:clitoral-structure" data-value="keep">Keep</button><button type="button" class="decisionBtn" data-task="style:clitoral-structure" data-value="regen">Regen plate</button><button type="button" class="decisionBtn" data-task="style:clitoral-structure" data-value="regen-thumb">Regen thumb only</button><span class="decisionStatus" data-task-status="style:clitoral-structure">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard styleCard" id="style-clitourethrovaginal"
+          data-concept="clitourethrovaginal"
+          data-category="anatomy"
+          data-style="scientific-anatomical"
+          data-fit="matches"
+          data-task="style:clitourethrovaginal">
+          <header class="taskHeader">
+            <div>
+              <h2>clitourethrovaginal</h2>
+              <p>anatomy · plate style: <strong>scientific-anatomical</strong></p>
+            </div>
+            <div class="badges">
+              
+              
+              <span class="badge fit fit-matches">matches</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Does this production plate match <em>Scientific Warmth</em> for its category? Thumbnail should feel related to the plate.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Production plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/clitourethrovaginal.png" data-compare-group="style-clitourethrovaginal" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/clitourethrovaginal.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/clitourethrovaginal.png</p>
+                <p class="compareFacts">154 KB · wired</p>
+                
+              </div>
+            </div>
+            <div class="compareCol production secondary">
+              <div class="compareColHeader">Production thumbnail</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/thumbnails/clitourethrovaginal.png" data-compare-group="style-clitourethrovaginal-thumb" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/thumbnails/clitourethrovaginal.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/thumbnails/clitourethrovaginal.png</p>
+                <p class="compareFacts">117 KB</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="style:clitourethrovaginal"><button type="button" class="decisionBtn" data-task="style:clitourethrovaginal" data-value="keep">Keep</button><button type="button" class="decisionBtn" data-task="style:clitourethrovaginal" data-value="regen">Regen plate</button><button type="button" class="decisionBtn" data-task="style:clitourethrovaginal" data-value="regen-thumb">Regen thumb only</button><span class="decisionStatus" data-task-status="style:clitourethrovaginal">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard styleCard" id="style-edging"
+          data-concept="edging"
+          data-category="sensation"
+          data-style="scientific-warmth-plate"
+          data-fit="matches"
+          data-task="style:edging">
+          <header class="taskHeader">
+            <div>
+              <h2>edging</h2>
+              <p>sensation · plate style: <strong>scientific-warmth-plate</strong></p>
+            </div>
+            <div class="badges">
+              
+              
+              <span class="badge fit fit-matches">matches</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Does this production plate match <em>Scientific Warmth</em> for its category? Thumbnail should feel related to the plate.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Production plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/edging.png" data-compare-group="style-edging" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/edging.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/edging.png</p>
+                <p class="compareFacts">388 KB · wired</p>
+                
+              </div>
+            </div>
+            <div class="compareCol production secondary">
+              <div class="compareColHeader">Production thumbnail</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/thumbnails/edging.png" data-compare-group="style-edging-thumb" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/thumbnails/edging.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/thumbnails/edging.png</p>
+                <p class="compareFacts">437 KB</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="style:edging"><button type="button" class="decisionBtn" data-task="style:edging" data-value="keep">Keep</button><button type="button" class="decisionBtn" data-task="style:edging" data-value="regen">Regen plate</button><button type="button" class="decisionBtn" data-task="style:edging" data-value="regen-thumb">Regen thumb only</button><span class="decisionStatus" data-task-status="style:edging">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard styleCard" id="style-embodied-presence"
+          data-concept="embodied-presence"
+          data-category="psychological"
+          data-style="ethereal-abstract"
+          data-fit="matches"
+          data-task="style:embodied-presence">
+          <header class="taskHeader">
+            <div>
+              <h2>embodied-presence</h2>
+              <p>psychological · plate style: <strong>ethereal-abstract</strong></p>
+            </div>
+            <div class="badges">
+              
+              
+              <span class="badge fit fit-matches">matches</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Does this production plate match <em>Scientific Warmth</em> for its category? Thumbnail should feel related to the plate.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Production plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/embodied-presence.png" data-compare-group="style-embodied-presence" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/embodied-presence.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/embodied-presence.png</p>
+                <p class="compareFacts">163 KB · wired</p>
+                
+              </div>
+            </div>
+            <div class="compareCol production secondary">
+              <div class="compareColHeader">Production thumbnail</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/thumbnails/embodied-presence.png" data-compare-group="style-embodied-presence-thumb" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/thumbnails/embodied-presence.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/thumbnails/embodied-presence.png</p>
+                <p class="compareFacts">214 KB</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="style:embodied-presence"><button type="button" class="decisionBtn" data-task="style:embodied-presence" data-value="keep">Keep</button><button type="button" class="decisionBtn" data-task="style:embodied-presence" data-value="regen">Regen plate</button><button type="button" class="decisionBtn" data-task="style:embodied-presence" data-value="regen-thumb">Regen thumb only</button><span class="decisionStatus" data-task-status="style:embodied-presence">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard styleCard" id="style-golden-trio"
+          data-concept="golden-trio"
+          data-category="timing"
+          data-style="ethereal-abstract"
+          data-fit="matches"
+          data-task="style:golden-trio">
+          <header class="taskHeader">
+            <div>
+              <h2>golden-trio</h2>
+              <p>timing · plate style: <strong>ethereal-abstract</strong></p>
+            </div>
+            <div class="badges">
+              
+              
+              <span class="badge fit fit-matches">matches</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Does this production plate match <em>Scientific Warmth</em> for its category? Thumbnail should feel related to the plate.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Production plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/golden-trio.png" data-compare-group="style-golden-trio" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/golden-trio.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/golden-trio.png</p>
+                <p class="compareFacts">180 KB · wired</p>
+                
+              </div>
+            </div>
+            <div class="compareCol production secondary">
+              <div class="compareColHeader">Production thumbnail</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/thumbnails/golden-trio.png" data-compare-group="style-golden-trio-thumb" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/thumbnails/golden-trio.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/thumbnails/golden-trio.png</p>
+                <p class="compareFacts">166 KB</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="style:golden-trio"><button type="button" class="decisionBtn" data-task="style:golden-trio" data-value="keep">Keep</button><button type="button" class="decisionBtn" data-task="style:golden-trio" data-value="regen">Regen plate</button><button type="button" class="decisionBtn" data-task="style:golden-trio" data-value="regen-thumb">Regen thumb only</button><span class="decisionStatus" data-task-status="style:golden-trio">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard styleCard" id="style-internal-stimulation"
+          data-concept="internal-stimulation"
+          data-category="anatomy"
+          data-style="scientific-anatomical"
+          data-fit="matches"
+          data-task="style:internal-stimulation">
+          <header class="taskHeader">
+            <div>
+              <h2>internal-stimulation</h2>
+              <p>anatomy · plate style: <strong>scientific-anatomical</strong></p>
+            </div>
+            <div class="badges">
+              
+              
+              <span class="badge fit fit-matches">matches</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Does this production plate match <em>Scientific Warmth</em> for its category? Thumbnail should feel related to the plate.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Production plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/internal-stimulation.png" data-compare-group="style-internal-stimulation" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/internal-stimulation.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/internal-stimulation.png</p>
+                <p class="compareFacts">150 KB · wired</p>
+                
+              </div>
+            </div>
+            <div class="compareCol production secondary">
+              <div class="compareColHeader">Production thumbnail</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/thumbnails/internal-stimulation.png" data-compare-group="style-internal-stimulation-thumb" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/thumbnails/internal-stimulation.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/thumbnails/internal-stimulation.png</p>
+                <p class="compareFacts">124 KB</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="style:internal-stimulation"><button type="button" class="decisionBtn" data-task="style:internal-stimulation" data-value="keep">Keep</button><button type="button" class="decisionBtn" data-task="style:internal-stimulation" data-value="regen">Regen plate</button><button type="button" class="decisionBtn" data-task="style:internal-stimulation" data-value="regen-thumb">Regen thumb only</button><span class="decisionStatus" data-task-status="style:internal-stimulation">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard styleCard" id="style-nerve-density"
+          data-concept="nerve-density"
+          data-category="anatomy"
+          data-style="scientific-anatomical"
+          data-fit="matches"
+          data-task="style:nerve-density">
+          <header class="taskHeader">
+            <div>
+              <h2>nerve-density</h2>
+              <p>anatomy · plate style: <strong>scientific-anatomical</strong></p>
+            </div>
+            <div class="badges">
+              
+              
+              <span class="badge fit fit-matches">matches</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Does this production plate match <em>Scientific Warmth</em> for its category? Thumbnail should feel related to the plate.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Production plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/nerve-density.png" data-compare-group="style-nerve-density" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/nerve-density.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/nerve-density.png</p>
+                <p class="compareFacts">141 KB · wired</p>
+                
+              </div>
+            </div>
+            <div class="compareCol production secondary">
+              <div class="compareColHeader">Production thumbnail</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/thumbnails/nerve-density.png" data-compare-group="style-nerve-density-thumb" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/thumbnails/nerve-density.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/thumbnails/nerve-density.png</p>
+                <p class="compareFacts">334 KB</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="style:nerve-density"><button type="button" class="decisionBtn" data-task="style:nerve-density" data-value="keep">Keep</button><button type="button" class="decisionBtn" data-task="style:nerve-density" data-value="regen">Regen plate</button><button type="button" class="decisionBtn" data-task="style:nerve-density" data-value="regen-thumb">Regen thumb only</button><span class="decisionStatus" data-task-status="style:nerve-density">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard styleCard" id="style-non-concordance"
+          data-concept="non-concordance"
+          data-category="psychological"
+          data-style="ethereal-abstract"
+          data-fit="matches"
+          data-task="style:non-concordance">
+          <header class="taskHeader">
+            <div>
+              <h2>non-concordance</h2>
+              <p>psychological · plate style: <strong>ethereal-abstract</strong></p>
+            </div>
+            <div class="badges">
+              
+              
+              <span class="badge fit fit-matches">matches</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Does this production plate match <em>Scientific Warmth</em> for its category? Thumbnail should feel related to the plate.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Production plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/non-concordance.png" data-compare-group="style-non-concordance" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/non-concordance.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/non-concordance.png</p>
+                <p class="compareFacts">221 KB · wired</p>
+                <p class="notes">Promoted to production May 19</p>
+              </div>
+            </div>
+            <div class="compareCol production secondary">
+              <div class="compareColHeader">Production thumbnail</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/thumbnails/non-concordance.png" data-compare-group="style-non-concordance-thumb" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/thumbnails/non-concordance.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/thumbnails/non-concordance.png</p>
+                <p class="compareFacts">303 KB</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="style:non-concordance"><button type="button" class="decisionBtn" data-task="style:non-concordance" data-value="keep">Keep</button><button type="button" class="decisionBtn" data-task="style:non-concordance" data-value="regen">Regen plate</button><button type="button" class="decisionBtn" data-task="style:non-concordance" data-value="regen-thumb">Regen thumb only</button><span class="decisionStatus" data-task-status="style:non-concordance">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard styleCard" id="style-pairing"
+          data-concept="pairing"
+          data-category="technique"
+          data-style="scientific-anatomical"
+          data-fit="matches"
+          data-task="style:pairing">
+          <header class="taskHeader">
+            <div>
+              <h2>pairing</h2>
+              <p>technique · plate style: <strong>scientific-anatomical</strong></p>
+            </div>
+            <div class="badges">
+              <span class="badge slot">native diagram</span>
+              
+              <span class="badge fit fit-matches">matches</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Does this production plate match <em>Scientific Warmth</em> for its category? Thumbnail should feel related to the plate.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Production plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/pairing.png" data-compare-group="style-pairing" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/pairing.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/pairing.png</p>
+                <p class="compareFacts">188 KB · wired</p>
+                
+              </div>
+            </div>
+            <div class="compareCol production secondary">
+              <div class="compareColHeader">Production thumbnail</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/thumbnails/pairing.png" data-compare-group="style-pairing-thumb" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/thumbnails/pairing.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/thumbnails/pairing.png</p>
+                <p class="compareFacts">245 KB</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="style:pairing"><button type="button" class="decisionBtn" data-task="style:pairing" data-value="keep">Keep</button><button type="button" class="decisionBtn" data-task="style:pairing" data-value="regen">Regen plate</button><button type="button" class="decisionBtn" data-task="style:pairing" data-value="regen-thumb">Regen thumb only</button><span class="decisionStatus" data-task-status="style:pairing">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard styleCard" id="style-plateauing"
+          data-concept="plateauing"
+          data-category="sensation"
+          data-style="scientific-warmth-plate"
+          data-fit="matches"
+          data-task="style:plateauing">
+          <header class="taskHeader">
+            <div>
+              <h2>plateauing</h2>
+              <p>sensation · plate style: <strong>scientific-warmth-plate</strong></p>
+            </div>
+            <div class="badges">
+              
+              
+              <span class="badge fit fit-matches">matches</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Does this production plate match <em>Scientific Warmth</em> for its category? Thumbnail should feel related to the plate.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Production plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/plateauing.png" data-compare-group="style-plateauing" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/plateauing.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/plateauing.png</p>
+                <p class="compareFacts">164 KB · wired</p>
+                
+              </div>
+            </div>
+            <div class="compareCol production secondary">
+              <div class="compareColHeader">Production thumbnail</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/thumbnails/plateauing.png" data-compare-group="style-plateauing-thumb" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/thumbnails/plateauing.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/thumbnails/plateauing.png</p>
+                <p class="compareFacts">190 KB</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="style:plateauing"><button type="button" class="decisionBtn" data-task="style:plateauing" data-value="keep">Keep</button><button type="button" class="decisionBtn" data-task="style:plateauing" data-value="regen">Regen plate</button><button type="button" class="decisionBtn" data-task="style:plateauing" data-value="regen-thumb">Regen thumb only</button><span class="decisionStatus" data-task-status="style:plateauing">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard styleCard" id="style-pulsing"
+          data-concept="pulsing"
+          data-category="sensation"
+          data-style="scientific-warmth-plate"
+          data-fit="matches"
+          data-task="style:pulsing">
+          <header class="taskHeader">
+            <div>
+              <h2>pulsing</h2>
+              <p>sensation · plate style: <strong>scientific-warmth-plate</strong></p>
+            </div>
+            <div class="badges">
+              
+              
+              <span class="badge fit fit-matches">matches</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Does this production plate match <em>Scientific Warmth</em> for its category? Thumbnail should feel related to the plate.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Production plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/pulsing.png" data-compare-group="style-pulsing" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/pulsing.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/pulsing.png</p>
+                <p class="compareFacts">530 KB · wired</p>
+                
+              </div>
+            </div>
+            <div class="compareCol production secondary">
+              <div class="compareColHeader">Production thumbnail</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/thumbnails/pulsing.png" data-compare-group="style-pulsing-thumb" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/thumbnails/pulsing.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/thumbnails/pulsing.png</p>
+                <p class="compareFacts">335 KB</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="style:pulsing"><button type="button" class="decisionBtn" data-task="style:pulsing" data-value="keep">Keep</button><button type="button" class="decisionBtn" data-task="style:pulsing" data-value="regen">Regen plate</button><button type="button" class="decisionBtn" data-task="style:pulsing" data-value="regen-thumb">Regen thumb only</button><span class="decisionStatus" data-task-status="style:pulsing">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard styleCard" id="style-responsive-desire"
+          data-concept="responsive-desire"
+          data-category="timing"
+          data-style="ethereal-abstract"
+          data-fit="matches"
+          data-task="style:responsive-desire">
+          <header class="taskHeader">
+            <div>
+              <h2>responsive-desire</h2>
+              <p>timing · plate style: <strong>ethereal-abstract</strong></p>
+            </div>
+            <div class="badges">
+              
+              <span class="badge slot">has video</span>
+              <span class="badge fit fit-matches">matches</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Does this production plate match <em>Scientific Warmth</em> for its category? Thumbnail should feel related to the plate.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Production plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/responsive-desire.png" data-compare-group="style-responsive-desire" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/responsive-desire.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/responsive-desire.png</p>
+                <p class="compareFacts">659 KB · wired</p>
+                
+              </div>
+            </div>
+            <div class="compareCol production secondary">
+              <div class="compareColHeader">Production thumbnail</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/thumbnails/responsive-desire.png" data-compare-group="style-responsive-desire-thumb" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/thumbnails/responsive-desire.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/thumbnails/responsive-desire.png</p>
+                <p class="compareFacts">347 KB</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="style:responsive-desire"><button type="button" class="decisionBtn" data-task="style:responsive-desire" data-value="keep">Keep</button><button type="button" class="decisionBtn" data-task="style:responsive-desire" data-value="regen">Regen plate</button><button type="button" class="decisionBtn" data-task="style:responsive-desire" data-value="regen-thumb">Regen thumb only</button><span class="decisionStatus" data-task-status="style:responsive-desire">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard styleCard" id="style-rocking"
+          data-concept="rocking"
+          data-category="technique"
+          data-style="scientific-anatomical"
+          data-fit="matches"
+          data-task="style:rocking">
+          <header class="taskHeader">
+            <div>
+              <h2>rocking</h2>
+              <p>technique · plate style: <strong>scientific-anatomical</strong></p>
+            </div>
+            <div class="badges">
+              <span class="badge slot">native diagram</span>
+              
+              <span class="badge fit fit-matches">matches</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Does this production plate match <em>Scientific Warmth</em> for its category? Thumbnail should feel related to the plate.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Production plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/rocking.png" data-compare-group="style-rocking" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/rocking.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/rocking.png</p>
+                <p class="compareFacts">127 KB · wired</p>
+                
+              </div>
+            </div>
+            <div class="compareCol production secondary">
+              <div class="compareColHeader">Production thumbnail</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/thumbnails/rocking.png" data-compare-group="style-rocking-thumb" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/thumbnails/rocking.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/thumbnails/rocking.png</p>
+                <p class="compareFacts">56 KB</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="style:rocking"><button type="button" class="decisionBtn" data-task="style:rocking" data-value="keep">Keep</button><button type="button" class="decisionBtn" data-task="style:rocking" data-value="regen">Regen plate</button><button type="button" class="decisionBtn" data-task="style:rocking" data-value="regen-thumb">Regen thumb only</button><span class="decisionStatus" data-task-status="style:rocking">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard styleCard" id="style-sexual-self-esteem"
+          data-concept="sexual-self-esteem"
+          data-category="psychological"
+          data-style="ethereal-abstract"
+          data-fit="matches"
+          data-task="style:sexual-self-esteem">
+          <header class="taskHeader">
+            <div>
+              <h2>sexual-self-esteem</h2>
+              <p>psychological · plate style: <strong>ethereal-abstract</strong></p>
+            </div>
+            <div class="badges">
+              
+              
+              <span class="badge fit fit-matches">matches</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Does this production plate match <em>Scientific Warmth</em> for its category? Thumbnail should feel related to the plate.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Production plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/sexual-self-esteem.png" data-compare-group="style-sexual-self-esteem" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/sexual-self-esteem.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/sexual-self-esteem.png</p>
+                <p class="compareFacts">554 KB · wired</p>
+                
+              </div>
+            </div>
+            <div class="compareCol production secondary">
+              <div class="compareColHeader">Production thumbnail</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/thumbnails/sexual-self-esteem.png" data-compare-group="style-sexual-self-esteem-thumb" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/thumbnails/sexual-self-esteem.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/thumbnails/sexual-self-esteem.png</p>
+                <p class="compareFacts">435 KB</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="style:sexual-self-esteem"><button type="button" class="decisionBtn" data-task="style:sexual-self-esteem" data-value="keep">Keep</button><button type="button" class="decisionBtn" data-task="style:sexual-self-esteem" data-value="regen">Regen plate</button><button type="button" class="decisionBtn" data-task="style:sexual-self-esteem" data-value="regen-thumb">Regen thumb only</button><span class="decisionStatus" data-task-status="style:sexual-self-esteem">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard styleCard" id="style-shallowing"
+          data-concept="shallowing"
+          data-category="technique"
+          data-style="scientific-anatomical"
+          data-fit="matches"
+          data-task="style:shallowing">
+          <header class="taskHeader">
+            <div>
+              <h2>shallowing</h2>
+              <p>technique · plate style: <strong>scientific-anatomical</strong></p>
+            </div>
+            <div class="badges">
+              <span class="badge slot">native diagram</span>
+              
+              <span class="badge fit fit-matches">matches</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Does this production plate match <em>Scientific Warmth</em> for its category? Thumbnail should feel related to the plate.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Production plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/shallowing.png" data-compare-group="style-shallowing" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/shallowing.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/shallowing.png</p>
+                <p class="compareFacts">127 KB · wired</p>
+                
+              </div>
+            </div>
+            <div class="compareCol production secondary">
+              <div class="compareColHeader">Production thumbnail</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/thumbnails/shallowing.png" data-compare-group="style-shallowing-thumb" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/thumbnails/shallowing.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/thumbnails/shallowing.png</p>
+                <p class="compareFacts">404 KB</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="style:shallowing"><button type="button" class="decisionBtn" data-task="style:shallowing" data-value="keep">Keep</button><button type="button" class="decisionBtn" data-task="style:shallowing" data-value="regen">Regen plate</button><button type="button" class="decisionBtn" data-task="style:shallowing" data-value="regen-thumb">Regen thumb only</button><span class="decisionStatus" data-task-status="style:shallowing">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard styleCard" id="style-spectatoring"
+          data-concept="spectatoring"
+          data-category="psychological"
+          data-style="ethereal-abstract"
+          data-fit="matches"
+          data-task="style:spectatoring">
+          <header class="taskHeader">
+            <div>
+              <h2>spectatoring</h2>
+              <p>psychological · plate style: <strong>ethereal-abstract</strong></p>
+            </div>
+            <div class="badges">
+              
+              
+              <span class="badge fit fit-matches">matches</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Does this production plate match <em>Scientific Warmth</em> for its category? Thumbnail should feel related to the plate.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Production plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/spectatoring.png" data-compare-group="style-spectatoring" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/spectatoring.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/spectatoring.png</p>
+                <p class="compareFacts">100 KB · wired</p>
+                
+              </div>
+            </div>
+            <div class="compareCol production secondary">
+              <div class="compareColHeader">Production thumbnail</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/thumbnails/spectatoring.png" data-compare-group="style-spectatoring-thumb" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/thumbnails/spectatoring.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/thumbnails/spectatoring.png</p>
+                <p class="compareFacts">332 KB</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="style:spectatoring"><button type="button" class="decisionBtn" data-task="style:spectatoring" data-value="keep">Keep</button><button type="button" class="decisionBtn" data-task="style:spectatoring" data-value="regen">Regen plate</button><button type="button" class="decisionBtn" data-task="style:spectatoring" data-value="regen-thumb">Regen thumb only</button><span class="decisionStatus" data-task-status="style:spectatoring">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard styleCard" id="style-spontaneous-desire"
+          data-concept="spontaneous-desire"
+          data-category="timing"
+          data-style="ethereal-abstract"
+          data-fit="matches"
+          data-task="style:spontaneous-desire">
+          <header class="taskHeader">
+            <div>
+              <h2>spontaneous-desire</h2>
+              <p>timing · plate style: <strong>ethereal-abstract</strong></p>
+            </div>
+            <div class="badges">
+              
+              
+              <span class="badge fit fit-matches">matches</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Does this production plate match <em>Scientific Warmth</em> for its category? Thumbnail should feel related to the plate.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Production plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/spontaneous-desire.png" data-compare-group="style-spontaneous-desire" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/spontaneous-desire.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/spontaneous-desire.png</p>
+                <p class="compareFacts">605 KB · wired</p>
+                
+              </div>
+            </div>
+            <div class="compareCol production secondary">
+              <div class="compareColHeader">Production thumbnail</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/thumbnails/spontaneous-desire.png" data-compare-group="style-spontaneous-desire-thumb" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/thumbnails/spontaneous-desire.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/thumbnails/spontaneous-desire.png</p>
+                <p class="compareFacts">440 KB</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="style:spontaneous-desire"><button type="button" class="decisionBtn" data-task="style:spontaneous-desire" data-value="keep">Keep</button><button type="button" class="decisionBtn" data-task="style:spontaneous-desire" data-value="regen">Regen plate</button><button type="button" class="decisionBtn" data-task="style:spontaneous-desire" data-value="regen-thumb">Regen thumb only</button><span class="decisionStatus" data-task-status="style:spontaneous-desire">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard styleCard" id="style-spreading"
+          data-concept="spreading"
+          data-category="sensation"
+          data-style="scientific-warmth-plate"
+          data-fit="matches"
+          data-task="style:spreading">
+          <header class="taskHeader">
+            <div>
+              <h2>spreading</h2>
+              <p>sensation · plate style: <strong>scientific-warmth-plate</strong></p>
+            </div>
+            <div class="badges">
+              
+              <span class="badge slot">has video</span>
+              <span class="badge fit fit-matches">matches</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Does this production plate match <em>Scientific Warmth</em> for its category? Thumbnail should feel related to the plate.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Production plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/spreading.png" data-compare-group="style-spreading" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/spreading.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/spreading.png</p>
+                <p class="compareFacts">403 KB · wired</p>
+                
+              </div>
+            </div>
+            <div class="compareCol production secondary">
+              <div class="compareColHeader">Production thumbnail</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/thumbnails/spreading.png" data-compare-group="style-spreading-thumb" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/thumbnails/spreading.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/thumbnails/spreading.png</p>
+                <p class="compareFacts">307 KB</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="style:spreading"><button type="button" class="decisionBtn" data-task="style:spreading" data-value="keep">Keep</button><button type="button" class="decisionBtn" data-task="style:spreading" data-value="regen">Regen plate</button><button type="button" class="decisionBtn" data-task="style:spreading" data-value="regen-thumb">Regen thumb only</button><span class="decisionStatus" data-task-status="style:spreading">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard styleCard" id="style-warmup-window"
+          data-concept="warmup-window"
+          data-category="timing"
+          data-style="scientific-warmth-plate"
+          data-fit="matches"
+          data-task="style:warmup-window">
+          <header class="taskHeader">
+            <div>
+              <h2>warmup-window</h2>
+              <p>timing · plate style: <strong>scientific-warmth-plate</strong></p>
+            </div>
+            <div class="badges">
+              
+              
+              <span class="badge fit fit-matches">matches</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Does this production plate match <em>Scientific Warmth</em> for its category? Thumbnail should feel related to the plate.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Production plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/warmup-window.png" data-compare-group="style-warmup-window" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/warmup-window.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/warmup-window.png</p>
+                <p class="compareFacts">224 KB · wired</p>
+                
+              </div>
+            </div>
+            <div class="compareCol production secondary">
+              <div class="compareColHeader">Production thumbnail</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/thumbnails/warmup-window.png" data-compare-group="style-warmup-window-thumb" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/thumbnails/warmup-window.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/thumbnails/warmup-window.png</p>
+                <p class="compareFacts">312 KB</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="style:warmup-window"><button type="button" class="decisionBtn" data-task="style:warmup-window" data-value="keep">Keep</button><button type="button" class="decisionBtn" data-task="style:warmup-window" data-value="regen">Regen plate</button><button type="button" class="decisionBtn" data-task="style:warmup-window" data-value="regen-thumb">Regen thumb only</button><span class="decisionStatus" data-task-status="style:warmup-window">Not reviewed</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-reference" role="tabpanel" hidden>
+      <div class="panelIntro">These PNGs in <code>assets/_staging/reference/</code> ratified the style bible per category family. Production plates already match the shipped path.</div>
+      <div class="progressBar" id="progress-reference">Reviewed: <strong>0</strong> / 5</div>
+      <div id="referenceCards">
+        <article class="taskCard referenceCard" id="reference-technique"
+          data-family="technique"
+          data-task="reference:technique">
+          <header class="taskHeader">
+            <div>
+              <h2>technique family</h2>
+              <p>Exemplar concept: <strong>angling</strong> · approved</p>
+            </div>
+            <div class="badges">
+              <span class="badge fit-matches">style 5/5</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Reference renders ratified the style bible. Shipped plate is canonical — decide whether to keep the candidate PNG for documentation.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Shipped plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/angling.png" data-compare-group="ref-technique" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/angling.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/angling.png</p>
+                <p class="notes">Clean cross-section demonstrating pelvic tilt without text labels, conforming to style bible</p>
+              </div>
+            </div>
+            <div class="compareCol staging">
+              <div class="compareColHeader">Reference candidate</div>
+              <div class="preview placeholder missing"><span>File removed</span><small>assets/_staging/reference/technique/chatgpt-images-2.png</small></div>
+              <div class="compareMeta">
+                <p class="path">assets/_staging/reference/technique/chatgpt-images-2.png</p>
+                <p class="compareFacts">chatgpt-images-2</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="reference:technique"><button type="button" class="decisionBtn" data-task="reference:technique" data-value="archive">Archive candidate</button><button type="button" class="decisionBtn" data-task="reference:technique" data-value="keep">Keep candidate</button><span class="decisionStatus" data-task-status="reference:technique">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard referenceCard" id="reference-sensation"
+          data-family="sensation"
+          data-task="reference:sensation">
+          <header class="taskHeader">
+            <div>
+              <h2>sensation family</h2>
+              <p>Exemplar concept: <strong>spreading</strong> · approved</p>
+            </div>
+            <div class="badges">
+              <span class="badge fit-matches">style 5/5</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Reference renders ratified the style bible. Shipped plate is canonical — decide whether to keep the candidate PNG for documentation.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Shipped plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/spreading.png" data-compare-group="ref-sensation" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/spreading.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/spreading.png</p>
+                <p class="notes">Golden ripples of neural signal propagating through the pelvic region, accurate female anatomy, no text</p>
+              </div>
+            </div>
+            <div class="compareCol staging">
+              <div class="compareColHeader">Reference candidate</div>
+              <div class="preview placeholder missing"><span>File removed</span><small>assets/_staging/reference/sensation/gemini.png</small></div>
+              <div class="compareMeta">
+                <p class="path">assets/_staging/reference/sensation/gemini.png</p>
+                <p class="compareFacts">gemini</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="reference:sensation"><button type="button" class="decisionBtn" data-task="reference:sensation" data-value="archive">Archive candidate</button><button type="button" class="decisionBtn" data-task="reference:sensation" data-value="keep">Keep candidate</button><span class="decisionStatus" data-task-status="reference:sensation">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard referenceCard" id="reference-timing"
+          data-family="timing"
+          data-task="reference:timing">
+          <header class="taskHeader">
+            <div>
+              <h2>timing family</h2>
+              <p>Exemplar concept: <strong>warmup-window</strong> · approved</p>
+            </div>
+            <div class="badges">
+              <span class="badge fit-matches">style 5/5</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Reference renders ratified the style bible. Shipped plate is canonical — decide whether to keep the candidate PNG for documentation.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Shipped plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/warmup-window.png" data-compare-group="ref-timing" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/warmup-window.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/warmup-window.png</p>
+                <p class="notes">Split-panel vascular perfusion shows arousal-dependent physiological shifts clearly, conforming to Style Bible</p>
+              </div>
+            </div>
+            <div class="compareCol staging">
+              <div class="compareColHeader">Reference candidate</div>
+              <div class="preview placeholder missing"><span>File removed</span><small>assets/_staging/reference/timing/gemini.png</small></div>
+              <div class="compareMeta">
+                <p class="path">assets/_staging/reference/timing/gemini.png</p>
+                <p class="compareFacts">gemini</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="reference:timing"><button type="button" class="decisionBtn" data-task="reference:timing" data-value="archive">Archive candidate</button><button type="button" class="decisionBtn" data-task="reference:timing" data-value="keep">Keep candidate</button><span class="decisionStatus" data-task-status="reference:timing">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard referenceCard" id="reference-psychological"
+          data-family="psychological"
+          data-task="reference:psychological">
+          <header class="taskHeader">
+            <div>
+              <h2>psychological family</h2>
+              <p>Exemplar concept: <strong>non-concordance</strong> · approved</p>
+            </div>
+            <div class="badges">
+              <span class="badge fit-matches">style 4/5</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Reference renders ratified the style bible. Shipped plate is canonical — decide whether to keep the candidate PNG for documentation.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Shipped plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/non-concordance.png" data-compare-group="ref-psychological" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/non-concordance.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/non-concordance.png</p>
+                <p class="notes">Promoted to production May 19 — reference for psychological family</p>
+              </div>
+            </div>
+            <div class="compareCol staging">
+              <div class="compareColHeader">Reference candidate</div>
+              <div class="preview placeholder missing"><span>File removed</span><small>assets/_staging/pilot/illustrations/non-concordance/chatgpt-images-2.png</small></div>
+              <div class="compareMeta">
+                <p class="path">assets/_staging/pilot/illustrations/non-concordance/chatgpt-images-2.png</p>
+                <p class="compareFacts">chatgpt-images-2</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="reference:psychological"><button type="button" class="decisionBtn" data-task="reference:psychological" data-value="archive">Archive candidate</button><button type="button" class="decisionBtn" data-task="reference:psychological" data-value="keep">Keep candidate</button><span class="decisionStatus" data-task-status="reference:psychological">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard referenceCard" id="reference-anatomy"
+          data-family="anatomy"
+          data-task="reference:anatomy">
+          <header class="taskHeader">
+            <div>
+              <h2>anatomy family</h2>
+              <p>Exemplar concept: <strong>clitoral-structure</strong> · approved</p>
+            </div>
+            <div class="badges">
+              <span class="badge fit-matches">style 5/5</span>
+            </div>
+          </header>
+          <p class="taskPrompt">Reference renders ratified the style bible. Shipped plate is canonical — decide whether to keep the candidate PNG for documentation.</p>
+          <div class="compareRow">
+            <div class="compareCol production">
+              <div class="compareColHeader">Shipped plate</div>
+              <button type="button" class="previewButton" data-lightbox="assets/images/concepts/illustrations/clitoral-structure.png" data-compare-group="ref-anatomy" aria-label="Enlarge"><img class="preview image" src="../../assets/images/concepts/illustrations/clitoral-structure.png" alt="" loading="lazy"></button>
+              <div class="compareMeta">
+                <p class="path">assets/images/concepts/illustrations/clitoral-structure.png</p>
+                <p class="notes">Majestic wing structure accurately represents full anatomy in-app, conforming to Style Bible</p>
+              </div>
+            </div>
+            <div class="compareCol staging">
+              <div class="compareColHeader">Reference candidate</div>
+              <div class="preview placeholder missing"><span>File removed</span><small>assets/_staging/reference/anatomy/gemini.png</small></div>
+              <div class="compareMeta">
+                <p class="path">assets/_staging/reference/anatomy/gemini.png</p>
+                <p class="compareFacts">gemini</p>
+              </div>
+            </div>
+          </div>
+          <div class="decisionBar" data-task="reference:anatomy"><button type="button" class="decisionBtn" data-task="reference:anatomy" data-value="archive">Archive candidate</button><button type="button" class="decisionBtn" data-task="reference:anatomy" data-value="keep">Keep candidate</button><span class="decisionStatus" data-task-status="reference:anatomy">Not reviewed</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-video" role="tabpanel" hidden>
+      <div class="panelIntro">Masters in <code>assets/videos/originals/</code> are re-transcode sources — not bundled. Shipped files live in <code>assets/videos/*.mp4</code>.</div>
+      <div class="progressBar" id="progress-video">Reviewed: <strong>0</strong> / 4</div>
+      <div id="videoCards">
+        <article class="taskCard videoCard" id="video-building"
+          data-concept="building"
+          data-orphan="false"
+          data-task="video:building">
+          <header class="taskHeader">
+            <div>
+              <h2>building</h2>
+              <p>sensation · wired in app</p>
+            </div>
+          </header>
+          <p class="taskPrompt">Compare shipped MP4 against source masters. Keep masters until transcodes are final.</p>
+          <div class="compareRow">
+            
+              <div class="compareCol production">
+                <div class="compareColHeader">Shipped MP4</div>
+                <button type="button" class="previewButton" data-lightbox="assets/videos/building.mp4" data-compare-group="video-building" aria-label="Enlarge"><video class="preview video" src="../../assets/videos/building.mp4" controls muted playsinline preload="metadata"></video></button>
+                <div class="compareMeta">
+                  <p class="path">assets/videos/building.mp4</p>
+                  <p class="compareFacts">256 KB · wired</p>
+                </div>
+              </div>
+            
+            <div class="compareCol staging">
+              <div class="compareColHeader">Master · building.mov</div>
+              <button type="button" class="previewButton" data-lightbox="assets/videos/originals/building.mov" data-compare-group="video-building" aria-label="Enlarge"><video class="preview video" src="../../assets/videos/originals/building.mov" controls muted playsinline preload="metadata"></video></button>
+              <div class="compareMeta">
+                <p class="path">assets/videos/originals/building.mov</p>
+                <p class="compareFacts">5.2 MB</p>
+              </div>
+            </div>
+          
+            <div class="compareCol staging">
+              <div class="compareColHeader">Master · building.mp4</div>
+              <button type="button" class="previewButton" data-lightbox="assets/videos/originals/building.mp4" data-compare-group="video-building" aria-label="Enlarge"><video class="preview video" src="../../assets/videos/originals/building.mp4" controls muted playsinline preload="metadata"></video></button>
+              <div class="compareMeta">
+                <p class="path">assets/videos/originals/building.mp4</p>
+                <p class="compareFacts">993 KB</p>
+              </div>
+            </div>
+          
+          </div>
+          <div class="decisionBar" data-task="video:building"><button type="button" class="decisionBtn" data-task="video:building" data-value="keep-masters">Keep masters</button><button type="button" class="decisionBtn" data-task="video:building" data-value="delete-masters">Delete masters</button><span class="decisionStatus" data-task-status="video:building">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard videoCard" id="video-responsive-desire"
+          data-concept="responsive-desire"
+          data-orphan="false"
+          data-task="video:responsive-desire">
+          <header class="taskHeader">
+            <div>
+              <h2>responsive-desire</h2>
+              <p>timing · wired in app</p>
+            </div>
+          </header>
+          <p class="taskPrompt">Compare shipped MP4 against source masters. Keep masters until transcodes are final.</p>
+          <div class="compareRow">
+            
+              <div class="compareCol production">
+                <div class="compareColHeader">Shipped MP4</div>
+                <button type="button" class="previewButton" data-lightbox="assets/videos/responsive-desire.mp4" data-compare-group="video-responsive-desire" aria-label="Enlarge"><video class="preview video" src="../../assets/videos/responsive-desire.mp4" controls muted playsinline preload="metadata"></video></button>
+                <div class="compareMeta">
+                  <p class="path">assets/videos/responsive-desire.mp4</p>
+                  <p class="compareFacts">503 KB · wired</p>
+                </div>
+              </div>
+            
+            <div class="compareCol staging">
+              <div class="compareColHeader">Master · responsive-desire.mov</div>
+              <button type="button" class="previewButton" data-lightbox="assets/videos/originals/responsive-desire.mov" data-compare-group="video-responsive-desire" aria-label="Enlarge"><video class="preview video" src="../../assets/videos/originals/responsive-desire.mov" controls muted playsinline preload="metadata"></video></button>
+              <div class="compareMeta">
+                <p class="path">assets/videos/originals/responsive-desire.mov</p>
+                <p class="compareFacts">5.9 MB</p>
+              </div>
+            </div>
+          
+            <div class="compareCol staging">
+              <div class="compareColHeader">Master · responsive-desire.mp4</div>
+              <button type="button" class="previewButton" data-lightbox="assets/videos/originals/responsive-desire.mp4" data-compare-group="video-responsive-desire" aria-label="Enlarge"><video class="preview video" src="../../assets/videos/originals/responsive-desire.mp4" controls muted playsinline preload="metadata"></video></button>
+              <div class="compareMeta">
+                <p class="path">assets/videos/originals/responsive-desire.mp4</p>
+                <p class="compareFacts">1.9 MB</p>
+              </div>
+            </div>
+          
+          </div>
+          <div class="decisionBar" data-task="video:responsive-desire"><button type="button" class="decisionBtn" data-task="video:responsive-desire" data-value="keep-masters">Keep masters</button><button type="button" class="decisionBtn" data-task="video:responsive-desire" data-value="delete-masters">Delete masters</button><span class="decisionStatus" data-task-status="video:responsive-desire">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard videoCard" id="video-shallowing"
+          data-concept="shallowing"
+          data-orphan="true"
+          data-task="video:shallowing">
+          <header class="taskHeader">
+            <div>
+              <h2>shallowing</h2>
+              <p>technique · not shipped (masters only)</p>
+            </div>
+          </header>
+          <p class="taskPrompt">These source files are not bundled. Safe to delete if you will not re-transcode.</p>
+          <div class="compareRow">
+            
+              <div class="compareCol missingCol">
+                <div class="compareColHeader">Shipped MP4</div>
+                <div class="preview placeholder"><span>None</span></div>
+              </div>
+            
+            <div class="compareCol staging">
+              <div class="compareColHeader">Master · shallowing.mp4</div>
+              <button type="button" class="previewButton" data-lightbox="assets/videos/originals/shallowing.mp4" data-compare-group="video-shallowing" aria-label="Enlarge"><video class="preview video" src="../../assets/videos/originals/shallowing.mp4" controls muted playsinline preload="metadata"></video></button>
+              <div class="compareMeta">
+                <p class="path">assets/videos/originals/shallowing.mp4</p>
+                <p class="compareFacts">679 KB</p>
+              </div>
+            </div>
+          
+          </div>
+          <div class="decisionBar" data-task="video:shallowing"><button type="button" class="decisionBtn" data-task="video:shallowing" data-value="keep-masters">Keep masters</button><button type="button" class="decisionBtn" data-task="video:shallowing" data-value="delete-masters">Delete masters</button><button type="button" class="decisionBtn" data-task="video:shallowing" data-value="delete-now">Delete now (orphan)</button><span class="decisionStatus" data-task-status="video:shallowing">Not reviewed</span></div>
+        </article>
+      
+        <article class="taskCard videoCard" id="video-spreading"
+          data-concept="spreading"
+          data-orphan="false"
+          data-task="video:spreading">
+          <header class="taskHeader">
+            <div>
+              <h2>spreading</h2>
+              <p>sensation · wired in app</p>
+            </div>
+          </header>
+          <p class="taskPrompt">Compare shipped MP4 against source masters. Keep masters until transcodes are final.</p>
+          <div class="compareRow">
+            
+              <div class="compareCol production">
+                <div class="compareColHeader">Shipped MP4</div>
+                <button type="button" class="previewButton" data-lightbox="assets/videos/spreading.mp4" data-compare-group="video-spreading" aria-label="Enlarge"><video class="preview video" src="../../assets/videos/spreading.mp4" controls muted playsinline preload="metadata"></video></button>
+                <div class="compareMeta">
+                  <p class="path">assets/videos/spreading.mp4</p>
+                  <p class="compareFacts">1.6 MB · wired</p>
+                </div>
+              </div>
+            
+          </div>
+          <div class="decisionBar" data-task="video:spreading"><button type="button" class="decisionBtn" data-task="video:spreading" data-value="keep-masters">Keep masters</button><button type="button" class="decisionBtn" data-task="video:spreading" data-value="delete-masters">Delete masters</button><span class="decisionStatus" data-task-status="video:spreading">Not reviewed</span></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <button type="button" class="lightboxClose" id="lightboxClose" aria-label="Close">×</button>
+    <div class="lightboxInner" id="lightboxInner"></div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'media-review-decisions-v2';
+    const panels = {
+      style: document.getElementById('panel-style'),
+      reference: document.getElementById('panel-reference'),
+      video: document.getElementById('panel-video'),
+    };
+    const tabs = {
+      style: document.getElementById('tab-style'),
+      reference: document.getElementById('tab-reference'),
+      video: document.getElementById('tab-video'),
+    };
+    const panelTools = {
+      style: document.getElementById('tools-style'),
+      video: document.getElementById('tools-video'),
+    };
+
+    let activeView = 'style';
+    let decisions = {};
+
+    function loadDecisions() {
+      try { decisions = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch { decisions = {}; }
+    }
+    function saveDecisions() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(decisions));
+      refreshDecisionUI();
+    }
+
+    function setView(name) {
+      activeView = name;
+      for (const [key, panel] of Object.entries(panels)) {
+        const on = key === name;
+        panel.classList.toggle('active', on);
+        panel.hidden = !on;
+        tabs[key].setAttribute('aria-selected', on ? 'true' : 'false');
+      }
+      for (const [key, el] of Object.entries(panelTools)) {
+        el.classList.toggle('active', key === name);
+      }
+      rebuildJumpNav();
+      applyPanelFilters();
+    }
+
+    function refreshDecisionUI() {
+      document.querySelectorAll('.decisionBar').forEach((bar) => {
+        const task = bar.dataset.task;
+        const value = decisions[task];
+        bar.querySelectorAll('.decisionBtn').forEach((btn) => {
+          btn.classList.toggle('selected', btn.dataset.value === value);
+        });
+        const status = bar.querySelector('[data-task-status]');
+        const card = bar.closest('.taskCard');
+        if (value) {
+          status.textContent = 'Decision: ' + value;
+          status.classList.add('set');
+          card?.classList.add('reviewed');
+        } else {
+          status.textContent = 'Not reviewed';
+          status.classList.remove('set');
+          card?.classList.remove('reviewed');
+        }
+      });
+      updateProgress('style', '#styleCards .taskCard', 'progress-style');
+      updateProgress('reference', '#referenceCards .taskCard', 'progress-reference');
+      updateProgress('video', '#videoCards .taskCard', 'progress-video');
+      rebuildJumpNav();
+    }
+
+    function updateProgress(prefix, selector, elId) {
+      const cards = document.querySelectorAll(selector);
+      let done = 0;
+      cards.forEach((card) => {
+        const task = card.dataset.task;
+        if (task && decisions[task]) done++;
+      });
+      const el = document.getElementById(elId);
+      if (el) el.innerHTML = 'Reviewed: <strong>' + done + '</strong> / ' + cards.length;
+    }
+
+    function rebuildJumpNav() {
+      const nav = document.getElementById('jumpNav');
+      nav.innerHTML = '';
+      const panel = panels[activeView];
+      if (!panel) return;
+      panel.querySelectorAll('.taskCard').forEach((card) => {
+        if (card.classList.contains('hidden')) return;
+        const a = document.createElement('a');
+        a.href = '#' + card.id;
+        a.textContent = card.dataset.concept || card.dataset.family || card.id;
+        if (decisions[card.dataset.task]) a.classList.add('done');
+        nav.appendChild(a);
+      });
+    }
+
+    function applyPanelFilters() {
+      if (activeView === 'style') {
+        const cat = document.getElementById('filter-category').value;
+        const style = document.getElementById('filter-style-family').value;
+        const unreviewed = document.getElementById('filter-unreviewed').checked;
+        document.querySelectorAll('#styleCards .taskCard').forEach((card) => {
+          let show = true;
+          if (cat && card.dataset.category !== cat) show = false;
+          if (style && card.dataset.style !== style) show = false;
+          if (unreviewed && decisions[card.dataset.task]) show = false;
+          card.classList.toggle('hidden', !show);
+        });
+      }
+      if (activeView === 'video') {
+        const orphans = document.getElementById('filter-orphans').checked;
+        document.querySelectorAll('#videoCards .taskCard').forEach((card) => {
+          const show = !orphans || card.dataset.orphan === 'true';
+          card.classList.toggle('hidden', !show);
+        });
+      }
+      rebuildJumpNav();
+    }
+
+    document.querySelectorAll('.decisionBtn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const task = btn.dataset.task;
+        decisions[task] = decisions[task] === btn.dataset.value ? null : btn.dataset.value;
+        if (!decisions[task]) delete decisions[task];
+        saveDecisions();
+      });
+    });
+
+    for (const [name, tab] of Object.entries(tabs)) {
+      tab.addEventListener('click', () => setView(name));
+    }
+
+    ['filter-category', 'filter-style-family'].forEach((id) => {
+      document.getElementById(id)?.addEventListener('change', applyPanelFilters);
+    });
+    document.getElementById('filter-unreviewed')?.addEventListener('change', applyPanelFilters);
+    document.getElementById('filter-orphans')?.addEventListener('change', applyPanelFilters);
+
+    document.getElementById('exportDecisions').addEventListener('click', () => {
+      const blob = new Blob([JSON.stringify(decisions, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'media-review-decisions.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    document.getElementById('clearDecisions').addEventListener('click', () => {
+      if (confirm('Clear all saved review decisions?')) {
+        decisions = {};
+        saveDecisions();
+      }
+    });
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxInner = document.getElementById('lightboxInner');
+
+    function mediaFromButton(btn) {
+      const preview = btn.querySelector('.preview');
+      if (!preview) return null;
+      if (preview.tagName === 'IMG') {
+        const img = document.createElement('img');
+        img.className = 'lightboxMedia';
+        img.src = preview.src;
+        return img;
+      }
+      if (preview.tagName === 'VIDEO') {
+        const video = document.createElement('video');
+        video.className = 'lightboxMedia';
+        video.src = preview.src;
+        video.controls = true;
+        video.autoplay = true;
+        return video;
+      }
+      return null;
+    }
+
+    document.body.addEventListener('click', (event) => {
+      const btn = event.target.closest('[data-lightbox]');
+      if (!btn) return;
+      event.preventDefault();
+      lightboxInner.innerHTML = '';
+      const group = btn.dataset.compareGroup;
+      const peers = group ? Array.from(document.querySelectorAll('[data-compare-group="' + group + '"]')) : [btn];
+      const grid = document.createElement('div');
+      grid.className = 'lightboxCompare';
+      peers.forEach((peer) => {
+        const panel = document.createElement('div');
+        const label = document.createElement('div');
+        label.className = 'lightboxPanelLabel';
+        label.textContent = peer.closest('.compareCol')?.querySelector('.compareColHeader')?.textContent || peer.dataset.lightbox;
+        panel.appendChild(label);
+        const media = mediaFromButton(peer);
+        if (media) panel.appendChild(media);
+        grid.appendChild(panel);
+      });
+      lightboxInner.appendChild(grid);
+      const cap = document.createElement('div');
+      cap.className = 'lightboxCaption';
+      cap.textContent = btn.dataset.lightbox;
+      lightboxInner.appendChild(cap);
+      lightbox.hidden = false;
+      lightbox.classList.add('open');
+    });
+
+    document.getElementById('lightboxClose').addEventListener('click', () => {
+      lightbox.classList.remove('open');
+      lightbox.hidden = true;
+      lightboxInner.innerHTML = '';
+    });
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) document.getElementById('lightboxClose').click(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') document.getElementById('lightboxClose').click(); });
+
+    loadDecisions();
+    refreshDecisionUI();
+    setView('style');
+  </script>
+</body>
+</html>

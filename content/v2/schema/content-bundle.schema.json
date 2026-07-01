@@ -47,10 +47,10 @@
       "type": "string",
       "pattern": "^[a-z0-9][a-z0-9-]*$"
     },
-    "concept": {
+        "concept": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "name", "category", "definition", "summary", "blocks", "relatedConceptIds", "phraseTemplates", "citations"],
+      "required": ["id", "name", "category", "reviewStatus", "definition", "summary", "blocks", "relatedConceptIds", "phraseTemplates", "citations"],
       "properties": {
         "id": {
           "$ref": "#/$defs/id"
@@ -61,6 +61,9 @@
         },
         "category": {
           "enum": ["technique", "sensation", "timing", "psychological", "anatomy"]
+        },
+        "reviewStatus": {
+          "enum": ["draft", "reviewed", "approved", "retired"]
         },
         "definition": {
           "type": "string",
@@ -137,7 +140,7 @@
     "phraseTemplate": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "label", "body", "tone"],
+      "required": ["id", "label", "body", "tone", "useCase"],
       "properties": {
         "id": {
           "$ref": "#/$defs/id"
@@ -150,6 +153,9 @@
         },
         "tone": {
           "enum": ["soft", "direct", "curious", "reassuring"]
+        },
+        "useCase": {
+          "enum": ["self-understanding", "partner-request", "boundary", "curiosity", "reassurance"]
         }
       }
     },
@@ -175,7 +181,7 @@
     "pathway": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "name", "summary", "conceptIds"],
+      "required": ["id", "name", "summary", "intent", "conceptIds"],
       "properties": {
         "id": {
           "$ref": "#/$defs/id"
@@ -185,6 +191,9 @@
         },
         "summary": {
           "type": "string"
+        },
+        "intent": {
+          "enum": ["understand-body", "notice-patterns", "communicate", "try-something", "return-to-presence"]
         },
         "conceptIds": {
           "type": "array",

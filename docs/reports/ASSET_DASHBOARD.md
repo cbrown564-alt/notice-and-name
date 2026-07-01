@@ -1,6 +1,6 @@
 # Asset Dashboard
 
-**Generated:** 2026-05-21
+**Generated:** 2026-06-30
 **Refresh:** `npm run asset-dashboard -- --write`
 
 ```

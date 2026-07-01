@@ -42,6 +42,7 @@ public struct Concept: Codable, Equatable, Sendable, Identifiable {
     public let id: String
     public let name: String
     public let category: ConceptCategory
+    public let reviewStatus: ContentReviewStatus
     public let definition: String
     public let summary: String
     public let blocks: [ContentBlock]
@@ -57,6 +58,13 @@ public enum ConceptCategory: String, Codable, Sendable {
     case timing
     case psychological
     case anatomy
+}
+
+public enum ContentReviewStatus: String, Codable, Sendable {
+    case draft
+    case reviewed
+    case approved
+    case retired
 }
 
 public struct ContentBlock: Codable, Equatable, Sendable, Identifiable {
@@ -83,6 +91,7 @@ public struct PhraseTemplate: Codable, Equatable, Sendable, Identifiable {
     public let label: String
     public let body: String
     public let tone: PhraseTone
+    public let useCase: PhraseUseCase
 }
 
 public enum PhraseTone: String, Codable, Sendable {
@@ -90,6 +99,14 @@ public enum PhraseTone: String, Codable, Sendable {
     case direct
     case curious
     case reassuring
+}
+
+public enum PhraseUseCase: String, Codable, Sendable {
+    case selfUnderstanding = "self-understanding"
+    case partnerRequest = "partner-request"
+    case boundary
+    case curiosity
+    case reassurance
 }
 
 public struct Citation: Codable, Equatable, Sendable, Identifiable {
@@ -103,7 +120,16 @@ public struct Pathway: Codable, Equatable, Sendable, Identifiable {
     public let id: String
     public let name: String
     public let summary: String
+    public let intent: PathwayIntent
     public let conceptIds: [String]
+}
+
+public enum PathwayIntent: String, Codable, Sendable {
+    case understandBody = "understand-body"
+    case noticePatterns = "notice-patterns"
+    case communicate
+    case trySomething = "try-something"
+    case returnToPresence = "return-to-presence"
 }
 
 public struct MediaItem: Codable, Equatable, Sendable, Identifiable {

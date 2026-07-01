@@ -1,0 +1,2360 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>V2 Content Preview</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --canvas: #f7f4ef;
+      --ink: #2b2420;
+      --muted: #71655d;
+      --line: #ded4ca;
+      --surface: #fffdf9;
+      --accent: #9d4f52;
+      --soft: #ead8d3;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    main { max-width: 1120px; margin: 0 auto; padding: 32px 20px 64px; }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 380px);
+      gap: 28px;
+      align-items: end;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--line);
+    }
+    h1, h2, h3 { margin: 0; line-height: 1.12; font-family: Georgia, "Times New Roman", serif; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); max-width: 720px; }
+    h2 { font-size: clamp(1.6rem, 3vw, 2.6rem); }
+    h3 { font-size: 1.15rem; }
+    p { margin: 0; }
+    .meta, .eyebrow, .blockMeta, small {
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .nav a {
+      display: inline-flex;
+      min-height: 34px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 6px 10px;
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 0.9rem;
+    }
+    .panel, .concept {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    .panel { padding: 18px; }
+    .pathways {
+      display: grid;
+      gap: 12px;
+      padding: 0;
+      margin: 14px 0 0;
+      list-style: none;
+    }
+    .pathways li {
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+    }
+    .pathways li:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+    .pathways span {
+      display: inline-block;
+      margin-left: 8px;
+      color: var(--accent);
+      font-size: 0.85rem;
+    }
+    .concepts {
+      display: grid;
+      gap: 24px;
+      margin-top: 28px;
+    }
+    .concept { padding: 22px; scroll-margin-top: 18px; }
+    .concept header {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: start;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .definition, .review {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      background: var(--soft);
+    }
+    .review { background: #f4ece5; color: var(--muted); }
+    .blocks {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .block {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: #fffaf3;
+    }
+    .refs { margin-top: 8px; color: var(--muted); font-size: 0.9rem; }
+    .phrases, .citations {
+      display: grid;
+      gap: 10px;
+      list-style: none;
+      padding: 0;
+      margin: 12px 0 0;
+    }
+    .phrases li, .citations li {
+      border-left: 3px solid var(--accent);
+      padding-left: 12px;
+    }
+    .phrases span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+    }
+    section { margin-top: 18px; }
+    @media (max-width: 760px) {
+      main { padding: 22px 14px 48px; }
+      .hero, .blocks { grid-template-columns: 1fr; }
+      .concept header { display: grid; }
+    }
+  </style>
+</head>
+<body>
+  <main id="top">
+    <section class="hero">
+      <div>
+        <p class="meta">Generated from content/v2/bundles/v2-full.bundle.json</p>
+        <h1>V2 Content Preview</h1>
+        <p>22 approved concepts, 5 intent pathways, 29 media entries.</p>
+        <nav class="nav" aria-label="Concepts"><a href="#angling">Angling</a><a href="#rocking">Rocking</a><a href="#shallowing">Shallowing</a><a href="#pairing">Pairing</a><a href="#building">Building</a><a href="#plateauing">Plateauing</a><a href="#edging">Edging</a><a href="#spreading">Spreading</a><a href="#pulsing">Pulsing</a><a href="#warmup-window">Warm-up Window</a><a href="#responsive-desire">Responsive Desire</a><a href="#spontaneous-desire">Spontaneous Desire</a><a href="#golden-trio">Golden Trio</a><a href="#spectatoring">Spectatoring</a><a href="#embodied-presence">Embodied Presence</a><a href="#non-concordance">Non-concordance</a><a href="#sexual-self-esteem">Sexual Self-Esteem</a><a href="#body-appreciation">Body Appreciation</a><a href="#clitoral-structure">Clitoral Structure</a><a href="#nerve-density">Nerve Density</a><a href="#clitourethrovaginal">CUV Complex</a><a href="#internal-stimulation">Internal Clitoral Stimulation</a></nav>
+      </div>
+      <aside class="panel">
+        <h2>Pathways</h2>
+        <ul class="pathways">
+      <li>
+        <strong>Understand My Body</strong>
+        <span>understand-body</span>
+        <p>Start with anatomy and core patterns that make pleasure feel less mysterious.</p>
+        <small>pairing -> clitoral-structure -> nerve-density -> clitourethrovaginal -> internal-stimulation -> building</small>
+      </li>
+    
+      <li>
+        <strong>Notice What Feels Good</strong>
+        <span>notice-patterns</span>
+        <p>Build language for your own sensations, timing, and the signals worth remembering.</p>
+        <small>edging -> plateauing -> spreading -> pulsing -> embodied-presence</small>
+      </li>
+    
+      <li>
+        <strong>Find Words For A Partner</strong>
+        <span>communicate</span>
+        <p>Turn personal discoveries into clear, kind explanations and requests.</p>
+        <small>responsive-desire -> spontaneous-desire -> warmup-window -> spectatoring -> sexual-self-esteem</small>
+      </li>
+    
+      <li>
+        <strong>Try A Different Approach</strong>
+        <span>try-something</span>
+        <p>Explore small changes in touch, rhythm, angle, and combinations without making novelty the goal.</p>
+        <small>angling -> rocking -> shallowing -> golden-trio</small>
+      </li>
+    
+      <li>
+        <strong>Return To Presence</strong>
+        <span>return-to-presence</span>
+        <p>Name the mental loops that pull attention away from sensation, then practice coming back.</p>
+        <small>spectatoring -> embodied-presence -> non-concordance -> body-appreciation</small>
+      </li>
+    </ul>
+      </aside>
+    </section>
+    <section class="concepts">
+    <article class="concept" id="angling">
+      <header>
+        <div>
+          <p class="eyebrow">technique / approved</p>
+          <h2>Angling</h2>
+          <p>Angling involves making subtle adjustments to pelvic position during penetrative activity.</p>
+        </div>
+        <a href="#top" aria-label="Back to top">Top</a>
+      </header>
+      <div class="definition">Rotating, raising, or lowering the pelvis during penetration to adjust where internal stimulation occurs.</div>
+      <div class="review">
+        <strong>Citation audit:</strong> approved
+        <br>
+        <strong>Media policy:</strong> diagram, image
+      </div>
+      <div class="blocks">
+      <section class="block">
+        <div class="blockMeta">recognize</div>
+        <h3>Recognize</h3>
+        <p>Have you ever shifted your hips during penetration to find an angle that felt better?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">definition</div>
+        <h3>Name</h3>
+        <p>Angling is tilting your pelvis—forward, back, or side to side—to change where internal stimulation lands.</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">media</div>
+        <h3>See It</h3>
+        <p>How pelvic tilt redirects pressure along the anterior wall</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">mechanism</div>
+        <h3>Understand</h3>
+        <p>In the OMGyes Pleasure Report (Hensel et al., 2021), about nine in ten women reported using angling. Research suggests that naming a movement can help you notice it in the moment and repeat what works—instead of relying on vague “that felt good last time.”</p>
+        <p class="refs">Cites: angling-source-1</p>
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">reflection</div>
+        <h3>Field Note</h3>
+        <p>Have you ever noticed yourself tilting your hips to change how something feels? What would you want to remember about your own experience?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">phrase</div>
+        <h3>A Phrase To Keep</h3>
+        <p>I am learning that angling may matter for me, and I want to notice it without turning it into a goal.</p>
+        
+      </section>
+    </div>
+      <section>
+        <h3>Phrase Templates</h3>
+        <ul class="phrases">
+      <li>
+        <span>self-understanding</span>
+        <strong>For myself</strong>
+        <p>I am learning that angling may matter for me, and I want to notice it without turning it into a goal.</p>
+      </li>
+    
+      <li>
+        <span>partner-request</span>
+        <strong>Ask for support</strong>
+        <p>Can we make space for exploring angling slowly, with check-ins about what feels good and what does not?</p>
+      </li>
+    
+      <li>
+        <span>boundary</span>
+        <strong>Set a boundary</strong>
+        <p>If angling starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.</p>
+      </li>
+    
+      <li>
+        <span>curiosity</span>
+        <strong>Open curiosity</strong>
+        <p>I am curious about exploring angling, and I would like to treat it as an experiment rather than something we have to get right.</p>
+      </li>
+    
+      <li>
+        <span>reassurance</span>
+        <strong>Reassure</strong>
+        <p>Nothing is wrong if angling shows up differently from one experience to the next. I want patience and honesty to lead.</p>
+      </li>
+    </ul>
+      </section>
+      <section>
+        <h3>Citations</h3>
+        <ul class="citations"><li><strong>Hensel et al., 2021, PLOS ONE</strong><br>Hensel et al., 2021, PLOS ONE</li></ul>
+      </section>
+    </article>
+  
+    <article class="concept" id="rocking">
+      <header>
+        <div>
+          <p class="eyebrow">technique / approved</p>
+          <h2>Rocking</h2>
+          <p>Rocking refers to a grinding, circular, or back-and-forth motion during penetrative activity that maintains continuous contact between bodies - particularly at the point where external sensitive areas meet a partner&#39;s body.</p>
+        </div>
+        <a href="#top" aria-label="Back to top">Top</a>
+      </header>
+      <div class="definition">A grinding or rocking motion that keeps consistent contact with external areas during penetration.</div>
+      <div class="review">
+        <strong>Citation audit:</strong> approved
+        <br>
+        <strong>Media policy:</strong> diagram, image
+      </div>
+      <div class="blocks">
+      <section class="block">
+        <div class="blockMeta">recognize</div>
+        <h3>Recognize</h3>
+        <p>Have you noticed that grinding or circular movements sometimes feel better than thrusting?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">definition</div>
+        <h3>Name</h3>
+        <p>Rocking is a grinding or wave-like motion that keeps steady external contact during penetration—often without using your hands.</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">media</div>
+        <h3>See It</h3>
+        <p>Compression and friction at the pubic mound</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">mechanism</div>
+        <h3>Understand</h3>
+        <p>Studies suggest most women need clitoral stimulation for orgasm; penetration alone often provides limited external contact. Rocking keeps bodies close so pressure on the clitoral area can stay continuous rather than breaking with each thrust (Hensel et al., 2021).</p>
+        <p class="refs">Cites: rocking-source-1</p>
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">reflection</div>
+        <h3>Field Note</h3>
+        <p>Have you noticed a difference between grinding/rocking motions versus thrusting? What would you want to remember about your own experience?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">phrase</div>
+        <h3>A Phrase To Keep</h3>
+        <p>I am learning that rocking may matter for me, and I want to notice it without turning it into a goal.</p>
+        
+      </section>
+    </div>
+      <section>
+        <h3>Phrase Templates</h3>
+        <ul class="phrases">
+      <li>
+        <span>self-understanding</span>
+        <strong>For myself</strong>
+        <p>I am learning that rocking may matter for me, and I want to notice it without turning it into a goal.</p>
+      </li>
+    
+      <li>
+        <span>partner-request</span>
+        <strong>Ask for support</strong>
+        <p>Can we make space for exploring rocking slowly, with check-ins about what feels good and what does not?</p>
+      </li>
+    
+      <li>
+        <span>boundary</span>
+        <strong>Set a boundary</strong>
+        <p>If rocking starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.</p>
+      </li>
+    
+      <li>
+        <span>curiosity</span>
+        <strong>Open curiosity</strong>
+        <p>I am curious about exploring rocking, and I would like to treat it as an experiment rather than something we have to get right.</p>
+      </li>
+    
+      <li>
+        <span>reassurance</span>
+        <strong>Reassure</strong>
+        <p>Nothing is wrong if rocking shows up differently from one experience to the next. I want patience and honesty to lead.</p>
+      </li>
+    </ul>
+      </section>
+      <section>
+        <h3>Citations</h3>
+        <ul class="citations"><li><strong>Hensel et al., 2021, PLOS ONE</strong><br>Hensel et al., 2021, PLOS ONE</li></ul>
+      </section>
+    </article>
+  
+    <article class="concept" id="shallowing">
+      <header>
+        <div>
+          <p class="eyebrow">technique / approved</p>
+          <h2>Shallowing</h2>
+          <p>Shallowing describes pleasurable touch that focuses on the vaginal entrance and the area just inside - using fingertips, tongue, or the tip of a toy or partner rather than deeper penetration.</p>
+        </div>
+        <a href="#top" aria-label="Back to top">Top</a>
+      </header>
+      <div class="definition">Focusing stimulation at or just inside the vaginal entrance rather than deeper penetration.</div>
+      <div class="review">
+        <strong>Citation audit:</strong> approved
+        <br>
+        <strong>Media policy:</strong> diagram, image
+      </div>
+      <div class="blocks">
+      <section class="block">
+        <div class="blockMeta">recognize</div>
+        <h3>Recognize</h3>
+        <p>Have you noticed that the first moments of penetration—right at the entrance—can feel especially sensitive?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">definition</div>
+        <h3>Name</h3>
+        <p>Shallowing is focusing touch at the vaginal entrance and the first inch or two inside—not treating depth as the goal.</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">media</div>
+        <h3>See It</h3>
+        <p>Nerve-rich tissue at the introitus</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">mechanism</div>
+        <h3>Understand</h3>
+        <p>The introitus is densely innervated. In Hensel et al. (2021), shallowing was widely reported, and many participants said lingering at the entrance made later touch feel better—consistent with anatomy, not “just teasing.”</p>
+        <p class="refs">Cites: shallowing-source-1</p>
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">reflection</div>
+        <h3>Field Note</h3>
+        <p>Have you noticed that the entrance area can feel especially sensitive? What would you want to remember about your own experience?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">phrase</div>
+        <h3>A Phrase To Keep</h3>
+        <p>I am learning that shallowing may matter for me, and I want to notice it without turning it into a goal.</p>
+        
+      </section>
+    </div>
+      <section>
+        <h3>Phrase Templates</h3>
+        <ul class="phrases">
+      <li>
+        <span>self-understanding</span>
+        <strong>For myself</strong>
+        <p>I am learning that shallowing may matter for me, and I want to notice it without turning it into a goal.</p>
+      </li>
+    
+      <li>
+        <span>partner-request</span>
+        <strong>Ask for support</strong>
+        <p>Can we make space for exploring shallowing slowly, with check-ins about what feels good and what does not?</p>
+      </li>
+    
+      <li>
+        <span>boundary</span>
+        <strong>Set a boundary</strong>
+        <p>If shallowing starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.</p>
+      </li>
+    
+      <li>
+        <span>curiosity</span>
+        <strong>Open curiosity</strong>
+        <p>I am curious about exploring shallowing, and I would like to treat it as an experiment rather than something we have to get right.</p>
+      </li>
+    
+      <li>
+        <span>reassurance</span>
+        <strong>Reassure</strong>
+        <p>Nothing is wrong if shallowing shows up differently from one experience to the next. I want patience and honesty to lead.</p>
+      </li>
+    </ul>
+      </section>
+      <section>
+        <h3>Citations</h3>
+        <ul class="citations"><li><strong>Hensel et al., 2021, PLOS ONE</strong><br>Hensel et al., 2021, PLOS ONE</li></ul>
+      </section>
+    </article>
+  
+    <article class="concept" id="pairing">
+      <header>
+        <div>
+          <p class="eyebrow">technique / approved</p>
+          <h2>Pairing</h2>
+          <p>Pairing means combining internal penetration with external clitoral stimulation - using your own hand, a partner&#39;s hand, a toy, or body positioning to add external touch during penetrative activity.</p>
+        </div>
+        <a href="#top" aria-label="Back to top">Top</a>
+      </header>
+      <div class="definition">Adding external clitoral stimulation during penetration, either solo or with a partner.</div>
+      <div class="review">
+        <strong>Citation audit:</strong> approved
+        <br>
+        <strong>Media policy:</strong> diagram, image
+      </div>
+      <div class="blocks">
+      <section class="block">
+        <div class="blockMeta">recognize</div>
+        <h3>Recognize</h3>
+        <p>Have you found that penetration alone doesn&#39;t quite get you there—but adding clitoral touch changes everything?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">definition</div>
+        <h3>Name</h3>
+        <p>Pairing is combining penetration with clitoral stimulation—your hand, a partner&#39;s hand, a toy, or positioning that adds external touch.</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">media</div>
+        <h3>See It</h3>
+        <p>Internal and external stimulation in parallel</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">mechanism</div>
+        <h3>Understand</h3>
+        <p>Research consistently links clitoral stimulation with higher orgasm likelihood during partnered sex. Frederick et al. (2018) and the OMGyes work (Hensel et al., 2021) report that many women pair penetration with external touch—not as a fix, but as a common, physiologically sensible pattern.</p>
+        <p class="refs">Cites: pairing-source-1, pairing-source-2</p>
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">reflection</div>
+        <h3>Field Note</h3>
+        <p>Do you find that penetration feels better when combined with external touch? What would you want to remember about your own experience?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">phrase</div>
+        <h3>A Phrase To Keep</h3>
+        <p>I am learning that pairing may matter for me, and I want to notice it without turning it into a goal.</p>
+        
+      </section>
+    </div>
+      <section>
+        <h3>Phrase Templates</h3>
+        <ul class="phrases">
+      <li>
+        <span>self-understanding</span>
+        <strong>For myself</strong>
+        <p>I am learning that pairing may matter for me, and I want to notice it without turning it into a goal.</p>
+      </li>
+    
+      <li>
+        <span>partner-request</span>
+        <strong>Ask for support</strong>
+        <p>Can we make space for exploring pairing slowly, with check-ins about what feels good and what does not?</p>
+      </li>
+    
+      <li>
+        <span>boundary</span>
+        <strong>Set a boundary</strong>
+        <p>If pairing starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.</p>
+      </li>
+    
+      <li>
+        <span>curiosity</span>
+        <strong>Open curiosity</strong>
+        <p>I am curious about exploring pairing, and I would like to treat it as an experiment rather than something we have to get right.</p>
+      </li>
+    
+      <li>
+        <span>reassurance</span>
+        <strong>Reassure</strong>
+        <p>Nothing is wrong if pairing shows up differently from one experience to the next. I want patience and honesty to lead.</p>
+      </li>
+    </ul>
+      </section>
+      <section>
+        <h3>Citations</h3>
+        <ul class="citations"><li><strong>Hensel et al., 2021, PLOS ONE</strong><br>Hensel et al., 2021, PLOS ONE</li><li><strong>Frederick et al., 2018</strong><br>Frederick et al., 2018</li></ul>
+      </section>
+    </article>
+  
+    <article class="concept" id="building">
+      <header>
+        <div>
+          <p class="eyebrow">sensation / approved</p>
+          <h2>Building</h2>
+          <p>Building describes the experience of arousal intensifying progressively - not jumping immediately to peak sensation, but allowing pleasure to accumulate and deepen over time.</p>
+        </div>
+        <a href="#top" aria-label="Back to top">Top</a>
+      </header>
+      <div class="definition">A gradual increase in arousal intensity over time, like a wave gathering strength.</div>
+      <div class="review">
+        <strong>Citation audit:</strong> approved
+        <br>
+        <strong>Media policy:</strong> image, video
+      </div>
+      <div class="blocks">
+      <section class="block">
+        <div class="blockMeta">recognize</div>
+        <h3>Recognize</h3>
+        <p>Have you felt arousal start small—a hint of warmth, a whisper of tingling—then slowly intensify into something unmistakable?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">definition</div>
+        <h3>Name</h3>
+        <p>Building is arousal that gathers gradually—warmth and intensity increasing over time rather than arriving all at once.</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">media</div>
+        <h3>See It</h3>
+        <p>Vascular and neural intensity rising over time</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">mechanism</div>
+        <h3>Understand</h3>
+        <p>Sexual response models describe an arousal-building phase before plateau or orgasm. Research suggests that allowing sensation to accumulate—rather than rushing—is often associated with stronger peaks (Masters &amp; Johnson; Basson, 2000).</p>
+        <p class="refs">Cites: building-source-1, building-source-2</p>
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">reflection</div>
+        <h3>Field Note</h3>
+        <p>Have you noticed pleasure intensifying gradually rather than all at once? What would you want to remember about your own experience?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">phrase</div>
+        <h3>A Phrase To Keep</h3>
+        <p>I am learning that building may matter for me, and I want to notice it without turning it into a goal.</p>
+        
+      </section>
+    </div>
+      <section>
+        <h3>Phrase Templates</h3>
+        <ul class="phrases">
+      <li>
+        <span>self-understanding</span>
+        <strong>For myself</strong>
+        <p>I am learning that building may matter for me, and I want to notice it without turning it into a goal.</p>
+      </li>
+    
+      <li>
+        <span>partner-request</span>
+        <strong>Ask for support</strong>
+        <p>Can we make space for noticing building slowly, with check-ins about what feels good and what does not?</p>
+      </li>
+    
+      <li>
+        <span>boundary</span>
+        <strong>Set a boundary</strong>
+        <p>If building starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.</p>
+      </li>
+    
+      <li>
+        <span>curiosity</span>
+        <strong>Open curiosity</strong>
+        <p>I am curious about noticing building, and I would like to treat it as an experiment rather than something we have to get right.</p>
+      </li>
+    
+      <li>
+        <span>reassurance</span>
+        <strong>Reassure</strong>
+        <p>Nothing is wrong if building shows up differently from one experience to the next. I want patience and honesty to lead.</p>
+      </li>
+    </ul>
+      </section>
+      <section>
+        <h3>Citations</h3>
+        <ul class="citations"><li><strong>Masters &amp; Johnson</strong><br>Masters &amp; Johnson</li><li><strong>Basson, 2000</strong><br>Basson, 2000</li></ul>
+      </section>
+    </article>
+  
+    <article class="concept" id="plateauing">
+      <header>
+        <div>
+          <p class="eyebrow">sensation / approved</p>
+          <h2>Plateauing</h2>
+          <p>Plateauing is the experience of arousal staying at a steady level - neither building toward climax nor fading. It&#39;s like reaching a landing on a staircase and staying there for a while.</p>
+        </div>
+        <a href="#top" aria-label="Back to top">Top</a>
+      </header>
+      <div class="definition">Sustained arousal at a consistent level without increase - a holding pattern that may precede orgasm or signal a need for change.</div>
+      <div class="review">
+        <strong>Citation audit:</strong> approved
+        <br>
+        <strong>Media policy:</strong> image
+      </div>
+      <div class="blocks">
+      <section class="block">
+        <div class="blockMeta">recognize</div>
+        <h3>Recognize</h3>
+        <p>Have you reached a point where arousal stays steady—not fading, but not climbing either? Like hovering at a certain altitude?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">definition</div>
+        <h3>Name</h3>
+        <p>Plateauing is arousal holding steady—neither climbing toward orgasm nor fading away.</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">media</div>
+        <h3>See It</h3>
+        <p>Sustained activation without a new peak</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">mechanism</div>
+        <h3>Understand</h3>
+        <p>Classic sexual response research describes a plateau phase—high arousal maintained without immediate climax (Masters &amp; Johnson). Recognizing it helps you choose: savor the hover, or adjust stimulation if you want something to change.</p>
+        <p class="refs">Cites: plateauing-source-1</p>
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">reflection</div>
+        <h3>Field Note</h3>
+        <p>Have you noticed arousal leveling off at a consistent intensity? What would you want to remember about your own experience?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">phrase</div>
+        <h3>A Phrase To Keep</h3>
+        <p>I am learning that plateauing may matter for me, and I want to notice it without turning it into a goal.</p>
+        
+      </section>
+    </div>
+      <section>
+        <h3>Phrase Templates</h3>
+        <ul class="phrases">
+      <li>
+        <span>self-understanding</span>
+        <strong>For myself</strong>
+        <p>I am learning that plateauing may matter for me, and I want to notice it without turning it into a goal.</p>
+      </li>
+    
+      <li>
+        <span>partner-request</span>
+        <strong>Ask for support</strong>
+        <p>Can we make space for noticing plateauing slowly, with check-ins about what feels good and what does not?</p>
+      </li>
+    
+      <li>
+        <span>boundary</span>
+        <strong>Set a boundary</strong>
+        <p>If plateauing starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.</p>
+      </li>
+    
+      <li>
+        <span>curiosity</span>
+        <strong>Open curiosity</strong>
+        <p>I am curious about noticing plateauing, and I would like to treat it as an experiment rather than something we have to get right.</p>
+      </li>
+    
+      <li>
+        <span>reassurance</span>
+        <strong>Reassure</strong>
+        <p>Nothing is wrong if plateauing shows up differently from one experience to the next. I want patience and honesty to lead.</p>
+      </li>
+    </ul>
+      </section>
+      <section>
+        <h3>Citations</h3>
+        <ul class="citations"><li><strong>Masters &amp; Johnson sexual response cycle</strong><br>Masters &amp; Johnson sexual response cycle</li></ul>
+      </section>
+    </article>
+  
+    <article class="concept" id="edging">
+      <header>
+        <div>
+          <p class="eyebrow">sensation / approved</p>
+          <h2>Edging</h2>
+          <p>Edging is the practice of bringing yourself (or being brought) close to orgasm, then deliberately pausing or slowing to pull back from the edge.</p>
+        </div>
+        <a href="#top" aria-label="Back to top">Top</a>
+      </header>
+      <div class="definition">Intentionally approaching the edge of orgasm, then easing back before it happens - often repeated multiple times.</div>
+      <div class="review">
+        <strong>Citation audit:</strong> approved
+        <br>
+        <strong>Media policy:</strong> image
+      </div>
+      <div class="blocks">
+      <section class="block">
+        <div class="blockMeta">recognize</div>
+        <h3>Recognize</h3>
+        <p>Have you ever gotten close to orgasm, pulled back, then approached again—and noticed the eventual release felt more intense?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">definition</div>
+        <h3>Name</h3>
+        <p>Edging is deliberately approaching orgasm, then easing back before you cross—often repeating the cycle.</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">media</div>
+        <h3>See It</h3>
+        <p>Intensity rising toward a threshold, then receding</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">mechanism</div>
+        <h3>Understand</h3>
+        <p>Research on orgasm delay suggests that prolonged arousal before release is often subjectively more intense for some people. Edging can also sharpen awareness of your own pre-orgasm signals—when to slow, pause, or change rhythm.</p>
+        <p class="refs">Cites: edging-source-1</p>
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">reflection</div>
+        <h3>Field Note</h3>
+        <p>Have you ever intentionally paused right before orgasm to prolong the experience? What would you want to remember about your own experience?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">phrase</div>
+        <h3>A Phrase To Keep</h3>
+        <p>I am learning that edging may matter for me, and I want to notice it without turning it into a goal.</p>
+        
+      </section>
+    </div>
+      <section>
+        <h3>Phrase Templates</h3>
+        <ul class="phrases">
+      <li>
+        <span>self-understanding</span>
+        <strong>For myself</strong>
+        <p>I am learning that edging may matter for me, and I want to notice it without turning it into a goal.</p>
+      </li>
+    
+      <li>
+        <span>partner-request</span>
+        <strong>Ask for support</strong>
+        <p>Can we make space for noticing edging slowly, with check-ins about what feels good and what does not?</p>
+      </li>
+    
+      <li>
+        <span>boundary</span>
+        <strong>Set a boundary</strong>
+        <p>If edging starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.</p>
+      </li>
+    
+      <li>
+        <span>curiosity</span>
+        <strong>Open curiosity</strong>
+        <p>I am curious about noticing edging, and I would like to treat it as an experiment rather than something we have to get right.</p>
+      </li>
+    
+      <li>
+        <span>reassurance</span>
+        <strong>Reassure</strong>
+        <p>Nothing is wrong if edging shows up differently from one experience to the next. I want patience and honesty to lead.</p>
+      </li>
+    </ul>
+      </section>
+      <section>
+        <h3>Citations</h3>
+        <ul class="citations"><li><strong>Research on orgasm delay and intensity</strong><br>Research on orgasm delay and intensity</li></ul>
+      </section>
+    </article>
+  
+    <article class="concept" id="spreading">
+      <header>
+        <div>
+          <p class="eyebrow">sensation / approved</p>
+          <h2>Spreading</h2>
+          <p>Spreading describes how pleasure can expand beyond the area being stimulated - radiating outward like ripples in water.</p>
+        </div>
+        <a href="#top" aria-label="Back to top">Top</a>
+      </header>
+      <div class="definition">The sensation of arousal radiating outward from its origin point through the body.</div>
+      <div class="review">
+        <strong>Citation audit:</strong> approved
+        <br>
+        <strong>Media policy:</strong> image, video
+      </div>
+      <div class="blocks">
+      <section class="block">
+        <div class="blockMeta">recognize</div>
+        <h3>Recognize</h3>
+        <p>Have you felt pleasure radiate outward from where you&#39;re being touched—warmth or tingling traveling through your body like ripples in water?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">definition</div>
+        <h3>Name</h3>
+        <p>Spreading is arousal radiating outward from where you&#39;re touched—into the pelvis, spine, limbs, or whole body.</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">media</div>
+        <h3>See It</h3>
+        <p>Neural signals propagating beyond the contact point</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">mechanism</div>
+        <h3>Understand</h3>
+        <p>Embodied sexuality research links attention to whole-body sensation with more satisfying sexual experiences. Spreading is one pattern people report when arousal feels less “localized” and more distributed.</p>
+        <p class="refs">Cites: spreading-source-1, spreading-source-2</p>
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">reflection</div>
+        <h3>Field Note</h3>
+        <p>Have you noticed pleasure traveling from one area through other parts of your body? What would you want to remember about your own experience?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">phrase</div>
+        <h3>A Phrase To Keep</h3>
+        <p>I am learning that spreading may matter for me, and I want to notice it without turning it into a goal.</p>
+        
+      </section>
+    </div>
+      <section>
+        <h3>Phrase Templates</h3>
+        <ul class="phrases">
+      <li>
+        <span>self-understanding</span>
+        <strong>For myself</strong>
+        <p>I am learning that spreading may matter for me, and I want to notice it without turning it into a goal.</p>
+      </li>
+    
+      <li>
+        <span>partner-request</span>
+        <strong>Ask for support</strong>
+        <p>Can we make space for noticing spreading slowly, with check-ins about what feels good and what does not?</p>
+      </li>
+    
+      <li>
+        <span>boundary</span>
+        <strong>Set a boundary</strong>
+        <p>If spreading starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.</p>
+      </li>
+    
+      <li>
+        <span>curiosity</span>
+        <strong>Open curiosity</strong>
+        <p>I am curious about noticing spreading, and I would like to treat it as an experiment rather than something we have to get right.</p>
+      </li>
+    
+      <li>
+        <span>reassurance</span>
+        <strong>Reassure</strong>
+        <p>Nothing is wrong if spreading shows up differently from one experience to the next. I want patience and honesty to lead.</p>
+      </li>
+    </ul>
+      </section>
+      <section>
+        <h3>Citations</h3>
+        <ul class="citations"><li><strong>Embodied sexuality research</strong><br>Embodied sexuality research</li><li><strong>sensate focus studies</strong><br>sensate focus studies</li></ul>
+      </section>
+    </article>
+  
+    <article class="concept" id="pulsing">
+      <header>
+        <div>
+          <p class="eyebrow">sensation / approved</p>
+          <h2>Pulsing</h2>
+          <p>Pulsing refers to the rhythmic quality that pleasure can take on - a beating, throbbing, or wave-like pattern.</p>
+        </div>
+        <a href="#top" aria-label="Back to top">Top</a>
+      </header>
+      <div class="definition">Rhythmic, wave-like sensations during high arousal or orgasm - a beating or throbbing quality.</div>
+      <div class="review">
+        <strong>Citation audit:</strong> approved
+        <br>
+        <strong>Media policy:</strong> image
+      </div>
+      <div class="blocks">
+      <section class="block">
+        <div class="blockMeta">recognize</div>
+        <h3>Recognize</h3>
+        <p>Have you noticed a rhythmic, throbbing quality during high arousal or orgasm—like waves of sensation beating through you?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">definition</div>
+        <h3>Name</h3>
+        <p>Pulsing is a rhythmic, throbbing quality in arousal or orgasm—waves of sensation rather than a flat steady tone.</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">media</div>
+        <h3>See It</h3>
+        <p>Concentric contraction waves in pelvic floor tissue</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">mechanism</div>
+        <h3>Understand</h3>
+        <p>Physiology studies describe rhythmic pelvic muscle contractions during orgasm, often about once per second (Meston &amp; Buss, 2009). Many people also notice pulse-like sensation earlier in arousal—and some prefer stimulation that matches or contrasts that rhythm.</p>
+        <p class="refs">Cites: pulsing-source-1, pulsing-source-2</p>
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">reflection</div>
+        <h3>Field Note</h3>
+        <p>Have you noticed a rhythmic, beating quality to arousal or orgasm? What would you want to remember about your own experience?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">phrase</div>
+        <h3>A Phrase To Keep</h3>
+        <p>I am learning that pulsing may matter for me, and I want to notice it without turning it into a goal.</p>
+        
+      </section>
+    </div>
+      <section>
+        <h3>Phrase Templates</h3>
+        <ul class="phrases">
+      <li>
+        <span>self-understanding</span>
+        <strong>For myself</strong>
+        <p>I am learning that pulsing may matter for me, and I want to notice it without turning it into a goal.</p>
+      </li>
+    
+      <li>
+        <span>partner-request</span>
+        <strong>Ask for support</strong>
+        <p>Can we make space for noticing pulsing slowly, with check-ins about what feels good and what does not?</p>
+      </li>
+    
+      <li>
+        <span>boundary</span>
+        <strong>Set a boundary</strong>
+        <p>If pulsing starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.</p>
+      </li>
+    
+      <li>
+        <span>curiosity</span>
+        <strong>Open curiosity</strong>
+        <p>I am curious about noticing pulsing, and I would like to treat it as an experiment rather than something we have to get right.</p>
+      </li>
+    
+      <li>
+        <span>reassurance</span>
+        <strong>Reassure</strong>
+        <p>Nothing is wrong if pulsing shows up differently from one experience to the next. I want patience and honesty to lead.</p>
+      </li>
+    </ul>
+      </section>
+      <section>
+        <h3>Citations</h3>
+        <ul class="citations"><li><strong>Meston &amp; Buss, 2009</strong><br>Meston &amp; Buss, 2009</li><li><strong>physiology of orgasm research</strong><br>physiology of orgasm research</li></ul>
+      </section>
+    </article>
+  
+    <article class="concept" id="warmup-window">
+      <header>
+        <div>
+          <p class="eyebrow">timing / approved</p>
+          <h2>Warm-up Window</h2>
+          <p>The warm-up window refers to the period of time many bodies need for full arousal before genital-focused stimulation becomes most pleasurable.</p>
+        </div>
+        <a href="#top" aria-label="Back to top">Top</a>
+      </header>
+      <div class="definition">The time needed for whole-body arousal before genital-focused stimulation feels best - often 20+ minutes.</div>
+      <div class="review">
+        <strong>Citation audit:</strong> approved
+        <br>
+        <strong>Media policy:</strong> image
+      </div>
+      <div class="blocks">
+      <section class="block">
+        <div class="blockMeta">recognize</div>
+        <h3>Recognize</h3>
+        <p>Have you noticed that touch feels better after you&#39;ve had time to warm up—and that rushing makes everything feel less enjoyable?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">definition</div>
+        <h3>Name</h3>
+        <p>The warm-up window is how long many bodies need for full arousal before genital-focused touch feels best—often twenty minutes or more of whole-body stimulation.</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">media</div>
+        <h3>See It</h3>
+        <p>Engorgement and blood flow increasing over time</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">mechanism</div>
+        <h3>Understand</h3>
+        <p>Genital blood flow, lubrication, and subjective arousal often rise gradually (Chivers et al., 2010). Adequate warm-up is associated in research with greater comfort and reported pleasure—not a personal failing, but common physiology.</p>
+        <p class="refs">Cites: warmup-window-source-1, warmup-window-source-2</p>
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">reflection</div>
+        <h3>Field Note</h3>
+        <p>Do you find that touch feels better after you&#39;ve had time to get warmed up? What would you want to remember about your own experience?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">phrase</div>
+        <h3>A Phrase To Keep</h3>
+        <p>I am learning that warm-up window may matter for me, and I want to notice it without turning it into a goal.</p>
+        
+      </section>
+    </div>
+      <section>
+        <h3>Phrase Templates</h3>
+        <ul class="phrases">
+      <li>
+        <span>self-understanding</span>
+        <strong>For myself</strong>
+        <p>I am learning that warm-up window may matter for me, and I want to notice it without turning it into a goal.</p>
+      </li>
+    
+      <li>
+        <span>partner-request</span>
+        <strong>Ask for support</strong>
+        <p>Can we make space for making room for warm-up window slowly, with check-ins about what feels good and what does not?</p>
+      </li>
+    
+      <li>
+        <span>boundary</span>
+        <strong>Set a boundary</strong>
+        <p>If warm-up window starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.</p>
+      </li>
+    
+      <li>
+        <span>curiosity</span>
+        <strong>Open curiosity</strong>
+        <p>I am curious about making room for warm-up window, and I would like to treat it as an experiment rather than something we have to get right.</p>
+      </li>
+    
+      <li>
+        <span>reassurance</span>
+        <strong>Reassure</strong>
+        <p>Nothing is wrong if warm-up window shows up differently from one experience to the next. I want patience and honesty to lead.</p>
+      </li>
+    </ul>
+      </section>
+      <section>
+        <h3>Citations</h3>
+        <ul class="citations"><li><strong>Chivers et al., 2010</strong><br>Chivers et al., 2010</li><li><strong>arousal timing research</strong><br>arousal timing research</li></ul>
+      </section>
+    </article>
+  
+    <article class="concept" id="responsive-desire">
+      <header>
+        <div>
+          <p class="eyebrow">timing / approved</p>
+          <h2>Responsive Desire</h2>
+          <p>Responsive desire describes a pattern where sexual interest emerges in response to something - a partner&#39;s initiation, an erotic situation, or physical stimulation that&#39;s already begun - rather than arising spontaneously as an internal urge.</p>
+        </div>
+        <a href="#top" aria-label="Back to top">Top</a>
+      </header>
+      <div class="definition">Sexual interest that arises in response to stimulation or erotic context, rather than appearing spontaneously beforehand.</div>
+      <div class="review">
+        <strong>Citation audit:</strong> approved
+        <br>
+        <strong>Media policy:</strong> image, video
+      </div>
+      <div class="blocks">
+      <section class="block">
+        <div class="blockMeta">recognize</div>
+        <h3>Recognize</h3>
+        <p>Do you rarely feel random urges for sex—but once things start, you get into it and enjoy yourself fully?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">definition</div>
+        <h3>Name</h3>
+        <p>Responsive desire is interest that shows up after stimulation, context, or connection—not as a spontaneous urge beforehand.</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">media</div>
+        <h3>See It</h3>
+        <p>A spark of context, then desire blooming</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">mechanism</div>
+        <h3>Understand</h3>
+        <p>Desire research (Basson, 2000; Nagoski, 2015) describes responsive desire as a common, healthy pattern—especially for women and in long-term relationships. Lack of spontaneous urge beforehand does not mean low libido; many people become interested once touch or mood engages them.</p>
+        <p class="refs">Cites: responsive-desire-source-1, responsive-desire-source-2</p>
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">reflection</div>
+        <h3>Field Note</h3>
+        <p>Do you rarely feel spontaneous urges for sex, but enjoy it once you get started? What would you want to remember about your own experience?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">phrase</div>
+        <h3>A Phrase To Keep</h3>
+        <p>I am learning that responsive desire may matter for me, and I want to notice it without turning it into a goal.</p>
+        
+      </section>
+    </div>
+      <section>
+        <h3>Phrase Templates</h3>
+        <ul class="phrases">
+      <li>
+        <span>self-understanding</span>
+        <strong>For myself</strong>
+        <p>I am learning that responsive desire may matter for me, and I want to notice it without turning it into a goal.</p>
+      </li>
+    
+      <li>
+        <span>partner-request</span>
+        <strong>Ask for support</strong>
+        <p>Can we make space for making room for responsive desire slowly, with check-ins about what feels good and what does not?</p>
+      </li>
+    
+      <li>
+        <span>boundary</span>
+        <strong>Set a boundary</strong>
+        <p>If responsive desire starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.</p>
+      </li>
+    
+      <li>
+        <span>curiosity</span>
+        <strong>Open curiosity</strong>
+        <p>I am curious about making room for responsive desire, and I would like to treat it as an experiment rather than something we have to get right.</p>
+      </li>
+    
+      <li>
+        <span>reassurance</span>
+        <strong>Reassure</strong>
+        <p>Nothing is wrong if responsive desire shows up differently from one experience to the next. I want patience and honesty to lead.</p>
+      </li>
+    </ul>
+      </section>
+      <section>
+        <h3>Citations</h3>
+        <ul class="citations"><li><strong>Nagoski, 2015</strong><br>Nagoski, 2015</li><li><strong>Basson circular model of desire</strong><br>Basson circular model of desire</li></ul>
+      </section>
+    </article>
+  
+    <article class="concept" id="spontaneous-desire">
+      <header>
+        <div>
+          <p class="eyebrow">timing / approved</p>
+          <h2>Spontaneous Desire</h2>
+          <p>Spontaneous desire is sexual interest that appears to come from nowhere - an internal urge or wanting that arises without an obvious external stimulus.</p>
+        </div>
+        <a href="#top" aria-label="Back to top">Top</a>
+      </header>
+      <div class="definition">Sexual interest that arises on its own, without an external trigger - a seemingly random urge for sexual activity.</div>
+      <div class="review">
+        <strong>Citation audit:</strong> approved
+        <br>
+        <strong>Media policy:</strong> image
+      </div>
+      <div class="blocks">
+      <section class="block">
+        <div class="blockMeta">recognize</div>
+        <h3>Recognize</h3>
+        <p>Do you sometimes feel sexually interested out of nowhere—an urge that appears without any obvious cause?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">definition</div>
+        <h3>Name</h3>
+        <p>Spontaneous desire is interest that appears on its own—often described as “being in the mood” without an obvious trigger.</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">media</div>
+        <h3>See It</h3>
+        <p>Internal arousal signals rising independently</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">mechanism</div>
+        <h3>Understand</h3>
+        <p>Population studies suggest spontaneous desire is reported more often by men than women, and more often early in relationships (Basson, 2000). It is one valid pattern—not the only one. Many people experience a mix of spontaneous and responsive desire over time.</p>
+        <p class="refs">Cites: spontaneous-desire-source-1, spontaneous-desire-source-2</p>
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">reflection</div>
+        <h3>Field Note</h3>
+        <p>Do you sometimes feel sexually interested without any obvious cause? What would you want to remember about your own experience?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">phrase</div>
+        <h3>A Phrase To Keep</h3>
+        <p>I am learning that spontaneous desire may matter for me, and I want to notice it without turning it into a goal.</p>
+        
+      </section>
+    </div>
+      <section>
+        <h3>Phrase Templates</h3>
+        <ul class="phrases">
+      <li>
+        <span>self-understanding</span>
+        <strong>For myself</strong>
+        <p>I am learning that spontaneous desire may matter for me, and I want to notice it without turning it into a goal.</p>
+      </li>
+    
+      <li>
+        <span>partner-request</span>
+        <strong>Ask for support</strong>
+        <p>Can we make space for making room for spontaneous desire slowly, with check-ins about what feels good and what does not?</p>
+      </li>
+    
+      <li>
+        <span>boundary</span>
+        <strong>Set a boundary</strong>
+        <p>If spontaneous desire starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.</p>
+      </li>
+    
+      <li>
+        <span>curiosity</span>
+        <strong>Open curiosity</strong>
+        <p>I am curious about making room for spontaneous desire, and I would like to treat it as an experiment rather than something we have to get right.</p>
+      </li>
+    
+      <li>
+        <span>reassurance</span>
+        <strong>Reassure</strong>
+        <p>Nothing is wrong if spontaneous desire shows up differently from one experience to the next. I want patience and honesty to lead.</p>
+      </li>
+    </ul>
+      </section>
+      <section>
+        <h3>Citations</h3>
+        <ul class="citations"><li><strong>Basson, 2000</strong><br>Basson, 2000</li><li><strong>desire research</strong><br>desire research</li></ul>
+      </section>
+    </article>
+  
+    <article class="concept" id="golden-trio">
+      <header>
+        <div>
+          <p class="eyebrow">timing / approved</p>
+          <h2>Golden Trio</h2>
+          <p>The Golden Trio refers to a specific combination of activities that research has found particularly effective for women&#39;s orgasms: vaginal intercourse combined with manual stimulation combined with oral sex (in the same session, not necessarily simultaneously).</p>
+        </div>
+        <a href="#top" aria-label="Back to top">Top</a>
+      </header>
+      <div class="definition">Combining intercourse with manual and oral stimulation - a combination associated with 86% orgasm rates in research.</div>
+      <div class="review">
+        <strong>Citation audit:</strong> approved
+        <br>
+        <strong>Media policy:</strong> image
+      </div>
+      <div class="blocks">
+      <section class="block">
+        <div class="blockMeta">recognize</div>
+        <h3>Recognize</h3>
+        <p>Have you noticed that combining different kinds of stimulation—not just penetration—leads to more intense experiences?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">definition</div>
+        <h3>Name</h3>
+        <p>The golden trio is vaginal intercourse plus manual and oral stimulation in the same encounter—a combination linked in research to higher reported orgasm rates.</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">media</div>
+        <h3>See It</h3>
+        <p>Three stimulation types in one session</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">mechanism</div>
+        <h3>Understand</h3>
+        <p>Frederick et al. (2018) found that women who received intercourse, manual genital stimulation, and oral sex in the same encounter reported orgasm more often than with intercourse alone. The takeaway is statistical, not prescriptive: variety and clitoral involvement are common in high-satisfaction reports.</p>
+        <p class="refs">Cites: golden-trio-source-1</p>
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">reflection</div>
+        <h3>Field Note</h3>
+        <p>Have you noticed that combining different types of touch leads to different experiences? What would you want to remember about your own experience?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">phrase</div>
+        <h3>A Phrase To Keep</h3>
+        <p>I am learning that golden trio may matter for me, and I want to notice it without turning it into a goal.</p>
+        
+      </section>
+    </div>
+      <section>
+        <h3>Phrase Templates</h3>
+        <ul class="phrases">
+      <li>
+        <span>self-understanding</span>
+        <strong>For myself</strong>
+        <p>I am learning that golden trio may matter for me, and I want to notice it without turning it into a goal.</p>
+      </li>
+    
+      <li>
+        <span>partner-request</span>
+        <strong>Ask for support</strong>
+        <p>Can we make space for making room for golden trio slowly, with check-ins about what feels good and what does not?</p>
+      </li>
+    
+      <li>
+        <span>boundary</span>
+        <strong>Set a boundary</strong>
+        <p>If golden trio starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.</p>
+      </li>
+    
+      <li>
+        <span>curiosity</span>
+        <strong>Open curiosity</strong>
+        <p>I am curious about making room for golden trio, and I would like to treat it as an experiment rather than something we have to get right.</p>
+      </li>
+    
+      <li>
+        <span>reassurance</span>
+        <strong>Reassure</strong>
+        <p>Nothing is wrong if golden trio shows up differently from one experience to the next. I want patience and honesty to lead.</p>
+      </li>
+    </ul>
+      </section>
+      <section>
+        <h3>Citations</h3>
+        <ul class="citations"><li><strong>Frederick et al., 2018, Archives of Sexual Behavior</strong><br>Frederick et al., 2018, Archives of Sexual Behavior</li></ul>
+      </section>
+    </article>
+  
+    <article class="concept" id="spectatoring">
+      <header>
+        <div>
+          <p class="eyebrow">psychological / approved</p>
+          <h2>Spectatoring</h2>
+          <p>Spectatoring is the experience of mentally stepping outside yourself during sex to observe and judge what&#39;s happening - focusing on how you look, whether you&#39;re responding &quot;correctly,&quot; how long it&#39;s taking, or what your partner might be thinking.</p>
+        </div>
+        <a href="#top" aria-label="Back to top">Top</a>
+      </header>
+      <div class="definition">Mentally watching and evaluating yourself during sex rather than staying present in the experience.</div>
+      <div class="review">
+        <strong>Citation audit:</strong> approved
+        <br>
+        <strong>Media policy:</strong> image
+      </div>
+      <div class="blocks">
+      <section class="block">
+        <div class="blockMeta">recognize</div>
+        <h3>Recognize</h3>
+        <p>Have you ever caught yourself watching yourself during sex—thinking about how you look, whether you&#39;re taking too long, or what your partner might be thinking?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">definition</div>
+        <h3>Name</h3>
+        <p>Spectatoring is watching and evaluating yourself during sex instead of staying with sensation—performance thoughts replacing presence.</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">media</div>
+        <h3>See It</h3>
+        <p>Attention split between body and inner critic</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">mechanism</div>
+        <h3>Understand</h3>
+        <p>Masters and Johnson named spectatoring as a barrier to enjoyment; later work links self-focused attention during sex with lower arousal and satisfaction (Barlow, 1986). Mindfulness-based approaches often help redirect attention back to sensation (Brotto, 2018).</p>
+        <p class="refs">Cites: spectatoring-source-1, spectatoring-source-2</p>
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">reflection</div>
+        <h3>Field Note</h3>
+        <p>Do you sometimes find yourself watching yourself during sex as if from the outside? What would you want to remember about your own experience?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">phrase</div>
+        <h3>A Phrase To Keep</h3>
+        <p>I am learning that spectatoring may matter for me, and I want to notice it without turning it into a goal.</p>
+        
+      </section>
+    </div>
+      <section>
+        <h3>Phrase Templates</h3>
+        <ul class="phrases">
+      <li>
+        <span>self-understanding</span>
+        <strong>For myself</strong>
+        <p>I am learning that spectatoring may matter for me, and I want to notice it without turning it into a goal.</p>
+      </li>
+    
+      <li>
+        <span>partner-request</span>
+        <strong>Ask for support</strong>
+        <p>Can we make space for understanding how spectatoring affects me slowly, with check-ins about what feels good and what does not?</p>
+      </li>
+    
+      <li>
+        <span>boundary</span>
+        <strong>Set a boundary</strong>
+        <p>If spectatoring starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.</p>
+      </li>
+    
+      <li>
+        <span>curiosity</span>
+        <strong>Open curiosity</strong>
+        <p>I am curious about understanding how spectatoring affects me, and I would like to treat it as an experiment rather than something we have to get right.</p>
+      </li>
+    
+      <li>
+        <span>reassurance</span>
+        <strong>Reassure</strong>
+        <p>Nothing is wrong if spectatoring shows up differently from one experience to the next. I want patience and honesty to lead.</p>
+      </li>
+    </ul>
+      </section>
+      <section>
+        <h3>Citations</h3>
+        <ul class="citations"><li><strong>Masters &amp; Johnson</strong><br>Masters &amp; Johnson</li><li><strong>Barlow, 1986</strong><br>Barlow, 1986</li></ul>
+      </section>
+    </article>
+  
+    <article class="concept" id="embodied-presence">
+      <header>
+        <div>
+          <p class="eyebrow">psychological / approved</p>
+          <h2>Embodied Presence</h2>
+          <p>Embodied presence is the opposite of spectatoring - it&#39;s being fully in your body and present to sensations rather than caught up in thoughts, judgments, or mental chatter.</p>
+        </div>
+        <a href="#top" aria-label="Back to top">Top</a>
+      </header>
+      <div class="definition">Focused attention on bodily sensations during intimacy - being fully in your body rather than in your head.</div>
+      <div class="review">
+        <strong>Citation audit:</strong> approved
+        <br>
+        <strong>Media policy:</strong> image
+      </div>
+      <div class="blocks">
+      <section class="block">
+        <div class="blockMeta">recognize</div>
+        <h3>Recognize</h3>
+        <p>Have you experienced moments of being so absorbed in physical sensation that thinking temporarily faded—fully in your body rather than your head?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">definition</div>
+        <h3>Name</h3>
+        <p>Embodied presence is staying with bodily sensation during intimacy—attention in the body rather than in commentary or judgment.</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">media</div>
+        <h3>See It</h3>
+        <p>Attention filling the outline of the body</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">mechanism</div>
+        <h3>Understand</h3>
+        <p>Mindfulness-based interventions for sexual concerns show improvements in arousal and satisfaction in clinical studies (Brotto, 2018). Present-moment focus on touch is a skill—when the mind wanders, you can gently return.</p>
+        <p class="refs">Cites: embodied-presence-source-1, embodied-presence-source-2</p>
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">reflection</div>
+        <h3>Field Note</h3>
+        <p>Have you experienced moments of being completely absorbed in physical sensation? What would you want to remember about your own experience?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">phrase</div>
+        <h3>A Phrase To Keep</h3>
+        <p>I am learning that embodied presence may matter for me, and I want to notice it without turning it into a goal.</p>
+        
+      </section>
+    </div>
+      <section>
+        <h3>Phrase Templates</h3>
+        <ul class="phrases">
+      <li>
+        <span>self-understanding</span>
+        <strong>For myself</strong>
+        <p>I am learning that embodied presence may matter for me, and I want to notice it without turning it into a goal.</p>
+      </li>
+    
+      <li>
+        <span>partner-request</span>
+        <strong>Ask for support</strong>
+        <p>Can we make space for understanding how embodied presence affects me slowly, with check-ins about what feels good and what does not?</p>
+      </li>
+    
+      <li>
+        <span>boundary</span>
+        <strong>Set a boundary</strong>
+        <p>If embodied presence starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.</p>
+      </li>
+    
+      <li>
+        <span>curiosity</span>
+        <strong>Open curiosity</strong>
+        <p>I am curious about understanding how embodied presence affects me, and I would like to treat it as an experiment rather than something we have to get right.</p>
+      </li>
+    
+      <li>
+        <span>reassurance</span>
+        <strong>Reassure</strong>
+        <p>Nothing is wrong if embodied presence shows up differently from one experience to the next. I want patience and honesty to lead.</p>
+      </li>
+    </ul>
+      </section>
+      <section>
+        <h3>Citations</h3>
+        <ul class="citations"><li><strong>Brotto, 2018</strong><br>Brotto, 2018</li><li><strong>mindfulness and sexuality research</strong><br>mindfulness and sexuality research</li></ul>
+      </section>
+    </article>
+  
+    <article class="concept" id="non-concordance">
+      <header>
+        <div>
+          <p class="eyebrow">psychological / approved</p>
+          <h2>Non-concordance</h2>
+          <p>Non-concordance is the disconnect that can occur between physical arousal signals and how turned on you actually feel.</p>
+        </div>
+        <a href="#top" aria-label="Back to top">Top</a>
+      </header>
+      <div class="definition">When physical arousal signs (lubrication, erection) don&#39;t match the subjective feeling of being turned on - and vice versa.</div>
+      <div class="review">
+        <strong>Citation audit:</strong> approved
+        <br>
+        <strong>Media policy:</strong> image
+      </div>
+      <div class="blocks">
+      <section class="block">
+        <div class="blockMeta">recognize</div>
+        <h3>Recognize</h3>
+        <p>Have you ever felt mentally aroused while your body showed no physical signs—or noticed physical wetness when you weren&#39;t actually interested?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">definition</div>
+        <h3>Name</h3>
+        <p>Non-concordance is a mismatch between physical arousal signs (like lubrication) and how interested or turned on you actually feel.</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">media</div>
+        <h3>See It</h3>
+        <p>Separate pathways for genital response and felt desire</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">mechanism</div>
+        <h3>Understand</h3>
+        <p>Meta-analyses find only modest correlation between genital response and subjective arousal in women—often cited around 10–30% overlap (Chivers et al., 2010; Nagoski, 2015). Genital response can occur without desire; desire can exist without obvious physical signs. Consent and wanting are communicated, not inferred from wetness or erection.</p>
+        <p class="refs">Cites: non-concordance-source-1, non-concordance-source-2</p>
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">reflection</div>
+        <h3>Field Note</h3>
+        <p>Have you ever felt turned on without your body showing typical signs of arousal? What would you want to remember about your own experience?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">phrase</div>
+        <h3>A Phrase To Keep</h3>
+        <p>I am learning that non-concordance may matter for me, and I want to notice it without turning it into a goal.</p>
+        
+      </section>
+    </div>
+      <section>
+        <h3>Phrase Templates</h3>
+        <ul class="phrases">
+      <li>
+        <span>self-understanding</span>
+        <strong>For myself</strong>
+        <p>I am learning that non-concordance may matter for me, and I want to notice it without turning it into a goal.</p>
+      </li>
+    
+      <li>
+        <span>partner-request</span>
+        <strong>Ask for support</strong>
+        <p>Can we make space for understanding how non-concordance affects me slowly, with check-ins about what feels good and what does not?</p>
+      </li>
+    
+      <li>
+        <span>boundary</span>
+        <strong>Set a boundary</strong>
+        <p>If non-concordance starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.</p>
+      </li>
+    
+      <li>
+        <span>curiosity</span>
+        <strong>Open curiosity</strong>
+        <p>I am curious about understanding how non-concordance affects me, and I would like to treat it as an experiment rather than something we have to get right.</p>
+      </li>
+    
+      <li>
+        <span>reassurance</span>
+        <strong>Reassure</strong>
+        <p>Nothing is wrong if non-concordance shows up differently from one experience to the next. I want patience and honesty to lead.</p>
+      </li>
+    </ul>
+      </section>
+      <section>
+        <h3>Citations</h3>
+        <ul class="citations"><li><strong>Chivers et al., 2010</strong><br>Chivers et al., 2010</li><li><strong>Nagoski, 2015</strong><br>Nagoski, 2015</li></ul>
+      </section>
+    </article>
+  
+    <article class="concept" id="sexual-self-esteem">
+      <header>
+        <div>
+          <p class="eyebrow">psychological / approved</p>
+          <h2>Sexual Self-Esteem</h2>
+          <p>Sexual self-esteem is how you feel about yourself as a sexual being - whether you view your sexuality positively, feel confident in your desirability, and have a healthy relationship with your own sexual self.</p>
+        </div>
+        <a href="#top" aria-label="Back to top">Top</a>
+      </header>
+      <div class="definition">A positive self-concept around sexuality - feeling good about yourself as a sexual person.</div>
+      <div class="review">
+        <strong>Citation audit:</strong> approved
+        <br>
+        <strong>Media policy:</strong> image
+      </div>
+      <div class="blocks">
+      <section class="block">
+        <div class="blockMeta">recognize</div>
+        <h3>Recognize</h3>
+        <p>How do you feel about yourself as a sexual person? Do you carry confidence into intimate experiences—or do negative beliefs hold you back?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">definition</div>
+        <h3>Name</h3>
+        <p>Sexual self-esteem is how positively you see yourself as a sexual person—including confidence, worthiness of pleasure, and comfort with your sexuality.</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">media</div>
+        <h3>See It</h3>
+        <p>Warm core sense of sexual confidence</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">mechanism</div>
+        <h3>Understand</h3>
+        <p>Research links sexual self-esteem with satisfaction, communication, and sexual function. Valuing your own pleasure and feeling entitled to it—not perfect confidence every day—is associated in studies with better outcomes over time.</p>
+        <p class="refs">Cites: sexual-self-esteem-source-1, sexual-self-esteem-source-2</p>
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">reflection</div>
+        <h3>Field Note</h3>
+        <p>How do you generally feel about yourself as a sexual person? What would you want to remember about your own experience?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">phrase</div>
+        <h3>A Phrase To Keep</h3>
+        <p>I am learning that sexual self-esteem may matter for me, and I want to notice it without turning it into a goal.</p>
+        
+      </section>
+    </div>
+      <section>
+        <h3>Phrase Templates</h3>
+        <ul class="phrases">
+      <li>
+        <span>self-understanding</span>
+        <strong>For myself</strong>
+        <p>I am learning that sexual self-esteem may matter for me, and I want to notice it without turning it into a goal.</p>
+      </li>
+    
+      <li>
+        <span>partner-request</span>
+        <strong>Ask for support</strong>
+        <p>Can we make space for understanding how sexual self-esteem affects me slowly, with check-ins about what feels good and what does not?</p>
+      </li>
+    
+      <li>
+        <span>boundary</span>
+        <strong>Set a boundary</strong>
+        <p>If sexual self-esteem starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.</p>
+      </li>
+    
+      <li>
+        <span>curiosity</span>
+        <strong>Open curiosity</strong>
+        <p>I am curious about understanding how sexual self-esteem affects me, and I would like to treat it as an experiment rather than something we have to get right.</p>
+      </li>
+    
+      <li>
+        <span>reassurance</span>
+        <strong>Reassure</strong>
+        <p>Nothing is wrong if sexual self-esteem shows up differently from one experience to the next. I want patience and honesty to lead.</p>
+      </li>
+    </ul>
+      </section>
+      <section>
+        <h3>Citations</h3>
+        <ul class="citations"><li><strong>Sexuality research</strong><br>Sexuality research</li><li><strong>self-esteem and outcomes studies</strong><br>self-esteem and outcomes studies</li></ul>
+      </section>
+    </article>
+  
+    <article class="concept" id="body-appreciation">
+      <header>
+        <div>
+          <p class="eyebrow">psychological / approved</p>
+          <h2>Body Appreciation</h2>
+          <p>Body appreciation is the practice of relating to your body based on sensation, function, and experience rather than visual evaluation.</p>
+        </div>
+        <a href="#top" aria-label="Back to top">Top</a>
+      </header>
+      <div class="definition">Valuing your body for what it does and feels rather than evaluating its appearance.</div>
+      <div class="review">
+        <strong>Citation audit:</strong> approved
+        <br>
+        <strong>Media policy:</strong> image
+      </div>
+      <div class="blocks">
+      <section class="block">
+        <div class="blockMeta">recognize</div>
+        <h3>Recognize</h3>
+        <p>During sex, are you more focused on how your body looks—or how it feels? Do appearance concerns pull you out of sensation?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">definition</div>
+        <h3>Name</h3>
+        <p>Body appreciation is valuing your body for sensation and capacity—not mainly for how it looks in the moment.</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">media</div>
+        <h3>See It</h3>
+        <p>Touch activating sensory response, not visual critique</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">mechanism</div>
+        <h3>Understand</h3>
+        <p>Body image research links appreciating body function during sex with greater satisfaction and less appearance distraction (Satinsky et al., 2012). Weight alone does not predict sexual function; how you relate to your body in the moment often matters more.</p>
+        <p class="refs">Cites: body-appreciation-source-1, body-appreciation-source-2</p>
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">reflection</div>
+        <h3>Field Note</h3>
+        <p>During sex, are you more focused on how your body looks or how it feels? What would you want to remember about your own experience?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">phrase</div>
+        <h3>A Phrase To Keep</h3>
+        <p>I am learning that body appreciation may matter for me, and I want to notice it without turning it into a goal.</p>
+        
+      </section>
+    </div>
+      <section>
+        <h3>Phrase Templates</h3>
+        <ul class="phrases">
+      <li>
+        <span>self-understanding</span>
+        <strong>For myself</strong>
+        <p>I am learning that body appreciation may matter for me, and I want to notice it without turning it into a goal.</p>
+      </li>
+    
+      <li>
+        <span>partner-request</span>
+        <strong>Ask for support</strong>
+        <p>Can we make space for understanding how body appreciation affects me slowly, with check-ins about what feels good and what does not?</p>
+      </li>
+    
+      <li>
+        <span>boundary</span>
+        <strong>Set a boundary</strong>
+        <p>If body appreciation starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.</p>
+      </li>
+    
+      <li>
+        <span>curiosity</span>
+        <strong>Open curiosity</strong>
+        <p>I am curious about understanding how body appreciation affects me, and I would like to treat it as an experiment rather than something we have to get right.</p>
+      </li>
+    
+      <li>
+        <span>reassurance</span>
+        <strong>Reassure</strong>
+        <p>Nothing is wrong if body appreciation shows up differently from one experience to the next. I want patience and honesty to lead.</p>
+      </li>
+    </ul>
+      </section>
+      <section>
+        <h3>Citations</h3>
+        <ul class="citations"><li><strong>Body image and sexuality research</strong><br>Body image and sexuality research</li><li><strong>Satinsky et al., 2012</strong><br>Satinsky et al., 2012</li></ul>
+      </section>
+    </article>
+  
+    <article class="concept" id="clitoral-structure">
+      <header>
+        <div>
+          <p class="eyebrow">anatomy / approved</p>
+          <h2>Clitoral Structure</h2>
+          <p>The clitoris is much larger than it appears from the outside.</p>
+        </div>
+        <a href="#top" aria-label="Back to top">Top</a>
+      </header>
+      <div class="definition">The full clitoral organ is approximately 9cm in size, with internal legs (crura) and bulbs extending inside the body.</div>
+      <div class="review">
+        <strong>Citation audit:</strong> approved
+        <br>
+        <strong>Media policy:</strong> image
+      </div>
+      <div class="blocks">
+      <section class="block">
+        <div class="blockMeta">recognize</div>
+        <h3>Recognize</h3>
+        <p>Did you know that what you can see of the clitoris is just the tip? The full structure extends about 9cm inside your body.</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">definition</div>
+        <h3>Name</h3>
+        <p>The clitoris is mostly internal: glans, shaft, crura (“legs”), and vestibular bulbs—about 9 cm total, not just the visible tip.</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">media</div>
+        <h3>See It</h3>
+        <p>Crura and bulbs wrapping the vaginal canal</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">mechanism</div>
+        <h3>Understand</h3>
+        <p>MRI and dissection work mapped the full clitoral structure (O&#39;Connell et al., 2005). Anterior vaginal sensitivity often reflects internal clitoral and urethral tissue—not a separate “spot.” Most vaginal pleasure is still clitoral stimulation, accessed indirectly.</p>
+        <p class="refs">Cites: clitoral-structure-source-1, clitoral-structure-source-2</p>
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">reflection</div>
+        <h3>Field Note</h3>
+        <p>Did you know the clitoris extends internally beyond what&#39;s visible? What would you want to remember about your own experience?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">phrase</div>
+        <h3>A Phrase To Keep</h3>
+        <p>I am learning that clitoral structure may matter for me, and I want to notice it without turning it into a goal.</p>
+        
+      </section>
+    </div>
+      <section>
+        <h3>Phrase Templates</h3>
+        <ul class="phrases">
+      <li>
+        <span>self-understanding</span>
+        <strong>For myself</strong>
+        <p>I am learning that clitoral structure may matter for me, and I want to notice it without turning it into a goal.</p>
+      </li>
+    
+      <li>
+        <span>partner-request</span>
+        <strong>Ask for support</strong>
+        <p>Can we make space for using what I know about clitoral structure slowly, with check-ins about what feels good and what does not?</p>
+      </li>
+    
+      <li>
+        <span>boundary</span>
+        <strong>Set a boundary</strong>
+        <p>If clitoral structure starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.</p>
+      </li>
+    
+      <li>
+        <span>curiosity</span>
+        <strong>Open curiosity</strong>
+        <p>I am curious about using what I know about clitoral structure, and I would like to treat it as an experiment rather than something we have to get right.</p>
+      </li>
+    
+      <li>
+        <span>reassurance</span>
+        <strong>Reassure</strong>
+        <p>Nothing is wrong if clitoral structure shows up differently from one experience to the next. I want patience and honesty to lead.</p>
+      </li>
+    </ul>
+      </section>
+      <section>
+        <h3>Citations</h3>
+        <ul class="citations"><li><strong>O&#39;Connell et al., 2005</strong><br>O&#39;Connell et al., 2005</li><li><strong>clitoral anatomy research</strong><br>clitoral anatomy research</li></ul>
+      </section>
+    </article>
+  
+    <article class="concept" id="nerve-density">
+      <header>
+        <div>
+          <p class="eyebrow">anatomy / approved</p>
+          <h2>Nerve Density</h2>
+          <p>The clitoral glans (the visible external portion) contains more than 8,000 nerve endings - a remarkable concentration in a structure much smaller than the penis, which has approximately the same number spread across a larger area.</p>
+        </div>
+        <a href="#top" aria-label="Back to top">Top</a>
+      </header>
+      <div class="definition">The clitoral glans contains over 8,000 nerve endings - approximately equal to the entire penis.</div>
+      <div class="review">
+        <strong>Citation audit:</strong> approved
+        <br>
+        <strong>Media policy:</strong> image
+      </div>
+      <div class="blocks">
+      <section class="block">
+        <div class="blockMeta">recognize</div>
+        <h3>Recognize</h3>
+        <p>Have you noticed how incredibly sensitive the clitoral area can be—how subtle differences in pressure or touch create dramatically different sensations?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">definition</div>
+        <h3>Name</h3>
+        <p>Nerve density describes how packed with nerve endings the clitoral glans is—roughly 8,000 in a small area, comparable to the penis but more concentrated.</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">media</div>
+        <h3>See It</h3>
+        <p>Dense neural network in the glans</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">mechanism</div>
+        <h3>Understand</h3>
+        <p>Anatomical studies count thousands of nerve endings in the clitoral glans (O&#39;Connell et al.). That density helps explain why touch quality—pressure, rhythm, indirect vs direct—matters so much, and why intensity can feel “too much” for some people at the wrong moment.</p>
+        <p class="refs">Cites: nerve-density-source-1, nerve-density-source-2</p>
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">reflection</div>
+        <h3>Field Note</h3>
+        <p>Have you noticed how sensitive the clitoral area is to different types of touch? What would you want to remember about your own experience?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">phrase</div>
+        <h3>A Phrase To Keep</h3>
+        <p>I am learning that nerve density may matter for me, and I want to notice it without turning it into a goal.</p>
+        
+      </section>
+    </div>
+      <section>
+        <h3>Phrase Templates</h3>
+        <ul class="phrases">
+      <li>
+        <span>self-understanding</span>
+        <strong>For myself</strong>
+        <p>I am learning that nerve density may matter for me, and I want to notice it without turning it into a goal.</p>
+      </li>
+    
+      <li>
+        <span>partner-request</span>
+        <strong>Ask for support</strong>
+        <p>Can we make space for using what I know about nerve density slowly, with check-ins about what feels good and what does not?</p>
+      </li>
+    
+      <li>
+        <span>boundary</span>
+        <strong>Set a boundary</strong>
+        <p>If nerve density starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.</p>
+      </li>
+    
+      <li>
+        <span>curiosity</span>
+        <strong>Open curiosity</strong>
+        <p>I am curious about using what I know about nerve density, and I would like to treat it as an experiment rather than something we have to get right.</p>
+      </li>
+    
+      <li>
+        <span>reassurance</span>
+        <strong>Reassure</strong>
+        <p>Nothing is wrong if nerve density shows up differently from one experience to the next. I want patience and honesty to lead.</p>
+      </li>
+    </ul>
+      </section>
+      <section>
+        <h3>Citations</h3>
+        <ul class="citations"><li><strong>Clitoral anatomy research</strong><br>Clitoral anatomy research</li><li><strong>O&#39;Connell et al.</strong><br>O&#39;Connell et al.</li></ul>
+      </section>
+    </article>
+  
+    <article class="concept" id="clitourethrovaginal">
+      <header>
+        <div>
+          <p class="eyebrow">anatomy / approved</p>
+          <h2>CUV Complex</h2>
+          <p>The clitourethrovaginal (CUV) complex describes how the clitoris, urethra, and front vaginal wall are interconnected rather than separate structures.</p>
+        </div>
+        <a href="#top" aria-label="Back to top">Top</a>
+      </header>
+      <div class="definition">The integrated tissue cluster where clitoris, urethra, and anterior vaginal wall interact - explaining &quot;G-spot&quot; sensitivity.</div>
+      <div class="review">
+        <strong>Citation audit:</strong> approved
+        <br>
+        <strong>Media policy:</strong> image
+      </div>
+      <div class="blocks">
+      <section class="block">
+        <div class="blockMeta">recognize</div>
+        <h3>Recognize</h3>
+        <p>Have you experienced sensitivity on the front wall of the vagina—an area that feels different from the rest?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">definition</div>
+        <h3>Name</h3>
+        <p>The CUV complex (clitourethrovaginal) is the integrated cluster of clitoris, urethra, and anterior vaginal wall—often discussed as the “G-spot” area.</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">media</div>
+        <h3>See It</h3>
+        <p>Shared tissue and pressure between three structures</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">mechanism</div>
+        <h3>Understand</h3>
+        <p>Imaging studies show these structures are physically connected, not isolated (Jannini et al., 2014). Front-wall sensitivity is real because pressure there compresses internal clitoral and urethral tissue—there is no separate magic organ to hunt for.</p>
+        <p class="refs">Cites: clitourethrovaginal-source-1, clitourethrovaginal-source-2</p>
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">reflection</div>
+        <h3>Field Note</h3>
+        <p>Have you experienced sensitivity on the front wall of the vagina? What would you want to remember about your own experience?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">phrase</div>
+        <h3>A Phrase To Keep</h3>
+        <p>I am learning that cuv complex may matter for me, and I want to notice it without turning it into a goal.</p>
+        
+      </section>
+    </div>
+      <section>
+        <h3>Phrase Templates</h3>
+        <ul class="phrases">
+      <li>
+        <span>self-understanding</span>
+        <strong>For myself</strong>
+        <p>I am learning that cuv complex may matter for me, and I want to notice it without turning it into a goal.</p>
+      </li>
+    
+      <li>
+        <span>partner-request</span>
+        <strong>Ask for support</strong>
+        <p>Can we make space for using what I know about cuv complex slowly, with check-ins about what feels good and what does not?</p>
+      </li>
+    
+      <li>
+        <span>boundary</span>
+        <strong>Set a boundary</strong>
+        <p>If cuv complex starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.</p>
+      </li>
+    
+      <li>
+        <span>curiosity</span>
+        <strong>Open curiosity</strong>
+        <p>I am curious about using what I know about cuv complex, and I would like to treat it as an experiment rather than something we have to get right.</p>
+      </li>
+    
+      <li>
+        <span>reassurance</span>
+        <strong>Reassure</strong>
+        <p>Nothing is wrong if cuv complex shows up differently from one experience to the next. I want patience and honesty to lead.</p>
+      </li>
+    </ul>
+      </section>
+      <section>
+        <h3>Citations</h3>
+        <ul class="citations"><li><strong>Jannini et al., 2014</strong><br>Jannini et al., 2014</li><li><strong>anatomical imaging studies</strong><br>anatomical imaging studies</li></ul>
+      </section>
+    </article>
+  
+    <article class="concept" id="internal-stimulation">
+      <header>
+        <div>
+          <p class="eyebrow">anatomy / approved</p>
+          <h2>Internal Clitoral Stimulation</h2>
+          <p>Internal clitoral stimulation refers to reaching the internal portions of the clitoris through the vaginal wall.</p>
+        </div>
+        <a href="#top" aria-label="Back to top">Top</a>
+      </header>
+      <div class="definition">Stimulating internal clitoral tissue through the vaginal wall - what&#39;s often called &quot;G-spot&quot; sensation.</div>
+      <div class="review">
+        <strong>Citation audit:</strong> approved
+        <br>
+        <strong>Media policy:</strong> image
+      </div>
+      <div class="blocks">
+      <section class="block">
+        <div class="blockMeta">recognize</div>
+        <h3>Recognize</h3>
+        <p>Have you noticed that certain angles or positions create pleasurable sensations on the front wall of the vagina—different from deeper penetration?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">definition</div>
+        <h3>Name</h3>
+        <p>Internal clitoral stimulation is reaching clitoral tissue through the vaginal wall—especially the anterior (front) wall toward the belly button.</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">media</div>
+        <h3>See It</h3>
+        <p>Pressure on the anterior wall engaging internal crura</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">mechanism</div>
+        <h3>Understand</h3>
+        <p>Research suggests many “vaginal” orgasms involve internal clitoral stimulation (Foldes &amp; Buisson, 2009). Techniques like angling can improve contact with the anterior wall where crura and urethral sponge lie close to the surface.</p>
+        <p class="refs">Cites: internal-stimulation-source-1, internal-stimulation-source-2</p>
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">reflection</div>
+        <h3>Field Note</h3>
+        <p>Have you experienced pleasure from stimulation on the front wall of the vagina? What would you want to remember about your own experience?</p>
+        
+      </section>
+    
+      <section class="block">
+        <div class="blockMeta">phrase</div>
+        <h3>A Phrase To Keep</h3>
+        <p>I am learning that internal clitoral stimulation may matter for me, and I want to notice it without turning it into a goal.</p>
+        
+      </section>
+    </div>
+      <section>
+        <h3>Phrase Templates</h3>
+        <ul class="phrases">
+      <li>
+        <span>self-understanding</span>
+        <strong>For myself</strong>
+        <p>I am learning that internal clitoral stimulation may matter for me, and I want to notice it without turning it into a goal.</p>
+      </li>
+    
+      <li>
+        <span>partner-request</span>
+        <strong>Ask for support</strong>
+        <p>Can we make space for using what I know about internal clitoral stimulation slowly, with check-ins about what feels good and what does not?</p>
+      </li>
+    
+      <li>
+        <span>boundary</span>
+        <strong>Set a boundary</strong>
+        <p>If internal clitoral stimulation starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.</p>
+      </li>
+    
+      <li>
+        <span>curiosity</span>
+        <strong>Open curiosity</strong>
+        <p>I am curious about using what I know about internal clitoral stimulation, and I would like to treat it as an experiment rather than something we have to get right.</p>
+      </li>
+    
+      <li>
+        <span>reassurance</span>
+        <strong>Reassure</strong>
+        <p>Nothing is wrong if internal clitoral stimulation shows up differently from one experience to the next. I want patience and honesty to lead.</p>
+      </li>
+    </ul>
+      </section>
+      <section>
+        <h3>Citations</h3>
+        <ul class="citations"><li><strong>Foldes &amp; Buisson, 2009</strong><br>Foldes &amp; Buisson, 2009</li><li><strong>G-spot research</strong><br>G-spot research</li></ul>
+      </section>
+    </article>
+  </section>
+  </main>
+</body>
+</html>

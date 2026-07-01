@@ -1,6 +1,6 @@
 import { borderRadius, colors, shadows, spacing, typography } from '@/constants/theme';
 import { useUserConcepts } from '@/hooks/useDatabase';
-import { Concept, ConceptSlide, ConceptStatus } from '@/types';
+import { Concept, ConceptSlide, ConceptSlideType, ConceptStatus } from '@/types';
 import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 import { useRouter } from 'expo-router';

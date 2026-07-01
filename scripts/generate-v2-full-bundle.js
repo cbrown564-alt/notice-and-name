@@ -8,6 +8,8 @@ const ts = require('typescript');
 const root = path.resolve(__dirname, '..');
 const vocabularyPath = path.join(root, 'data/vocabulary.ts');
 const pathwaysPath = path.join(root, 'data/pathways.ts');
+const editorialReviewPath = path.join(root, 'content/v2/editorial-review.json');
+const conceptCopyPath = path.join(root, 'content/v2/copy/concept-copy.json');
 const bundlePath = path.join(root, 'content/v2/bundles/v2-full.bundle.json');
 const nativeResourcePath = path.join(
   root,
@@ -47,19 +49,6 @@ function loadTsExports(filePath) {
   return sandbox.exports;
 }
 
-function slug(value) {
-  return value
-    .toLowerCase()
-    .replace(/&/g, 'and')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-}
-
-function sentenceCase(value) {
-  if (!value) return value;
-  return value.charAt(0).toUpperCase() + value.slice(1);
-}
-
 function trimSummary(value) {
   const firstParagraph = String(value || '').split(/\n\s*\n/)[0].replace(/\s+/g, ' ').trim();
   if (firstParagraph.length <= 210) return firstParagraph;
@@ -73,6 +62,17 @@ function blockId(conceptId, suffix) {
 
 function citationId(conceptId, index) {
   return `${conceptId}-source-${index + 1}`;
+}
+
+function readEditorialReview() {
+  return JSON.parse(fs.readFileSync(editorialReviewPath, 'utf8'));
+}
+
+// Per-concept hand-written copy (recognize / reflection / phrases) that overrides
+// the generic frames below. See content/v2/copy/concept-copy.json.
+function readConceptCopy() {
+  if (!fs.existsSync(conceptCopyPath)) return {};
+  return JSON.parse(fs.readFileSync(conceptCopyPath, 'utf8')).concepts || {};
 }
 
 function buildCitations(concept) {
@@ -93,7 +93,10 @@ function getSlide(concept, type) {
   return (concept.slides || []).find((slide) => slide.type === type);
 }
 
-function buildReflectionPrompt(concept) {
+function buildReflectionPrompt(concept, override) {
+  if (override && override.reflection) {
+    return override.reflection;
+  }
   const prompt = (concept.recognitionPrompts || [])[0];
   if (prompt) {
     return `${prompt} What would you want to remember about your own experience?`;
@@ -101,38 +104,70 @@ function buildReflectionPrompt(concept) {
   return `Where does ${concept.name.toLowerCase()} show up for you, and what would you want to remember next time?`;
 }
 
-function buildPhrase(concept) {
+function conceptFocus(concept) {
   switch (concept.category) {
     case 'technique':
-      return `I am curious about exploring ${concept.name.toLowerCase()} slowly, with check-ins about what feels good and what does not.`;
+      return `exploring ${concept.name.toLowerCase()}`;
     case 'sensation':
-      return `I am learning to notice ${concept.name.toLowerCase()} as useful information about my pleasure, not something I need to force.`;
+      return `noticing ${concept.name.toLowerCase()}`;
     case 'timing':
-      return `My timing may follow ${concept.name.toLowerCase()}; I would like room for that pace instead of treating it as a problem.`;
+      return `making room for ${concept.name.toLowerCase()}`;
     case 'psychological':
-      return `I am noticing how ${concept.name.toLowerCase()} affects my pleasure, and it helps when we make the experience calmer and less performative.`;
+      return `understanding how ${concept.name.toLowerCase()} affects me`;
     case 'anatomy':
-      return `Understanding ${concept.name.toLowerCase()} helps me explain what kind of touch or pressure I may want to explore.`;
+      return `using what I know about ${concept.name.toLowerCase()}`;
     default:
-      return `I am learning that ${concept.name.toLowerCase()} matters for me, and I want language for it.`;
+      return `learning about ${concept.name.toLowerCase()}`;
   }
 }
 
-function phraseTone(category) {
-  switch (category) {
-    case 'technique':
-      return 'direct';
-    case 'sensation':
-      return 'soft';
-    case 'timing':
-      return 'reassuring';
-    case 'psychological':
-      return 'reassuring';
-    case 'anatomy':
-      return 'curious';
-    default:
-      return 'soft';
+function buildPhraseTemplates(concept, override) {
+  if (override && Array.isArray(override.phrases) && override.phrases.length > 0) {
+    return override.phrases.map((phrase) => ({
+      id: `${concept.id}-${phrase.useCase}`,
+      useCase: phrase.useCase,
+      label: phrase.label,
+      body: phrase.body,
+      tone: phrase.tone,
+    }));
   }
+  const focus = conceptFocus(concept);
+  const name = concept.name.toLowerCase();
+  return [
+    {
+      useCase: 'self-understanding',
+      label: 'For myself',
+      body: `I am learning that ${name} may matter for me, and I want to notice it without turning it into a goal.`,
+      tone: 'soft',
+    },
+    {
+      useCase: 'partner-request',
+      label: 'Ask for support',
+      body: `Can we make space for ${focus} slowly, with check-ins about what feels good and what does not?`,
+      tone: 'direct',
+    },
+    {
+      useCase: 'boundary',
+      label: 'Set a boundary',
+      body: `If ${name} starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.`,
+      tone: 'direct',
+    },
+    {
+      useCase: 'curiosity',
+      label: 'Open curiosity',
+      body: `I am curious about ${focus}, and I would like to treat it as an experiment rather than something we have to get right.`,
+      tone: 'curious',
+    },
+    {
+      useCase: 'reassurance',
+      label: 'Reassure',
+      body: `Nothing is wrong if ${name} shows up differently from one experience to the next. I want patience and honesty to lead.`,
+      tone: 'reassuring',
+    },
+  ].map((phrase) => ({
+    id: `${concept.id}-${phrase.useCase}`,
+    ...phrase,
+  }));
 }
 
 function mediaAlt(concept, kind) {
@@ -190,18 +225,18 @@ function buildConceptMedia(concept, mediaById) {
   return mediaIds;
 }
 
-function buildBlocks(concept, citations, mediaIds) {
+function buildBlocks(concept, citations, mediaIds, override) {
   const recognize = getSlide(concept, 'recognize');
   const name = getSlide(concept, 'name');
   const understand = getSlide(concept, 'understand');
   const illustrate = getSlide(concept, 'illustrate');
-  const phrase = buildPhrase(concept);
+  const phrase = buildPhraseTemplates(concept, override)[0].body;
   const blocks = [
     {
       id: blockId(concept.id, 'recognize'),
       type: 'recognize',
       title: 'Recognize',
-      body: recognize?.content || (concept.recognitionPrompts || [])[0] || concept.summary,
+      body: (override && override.recognize) || recognize?.content || (concept.recognitionPrompts || [])[0] || concept.summary,
     },
     {
       id: blockId(concept.id, 'definition'),
@@ -233,7 +268,7 @@ function buildBlocks(concept, citations, mediaIds) {
       id: blockId(concept.id, 'reflection'),
       type: 'reflection',
       title: 'Field Note',
-      body: buildReflectionPrompt(concept),
+      body: buildReflectionPrompt(concept, override),
       privateByDefault: true,
     },
     {
@@ -250,29 +285,26 @@ function buildBlocks(concept, citations, mediaIds) {
 function buildBundle() {
   const { concepts } = loadTsExports(vocabularyPath);
   const { pathways } = loadTsExports(pathwaysPath);
+  const editorialReview = readEditorialReview();
+  const conceptCopy = readConceptCopy();
   const mediaById = new Map();
 
   const v2Concepts = concepts.map((concept) => {
+    const override = conceptCopy[concept.id];
     const citations = buildCitations(concept);
     const mediaIds = buildConceptMedia(concept, mediaById);
     return {
       id: concept.id,
       name: concept.name,
       category: concept.category,
+      reviewStatus: editorialReview.concepts[concept.id]?.reviewStatus || 'draft',
       definition: concept.definition,
       summary: trimSummary(concept.description || concept.definition),
-      blocks: buildBlocks(concept, citations, mediaIds),
+      blocks: buildBlocks(concept, citations, mediaIds, override),
       relatedConceptIds: (concept.relatedConcepts || []).filter((id) =>
         concepts.some((candidate) => candidate.id === id)
       ),
-      phraseTemplates: [
-        {
-          id: `${concept.id}-${slug(phraseTone(concept.category))}-share`,
-          label: `${sentenceCase(phraseTone(concept.category))} share`,
-          body: buildPhrase(concept),
-          tone: phraseTone(concept.category),
-        },
-      ],
+      phraseTemplates: buildPhraseTemplates(concept, override),
       citations,
       mediaIds,
     };
@@ -288,6 +320,7 @@ function buildBundle() {
       id: pathway.id,
       name: pathway.name,
       summary: pathway.description,
+      intent: pathway.intent,
       conceptIds: pathway.conceptIds,
     })),
     media: [...mediaById.values()],

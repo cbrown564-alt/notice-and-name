@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8BBDCD52B72BEB23465C6332 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AD0E33C8C2264851A4F20AD /* Assets.xcassets */; };
 		DF6AEF0F45E75FC9FEEB2364 /* PleasureVocabularyApp in Frameworks */ = {isa = PBXBuildFile; productRef = 3B83D0A6E4B0A9880F4F3496 /* PleasureVocabularyApp */; };
 		F8C65DC3A31EB10112E19200 /* PleasureVocabularyHostApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D9C6B29757445F2D5EDFD9 /* PleasureVocabularyHostApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		075007084EEABDCC4B6345E8 /* PleasureVocabulary.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = PleasureVocabulary.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AD0E33C8C2264851A4F20AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C27CEC8EE5727E5173C2D775 /* ios-native */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "ios-native"; path = .; sourceTree = SOURCE_ROOT; };
 		D9D9C6B29757445F2D5EDFD9 /* PleasureVocabularyHostApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PleasureVocabularyHostApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -41,6 +43,7 @@
 		48EA938A2CE13BF04AE83AF1 /* AppHost */ = {
 			isa = PBXGroup;
 			children = (
+				3AD0E33C8C2264851A4F20AD /* Assets.xcassets */,
 				D9D9C6B29757445F2D5EDFD9 /* PleasureVocabularyHostApp.swift */,
 			);
 			path = AppHost;
@@ -69,7 +72,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE597A8CA65C8C79226FCF58 /* Build configuration list for PBXNativeTarget "PleasureVocabulary" */;
 			buildPhases = (
+				4455D3FA6AB6BEB4192EE5F9 /* Sync iOS Media */,
 				E214969B6E37CBCA864CD0F9 /* Sources */,
+				475EC7B805547CC3706984E6 /* Resources */,
 				4C3144728999B7E3542493AF /* Frameworks */,
 			);
 			buildRules = (
@@ -120,6 +125,39 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		475EC7B805547CC3706984E6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8BBDCD52B72BEB23465C6332 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4455D3FA6AB6BEB4192EE5F9 /* Sync iOS Media */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Sync iOS Media";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/bin/env node \"${SRCROOT}/../scripts/sync-ios-media.js\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E214969B6E37CBCA864CD0F9 /* Sources */ = {

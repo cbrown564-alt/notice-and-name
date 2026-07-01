@@ -22,7 +22,10 @@
           "type": "mechanism",
           "title": "Understand",
           "body": "Desire research describes responsive desire as a common, healthy pattern, especially for women and in long-term relationships. Lack of spontaneous urge beforehand does not mean low libido; many people become interested once touch, mood, or connection engages them.",
-          "citationIds": ["basson-2000", "nagoski-2015"]
+          "citationIds": [
+            "basson-2000",
+            "nagoski-2015"
+          ]
         },
         {
           "id": "responsive-desire-reflection",
@@ -38,13 +41,45 @@
           "body": "I do not always feel desire before we begin, but sometimes it shows up once there is warmth, touch, and no pressure."
         }
       ],
-      "relatedConceptIds": ["non-concordance", "spectatoring"],
+      "relatedConceptIds": [
+        "non-concordance",
+        "spectatoring"
+      ],
       "phraseTemplates": [
         {
-          "id": "responsive-desire-soft-share",
-          "label": "Explain the pattern",
-          "body": "I have learned that desire often shows up for me responsively. I may not feel it before we start, but the right context can help it arrive.",
-          "tone": "soft"
+          "id": "responsive-desire-self-understanding",
+          "label": "For myself",
+          "body": "I am learning that responsive desire may matter for me, and I want to notice it without turning it into a goal.",
+          "tone": "soft",
+          "useCase": "self-understanding"
+        },
+        {
+          "id": "responsive-desire-partner-request",
+          "label": "Ask for support",
+          "body": "Can we make space for making room for responsive desire slowly, with check-ins about what feels good and what does not?",
+          "tone": "direct",
+          "useCase": "partner-request"
+        },
+        {
+          "id": "responsive-desire-boundary",
+          "label": "Set a boundary",
+          "body": "If responsive desire starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.",
+          "tone": "direct",
+          "useCase": "boundary"
+        },
+        {
+          "id": "responsive-desire-curiosity",
+          "label": "Open curiosity",
+          "body": "I am curious about making room for responsive desire, and I would like to treat it as an experiment rather than something we have to get right.",
+          "tone": "curious",
+          "useCase": "curiosity"
+        },
+        {
+          "id": "responsive-desire-reassurance",
+          "label": "Reassure",
+          "body": "Nothing is wrong if responsive desire shows up differently from one experience to the next. I want patience and honesty to lead.",
+          "tone": "reassuring",
+          "useCase": "reassurance"
         }
       ],
       "citations": [
@@ -59,7 +94,10 @@
           "source": "Nagoski, 2015"
         }
       ],
-      "mediaIds": ["responsive-desire-video"]
+      "mediaIds": [
+        "responsive-desire-video"
+      ],
+      "reviewStatus": "approved"
     },
     {
       "id": "angling",
@@ -79,7 +117,9 @@
           "type": "mechanism",
           "title": "Understand",
           "body": "The OMGyes Pleasure Report identified angling as a named technique associated with enhanced pleasure. Naming the movement can help you notice it in the moment and repeat what works instead of relying on a vague memory of a position.",
-          "citationIds": ["hensel-2021"]
+          "citationIds": [
+            "hensel-2021"
+          ]
         },
         {
           "id": "angling-reflection",
@@ -95,13 +135,44 @@
           "body": "A small change in angle can make a big difference for me. I may want to slow down and adjust my hips until the pressure lands right."
         }
       ],
-      "relatedConceptIds": ["pairing"],
+      "relatedConceptIds": [
+        "pairing"
+      ],
       "phraseTemplates": [
         {
-          "id": "angling-direct-request",
-          "label": "Ask for adjustment",
-          "body": "Can we pause for a second while I adjust the angle? I think a small shift would help this feel better.",
-          "tone": "direct"
+          "id": "angling-self-understanding",
+          "label": "For myself",
+          "body": "I am learning that angling may matter for me, and I want to notice it without turning it into a goal.",
+          "tone": "soft",
+          "useCase": "self-understanding"
+        },
+        {
+          "id": "angling-partner-request",
+          "label": "Ask for support",
+          "body": "Can we make space for exploring angling slowly, with check-ins about what feels good and what does not?",
+          "tone": "direct",
+          "useCase": "partner-request"
+        },
+        {
+          "id": "angling-boundary",
+          "label": "Set a boundary",
+          "body": "If angling starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.",
+          "tone": "direct",
+          "useCase": "boundary"
+        },
+        {
+          "id": "angling-curiosity",
+          "label": "Open curiosity",
+          "body": "I am curious about exploring angling, and I would like to treat it as an experiment rather than something we have to get right.",
+          "tone": "curious",
+          "useCase": "curiosity"
+        },
+        {
+          "id": "angling-reassurance",
+          "label": "Reassure",
+          "body": "Nothing is wrong if angling shows up differently from one experience to the next. I want patience and honesty to lead.",
+          "tone": "reassuring",
+          "useCase": "reassurance"
         }
       ],
       "citations": [
@@ -111,7 +182,11 @@
           "source": "Hensel et al., 2021, PLOS ONE"
         }
       ],
-      "mediaIds": ["angling-diagram", "angling-illustration"]
+      "mediaIds": [
+        "angling-diagram",
+        "angling-illustration"
+      ],
+      "reviewStatus": "approved"
     },
     {
       "id": "pairing",
@@ -131,7 +206,10 @@
           "type": "mechanism",
           "title": "Understand",
           "body": "Research consistently links clitoral stimulation with higher orgasm likelihood during partnered sex. Pairing treats external touch as common, useful information about anatomy, not as a fix for something wrong.",
-          "citationIds": ["hensel-2021", "frederick-2018"]
+          "citationIds": [
+            "hensel-2021",
+            "frederick-2018"
+          ]
         },
         {
           "id": "pairing-reflection",
@@ -147,13 +225,44 @@
           "body": "Penetration feels better for me when it is paired with clitoral touch. I would like that to be part of the experience, not an extra."
         }
       ],
-      "relatedConceptIds": ["angling"],
+      "relatedConceptIds": [
+        "angling"
+      ],
       "phraseTemplates": [
         {
-          "id": "pairing-curious-share",
-          "label": "Suggest pairing",
-          "body": "I am curious about pairing penetration with clitoral touch. Could we make room for both?",
-          "tone": "curious"
+          "id": "pairing-self-understanding",
+          "label": "For myself",
+          "body": "I am learning that pairing may matter for me, and I want to notice it without turning it into a goal.",
+          "tone": "soft",
+          "useCase": "self-understanding"
+        },
+        {
+          "id": "pairing-partner-request",
+          "label": "Ask for support",
+          "body": "Can we make space for exploring pairing slowly, with check-ins about what feels good and what does not?",
+          "tone": "direct",
+          "useCase": "partner-request"
+        },
+        {
+          "id": "pairing-boundary",
+          "label": "Set a boundary",
+          "body": "If pairing starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.",
+          "tone": "direct",
+          "useCase": "boundary"
+        },
+        {
+          "id": "pairing-curiosity",
+          "label": "Open curiosity",
+          "body": "I am curious about exploring pairing, and I would like to treat it as an experiment rather than something we have to get right.",
+          "tone": "curious",
+          "useCase": "curiosity"
+        },
+        {
+          "id": "pairing-reassurance",
+          "label": "Reassure",
+          "body": "Nothing is wrong if pairing shows up differently from one experience to the next. I want patience and honesty to lead.",
+          "tone": "reassuring",
+          "useCase": "reassurance"
         }
       ],
       "citations": [
@@ -168,7 +277,11 @@
           "source": "Frederick et al., 2018, Archives of Sexual Behavior"
         }
       ],
-      "mediaIds": ["pairing-diagram", "pairing-illustration"]
+      "mediaIds": [
+        "pairing-diagram",
+        "pairing-illustration"
+      ],
+      "reviewStatus": "approved"
     },
     {
       "id": "spectatoring",
@@ -188,7 +301,11 @@
           "type": "mechanism",
           "title": "Understand",
           "body": "Masters and Johnson named spectatoring as a barrier to enjoyment. Later research links self-focused attention during sex with lower arousal and satisfaction, while mindfulness-based approaches can help redirect attention back to sensation.",
-          "citationIds": ["masters-johnson", "barlow-1986", "brotto-2018"]
+          "citationIds": [
+            "masters-johnson",
+            "barlow-1986",
+            "brotto-2018"
+          ]
         },
         {
           "id": "spectatoring-reflection",
@@ -204,13 +321,45 @@
           "body": "Sometimes I get in my head and start monitoring myself. Slowing down and focusing on sensation helps me come back."
         }
       ],
-      "relatedConceptIds": ["non-concordance", "responsive-desire"],
+      "relatedConceptIds": [
+        "non-concordance",
+        "responsive-desire"
+      ],
       "phraseTemplates": [
         {
-          "id": "spectatoring-reassuring-share",
-          "label": "Name the interruption",
-          "body": "I notice I sometimes start watching myself instead of feeling. If that happens, slowing down and making things less performative helps.",
-          "tone": "reassuring"
+          "id": "spectatoring-self-understanding",
+          "label": "For myself",
+          "body": "I am learning that spectatoring may matter for me, and I want to notice it without turning it into a goal.",
+          "tone": "soft",
+          "useCase": "self-understanding"
+        },
+        {
+          "id": "spectatoring-partner-request",
+          "label": "Ask for support",
+          "body": "Can we make space for understanding how spectatoring affects me slowly, with check-ins about what feels good and what does not?",
+          "tone": "direct",
+          "useCase": "partner-request"
+        },
+        {
+          "id": "spectatoring-boundary",
+          "label": "Set a boundary",
+          "body": "If spectatoring starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.",
+          "tone": "direct",
+          "useCase": "boundary"
+        },
+        {
+          "id": "spectatoring-curiosity",
+          "label": "Open curiosity",
+          "body": "I am curious about understanding how spectatoring affects me, and I would like to treat it as an experiment rather than something we have to get right.",
+          "tone": "curious",
+          "useCase": "curiosity"
+        },
+        {
+          "id": "spectatoring-reassurance",
+          "label": "Reassure",
+          "body": "Nothing is wrong if spectatoring shows up differently from one experience to the next. I want patience and honesty to lead.",
+          "tone": "reassuring",
+          "useCase": "reassurance"
         }
       ],
       "citations": [
@@ -230,7 +379,10 @@
           "source": "Brotto, 2018"
         }
       ],
-      "mediaIds": ["spectatoring-illustration"]
+      "mediaIds": [
+        "spectatoring-illustration"
+      ],
+      "reviewStatus": "approved"
     },
     {
       "id": "non-concordance",
@@ -250,7 +402,10 @@
           "type": "mechanism",
           "title": "Understand",
           "body": "Meta-analyses find only modest correlation between genital response and subjective arousal in women. Genital response can occur without desire, and desire can exist without obvious physical signs. Consent and wanting are communicated, not inferred.",
-          "citationIds": ["chivers-2010", "nagoski-2015"]
+          "citationIds": [
+            "chivers-2010",
+            "nagoski-2015"
+          ]
         },
         {
           "id": "non-concordance-reflection",
@@ -266,13 +421,45 @@
           "body": "My body signals and my felt desire are not always the same thing. I want us to listen to what I say I want, not guess from physical signs."
         }
       ],
-      "relatedConceptIds": ["responsive-desire", "spectatoring"],
+      "relatedConceptIds": [
+        "responsive-desire",
+        "spectatoring"
+      ],
       "phraseTemplates": [
         {
-          "id": "non-concordance-direct-share",
-          "label": "Clarify consent",
-          "body": "Physical response is not the same as wanting for me. I want us to check in with words rather than assume.",
-          "tone": "direct"
+          "id": "non-concordance-self-understanding",
+          "label": "For myself",
+          "body": "I am learning that non-concordance may matter for me, and I want to notice it without turning it into a goal.",
+          "tone": "soft",
+          "useCase": "self-understanding"
+        },
+        {
+          "id": "non-concordance-partner-request",
+          "label": "Ask for support",
+          "body": "Can we make space for understanding how non-concordance affects me slowly, with check-ins about what feels good and what does not?",
+          "tone": "direct",
+          "useCase": "partner-request"
+        },
+        {
+          "id": "non-concordance-boundary",
+          "label": "Set a boundary",
+          "body": "If non-concordance starts to feel pressured or uncomfortable, I want us to pause and choose a different pace.",
+          "tone": "direct",
+          "useCase": "boundary"
+        },
+        {
+          "id": "non-concordance-curiosity",
+          "label": "Open curiosity",
+          "body": "I am curious about understanding how non-concordance affects me, and I would like to treat it as an experiment rather than something we have to get right.",
+          "tone": "curious",
+          "useCase": "curiosity"
+        },
+        {
+          "id": "non-concordance-reassurance",
+          "label": "Reassure",
+          "body": "Nothing is wrong if non-concordance shows up differently from one experience to the next. I want patience and honesty to lead.",
+          "tone": "reassuring",
+          "useCase": "reassurance"
         }
       ],
       "citations": [
@@ -287,7 +474,10 @@
           "source": "Nagoski, 2015"
         }
       ],
-      "mediaIds": ["non-concordance-illustration"]
+      "mediaIds": [
+        "non-concordance-illustration"
+      ],
+      "reviewStatus": "approved"
     }
   ],
   "pathways": [
@@ -295,13 +485,23 @@
       "id": "language-for-myself",
       "name": "Language For Myself",
       "summary": "A short path for naming desire, attention, and physical response without judgment.",
-      "conceptIds": ["responsive-desire", "non-concordance", "spectatoring"]
+      "conceptIds": [
+        "responsive-desire",
+        "non-concordance",
+        "spectatoring"
+      ],
+      "intent": "notice-patterns"
     },
     {
       "id": "language-with-a-partner",
       "name": "Language With A Partner",
       "summary": "A practical path for turning personal discoveries into clear, kind requests.",
-      "conceptIds": ["responsive-desire", "angling", "pairing"]
+      "conceptIds": [
+        "responsive-desire",
+        "angling",
+        "pairing"
+      ],
+      "intent": "communicate"
     }
   ],
   "media": [

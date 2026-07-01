@@ -6,9 +6,10 @@ import { Pathway } from '@/types';
 export const pathways: Pathway[] = [
   {
     id: 'foundations',
-    name: 'Foundations',
+    name: 'Understand My Body',
     description:
-      'Start here. Core vocabulary and anatomy basics that inform everything else.',
+      'Start with anatomy and core patterns that make pleasure feel less mysterious.',
+    intent: 'understand-body',
     icon: 'compass',
     image: require('../assets/images/pathways/foundations.png'),
     conceptIds: [
@@ -23,9 +24,10 @@ export const pathways: Pathway[] = [
   },
   {
     id: 'solo-exploration',
-    name: 'Solo Exploration',
+    name: 'Notice What Feels Good',
     description:
-      'Concepts for self-discovery and masturbation - understanding your own responses.',
+      'Build language for your own sensations, timing, and the signals worth remembering.',
+    intent: 'notice-patterns',
     icon: 'flower',
     image: require('../assets/images/pathways/solo-exploration.png'),
     conceptIds: [
@@ -39,9 +41,10 @@ export const pathways: Pathway[] = [
   },
   {
     id: 'partner-communication',
-    name: 'Partner Communication',
+    name: 'Find Words For A Partner',
     description:
-      'Understanding yourself to communicate better with partners.',
+      'Turn personal discoveries into clear, kind explanations and requests.',
+    intent: 'communicate',
     icon: 'chatbubbles',
     image: require('../assets/images/pathways/partner-communication.png'),
     conceptIds: [
@@ -55,9 +58,10 @@ export const pathways: Pathway[] = [
   },
   {
     id: 'expanding-repertoire',
-    name: 'Expanding Repertoire',
+    name: 'Try A Different Approach',
     description:
-      'Techniques for variety and experimentation in partnered experiences.',
+      'Explore small changes in touch, rhythm, angle, and combinations without making novelty the goal.',
+    intent: 'try-something',
     icon: 'sparkles',
     image: require('../assets/images/pathways/expanding-repertoire.png'),
     conceptIds: ['angling', 'rocking', 'shallowing', 'golden-trio'],
@@ -65,9 +69,10 @@ export const pathways: Pathway[] = [
   },
   {
     id: 'mindful-presence',
-    name: 'Mindful Presence',
+    name: 'Return To Presence',
     description:
-      'Psychological factors that shape pleasure - getting out of your head and into sensation.',
+      'Name the mental loops that pull attention away from sensation, then practice coming back.',
+    intent: 'return-to-presence',
     icon: 'leaf',
     image: require('../assets/images/pathways/mindful-presence.png'),
     conceptIds: [

@@ -15,6 +15,7 @@ const {
 } = require('./lib/vocab-parse');
 
 const PATHWAYS_PATH = path.join(ROOT, 'data/pathways.ts');
+const EDITORIAL_REVIEW_PATH = path.join(ROOT, 'content/v2/editorial-review.json');
 const OUT_PATH = path.join(ROOT, 'docs/content/CONCEPT_AUDIT.md');
 
 function parsePathwayMembership(pathwaysSource) {
@@ -66,6 +67,7 @@ function wiredCol(exists, wired) {
 function main() {
   const { formats: FORMAT_BY_ID } = loadVisualFormats();
   const pathways = fs.readFileSync(PATHWAYS_PATH, 'utf8');
+  const editorialReview = JSON.parse(fs.readFileSync(EDITORIAL_REVIEW_PATH, 'utf8'));
   const concepts = loadConcepts();
   const pathwayMap = parsePathwayMembership(pathways);
   const allIds = new Set(concepts.map((c) => c.id));
@@ -81,8 +83,8 @@ function main() {
     '',
     'One row per concept. `format_choice` locked in `data/visual-formats.json`. `thumb_wired` / `video_wired` reflect `vocabulary.ts` require() bindings.',
     '',
-    '| id | category | format_choice | thumbnail | thumb_wired | illustration | rich_media | video_wired | slides | pathways | copy_reviewed | citations_ok | qa_passed |',
-    '|----|----------|---------------|-----------|-------------|--------------|------------|-------------|--------|----------|---------------|--------------|-----------|',
+    '| id | category | review_status | media_policy | format_choice | thumbnail | thumb_wired | illustration | rich_media | video_wired | slides | pathways | copy_reviewed | citations_ok | qa_passed |',
+    '|----|----------|---------------|--------------|---------------|-----------|-------------|--------------|------------|-------------|--------|----------|---------------|--------------|-----------|',
   ];
 
   for (const c of concepts) {
@@ -107,8 +109,13 @@ function main() {
     const copyCol = copyReviewed.has(c.id) ? '✅' : '☐';
     const citationsCol = citationsOk(c.block) ? '✅' : '☐';
     const qaCol = qaPassed.has(c.id) ? '✅' : '☐';
+    const review = editorialReview.concepts[c.id];
+    const reviewCol = review?.reviewStatus || 'missing';
+    const mediaPolicyCol = review?.mediaPolicy
+      ? `required: ${review.mediaPolicy.requiredKinds.join(', ')}`
+      : 'missing';
     lines.push(
-      `| ${c.id} | ${c.category} | ${format} | ${thumb} | ${thumbWired} | ${ill} | ${rich} | ${videoWired} | ${slides} | ${pathwaysCol} | ${copyCol} | ${citationsCol} | ${qaCol} |`
+      `| ${c.id} | ${c.category} | ${reviewCol} | ${mediaPolicyCol} | ${format} | ${thumb} | ${thumbWired} | ${ill} | ${rich} | ${videoWired} | ${slides} | ${pathwaysCol} | ${copyCol} | ${citationsCol} | ${qaCol} |`
     );
     if (relatedNote) {
       lines[lines.length - 1] += ` <!--${relatedNote}-->`;

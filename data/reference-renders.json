@@ -3,7 +3,7 @@
     "phase": "1.1",
     "ratified": true,
     "ratificationRequires": "All 5 families approved with styleCoherence ≥ 5",
-    "updated": "2026-05-20",
+    "updated": "2026-07-01",
     "workflow": "docs/pipelines/REFERENCE_RENDERS.md",
     "approvedCount": 5
   },
