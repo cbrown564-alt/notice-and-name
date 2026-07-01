@@ -15,4 +15,5 @@ export const reduceMotionFrames = {
   rocking: { intensity: 1, feedback: 'Grinding (High Contact)' },
   shallowing: { probeX: 40, feedback: 'Introitus (High Sensitivity!)' },
   pairing: { externalActive: 1, internalActive: 1, feedback: 'Paired' },
+  edging: { intensity: 0.8, feedback: 'Near threshold' },
 } as const;

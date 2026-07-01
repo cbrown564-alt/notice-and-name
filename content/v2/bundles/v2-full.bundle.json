@@ -667,7 +667,7 @@
           "type": "media",
           "title": "See It",
           "body": "Intensity rising toward a threshold, then receding",
-          "mediaId": "edging-illustration"
+          "mediaId": "edging-diagram"
         },
         {
           "id": "edging-mechanism",
@@ -743,6 +743,7 @@
         }
       ],
       "mediaIds": [
+        "edging-diagram",
         "edging-illustration"
       ]
     },
@@ -2549,6 +2550,14 @@
       "alt": "Warm educational illustration for Plateauing.",
       "caption": "Sustained activation without a new peak",
       "reducedMotionFallback": "assets/images/concepts/illustrations/plateauing.png"
+    },
+    {
+      "id": "edging-diagram",
+      "kind": "diagram",
+      "path": "native://diagram/edging",
+      "alt": "Native diagram for Edging.",
+      "caption": "Intensity rising toward a threshold, then receding",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/edging.png"
     },
     {
       "id": "edging-illustration",
