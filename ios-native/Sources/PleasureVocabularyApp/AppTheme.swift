@@ -171,7 +171,13 @@ extension View {
             .background(AppColor.canvas)
             .toolbarBackground(AppColor.canvas, for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
-            .toolbarColorScheme(.light, for: .navigationBar)
+    }
+
+    /// Tab roots use in-content headers with explicit ink colors instead of large
+    /// navigation titles, which do not reliably inherit the app light palette.
+    func appTabListScreen() -> some View {
+        compactNavigationTitle()
+            .appListScreen()
     }
 
     @ViewBuilder

@@ -318,6 +318,11 @@ private struct VocabularyView: View {
     var body: some View {
         NavigationStack {
             List {
+                TabScreenHeaderRow(
+                    title: "Vocabulary",
+                    subtitle: "Words you have saved and explored."
+                )
+
                 if model.vocabularyConcepts.isEmpty {
                     InlineEmptyStateView(
                         symbol: "text.book.closed",
@@ -336,8 +341,7 @@ private struct VocabularyView: View {
                     .listRowBackground(AppColor.surface)
                 }
             }
-            .navigationTitle("Vocabulary")
-            .appListScreen()
+            .appTabListScreen()
         }
     }
 }
@@ -348,6 +352,11 @@ private struct ExploreView: View {
     var body: some View {
         NavigationStack {
             List {
+                TabScreenHeaderRow(
+                    title: "Explore",
+                    subtitle: "Pathways and the full concept library."
+                )
+
                 Section("Pathways") {
                     ForEach(model.bundle.pathways) { pathway in
                         NavigationLink {
@@ -377,8 +386,7 @@ private struct ExploreView: View {
                     }
                 }
             }
-            .navigationTitle("Explore")
-            .appListScreen()
+            .appTabListScreen()
         }
     }
 }
@@ -416,6 +424,7 @@ private struct PathwayDetailView: View {
             }
         }
         .navigationTitle(pathway.name)
+        .compactNavigationTitle()
         .appListScreen()
     }
 }
@@ -460,6 +469,11 @@ private struct JournalView: View {
     var body: some View {
         NavigationStack {
             List {
+                TabScreenHeaderRow(
+                    title: "Journal",
+                    subtitle: "Private field notes from your concepts."
+                )
+
                 Section {
                     TextField("Search notes", text: $model.journalSearchText)
                         .textFieldStyle(.roundedBorder)
@@ -490,8 +504,7 @@ private struct JournalView: View {
                     }
                 }
             }
-            .navigationTitle("Journal")
-            .appListScreen()
+            .appTabListScreen()
         }
     }
 }
@@ -503,6 +516,11 @@ private struct SettingsView: View {
     var body: some View {
         NavigationStack {
             List {
+                TabScreenHeaderRow(
+                    title: "Settings",
+                    subtitle: "Privacy and data on this device."
+                )
+
                 Section("Privacy") {
                     Toggle(isOn: Binding(
                         get: { model.settings.appLockEnabled },
@@ -547,8 +565,7 @@ private struct SettingsView: View {
                     }
                 }
             }
-            .navigationTitle("Settings")
-            .appListScreen()
+            .appTabListScreen()
             .confirmationDialog("Delete all local data?", isPresented: $confirmDelete, titleVisibility: .visible) {
                 Button("Delete all data", role: .destructive) {
                     model.deleteAllData()
@@ -640,6 +657,18 @@ private struct HeaderBlock: View {
                 .font(AppFont.body)
                 .foregroundStyle(AppColor.secondaryInk)
         }
+    }
+}
+
+private struct TabScreenHeaderRow: View {
+    let title: String
+    let subtitle: String
+
+    var body: some View {
+        HeaderBlock(title: title, subtitle: subtitle)
+            .listRowBackground(AppColor.canvas)
+            .listRowSeparator(.hidden)
+            .listRowInsets(EdgeInsets(top: 8, leading: 18, bottom: 8, trailing: 18))
     }
 }
 
