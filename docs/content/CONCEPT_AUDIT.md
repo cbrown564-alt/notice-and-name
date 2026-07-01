@@ -1,6 +1,6 @@
 # Concept Audit (Master Tracker)
 
-**Generated:** 2026-06-27
+**Generated:** 2026-07-01
 **Regenerate:** `npm run generate-concept-audit`
 **Registry:** `data/asset-registry.json` (`npm run sync-registry`)
 

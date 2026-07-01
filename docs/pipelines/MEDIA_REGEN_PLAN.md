@@ -1,6 +1,6 @@
 # Media Regeneration Plan — Gemini Handoff
 
-**Status:** Ready for external generation  
+**Status:** In progress (nerve-density, rocking, shallowing completed)  
 **Review completed:** 2026-07-01  
 **Source of truth:** `data/media-regen-queue.json`, `data/media-review-decisions.json`  
 **Style authority:** `docs/design/STYLE_BIBLE.md` (v1.0 ratified — **Scientific Warmth**)
@@ -79,12 +79,12 @@ Replace illustration PNGs. Thumbnails should be regenerated **after** each new p
 |---------|----------|-------------|-------|
 | embodied-presence | psychological | `assets/images/concepts/illustrations/embodied-presence.png` | Anchor: `non-concordance.png` |
 | golden-trio | timing | `assets/images/concepts/illustrations/golden-trio.png` | Anchor: `responsive-desire.png` |
-| nerve-density | anatomy | `assets/images/concepts/illustrations/nerve-density.png` | Anchor: `clitoral-structure.png` |
+| nerve-density | anatomy | `assets/images/concepts/illustrations/nerve-density.png` | ✅ **Completed** (Regenerated plate and thumbnail approved) |
 | plateauing | sensation | `assets/images/concepts/illustrations/plateauing.png` | Anchor: `building.png` |
 | pulsing | sensation | `assets/images/concepts/illustrations/pulsing.png` | Anchor: `building.png` |
-| rocking | technique | `assets/images/concepts/illustrations/rocking.png` | Has native diagram; plate is fallback/poster |
+| rocking | technique | `assets/images/concepts/illustrations/rocking.png` | ✅ **Completed** (Regenerated plate and thumbnail approved) |
 | sexual-self-esteem | psychological | `assets/images/concepts/illustrations/sexual-self-esteem.png` | Anchor: `non-concordance.png` |
-| shallowing | technique | `assets/images/concepts/illustrations/shallowing.png` | Has native diagram; plate is fallback |
+| shallowing | technique | `assets/images/concepts/illustrations/shallowing.png` | ✅ **Completed** (Regenerated plate and thumbnail approved) |
 | spectatoring | psychological | `assets/images/concepts/illustrations/spectatoring.png` | Anchor: `non-concordance.png` |
 | spontaneous-desire | timing | `assets/images/concepts/illustrations/spontaneous-desire.png` | Anchor: `responsive-desire.png` |
 | spreading | sensation | `assets/images/concepts/illustrations/spreading.png` | Has wired video; plate is reduce-motion fallback |

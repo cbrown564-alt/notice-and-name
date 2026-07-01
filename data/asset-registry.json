@@ -13,14 +13,14 @@
         "thumbnail": {
           "path": "assets/images/concepts/thumbnails/angling.png",
           "exists": true,
-          "bytes": 108847,
+          "bytes": 24434,
           "wiredInVocab": true,
           "status": "wired"
         },
         "illustration": {
           "path": "assets/images/concepts/illustrations/angling.png",
           "exists": true,
-          "bytes": 179518,
+          "bytes": 123583,
           "wiredInVocab": true,
           "status": "wired",
           "role": "primary"
@@ -44,14 +44,14 @@
         "thumbnail": {
           "path": "assets/images/concepts/thumbnails/rocking.png",
           "exists": true,
-          "bytes": 57143,
+          "bytes": 164590,
           "wiredInVocab": true,
           "status": "wired"
         },
         "illustration": {
           "path": "assets/images/concepts/illustrations/rocking.png",
           "exists": true,
-          "bytes": 129660,
+          "bytes": 270177,
           "wiredInVocab": true,
           "status": "wired",
           "role": "primary"
@@ -75,14 +75,14 @@
         "thumbnail": {
           "path": "assets/images/concepts/thumbnails/shallowing.png",
           "exists": true,
-          "bytes": 413640,
+          "bytes": 229186,
           "wiredInVocab": true,
           "status": "wired"
         },
         "illustration": {
           "path": "assets/images/concepts/illustrations/shallowing.png",
           "exists": true,
-          "bytes": 129558,
+          "bytes": 430564,
           "wiredInVocab": true,
           "status": "wired",
           "role": "primary"
@@ -260,7 +260,7 @@
         "illustration": {
           "path": "assets/images/concepts/illustrations/spreading.png",
           "exists": true,
-          "bytes": 412425,
+          "bytes": 310831,
           "wiredInVocab": true,
           "status": "wired",
           "role": "poster-fallback"
@@ -650,7 +650,7 @@
         "thumbnail": {
           "path": "assets/images/concepts/thumbnails/body-appreciation.png",
           "exists": true,
-          "bytes": 406771,
+          "bytes": 16093,
           "wiredInVocab": true,
           "status": "wired"
         },
@@ -691,7 +691,7 @@
         "illustration": {
           "path": "assets/images/concepts/illustrations/clitoral-structure.png",
           "exists": true,
-          "bytes": 183610,
+          "bytes": 178214,
           "wiredInVocab": true,
           "status": "wired",
           "role": "poster-fallback"
@@ -725,14 +725,14 @@
         "thumbnail": {
           "path": "assets/images/concepts/thumbnails/nerve-density.png",
           "exists": true,
-          "bytes": 342066,
+          "bytes": 233615,
           "wiredInVocab": true,
           "status": "wired"
         },
         "illustration": {
           "path": "assets/images/concepts/illustrations/nerve-density.png",
           "exists": true,
-          "bytes": 144670,
+          "bytes": 456814,
           "wiredInVocab": true,
           "status": "wired",
           "role": "poster-fallback"
@@ -766,7 +766,7 @@
         "thumbnail": {
           "path": "assets/images/concepts/thumbnails/clitourethrovaginal.png",
           "exists": true,
-          "bytes": 120027,
+          "bytes": 16738,
           "wiredInVocab": true,
           "status": "wired"
         },
