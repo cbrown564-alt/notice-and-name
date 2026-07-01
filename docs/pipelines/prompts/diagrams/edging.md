@@ -2,24 +2,25 @@
 
 **Caption:** Intensity rising toward a threshold, then receding  
 **Category:** sensation  
-**Mechanic:** Vertical throttle — drag up to raise intensity toward a coral threshold line; release and intensity recedes (approach & retreat).  
-**States:** idle (low) → building → approaching edge (~70%) → at threshold (~85%+) → receding on release  
+**Mechanic:** Vertical drag — warmth rises in a soft vessel toward a glowing horizon; release and it recedes (approach & retreat).  
+**States:** idle (ember) → building → approaching edge (~70%) → at threshold (~85%+) → receding on release  
 **Reduce motion:** Frozen frame at ~80% threshold with caption context  
-**Tokens:** passive (tank outline) / active (threshold line, fill peak) / glow (sensation near edge)  
-**Do not:** numeric labels, alarm red, explicit anatomy, in-canvas caption text, gamified scoring  
+**Tokens:** passive (vessel etching) / active (threshold glow) / glow (bioluminescent fill + bloom) / sage base (grounding ember)  
+**Do not:** rectangular gauges, ruler lines, numeric labels, alarm red, explicit anatomy, in-canvas caption text  
 
-## Layout
+## Visual language
 
-- Vertical tank (~100×220pt) centered on `conceptCanvas`
-- Coral threshold line at 85% fill height
-- Fill rises from bottom; glow blooms at fill top when near threshold
+- **Vessel:** Soft chalice silhouette — organic sides, not a UI progress bar (Style Bible §2 sensation family).
+- **Fill:** Bioluminescent tide with turbulence texture; curved meniscus surface, not flat block.
+- **Threshold:** Glowing horizon arc with blur — the “edge,” not a mechanical red line.
+- **Rest state:** Subtle sage ember glow at the base.
 
 ## Interaction (RN + iOS)
 
 | Input | Behavior |
 |-------|----------|
 | Pan up | Intensity increases (clamped 0–1) |
-| Release | Fill springs back to 0 (retreat) |
+| Release | Warmth springs back to ember level |
 | Reduce Motion | Static frame at intensity 0.8, gestures off |
 
 ## Haptics

@@ -753,7 +753,7 @@ private struct DiagramChipButtonStyle: ButtonStyle {
 
 // MARK: - Edging
 
-/// Intensity throttle: drag up toward a coral threshold, release to recede.
+/// Bioluminescent warmth rising in a soft vessel toward a glowing horizon; release to recede.
 private struct EdgingDiagramView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var intensity: Double = 0.12
@@ -764,7 +764,10 @@ private struct EdgingDiagramView: View {
 
     private let natural = CGSize(width: 280, height: 260)
     private let threshold = 0.85
-    private let tank = CGRect(x: 90, y: 40, width: 100, height: 220)
+    private let interiorTop: CGFloat = 68
+    private let interiorBottom: CGFloat = 238
+    private let interiorCx: CGFloat = 140
+    private var interiorHeight: CGFloat { interiorBottom - interiorTop }
 
     var body: some View {
         DiagramSurface {
@@ -800,7 +803,7 @@ private struct EdgingDiagramView: View {
                     dragBase = intensity
                 }
                 isReceding = false
-                let delta = -Double(value.translation.height) / tank.height
+                let delta = -Double(value.translation.height) / Double(interiorHeight)
                 intensity = min(1, max(0, dragBase + delta))
                 if intensity >= threshold && !thresholdHaptic {
                     thresholdHaptic = true
@@ -819,29 +822,76 @@ private struct EdgingDiagramView: View {
             }
     }
 
+    private func vesselPath() -> Path {
+        var p = Path()
+        p.move(to: CGPoint(x: 84, y: 226))
+        p.addCurve(to: CGPoint(x: 108, y: 74),
+                   control1: CGPoint(x: 78, y: 168), control2: CGPoint(x: 86, y: 98))
+        p.addQuadCurve(to: CGPoint(x: 172, y: 74), control: CGPoint(x: interiorCx, y: 54))
+        p.addCurve(to: CGPoint(x: 196, y: 226),
+                   control1: CGPoint(x: 194, y: 98), control2: CGPoint(x: 202, y: 168))
+        p.addQuadCurve(to: CGPoint(x: 84, y: 226), control: CGPoint(x: interiorCx, y: 246))
+        p.closeSubpath()
+        return p
+    }
+
+    private func meniscusPath(fillY: CGFloat, level: Double) -> Path {
+        let dip = 4 + level * 6
+        var p = Path()
+        p.move(to: CGPoint(x: 92, y: fillY))
+        p.addQuadCurve(to: CGPoint(x: 188, y: fillY), control: CGPoint(x: interiorCx, y: fillY - dip))
+        p.addLine(to: CGPoint(x: 188, y: interiorBottom))
+        p.addQuadCurve(to: CGPoint(x: 92, y: interiorBottom), control: CGPoint(x: interiorCx, y: interiorBottom + 8))
+        p.closeSubpath()
+        return p
+    }
+
+    private func thresholdArcPath(y: CGFloat) -> Path {
+        var p = Path()
+        p.move(to: CGPoint(x: 98, y: y))
+        p.addQuadCurve(to: CGPoint(x: 182, y: y), control: CGPoint(x: interiorCx, y: y - 6))
+        return p
+    }
+
     private func draw(_ context: GraphicsContext, size: CGSize, intensity: Double) {
         let world = worldTransform(in: size, natural: natural)
-        let fillHeight = tank.height * intensity
-        let fillY = tank.maxY - fillHeight
-        let thresholdY = tank.minY + tank.height * (1 - threshold)
+        let fillY = interiorBottom - interiorHeight * intensity
+        let thresholdY = interiorBottom - interiorHeight * threshold
+        let vessel = vesselPath().applying(world)
 
-        var outline = Path(roundedRect: tank, cornerRadius: 8)
-        context.stroke(outline.applying(world), with: .color(AppColor.diagramPassive),
-                       style: StrokeStyle(lineWidth: 2))
+        // Dormant ember glow at base
+        let ember = circlePath(cx: interiorCx, cy: interiorBottom - 20, r: 44).applying(world)
+        context.glowFill(ember, color: AppColor.moss.opacity(0.35), blur: 28, opacity: 0.35)
 
-        var thresholdLine = Path()
-        thresholdLine.addRect(CGRect(x: tank.minX + 1, y: thresholdY, width: tank.width - 2, height: 2))
-        context.fill(thresholdLine.applying(world), with: .color(AppColor.diagramActive))
+        context.drawLayer { layer in
+            layer.clip(to: vessel)
+            let fill = meniscusPath(fillY: fillY, level: intensity).applying(world)
+            let fillColor = blend(AppColor.diagramPassive, AppColor.diagramActive,
+                                  smoothstep(0.35, threshold, intensity))
+            layer.fill(fill, with: .color(fillColor.opacity(0.92)))
 
-        let fillRect = CGRect(x: tank.minX + 4, y: fillY, width: tank.width - 8, height: fillHeight)
-        var fillPath = Path(roundedRect: fillRect, cornerRadius: 6)
-        let fillColor = blend(AppColor.diagramPassive, AppColor.diagramActive, smoothstep(0.35, threshold, intensity))
-        context.fill(fillPath.applying(world), with: .color(fillColor))
+            var shimmer = Path()
+            shimmer.move(to: CGPoint(x: 96, y: fillY))
+            shimmer.addQuadCurve(to: CGPoint(x: 184, y: fillY), control: CGPoint(x: interiorCx, y: fillY - 8))
+            let shimmerOpacity = smoothstep(0.35, threshold, intensity) * 0.85
+            layer.addFilter(.blur(radius: 8))
+            layer.opacity = shimmerOpacity
+            layer.stroke(shimmer.applying(world), with: .color(AppColor.diagramGlow),
+                         style: StrokeStyle(lineWidth: 5, lineCap: .round))
+        }
 
-        let glowOpacity = smoothstep(0.5, threshold, intensity) * 0.85
-        let glowRect = CGRect(x: fillRect.minX, y: fillRect.minY, width: fillRect.width, height: min(26, fillRect.height))
-        context.glowFill(Path(roundedRect: glowRect, cornerRadius: 6).applying(world),
-                         color: AppColor.diagramGlow, blur: 12, opacity: glowOpacity)
+        let arc = thresholdArcPath(y: thresholdY).applying(world)
+        context.glowStroke(arc, color: AppColor.diagramActive, lineWidth: 3, blur: 5, opacity: 0.35)
+        context.stroke(arc, with: .color(AppColor.diagramGlow.opacity(smoothstep(0.5, threshold, intensity) * 0.75)),
+                       style: StrokeStyle(lineWidth: 1.5, lineCap: .round))
+
+        let bloomR = 18 + 34 * smoothstep(0, threshold, intensity)
+        let bloom = circlePath(cx: interiorCx, cy: fillY, r: bloomR).applying(world)
+        context.glowFill(bloom, color: AppColor.diagramGlow, blur: 20,
+                         opacity: smoothstep(0.35, threshold, intensity) * 0.9)
+
+        context.stroke(vessel, with: .color(AppColor.diagramPassive),
+                       style: StrokeStyle(lineWidth: 1.5, lineJoin: .round))
     }
 }
 
