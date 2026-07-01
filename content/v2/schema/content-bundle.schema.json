@@ -40,6 +40,12 @@
       "items": {
         "$ref": "#/$defs/mediaItem"
       }
+    },
+    "explainers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/explainer"
+      }
     }
   },
   "$defs": {
@@ -226,6 +232,167 @@
         },
         "reducedMotionFallback": {
           "type": "string"
+        }
+      }
+    },
+    "explainerContentBlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "body"],
+      "properties": {
+        "type": {
+          "enum": ["text", "quote", "callout"]
+        },
+        "body": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string"
+        },
+        "attribution": {
+          "type": "string"
+        }
+      }
+    },
+    "explainerStatistic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "label", "source"],
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        }
+      }
+    },
+    "explainerSection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "contentBlocks"],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "contentBlocks": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/explainerContentBlock"
+          }
+        },
+        "statistic": {
+          "$ref": "#/$defs/explainerStatistic"
+        }
+      }
+    },
+    "explainerMisconception": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["myth", "fact"],
+      "properties": {
+        "myth": {
+          "type": "string"
+        },
+        "fact": {
+          "type": "string"
+        }
+      }
+    },
+    "explainerSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["citation", "finding"],
+      "properties": {
+        "citation": {
+          "type": "string"
+        },
+        "finding": {
+          "type": "string"
+        }
+      }
+    },
+    "explainer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "subtitle",
+        "icon",
+        "readTime",
+        "overview",
+        "keyTakeaways",
+        "sections",
+        "misconceptions",
+        "keySources",
+        "relatedConceptIds",
+        "relatedExplainerIds"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "heroImageId": {
+          "$ref": "#/$defs/id"
+        },
+        "readTime": {
+          "type": "string"
+        },
+        "overview": {
+          "type": "string"
+        },
+        "keyTakeaways": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "sections": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/explainerSection"
+          }
+        },
+        "misconceptions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/explainerMisconception"
+          }
+        },
+        "keySources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/explainerSource"
+          }
+        },
+        "relatedConceptIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "relatedExplainerIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          }
         }
       }
     }

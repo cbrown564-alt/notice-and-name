@@ -8,6 +8,7 @@ const ts = require('typescript');
 const root = path.resolve(__dirname, '..');
 const vocabularyPath = path.join(root, 'data/vocabulary.ts');
 const pathwaysPath = path.join(root, 'data/pathways.ts');
+const explainersPath = path.join(root, 'data/explainers.ts');
 const editorialReviewPath = path.join(root, 'content/v2/editorial-review.json');
 const conceptCopyPath = path.join(root, 'content/v2/copy/concept-copy.json');
 const bundlePath = path.join(root, 'content/v2/bundles/v2-full.bundle.json');
@@ -40,6 +41,9 @@ function loadTsExports(filePath) {
       if (specifier === './pathways') {
         return { getPathwayById: () => undefined };
       }
+      if (specifier === '@/types') {
+        return {};
+      }
       return {};
     },
   };
@@ -47,6 +51,92 @@ function loadTsExports(filePath) {
 
   vm.runInNewContext(output, sandbox, { filename: filePath });
   return sandbox.exports;
+}
+
+const EXPLAINER_ICON_MAP = {
+  'stats-chart': 'chart.bar',
+  body: 'figure.stand',
+  bulb: 'lightbulb',
+  chatbubbles: 'bubble.left.and.bubble.right',
+};
+
+function normalizeExplainerContent(content) {
+  if (typeof content === 'string') {
+    return [{ type: 'text', body: content }];
+  }
+  if (!Array.isArray(content)) return [];
+
+  return content
+    .map((block) => {
+      switch (block.type) {
+        case 'text':
+          return { type: 'text', body: block.content };
+        case 'quote':
+          return {
+            type: 'quote',
+            body: block.content,
+            attribution: block.author || undefined,
+          };
+        case 'callout':
+          return {
+            type: 'callout',
+            title: block.title,
+            body: block.content,
+          };
+        default:
+          return block.content ? { type: 'text', body: String(block.content) } : null;
+      }
+    })
+    .filter(Boolean);
+}
+
+function registerExplainerHeroMedia(explainer, mediaById) {
+  if (!explainer.image || typeof explainer.image !== 'string') return null;
+
+  const assetPath = explainer.image.startsWith('assets/')
+    ? explainer.image
+    : `assets/images/explainers/${path.basename(explainer.image)}`;
+  const mediaId = `explainer-${explainer.id}`;
+
+  if (!mediaById.has(mediaId)) {
+    mediaById.set(mediaId, {
+      id: mediaId,
+      kind: 'image',
+      path: assetPath,
+      alt: explainer.title,
+      reducedMotionFallback: assetPath,
+    });
+  }
+
+  return mediaId;
+}
+
+function buildExplainers(rawExplainers, conceptIds, mediaById) {
+  const explainerIds = new Set(rawExplainers.map((item) => item.id));
+
+  return rawExplainers.map((explainer) => {
+    const heroImageId = registerExplainerHeroMedia(explainer, mediaById);
+
+    return {
+      id: explainer.id,
+      title: explainer.title,
+      subtitle: explainer.subtitle,
+      icon: EXPLAINER_ICON_MAP[explainer.icon] || 'doc.text',
+      heroImageId,
+      readTime: explainer.readTime,
+      overview: explainer.overview,
+      keyTakeaways: explainer.keyTakeaways,
+      sections: explainer.sections.map((section) => ({
+        title: section.title,
+        contentBlocks: normalizeExplainerContent(section.content),
+        statistic: section.statistic || undefined,
+      })),
+      misconceptions: explainer.misconceptions,
+      keySources: explainer.keySources,
+      relatedConceptIds: (explainer.relatedConceptIds || []).filter((id) => conceptIds.has(id)),
+      relatedExplainerIds: (explainer.relatedExplainerIds || []).filter((id) => explainerIds.has(id)),
+    };
+  });
 }
 
 function trimSummary(value) {
@@ -285,9 +375,11 @@ function buildBlocks(concept, citations, mediaIds, override) {
 function buildBundle() {
   const { concepts } = loadTsExports(vocabularyPath);
   const { pathways } = loadTsExports(pathwaysPath);
+  const { explainers } = loadTsExports(explainersPath);
   const editorialReview = readEditorialReview();
   const conceptCopy = readConceptCopy();
   const mediaById = new Map();
+  const conceptIds = new Set(concepts.map((concept) => concept.id));
 
   const v2Concepts = concepts.map((concept) => {
     const override = conceptCopy[concept.id];
@@ -310,6 +402,8 @@ function buildBundle() {
     };
   });
 
+  const v2Explainers = buildExplainers(explainers || [], conceptIds, mediaById);
+
   return {
     schemaVersion: 1,
     bundleId: 'v2-full',
@@ -324,6 +418,7 @@ function buildBundle() {
       conceptIds: pathway.conceptIds,
     })),
     media: [...mediaById.values()],
+    explainers: v2Explainers,
   };
 }
 
@@ -338,5 +433,6 @@ if (fs.existsSync(path.dirname(nativeResourcePath))) {
 
 console.log(
   `Generated ${path.relative(root, bundlePath)} (${bundle.concepts.length} concepts, ` +
-    `${bundle.pathways.length} pathways, ${bundle.media.length} media items)`
+    `${bundle.pathways.length} pathways, ${bundle.media.length} media items, ` +
+    `${bundle.explainers.length} explainers)`
 );

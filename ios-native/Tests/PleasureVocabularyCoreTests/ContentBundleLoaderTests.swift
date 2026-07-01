@@ -20,7 +20,9 @@ import Testing
     #expect(bundle.bundleId == "v2-full")
     #expect(bundle.concepts.count == 22)
     #expect(bundle.pathways.count == 5)
+    #expect(bundle.explainers.count == 4)
     #expect(bundle.concepts.map(\.id).contains("internal-stimulation"))
+    #expect(bundle.explainers.map(\.id).contains("orgasm-gap"))
 }
 
 @Test func validatesGoldenPathBundleReferences() throws {
@@ -60,7 +62,8 @@ import Testing
         generatedAt: bundle.generatedAt,
         concepts: bundle.concepts,
         pathways: bundle.pathways,
-        media: bundle.media
+        media: bundle.media,
+        explainers: bundle.explainers
     )
 
     let errors = ContentBundleValidator().validate(futureBundle)

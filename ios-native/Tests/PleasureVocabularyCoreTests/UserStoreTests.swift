@@ -160,7 +160,8 @@ import Testing
         generatedAt: "2026-06-27T00:00:00Z",
         concepts: Array(original.concepts.dropLast()),
         pathways: original.pathways,
-        media: original.media
+        media: original.media,
+        explainers: original.explainers
     )
 
     try store.setConceptStatus(.resonates, for: "responsive-desire")

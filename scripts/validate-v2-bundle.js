@@ -21,6 +21,7 @@ const KNOWN_PHRASE_USE_CASES = new Set([
   'curiosity',
   'reassurance',
 ]);
+const KNOWN_EXPLAINER_BLOCK_TYPES = new Set(['text', 'quote', 'callout']);
 const KNOWN_PATHWAY_INTENTS = new Set([
   'understand-body',
   'notice-patterns',
@@ -84,16 +85,22 @@ function validateBundle(bundle) {
   }
   if (!Array.isArray(bundle.pathways)) errors.push('pathways must be an array');
   if (!Array.isArray(bundle.media)) errors.push('media must be an array');
+  if (bundle.explainers != null && !Array.isArray(bundle.explainers)) {
+    errors.push('explainers must be an array when present');
+  }
 
   const concepts = Array.isArray(bundle.concepts) ? bundle.concepts : [];
   const pathways = Array.isArray(bundle.pathways) ? bundle.pathways : [];
   const media = Array.isArray(bundle.media) ? bundle.media : [];
+  const explainers = Array.isArray(bundle.explainers) ? bundle.explainers : [];
   const conceptIds = new Set(concepts.map((concept) => concept.id));
   const mediaIds = new Set(media.map((item) => item.id));
+  const explainerIds = new Set(explainers.map((item) => item.id));
 
   requireUnique(concepts, 'concept', errors);
   requireUnique(pathways, 'pathway', errors);
   requireUnique(media, 'media', errors);
+  requireUnique(explainers, 'explainer', errors);
 
   for (const concept of concepts) {
     requireId(concept.id, 'concept.id', errors);
@@ -201,6 +208,61 @@ function validateBundle(bundle) {
     pathExistsIfBundled(item.reducedMotionFallback, `${item.id}.reducedMotionFallback`, errors);
   }
 
+  for (const explainer of explainers) {
+    requireId(explainer.id, 'explainer.id', errors);
+    requireString(explainer.title, `${explainer.id}.title`, errors);
+    requireString(explainer.subtitle, `${explainer.id}.subtitle`, errors);
+    requireString(explainer.icon, `${explainer.id}.icon`, errors);
+    requireString(explainer.readTime, `${explainer.id}.readTime`, errors);
+    requireString(explainer.overview, `${explainer.id}.overview`, errors);
+    if (!Array.isArray(explainer.keyTakeaways) || explainer.keyTakeaways.length === 0) {
+      errors.push(`${explainer.id}.keyTakeaways must be a non-empty array`);
+    }
+    if (!Array.isArray(explainer.sections) || explainer.sections.length === 0) {
+      errors.push(`${explainer.id}.sections must be a non-empty array`);
+    }
+    if (!Array.isArray(explainer.misconceptions)) {
+      errors.push(`${explainer.id}.misconceptions must be an array`);
+    }
+    if (!Array.isArray(explainer.keySources)) {
+      errors.push(`${explainer.id}.keySources must be an array`);
+    }
+    if (!Array.isArray(explainer.relatedConceptIds)) {
+      errors.push(`${explainer.id}.relatedConceptIds must be an array`);
+    }
+    if (!Array.isArray(explainer.relatedExplainerIds)) {
+      errors.push(`${explainer.id}.relatedExplainerIds must be an array`);
+    }
+    if (explainer.heroImageId && !mediaIds.has(explainer.heroImageId)) {
+      errors.push(`${explainer.id}.heroImageId references missing media: ${explainer.heroImageId}`);
+    }
+    for (const conceptId of explainer.relatedConceptIds || []) {
+      if (!conceptIds.has(conceptId)) {
+        errors.push(`${explainer.id}.relatedConceptIds references missing concept: ${conceptId}`);
+      }
+    }
+    for (const relatedId of explainer.relatedExplainerIds || []) {
+      if (!explainerIds.has(relatedId)) {
+        errors.push(`${explainer.id}.relatedExplainerIds references missing explainer: ${relatedId}`);
+      }
+    }
+    for (const section of explainer.sections || []) {
+      requireString(section.title, `${explainer.id}.sections.title`, errors);
+      if (!Array.isArray(section.contentBlocks) || section.contentBlocks.length === 0) {
+        errors.push(`${explainer.id}.sections.contentBlocks must be a non-empty array`);
+      }
+      for (const block of section.contentBlocks || []) {
+        if (!KNOWN_EXPLAINER_BLOCK_TYPES.has(block.type)) {
+          errors.push(`${explainer.id}.sections block type is unknown: ${block.type}`);
+        }
+        requireString(block.body, `${explainer.id}.sections block body`, errors);
+        if (block.type === 'callout') {
+          requireString(block.title, `${explainer.id}.sections callout title`, errors);
+        }
+      }
+    }
+  }
+
   return errors;
 }
 
@@ -215,5 +277,6 @@ if (errors.length > 0) {
 
 console.log(
   `V2 bundle ok: ${path.relative(root, bundlePath)} ` +
-    `(${bundle.concepts.length} concepts, ${bundle.pathways.length} pathways, ${bundle.media.length} media items)`
+    `(${bundle.concepts.length} concepts, ${bundle.pathways.length} pathways, ${bundle.media.length} media items` +
+    `${Array.isArray(bundle.explainers) ? `, ${bundle.explainers.length} explainers` : ''})`
 );

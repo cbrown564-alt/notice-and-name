@@ -6,6 +6,9 @@ The SwiftUI app should consume generated bundles from `bundles/`. Source drafts,
 validation schemas, and migration tools can live next to them until the content system
 outgrows this repository.
 
+Research explainers (long-form science articles) ship in the v2 bundle under
+`explainers` and appear in the native app's Explore tab.
+
 ## Current Files
 
 | Path | Purpose |
@@ -21,5 +24,6 @@ npm run validate-v2-bundle
 
 ## Migration Note
 
-The current Expo app remains the source of truth until the v2 bundle is validated and
-reviewed. Do not delete or rewrite `data/vocabulary.ts` as part of v2 setup.
+`data/explainers.ts` remains the editorial source for research explainers until content
+moves fully into `content/v2/`. Regenerate the bundle with `npm run generate-v2-full-bundle`.
+Do not delete or rewrite `data/vocabulary.ts` as part of v2 setup.

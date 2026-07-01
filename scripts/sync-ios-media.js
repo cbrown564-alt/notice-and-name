@@ -47,6 +47,12 @@ const SYNC_RULES = [
     match: (name) => name.endsWith('.mp4') && !name.startsWith('.'),
     flat: true,
   },
+  {
+    label: 'explainers',
+    from: path.join(ROOT, 'assets/images/explainers'),
+    to: path.join(IOS_MEDIA_ROOT, 'explainers'),
+    match: (name) => name.endsWith('.png') && !name.startsWith('.'),
+  },
 ];
 
 const CHECK = process.argv.includes('--check');

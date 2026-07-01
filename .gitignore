@@ -47,3 +47,5 @@ ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/*
 !ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/.gitkeep
 ios-native/Sources/PleasureVocabularyApp/Resources/media/videos/*
 !ios-native/Sources/PleasureVocabularyApp/Resources/media/videos/.gitkeep
+ios-native/Sources/PleasureVocabularyApp/Resources/media/explainers/*
+!ios-native/Sources/PleasureVocabularyApp/Resources/media/explainers/.gitkeep

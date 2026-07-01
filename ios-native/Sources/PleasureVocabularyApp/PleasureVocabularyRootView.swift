@@ -354,8 +354,24 @@ private struct ExploreView: View {
             List {
                 TabScreenHeaderRow(
                     title: "Explore",
-                    subtitle: "Pathways and the full concept library."
+                    subtitle: "Pathways, research explainers, and the full concept library."
                 )
+
+                if !model.bundle.explainers.isEmpty {
+                    Section("Research Explainers") {
+                        ForEach(model.bundle.explainers) { explainer in
+                            NavigationLink {
+                                ExplainerDetailView(model: model, explainer: explainer)
+                            } label: {
+                                ExplainerSummaryRow(
+                                    explainer: explainer,
+                                    heroMedia: model.media(withId: explainer.heroImageId)
+                                )
+                            }
+                            .listRowBackground(AppColor.surface)
+                        }
+                    }
+                }
 
                 Section("Pathways") {
                     ForEach(model.bundle.pathways) { pathway in

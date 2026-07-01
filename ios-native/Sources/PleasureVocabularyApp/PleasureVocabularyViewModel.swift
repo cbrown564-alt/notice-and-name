@@ -68,6 +68,10 @@ public final class PleasureVocabularyViewModel: ObservableObject {
         bundle.concepts.first { $0.id == id }
     }
 
+    public func explainer(withId id: String) -> ResearchExplainer? {
+        bundle.explainers.first { $0.id == id }
+    }
+
     public func media(withId id: String?) -> MediaItem? {
         guard let id else { return nil }
         return bundle.media.first { $0.id == id }

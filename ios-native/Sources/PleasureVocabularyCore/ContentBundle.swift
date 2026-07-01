@@ -8,6 +8,7 @@ public struct ContentBundle: Codable, Equatable, Sendable {
     public let concepts: [Concept]
     public let pathways: [Pathway]
     public let media: [MediaItem]
+    public let explainers: [ResearchExplainer]
 
     public static let empty = ContentBundle(
         schemaVersion: 1,
@@ -16,7 +17,8 @@ public struct ContentBundle: Codable, Equatable, Sendable {
         generatedAt: "1970-01-01T00:00:00Z",
         concepts: [],
         pathways: [],
-        media: []
+        media: [],
+        explainers: []
     )
 
     public init(
@@ -26,7 +28,8 @@ public struct ContentBundle: Codable, Equatable, Sendable {
         generatedAt: String,
         concepts: [Concept],
         pathways: [Pathway],
-        media: [MediaItem]
+        media: [MediaItem],
+        explainers: [ResearchExplainer] = []
     ) {
         self.schemaVersion = schemaVersion
         self.bundleId = bundleId
@@ -35,6 +38,30 @@ public struct ContentBundle: Codable, Equatable, Sendable {
         self.concepts = concepts
         self.pathways = pathways
         self.media = media
+        self.explainers = explainers
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case schemaVersion
+        case bundleId
+        case contentVersion
+        case generatedAt
+        case concepts
+        case pathways
+        case media
+        case explainers
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
+        bundleId = try container.decode(String.self, forKey: .bundleId)
+        contentVersion = try container.decode(String.self, forKey: .contentVersion)
+        generatedAt = try container.decode(String.self, forKey: .generatedAt)
+        concepts = try container.decode([Concept].self, forKey: .concepts)
+        pathways = try container.decode([Pathway].self, forKey: .pathways)
+        media = try container.decode([MediaItem].self, forKey: .media)
+        explainers = try container.decodeIfPresent([ResearchExplainer].self, forKey: .explainers) ?? []
     }
 }
 
@@ -145,6 +172,68 @@ public enum MediaKind: String, Codable, Sendable {
     case image
     case video
     case diagram
+}
+
+public struct ResearchExplainer: Codable, Equatable, Sendable, Identifiable {
+    public let id: String
+    public let title: String
+    public let subtitle: String
+    public let icon: String
+    public let heroImageId: String?
+    public let readTime: String
+    public let overview: String
+    public let keyTakeaways: [String]
+    public let sections: [ExplainerSection]
+    public let misconceptions: [ExplainerMisconception]
+    public let keySources: [ExplainerSource]
+    public let relatedConceptIds: [String]
+    public let relatedExplainerIds: [String]
+}
+
+public struct ExplainerSection: Codable, Equatable, Sendable, Identifiable {
+    public var id: String { title }
+    public let title: String
+    public let contentBlocks: [ExplainerContentBlock]
+    public let statistic: ExplainerStatistic?
+}
+
+public struct ExplainerContentBlock: Codable, Equatable, Sendable, Identifiable {
+    public var id: String {
+        switch type {
+        case .text: return "text-\(body.hashValue)"
+        case .quote: return "quote-\(body.hashValue)"
+        case .callout: return "callout-\((title ?? body).hashValue)"
+        }
+    }
+
+    public let type: ExplainerContentBlockType
+    public let body: String
+    public let title: String?
+    public let attribution: String?
+}
+
+public enum ExplainerContentBlockType: String, Codable, Sendable {
+    case text
+    case quote
+    case callout
+}
+
+public struct ExplainerStatistic: Codable, Equatable, Sendable {
+    public let value: String
+    public let label: String
+    public let source: String
+}
+
+public struct ExplainerMisconception: Codable, Equatable, Sendable, Identifiable {
+    public var id: String { myth }
+    public let myth: String
+    public let fact: String
+}
+
+public struct ExplainerSource: Codable, Equatable, Sendable, Identifiable {
+    public var id: String { citation }
+    public let citation: String
+    public let finding: String
 }
 
 public struct ContentBundleUpdatePlan: Equatable, Sendable {

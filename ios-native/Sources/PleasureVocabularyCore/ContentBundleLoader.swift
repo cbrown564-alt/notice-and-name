@@ -25,10 +25,12 @@ public struct ContentBundleValidator {
 
         let conceptIds = Set(bundle.concepts.map(\.id))
         let mediaIds = Set(bundle.media.map(\.id))
+        let explainerIds = Set(bundle.explainers.map(\.id))
 
         appendDuplicateErrors(bundle.concepts.map(\.id), label: "concept", to: &errors)
         appendDuplicateErrors(bundle.pathways.map(\.id), label: "pathway", to: &errors)
         appendDuplicateErrors(bundle.media.map(\.id), label: "media", to: &errors)
+        appendDuplicateErrors(bundle.explainers.map(\.id), label: "explainer", to: &errors)
 
         for concept in bundle.concepts {
             if concept.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
@@ -74,6 +76,30 @@ public struct ContentBundleValidator {
             }
             for conceptId in pathway.conceptIds where !conceptIds.contains(conceptId) {
                 errors.append("\(pathway.id).conceptIds references missing concept: \(conceptId)")
+            }
+        }
+
+        for explainer in bundle.explainers {
+            if explainer.title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                errors.append("\(explainer.id).title must not be empty")
+            }
+            if explainer.sections.isEmpty {
+                errors.append("\(explainer.id).sections must not be empty")
+            }
+            if explainer.keyTakeaways.isEmpty {
+                errors.append("\(explainer.id).keyTakeaways must not be empty")
+            }
+            if let heroImageId = explainer.heroImageId, !mediaIds.contains(heroImageId) {
+                errors.append("\(explainer.id).heroImageId references missing media: \(heroImageId)")
+            }
+            for relatedId in explainer.relatedConceptIds where !conceptIds.contains(relatedId) {
+                errors.append("\(explainer.id).relatedConceptIds references missing concept: \(relatedId)")
+            }
+            for relatedId in explainer.relatedExplainerIds where !explainerIds.contains(relatedId) {
+                errors.append("\(explainer.id).relatedExplainerIds references missing explainer: \(relatedId)")
+            }
+            for section in explainer.sections where section.contentBlocks.isEmpty {
+                errors.append("\(explainer.id).\(section.title).contentBlocks must not be empty")
             }
         }
 
