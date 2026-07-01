@@ -451,9 +451,18 @@ private struct ConceptDetailView: View {
     let concept: Concept
 
     var body: some View {
-        ConceptPagesView(model: model, concept: concept)
+        conceptDetailContent
+            .onAppear {
+                model.markOpened(concept.id)
+            }
+    }
+
+    private var conceptDetailContent: some View {
+        let base = ConceptPagesView(model: model, concept: concept)
             .navigationTitle(concept.name)
             .compactNavigationTitle()
+        #if os(iOS)
+        return base
             .toolbarBackground(.hidden, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -474,9 +483,9 @@ private struct ConceptDetailView: View {
                     }
                 }
             }
-            .onAppear {
-                model.markOpened(concept.id)
-            }
+        #else
+        return base
+        #endif
     }
 }
 

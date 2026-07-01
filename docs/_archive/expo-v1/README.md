@@ -10,7 +10,10 @@ The production app is the SwiftUI client in [`../../ios/`](../../ios/). For curr
 | [IMPLEMENTATION_PLAN.md](./IMPLEMENTATION_PLAN.md) | Phased plan for the Expo MVP toward a polished release |
 | [QA_CHECKLIST.md](./QA_CHECKLIST.md) | Manual device QA script for the Expo app |
 | [UI_REVIEW_AND_CREATIVE_PLAN.md](./UI_REVIEW_AND_CREATIVE_PLAN.md) | Expo UI review and creative direction notes |
-| [pipelines/REFERENCE_RENDERS.md](./pipelines/REFERENCE_RENDERS.md) | Expo Go reference render workflow |
-| [pipelines/VIDEO_GENERATION.md](./pipelines/VIDEO_GENERATION.md) | Expo video integration checklist |
+
+`pipelines/REFERENCE_RENDERS.md` and `pipelines/VIDEO_GENERATION.md` were briefly archived here but are
+client-agnostic media pipeline docs, not Expo-specific — they live at
+[`../../pipelines/REFERENCE_RENDERS.md`](../../pipelines/REFERENCE_RENDERS.md) and
+[`../../pipelines/VIDEO_GENERATION.md`](../../pipelines/VIDEO_GENERATION.md).
 
 See [EXPO_RETIREMENT.md](../../v2/EXPO_RETIREMENT.md) for the full retirement record.

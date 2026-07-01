@@ -183,12 +183,17 @@ extension View {
     }
 
     func appListScreen() -> some View {
-        listStyle(.plain)
+        let styled = listStyle(.plain)
             .environment(\.colorScheme, .light)
             .scrollContentBackground(.hidden)
             .background(AppColor.canvas)
+        #if os(iOS)
+        return styled
             .toolbarBackground(AppColor.canvas, for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
+        #else
+        return styled
+        #endif
     }
 
     /// Scroll-based tab roots (Today, Settings) with no system list chrome.
