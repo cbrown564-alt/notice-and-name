@@ -22,6 +22,7 @@ Completed foundations:
 - [x] Local user state.
 - [x] Onboarding/privacy pledge.
 - [x] Today, concept detail, Vocabulary, field notes, and saved phrases.
+- [x] Research explainers (4 articles) in v2 bundle and native Explore tab.
 - [x] Native typography, color, haptics, app lock prototype, Dynamic Type, and Reduce Motion.
 - [x] Journal search, export/delete-all-data, TestFlight host scaffold, and device QA docs.
 

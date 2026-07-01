@@ -10,7 +10,13 @@ contract between editorial/product work and the SwiftUI client.
 
 The current Expo app stores content in TypeScript objects with `require()` media bindings.
 That was appropriate for the MVP, but it makes content, asset wiring, and UI assumptions
-too tightly coupled for a premium rebuild.
+too tightly coupled for a premium rebuild. Editorial sources still live in `data/` until
+they migrate fully into `content/v2/`; the **bundle** is the runtime contract for the
+native app.
+
+Research explainers are generated from `data/explainers.ts` into the bundle `explainers`
+array and rendered in the native Explore tab. The v1 **literacy report** (progress tiers
+and streaks) is intentionally **not** ported to native.
 
 ## Content Source Shape
 
@@ -44,6 +50,7 @@ A v2 content bundle should include:
 - related concept ids
 - pathway ordering by user intent
 - media manifest entries
+- **research explainers** (long-form science articles with sections, sources, and related concept links)
 
 It should not include:
 
