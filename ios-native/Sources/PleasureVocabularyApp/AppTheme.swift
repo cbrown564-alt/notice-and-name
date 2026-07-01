@@ -4,6 +4,41 @@ import SwiftUI
 import UIKit
 #endif
 
+public enum AppTheme {
+    public static func configure() {
+        #if os(iOS)
+        let canvas = UIColor(red: 0.98, green: 0.96, blue: 0.93, alpha: 1)
+        let surface = UIColor(red: 1.00, green: 0.99, blue: 0.97, alpha: 1)
+        let ink = UIColor(red: 0.13, green: 0.11, blue: 0.10, alpha: 1)
+        let line = UIColor(red: 0.86, green: 0.80, blue: 0.74, alpha: 1)
+
+        let navigationBar = UINavigationBarAppearance()
+        navigationBar.configureWithOpaqueBackground()
+        navigationBar.backgroundColor = canvas
+        navigationBar.shadowColor = line
+        navigationBar.titleTextAttributes = [.foregroundColor: ink]
+        navigationBar.largeTitleTextAttributes = [.foregroundColor: ink]
+
+        let navigationBarProxy = UINavigationBar.appearance()
+        navigationBarProxy.standardAppearance = navigationBar
+        navigationBarProxy.scrollEdgeAppearance = navigationBar
+        navigationBarProxy.compactAppearance = navigationBar
+        navigationBarProxy.tintColor = UIColor(red: 0.34, green: 0.22, blue: 0.32, alpha: 1)
+
+        let tabBar = UITabBarAppearance()
+        tabBar.configureWithOpaqueBackground()
+        tabBar.backgroundColor = surface
+        tabBar.shadowColor = line
+
+        let tabBarProxy = UITabBar.appearance()
+        tabBarProxy.standardAppearance = tabBar
+        tabBarProxy.scrollEdgeAppearance = tabBar
+        tabBarProxy.tintColor = UIColor(red: 0.34, green: 0.22, blue: 0.32, alpha: 1)
+        tabBarProxy.unselectedItemTintColor = UIColor(red: 0.39, green: 0.35, blue: 0.32, alpha: 1)
+        #endif
+    }
+}
+
 public enum AppColor {
     public static let canvas = Color(red: 0.98, green: 0.96, blue: 0.93)
     public static let surface = Color(red: 1.00, green: 0.99, blue: 0.97)
@@ -102,6 +137,18 @@ extension View {
     func fullScreenAppBackground() -> some View {
         frame(maxWidth: .infinity, maxHeight: .infinity)
             .appScreenBackground()
+    }
+
+    func appLightChrome() -> some View {
+        preferredColorScheme(.light)
+    }
+
+    func appListScreen() -> some View {
+        scrollContentBackground(.hidden)
+            .background(AppColor.canvas)
+            .toolbarBackground(AppColor.canvas, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarColorScheme(.light, for: .navigationBar)
     }
 
     @ViewBuilder
