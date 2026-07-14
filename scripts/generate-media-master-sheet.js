@@ -27,8 +27,8 @@ const OUT_MD = path.join(ROOT, 'docs/reports/MEDIA_MASTER_SHEET.md');
 const MEDIA_EXT = new Set(['.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg', '.mp4', '.mov', '.webm']);
 const SCAN_ROOTS = [
   'assets',
-  path.join('ios-native/Sources/PleasureVocabularyApp/Resources/media'),
-  path.join('ios-native/AppHost/Assets.xcassets'),
+  path.join('ios/Sources/PleasureVocabularyApp/Resources/media'),
+  path.join('ios/AppHost/Assets.xcassets'),
 ];
 
 const NATIVE_DIAGRAMS = ['angling', 'rocking', 'shallowing', 'pairing'];
@@ -36,7 +36,7 @@ const NATIVE_DIAGRAMS = ['angling', 'rocking', 'shallowing', 'pairing'];
 const BUNDLE_PATHS = [
   'content/v2/bundles/v2-full.bundle.json',
   'content/v2/bundles/golden-path.bundle.json',
-  'ios-native/Sources/PleasureVocabularyApp/Resources/v2-full.bundle.json',
+  'ios/Sources/PleasureVocabularyApp/Resources/v2-full.bundle.json',
 ];
 
 const SHELL_SCAN_DIRS = [
@@ -92,8 +92,8 @@ function inferSlot(rel) {
 }
 
 function inferLocationTier(rel) {
-  if (rel.startsWith('ios-native/Sources/PleasureVocabularyApp/Resources/media/')) return 'ios-copy';
-  if (rel.startsWith('ios-native/AppHost/')) return 'ios-app-icon';
+  if (rel.startsWith('ios/Sources/PleasureVocabularyApp/Resources/media/')) return 'ios-copy';
+  if (rel.startsWith('ios/AppHost/')) return 'ios-app-icon';
   if (rel.includes('/alternative_styles/')) return 'alternative';
   if (rel.includes('/_archive/')) return 'archive';
   if (rel.startsWith('assets/_originals/')) return 'original';

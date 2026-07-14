@@ -15,7 +15,7 @@
 - **Threshold:** Soft ring at ~85% arc length — the “edge.”
 - **After crest:** Faint **dashed** segment hinting the drop edging avoids — not interactive, no labels.
 
-## Interaction (RN + iOS)
+## Native iOS interaction
 
 | Input | Behavior |
 |-------|----------|

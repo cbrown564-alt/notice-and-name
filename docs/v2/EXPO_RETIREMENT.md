@@ -1,7 +1,7 @@
 # Expo Retirement Plan
 
-**Status:** In progress  
-**Decision:** iOS-only. The SwiftUI app in `ios-native/` is the sole product client.
+**Status:** Complete
+**Decision:** iOS-only. The SwiftUI app in `ios/` is the sole product client.
 
 The Expo / React Native prototype at the repo root is legacy. This document records what
 to remove, what to keep, and the order to do it safely.
@@ -24,7 +24,7 @@ to remove, what to keep, and the order to do it safely.
 ## What Stays After Expo Removal
 
 ```
-ios-native/          Production iOS app (SwiftUI + GRDB)
+ios/          Production iOS app (SwiftUI + GRDB)
 data/                Editorial TypeScript (vocabulary, pathways, explainers)
 content/v2/          Bundle schema, generated JSON, validation
 assets/              Canonical media
@@ -58,54 +58,52 @@ removal sequence below.
 - [x] Confirm native app covers required v1 features
 - [x] Migrate research explainers into v2 bundle (`explainers` array, SwiftUI reader)
 - [x] Decide literacy report: **do not port**
-- [ ] Tag last Expo commit: `git tag expo-v1-final` (optional archive)
+- [x] Tag last Expo commit: `git tag expo-v1-final` at `c139e60`
 
 ### Phase 1 — Decouple tooling
 
-- [ ] Slim `package.json`: remove Expo entry, `expo start`, EAS scripts
-- [ ] Replace `tsconfig.json` (drop `expo/tsconfig.base`; scope to `data/`, `scripts/`)
-- [ ] Verify pipeline:
+- [x] Slim `package.json`: remove Expo entry, `expo start`, EAS scripts
+- [x] Replace `tsconfig.json` (drop `expo/tsconfig.base`; scope to `data/`, `scripts/`)
+- [x] Verify pipeline:
   ```bash
   npm run generate-v2-full-bundle
   npm run validate-v2-bundle:full
   npm run lint-v2-content
   npm run sync-ios-media
-  cd ios-native && swift test
+  cd ios && swift test
   ```
 
 ### Phase 2 — Delete Expo app layer
 
-- [ ] Remove `app/`, `components/`, `lib/`, `hooks/`, `constants/`, `__tests__/`
-- [ ] Remove Expo config files listed above
-- [ ] Trim `types/index.ts` to content-only types (drop `RootStackParamList`, etc.)
+- [x] Remove `app/`, `components/`, `lib/`, `hooks/`, `constants/`, `__tests__/`
+- [x] Remove Expo config files listed above
+- [x] Trim `types/index.ts` to content-only types (drop `RootStackParamList`, etc.)
 
 ### Phase 3 — Remove dependencies
 
-- [ ] Uninstall Expo + React Native stack; regenerate `package-lock.json`
-- [ ] Drop Jest / `jest-expo` unless script-level tests are added later
+- [x] Uninstall Expo + React Native stack; regenerate `package-lock.json`
+- [x] Drop Jest / `jest-expo` unless script-level tests are added later
 
 ### Phase 4 — CI migration
 
-Replace `.github/workflows/ci.yml` baseline:
-
-- `validate-manifest`, `validate-v2-bundle:full`, `lint-v2-content`, `generate-v2-full-bundle`
-- `cd ios-native && swift test`
-- Optional macOS job: `xcodebuild` smoke build + `sync-ios-media`
-
-Remove: `npm test` (deleted Jest suite tied to `lib/`).
+- [x] Replace `.github/workflows/ci.yml` with native-first pipeline:
+  - Ubuntu job: `validate-manifest`, `generate-v2-full-bundle`, `validate-v2-bundle:full`, `lint-v2-content`
+  - macOS job: `npm ci`, `generate-v2-full-bundle`, `sync-ios-media`, `cd ios && swift test`, `xcodebuild` smoke build
+- [x] Remove `npm test` (deleted Jest suite tied to `lib/`)
+- [x] macOS job: `xcodebuild` smoke build + `sync-ios-media`
 
 ### Phase 5 — Documentation
 
 - [x] This document
-- [ ] Rewrite root `README.md` for Xcode + TestFlight workflow
-- [ ] Update `docs/v2/*` to remove “Expo is source of truth” language
-- [ ] Archive Expo-era docs under `docs/_archive/expo-v1/`
+- [x] Rewrite root `README.md` for Xcode + TestFlight workflow
+- [x] Update `docs/v2/*` to remove “Expo is source of truth” language
+- [x] Archive Expo-era docs under `docs/_archive/expo-v1/`
 
 ### Phase 6 — Repo hygiene
 
-- [ ] Clean `.gitignore` (`.expo/`, `/ios`, `/android`, Metro entries)
-- [ ] Remove `expo.vscode-expo-tools` from `.vscode/extensions.json`
-- [ ] Optional: rename `ios-native/` → `ios/`
+- [x] Clean `.gitignore` (`.expo/`, `/ios`, `/android`, Metro entries)
+- [x] Remove `expo.vscode-expo-tools` from `.vscode/extensions.json`
+- [x] Rename `ios-native/` → `ios/`
 
 ## Explainers Pipeline (Post-Migration)
 
@@ -126,9 +124,9 @@ After full removal:
 ```bash
 rg -i 'expo|react-native|@expo|eas build' --glob '!docs/_archive/**' --glob '!package-lock.json'
 npm ci && npm run generate-v2-full-bundle && npm run validate-v2-bundle:full
-cd ios-native && swift test
+cd ios && swift test
 ```
 
 ## Distribution
 
-Production builds use `ios-native/TESTFLIGHT_RUNBOOK.md` and Xcode — not EAS.
+Production builds use `ios/TESTFLIGHT_RUNBOOK.md` and Xcode — not EAS.

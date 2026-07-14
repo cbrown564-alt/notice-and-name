@@ -3,7 +3,7 @@
 **Generated:** 2026-05-19
 **Regenerate:** `npm run bundle-report`
 
-On-disk sizes under `assets/` (what ships in the app binary). JS bundle not included — run EAS build analytics for full binary size.
+On-disk sizes under `assets/` (what ships in the iOS app bundle). Swift binary overhead not included — use Xcode archive reports for full app size.
 
 ## Summary
 

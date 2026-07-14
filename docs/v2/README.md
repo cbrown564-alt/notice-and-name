@@ -1,8 +1,8 @@
 # V2 Premium Native Track
 
-This folder is the planning and architecture home for the **iOS-first premium rebuild**.
-The legacy Expo / React Native prototype at the repo root is being retired; see
-[EXPO_RETIREMENT.md](./EXPO_RETIREMENT.md).
+This folder is the planning and architecture home for the **iOS-first premium product**.
+The legacy Expo / React Native prototype has been retired; see
+[EXPO_RETIREMENT.md](./EXPO_RETIREMENT.md) for the migration record.
 
 ## Start Here
 
@@ -12,6 +12,7 @@ The legacy Expo / React Native prototype at the repo root is being retired; see
 | [NATIVE_ARCHITECTURE.md](./NATIVE_ARCHITECTURE.md) | SwiftUI-first technical direction, local-first privacy model, and system boundaries |
 | [CONTENT_SYSTEM.md](./CONTENT_SYSTEM.md) | Content package model consumed by the native app |
 | [ROADMAP.md](./ROADMAP.md) | Practical build sequence from brief to TestFlight |
+| [PREMIUM_PRODUCT_SHAPE.md](./PREMIUM_PRODUCT_SHAPE.md) | Phase 7 purchase model, preview boundary, and owner decisions |
 | [EXPO_RETIREMENT.md](./EXPO_RETIREMENT.md) | Expo removal plan, feature keep/drop decisions, and merge sequence |
 
 ## Working Principle
@@ -22,6 +23,6 @@ deck with more polish.
 
 ## Native Core
 
-The production iOS app lives in [`../../ios-native`](../../ios-native). It loads the full
+The production iOS app lives in [`../../ios`](../../ios). It loads the full
 v2 content bundle (22 concepts, 5 pathways, 4 research explainers) and persists user state
 with GRDB. Research explainers appear under **Explore → Research Explainers**.

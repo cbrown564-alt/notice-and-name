@@ -12,7 +12,7 @@
 1. Attach this doc + `STYLE_BIBLE.md` + the **family anchor plate** for each concept (see table below).
 2. Generate **plate first**, approve it, then generate **thumbnail as a simplified glyph of that plate** (Batch A pattern).
 3. **No in-image text** — prior QA failures included labels, titles, and chart numbers.
-4. Harmonize technique plates with diagram palette: `#E8603C`, `#FFC5B5`, `#DCD8D3` where a native Skia diagram exists.
+4. Harmonize technique plates with the native diagram palette: `#E8603C`, `#FFC5B5`, `#DCD8D3`.
 
 ### Global prefix (every plate + thumb)
 
@@ -50,8 +50,8 @@ Must be recognizable as the same concept as the plate at ~64px width.
 | # | Concept | Category | Anchor plate | Also ships |
 |---|---------|----------|--------------|------------|
 | 1 | nerve-density | anatomy | `clitoral-structure.png` | — |
-| 2 | rocking | technique | `pairing.png` | Skia diagram |
-| 3 | shallowing | technique | `pairing.png` | Skia diagram |
+| 2 | rocking | technique | `pairing.png` | Native diagram |
+| 3 | shallowing | technique | `pairing.png` | Native diagram |
 | 4 | plateauing | sensation | `building.png` | — |
 | 5 | pulsing | sensation | `building.png` | — |
 | 6 | spreading | sensation | `building.png` | MP4 video (static fallback) |
@@ -491,7 +491,7 @@ Warm body curve below + small cool orb above + thin dashed connector. Match non-
 - [ ] Coherent with family anchor plate
 - [ ] Thumbnail is simplified glyph of **this** plate
 - [ ] Illustration ≤400 KB post-compress; thumbnail ≤80 KB
-- [ ] Technique plates harmonize with Skia diagram palette (rocking, shallowing)
+- [ ] Technique plates harmonize with the native diagram palette (rocking, shallowing)
 
 ---
 

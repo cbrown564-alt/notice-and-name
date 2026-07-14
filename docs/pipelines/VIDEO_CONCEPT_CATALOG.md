@@ -32,7 +32,7 @@ We still **verify against citations** and ship **visualization, not clinical pro
 
 \*Tier B/C/D may need `validate-manifest` budget bump or CRF 30–32; track in bundle report.
 
-**Unchanged:** Techniques with Skia (Angling, Rocking, Shallowing, Pairing) — mechanics stay interactive; do not replace diagram with video.
+**Unchanged:** Techniques with native diagrams (Angling, Rocking, Shallowing, Pairing) — mechanics stay interactive; do not replace diagrams with video.
 
 ---
 
@@ -55,7 +55,7 @@ We still **verify against citations** and ship **visualization, not clinical pro
 | **Plateauing** | process-explainer | P2 | static PNG | Sustained plateau band on curve |
 | **Spectatoring** | embodied-presence | P2 | static PNG | Split attention (optional video) |
 | **Golden Trio** | process-explainer | P2 | static PNG | Three channels lighting in sequence |
-| Angling, Rocking, Shallowing, Pairing | — | — | Skia | No video |
+| Angling, Rocking, Shallowing, Pairing | — | — | Native diagram | No video |
 | Edging | — | P3 | static | Interactive planned |
 | Body Appreciation, Sexual Self-Esteem | — | P3 | static | Metaphor plates sufficient |
 
@@ -176,7 +176,7 @@ Upgrade from generic loops to **narrative micro-stories** (10s): context appeari
 - [ ] Citation spot-check (structures present: crura, bulbs, not fantasy organs)
 - [ ] Non-explicit framing (no pornographic camera or activity)
 - [ ] No in-image text (labels stay in app copy)
-- [ ] Reads at phone size on IllustrateSlide
+- [ ] Reads at phone size on the native concept See page
 - [ ] Reduce-motion falls back to static illustration
 - [ ] SynthID acceptable; document AI-generated in store metadata if required
 

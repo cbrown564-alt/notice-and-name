@@ -1,29 +1,28 @@
 # Interactive Diagrams — Phased Generation Plan
 
-**Status:** Ready to execute (shift focus from static media regen)  
+**Status:** Phases 0–1 implemented; later phases are post-beta enhancements
 **Why now:** Technique plates are acceptable but uninspiring; **explorable explanations** are the product differentiator (`animation_journey.md`, UI review § Skia diagrams).  
-**Platforms:** React Native (Expo) — `@shopify/react-native-skia` + gestures · iOS native — SwiftUI `Canvas` in `ConceptDiagrams.swift`  
-**Style:** `colors.diagram.*` in `constants/theme.ts` · plates remain reduce-motion posters only
+**Platforms:** iOS native — SwiftUI `Canvas` in `ConceptDiagrams.swift`
+**Style:** Native diagram palette in `ios/Sources/PleasureVocabularyApp/AppTheme.swift` · plates remain reduce-motion posters only
 
 ---
 
 ## 1. Current state
 
-| Concept | RN (`components/diagrams/`) | iOS (`ConceptDiagrams.swift`) | Interaction |
-|---------|----------------------------|-------------------------------|-------------|
-| Angling | ✅ `AnglingDiagram.tsx` | ✅ auto-loop tilt | **Pan** — drag pelvis, glow at posterior tuck |
-| Rocking | ✅ `RockingDiagram.tsx` | ✅ auto-loop approach | **Pan** — partner wedge proximity heat |
-| Shallowing | ✅ `ShallowingDiagram.tsx` | ✅ auto-loop probe | **Pan** — depth vs entrance intensity |
-| Pairing | ✅ `PairingDiagram.tsx` | ✅ auto-loop pulse | **Tap** — external + internal nodes, bridge glow |
-| Edging | ✅ `EdgingDiagram.tsx` | ✅ vertical throttle | **Pan** — drag intensity up; release recedes |
-| All others | static / video on Illustrate | illustration or video | — |
+| Concept | iOS (`ConceptDiagrams.swift`) | Interaction |
+|---------|-------------------------------|-------------|
+| Angling | ✅ native Canvas | **Pan** — drag pelvis, glow at posterior tuck |
+| Rocking | ✅ native Canvas | **Pan** — partner wedge proximity heat |
+| Shallowing | ✅ native Canvas | **Pan** — depth vs entrance intensity |
+| Pairing | ✅ native Canvas | **Tap** — external + internal nodes, bridge glow |
+| Edging | ✅ native Canvas | **Pan** — drag intensity up; release recedes |
+| All others | illustration or video | — |
 
 **Gaps today**
 
-1. **Parity:** RN diagrams are **user-driven**; iOS diagrams are **passive loops** — same metaphor, different pedagogy.
-2. **Palette drift:** Some RN diagrams still use legacy hard-coded colors; iOS uses `AppColor.*`.
-3. **`DiagramType` placeholders** in `types/index.ts` (`iceberg`, `nerve-density`, `cuv-complex`, `warmup-window`) are **not wired** in `IllustrateSlide.tsx`.
-4. **Poster plates** for technique concepts should harmonize with diagram tokens but are not the teach moment — the diagram is.
+1. **Device evidence:** the five shipped diagrams still need gesture, Reduce Motion, VoiceOver, and small-screen QA.
+2. **Future diagram types:** `types/index.ts` reserves `iceberg`, `nerve-density`, `cuv-complex`, and `warmup-window`, but the v2 bundle does not route them to native diagrams yet.
+3. **Poster plates:** technique posters should harmonize with diagram tokens but are not the teaching moment—the diagram is.
 
 ---
 
@@ -33,7 +32,7 @@ Borrow from completed prototypes (`docs/_archive/animation_journey.md` § III):
 
 | Rule | Implementation |
 |------|----------------|
-| **Engine** | Skia (RN) · SwiftUI Canvas (iOS) |
+| **Engine** | SwiftUI `Canvas` |
 | **Canvas** | `conceptCanvas` `#F9F5F1`, 1px `neutral[200]` border, ~300pt height |
 | **Strokes** | `diagram.passive` `#DCD8D3` anatomy · `diagram.active` `#E8603C` user/touch |
 | **Glow** | `diagram.glow` `#FFC5B5` via blur layer — sensation only |
@@ -60,19 +59,19 @@ flowchart LR
 ### Phase 0 — Diagram kit & polish existing four ✅
 
 **Goal:** One shared foundation before new concepts.  
-**Status:** Complete (RN `DiagramFrame` + iOS touch parity, token audit, haptics, QA rows)  
-**Exit:** All four techniques pass device QA on Illustrate slide (RN + iOS).
+**Status:** Implemented in the native app (shared frame, touch gestures, token audit, haptics)
+**Exit:** All four techniques pass native device QA on the See page.
 
-**Interaction parity:** **Option A** — iOS uses pan/tap gestures matching RN (auto-loops removed when motion enabled). Reduce Motion shows static teaching frames on both platforms.
+Reduce Motion shows static teaching frames instead of requiring gesture-driven motion.
 
 | Task | Deliverable |
 |------|-------------|
-| Extract `DiagramFrame` | ✅ `components/diagrams/DiagramFrame.tsx` — canvas, border, height, reduce-motion hook |
-| Token audit | ✅ All paths use `colors.diagram.*` / `AppColor.diagram*` equivalents |
-| Interaction parity decision | ✅ Option A — iOS touch where RN has gestures |
+| Extract shared frame | ✅ `DiagramFrame` in `ConceptDiagrams.swift` — canvas, border, height |
+| Token audit | ✅ All paths use `AppColor.diagram*` |
+| Interaction model | ✅ Native pan/tap gestures |
 | Haptics | ✅ Light impact on angling sweet spot + pairing complete |
-| Accessibility | ✅ `accessibilityLabel` from `illustrationCaption`; state changes announced sparingly |
-| QA script | ✅ Diagram rows in `docs/QA_CHECKLIST.md` |
+| Accessibility implementation | ✅ Labels derive from bundle media alt/caption; Reduce Motion has static frames |
+| QA script | ✅ Diagram checks live in `ios/DEVICE_QA.md` |
 
 **No new concepts.** Polish only.
 
@@ -81,7 +80,7 @@ flowchart LR
 ### Phase 1 — Edging (format-locked interactive) ✅
 
 **Goal:** First new diagram; validates the pipeline end-to-end.  
-**Status:** Shipped — RN + iOS wired, bundle regenerated  
+**Status:** Implemented in iOS and wired through the v2 bundle
 **Concept:** `edging` · caption: *Intensity rising toward a threshold, then receding*
 
 | Spec | Detail |
@@ -93,12 +92,12 @@ flowchart LR
 
 **Engineering**
 
-1. `EdgingDiagram.tsx` (Skia + `Gesture.Pan` or vertical slider)  
-2. `EdgingDiagramView` in `ConceptDiagrams.swift`  
-3. `diagramType: 'edging'` in `vocabulary.ts` + `DiagramType` union  
-4. Wire `IllustrateSlide.tsx` + iOS media routing (`native://diagram/edging`)  
-5. Update `data/visual-formats.json`: `edging` → `interactive`  
-6. Illustration plate remains static fallback for reduce-motion if diagram disabled
+1. `EdgingDiagramView` in `ConceptDiagrams.swift`
+2. `diagramType: 'edging'` in `vocabulary.ts` + `DiagramType` union
+3. Bundle generation emits `native://diagram/edging`
+4. `ConceptPages.swift` routes the native media item
+5. `data/visual-formats.json` records `edging` as interactive
+6. The illustration remains the static fallback
 
 **Prompt / spec file:** `docs/pipelines/prompts/diagrams/edging.md` (interaction spec, not image gen)
 
@@ -123,7 +122,7 @@ flowchart LR
 - Consider **deferring** anatomy Omni videos for these four once diagrams ship (video = optional enhancement, not blocker).  
 - Reuse angling pelvis math for internal-stimulation where possible.
 
-**Exit:** Four anatomy Illustrate slides feel “alive”; `validate-manifest` updated for `diagramType` wiring.
+**Exit:** Four anatomy See pages teach the intended relationship; bundle validation covers every native diagram reference.
 
 ---
 
@@ -169,13 +168,12 @@ For each new interactive concept:
 
 ```
 docs/pipelines/prompts/diagrams/{id}.md   ← interaction spec (mechanic, states, a11y)
-components/diagrams/{Id}Diagram.tsx       ← RN implementation
-ios-native/.../ConceptDiagrams.swift      ← {Id}DiagramView
+ios/.../ConceptDiagrams.swift              ← {Id}DiagramView
 types/index.ts                            ← DiagramType union
 data/vocabulary.ts                        ← diagramType field
 data/visual-formats.json                  ← format: interactive
-IllustrateSlide.tsx                       ← switch case
-docs/QA_CHECKLIST.md                      ← device test rows
+scripts/generate-v2-full-bundle.js        ← native media routing
+ios/DEVICE_QA.md                          ← device test rows
 ```
 
 **Spec template** (`prompts/diagrams/{id}.md`):
@@ -220,16 +218,15 @@ docs/QA_CHECKLIST.md                      ← device test rows
 | Illustrate slide median time | ≥15s on interactive concepts (UI review metric) |
 | Mechanic comprehension | User can describe concept in own words after 20s play (qualitative QA) |
 | Reduce motion | Every interactive has meaningful static frame |
-| Parity | RN + iOS teach same insight (interaction method may differ) |
 | Style | Diagram tokens match Style Bible §4; no palette drift vs plates |
 
 ---
 
 ## 7. Explicit non-goals
 
-- Replace technique Skia with video (locked in `VIDEO_CONCEPT_CATALOG.md`)
+- Replace technique diagrams with video (locked in `VIDEO_CONCEPT_CATALOG.md`)
 - Full 22/22 interactive coverage — ~14 interactives max in this plan
-- 3D, Rive, or Lottie diagrams (Skia/Canvas only)
+- 3D, Rive, or Lottie diagrams (SwiftUI Canvas only)
 - In-diagram labels, numbers, or citation text
 - Blocking ship on golden-trio builder or communication-toolkit interactives
 
@@ -237,12 +234,10 @@ docs/QA_CHECKLIST.md                      ← device test rows
 
 ## 8. Immediate next steps
 
-1. ~~**Phase 0 kickoff** — diagram kit extraction + token audit on four existing components~~ ✅
-2. **Write** `docs/pipelines/prompts/diagrams/edging.md` using § Phase 1 spec  
-3. ~~**Decide iOS parity** — touch on iOS vs demo loop (recommend touch for Edging onward)~~ ✅ Option A
-4. **Device QA** — run Phase 0 diagram rows in `docs/QA_CHECKLIST.md` on iOS + Android
-5. **Pause** Batch B image regen except static-only concepts  
+1. **Device QA** — run gesture, Reduce Motion, VoiceOver, and small-screen checks for the five implemented diagrams.
+2. **Keep Phases 2–4 deferred** until the Phase 7 product model and first TestFlight learning pass are complete.
+3. **Resume with one anatomy slice**—Clitoral Structure—before spreading the pattern to the remaining planned diagrams.
 
 ---
 
-*Related: `docs/_archive/animation_journey.md` · `docs/product/visual_content_strategy.md` · `components/diagrams/*` · `ios-native/.../ConceptDiagrams.swift`*
+*Related: `docs/_archive/animation_journey.md` · `docs/product/visual_content_strategy.md` · `ios/Sources/PleasureVocabularyApp/ConceptDiagrams.swift`*

@@ -45,7 +45,7 @@ Use prompts in `docs/pipelines/prompts/illustrations/{id}.md`.
 
 | Batch | Concepts | Notes |
 |-------|----------|-------|
-| Techniques | angling, rocking, shallowing, pairing | **Keep** angling reference unless over budget; Skia concepts still need poster plates |
+| Techniques | angling, rocking, shallowing, pairing | **Keep** angling reference unless over budget; native diagram concepts still need poster plates |
 | Sensations | building, plateauing, edging, spreading, pulsing | **Keep** spreading reference; building/pulsing need regen (oversized) |
 | Timing | warmup-window, responsive-desire, spontaneous-desire, golden-trio | **Keep** warmup-window reference |
 | Psychological | spectatoring, embodied-presence, non-concordance, sexual-self-esteem, body-appreciation | **Keep** non-concordance reference |

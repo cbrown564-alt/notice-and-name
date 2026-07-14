@@ -16,7 +16,7 @@ Regenerate concept visuals so all 22 concepts feel like **one coherent style sys
 
 **Goal:** Every **plate** (illustration) and **thumbnail** should read as Scientific Warmth: cream canvas, bioluminescent emphasis, anatomical respect where relevant, **no in-image text**. Psychological concepts may use more abstract metaphor, but must share the same palette, canvas, line quality, and glow language as approved plates — not a separate “wellness stock art” look.
 
-**Out of scope for this batch:** shell UI, pathway art, explainers, videos (except noting which concepts already have wired MP4s), native Skia/SwiftUI diagrams.
+**Out of scope for this batch:** shell UI, pathway art, explainers, videos (except noting which concepts already have wired MP4s), and native SwiftUI diagrams.
 
 ---
 

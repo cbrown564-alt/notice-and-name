@@ -1,14 +1,25 @@
 # V2 Roadmap
 
-**Status:** Prototype complete; scale-up planning
+**Status:** Native baseline verified; Phase 7 product-model decision next
+**Last verified:** July 14, 2026
 **Goal:** Turn the premium SwiftUI prototype into a release-quality, scalable product
 system without losing the intimacy that made the prototype work.
 
 ## Current State
 
-The v2 direction has been validated as a product experience. The native prototype is a
-meaningful improvement over the Expo MVP: calmer, more private, more tactile, and centered
-on personal vocabulary rather than slide completion.
+The v2 direction is implemented as a native prototype and has been installed locally. It
+has not yet been validated with a beta cohort. The Expo client is retired; the SwiftUI app
+in `ios/` is the sole production client.
+
+Current verification on July 14, 2026:
+
+- `swift test`: 20 tests passed.
+- Content bundle generation, full-bundle validation, and content lint passed.
+- Unsigned iOS Simulator smoke build passed through `xcodebuild`.
+- First-run and locked screens rendered full-width on iPhone 17e and iPhone 17 Pro
+  simulators; the first-run action remained visible at the largest accessibility text size.
+- Asset manifest validation passed with 39 non-blocking media coverage and size warnings.
+- Real-device accessibility and small-screen QA remain open.
 
 Completed foundations:
 
@@ -64,7 +75,9 @@ frame before painting the app canvas, then be checked on both current and smalle
 - [x] Harden app lock behavior across cold launch, background/foreground, onboarding, and export flows.
 - [x] Complete error and empty states for missing media, corrupt bundle, failed export, and locked database.
 - [x] Add snapshot or UI smoke tests for core screens where feasible.
-- [x] Verify full Dynamic Type, VoiceOver labels, Reduce Motion, and contrast.
+- [ ] Complete real-device Dynamic Type, VoiceOver, Reduce Motion, contrast, and
+  small-screen verification. Supporting labels and fallbacks are implemented; the device
+  evidence is still outstanding.
 - [x] Establish performance budgets for launch time, database operations, and media loading.
 
 Exit criteria:
@@ -104,7 +117,12 @@ Exit criteria:
 
 Goal: decide what the paid product is before launch mechanics harden around the wrong model.
 
-- [ ] Decide paid-upfront vs free trial/subscription vs free core plus premium packs.
+Decision proposal: [PREMIUM_PRODUCT_SHAPE.md](PREMIUM_PRODUCT_SHAPE.md). The current
+recommendation is a free private preview plus one non-consumable full unlock; owner approval
+is required before StoreKit implementation.
+
+- [x] Draft the product-model, preview-boundary, entitlement, positioning, and support proposal.
+- [ ] Decide paid upfront vs free preview with one-time unlock vs subscription.
 - [ ] Define free preview surface, if any.
 - [ ] Decide whether all private tools remain available without an account.
 - [ ] Design premium entitlement model without making the app feel transactional.
@@ -114,7 +132,7 @@ Goal: decide what the paid product is before launch mechanics harden around the 
 
 Recommended starting model:
 
-Paid-upfront or free trial with one-time unlock. Avoid subscription until there is a real
+Paid upfront or free preview with a one-time unlock. Avoid subscription until there is a real
 content-update cadence that justifies it.
 
 Exit criteria:
@@ -229,8 +247,10 @@ Avoid default behavioral analytics until there is a clear, opt-in reason.
 
 ## Near-Term Next Steps
 
-1. Run the current prototype on real devices and record remaining fit/finish issues.
-2. Start Phase 5 production hardening with GRDB migration and data-loss tests.
-3. Start Phase 6 content QA in parallel, beginning with citations and phrase templates.
-4. Decide the Phase 7 pricing model before adding StoreKit.
-5. Prepare the first TestFlight cohort only after export/delete/app-lock behavior is boringly reliable.
+1. Decide the Phase 7 product model and preview boundary before adding StoreKit.
+2. Run the native device-QA checklist on the existing iPhone and a smaller-screen iPhone
+   simulator or device, recording accessibility and fit failures.
+3. Resolve the manifest's missing-video warnings and highest-impact media size overruns
+   before the TestFlight release candidate.
+4. Prepare the first TestFlight cohort only after export, deletion, app lock, and private
+   sharing have passed device QA.

@@ -21,7 +21,7 @@
 | **Concept plates** | Teach *what it is* | Anatomical clarity, cream canvas `#F9F5F1`, bioluminescent emphasis, **no in-image text** | `assets/images/concepts/illustrations/` |
 | **Thumbnails** | Recognize at a glance | Simplified glyph of plate; consistent crop, border, glow accent | `assets/images/concepts/thumbnails/`, `ConceptCard` |
 | **Motion** | Teach *how it feels* and *how it works* | Abstract loops + **scientific zoom journeys** (Omni); non-explicit | `assets/videos/*.mp4` |
-| **Interactive** | Teach *mechanics* | Skia diagrams; restrained palette matching plates | `components/diagrams/*` |
+| **Interactive** | Teach *mechanics* | SwiftUI Canvas diagrams; restrained palette matching plates | `ios/Sources/PleasureVocabularyApp/ConceptDiagrams.swift` |
 
 ### Category families (subtle cues, one style system)
 
@@ -60,9 +60,9 @@ From `constants/theme.ts` (token audit May 19, 2026):
 | `neutral[100]` | `#F5F2EF` | Secondary surfaces |
 | `conceptCanvas` | `#F9F5F1` | Generated illustration plates |
 | `text.primary` | `#1C1B1A` | Body copy |
-| `diagram.passive` | `#DCD8D3` | Skia inactive anatomy |
-| `diagram.active` | `#E8603C` | Skia user/active stroke |
-| `diagram.glow` | `#FFC5B5` | Skia emphasis halo |
+| `diagram.passive` | `#DCD8D3` | Native diagram inactive anatomy |
+| `diagram.active` | `#E8603C` | Native diagram user/active stroke |
+| `diagram.glow` | `#FFC5B5` | Native diagram emphasis halo |
 | `diagram.detachment` | `#7A7AFF` | Mind/split (sparingly) |
 
 **Interactive diagrams:** use `colors.diagram.*` where possible; legacy hard-coded values may remain in older diagrams until Phase 4 polish.

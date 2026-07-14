@@ -46,7 +46,7 @@ For **Pleasure Vocabulary Builder**, we now target **four video profiles** — n
 
 Full concept list: [`VIDEO_CONCEPT_CATALOG.md`](./pipelines/VIDEO_CONCEPT_CATALOG.md).
 
-**Still Skia, not video:** Angling, Rocking, Shallowing, Pairing (mechanics need interaction).
+**Still native diagrams, not video:** Angling, Rocking, Shallowing, Pairing (mechanics need interaction).
 
 ---
 
@@ -137,7 +137,7 @@ Each turn builds on the previous; scene memory persists (Flow / Gemini app).
 | **image-0** = illustration PNG | Lock palette + structure before animating |
 | **video-0** = motion reference | Rhythm from Spreading/BUILDING for regen |
 | **Storyboard grid** | Multi-beat explainers (Golden Trio, alphabet-style timing) |
-| **Drawing → footage** | Skia export as movement guide only |
+| **Drawing → footage** | Native diagram reference as movement guide only |
 
 ---
 
@@ -206,7 +206,7 @@ Soft loop, 10s, cream void, coral warmth filling form from within.
 |------|------|
 | Abstract sensation loop | Omni |
 | Anatomy / nerve / CUV journey | Omni (scientific-journey) |
-| Interactive angle/depth | Skia |
+| Interactive angle/depth | Native SwiftUI diagram |
 | Pixel mask VFX | Runway / AE (fallback) |
 | Procedural medical training | **None** |
 
@@ -218,7 +218,7 @@ Soft loop, 10s, cream void, coral warmth filling form from within.
 - [ ] Citation spot-check for anatomy journeys
 - [ ] Non-explicit, on-brand (STYLE_BIBLE §7)
 - [ ] No in-image text
-- [ ] Reads on phone (IllustrateSlide)
+- [ ] Reads on the native concept See page
 - [ ] Transcode within tier budget; poster PNG for reduce motion
 - [ ] `ASSET_MANIFEST.md` updated
 

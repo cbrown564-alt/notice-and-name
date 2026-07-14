@@ -9,7 +9,7 @@
  *   assets/videos/*.mp4  (top-level only — not originals/)
  *
  * Destination (generated — do not edit by hand):
- *   ios-native/Sources/PleasureVocabularyApp/Resources/media/
+ *   ios/Sources/PleasureVocabularyApp/Resources/media/
  *
  * Usage:
  *   node scripts/sync-ios-media.js          # copy + prune stale files
@@ -24,7 +24,7 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..');
 const IOS_MEDIA_ROOT = path.join(
   ROOT,
-  'ios-native/Sources/PleasureVocabularyApp/Resources/media'
+  'ios/Sources/PleasureVocabularyApp/Resources/media'
 );
 
 const SYNC_RULES = [

@@ -1,79 +1,81 @@
 # Pleasure Vocabulary Builder
 
-A premium, educational mobile application designed to help users explore and articulate the nuances of sexual pleasure through a curated design system and slide-based learning experience.
+A premium, educational iOS app that helps adults build a private, precise vocabulary for sexual pleasure — through guided concepts, pathways, field notes, and partner-safe phrases.
 
-## ✨ Features
+The production client is the **SwiftUI app** in [`ios/`](./ios/). Editorial content lives in TypeScript sources under `data/` and is compiled into validated JSON bundles consumed by the native app.
 
-- **Interactive ConceptDeck**: A swipeable, slide-based learning journey for each concept, covering the "Why", "The Insight", Illustrations, and "Try This" reflections.
-- **Exploration Library**: Browse concepts by category (Anatomy, Techniques, Sensation, Timing, Mindset) or through curated Pathways.
-- **Atelier Dashboard**: A bento-style profile view that tracks your journey, highlights personal patterns, and manages your "Resonates" collection.
-- **Modern UI/UX**: A warm, human-centric design using a rich coral and sage palette, editorial typography (Playfair Display), and smooth animations.
-- **Pattern Insights**: Dynamic insights that surface your strongest category affinities as you explore.
-- **Private & Local**: Your progress is stored locally on your device for privacy.
+## Features
 
-## 🛠 Tech Stack
+- **Today**: A gentle daily prompt and suggested concept to explore.
+- **Vocabulary**: Saved, resonant, curious, and rejected words with personal status.
+- **Explore**: Guided pathways, the full concept library, and research explainers.
+- **Journal**: Private field notes linked to concepts.
+- **Saved phrases**: Partner-safe language generated from concept templates.
+- **Private & local**: Progress stored on-device with GRDB; optional app lock, export, and delete-all-data.
 
-- **Framework**: [Expo](https://expo.dev/) / [React Native](https://reactnative.dev/)
-- **Navigation**: [Expo Router](https://docs.expo.dev/router/introduction/) (File-based navigation)
-- **Styling**: Standard React Native StyleSheet with a custom design system token system
-- **Animations**: [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/)
-- **Database/Persistence**: AsyncStorage & SQLite
-- **Icons**: Lucide Icons (via `@expo/vector-icons`)
+## Tech Stack
 
-## 🚀 Getting Started
+- **Client**: SwiftUI, GRDB (local persistence), native iOS media
+- **Content pipeline**: TypeScript sources in `data/*.ts` → validated bundles in `content/v2/bundles/`
+- **Tooling**: Node.js scripts for bundle generation, validation, lint, and media sync
+
+## Getting Started
 
 ### Prerequisites
 
 - Node.js (Latest LTS)
-- npm or yarn
-- Expo Go app on your mobile device (for testing)
+- Xcode (for building and running the iOS app)
+- macOS (for device builds and TestFlight)
 
-### Installation
+### Content pipeline
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/cbrown564-alt/pleasure_vocab.git
-   cd pleasure_vocab
-   ```
+From the repository root:
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+npm run generate-v2-full-bundle
+```
 
-3. Start the development server:
-   ```bash
-   npx expo start
-   ```
+This generates the full v2 content bundle from `data/*.ts` and writes it to `content/v2/bundles/`.
 
-4. Scan the QR code with your Expo Go app (Android) or Camera app (iOS) to view the app on your device.
+### Native app tests
 
-## 🎨 Design System
+```bash
+cd ios && swift test
+```
 
-The app utilizes a custom theme focused on warmth and education:
-- **Primary**: Rich Coral (`#E8603C`) - Represents warmth and human connection.
-- **Secondary**: Muted Sage (`#60846A`) - Represents calm, grounding, and growth.
-- **Typography**: Playfair Display for headers (editorial feel), Inter for body text (clarity).
+Open `ios/` in Xcode to run on a simulator or device. See the runbooks below for TestFlight and device QA.
 
-## 📋 Project docs
+## Documentation
 
-Planning and status live in [`docs/`](./docs/):
+| Document | Purpose |
+| --- | --- |
+| [**docs/v2/README.md**](./docs/v2/README.md) | V2 product brief, architecture, content system, and roadmap |
+| [**ios/TESTFLIGHT_RUNBOOK.md**](./ios/TESTFLIGHT_RUNBOOK.md) | Xcode archive and TestFlight distribution |
+| [**ios/DEVICE_QA.md**](./ios/DEVICE_QA.md) | On-device QA checklist before release |
+| [**docs/README.md**](./docs/README.md) | Full documentation index |
 
-- [**Status report**](./docs/PROJECT_STATUS_REPORT.md) — current state, gaps, and risks
-- [**Implementation plan**](./docs/IMPLEMENTATION_PLAN.md) — roadmap to a polished release
-- [**Style bible**](./docs/design/STYLE_BIBLE.md) — visual identity (canonical draft)
-- [**Concept audit**](./docs/content/CONCEPT_AUDIT.md) — per-concept tracker
-- [**Documentation index**](./docs/README.md) — full doc map
+## Project Structure
 
-## 📂 Project Structure
+```
+ios/          Production SwiftUI app (GRDB, content bundle loader)
+data/                Editorial TypeScript (vocabulary, pathways, explainers)
+content/v2/          Bundle schema, generated JSON, validation, preview
+assets/              Canonical media (illustrations, thumbnails, video)
+scripts/             Bundle generation, lint, media sync, asset tooling
+docs/                Product, design, pipeline, and architecture docs
+```
 
-- `/app`: Expo Router screens and layouts.
-- `/components`: Reusable UI components (ConceptDeck, Cards, Bento, etc.).
-- `/data`: Vocabulary definitions, pathway data, and expert explainers.
-- `/assets`: Images, fonts, and brand assets.
-- `/constants`: Theme tokens and global configuration.
-- `/lib`: Custom hooks, user store, and utility functions.
+## Design System
 
-## 📄 License
+The app uses a warm, editorial visual language:
+
+- **Primary**: Rich Coral (`#E8603C`) — warmth and human connection
+- **Secondary**: Muted Sage (`#60846A`) — calm, grounding, growth
+- **Typography**: Playfair Display for headers, system sans for body text
+
+See [`docs/design/STYLE_BIBLE.md`](./docs/design/STYLE_BIBLE.md) for the full style guide.
+
+## License
 
 Private / Internal Project

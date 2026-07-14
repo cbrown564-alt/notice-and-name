@@ -34,7 +34,7 @@
 
 ## Rubric by asset tier
 
-### Illustration (ConceptDeck static / video poster)
+### Illustration (native concept page static image / video poster)
 
 | Criterion | Type | Pass |
 |-----------|------|------|
@@ -64,13 +64,13 @@
 | Poster fallback | pass/fail | **pass** — illustration PNG wired for reduce-motion |
 | Size budget | pass/fail | **pass** — tier budget (`abstract-loop` ≤1.5 MB, `scientific-journey` ≤2.5 MB) |
 
-### Interactive (Skia diagram)
+### Interactive (native SwiftUI diagram)
 
 | Criterion | Type | Pass |
 |-----------|------|------|
 | Scientific accuracy | 1–5 | ≥ 4 |
 | Interaction clarity | 1–5 | ≥ 4 — user understands what to manipulate |
-| Device QA | pass/fail | **pass** — works on iOS + Android |
+| Device QA | pass/fail | **pass** — works on the supported iPhone sizes |
 
 ---
 

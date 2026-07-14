@@ -17,7 +17,7 @@
 2. Run starter variant A for each concept; iterate 3–6 turns (pace, loop seam, anatomy legibility, remove text).
 3. `./scripts/transcode-video.sh` → `assets/videos/{id}.mp4`
 4. `npm run wire-concept-video -- <id>` where not wired
-5. Device QA on IllustrateSlide + reduce-motion poster check
+5. Device QA on the native concept See page + Reduce Motion poster check
 6. `npm run validate-manifest` (journey tier may warn until budget script updated)
 
 ## Results (fill after review)

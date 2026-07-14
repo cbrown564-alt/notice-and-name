@@ -61,7 +61,7 @@ Target: **≤1.5 MB**, H.264 MP4, no audio.
 ## QA checklist
 
 - [ ] Loop seamless at cut point (scrub frame-by-frame)
-- [ ] Reads as *gradual increase* in IllustrateSlide (not plateau or pulse)
+- [ ] Reads as *gradual increase* on the native concept See page (not plateau or pulse)
 - [ ] Mute default; poster shows when reduce motion enabled
 - [ ] ≤1.5 MB post-transcode
 - [ ] Update `ASSET_MANIFEST.md` + mark approved in `VIDEO_PILOT_BATCH.md`

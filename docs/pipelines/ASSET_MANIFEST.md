@@ -13,9 +13,9 @@
 
 | concept_id | thumbnail | illustration | rich_media | notes |
 |------------|-----------|--------------|------------|-------|
-| angling | ✅ thumbnails/angling.png | ✅ illustrations/angling.png | interactive (Skia) | Complete |
-| rocking | ✅ | ✅ | interactive (Skia) | Video removed; Skia only |
-| shallowing | ✅ | ✅ | interactive (Skia) | Complete |
+| angling | ✅ thumbnails/angling.png | ✅ illustrations/angling.png | interactive (native diagram) | Complete |
+| rocking | ✅ | ✅ | interactive (native diagram) | Video removed; native diagram only |
+| shallowing | ✅ | ✅ | interactive (native diagram) | Complete |
 | pairing | ✅ | ✅ | interactive (PairingDiagram) | Wired Phase 0 |
 | edging | ✅ | ✅ | interactive (EdgingDiagram) | Wired Phase 1 |
 | building | ✅ | ✅ illustrations/building.png | video **building.mp4** (256 KB) | Compress illustration; video pilot regen optional |
@@ -69,7 +69,7 @@
 | assets/videos/spreading.mp4 | ✅ | 1.6 MB — style review / optional re-transcode |
 | assets/videos/originals/*.mov | — | ProRes sources; not bundled in app |
 
-**Removed from repo:** `rocking.mov`, `shallowing.mov` (unused; Skia concepts).
+**Removed from repo:** `rocking.mov`, `shallowing.mov` (unused; native diagram concepts).
 
 ---
 
@@ -88,7 +88,7 @@
 
 **Validation:** `npm run validate-manifest` — format lock, filesystem, wiring checks (warnings for TBD videos).
 
-**iOS bundle sync:** Canonical concept media lives under `assets/`. Before native builds, run `npm run sync-ios-media` (also runs automatically as an Xcode pre-build step). Generated copies land in `ios-native/Sources/PleasureVocabularyApp/Resources/media/` and are gitignored.
+**iOS bundle sync:** Canonical concept media lives under `assets/`. Before native builds, run `npm run sync-ios-media` (also runs automatically as an Xcode pre-build step). Generated copies land in `ios/Sources/PleasureVocabularyApp/Resources/media/` and are gitignored.
 
 **Staging policy:** Production assets in `assets/images/concepts/` and `assets/videos/` are always canonical. Do not promote `_staging/` candidates over production.
 

@@ -165,15 +165,15 @@
       "registry_notes": "In-image titles/labels — regen with no-text prompt",
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/angling.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/angling.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/angling.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/angling.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/angling.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/angling.png",
       "slot": "illustration",
       "concept_id": "angling",
       "category": "technique",
@@ -254,15 +254,15 @@
       "registry_notes": "In-image titles/labels — regen with no-text prompt",
       "suggested_decision": "keep-until-regen",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/angling.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/angling.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/angling.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/angling.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/angling.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/angling.png",
       "slot": "thumbnail",
       "concept_id": "angling",
       "category": "technique",
@@ -316,15 +316,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/body-appreciation.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/body-appreciation.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/body-appreciation.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/body-appreciation.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/body-appreciation.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/body-appreciation.png",
       "slot": "illustration",
       "concept_id": "body-appreciation",
       "category": "psychological",
@@ -405,15 +405,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/body-appreciation.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/body-appreciation.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/body-appreciation.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/body-appreciation.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/body-appreciation.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/body-appreciation.png",
       "slot": "thumbnail",
       "concept_id": "body-appreciation",
       "category": "psychological",
@@ -467,15 +467,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/building.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/building.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/building.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/building.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/building.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/building.png",
       "slot": "illustration",
       "concept_id": "building",
       "category": "sensation",
@@ -556,15 +556,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/building.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/building.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/building.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/building.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/building.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/building.png",
       "slot": "thumbnail",
       "concept_id": "building",
       "category": "sensation",
@@ -618,12 +618,12 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/videos/building.mp4"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/videos/building.mp4"
       ],
       "duplicate_paths_same_basename": [
         "assets/videos/originals/building.mov",
         "assets/videos/originals/building.mp4",
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/videos/building.mp4"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/videos/building.mp4"
       ],
       "duplicate_count_same_basename": 4
     },
@@ -654,7 +654,7 @@
       "duplicate_paths_same_basename": [
         "assets/videos/building.mp4",
         "assets/videos/originals/building.mp4",
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/videos/building.mp4"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/videos/building.mp4"
       ],
       "duplicate_count_same_basename": 4
     },
@@ -685,12 +685,12 @@
       "duplicate_paths_same_basename": [
         "assets/videos/building.mp4",
         "assets/videos/originals/building.mov",
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/videos/building.mp4"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/videos/building.mp4"
       ],
       "duplicate_count_same_basename": 4
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/videos/building.mp4",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/videos/building.mp4",
       "slot": "video",
       "concept_id": "building",
       "category": "sensation",
@@ -746,15 +746,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/clitoral-structure.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/clitoral-structure.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/clitoral-structure.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/clitoral-structure.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/clitoral-structure.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/clitoral-structure.png",
       "slot": "illustration",
       "concept_id": "clitoral-structure",
       "category": "anatomy",
@@ -835,15 +835,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/clitoral-structure.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/clitoral-structure.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/clitoral-structure.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/clitoral-structure.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/clitoral-structure.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/clitoral-structure.png",
       "slot": "thumbnail",
       "concept_id": "clitoral-structure",
       "category": "anatomy",
@@ -897,15 +897,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/clitourethrovaginal.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/clitourethrovaginal.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/clitourethrovaginal.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/clitourethrovaginal.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/clitourethrovaginal.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/clitourethrovaginal.png",
       "slot": "illustration",
       "concept_id": "clitourethrovaginal",
       "category": "anatomy",
@@ -986,15 +986,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/clitourethrovaginal.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/clitourethrovaginal.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/clitourethrovaginal.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/clitourethrovaginal.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/clitourethrovaginal.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/clitourethrovaginal.png",
       "slot": "thumbnail",
       "concept_id": "clitourethrovaginal",
       "category": "anatomy",
@@ -1106,15 +1106,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/edging.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/edging.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/edging.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/edging.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/edging.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/edging.png",
       "slot": "illustration",
       "concept_id": "edging",
       "category": "sensation",
@@ -1195,15 +1195,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/edging.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/edging.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/edging.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/edging.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/edging.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/edging.png",
       "slot": "thumbnail",
       "concept_id": "edging",
       "category": "sensation",
@@ -1257,15 +1257,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/embodied-presence.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/embodied-presence.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/embodied-presence.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/embodied-presence.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/embodied-presence.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/embodied-presence.png",
       "slot": "illustration",
       "concept_id": "embodied-presence",
       "category": "psychological",
@@ -1346,15 +1346,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/embodied-presence.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/embodied-presence.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/embodied-presence.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/embodied-presence.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/embodied-presence.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/embodied-presence.png",
       "slot": "thumbnail",
       "concept_id": "embodied-presence",
       "category": "psychological",
@@ -1526,15 +1526,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/golden-trio.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/golden-trio.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/golden-trio.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/golden-trio.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/golden-trio.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/golden-trio.png",
       "slot": "illustration",
       "concept_id": "golden-trio",
       "category": "timing",
@@ -1615,15 +1615,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/golden-trio.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/golden-trio.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/golden-trio.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/golden-trio.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/golden-trio.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/golden-trio.png",
       "slot": "thumbnail",
       "concept_id": "golden-trio",
       "category": "timing",
@@ -1677,15 +1677,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/internal-stimulation.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/internal-stimulation.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/internal-stimulation.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/internal-stimulation.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/internal-stimulation.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/internal-stimulation.png",
       "slot": "illustration",
       "concept_id": "internal-stimulation",
       "category": "anatomy",
@@ -1766,15 +1766,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/internal-stimulation.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/internal-stimulation.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/internal-stimulation.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/internal-stimulation.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/internal-stimulation.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/internal-stimulation.png",
       "slot": "thumbnail",
       "concept_id": "internal-stimulation",
       "category": "anatomy",
@@ -1944,15 +1944,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/nerve-density.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/nerve-density.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/nerve-density.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/nerve-density.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/nerve-density.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/nerve-density.png",
       "slot": "illustration",
       "concept_id": "nerve-density",
       "category": "anatomy",
@@ -2033,15 +2033,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/nerve-density.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/nerve-density.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/nerve-density.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/nerve-density.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/nerve-density.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/nerve-density.png",
       "slot": "thumbnail",
       "concept_id": "nerve-density",
       "category": "anatomy",
@@ -2095,15 +2095,15 @@
       "registry_notes": "Promoted to production May 19",
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/non-concordance.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/non-concordance.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/non-concordance.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/non-concordance.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/non-concordance.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/non-concordance.png",
       "slot": "illustration",
       "concept_id": "non-concordance",
       "category": "psychological",
@@ -2184,15 +2184,15 @@
       "registry_notes": "Promoted to production May 19",
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/non-concordance.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/non-concordance.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/non-concordance.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/non-concordance.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/non-concordance.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/non-concordance.png",
       "slot": "thumbnail",
       "concept_id": "non-concordance",
       "category": "psychological",
@@ -2331,15 +2331,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/pairing.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/pairing.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/pairing.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/pairing.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/pairing.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/pairing.png",
       "slot": "illustration",
       "concept_id": "pairing",
       "category": "technique",
@@ -2420,15 +2420,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/pairing.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/pairing.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/pairing.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/pairing.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/pairing.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/pairing.png",
       "slot": "thumbnail",
       "concept_id": "pairing",
       "category": "technique",
@@ -2540,15 +2540,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/plateauing.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/plateauing.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/plateauing.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/plateauing.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/plateauing.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/plateauing.png",
       "slot": "illustration",
       "concept_id": "plateauing",
       "category": "sensation",
@@ -2629,15 +2629,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/plateauing.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/plateauing.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/plateauing.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/plateauing.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/plateauing.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/plateauing.png",
       "slot": "thumbnail",
       "concept_id": "plateauing",
       "category": "sensation",
@@ -2691,15 +2691,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/pulsing.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/pulsing.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/pulsing.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/pulsing.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/pulsing.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/pulsing.png",
       "slot": "illustration",
       "concept_id": "pulsing",
       "category": "sensation",
@@ -2780,15 +2780,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/pulsing.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/pulsing.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/pulsing.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/pulsing.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/pulsing.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/pulsing.png",
       "slot": "thumbnail",
       "concept_id": "pulsing",
       "category": "sensation",
@@ -2842,15 +2842,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/responsive-desire.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/responsive-desire.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/responsive-desire.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/responsive-desire.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/responsive-desire.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/responsive-desire.png",
       "slot": "illustration",
       "concept_id": "responsive-desire",
       "category": "timing",
@@ -2931,15 +2931,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/responsive-desire.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/responsive-desire.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/responsive-desire.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/responsive-desire.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/responsive-desire.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/responsive-desire.png",
       "slot": "thumbnail",
       "concept_id": "responsive-desire",
       "category": "timing",
@@ -2996,7 +2996,7 @@
       "duplicate_paths_same_basename": [
         "assets/videos/originals/responsive-desire.mp4",
         "assets/videos/responsive-desire.mp4",
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/videos/responsive-desire.mp4"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/videos/responsive-desire.mp4"
       ],
       "duplicate_count_same_basename": 4
     },
@@ -3027,7 +3027,7 @@
       "duplicate_paths_same_basename": [
         "assets/videos/originals/responsive-desire.mov",
         "assets/videos/responsive-desire.mp4",
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/videos/responsive-desire.mp4"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/videos/responsive-desire.mp4"
       ],
       "duplicate_count_same_basename": 4
     },
@@ -3055,17 +3055,17 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/videos/responsive-desire.mp4"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/videos/responsive-desire.mp4"
       ],
       "duplicate_paths_same_basename": [
         "assets/videos/originals/responsive-desire.mov",
         "assets/videos/originals/responsive-desire.mp4",
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/videos/responsive-desire.mp4"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/videos/responsive-desire.mp4"
       ],
       "duplicate_count_same_basename": 4
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/videos/responsive-desire.mp4",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/videos/responsive-desire.mp4",
       "slot": "video",
       "concept_id": "responsive-desire",
       "category": "timing",
@@ -3148,15 +3148,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/rocking.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/rocking.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/rocking.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/rocking.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/rocking.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/rocking.png",
       "slot": "illustration",
       "concept_id": "rocking",
       "category": "technique",
@@ -3237,15 +3237,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/rocking.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/rocking.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/rocking.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/rocking.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/rocking.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/rocking.png",
       "slot": "thumbnail",
       "concept_id": "rocking",
       "category": "technique",
@@ -3299,15 +3299,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/sexual-self-esteem.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/sexual-self-esteem.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/sexual-self-esteem.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/sexual-self-esteem.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/sexual-self-esteem.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/sexual-self-esteem.png",
       "slot": "illustration",
       "concept_id": "sexual-self-esteem",
       "category": "psychological",
@@ -3388,15 +3388,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/sexual-self-esteem.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/sexual-self-esteem.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/sexual-self-esteem.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/sexual-self-esteem.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/sexual-self-esteem.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/sexual-self-esteem.png",
       "slot": "thumbnail",
       "concept_id": "sexual-self-esteem",
       "category": "psychological",
@@ -3477,15 +3477,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/shallowing.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/shallowing.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/shallowing.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/shallowing.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/shallowing.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/shallowing.png",
       "slot": "illustration",
       "concept_id": "shallowing",
       "category": "technique",
@@ -3566,15 +3566,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/shallowing.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/shallowing.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/shallowing.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/shallowing.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/shallowing.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/shallowing.png",
       "slot": "thumbnail",
       "concept_id": "shallowing",
       "category": "technique",
@@ -3713,15 +3713,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/spectatoring.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/spectatoring.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/spectatoring.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/spectatoring.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/spectatoring.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/spectatoring.png",
       "slot": "illustration",
       "concept_id": "spectatoring",
       "category": "psychological",
@@ -3802,15 +3802,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/spectatoring.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/spectatoring.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/spectatoring.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/spectatoring.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/spectatoring.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/spectatoring.png",
       "slot": "thumbnail",
       "concept_id": "spectatoring",
       "category": "psychological",
@@ -3864,15 +3864,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/spontaneous-desire.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/spontaneous-desire.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/spontaneous-desire.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/spontaneous-desire.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/spontaneous-desire.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/spontaneous-desire.png",
       "slot": "illustration",
       "concept_id": "spontaneous-desire",
       "category": "timing",
@@ -3953,15 +3953,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/spontaneous-desire.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/spontaneous-desire.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/spontaneous-desire.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/spontaneous-desire.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/spontaneous-desire.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/spontaneous-desire.png",
       "slot": "thumbnail",
       "concept_id": "spontaneous-desire",
       "category": "timing",
@@ -4015,15 +4015,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/spreading.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/spreading.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/spreading.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/spreading.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/spreading.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/spreading.png",
       "slot": "illustration",
       "concept_id": "spreading",
       "category": "sensation",
@@ -4104,15 +4104,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/spreading.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/spreading.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/spreading.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/spreading.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/spreading.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/spreading.png",
       "slot": "thumbnail",
       "concept_id": "spreading",
       "category": "sensation",
@@ -4166,15 +4166,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/videos/spreading.mp4"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/videos/spreading.mp4"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/videos/spreading.mp4"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/videos/spreading.mp4"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/videos/spreading.mp4",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/videos/spreading.mp4",
       "slot": "video",
       "concept_id": "spreading",
       "category": "sensation",
@@ -4228,15 +4228,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/warmup-window.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/warmup-window.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/warmup-window.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/warmup-window.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/illustrations/warmup-window.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/warmup-window.png",
       "slot": "illustration",
       "concept_id": "warmup-window",
       "category": "timing",
@@ -4317,15 +4317,15 @@
       "registry_notes": null,
       "suggested_decision": "keep",
       "duplicate_paths_same_hash": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/warmup-window.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/warmup-window.png"
       ],
       "duplicate_paths_same_basename": [
-        "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/warmup-window.png"
+        "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/warmup-window.png"
       ],
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/Sources/PleasureVocabularyApp/Resources/media/thumbnails/warmup-window.png",
+      "path": "ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/warmup-window.png",
       "slot": "thumbnail",
       "concept_id": "warmup-window",
       "category": "timing",
@@ -4356,7 +4356,7 @@
       "duplicate_count_same_basename": 2
     },
     {
-      "path": "ios-native/AppHost/Assets.xcassets/AppIcon.appiconset/icon-1024.png",
+      "path": "ios/AppHost/Assets.xcassets/AppIcon.appiconset/icon-1024.png",
       "slot": "app-icon",
       "concept_id": null,
       "category": null,
@@ -4691,7 +4691,7 @@
       "registry_notes": null,
       "suggested_decision": "review",
       "duplicate_paths_same_hash": [
-        "ios-native/AppHost/Assets.xcassets/AppIcon.appiconset/icon-1024.png"
+        "ios/AppHost/Assets.xcassets/AppIcon.appiconset/icon-1024.png"
       ],
       "duplicate_paths_same_basename": [
         "assets/_originals/images/icon.png"

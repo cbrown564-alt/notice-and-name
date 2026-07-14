@@ -29,7 +29,7 @@
 | `process-explainer` | Warm-up Window (P1), Non-concordance (P1), Responsive Desire (P1), Plateauing (P2), Golden Trio (P2) |
 | `embodied-presence` | Spontaneous Desire (P1), Embodied Presence (P1), Spectatoring (P2) |
 
-Techniques **stay interactive** (Skia): Angling, Rocking, Shallowing, Pairing.
+Techniques **stay interactive** through native SwiftUI Canvas diagrams: Angling, Rocking, Shallowing, Pairing.
 
 ---
 
@@ -37,9 +37,9 @@ Techniques **stay interactive** (Skia): Angling, Rocking, Shallowing, Pairing.
 
 | Concept | Format | Video profile | Rich media today | Notes |
 |---------|--------|---------------|------------------|-------|
-| Angling | interactive | — | Skia | ✅ |
-| Rocking | interactive | — | Skia | ✅ |
-| Shallowing | interactive | — | Skia | Introitus nerves in diagram |
+| Angling | interactive | — | Native diagram | ✅ |
+| Rocking | interactive | — | Native diagram | ✅ |
+| Shallowing | interactive | — | Native diagram | Introitus nerves in diagram |
 | Pairing | interactive | — | PairingDiagram | ✅ |
 | Building | video | abstract-loop | `building.mp4` | Regen |
 | Plateauing | video | process-explainer | illustration | Curve animation |

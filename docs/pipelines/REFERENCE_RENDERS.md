@@ -17,11 +17,11 @@ Batch-regenerating 22 illustrations without a locked visual language produced th
 
 | Family | Concept | Generator | Prompt | Status |
 |--------|---------|-----------|--------|--------|
-| Technique | `angling` | ChatGPT Images 2 | [`illustrations/angling.md`](./prompts/illustrations/angling.md) | ❌ Rejected — regen |
-| Sensation | `spreading` | Gemini clinical | [`GEMINI_CLINICAL_PROMPTS.md`](./prompts/GEMINI_CLINICAL_PROMPTS.md#spreading-sensation) | ⬜ Score pending |
-| Timing | `warmup-window` | Gemini clinical | [`GEMINI_CLINICAL_PROMPTS.md`](./prompts/GEMINI_CLINICAL_PROMPTS.md#warmup-window-timing) | ⬜ Score pending |
+| Technique | `angling` | ChatGPT Images 2 | [`illustrations/angling.md`](./prompts/illustrations/angling.md) | ✅ Approved |
+| Sensation | `spreading` | Gemini clinical | [`GEMINI_CLINICAL_PROMPTS.md`](./prompts/GEMINI_CLINICAL_PROMPTS.md#spreading-sensation) | ✅ Approved |
+| Timing | `warmup-window` | Gemini clinical | [`GEMINI_CLINICAL_PROMPTS.md`](./prompts/GEMINI_CLINICAL_PROMPTS.md#warmup-window-timing) | ✅ Approved |
 | Psychological | `non-concordance` | ChatGPT Images 2 | [`illustrations/non-concordance.md`](./prompts/illustrations/non-concordance.md) | ✅ Approved |
-| Anatomy | `clitoral-structure` | Gemini clinical | [`GEMINI_CLINICAL_PROMPTS.md`](./prompts/GEMINI_CLINICAL_PROMPTS.md#clitoral-structure-anatomy) | ⬜ Score pending |
+| Anatomy | `clitoral-structure` | Gemini clinical | [`GEMINI_CLINICAL_PROMPTS.md`](./prompts/GEMINI_CLINICAL_PROMPTS.md#clitoral-structure-anatomy) | ✅ Approved |
 
 Run `npm run reference-renders` for live status.
 
@@ -63,7 +63,7 @@ npm run reference-renders -- register sensation gemini
 
 ### 3. Review in app
 
-1. `npx expo start` → Library → open concept → Illustrate slide  
+1. Run the SwiftUI app from `ios/PleasureVocabulary.xcodeproj`, then open Explore → concept → See
 2. Check STYLE_BIBLE §9 checklist (palette, no text, respectful anatomy, glow reads as sensation)  
 3. Compare against **non-concordance** (psychological reference) for tone consistency
 
@@ -95,9 +95,11 @@ npm run validate-manifest
 
 ---
 
-## Angling regen (technique family — blocked)
+## Angling regeneration record
 
-The technique reference was **rejected** for in-image titles. Regenerate with explicit negative prompt:
+The first technique reference was rejected for in-image titles. The replacement passed
+the reference bar and is now approved. Future regeneration should retain this explicit
+negative prompt:
 
 **Add to angling prompt body:**
 
@@ -121,7 +123,7 @@ When all families show `status: "approved"` in `reference-renders.json`:
 
 1. `npm run reference-renders` shows `RATIFIED ✅`
 2. Update `design/STYLE_BIBLE.md` header: **Status: v1.0 ratified**
-3. Update `IMPLEMENTATION_PLAN.md` Phase 1.1 checkbox
+3. Confirm `docs/v2/ROADMAP.md` still reflects the approved media baseline
 4. **Unblock Phase 3** illustration batch — use approved references as visual anchors in every per-concept prompt
 
 ---

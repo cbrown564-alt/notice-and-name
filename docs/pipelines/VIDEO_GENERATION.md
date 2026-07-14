@@ -9,7 +9,7 @@ See also: [`VIDEO_CONCEPT_CATALOG.md`](./VIDEO_CONCEPT_CATALOG.md), `visual_cont
 ## When to use video
 
 ```
-Physical mechanics with variables?     → Interactive Skia (not video)
+Physical mechanics with variables?     → Interactive native diagram (not video)
 Sensation rhythm / radiance?           → video · abstract-loop
 Anatomy, nerves, internal structure?   → video · scientific-journey (Omni scale zoom)
 Timelines, dual pathways, curves?        → video · process-explainer
@@ -19,9 +19,9 @@ Simple metaphor with no motion need?   → Rich static illustration
 
 **P0 pilots:** Building, Pulsing (abstract-loop) **and** Clitoral Structure, Nerve Density (scientific-journey)  
 **P1:** Spreading, Responsive Desire, anatomy batch, Warm-up Window, Non-concordance, desire/presence  
-**Skia only:** Angling, Rocking, Shallowing, Pairing
+**Native diagram only:** Angling, Rocking, Shallowing, Pairing
 
-**Rocking:** Skia diagram is primary; `rocking.mov` is deprecated.
+**Rocking:** the native diagram is primary; `rocking.mov` is deprecated.
 
 ---
 
@@ -33,7 +33,7 @@ Simple metaphor with no motion need?   → Rich static illustration
 | Generation + iteration | **Gemini Omni Flash** in [Google Flow](https://flow.google/) | ~10 s clip; multi-turn edits |
 | Pickup | Runway / After Effects | Only if Omni cannot hit loop/metaphor |
 | Transcode | `scripts/transcode-video.sh` | H.264 MP4, no audio |
-| QA | Device via `IllustrateSlide` | Loop smooth, muted default |
+| QA | Device via the native concept See page | Loop smooth, muted default |
 
 Store prompts in `docs/pipelines/prompts/videos/{concept-id}.md`.  
 **Pilots:** [`prompts/VIDEO_PILOT_BATCH.md`](./prompts/VIDEO_PILOT_BATCH.md) (dual track: sensation + anatomy journey).
@@ -96,7 +96,7 @@ Accurate to {citation}. Non-explicit, no in-image text. Attach image-0 for palet
 4. Select best → transcode to `assets/videos/{id}.mp4`
 5. Wire `illustrationVideo` on **illustrate** slide only in `data/vocabulary.ts`
 6. Update `ASSET_MANIFEST.md`
-7. Test in Expo Go + one release build
+7. Test on a phone-sized iOS Simulator and one signed device build
 8. Delete or move `.mov` originals out of tracked `assets/videos/`
 
 ---
@@ -109,8 +109,8 @@ Accurate to {citation}. Non-explicit, no in-image text. Attach image-0 for palet
 | `building.mp4` | ✅ | 256 KB — wired |
 | `responsive-desire.mp4` | ✅ | 503 KB — wired |
 | `spreading.mp4` | ✅ | 1.6 MB — style review optional |
-| `rocking.mov` | ❌ | Removed (Skia only) |
-| `shallowing.mov` | ❌ | Removed (Skia only) |
+| `rocking.mov` | ❌ | Removed (native diagram only) |
+| `shallowing.mov` | ❌ | Removed (native diagram only) |
 | `originals/*.mov` | — | ProRes sources; not in app bundle |
 
 ---
@@ -119,4 +119,4 @@ Accurate to {citation}. Non-explicit, no in-image text. Attach image-0 for palet
 
 - [ ] Migrate `expo-av` → `expo-video` (optional)
 - [ ] Poster frame from thumbnail while loading
-- [ ] Reduced-motion static fallback in `IllustrateSlide`
+- [ ] Reduce Motion static fallback on the native concept See page

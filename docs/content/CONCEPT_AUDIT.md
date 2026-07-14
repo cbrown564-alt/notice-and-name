@@ -34,6 +34,6 @@ One row per concept. `format_choice` locked in `data/visual-formats.json`. `thum
 ## Notes
 
 - **Videos:** App bundle uses H.264 MP4 only (`building.mp4`, `responsive-desire.mp4`, `spreading.mp4`). ProRes/MOV sources live in `assets/videos/originals/`.
-- **Rocking:** Skia diagram only; no video in repo.
+- **Rocking:** native SwiftUI diagram only; no video in repo.
 - **Spreading:** `spreading.mp4` wired; illustration at `illustrations/spreading.png`.
 - **Pathways:** All 22 concepts appear in ≥1 pathway.
