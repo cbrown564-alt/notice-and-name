@@ -433,6 +433,7 @@ Having language for this sensation helps recognize it when it's happening, and h
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/pulsing.png'),
+        illustrationVideo: require('@/assets/videos/pulsing.mp4'),
         illustrationCaption: 'Concentric contraction waves in pelvic floor tissue',
       },
       {

@@ -966,7 +966,8 @@
         }
       ],
       "mediaIds": [
-        "pulsing-illustration"
+        "pulsing-illustration",
+        "pulsing-video"
       ]
     },
     {
@@ -2588,6 +2589,14 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/pulsing.png",
       "alt": "Warm educational illustration for Pulsing.",
+      "caption": "Concentric contraction waves in pelvic floor tissue",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/pulsing.png"
+    },
+    {
+      "id": "pulsing-video",
+      "kind": "video",
+      "path": "assets/videos/pulsing.mp4",
+      "alt": "Motion study for Pulsing.",
       "caption": "Concentric contraction waves in pelvic floor tissue",
       "reducedMotionFallback": "assets/images/concepts/illustrations/pulsing.png"
     },

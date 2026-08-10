@@ -1,0 +1,28 @@
+{
+  "slot": "building",
+  "candidateId": "v01",
+  "kind": "still-storyboard-reference",
+  "provider": "OpenAI built-in image generation",
+  "model": "gpt-image-2",
+  "generatedAt": "2026-08-09",
+  "intendedUse": "Motion reference for gradual vascular and neural intensification.",
+  "direction": "safe-fallback-attempt",
+  "fallbackReason": "The provider rejected the source-backed anatomical batch under its sexual-content safety system.",
+  "prompt": "Three sequential states of one branching network: dim resting state, intermediate filling, and fuller connected illumination; identical branch geometry; no anatomy claim, text, arrows, or strobe.",
+  "sourceReferences": ["assets/images/concepts/illustrations/building.png"],
+  "master": "master.png",
+  "fallback": "fallback.png",
+  "decision": "reject",
+  "review": {
+    "fundamentals": "fail",
+    "editorial": "reject",
+    "scientific": "reject",
+    "technical": "pass",
+    "phoneSize": "not-run"
+  },
+  "notes": [
+    "Introduces ambiguous kidney-like or organ-like forms.",
+    "The process cannot be used without implying invented anatomy.",
+    "Do not use as a video reference; retain only as a raw failed candidate."
+  ]
+}

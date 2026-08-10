@@ -1,0 +1,35 @@
+{
+  "_meta": {
+    "createdAt": "2026-08-10",
+    "providerRoute": "central Gemini web video submission",
+    "batchSize": 3,
+    "policy": "Educational process motion first; use the named calm fallback only when safe direct depiction is unavailable.",
+    "outputPolicy": "Preserve raw output, strip generated audio in derivatives, solve loop seams in post, and keep all outputs in staging until review."
+  },
+  "jobs": [
+    {
+      "slot": "building",
+      "status": "ready-for-central-submission",
+      "reference": "assets/images/concepts/illustrations/building.png",
+      "promptDocument": "docs/pipelines/prompts/GEMINI_NEXT_P0_BATCH.md#1-building",
+      "intendedUse": "Explain gradual vascular fullness and neural activation.",
+      "fallback": "Abstract stable network accumulating coral illumination over time."
+    },
+    {
+      "slot": "clitoral-structure",
+      "status": "ready-for-central-submission",
+      "reference": "assets/images/concepts/illustrations/clitoral-structure.png",
+      "promptDocument": "docs/pipelines/prompts/GEMINI_NEXT_P0_BATCH.md#2-clitoral-structure",
+      "intendedUse": "Explain the connected external and internal extent of the clitoral structure.",
+      "fallback": "Slow camera and tracing-light move over the unchanged approved plate; no invented anatomy."
+    },
+    {
+      "slot": "nerve-density",
+      "status": "ready-for-central-submission",
+      "reference": "assets/images/concepts/illustrations/nerve-density.png",
+      "promptDocument": "docs/pipelines/prompts/GEMINI_NEXT_P0_BATCH.md#3-nerve-density",
+      "intendedUse": "Explain concentrated sensory innervation without an exact count claim.",
+      "fallback": "Clearly metaphorical connected branching network increasing in density during a smooth push-in."
+    }
+  ]
+}

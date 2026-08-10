@@ -1,0 +1,28 @@
+{
+  "slot": "building",
+  "candidateId": "v02",
+  "kind": "still-storyboard-reference",
+  "provider": "OpenAI built-in image generation",
+  "model": "gpt-image-2",
+  "generatedAt": "2026-08-09",
+  "intendedUse": "Abstract motion reference for gradual accumulation after the source-backed route was safety-blocked.",
+  "direction": "safe-fallback",
+  "fallbackReason": "The provider rejected the source-backed anatomical batch, and v01 introduced misleading organ-like forms.",
+  "prompt": "Three sequential states of one identical nonrepresentational network, moving from a few dim paths to nearly complete coral illumination; no body, anatomy, living tissue, text, arrows, or strobe.",
+  "sourceReferences": [],
+  "master": "master.png",
+  "fallback": "fallback.png",
+  "decision": "reserve",
+  "review": {
+    "fundamentals": "pass-as-metaphor",
+    "editorial": "pending",
+    "scientific": "not-literal-anatomy",
+    "technical": "pass",
+    "phoneSize": "pending"
+  },
+  "notes": [
+    "Low-to-high progression is clear and the geometry remains stable.",
+    "Too generic to replace an accurate bodily-process explanation.",
+    "May guide illumination timing only; it must be labeled as a fallback."
+  ]
+}

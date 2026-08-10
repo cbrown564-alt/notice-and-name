@@ -34,6 +34,27 @@ Attach **`illustrations/clitoral-structure.png`** as `image-0` for palette and s
 
 ## Gemini Omni — starter variants
 
+### Primary submission prompt — educational process
+
+```
+Create one continuous 10-second educational anatomy journey using the attached
+approved plate as the structural and color reference. Begin on the plate's
+non-explicit external context, then move slowly into the same simplified
+cross-section. Keep the vaginal canal stable and legible while revealing the
+clitoral glans and shaft, paired crura extending back on either side, and paired
+vestibular bulbs alongside the vaginal opening. Use restrained coral light to
+trace these connected structures; do not make them appear inside the vaginal
+canal and do not add organs or branches absent from the reference. Warm cream
+background, slow documentary pace, no sexual activity, person, face, labels,
+numbers, text, logo, watermark, strobe, or essential audio. If the structure
+cannot remain accurate, do not improvise anatomy; return a calm camera move over
+the unchanged reference plate instead.
+```
+
+The last sentence defines the safe fallback. A plate-only move is `reserve`,
+not an educational-process `advance`, unless medical review confirms that it
+still teaches the required internal extent.
+
 ### Variant A — silhouette push
 ```
 One continuous cinematic educational shot, Scientific Warmth palette (cream void, bioluminescent coral).

@@ -20,6 +20,35 @@
 5. Device QA on the native concept See page + Reduce Motion poster check
 6. `npm run validate-manifest` (journey tier may warn until budget script updated)
 
+## Overnight bounded-batch rule
+
+Run one candidate per P0 slot before requesting additional variants. Review the
+four-candidate batch using the table below. If at least one candidate advances
+and no provider, safety, or shared scientific error affects the batch, retry
+correctable failures once and continue. Do not promote anatomy from staging.
+
+| Review area | Advance requirement |
+|-------------|---------------------|
+| Intended use | The motion teaches the concept named in the deck caption; atmosphere alone does not pass. |
+| Process accuracy | Visible structures and sequences match the approved reference and prompt. No invented anatomy, false location, or unsupported cause-and-effect. |
+| Safety and tone | Educational, non-explicit, calm, and free of sexual activity or voyeuristic framing. |
+| Visual language | Warm cream canvas, restrained coral illumination, soft editorial texture; no cold clinical stock treatment. |
+| Technical | File opens; requested duration and aspect ratio are usable; no corruption, embedded text, logo, avoidable watermark, or essential audio. |
+| Accessibility | A named static fallback exists and the meaning is not available only through rapid motion or sound. |
+| Phone-size read | The educational action and important structures remain legible at concept-page size. |
+| Provenance | Prompt, provider/model, source reference, intended slot, timestamp, status, and fallback reason (when used) are recorded. |
+
+Decision labels follow the shared loop: `advance`, `reserve`, `reject`, or
+`retry-once`. Abstract or metaphorical output can advance only when the job
+records why safe educational-process motion was unavailable; otherwise it is a
+reserve candidate.
+
+## Required batch checkpoint
+
+Record jobs attempted, `advance/reserve/reject` counts, any systemic issue, the
+next queued batch, and the single decision needing human attention in
+`data/media-sprint-jobs.json` under `checkpoints`.
+
 ## Results (fill after review)
 
 | Concept | Profile | Approved | Bytes | Notes |

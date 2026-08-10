@@ -30,6 +30,26 @@ Attach **`illustrations/nerve-density.png`** as `image-0`.
 
 ## Gemini Omni — starter variants
 
+### Primary submission prompt — educational process
+
+```
+Create a smooth 10-second educational micro-journey using the attached approved
+plate as the structural and color reference. Begin with the same simplified,
+non-photoreal glans form and move into a cutaway showing a dense branching
+network of fine sensory nerve fibers. Increase visible branching and packing
+density as the camera moves inward, while keeping every fiber soft, organic,
+and connected rather than needle-like. The purpose is to explain concentrated
+sensory innervation; do not display or imply an exact nerve-ending count.
+Warm cream background, restrained coral illumination, slow documentary motion,
+no explicit photographic anatomy, person, sexual activity, pain imagery,
+labels, numbers, text, logo, watermark, strobe, or essential audio. If a safe
+biological cutaway cannot be produced without invented microanatomy, use a calm
+constellation-like density metaphor and record that fallback explicitly.
+```
+
+The constellation alternative is a safe fallback and must not be described as
+a literal microscopic view.
+
 ### Variant A — constellation zoom
 ```
 Continuous micro-zoom into a sculptural bioluminescent clitoral glans on warm cream void.

@@ -17,13 +17,43 @@ Motion must read as **gradual gathering** — not a sudden flash or strobe.
 
 ## Global prefix (motion)
 
-Warm cream void `#F9F5F1`, bioluminescent coral glow (`#E8603C` family), soft film grain, no text, no human bodies, no clinical white. Seamless **8–10 s** loop, 24 fps, static or slow push camera.
+Warm cream void `#F9F5F1`, bioluminescent coral glow (`#E8603C` family), soft film grain, no text, no human bodies, no clinical white. Seamless **8–10 s** loop, 24 fps, static or slow push camera. The primary direction is a simplified educational view of vascular filling and neural activation increasing gradually. Use an abstract ember or rings only when a safe depiction of that process is not possible.
 
 **Negative:** anatomical realism, faces, text overlays, harsh cuts, alarm red, stock wellness gradients, strobe/flicker.
 
-## Concept body
+## Primary submission prompt — educational process
 
-Abstract **Building**: arousal as slow **gathering** — a soft ember or bioluminescent wave that **intensifies** across the loop. Metaphor options (pick one per variant):
+```
+Create a calm 10-second educational visualization of arousal building
+gradually in simplified pelvic tissue. Show a non-explicit cutaway with a small
+network of vessels and nerves on a warm cream background. Across the clip,
+coral illumination and gentle vascular fullness increase progressively from a
+low resting state to a clearly higher-intensity state; neural points join in
+gradually rather than flashing all at once. Use one stable view and smooth
+continuous change so the bodily process reads before the visual atmosphere.
+End with a gentle loop-friendly return, not a sudden reset. No external
+genitals, penetration, person, labels, numbers, text, logo, watermark, alarm
+red, strobe, harsh cuts, or essential audio. Use the attached plate for palette
+and composition only.
+```
+
+## Safe fallback prompt — metaphorical motion
+
+Use this only if the provider cannot safely render a simplified educational
+cutaway without anatomical invention. Record `fallbackReason` in candidate
+metadata.
+
+```
+Warm cream void. A small coral ember gathers light gradually over 10 seconds;
+nearby soft filaments illuminate one by one until the field is visibly warmer
+and fuller, then returns gently for a seamless loop. Static camera, restrained
+editorial grain. No body, anatomy claim, text, labels, watermark, strobe,
+sudden flash, or essential audio.
+```
+
+## Additional fallback variants
+
+Abstract **Building**: arousal as slow **gathering** — a soft ember or bioluminescent wave that **intensifies** across the loop. Metaphor options (pick one per fallback variant):
 
 1. **Ember breath** — small coral ember at center slowly brightens and softens, never strobe.
 2. **Concentric warmth** — rings grow warmer and slightly larger, then reset.

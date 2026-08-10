@@ -1,0 +1,55 @@
+{
+  "slot": "pulsing",
+  "candidateId": "v02",
+  "kind": "video",
+  "provider": "Gemini web video generation",
+  "model": "not reported",
+  "generatedAt": "2026-08-09",
+  "ingestedAt": "2026-08-09",
+  "sourceFilename": "/Users/cobro/Downloads/Create_a_six_second_silent_edu.mp4",
+  "intendedUse": "Abstract fallback motion for the pulsing lesson.",
+  "direction": "safe-fallback",
+  "fallbackReason": "The shared route produced abstract concentric motion rather than a medically reviewed process depiction.",
+  "promptSummary": "Warm concentric pulses through translucent layers; educational, no people or text; requested as a six-second silent candidate.",
+  "sourceReferences": [],
+  "master": "master.mp4",
+  "reviewProxy": "review-proxy.mp4",
+  "silentCurated": "silent-curated.mp4",
+  "loopCurated": "loop-curated.mp4",
+  "poster": "poster.png",
+  "contactSheet": "contact-sheet.png",
+  "fallback": "fallback.png",
+  "sha256": {
+    "master": "a3161354c670721fb7f0d0185edf8f23f2e33e987335ce9ddc8d37b1ef06003f",
+    "reviewProxy": "588dd954d7c72ef05e87cbc52e8f12b79a9972aba58871c0b5011db10efa260b",
+    "silentCurated": "f03b20543cf19c402430085183ed082a1f650c6bac5c78ae51136ed35aefd0c1",
+    "loopCurated": "06b8c183498ea78b34393e33b7ce8e8a90eeb04a83a0d46fe14441eec29671fb"
+  },
+  "observedTechnical": {
+    "masterDurationSeconds": 10.005,
+    "masterBytes": 2956059,
+    "video": "H.264, 1280x720, 24fps, yuv420p",
+    "audio": "AAC stereo, 48kHz; removable source audio, mean -36.0 dB, peak -21.8 dB",
+    "reviewProxy": "H.264, 720x406, 10.0s, 395389 bytes, audio removed",
+    "silentCurated": "H.264, 1280x720, 10.0s, 1494192 bytes, audio removed",
+    "loopCurated": "H.264, 1280x720, 10.0s, 1149085 bytes, forward/reverse post-production loop",
+    "rawFirstLastFramePsnrDb": 24.078961,
+    "loopFirstLastFramePsnrDb": 43.196512
+  },
+  "decision": "advance",
+  "lifecycle": "curated",
+  "review": {
+    "fundamentals": "pass-as-abstract-fallback",
+    "editorial": "advance-after-user-review",
+    "scientific": "explicitly-abstract-fallback",
+    "technical": "pass-after-silent-proxy",
+    "phoneSize": "contact-sheet-pass"
+  },
+  "notes": [
+    "No people, text, logo, watermark, or obvious generation corruption.",
+    "Raw master is 10.005 seconds and includes generated AAC audio; audio is removed in curated derivatives by default.",
+    "User review approved the imagery quality and its use as an abstract fallback treatment.",
+    "Loopability is handled in post-production; loop-curated.mp4 uses a forward/reverse edit and has a materially cleaner seam.",
+    "Keep the treatment explicitly labeled as abstract fallback motion rather than literal anatomy."
+  ]
+}

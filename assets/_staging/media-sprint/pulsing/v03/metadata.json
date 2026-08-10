@@ -1,0 +1,52 @@
+{
+  "slot": "pulsing",
+  "candidateId": "v03",
+  "kind": "video",
+  "provider": "Gemini web video generation",
+  "model": "not reported",
+  "generatedAt": "2026-08-10",
+  "ingestedAt": "2026-08-10",
+  "sourceFilename": "/Users/cobro/Downloads/returning_exactly_to_the_openi.mp4",
+  "intendedUse": "One permitted corrected abstract fallback for the pulsing lesson.",
+  "direction": "safe-fallback-retry",
+  "fallbackReason": "The provider route used abstract translucent concentric layers instead of a medically reviewed bodily-process depiction.",
+  "promptSummary": "Corrected calm concentric pulse treatment intended to repeat steadily and return exactly to the opening state.",
+  "sourceReferences": [],
+  "master": "master.mp4",
+  "reviewProxy": "review-proxy.mp4",
+  "silentCurated": "silent-curated.mp4",
+  "poster": "poster.png",
+  "contactSheet": "contact-sheet.png",
+  "fallback": "fallback.png",
+  "sha256": {
+    "master": "8bab021369f7b826ff1f5be1434857ab7c0472b0dc00dec9213fa082a3142ca6",
+    "reviewProxy": "a4919eb77a162cee1209979267304660012c990f2569fa15668cf7f0a787a0c7",
+    "silentCurated": "85bd9fc2e3dc51254657db1d5df7138b78e00427a98086dc6caf76567dfa6f77"
+  },
+  "observedTechnical": {
+    "masterDurationSeconds": 10.005,
+    "masterBytes": 2920103,
+    "video": "H.264, 1280x720, 24fps, yuv420p",
+    "audio": "AAC stereo, 48kHz; removable source audio, mean -35.6 dB, peak -21.4 dB",
+    "reviewProxy": "H.264, 1280x720, 10.0s, 987813 bytes, audio removed",
+    "silentCurated": "H.264, 1280x720, 10.0s, 1519722 bytes, audio removed",
+    "firstLastFramePsnrDb": 21.209855
+  },
+  "decision": "advance",
+  "lifecycle": "shortlisted",
+  "review": {
+    "fundamentals": "pass-as-abstract-fallback",
+    "editorial": "advance-after-user-review",
+    "scientific": "explicitly-abstract-fallback",
+    "technical": "pass-after-silent-proxy",
+    "phoneSize": "contact-sheet-pass"
+  },
+  "notes": [
+    "The raw retry is distinct from v02 and has been preserved unchanged.",
+    "No people, text, logo, watermark, or obvious file corruption.",
+    "The raw clip contains a few slow expansion and color cycles; user review approved the imagery as an abstract fallback.",
+    "The raw seam remains open; create a loop derivative in post only if this alternate is selected over v02.",
+    "Generated AAC audio is removed in silent-curated.mp4 and is not a content failure.",
+    "Shortlisted, not promoted; v02 remains the curated loop-ready selection."
+  ]
+}

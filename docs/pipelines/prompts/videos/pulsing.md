@@ -17,13 +17,42 @@ Motion must read as **steady rhythmic beat** (~**0.8 s** period per orgasm resea
 
 ## Global prefix (motion)
 
-Warm cream void `#F9F5F1`, bioluminescent coral accents, soft grain, no text, no bodies. Seamless **10 s** loop containing multiple pulse cycles, static camera.
+Warm cream void `#F9F5F1`, bioluminescent coral accents, soft grain, no text, no bodies. Seamless **10 s** loop containing multiple pulse cycles, static camera. The primary direction is a simplified educational cutaway of coordinated pelvic-floor contraction waves. Use a purely abstract pattern only when the generator cannot safely produce that process without misleading anatomy.
 
 **Negative:** literal hearts, EKG UI, text, faces, strobe, clinical white, hyper-real anatomy.
 
-## Concept body
+## Primary submission prompt — educational process
 
-Abstract **Pulsing**: rhythmic **throb** or **wave** — sensation that beats like a heartbeat, not a static target. Metaphor options:
+```
+Create a calm 10-second educational visualization of rhythmic pelvic-floor
+muscle contractions. Show a simplified, non-explicit cross-section of layered
+pelvic-floor tissue on a warm cream background. Coordinated coral contraction
+waves gently tighten toward the center and release every 0.8 seconds, with the
+same tissue returning to its resting shape between cycles. Static camera,
+smooth continuous motion, soft editorial grain, and a loop-friendly ending.
+The purpose is to explain a steady bodily rhythm, not to simulate sexual
+activity. No external genitals, penetration, face, person, labels, numbers,
+text, logo, watermark, EKG imagery, heartbeat symbol, strobe, or essential
+audio. Use the attached plate for palette and composition only.
+```
+
+## Safe fallback prompt — metaphorical motion
+
+Use this only if the provider cannot safely render a simplified educational
+cutaway without anatomical invention. Record `fallbackReason` in candidate
+metadata.
+
+```
+Warm cream void. Concentric layers of soft tissue-like coral light contract
+toward the center and release every 0.8 seconds. Keep the layers abstract but
+clearly coordinated, with a calm seamless 10-second loop, static camera, and
+soft editorial grain. No body, anatomy claim, heart, EKG, text, labels,
+watermark, strobe, or essential audio.
+```
+
+## Additional fallback variants
+
+Abstract **Pulsing**: rhythmic **throb** or **wave** — sensation that repeats steadily, not a static target. Metaphor options:
 
 1. **Concentric rings** — bioluminescent rings expand and contract from center (~75 BPM feel).
 2. **Tissue breath** — soft velvet orb pulses in and out with organic edges.

@@ -7,6 +7,27 @@
 
 ---
 
+## Educational priority and fallback decision
+
+The first videos must prioritize an accurate, educational explanation of the
+bodily process named by the concept. Anatomy, timing, sensation, and response
+should be depicted directly enough to help the user understand what happens in
+the body; visual atmosphere alone is not sufficient.
+
+When a safe, policy-compliant generator cannot produce an accurate depiction,
+use calm abstract or metaphorical motion as the explicit fallback. Abstraction
+is not the default for a concept whose educational purpose depends on showing a
+bodily process. Record the fallback reason with the candidate so a temporary
+generation limit does not become a permanent content decision.
+
+All generated bodily-process media remains in staging until it passes
+editorial, scientific, technical, and phone-size review. Review must confirm
+that the result teaches the intended process, does not invent anatomy or imply
+unsupported causality, uses non-explicit framing, contains no embedded text,
+and retains a useful static fallback for Reduce Motion.
+
+---
+
 ## Framework: four tiers of fidelity
 
 | Format | Purpose | Best for |

@@ -1,0 +1,26 @@
+{
+  "slot": "<concept-id>",
+  "candidateId": "v01",
+  "provider": "Gemini web video generation",
+  "model": "<reported model>",
+  "generatedAt": "<ISO-8601>",
+  "intendedUse": "<deck caption and learning job>",
+  "direction": "educational-process",
+  "fallbackReason": null,
+  "promptFile": "docs/pipelines/prompts/videos/<concept-id>.md",
+  "sourceReferences": [
+    "assets/images/concepts/illustrations/<concept-id>.png"
+  ],
+  "master": "master.<source-extension>",
+  "poster": "poster.png",
+  "fallback": "fallback.png",
+  "decision": "pending",
+  "review": {
+    "fundamentals": "pending",
+    "editorial": "pending",
+    "scientific": "pending-or-not-required",
+    "technical": "pending",
+    "phoneSize": "pending"
+  },
+  "notes": []
+}

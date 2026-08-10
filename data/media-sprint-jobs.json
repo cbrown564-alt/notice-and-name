@@ -1,0 +1,378 @@
+{
+  "_meta": {
+    "sprint": "2026-08-two-day-media-window",
+    "createdAt": "2026-08-09",
+    "loopSource": "/Users/cobro/Documents/Codex/2026-08-09/realtime-voice-chat-4/outputs/overnight-media-production-loop.md",
+    "purpose": "Capture reviewable source masters for already-planned educational media.",
+    "archiveConvention": "assets/_staging/media-sprint/<slot>/<candidate-id>/{master,poster,fallback,metadata}",
+    "candidateIdConvention": "v01, v02, ...; append-only",
+    "promotionPolicy": "Never promote from staging before editorial, scientific, technical, and phone-size review.",
+    "directionPolicy": "Educational-process motion first. Calm abstract or metaphorical motion is an explicit fallback only when a safe, policy-compliant provider cannot create an accurate depiction.",
+    "fallbackArchive": "assets/_staging/media-sprint/fallbacks/<slot>.png",
+    "capabilityRouting": {
+      "video": "Gemini web Video mode is available through central orchestration for 10-second jobs. A project-local browser or callable video tool is not required.",
+      "audio": "Central ElevenLabs generation and normalization are available when an approved audio job exists. Current concept videos intentionally ship without essential audio; generated source audio is removable in post-production.",
+      "temporaryErrors": "Temporary Gemini service or UI errors are retry/routing events, not evidence that video generation is unavailable."
+    },
+    "globalConstraints": [
+      "educational",
+      "text-free",
+      "no essential audio",
+      "no watermark",
+      "retain highest-quality source master",
+      "retain prompt and reference provenance"
+    ]
+  },
+  "jobs": [
+    {
+      "id": "video:pulsing",
+      "slot": "pulsing",
+      "kind": "video",
+      "profile": "abstract-loop",
+      "priority": "P0",
+      "prompt": "docs/pipelines/prompts/videos/pulsing.md",
+      "reference": "assets/images/concepts/illustrations/pulsing.png",
+      "fallback": "assets/_staging/media-sprint/fallbacks/pulsing.png",
+      "targetCandidates": 3,
+      "stillCandidates": [{ "id": "v01", "path": "assets/_staging/media-sprint/pulsing/v01", "decision": "reserve" }],
+      "videoCandidates": [
+        { "id": "v02", "path": "assets/_staging/media-sprint/pulsing/v02", "decision": "advance", "lifecycle": "integrated", "productDerivative": "assets/videos/pulsing.mp4", "sha256": "06b8c183498ea78b34393e33b7ce8e8a90eeb04a83a0d46fe14441eec29671fb" },
+        { "id": "v03", "path": "assets/_staging/media-sprint/pulsing/v03", "decision": "advance", "lifecycle": "shortlisted" }
+      ],
+      "status": "integrated-silent-abstract-fallback",
+      "activeRoute": "central Gemini web video generation",
+      "platform": {
+        "workspaceUrl": "https://labs.google/fx/tools/flow/project/3c5cc755-8ff5-4a9e-827e-822b874abddf",
+        "referenceUpload": "succeeded",
+        "generation": "local-flow-ui-failed; central-gemini-succeeded",
+        "failure": "Flow displayed the entered prompt but rejected submission with 'Prompt must be provided'. No quota or account-access error was shown.",
+        "classification": "local-access-misunderstanding",
+        "globalCapability": "available through central Gemini; two raw 10-second candidates completed",
+        "observedAt": "2026-08-09"
+      },
+      "review": { "editorial": "user-approved-for-use", "scientific": "explicitly-abstract-fallback", "technical": "pass", "phoneSize": "pass" }
+    },
+    {
+      "id": "video:clitoral-structure",
+      "slot": "clitoral-structure",
+      "kind": "video",
+      "profile": "scientific-journey",
+      "priority": "P0",
+      "prompt": "docs/pipelines/prompts/videos/clitoral-structure.md",
+      "reference": "assets/images/concepts/illustrations/clitoral-structure.png",
+      "fallback": "assets/_staging/media-sprint/fallbacks/clitoral-structure.png",
+      "targetCandidates": 3,
+      "stillCandidates": [{ "id": "v01", "path": "assets/_staging/media-sprint/clitoral-structure/v01", "decision": "reserve" }],
+      "status": "manual-provider-unfulfilled",
+      "activeRoute": "manual Gemini web Video handoff",
+      "handoffJobId": "PVB-GEMINI-VIDEO-20260810-CLITORAL-STRUCTURE-01",
+      "handoff": "assets/_staging/media-sprint/MANUAL_BROWSER_VIDEO_HANDOFF.md#pvb-gemini-video-20260810-clitoral-structure-01",
+      "providerOutcome": "manual-provider-unfulfilled; no raw file returned; no further submission requested",
+      "platform": {
+        "workspaceUrl": "https://labs.google/fx/tools/flow/project/3c5cc755-8ff5-4a9e-827e-822b874abddf",
+        "referenceUpload": "succeeded",
+        "generation": "not attempted locally; ready for central Gemini",
+        "classification": "local-access-misunderstanding",
+        "globalCapability": "available through central Gemini web Video mode",
+        "observedAt": "2026-08-09"
+      },
+      "review": { "editorial": "pending", "scientific": "pending", "technical": "pending", "phoneSize": "pending" }
+    },
+    {
+      "id": "video:nerve-density",
+      "slot": "nerve-density",
+      "kind": "video",
+      "profile": "scientific-journey",
+      "priority": "P0",
+      "prompt": "docs/pipelines/prompts/videos/nerve-density.md",
+      "reference": "assets/images/concepts/illustrations/nerve-density.png",
+      "fallback": "assets/_staging/media-sprint/fallbacks/nerve-density.png",
+      "targetCandidates": 3,
+      "stillCandidates": [{ "id": "v01", "path": "assets/_staging/media-sprint/nerve-density/v01", "decision": "reserve" }],
+      "status": "manual-provider-unfulfilled",
+      "activeRoute": "manual Gemini web Video handoff",
+      "handoffJobId": "PVB-GEMINI-VIDEO-20260810-NERVE-DENSITY-01",
+      "handoff": "assets/_staging/media-sprint/MANUAL_BROWSER_VIDEO_HANDOFF.md#pvb-gemini-video-20260810-nerve-density-01",
+      "providerOutcome": "manual-provider-unfulfilled; no raw file returned; no further submission requested",
+      "platform": {
+        "workspaceUrl": "https://labs.google/fx/tools/flow/project/3c5cc755-8ff5-4a9e-827e-822b874abddf",
+        "referenceUpload": "failed-with-generic-flow-error",
+        "generation": "not attempted locally; ready for central Gemini",
+        "classification": "local-access-misunderstanding",
+        "globalCapability": "available through central Gemini web Video mode; reference must be attached centrally",
+        "observedAt": "2026-08-09"
+      },
+      "review": { "editorial": "pending", "scientific": "pending", "technical": "pending", "phoneSize": "pending" }
+    },
+    {
+      "id": "video:building",
+      "slot": "building",
+      "kind": "video",
+      "profile": "abstract-loop",
+      "priority": "P0",
+      "prompt": "docs/pipelines/prompts/videos/building.md",
+      "reference": "assets/images/concepts/illustrations/building.png",
+      "fallback": "assets/_staging/media-sprint/fallbacks/building.png",
+      "targetCandidates": 3,
+      "stillCandidates": [
+        { "id": "v01", "path": "assets/_staging/media-sprint/building/v01", "decision": "reject" },
+        { "id": "v02", "path": "assets/_staging/media-sprint/building/v02", "decision": "reserve" }
+      ],
+      "videoCandidates": [
+        { "id": "v03", "path": "assets/_staging/media-sprint/building/v03", "decision": "reserve", "lifecycle": "shortlisted" }
+      ],
+      "status": "manual-result-ingested-review-pending",
+      "activeRoute": "manual Gemini web Video handoff",
+      "handoffJobId": "PVB-GEMINI-VIDEO-20260810-BUILDING-01",
+      "handoff": "assets/_staging/media-sprint/MANUAL_BROWSER_VIDEO_HANDOFF.md#pvb-gemini-video-20260810-building-01",
+      "providerOutcome": "completed; raw master ingested as building/v03",
+      "platform": {
+        "workspaceUrl": "https://labs.google/fx/tools/flow/project/3c5cc755-8ff5-4a9e-827e-822b874abddf",
+        "referenceUpload": "succeeded",
+        "generation": "not attempted locally; ready for central Gemini",
+        "classification": "local-access-misunderstanding",
+        "globalCapability": "available through central Gemini web Video mode",
+        "observedAt": "2026-08-09"
+      },
+      "review": { "editorial": "pending", "scientific": "not-required", "technical": "pending", "phoneSize": "pending" }
+    },
+    {
+      "id": "image-regeneration:weak-plates",
+      "kind": "image-batch",
+      "priority": "after-p0-review",
+      "slots": [
+        "embodied-presence",
+        "golden-trio",
+        "plateauing",
+        "pulsing",
+        "sexual-self-esteem",
+        "spectatoring",
+        "spontaneous-desire",
+        "spreading",
+        "warmup-window"
+      ],
+      "targetCandidatesPerSlot": 3,
+      "status": "ready-after-p0-review"
+    }
+  ],
+  "capabilityAudit": {
+    "auditedAt": "2026-08-10",
+    "scope": "Media-sprint records and checkpoint claims about video or audio availability, blocking, credentials, and local callable tools.",
+    "falseGlobalBlocks": [
+      {
+        "claimLocation": "data/media-sprint-jobs.json jobs[video:pulsing].platform and assets/_staging/media-sprint/README.md:12-17",
+        "originalClaim": "Flow prompt submission was blocked and no video candidate existed.",
+        "classification": "Historical local Flow UI failure, not a Gemini provider-capability block.",
+        "evidence": "Central Gemini web Video mode completed two distinct 10-second pulsing jobs; raw v02 and v03 are preserved.",
+        "nextBoundedJob": {
+          "job": "No new pulsing generation; review the curated derivative.",
+          "prompt": "Existing approved pulsing prompt; no resubmission required.",
+          "sourceAsset": "assets/_staging/media-sprint/pulsing/v02/loop-curated.mp4",
+          "intendedUse": "Curated abstract fallback motion for Pulsing review.",
+          "route": "local review of central Gemini output"
+        }
+      },
+      {
+        "claimLocation": "data/media-sprint-jobs.json jobs[video:building].platform.generation",
+        "originalClaim": "Video was not attempted after the local Flow input failure.",
+        "classification": "Local-access misunderstanding.",
+        "nextBoundedJob": {
+          "job": "Submit one 10-second Building educational-process candidate.",
+          "prompt": "docs/pipelines/prompts/GEMINI_NEXT_P0_BATCH.md#1-building primary prompt; use its named abstract network fallback only if direct process motion is unsafe.",
+          "sourceAsset": "assets/images/concepts/illustrations/building.png",
+          "intendedUse": "Explain gradual vascular fullness and neural activation; preserve stable handles for post-production.",
+          "route": "central Gemini"
+        }
+      },
+      {
+        "claimLocation": "data/media-sprint-jobs.json jobs[video:clitoral-structure].platform.generation",
+        "originalClaim": "Video was not attempted after the local Flow input failure.",
+        "classification": "Local-access misunderstanding; medical review is still a real downstream gate.",
+        "nextBoundedJob": {
+          "job": "Submit one 10-second Clitoral Structure educational anatomy journey.",
+          "prompt": "docs/pipelines/prompts/GEMINI_NEXT_P0_BATCH.md#2-clitoral-structure primary prompt; if structure cannot remain exact, animate only the unchanged approved plate.",
+          "sourceAsset": "assets/images/concepts/illustrations/clitoral-structure.png",
+          "intendedUse": "Explain the connected external and internal extent without invented anatomy.",
+          "route": "central Gemini"
+        }
+      },
+      {
+        "claimLocation": "data/media-sprint-jobs.json jobs[video:nerve-density].platform.referenceUpload and platform.generation",
+        "originalClaim": "The local reference upload failed and video was not attempted.",
+        "classification": "Local upload/access misunderstanding; the reference can be attached through central Gemini.",
+        "nextBoundedJob": {
+          "job": "Submit one 10-second Nerve Density educational micro-journey.",
+          "prompt": "docs/pipelines/prompts/GEMINI_NEXT_P0_BATCH.md#3-nerve-density primary prompt; use the explicitly metaphorical connected-network fallback if a biological cutaway is unsafe.",
+          "sourceAsset": "assets/images/concepts/illustrations/nerve-density.png",
+          "intendedUse": "Explain concentrated sensory innervation without an exact-count or literal-histology claim.",
+          "route": "central Gemini"
+        }
+      }
+    ],
+    "realBlocksAndGates": [
+      {
+        "claimLocation": "data/media-sprint-jobs.json checkpoint 'P0 still storyboard/reference v01'",
+        "classification": "Real provider-policy block for source-backed anatomical still generation in the local OpenAI image generator.",
+        "scope": "Does not imply Gemini video is unavailable; route medically framed video jobs centrally."
+      },
+      {
+        "classification": "Real medical/editorial promotion gate.",
+        "scope": "Generated anatomical structure must remain staging-only until scientific, editorial, technical, and phone-size review pass."
+      },
+      {
+        "classification": "Real source/rights requirement, not currently blocking.",
+        "scope": "Retain approved reference assets, prompts, provider/model metadata, and raw masters for every centrally generated candidate."
+      }
+    ],
+    "audioFinding": {
+      "falseBlockFound": false,
+      "finding": "No canonical sprint record says audio generation was unavailable because ElevenLabs, a credential, or a callable tool was missing.",
+      "classification": "The repeated 'no audio' language is an intentional product/output constraint for concept videos, not a capability claim.",
+      "centralCapability": "Central ElevenLabs generation and normalization are proven and may be used when a separately approved audio experience is defined.",
+      "nextBoundedJob": null,
+      "reasonNoJob": "The current sprint contains no approved narration, soundscape, UI-sound, voice, script, or intended audio placement to send."
+    },
+    "staleNonCanonicalRecord": {
+      "location": "assets/_staging/media-sprint/README.md:12-17",
+      "finding": "It still describes the initial local Flow failure as the current state and says there is nothing to review.",
+      "handling": "Superseded by this canonical manifest audit; not edited because this task is restricted to canonical sprint/checkpoint documentation."
+    }
+  },
+  "candidateMetadataTemplate": {
+    "slot": "<concept-id>",
+    "candidateId": "v01",
+    "provider": "Gemini web video generation",
+    "model": "<reported model>",
+    "generatedAt": "<ISO-8601>",
+    "intendedUse": "<deck caption and learning job>",
+    "direction": "educational-process",
+    "fallbackReason": null,
+    "promptFile": "docs/pipelines/prompts/videos/<concept-id>.md",
+    "sourceReferences": ["assets/images/concepts/illustrations/<concept-id>.png"],
+    "master": "master.<source-extension>",
+    "poster": "poster.png",
+    "fallback": "fallback.png",
+    "decision": "pending",
+    "review": {
+      "fundamentals": "pending",
+      "editorial": "pending",
+      "scientific": "pending-or-not-required",
+      "technical": "pending",
+      "phoneSize": "pending"
+    },
+    "notes": []
+  },
+  "checkpoints": [
+    {
+      "at": "2026-08-09",
+      "batch": "P0 preparation",
+      "jobsAttempted": [],
+      "counts": { "advance": 0, "reserve": 0, "reject": 0 },
+      "systemicIssue": null,
+      "nextBatch": ["pulsing", "clitoral-structure", "nerve-density", "building"],
+      "humanAttention": "Review the first available Gemini web pilot against educational-process accuracy before requesting variants."
+    },
+    {
+      "at": "2026-08-09",
+      "batch": "P0 still storyboard/reference v01",
+      "jobsAttempted": ["pulsing", "building", "clitoral-structure", "nerve-density"],
+      "counts": { "advance": 0, "reserve": 4, "reject": 1 },
+      "systemicIssue": "The provider safety system rejected source-backed anatomical generation. Approved calm fallback prompts produced still references, but none passed as literal educational anatomy.",
+      "nextBatch": ["Review external Gemini video pilot when it appears"],
+      "humanAttention": "Decide whether the four fallback references are useful enough for motion direction; none is approved educational anatomy.",
+      "retryOutcome": "Building v02 passed as a clear abstract progression and is reserved for illumination timing only."
+    },
+    {
+      "at": "2026-08-09",
+      "batch": "Gemini web pulsing video v02 review",
+      "jobsAttempted": ["pulsing"],
+      "counts": { "advance": 0, "reserve": 1, "reject": 0 },
+      "systemicIssue": null,
+      "nextBatch": [],
+      "humanAttention": "The candidate is technically usable after removing audio but does not show repeated pulsing or a seamless loop; consider it only for Building or Spreading.",
+      "complementaryMotion": "Not queued because the candidate did not pass the intended Pulsing fundamentals gate."
+    },
+    {
+      "at": "2026-08-10",
+      "batch": "Gemini web pulsing corrected retry v03 review",
+      "jobsAttempted": ["pulsing"],
+      "counts": { "advance": 0, "reserve": 0, "reject": 1 },
+      "systemicIssue": null,
+      "nextBatch": [],
+      "humanAttention": "The permitted correction still lacks the required approximately 0.8-second repeated rhythm and does not return to its opening frame.",
+      "retryOutcome": "Rejected for the Pulsing placement; both raw candidates preserved; no further retry or promotion."
+    },
+    {
+      "at": "2026-08-10",
+      "batch": "Gemini pulsing user-review reclassification and loop post-production",
+      "jobsAttempted": ["pulsing"],
+      "counts": { "advance": 2, "reserve": 0, "reject": 0 },
+      "systemicIssue": null,
+      "nextBatch": ["building", "clitoral-structure", "nerve-density"],
+      "humanAttention": "Review v02 loop-curated.mp4 as the selected fallback and retain v03 as a silent alternate.",
+      "policyUpdate": "Generated audio is removable by default; loop seams are post-production tasks, not prompt-level rejection gates.",
+      "promotion": "None; both candidates remain in non-shipping staging."
+    },
+    {
+      "at": "2026-08-10",
+      "batch": "Capability misunderstanding audit",
+      "jobsAttempted": [],
+      "counts": { "advance": 0, "reserve": 0, "reject": 0 },
+      "systemicIssue": null,
+      "nextBatch": ["building via central Gemini", "clitoral-structure via central Gemini", "nerve-density via central Gemini"],
+      "humanAttention": "Do not treat missing local browser/tool access as provider unavailability. Route 10-second video jobs centrally; keep medical review as the real anatomy gate.",
+      "audioRouting": "No ElevenLabs job is queued because no approved audio placement or script exists; this is scope, not a capability block.",
+      "promotion": "None."
+    },
+    {
+      "at": "2026-08-10",
+      "batch": "Manual browser video handoff",
+      "jobsAttempted": [],
+      "counts": { "advance": 0, "reserve": 0, "reject": 0 },
+      "systemicIssue": null,
+      "nextBatch": [],
+      "waitingFor": [
+        "/Users/cobro/Downloads/PVB-GEMINI-VIDEO-20260810-BUILDING-01_raw.mp4",
+        "/Users/cobro/Downloads/PVB-GEMINI-VIDEO-20260810-CLITORAL-STRUCTURE-01_raw.mp4",
+        "/Users/cobro/Downloads/PVB-GEMINI-VIDEO-20260810-NERVE-DENSITY-01_raw.mp4"
+      ],
+      "humanAttention": "Submit the three paste-ready jobs manually from assets/_staging/media-sprint/MANUAL_BROWSER_VIDEO_HANDOFF.md and return the untouched raw files under the exact names.",
+      "submission": "No project-side video or audio job was submitted.",
+      "promotion": "None."
+    },
+    {
+      "at": "2026-08-10",
+      "batch": "Manual browser result ingestion",
+      "jobsAttempted": ["building", "clitoral-structure", "nerve-density"],
+      "counts": { "advance": 0, "reserve": 1, "reject": 0 },
+      "systemicIssue": "Gemini returned only the Building job; Clitoral Structure and Nerve Density produced no downloadable result in the manual session.",
+      "nextBatch": [],
+      "humanAttention": "Review Building v03 for misleading organ emphasis before use; do not resubmit the two unfulfilled anatomy jobs in this handoff.",
+      "returned": "/Users/cobro/Downloads/Create_a_calm_second_.mp4",
+      "ingested": "assets/_staging/media-sprint/building/v03/master.mp4",
+      "promotion": "None."
+    },
+    {
+      "at": "2026-08-10",
+      "batch": "Product media integration",
+      "jobsAttempted": ["pulsing", "building", "clitoral-structure", "nerve-density"],
+      "counts": { "integrated": 1, "fallbackUsed": 3, "rejected": 0 },
+      "systemicIssue": null,
+      "integrated": {
+        "slot": "pulsing",
+        "candidate": "v02/loop-curated.mp4",
+        "productDerivative": "assets/videos/pulsing.mp4",
+        "contentReference": "data/vocabulary.ts",
+        "audio": "absent; curated derivative is silent",
+        "status": "integrated as explicitly abstract fallback motion; raw master retained in staging"
+      },
+      "fallbacks": [
+        "Building v03 remains staging-only pending medical/editorial review; retained the existing approved assets/videos/building.mp4 placement.",
+        "Clitoral Structure had no returned video; retained the approved existing still.",
+        "Nerve Density had no returned video; retained the approved existing still."
+      ],
+      "validation": "Bundle regenerated; media sync and hashes checked; H.264 file decoded without error; content and manifest validation passed.",
+      "promotion": "Only the reviewed Pulsing silent derivative crossed into product media. No raw or medically unreviewed result was promoted."
+    }
+  ]
+}

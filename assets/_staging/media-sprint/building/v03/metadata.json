@@ -1,0 +1,47 @@
+{
+  "slot": "building",
+  "candidateId": "v03",
+  "handoffJobId": "PVB-GEMINI-VIDEO-20260810-BUILDING-01",
+  "kind": "video",
+  "provider": "Gemini web Video mode",
+  "model": "not reported",
+  "generatedAt": "2026-08-10",
+  "ingestedAt": "2026-08-10",
+  "sourceFilename": "/Users/cobro/Downloads/Create_a_calm_second_.mp4",
+  "intendedUse": "Explain gradual vascular fullness and neural activation for the Building lesson.",
+  "direction": "educational-process candidate",
+  "promptDocument": "assets/_staging/media-sprint/MANUAL_BROWSER_VIDEO_HANDOFF.md#pvb-gemini-video-20260810-building-01",
+  "sourceReferences": [
+    "assets/_staging/media-sprint/manual-browser-video-handoff/sources/building-approved-reference.png"
+  ],
+  "master": "master.mp4",
+  "silentReview": "silent-review.mp4",
+  "poster": "poster.png",
+  "contactSheet": "contact-sheet.png",
+  "fallback": "fallback.png",
+  "sha256": {
+    "master": "007b068454a06e3ed51262584b4a1964628a81131f1b0a06aa0d68b5aa04d924",
+    "silentReview": "20b34c6c7e3115167682cc968965dddea6728184a6fbcbc4fa2cc4cfc2843b87"
+  },
+  "observedTechnical": {
+    "masterDurationSeconds": 10.005,
+    "masterBytes": 2654943,
+    "video": "H.264, 1280x720, 24fps",
+    "audio": "AAC stereo, 48kHz; removable source audio, mean -21.3 dB, peak -4.9 dB",
+    "silentReview": "H.264, 1280x720, 10.0s, 858505 bytes, audio removed"
+  },
+  "decision": "reserve",
+  "lifecycle": "shortlisted",
+  "review": {
+    "fundamentals": "pass-with-medical-review",
+    "editorial": "pending",
+    "scientific": "medical-review-required",
+    "technical": "pass",
+    "phoneSize": "contact-sheet-pass"
+  },
+  "notes": [
+    "The result clearly shows gradual low-to-high vascular illumination and contains no embedded text or people.",
+    "The imagery includes organ-like abdominal and pelvic structures; review is required to avoid implying kidney or generalized organ perfusion as the mechanism of arousal.",
+    "The silent derivative is technically ready for review, but nothing is approved for shipping."
+  ]
+}

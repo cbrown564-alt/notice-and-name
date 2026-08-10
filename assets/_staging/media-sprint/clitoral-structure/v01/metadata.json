@@ -1,0 +1,28 @@
+{
+  "slot": "clitoral-structure",
+  "candidateId": "v01",
+  "kind": "still-storyboard-reference",
+  "provider": "OpenAI built-in image generation",
+  "model": "gpt-image-2",
+  "generatedAt": "2026-08-09",
+  "intendedUse": "Metaphorical camera-scale and connected-structure reference only.",
+  "direction": "safe-fallback",
+  "fallbackReason": "Both the source-backed anatomical batch and a source-backed metaphor request were rejected by the provider safety system; this candidate was generated without the anatomical reference.",
+  "prompt": "Three camera scales of one abstract symmetrical connected coral line sculpture, moving from the complete form to paired branches and paired oval nodes beside a central channel; no anatomy or body claim.",
+  "sourceReferences": [],
+  "master": "master.png",
+  "fallback": "fallback.png",
+  "decision": "reserve",
+  "review": {
+    "fundamentals": "pass-as-metaphor",
+    "editorial": "pending",
+    "scientific": "medical-review-required-before-use",
+    "technical": "pass",
+    "phoneSize": "pending"
+  },
+  "notes": [
+    "Useful only for camera scale, bilateral rhythm, and restrained palette.",
+    "Must never be presented as anatomy or used to replace the approved structural plate.",
+    "Unreviewed anatomical video remains blocked from promotion."
+  ]
+}

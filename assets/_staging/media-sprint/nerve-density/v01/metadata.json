@@ -1,0 +1,28 @@
+{
+  "slot": "nerve-density",
+  "candidateId": "v01",
+  "kind": "still-storyboard-reference",
+  "provider": "OpenAI built-in image generation",
+  "model": "gpt-image-2",
+  "generatedAt": "2026-08-09",
+  "intendedUse": "Metaphorical scale and increasing-density motion reference only.",
+  "direction": "safe-fallback",
+  "fallbackReason": "The provider rejected the source-backed anatomical batch under its sexual-content safety system.",
+  "prompt": "Three successive scale views into the same abstract connected branching network, increasing in visible branch density without a literal microscopic claim; no body, anatomy, numbers, or text.",
+  "sourceReferences": [],
+  "master": "master.png",
+  "fallback": "fallback.png",
+  "decision": "reserve",
+  "review": {
+    "fundamentals": "pass-as-metaphor",
+    "editorial": "pending",
+    "scientific": "medical-review-required-before-use",
+    "technical": "pass",
+    "phoneSize": "pending"
+  },
+  "notes": [
+    "Density increase is legible and technically clean.",
+    "Branch forms can read as vascular or tree-like; final use must clearly label this as metaphor.",
+    "Do not describe the image as histology or a literal nerve map."
+  ]
+}
