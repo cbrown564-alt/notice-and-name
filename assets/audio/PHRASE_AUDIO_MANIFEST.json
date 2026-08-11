@@ -1,0 +1,889 @@
+{
+  "voice_id": "7jyL3MarGgOcEOTRHLJL",
+  "model": "eleven_turbo_v2_5",
+  "ok": 110,
+  "fail": 0,
+  "chars": 10068,
+  "results": [
+    {
+      "id": "responsive-desire-partner-request",
+      "conceptId": "responsive-desire",
+      "chars": 105,
+      "bytes": 94084,
+      "path": "/workspace/elevenlabs-phrases/audio/responsive-desire-partner-request.mp3",
+      "ok": true
+    },
+    {
+      "id": "responsive-desire-boundary",
+      "conceptId": "responsive-desire",
+      "chars": 106,
+      "bytes": 82799,
+      "path": "/workspace/elevenlabs-phrases/audio/responsive-desire-boundary.mp3",
+      "ok": true
+    },
+    {
+      "id": "responsive-desire-reassurance",
+      "conceptId": "responsive-desire",
+      "chars": 93,
+      "bytes": 71515,
+      "path": "/workspace/elevenlabs-phrases/audio/responsive-desire-reassurance.mp3",
+      "ok": true
+    },
+    {
+      "id": "responsive-desire-curiosity",
+      "conceptId": "responsive-desire",
+      "chars": 107,
+      "bytes": 104951,
+      "path": "/workspace/elevenlabs-phrases/audio/responsive-desire-curiosity.mp3",
+      "ok": true
+    },
+    {
+      "id": "responsive-desire-self-understanding",
+      "conceptId": "responsive-desire",
+      "chars": 100,
+      "bytes": 90323,
+      "path": "/workspace/elevenlabs-phrases/audio/responsive-desire-self-understanding.mp3",
+      "ok": true
+    },
+    {
+      "id": "angling-partner-request",
+      "conceptId": "angling",
+      "chars": 98,
+      "bytes": 75276,
+      "path": "/workspace/elevenlabs-phrases/audio/angling-partner-request.mp3",
+      "ok": true
+    },
+    {
+      "id": "angling-boundary",
+      "conceptId": "angling",
+      "chars": 91,
+      "bytes": 76112,
+      "path": "/workspace/elevenlabs-phrases/audio/angling-boundary.mp3",
+      "ok": true
+    },
+    {
+      "id": "angling-reassurance",
+      "conceptId": "angling",
+      "chars": 90,
+      "bytes": 74440,
+      "path": "/workspace/elevenlabs-phrases/audio/angling-reassurance.mp3",
+      "ok": true
+    },
+    {
+      "id": "angling-curiosity",
+      "conceptId": "angling",
+      "chars": 102,
+      "bytes": 85725,
+      "path": "/workspace/elevenlabs-phrases/audio/angling-curiosity.mp3",
+      "ok": true
+    },
+    {
+      "id": "angling-self-understanding",
+      "conceptId": "angling",
+      "chars": 86,
+      "bytes": 73186,
+      "path": "/workspace/elevenlabs-phrases/audio/angling-self-understanding.mp3",
+      "ok": true
+    },
+    {
+      "id": "non-concordance-partner-request",
+      "conceptId": "non-concordance",
+      "chars": 95,
+      "bytes": 74022,
+      "path": "/workspace/elevenlabs-phrases/audio/non-concordance-partner-request.mp3",
+      "ok": true
+    },
+    {
+      "id": "non-concordance-boundary",
+      "conceptId": "non-concordance",
+      "chars": 101,
+      "bytes": 94084,
+      "path": "/workspace/elevenlabs-phrases/audio/non-concordance-boundary.mp3",
+      "ok": true
+    },
+    {
+      "id": "non-concordance-reassurance",
+      "conceptId": "non-concordance",
+      "chars": 119,
+      "bytes": 101190,
+      "path": "/workspace/elevenlabs-phrases/audio/non-concordance-reassurance.mp3",
+      "ok": true
+    },
+    {
+      "id": "non-concordance-curiosity",
+      "conceptId": "non-concordance",
+      "chars": 80,
+      "bytes": 70261,
+      "path": "/workspace/elevenlabs-phrases/audio/non-concordance-curiosity.mp3",
+      "ok": true
+    },
+    {
+      "id": "non-concordance-self-understanding",
+      "conceptId": "non-concordance",
+      "chars": 95,
+      "bytes": 83635,
+      "path": "/workspace/elevenlabs-phrases/audio/non-concordance-self-understanding.mp3",
+      "ok": true
+    },
+    {
+      "id": "rocking-partner-request",
+      "conceptId": "rocking",
+      "chars": 111,
+      "bytes": 97010,
+      "path": "/workspace/elevenlabs-phrases/audio/rocking-partner-request.mp3",
+      "ok": true
+    },
+    {
+      "id": "rocking-boundary",
+      "conceptId": "rocking",
+      "chars": 85,
+      "bytes": 69425,
+      "path": "/workspace/elevenlabs-phrases/audio/rocking-boundary.mp3",
+      "ok": true
+    },
+    {
+      "id": "rocking-reassurance",
+      "conceptId": "rocking",
+      "chars": 84,
+      "bytes": 71097,
+      "path": "/workspace/elevenlabs-phrases/audio/rocking-reassurance.mp3",
+      "ok": true
+    },
+    {
+      "id": "rocking-curiosity",
+      "conceptId": "rocking",
+      "chars": 88,
+      "bytes": 74440,
+      "path": "/workspace/elevenlabs-phrases/audio/rocking-curiosity.mp3",
+      "ok": true
+    },
+    {
+      "id": "rocking-self-understanding",
+      "conceptId": "rocking",
+      "chars": 76,
+      "bytes": 69425,
+      "path": "/workspace/elevenlabs-phrases/audio/rocking-self-understanding.mp3",
+      "ok": true
+    },
+    {
+      "id": "shallowing-partner-request",
+      "conceptId": "shallowing",
+      "chars": 103,
+      "bytes": 90323,
+      "path": "/workspace/elevenlabs-phrases/audio/shallowing-partner-request.mp3",
+      "ok": true
+    },
+    {
+      "id": "shallowing-boundary",
+      "conceptId": "shallowing",
+      "chars": 97,
+      "bytes": 87815,
+      "path": "/workspace/elevenlabs-phrases/audio/shallowing-boundary.mp3",
+      "ok": true
+    },
+    {
+      "id": "shallowing-reassurance",
+      "conceptId": "shallowing",
+      "chars": 79,
+      "bytes": 71515,
+      "path": "/workspace/elevenlabs-phrases/audio/shallowing-reassurance.mp3",
+      "ok": true
+    },
+    {
+      "id": "shallowing-curiosity",
+      "conceptId": "shallowing",
+      "chars": 74,
+      "bytes": 53124,
+      "path": "/workspace/elevenlabs-phrases/audio/shallowing-curiosity.mp3",
+      "ok": true
+    },
+    {
+      "id": "shallowing-self-understanding",
+      "conceptId": "shallowing",
+      "chars": 87,
+      "bytes": 73186,
+      "path": "/workspace/elevenlabs-phrases/audio/shallowing-self-understanding.mp3",
+      "ok": true
+    },
+    {
+      "id": "pairing-partner-request",
+      "conceptId": "pairing",
+      "chars": 87,
+      "bytes": 74022,
+      "path": "/workspace/elevenlabs-phrases/audio/pairing-partner-request.mp3",
+      "ok": true
+    },
+    {
+      "id": "pairing-boundary",
+      "conceptId": "pairing",
+      "chars": 100,
+      "bytes": 86561,
+      "path": "/workspace/elevenlabs-phrases/audio/pairing-boundary.mp3",
+      "ok": true
+    },
+    {
+      "id": "pairing-reassurance",
+      "conceptId": "pairing",
+      "chars": 79,
+      "bytes": 71515,
+      "path": "/workspace/elevenlabs-phrases/audio/pairing-reassurance.mp3",
+      "ok": true
+    },
+    {
+      "id": "pairing-curiosity",
+      "conceptId": "pairing",
+      "chars": 93,
+      "bytes": 78202,
+      "path": "/workspace/elevenlabs-phrases/audio/pairing-curiosity.mp3",
+      "ok": true
+    },
+    {
+      "id": "pairing-self-understanding",
+      "conceptId": "pairing",
+      "chars": 88,
+      "bytes": 85725,
+      "path": "/workspace/elevenlabs-phrases/audio/pairing-self-understanding.mp3",
+      "ok": true
+    },
+    {
+      "id": "building-partner-request",
+      "conceptId": "building",
+      "chars": 80,
+      "bytes": 67753,
+      "path": "/workspace/elevenlabs-phrases/audio/building-partner-request.mp3",
+      "ok": true
+    },
+    {
+      "id": "building-boundary",
+      "conceptId": "building",
+      "chars": 82,
+      "bytes": 71097,
+      "path": "/workspace/elevenlabs-phrases/audio/building-boundary.mp3",
+      "ok": true
+    },
+    {
+      "id": "building-reassurance",
+      "conceptId": "building",
+      "chars": 88,
+      "bytes": 71097,
+      "path": "/workspace/elevenlabs-phrases/audio/building-reassurance.mp3",
+      "ok": true
+    },
+    {
+      "id": "building-curiosity",
+      "conceptId": "building",
+      "chars": 65,
+      "bytes": 48527,
+      "path": "/workspace/elevenlabs-phrases/audio/building-curiosity.mp3",
+      "ok": true
+    },
+    {
+      "id": "building-self-understanding",
+      "conceptId": "building",
+      "chars": 71,
+      "bytes": 65663,
+      "path": "/workspace/elevenlabs-phrases/audio/building-self-understanding.mp3",
+      "ok": true
+    },
+    {
+      "id": "plateauing-partner-request",
+      "conceptId": "plateauing",
+      "chars": 97,
+      "bytes": 78202,
+      "path": "/workspace/elevenlabs-phrases/audio/plateauing-partner-request.mp3",
+      "ok": true
+    },
+    {
+      "id": "plateauing-boundary",
+      "conceptId": "plateauing",
+      "chars": 100,
+      "bytes": 87397,
+      "path": "/workspace/elevenlabs-phrases/audio/plateauing-boundary.mp3",
+      "ok": true
+    },
+    {
+      "id": "plateauing-reassurance",
+      "conceptId": "plateauing",
+      "chars": 87,
+      "bytes": 76112,
+      "path": "/workspace/elevenlabs-phrases/audio/plateauing-reassurance.mp3",
+      "ok": true
+    },
+    {
+      "id": "plateauing-curiosity",
+      "conceptId": "plateauing",
+      "chars": 76,
+      "bytes": 70261,
+      "path": "/workspace/elevenlabs-phrases/audio/plateauing-curiosity.mp3",
+      "ok": true
+    },
+    {
+      "id": "plateauing-self-understanding",
+      "conceptId": "plateauing",
+      "chars": 79,
+      "bytes": 67335,
+      "path": "/workspace/elevenlabs-phrases/audio/plateauing-self-understanding.mp3",
+      "ok": true
+    },
+    {
+      "id": "edging-partner-request",
+      "conceptId": "edging",
+      "chars": 103,
+      "bytes": 76112,
+      "path": "/workspace/elevenlabs-phrases/audio/edging-partner-request.mp3",
+      "ok": true
+    },
+    {
+      "id": "edging-boundary",
+      "conceptId": "edging",
+      "chars": 106,
+      "bytes": 91159,
+      "path": "/workspace/elevenlabs-phrases/audio/edging-boundary.mp3",
+      "ok": true
+    },
+    {
+      "id": "edging-reassurance",
+      "conceptId": "edging",
+      "chars": 68,
+      "bytes": 59812,
+      "path": "/workspace/elevenlabs-phrases/audio/edging-reassurance.mp3",
+      "ok": true
+    },
+    {
+      "id": "edging-curiosity",
+      "conceptId": "edging",
+      "chars": 82,
+      "bytes": 66499,
+      "path": "/workspace/elevenlabs-phrases/audio/edging-curiosity.mp3",
+      "ok": true
+    },
+    {
+      "id": "edging-self-understanding",
+      "conceptId": "edging",
+      "chars": 80,
+      "bytes": 74440,
+      "path": "/workspace/elevenlabs-phrases/audio/edging-self-understanding.mp3",
+      "ok": true
+    },
+    {
+      "id": "spreading-partner-request",
+      "conceptId": "spreading",
+      "chars": 70,
+      "bytes": 56050,
+      "path": "/workspace/elevenlabs-phrases/audio/spreading-partner-request.mp3",
+      "ok": true
+    },
+    {
+      "id": "spreading-boundary",
+      "conceptId": "spreading",
+      "chars": 99,
+      "bytes": 79874,
+      "path": "/workspace/elevenlabs-phrases/audio/spreading-boundary.mp3",
+      "ok": true
+    },
+    {
+      "id": "spreading-reassurance",
+      "conceptId": "spreading",
+      "chars": 78,
+      "bytes": 68589,
+      "path": "/workspace/elevenlabs-phrases/audio/spreading-reassurance.mp3",
+      "ok": true
+    },
+    {
+      "id": "spreading-curiosity",
+      "conceptId": "spreading",
+      "chars": 67,
+      "bytes": 56886,
+      "path": "/workspace/elevenlabs-phrases/audio/spreading-curiosity.mp3",
+      "ok": true
+    },
+    {
+      "id": "spreading-self-understanding",
+      "conceptId": "spreading",
+      "chars": 97,
+      "bytes": 76112,
+      "path": "/workspace/elevenlabs-phrases/audio/spreading-self-understanding.mp3",
+      "ok": true
+    },
+    {
+      "id": "pulsing-partner-request",
+      "conceptId": "pulsing",
+      "chars": 93,
+      "bytes": 75276,
+      "path": "/workspace/elevenlabs-phrases/audio/pulsing-partner-request.mp3",
+      "ok": true
+    },
+    {
+      "id": "pulsing-boundary",
+      "conceptId": "pulsing",
+      "chars": 84,
+      "bytes": 74440,
+      "path": "/workspace/elevenlabs-phrases/audio/pulsing-boundary.mp3",
+      "ok": true
+    },
+    {
+      "id": "pulsing-reassurance",
+      "conceptId": "pulsing",
+      "chars": 85,
+      "bytes": 74440,
+      "path": "/workspace/elevenlabs-phrases/audio/pulsing-reassurance.mp3",
+      "ok": true
+    },
+    {
+      "id": "pulsing-curiosity",
+      "conceptId": "pulsing",
+      "chars": 86,
+      "bytes": 77784,
+      "path": "/workspace/elevenlabs-phrases/audio/pulsing-curiosity.mp3",
+      "ok": true
+    },
+    {
+      "id": "pulsing-self-understanding",
+      "conceptId": "pulsing",
+      "chars": 86,
+      "bytes": 76948,
+      "path": "/workspace/elevenlabs-phrases/audio/pulsing-self-understanding.mp3",
+      "ok": true
+    },
+    {
+      "id": "warmup-window-partner-request",
+      "conceptId": "warmup-window",
+      "chars": 94,
+      "bytes": 82799,
+      "path": "/workspace/elevenlabs-phrases/audio/warmup-window-partner-request.mp3",
+      "ok": true
+    },
+    {
+      "id": "warmup-window-boundary",
+      "conceptId": "warmup-window",
+      "chars": 88,
+      "bytes": 67753,
+      "path": "/workspace/elevenlabs-phrases/audio/warmup-window-boundary.mp3",
+      "ok": true
+    },
+    {
+      "id": "warmup-window-reassurance",
+      "conceptId": "warmup-window",
+      "chars": 82,
+      "bytes": 67753,
+      "path": "/workspace/elevenlabs-phrases/audio/warmup-window-reassurance.mp3",
+      "ok": true
+    },
+    {
+      "id": "warmup-window-curiosity",
+      "conceptId": "warmup-window",
+      "chars": 68,
+      "bytes": 56886,
+      "path": "/workspace/elevenlabs-phrases/audio/warmup-window-curiosity.mp3",
+      "ok": true
+    },
+    {
+      "id": "warmup-window-self-understanding",
+      "conceptId": "warmup-window",
+      "chars": 87,
+      "bytes": 75276,
+      "path": "/workspace/elevenlabs-phrases/audio/warmup-window-self-understanding.mp3",
+      "ok": true
+    },
+    {
+      "id": "spontaneous-desire-partner-request",
+      "conceptId": "spontaneous-desire",
+      "chars": 86,
+      "bytes": 69425,
+      "path": "/workspace/elevenlabs-phrases/audio/spontaneous-desire-partner-request.mp3",
+      "ok": true
+    },
+    {
+      "id": "spontaneous-desire-boundary",
+      "conceptId": "spontaneous-desire",
+      "chars": 100,
+      "bytes": 86561,
+      "path": "/workspace/elevenlabs-phrases/audio/spontaneous-desire-boundary.mp3",
+      "ok": true
+    },
+    {
+      "id": "spontaneous-desire-reassurance",
+      "conceptId": "spontaneous-desire",
+      "chars": 75,
+      "bytes": 78202,
+      "path": "/workspace/elevenlabs-phrases/audio/spontaneous-desire-reassurance.mp3",
+      "ok": true
+    },
+    {
+      "id": "spontaneous-desire-curiosity",
+      "conceptId": "spontaneous-desire",
+      "chars": 78,
+      "bytes": 68589,
+      "path": "/workspace/elevenlabs-phrases/audio/spontaneous-desire-curiosity.mp3",
+      "ok": true
+    },
+    {
+      "id": "spontaneous-desire-self-understanding",
+      "conceptId": "spontaneous-desire",
+      "chars": 117,
+      "bytes": 104533,
+      "path": "/workspace/elevenlabs-phrases/audio/spontaneous-desire-self-understanding.mp3",
+      "ok": true
+    },
+    {
+      "id": "golden-trio-partner-request",
+      "conceptId": "golden-trio",
+      "chars": 79,
+      "bytes": 67753,
+      "path": "/workspace/elevenlabs-phrases/audio/golden-trio-partner-request.mp3",
+      "ok": true
+    },
+    {
+      "id": "golden-trio-boundary",
+      "conceptId": "golden-trio",
+      "chars": 114,
+      "bytes": 95338,
+      "path": "/workspace/elevenlabs-phrases/audio/golden-trio-boundary.mp3",
+      "ok": true
+    },
+    {
+      "id": "golden-trio-reassurance",
+      "conceptId": "golden-trio",
+      "chars": 88,
+      "bytes": 77784,
+      "path": "/workspace/elevenlabs-phrases/audio/golden-trio-reassurance.mp3",
+      "ok": true
+    },
+    {
+      "id": "golden-trio-curiosity",
+      "conceptId": "golden-trio",
+      "chars": 83,
+      "bytes": 74022,
+      "path": "/workspace/elevenlabs-phrases/audio/golden-trio-curiosity.mp3",
+      "ok": true
+    },
+    {
+      "id": "golden-trio-self-understanding",
+      "conceptId": "golden-trio",
+      "chars": 82,
+      "bytes": 75276,
+      "path": "/workspace/elevenlabs-phrases/audio/golden-trio-self-understanding.mp3",
+      "ok": true
+    },
+    {
+      "id": "spectatoring-partner-request",
+      "conceptId": "spectatoring",
+      "chars": 100,
+      "bytes": 83635,
+      "path": "/workspace/elevenlabs-phrases/audio/spectatoring-partner-request.mp3",
+      "ok": true
+    },
+    {
+      "id": "spectatoring-boundary",
+      "conceptId": "spectatoring",
+      "chars": 93,
+      "bytes": 79874,
+      "path": "/workspace/elevenlabs-phrases/audio/spectatoring-boundary.mp3",
+      "ok": true
+    },
+    {
+      "id": "spectatoring-reassurance",
+      "conceptId": "spectatoring",
+      "chars": 97,
+      "bytes": 82799,
+      "path": "/workspace/elevenlabs-phrases/audio/spectatoring-reassurance.mp3",
+      "ok": true
+    },
+    {
+      "id": "spectatoring-curiosity",
+      "conceptId": "spectatoring",
+      "chars": 93,
+      "bytes": 80710,
+      "path": "/workspace/elevenlabs-phrases/audio/spectatoring-curiosity.mp3",
+      "ok": true
+    },
+    {
+      "id": "spectatoring-self-understanding",
+      "conceptId": "spectatoring",
+      "chars": 117,
+      "bytes": 107459,
+      "path": "/workspace/elevenlabs-phrases/audio/spectatoring-self-understanding.mp3",
+      "ok": true
+    },
+    {
+      "id": "embodied-presence-partner-request",
+      "conceptId": "embodied-presence",
+      "chars": 93,
+      "bytes": 76948,
+      "path": "/workspace/elevenlabs-phrases/audio/embodied-presence-partner-request.mp3",
+      "ok": true
+    },
+    {
+      "id": "embodied-presence-boundary",
+      "conceptId": "embodied-presence",
+      "chars": 112,
+      "bytes": 95338,
+      "path": "/workspace/elevenlabs-phrases/audio/embodied-presence-boundary.mp3",
+      "ok": true
+    },
+    {
+      "id": "embodied-presence-reassurance",
+      "conceptId": "embodied-presence",
+      "chars": 88,
+      "bytes": 74022,
+      "path": "/workspace/elevenlabs-phrases/audio/embodied-presence-reassurance.mp3",
+      "ok": true
+    },
+    {
+      "id": "embodied-presence-curiosity",
+      "conceptId": "embodied-presence",
+      "chars": 81,
+      "bytes": 76112,
+      "path": "/workspace/elevenlabs-phrases/audio/embodied-presence-curiosity.mp3",
+      "ok": true
+    },
+    {
+      "id": "embodied-presence-self-understanding",
+      "conceptId": "embodied-presence",
+      "chars": 94,
+      "bytes": 81964,
+      "path": "/workspace/elevenlabs-phrases/audio/embodied-presence-self-understanding.mp3",
+      "ok": true
+    },
+    {
+      "id": "sexual-self-esteem-partner-request",
+      "conceptId": "sexual-self-esteem",
+      "chars": 129,
+      "bytes": 114146,
+      "path": "/workspace/elevenlabs-phrases/audio/sexual-self-esteem-partner-request.mp3",
+      "ok": true
+    },
+    {
+      "id": "sexual-self-esteem-boundary",
+      "conceptId": "sexual-self-esteem",
+      "chars": 132,
+      "bytes": 111639,
+      "path": "/workspace/elevenlabs-phrases/audio/sexual-self-esteem-boundary.mp3",
+      "ok": true
+    },
+    {
+      "id": "sexual-self-esteem-reassurance",
+      "conceptId": "sexual-self-esteem",
+      "chars": 92,
+      "bytes": 78202,
+      "path": "/workspace/elevenlabs-phrases/audio/sexual-self-esteem-reassurance.mp3",
+      "ok": true
+    },
+    {
+      "id": "sexual-self-esteem-curiosity",
+      "conceptId": "sexual-self-esteem",
+      "chars": 78,
+      "bytes": 61066,
+      "path": "/workspace/elevenlabs-phrases/audio/sexual-self-esteem-curiosity.mp3",
+      "ok": true
+    },
+    {
+      "id": "sexual-self-esteem-self-understanding",
+      "conceptId": "sexual-self-esteem",
+      "chars": 71,
+      "bytes": 74440,
+      "path": "/workspace/elevenlabs-phrases/audio/sexual-self-esteem-self-understanding.mp3",
+      "ok": true
+    },
+    {
+      "id": "body-appreciation-partner-request",
+      "conceptId": "body-appreciation",
+      "chars": 112,
+      "bytes": 90323,
+      "path": "/workspace/elevenlabs-phrases/audio/body-appreciation-partner-request.mp3",
+      "ok": true
+    },
+    {
+      "id": "body-appreciation-boundary",
+      "conceptId": "body-appreciation",
+      "chars": 108,
+      "bytes": 99100,
+      "path": "/workspace/elevenlabs-phrases/audio/body-appreciation-boundary.mp3",
+      "ok": true
+    },
+    {
+      "id": "body-appreciation-reassurance",
+      "conceptId": "body-appreciation",
+      "chars": 61,
+      "bytes": 47273,
+      "path": "/workspace/elevenlabs-phrases/audio/body-appreciation-reassurance.mp3",
+      "ok": true
+    },
+    {
+      "id": "body-appreciation-curiosity",
+      "conceptId": "body-appreciation",
+      "chars": 81,
+      "bytes": 71515,
+      "path": "/workspace/elevenlabs-phrases/audio/body-appreciation-curiosity.mp3",
+      "ok": true
+    },
+    {
+      "id": "body-appreciation-self-understanding",
+      "conceptId": "body-appreciation",
+      "chars": 88,
+      "bytes": 74440,
+      "path": "/workspace/elevenlabs-phrases/audio/body-appreciation-self-understanding.mp3",
+      "ok": true
+    },
+    {
+      "id": "clitoral-structure-partner-request",
+      "conceptId": "clitoral-structure",
+      "chars": 96,
+      "bytes": 74440,
+      "path": "/workspace/elevenlabs-phrases/audio/clitoral-structure-partner-request.mp3",
+      "ok": true
+    },
+    {
+      "id": "clitoral-structure-boundary",
+      "conceptId": "clitoral-structure",
+      "chars": 98,
+      "bytes": 81964,
+      "path": "/workspace/elevenlabs-phrases/audio/clitoral-structure-boundary.mp3",
+      "ok": true
+    },
+    {
+      "id": "clitoral-structure-reassurance",
+      "conceptId": "clitoral-structure",
+      "chars": 107,
+      "bytes": 87815,
+      "path": "/workspace/elevenlabs-phrases/audio/clitoral-structure-reassurance.mp3",
+      "ok": true
+    },
+    {
+      "id": "clitoral-structure-curiosity",
+      "conceptId": "clitoral-structure",
+      "chars": 72,
+      "bytes": 61066,
+      "path": "/workspace/elevenlabs-phrases/audio/clitoral-structure-curiosity.mp3",
+      "ok": true
+    },
+    {
+      "id": "clitoral-structure-self-understanding",
+      "conceptId": "clitoral-structure",
+      "chars": 108,
+      "bytes": 89487,
+      "path": "/workspace/elevenlabs-phrases/audio/clitoral-structure-self-understanding.mp3",
+      "ok": true
+    },
+    {
+      "id": "nerve-density-partner-request",
+      "conceptId": "nerve-density",
+      "chars": 92,
+      "bytes": 76948,
+      "path": "/workspace/elevenlabs-phrases/audio/nerve-density-partner-request.mp3",
+      "ok": true
+    },
+    {
+      "id": "nerve-density-boundary",
+      "conceptId": "nerve-density",
+      "chars": 110,
+      "bytes": 110385,
+      "path": "/workspace/elevenlabs-phrases/audio/nerve-density-boundary.mp3",
+      "ok": true
+    },
+    {
+      "id": "nerve-density-reassurance",
+      "conceptId": "nerve-density",
+      "chars": 119,
+      "bytes": 101190,
+      "path": "/workspace/elevenlabs-phrases/audio/nerve-density-reassurance.mp3",
+      "ok": true
+    },
+    {
+      "id": "nerve-density-curiosity",
+      "conceptId": "nerve-density",
+      "chars": 76,
+      "bytes": 68589,
+      "path": "/workspace/elevenlabs-phrases/audio/nerve-density-curiosity.mp3",
+      "ok": true
+    },
+    {
+      "id": "nerve-density-self-understanding",
+      "conceptId": "nerve-density",
+      "chars": 86,
+      "bytes": 71515,
+      "path": "/workspace/elevenlabs-phrases/audio/nerve-density-self-understanding.mp3",
+      "ok": true
+    },
+    {
+      "id": "clitourethrovaginal-partner-request",
+      "conceptId": "clitourethrovaginal",
+      "chars": 115,
+      "bytes": 94502,
+      "path": "/workspace/elevenlabs-phrases/audio/clitourethrovaginal-partner-request.mp3",
+      "ok": true
+    },
+    {
+      "id": "clitourethrovaginal-boundary",
+      "conceptId": "clitourethrovaginal",
+      "chars": 86,
+      "bytes": 74022,
+      "path": "/workspace/elevenlabs-phrases/audio/clitourethrovaginal-boundary.mp3",
+      "ok": true
+    },
+    {
+      "id": "clitourethrovaginal-reassurance",
+      "conceptId": "clitourethrovaginal",
+      "chars": 99,
+      "bytes": 84471,
+      "path": "/workspace/elevenlabs-phrases/audio/clitourethrovaginal-reassurance.mp3",
+      "ok": true
+    },
+    {
+      "id": "clitourethrovaginal-curiosity",
+      "conceptId": "clitourethrovaginal",
+      "chars": 80,
+      "bytes": 73186,
+      "path": "/workspace/elevenlabs-phrases/audio/clitourethrovaginal-curiosity.mp3",
+      "ok": true
+    },
+    {
+      "id": "clitourethrovaginal-self-understanding",
+      "conceptId": "clitourethrovaginal",
+      "chars": 102,
+      "bytes": 96174,
+      "path": "/workspace/elevenlabs-phrases/audio/clitourethrovaginal-self-understanding.mp3",
+      "ok": true
+    },
+    {
+      "id": "internal-stimulation-partner-request",
+      "conceptId": "internal-stimulation",
+      "chars": 87,
+      "bytes": 69425,
+      "path": "/workspace/elevenlabs-phrases/audio/internal-stimulation-partner-request.mp3",
+      "ok": true
+    },
+    {
+      "id": "internal-stimulation-boundary",
+      "conceptId": "internal-stimulation",
+      "chars": 104,
+      "bytes": 92413,
+      "path": "/workspace/elevenlabs-phrases/audio/internal-stimulation-boundary.mp3",
+      "ok": true
+    },
+    {
+      "id": "internal-stimulation-reassurance",
+      "conceptId": "internal-stimulation",
+      "chars": 108,
+      "bytes": 103697,
+      "path": "/workspace/elevenlabs-phrases/audio/internal-stimulation-reassurance.mp3",
+      "ok": true
+    },
+    {
+      "id": "internal-stimulation-curiosity",
+      "conceptId": "internal-stimulation",
+      "chars": 78,
+      "bytes": 71515,
+      "path": "/workspace/elevenlabs-phrases/audio/internal-stimulation-curiosity.mp3",
+      "ok": true
+    },
+    {
+      "id": "internal-stimulation-self-understanding",
+      "conceptId": "internal-stimulation",
+      "chars": 96,
+      "bytes": 94084,
+      "path": "/workspace/elevenlabs-phrases/audio/internal-stimulation-self-understanding.mp3",
+      "ok": true
+    }
+  ]
+}
