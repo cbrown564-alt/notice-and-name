@@ -1,7 +1,7 @@
 # Holistic Visual Identity: The "Living Journal"
 
 ## 1. The Core DNA
-The overarching aesthetic of the Pleasure Vocabulary Builder is **"Scientific Warmth."** 
+The overarching aesthetic of the Notice & Name is **"Scientific Warmth."** 
 
 It bridges two worlds that are often separate: 
 1.  **The Medical/Academic**: Authoritative, precise, and grounded.

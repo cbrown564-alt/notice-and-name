@@ -8,7 +8,7 @@ Connect.
 - Xcode selected: `/Applications/Xcode.app/Contents/Developer`
 - Xcode version: `26.6`
 - Generated project: `PleasureVocabulary.xcodeproj`
-- Bundle identifier: `com.pleasurevocab.app`
+- Bundle identifier: `com.noticeandname.app`
 - Personal Team ID: `QCVP3CNMP6`
 - Simulator build: passed
 - Simulator install/launch: passed on iPhone 17 Pro simulator
@@ -41,7 +41,7 @@ Install and launch on the booted simulator:
 
 ```bash
 xcrun simctl install booted DerivedData/Build/Products/Debug-iphonesimulator/PleasureVocabulary.app
-xcrun simctl launch booted com.pleasurevocab.app
+xcrun simctl launch booted com.noticeandname.app
 ```
 
 ## Physical Device Requirements

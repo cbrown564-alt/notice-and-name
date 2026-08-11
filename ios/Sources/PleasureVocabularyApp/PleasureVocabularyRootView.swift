@@ -105,7 +105,7 @@ private struct OnboardingView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
                     VStack(alignment: .leading, spacing: 10) {
-                        Text("Pleasure Vocabulary")
+                        Text("Notice & Name")
                             .font(AppFont.title)
                             .foregroundStyle(AppColor.ink)
                             .fixedSize(horizontal: false, vertical: true)
@@ -220,7 +220,7 @@ private struct LockScreen: View {
         let context = LAContext()
         var error: NSError?
         if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
-            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: "Unlock Pleasure Vocabulary") { success, authError in
+            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: "Unlock Notice & Name") { success, authError in
                 Task { @MainActor in
                     if success {
                         NativeHaptics.success()

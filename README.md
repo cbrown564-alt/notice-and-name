@@ -1,4 +1,6 @@
-# Pleasure Vocabulary Builder
+# Notice & Name
+
+> Formerly developed under the working title Pleasure Vocabulary Builder.
 
 A premium, educational iOS app that helps adults build a private, precise vocabulary for sexual pleasure — through guided concepts, pathways, field notes, and partner-safe phrases.
 

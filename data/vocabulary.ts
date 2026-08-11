@@ -1,4 +1,4 @@
-// Vocabulary content for Pleasure Vocabulary Builder
+// Vocabulary content for Notice & Name
 // Based on research from Hensel et al., 2021 (PLOS ONE)
 
 import { Concept } from '@/types';

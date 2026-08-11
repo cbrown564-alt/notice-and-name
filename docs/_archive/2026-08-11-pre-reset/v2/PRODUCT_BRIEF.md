@@ -1,4 +1,4 @@
-# Pleasure Vocabulary Builder V2 Product Brief
+# Notice & Name V2 Product Brief
 
 **Status:** Draft 0.1  
 **Track:** Premium native product
@@ -6,7 +6,7 @@
 
 ## Product Spine
 
-Pleasure Vocabulary Builder V2 helps adults build a private, precise language for their
+Notice & Name V2 helps adults build a private, precise language for their
 own pleasure and, when they choose, translate that language into partner-safe
 communication.
 

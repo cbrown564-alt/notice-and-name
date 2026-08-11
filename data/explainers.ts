@@ -1,4 +1,4 @@
-// Research Explainers for Pleasure Vocabulary Builder
+// Research Explainers for Notice & Name
 // Accessible science summaries explaining the research behind the content
 
 import { ResearchExplainer } from '@/types';

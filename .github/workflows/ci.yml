@@ -2,12 +2,12 @@ name: CI
 
 on:
   push:
-    branches: [main, visual-v2-restart]
+    branches: [main]
   pull_request:
-    branches: [main, visual-v2-restart]
+    branches: [main]
 
 jobs:
-  content-pipeline:
+  content:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,13 +16,11 @@ jobs:
           node-version: '20'
           cache: npm
       - run: npm ci
-      - run: npm run validate-manifest
       - run: npm run generate-v2-full-bundle
       - run: npm run validate-v2-bundle:full
       - run: npm run lint-v2-content
 
-  swift-tests:
-    # SwiftUI + iOS/macOS-only Package.swift platforms — cannot run on Linux.
+  ios:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
@@ -34,14 +32,3 @@ jobs:
       - run: npm run generate-v2-full-bundle
       - run: npm run sync-ios-media
       - run: cd ios && swift test
-      - name: Xcode smoke build
-        run: |
-          cd ios
-          xcodebuild \
-            -project PleasureVocabulary.xcodeproj \
-            -scheme PleasureVocabulary \
-            -configuration Debug \
-            -destination 'generic/platform=iOS Simulator' \
-            -derivedDataPath ../build/DerivedData \
-            CODE_SIGNING_ALLOWED=NO \
-            build

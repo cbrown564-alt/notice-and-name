@@ -1,4 +1,4 @@
-// Content type definitions for Pleasure Vocabulary Builder
+// Content type definitions for Notice & Name
 
 export type ConceptCategory =
   | 'technique'
