@@ -79,8 +79,8 @@
       ]
     },
     "spreading": {
-      "recognize": "Felt pleasure travel outward from where you're touched — warmth moving through you like ripples?",
-      "reflection": "Think of a time sensation spread beyond where you were touched. Where did it go — and what let it travel?",
+      "recognize": "Felt pleasure leave the spot you were touching — warmth or tingling traveling through the rest of you?",
+      "reflection": "When sensation left the contact point, where did it go first — and what were you doing when it traveled?",
       "phrases": [
         { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "When I stop chasing one spot, the feeling spreads through the rest of me — that's what I'm after." },
         { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "Can we slow down and let me feel it everywhere, not just in one place?" },
@@ -90,24 +90,24 @@
       ]
     },
     "pulsing": {
-      "recognize": "Noticed a throbbing, wave-like beat during high arousal or orgasm — sensation pulsing through you?",
-      "reflection": "When you've felt that pulse, did a particular rhythm match it? What kind of touch met it best?",
+      "recognize": "Caught a throb or wave-beat in high arousal — sensation with its own tempo, not a flat hum?",
+      "reflection": "When that pulse showed up, what touch met it — matching the beat, holding still, or something slower?",
       "phrases": [
         { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "There's a rhythm my body wants — when touch matches that beat, it's a different level." },
         { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "Can you try matching a steady rhythm rather than changing it up? My body's got its own pulse." },
         { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "If the rhythm gets too fast or too much, I'll ask you to slow to something steadier." },
-        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I want to find the exact tempo my body wants to move with." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I want to notice the tempo my body already has — and what happens when touch meets it." },
         { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "Wanting the same steady rhythm over and over isn't dull — it's what carries me there." }
       ]
     },
     "warmup-window": {
-      "recognize": "Noticed touch feels better once you've had time to warm up — and rushing makes it all feel like less?",
-      "reflection": "Think about how long it really takes you to warm up. What helps you get there — and what makes it harder to ask for the time?",
+      "recognize": "Ever notice genital touch feels muted until you've had unhurried time first — then suddenly it lands?",
+      "reflection": "When unhurried time actually changed how touch felt, what was different — the pace, where hands went, or just not being rushed?",
       "phrases": [
         { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "I need real time to warm up before anything genital feels good — that's just my timing." },
         { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "Can we take a good while warming up first? Twenty unhurried minutes changes everything for me." },
         { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "If we jump to genital touch before I'm ready, I'd rather slow down than push through it." },
-        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I want to learn what actually warms me up — what my body needs before the rest feels right." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I want to notice what actually warms me before the rest feels right." },
         { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "Needing a long warm-up doesn't mean something's off — it's how my body gets there." }
       ]
     },
@@ -146,13 +146,13 @@
     },
     "spectatoring": {
       "recognize": "Ever caught yourself watching yourself during sex — how you look, how long you're taking, what they're thinking?",
-      "reflection": "When you've stepped outside the moment to watch yourself, what pulled you out — and what, if anything, brought you back?",
+      "reflection": "When you catch yourself watching instead of feeling, what usually yanked you out — and what, if anything, dropped you back in?",
       "phrases": [
-        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "When I'm in my head judging myself, I want to gently come back to what I'm actually feeling." },
+        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "When I'm watching myself instead of feeling, the sex goes flat — I want the sensation back, not a better performance." },
         { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "Sometimes I get stuck in my head. A little reassurance, or just slowing down, helps me drop back in." },
         { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "If I go quiet and distant, it's not you — give me a moment to pause and come back to my body." },
-        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I'm curious what tends to pull me out of the moment — and what helps me stay." },
-        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "Drifting into my head sometimes doesn't mean I'm not enjoying you — I'm just learning to stay." }
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I want to notice what knocks me into watching mode — and what lets me drop back into feeling." },
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "Drifting into my head sometimes doesn't mean I'm not enjoying you — I'm just finding my way back." }
       ]
     },
     "embodied-presence": {
@@ -167,14 +167,14 @@
       ]
     },
     "non-concordance": {
-      "recognize": "Ever felt turned on in your head while your body showed nothing — or wet without actually being into it?",
-      "reflection": "When your body and your wanting didn't line up, which one did you trust? What would you want to trust next time?",
+      "recognize": "Felt very into it while nothing showed — or noticed wetness when you weren't actually interested?",
+      "reflection": "When body signs and wanting split, which one did you listen to — and what did trusting the wrong one cost you?",
       "phrases": [
         { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "What I feel matters more than what my body's doing — wetness isn't the same as wanting, for me." },
         { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "My body and my interest don't always match. Please check in with me, not just what you can see." },
         { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "Physical signs aren't a yes on their own — ask me, and if my words say stop, trust them over my body." },
-        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I want to get better at reading my own actual wanting, separate from the physical signs." },
-        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "If my body and my head disagree sometimes, nothing's broken — that mismatch is normal." }
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I want to notice the difference between physical signs and what I actually want." },
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "If my body and my wanting disagree sometimes, that doesn't mean either one is lying — they're just not the same signal." }
       ]
     },
     "sexual-self-esteem": {

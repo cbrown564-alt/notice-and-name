@@ -5,7 +5,11 @@
 **Sources read:** `content/v2/bundles/v2-full.bundle.json`, `content/v2/copy/concept-copy.json`, `content/v2/editorial-review.json`, `data/vocabulary.ts`, `docs/CURRENT_STATE.md`, iOS `ConceptPages.swift`  
 **Quality bar:** private, precise, adult, non-clinical-worksheet; subtitle *Notice what you like, name it.*; loop **Notice → Name → Reflect → Keep** (UI descent also includes See / Understand).
 
-Phase B rewrite batch 1 landed 2026-08-11 (Europe/London): `sexual-self-esteem`, `body-appreciation`, `edging`, `rocking`, `golden-trio`. Remaining concepts below keep audit priorities until rewritten.
+Phase B rewrite batches landed 2026-08-11 (Europe/London):
+- **Batch 1:** `sexual-self-esteem`, `body-appreciation`, `edging`, `rocking`, `golden-trio`
+- **Batch 2:** `warmup-window`, `non-concordance`, `pulsing`, `spreading`, `spectatoring`
+
+Remaining concepts below keep audit priorities until rewritten.
 
 ## Cross-cutting findings
 
@@ -25,9 +29,9 @@ Phase B rewrite batch 1 landed 2026-08-11 (Europe/London): `sexual-self-esteem`,
 | Priority | Count (concepts) | Meaning |
 | --- | --- | --- |
 | **P0** | **0** | Cleared by rewrite batch 1 (was 3). |
-| **P1** | **12** | Remaining first-batch tone / partner-sayability / thin Notice and Reflect. |
+| **P1** | **7** | Remaining first-batch tone / partner-sayability / thin Notice and Reflect. |
 | **P2** | **5** | Solid enough to ship; polish Understand / See / summary voice later. |
-| **Rewritten** | **5** | Batch 1: sexual-self-esteem, body-appreciation, edging, rocking, golden-trio. |
+| **Rewritten** | **10** | Batches 1–2 (see below). |
 
 ---
 
@@ -68,20 +72,20 @@ Phase B rewrite batch 1 landed 2026-08-11 (Europe/London): `sexual-self-esteem`,
 - **Rewrite (batch 1):** Boundary already first-person partner-safe; summary drops 'practice of…'; See caption more felt. P0 cleared.
 - **Priority:** Rewritten (was P0)
 
-### 8. `spreading` — Spreading (sensation) — **P1**
+### 8. `spreading` — Spreading (sensation) — **Rewritten**
 - **Strengths:** Keep private and anti-chase; reassurance about going quiet is partner-safe gold.
-- **Weak spots:** Reflect 'Think of a time…'; SEE neural-signals clinical; Name/Understand essay-ish.
-- **Priority:** P1
+- **Rewrite (batch 2):** Notice/Reflect leave worksheet recall; See caption felt (warmth past contact) not neural-lab; Name/summary drop essay voice.
+- **Priority:** Rewritten (was P1)
 
-### 9. `pulsing` — Pulsing (sensation) — **P1**
+### 9. `pulsing` — Pulsing (sensation) — **Rewritten**
 - **Strengths:** Partner-request (match a steady rhythm) concrete and sayable; Keep good.
-- **Weak spots:** SEE concentric-contraction / pelvic-floor lab voice fails brand; textbook summary; Reflect thin.
-- **Priority:** P1
+- **Rewrite (batch 2):** See caption is a felt beat, not pelvic-floor lab; Notice/Reflect tempo-specific; summary/Name leave textbook 'refers to'.
+- **Priority:** Rewritten (was P1)
 
-### 10. `warmup-window` — Warm-up Window (timing) — **P1**
+### 10. `warmup-window` — Warm-up Window (timing) — **Rewritten**
 - **Strengths:** Partner-request naming twenty unhurried minutes brave and useful; Keep owns timing without apology.
-- **Weak spots:** SEE engorgement/blood-flow clinical; Understand lit-review; Reflect coach-intake double question; curiosity homework voice.
-- **Priority:** P1
+- **Rewrite (batch 2):** See caption warmth-before-specificity; Understand keeps citation with adult insight; Reflect one concrete noticing question; curiosity drops homework.
+- **Priority:** Rewritten (was P1)
 
 ### 11. `responsive-desire` — Responsive Desire (timing) — **P2**
 - **Strengths:** Strong launch concept; Keep and reassurance partner-safe and non-pathologizing; boundary protects pause.
@@ -98,20 +102,20 @@ Phase B rewrite batch 1 landed 2026-08-11 (Europe/London): `sexual-self-esteem`,
 - **Rewrite (batch 1):** 86% rate removed from definition/Name (stats stay in Understand); Notice/Reflect more lived; See caption anti-checklist. Title kept as shipping name.
 - **Priority:** Rewritten (was P1)
 
-### 14. `spectatoring` — Spectatoring (psychological) — **P1**
+### 14. `spectatoring` — Spectatoring (psychological) — **Rewritten**
 - **Strengths:** Recognize vivid and adult; boundary/reassurance handle going quiet without making partner the therapist.
-- **Weak spots:** Keep/self-understanding tip into self-help mantra; Understand stacks three citations; curiosity meta-homework.
-- **Priority:** P1
+- **Rewrite (batch 2):** Keep drops gentle-return mantra for sensation-over-performance; Reflect/curiosity more noticing than meta-homework; See/Understand lean adult.
+- **Priority:** Rewritten (was P1)
 
 ### 15. `embodied-presence` — Embodied Presence (psychological) — **P1**
 - **Strengths:** Partner-request (slow enough to feel each thing) and reassurance (quiet is not checking out) strong.
 - **Weak spots:** Reflect 'Recall a time…'; Understand clinical-studies voice; Name glossary-like; mindfulness-module risk next to spectatoring.
 - **Priority:** P1
 
-### 16. `non-concordance` — Non-concordance (psychological) — **P1**
-- **Strengths:** Critical partner-safety concept; partner-request and boundary (trust words over body signs) launch-critical and largely excellent.
-- **Weak spots:** SEE textbook pathways; Understand meta-analysis density; Reflect worksheets the insight; curiosity self-improvement tone; reassure 'normal/broken' slightly clinical. Protect partner phrases; rewrite Notice/See/Reflect.
-- **Priority:** P1
+### 16. `non-concordance` — Non-concordance (psychological) — **Rewritten**
+- **Strengths:** Critical partner-safety concept; partner-request and boundary (trust words over body signs) launch-critical — preserved as-is.
+- **Rewrite (batch 2):** Notice/Reflect lived; See caption different-tracks not pathways; curiosity/reassure leave self-improvement and 'broken/normal' clinical; science kept accurate.
+- **Priority:** Rewritten (was P1)
 
 ### 17. `sexual-self-esteem` — Sexual Self-Esteem (psychological) — **Rewritten**
 - **Strengths:** Keep ('worth taking up space') brand-aligned.
@@ -157,13 +161,25 @@ Edited `content/v2/copy/concept-copy.json` + `data/vocabulary.ts` (definition / 
 
 ---
 
+## Rewrite batch 2 (landed)
+
+Edited `content/v2/copy/concept-copy.json` + `data/vocabulary.ts` (definition / summary / Name / Understand / See), then regenerated the v2 full bundle:
+
+1. `warmup-window` — Notice, Reflect, curiosity; See/Understand/summary (was P1).
+2. `non-concordance` — Notice, Reflect, curiosity/reassure; See/Name/summary; partner phrases preserved (was P1).
+3. `pulsing` — Notice, Reflect, curiosity; See/Name/summary (was P1).
+4. `spreading` — Notice, Reflect; See/Name/summary/Understand (was P1).
+5. `spectatoring` — Reflect, Keep/curiosity/reassure; See/Name/Understand/summary (was P1).
+
+---
+
 ## Recommended next rewrite batch
 
-1. `warmup-window` — clinical SEE; lit-review Understand; coach-intake Reflect.
-2. `non-concordance` — protect partner phrases; rewrite Notice/See/Reflect.
-3. `pulsing` / `spreading` — SEE lab voice; Reflect thin/worksheet.
-4. `spectatoring` / `embodied-presence` — Keep/self-help and Reflect polish.
-5. Anatomy cluster Notice frames (`clitoral-structure`, `nerve-density`, `clitourethrovaginal`).
+1. `embodied-presence` — Reflect worksheet; Understand clinical-studies; Name glossary-like.
+2. Anatomy cluster Notice frames (`clitoral-structure`, `nerve-density`, `clitourethrovaginal`).
+3. `building` — Reflect worksheet; SEE vascular/neural lab; textbook summary.
+4. `shallowing` — SEE introitus; Understand research-report; Recognize thin.
+5. `spontaneous-desire` — Recognize thinner than responsive twin; Keep slightly self-helpy.
 
 ## Edit surfaces reminder
 

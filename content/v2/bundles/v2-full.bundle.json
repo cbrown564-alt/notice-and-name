@@ -752,33 +752,33 @@
       "name": "Spreading",
       "category": "sensation",
       "reviewStatus": "approved",
-      "definition": "The sensation of arousal radiating outward from its origin point through the body.",
-      "summary": "Spreading describes how pleasure can expand beyond the area being stimulated - radiating outward like ripples in water.",
+      "definition": "Pleasure radiating outward from where you're touched, through the rest of the body.",
+      "summary": "Spreading is when pleasure leaves the contact point and moves — through the pelvis, up the spine, into the limbs, or across the whole body.",
       "blocks": [
         {
           "id": "spreading-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Felt pleasure travel outward from where you're touched — warmth moving through you like ripples?"
+          "body": "Felt pleasure leave the spot you were touching — warmth or tingling traveling through the rest of you?"
         },
         {
           "id": "spreading-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Spreading is arousal radiating outward from where you're touched—into the pelvis, spine, limbs, or whole body."
+          "body": "Spreading is arousal moving outward from where you're touched—into the pelvis, spine, limbs, or whole body."
         },
         {
           "id": "spreading-media",
           "type": "media",
           "title": "See It",
-          "body": "Neural signals propagating beyond the contact point",
+          "body": "Warmth moving past the place you're touched",
           "mediaId": "spreading-illustration"
         },
         {
           "id": "spreading-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Embodied sexuality research links attention to whole-body sensation with more satisfying sexual experiences. Spreading is one pattern people report when arousal feels less “localized” and more distributed.",
+          "body": "Embodied sexuality research links attention to whole-body sensation with more satisfying experiences. Spreading is one pattern people name when arousal feels less pinned to a single spot and more free to travel.",
           "citationIds": [
             "spreading-source-1",
             "spreading-source-2"
@@ -788,7 +788,7 @@
           "id": "spreading-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Think of a time sensation spread beyond where you were touched. Where did it go — and what let it travel?",
+          "body": "When sensation left the contact point, where did it go first — and what were you doing when it traveled?",
           "privateByDefault": true
         },
         {
@@ -864,33 +864,33 @@
       "name": "Pulsing",
       "category": "sensation",
       "reviewStatus": "approved",
-      "definition": "Rhythmic, wave-like sensations during high arousal or orgasm - a beating or throbbing quality.",
-      "summary": "Pulsing refers to the rhythmic quality that pleasure can take on - a beating, throbbing, or wave-like pattern.",
+      "definition": "A rhythmic, wave-like quality in high arousal or orgasm — beating or throbbing rather than flat.",
+      "summary": "Pulsing is pleasure with a beat — throbbing, wave-like, not a flat steady hum. It shows up clearest in orgasm, when pelvic muscles contract in rhythm, but many people feel a pulse earlier in high arousal too.",
       "blocks": [
         {
           "id": "pulsing-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Noticed a throbbing, wave-like beat during high arousal or orgasm — sensation pulsing through you?"
+          "body": "Caught a throb or wave-beat in high arousal — sensation with its own tempo, not a flat hum?"
         },
         {
           "id": "pulsing-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Pulsing is a rhythmic, throbbing quality in arousal or orgasm—waves of sensation rather than a flat steady tone."
+          "body": "Pulsing is the rhythmic, throbbing quality pleasure can take—waves of sensation rather than a flat steady tone."
         },
         {
           "id": "pulsing-media",
           "type": "media",
           "title": "See It",
-          "body": "Concentric contraction waves in pelvic floor tissue",
+          "body": "A beat running through the body at the high end of arousal",
           "mediaId": "pulsing-illustration"
         },
         {
           "id": "pulsing-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Physiology studies describe rhythmic pelvic muscle contractions during orgasm, often about once per second (Meston & Buss, 2009). Many people also notice pulse-like sensation earlier in arousal—and some prefer stimulation that matches or contrasts that rhythm.",
+          "body": "Physiology studies describe rhythmic pelvic muscle contractions during orgasm, often about once per second (Meston & Buss, 2009). Many people also feel a pulse earlier in arousal—and some prefer touch that matches or plays against that tempo.",
           "citationIds": [
             "pulsing-source-1",
             "pulsing-source-2"
@@ -900,7 +900,7 @@
           "id": "pulsing-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "When you've felt that pulse, did a particular rhythm match it? What kind of touch met it best?",
+          "body": "When that pulse showed up, what touch met it — matching the beat, holding still, or something slower?",
           "privateByDefault": true
         },
         {
@@ -940,7 +940,7 @@
           "id": "pulsing-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to find the exact tempo my body wants to move with.",
+          "body": "I want to notice the tempo my body already has — and what happens when touch meets it.",
           "tone": "curious"
         },
         {
@@ -975,33 +975,33 @@
       "name": "Warm-up Window",
       "category": "timing",
       "reviewStatus": "approved",
-      "definition": "The time needed for whole-body arousal before genital-focused stimulation feels best - often 20+ minutes.",
-      "summary": "The warm-up window refers to the period of time many bodies need for full arousal before genital-focused stimulation becomes most pleasurable.",
+      "definition": "The time many bodies need for whole-body arousal before genital-focused touch feels best — often twenty minutes or more.",
+      "summary": "The warm-up window is how long many bodies need before genital-focused touch feels good — often twenty minutes or more of unhurried, whole-body contact. It is timing, not a delay to apologize for.",
       "blocks": [
         {
           "id": "warmup-window-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Noticed touch feels better once you've had time to warm up — and rushing makes it all feel like less?"
+          "body": "Ever notice genital touch feels muted until you've had unhurried time first — then suddenly it lands?"
         },
         {
           "id": "warmup-window-definition",
           "type": "definition",
           "title": "Name",
-          "body": "The warm-up window is how long many bodies need for full arousal before genital-focused touch feels best—often twenty minutes or more of whole-body stimulation."
+          "body": "The warm-up window is how long many bodies need before genital-focused touch feels best—often twenty unhurried minutes or more of whole-body contact."
         },
         {
           "id": "warmup-window-media",
           "type": "media",
           "title": "See It",
-          "body": "Engorgement and blood flow increasing over time",
+          "body": "Warmth building before touch gets specific",
           "mediaId": "warmup-window-illustration"
         },
         {
           "id": "warmup-window-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Genital blood flow, lubrication, and subjective arousal often rise gradually (Chivers et al., 2010). Adequate warm-up is associated in research with greater comfort and reported pleasure—not a personal failing, but common physiology.",
+          "body": "Arousal often rises gradually—blood flow, lubrication, and wanting can take twenty to forty-five minutes to catch up (Chivers et al., 2010). Skipping that window isn't efficiency; it's skipping the part that makes the rest feel good.",
           "citationIds": [
             "warmup-window-source-1",
             "warmup-window-source-2"
@@ -1011,7 +1011,7 @@
           "id": "warmup-window-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Think about how long it really takes you to warm up. What helps you get there — and what makes it harder to ask for the time?",
+          "body": "When unhurried time actually changed how touch felt, what was different — the pace, where hands went, or just not being rushed?",
           "privateByDefault": true
         },
         {
@@ -1051,7 +1051,7 @@
           "id": "warmup-window-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to learn what actually warms me up — what my body needs before the rest feels right.",
+          "body": "I want to notice what actually warms me before the rest feels right.",
           "tone": "curious"
         },
         {
@@ -1408,8 +1408,8 @@
       "name": "Spectatoring",
       "category": "psychological",
       "reviewStatus": "approved",
-      "definition": "Mentally watching and evaluating yourself during sex rather than staying present in the experience.",
-      "summary": "Spectatoring is the experience of mentally stepping outside yourself during sex to observe and judge what's happening - focusing on how you look, whether you're responding \"correctly,\" how long it's taking, or what your partner might be thinking.",
+      "definition": "Watching and grading yourself during sex instead of staying with what you feel.",
+      "summary": "Spectatoring is stepping outside yourself mid-sex to watch and grade — how you look, how long you're taking, whether you're responding “right,” what they might be thinking.",
       "blocks": [
         {
           "id": "spectatoring-recognize",
@@ -1421,20 +1421,20 @@
           "id": "spectatoring-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Spectatoring is watching and evaluating yourself during sex instead of staying with sensation—performance thoughts replacing presence."
+          "body": "Spectatoring is watching and grading yourself during sex instead of staying with sensation—performance thoughts replacing feeling."
         },
         {
           "id": "spectatoring-media",
           "type": "media",
           "title": "See It",
-          "body": "Attention split between body and inner critic",
+          "body": "Split between the touch and the inner commentary",
           "mediaId": "spectatoring-illustration"
         },
         {
           "id": "spectatoring-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Masters and Johnson named spectatoring as a barrier to enjoyment; later work links self-focused attention during sex with lower arousal and satisfaction (Barlow, 1986). Mindfulness-based approaches often help redirect attention back to sensation (Brotto, 2018).",
+          "body": "Masters and Johnson named spectatoring as a barrier to enjoyment; later work links self-focused attention during sex with lower arousal and satisfaction (Barlow, 1986). Coming back to one concrete sensation is often more useful than trying to think your way into presence (Brotto, 2018).",
           "citationIds": [
             "spectatoring-source-1",
             "spectatoring-source-2"
@@ -1444,14 +1444,14 @@
           "id": "spectatoring-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "When you've stepped outside the moment to watch yourself, what pulled you out — and what, if anything, brought you back?",
+          "body": "When you catch yourself watching instead of feeling, what usually yanked you out — and what, if anything, dropped you back in?",
           "privateByDefault": true
         },
         {
           "id": "spectatoring-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "When I'm in my head judging myself, I want to gently come back to what I'm actually feeling."
+          "body": "When I'm watching myself instead of feeling, the sex goes flat — I want the sensation back, not a better performance."
         }
       ],
       "relatedConceptIds": [
@@ -1463,7 +1463,7 @@
           "id": "spectatoring-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "When I'm in my head judging myself, I want to gently come back to what I'm actually feeling.",
+          "body": "When I'm watching myself instead of feeling, the sex goes flat — I want the sensation back, not a better performance.",
           "tone": "soft"
         },
         {
@@ -1484,14 +1484,14 @@
           "id": "spectatoring-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I'm curious what tends to pull me out of the moment — and what helps me stay.",
+          "body": "I want to notice what knocks me into watching mode — and what lets me drop back into feeling.",
           "tone": "curious"
         },
         {
           "id": "spectatoring-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "Drifting into my head sometimes doesn't mean I'm not enjoying you — I'm just learning to stay.",
+          "body": "Drifting into my head sometimes doesn't mean I'm not enjoying you — I'm just finding my way back.",
           "tone": "reassuring"
         }
       ],
@@ -1628,33 +1628,33 @@
       "name": "Non-concordance",
       "category": "psychological",
       "reviewStatus": "approved",
-      "definition": "When physical arousal signs (lubrication, erection) don't match the subjective feeling of being turned on - and vice versa.",
-      "summary": "Non-concordance is the disconnect that can occur between physical arousal signals and how turned on you actually feel.",
+      "definition": "When physical arousal signs (lubrication, erection) and how turned on you feel don't match — either way.",
+      "summary": "Non-concordance is when body signs and wanting split. You might feel very into it with nothing obvious showing — or notice wetness or an erection when you are not actually interested.",
       "blocks": [
         {
           "id": "non-concordance-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Ever felt turned on in your head while your body showed nothing — or wet without actually being into it?"
+          "body": "Felt very into it while nothing showed — or noticed wetness when you weren't actually interested?"
         },
         {
           "id": "non-concordance-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Non-concordance is a mismatch between physical arousal signs (like lubrication) and how interested or turned on you actually feel."
+          "body": "Non-concordance is when physical arousal signs and how turned on you feel don't match—wetness without wanting, or wanting without obvious signs."
         },
         {
           "id": "non-concordance-media",
           "type": "media",
           "title": "See It",
-          "body": "Separate pathways for genital response and felt desire",
+          "body": "Body signs and wanting running on different tracks",
           "mediaId": "non-concordance-illustration"
         },
         {
           "id": "non-concordance-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Meta-analyses find only modest correlation between genital response and subjective arousal in women—often cited around 10–30% overlap (Chivers et al., 2010; Nagoski, 2015). Genital response can occur without desire; desire can exist without obvious physical signs. Consent and wanting are communicated, not inferred from wetness or erection.",
+          "body": "Meta-analyses find only modest correlation between genital response and subjective arousal in women—often cited around 10–30% overlap (Chivers et al., 2010; Nagoski, 2015). Genital response can happen without desire; desire can exist without obvious signs. Wanting is communicated — not inferred from wetness or erection.",
           "citationIds": [
             "non-concordance-source-1",
             "non-concordance-source-2"
@@ -1664,7 +1664,7 @@
           "id": "non-concordance-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "When your body and your wanting didn't line up, which one did you trust? What would you want to trust next time?",
+          "body": "When body signs and wanting split, which one did you listen to — and what did trusting the wrong one cost you?",
           "privateByDefault": true
         },
         {
@@ -1704,14 +1704,14 @@
           "id": "non-concordance-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to get better at reading my own actual wanting, separate from the physical signs.",
+          "body": "I want to notice the difference between physical signs and what I actually want.",
           "tone": "curious"
         },
         {
           "id": "non-concordance-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "If my body and my head disagree sometimes, nothing's broken — that mismatch is normal.",
+          "body": "If my body and my wanting disagree sometimes, that doesn't mean either one is lying — they're just not the same signal.",
           "tone": "reassuring"
         }
       ],
@@ -2573,7 +2573,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/spreading.png",
       "alt": "Warm educational illustration for Spreading.",
-      "caption": "Neural signals propagating beyond the contact point",
+      "caption": "Warmth moving past the place you're touched",
       "reducedMotionFallback": "assets/images/concepts/illustrations/spreading.png"
     },
     {
@@ -2581,7 +2581,7 @@
       "kind": "video",
       "path": "assets/videos/spreading.mp4",
       "alt": "Motion study for Spreading.",
-      "caption": "Neural signals propagating beyond the contact point",
+      "caption": "Warmth moving past the place you're touched",
       "reducedMotionFallback": "assets/images/concepts/illustrations/spreading.png"
     },
     {
@@ -2589,7 +2589,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/pulsing.png",
       "alt": "Warm educational illustration for Pulsing.",
-      "caption": "Concentric contraction waves in pelvic floor tissue",
+      "caption": "A beat running through the body at the high end of arousal",
       "reducedMotionFallback": "assets/images/concepts/illustrations/pulsing.png"
     },
     {
@@ -2597,7 +2597,7 @@
       "kind": "video",
       "path": "assets/videos/pulsing.mp4",
       "alt": "Motion study for Pulsing.",
-      "caption": "Concentric contraction waves in pelvic floor tissue",
+      "caption": "A beat running through the body at the high end of arousal",
       "reducedMotionFallback": "assets/images/concepts/illustrations/pulsing.png"
     },
     {
@@ -2605,7 +2605,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/warmup-window.png",
       "alt": "Warm educational illustration for Warm-up Window.",
-      "caption": "Engorgement and blood flow increasing over time",
+      "caption": "Warmth building before touch gets specific",
       "reducedMotionFallback": "assets/images/concepts/illustrations/warmup-window.png"
     },
     {
@@ -2645,7 +2645,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/spectatoring.png",
       "alt": "Warm educational illustration for Spectatoring.",
-      "caption": "Attention split between body and inner critic",
+      "caption": "Split between the touch and the inner commentary",
       "reducedMotionFallback": "assets/images/concepts/illustrations/spectatoring.png"
     },
     {
@@ -2661,7 +2661,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/non-concordance.png",
       "alt": "Warm educational illustration for Non-concordance.",
-      "caption": "Separate pathways for genital response and felt desire",
+      "caption": "Body signs and wanting running on different tracks",
       "reducedMotionFallback": "assets/images/concepts/illustrations/non-concordance.png"
     },
     {

@@ -354,12 +354,12 @@ It asks for body awareness: catching your own pre-orgasm signals in time to ease
     name: 'Spreading',
     category: 'sensation',
     definition:
-      'The sensation of arousal radiating outward from its origin point through the body.',
-    description: `Spreading describes how pleasure can expand beyond the area being stimulated - radiating outward like ripples in water. What starts as localized sensation might flow through the pelvis, up the spine, through the limbs, or across the whole body.
+      'Pleasure radiating outward from where you\'re touched, through the rest of the body.',
+    description: `Spreading is when pleasure leaves the contact point and moves — through the pelvis, up the spine, into the limbs, or across the whole body.
 
-This spreading quality often distinguishes full-body arousal from purely genital sensation. Some people experience spreading as warmth, others as tingling, electricity, or waves of sensation that travel through different body regions.
+Some people feel it as warmth; others as tingling, electricity, or slow waves. It is often what makes arousal feel full-body rather than purely genital.
 
-Noticing spreading can enhance the experience of pleasure by expanding attention beyond the point of touch. It's also useful information about your body's arousal patterns - some people find that spreading sensations indicate deep relaxation and full engagement.`,
+Noticing it can shift the night: less chasing one spot, more room for the feeling to travel. For some, spreading shows up when they are relaxed enough to stop gripping the moment.`,
     researchBasis:
       'Research on embodied sexuality notes that awareness of whole-body sensation often correlates with more satisfying sexual experiences. Spreading relates to concepts of body-wide arousal versus localized stimulation.',
     source: 'Embodied sexuality research; sensate focus studies',
@@ -374,22 +374,22 @@ Noticing spreading can enhance the experience of pleasure by expanding attention
     slides: [
       {
         type: 'recognize',
-        content: 'Have you felt pleasure radiate outward from where you\'re being touched—warmth or tingling traveling through your body like ripples in water?',
+        content: 'Felt pleasure leave the spot you were touching — warmth or tingling traveling through the rest of you?',
       },
       {
         type: 'name',
-        content: 'Spreading is arousal radiating outward from where you\'re touched—into the pelvis, spine, limbs, or whole body.',
+        content: 'Spreading is arousal moving outward from where you\'re touched—into the pelvis, spine, limbs, or whole body.',
       },
       {
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/spreading.png'),
         illustrationVideo: require('@/assets/videos/spreading.mp4'),
-        illustrationCaption: 'Neural signals propagating beyond the contact point',
+        illustrationCaption: 'Warmth moving past the place you\'re touched',
       },
       {
         type: 'understand',
-        content: 'Embodied sexuality research links attention to whole-body sensation with more satisfying sexual experiences. Spreading is one pattern people report when arousal feels less “localized” and more distributed.',
+        content: 'Embodied sexuality research links attention to whole-body sensation with more satisfying experiences. Spreading is one pattern people name when arousal feels less pinned to a single spot and more free to travel.',
       },
       {
         type: 'explore',
@@ -403,12 +403,12 @@ Noticing spreading can enhance the experience of pleasure by expanding attention
     name: 'Pulsing',
     category: 'sensation',
     definition:
-      'Rhythmic, wave-like sensations during high arousal or orgasm - a beating or throbbing quality.',
-    description: `Pulsing refers to the rhythmic quality that pleasure can take on - a beating, throbbing, or wave-like pattern. This is especially noticeable during orgasm, when muscle contractions create literal pulses, but pulsing sensations can occur throughout arousal.
+      'A rhythmic, wave-like quality in high arousal or orgasm — beating or throbbing rather than flat.',
+    description: `Pulsing is pleasure with a beat — throbbing, wave-like, not a flat steady hum. It shows up clearest in orgasm, when pelvic muscles contract in rhythm, but many people feel a pulse earlier in high arousal too.
 
-During high arousal, you might notice a pulse-like quality to genital sensation, possibly synchronized with heartbeat. During orgasm, rhythmic contractions of pelvic muscles create distinct pulsing that many people experience as waves of pleasure.
+Sometimes it tracks the heartbeat; sometimes it is its own tempo. Either way, it is information: some people want touch that matches that beat, holds still with it, or plays against it.
 
-Having language for this sensation helps recognize it when it's happening, and helps communicate about preferences - some people particularly enjoy stimulation that matches or plays with this natural pulsing rhythm.`,
+Naming the pulse makes it easier to ask for the rhythm that actually carries you, instead of treating every night like it should escalate the same way.`,
     researchBasis:
       'Orgasm research documents rhythmic pelvic muscle contractions occurring approximately every 0.8 seconds during orgasm. Many people report subjective experiences that correspond to these physical rhythms.',
     source: 'Meston & Buss, 2009; physiology of orgasm research',
@@ -423,22 +423,22 @@ Having language for this sensation helps recognize it when it's happening, and h
     slides: [
       {
         type: 'recognize',
-        content: 'Have you noticed a rhythmic, throbbing quality during high arousal or orgasm—like waves of sensation beating through you?',
+        content: 'Caught a throb or wave-beat in high arousal — sensation with its own tempo, not a flat hum?',
       },
       {
         type: 'name',
-        content: 'Pulsing is a rhythmic, throbbing quality in arousal or orgasm—waves of sensation rather than a flat steady tone.',
+        content: 'Pulsing is the rhythmic, throbbing quality pleasure can take—waves of sensation rather than a flat steady tone.',
       },
       {
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/pulsing.png'),
         illustrationVideo: require('@/assets/videos/pulsing.mp4'),
-        illustrationCaption: 'Concentric contraction waves in pelvic floor tissue',
+        illustrationCaption: 'A beat running through the body at the high end of arousal',
       },
       {
         type: 'understand',
-        content: 'Physiology studies describe rhythmic pelvic muscle contractions during orgasm, often about once per second (Meston & Buss, 2009). Many people also notice pulse-like sensation earlier in arousal—and some prefer stimulation that matches or contrasts that rhythm.',
+        content: 'Physiology studies describe rhythmic pelvic muscle contractions during orgasm, often about once per second (Meston & Buss, 2009). Many people also feel a pulse earlier in arousal—and some prefer touch that matches or plays against that tempo.',
       },
       {
         type: 'explore',
@@ -455,12 +455,12 @@ Having language for this sensation helps recognize it when it's happening, and h
     category: 'timing',
     thumbnail: require('@/assets/images/concepts/thumbnails/warmup-window.png'),
     definition:
-      'The time needed for whole-body arousal before genital-focused stimulation feels best - often 20+ minutes.',
-    description: `The warm-up window refers to the period of time many bodies need for full arousal before genital-focused stimulation becomes most pleasurable. This isn't a problem or delay - it's how arousal often works, particularly for vulva-owners.
+      'The time many bodies need for whole-body arousal before genital-focused touch feels best — often twenty minutes or more.',
+    description: `The warm-up window is how long many bodies need before genital-focused touch feels good — often twenty minutes or more of unhurried, whole-body contact. It is timing, not a delay to apologize for.
 
-Research suggests that for many women, blood flow to genital tissue, natural lubrication, and full-body arousal take approximately 20-45 minutes of stimulation to reach their peak. Jumping directly to genital touch before this warm-up can feel less pleasurable or even uncomfortable.
+For many vulva-owners, blood flow, lubrication, and full-body arousal take roughly twenty to forty-five minutes to catch up. Jumping straight to genital touch can feel muted, scratchy, or simply less than it could.
 
-Understanding the warm-up window reframes extended foreplay not as a requirement or obligation, but as recognizing how your body reaches full arousal. It's useful information for solo experiences and for communicating with partners about pacing.`,
+Owning the window reframes that slower start as the good part of the night, not a chore you rush so the “real” sex can begin.`,
     researchBasis:
       'Studies on genital blood flow and arousal timing show significant gender differences. Research indicates that adequate warm-up time correlates with better lubrication, comfort, and reported pleasure.',
     source: 'Chivers et al., 2010; arousal timing research',
@@ -474,21 +474,21 @@ Understanding the warm-up window reframes extended foreplay not as a requirement
     slides: [
       {
         type: 'recognize',
-        content: 'Have you noticed that touch feels better after you\'ve had time to warm up—and that rushing makes everything feel less enjoyable?',
+        content: 'Ever notice genital touch feels muted until you\'ve had unhurried time first — then suddenly it lands?',
       },
       {
         type: 'name',
-        content: 'The warm-up window is how long many bodies need for full arousal before genital-focused touch feels best—often twenty minutes or more of whole-body stimulation.',
+        content: 'The warm-up window is how long many bodies need before genital-focused touch feels best—often twenty unhurried minutes or more of whole-body contact.',
       },
       {
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/warmup-window.png'),
-        illustrationCaption: 'Engorgement and blood flow increasing over time',
+        illustrationCaption: 'Warmth building before touch gets specific',
       },
       {
         type: 'understand',
-        content: 'Genital blood flow, lubrication, and subjective arousal often rise gradually (Chivers et al., 2010). Adequate warm-up is associated in research with greater comfort and reported pleasure—not a personal failing, but common physiology.',
+        content: 'Arousal often rises gradually—blood flow, lubrication, and wanting can take twenty to forty-five minutes to catch up (Chivers et al., 2010). Skipping that window isn\'t efficiency; it\'s skipping the part that makes the rest feel good.',
       },
       {
         type: 'explore',
@@ -649,12 +649,12 @@ The quieter takeaway: variety and clitoral involvement usually serve pleasure be
     name: 'Spectatoring',
     category: 'psychological',
     definition:
-      'Mentally watching and evaluating yourself during sex rather than staying present in the experience.',
-    description: `Spectatoring is the experience of mentally stepping outside yourself during sex to observe and judge what's happening - focusing on how you look, whether you're responding "correctly," how long it's taking, or what your partner might be thinking.
+      'Watching and grading yourself during sex instead of staying with what you feel.',
+    description: `Spectatoring is stepping outside yourself mid-sex to watch and grade — how you look, how long you're taking, whether you're responding “right,” what they might be thinking.
 
-This self-observation pulls attention away from physical sensations and into anxious self-monitoring. Instead of feeling what's happening, you're watching yourself and running mental commentary: "Am I taking too long? Do I look okay? Should I be more into this?"
+Attention leaves sensation and lands in commentary. Instead of feeling the touch, you're running a live review: too slow, too much, not enough.
 
-Spectatoring is common but interferes with arousal and pleasure. The good news is that it can be addressed - techniques from mindfulness and sex therapy can help redirect attention back to bodily sensations and present-moment experience.`,
+It is common, and it flattens pleasure. Coming back is rarely a pep talk — it is noticing the commentary, then dropping attention back onto one concrete feeling.`,
     researchBasis:
       'Masters and Johnson identified spectatoring as a common barrier to sexual enjoyment. Research shows that self-focused attention during sex correlates with lower arousal, reduced pleasure, and increased sexual difficulties.',
     source: 'Masters & Johnson; Barlow, 1986',
@@ -669,21 +669,21 @@ Spectatoring is common but interferes with arousal and pleasure. The good news i
     slides: [
       {
         type: 'recognize',
-        content: 'Have you ever caught yourself watching yourself during sex—thinking about how you look, whether you\'re taking too long, or what your partner might be thinking?',
+        content: 'Ever caught yourself watching yourself during sex — how you look, how long you\'re taking, what they\'re thinking?',
       },
       {
         type: 'name',
-        content: 'Spectatoring is watching and evaluating yourself during sex instead of staying with sensation—performance thoughts replacing presence.',
+        content: 'Spectatoring is watching and grading yourself during sex instead of staying with sensation—performance thoughts replacing feeling.',
       },
       {
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/spectatoring.png'),
-        illustrationCaption: 'Attention split between body and inner critic',
+        illustrationCaption: 'Split between the touch and the inner commentary',
       },
       {
         type: 'understand',
-        content: 'Masters and Johnson named spectatoring as a barrier to enjoyment; later work links self-focused attention during sex with lower arousal and satisfaction (Barlow, 1986). Mindfulness-based approaches often help redirect attention back to sensation (Brotto, 2018).',
+        content: 'Masters and Johnson named spectatoring as a barrier to enjoyment; later work links self-focused attention during sex with lower arousal and satisfaction (Barlow, 1986). Coming back to one concrete sensation is often more useful than trying to think your way into presence (Brotto, 2018).',
       },
       {
         type: 'explore',
@@ -745,12 +745,12 @@ Cultivating embodied presence can significantly enhance sexual experience. When 
     name: 'Non-concordance',
     category: 'psychological',
     definition:
-      'When physical arousal signs (lubrication, erection) don\'t match the subjective feeling of being turned on - and vice versa.',
-    description: `Non-concordance is the disconnect that can occur between physical arousal signals and how turned on you actually feel. Your body might show signs of arousal while you don't feel interested, or you might feel very mentally aroused while your body isn't responding visibly.
+      'When physical arousal signs (lubrication, erection) and how turned on you feel don\'t match — either way.',
+    description: `Non-concordance is when body signs and wanting split. You might feel very into it with nothing obvious showing — or notice wetness or an erection when you are not actually interested.
 
-This is extremely common - research shows only about a 10-25% overlap between physical and subjective arousal for women. Physical response doesn't equal desire, and lack of visible response doesn't mean absence of interest. Bodies respond to sexually relevant stimuli, whether or not we're actually aroused.
+For many women, research finds only modest overlap between genital response and felt arousal (often cited around 10–25%). Bodies can respond to sexually relevant cues without desire; desire can show up without a clear physical signal.
 
-Understanding non-concordance is liberating. It means you can trust your felt experience of arousal rather than judging by physical signs alone. It also means physical signs don't indicate consent or desire - only explicit communication does.`,
+That split is ordinary, not a verdict. Trust words and felt wanting over body signs alone — physical response is not consent, and a quiet body is not proof of no interest.`,
     researchBasis:
       'Chivers et al. meta-analysis found low correlation between genital response and subjective arousal in women (~10%). This non-concordance is now understood as normal rather than dysfunctional.',
     source: 'Chivers et al., 2010; Nagoski, 2015',
@@ -765,21 +765,21 @@ Understanding non-concordance is liberating. It means you can trust your felt ex
     slides: [
       {
         type: 'recognize',
-        content: 'Have you ever felt mentally aroused while your body showed no physical signs—or noticed physical wetness when you weren\'t actually interested?',
+        content: 'Felt very into it while nothing showed — or noticed wetness when you weren\'t actually interested?',
       },
       {
         type: 'name',
-        content: 'Non-concordance is a mismatch between physical arousal signs (like lubrication) and how interested or turned on you actually feel.',
+        content: 'Non-concordance is when physical arousal signs and how turned on you feel don\'t match—wetness without wanting, or wanting without obvious signs.',
       },
       {
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/non-concordance.png'),
-        illustrationCaption: 'Separate pathways for genital response and felt desire',
+        illustrationCaption: 'Body signs and wanting running on different tracks',
       },
       {
         type: 'understand',
-        content: 'Meta-analyses find only modest correlation between genital response and subjective arousal in women—often cited around 10–30% overlap (Chivers et al., 2010; Nagoski, 2015). Genital response can occur without desire; desire can exist without obvious physical signs. Consent and wanting are communicated, not inferred from wetness or erection.',
+        content: 'Meta-analyses find only modest correlation between genital response and subjective arousal in women—often cited around 10–30% overlap (Chivers et al., 2010; Nagoski, 2015). Genital response can happen without desire; desire can exist without obvious signs. Wanting is communicated — not inferred from wetness or erection.',
       },
       {
         type: 'explore',
