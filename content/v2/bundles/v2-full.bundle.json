@@ -9,33 +9,33 @@
       "name": "Angling",
       "category": "technique",
       "reviewStatus": "approved",
-      "definition": "Rotating, raising, or lowering the pelvis during penetration to adjust where internal stimulation occurs.",
-      "summary": "Angling involves making subtle adjustments to pelvic position during penetrative activity.",
+      "definition": "Tilting or shifting the pelvis during penetration so internal pressure lands somewhere better.",
+      "summary": "Angling is a small pelvic tilt — forward, back, or side to side — that changes where pressure lands inside.",
       "blocks": [
         {
           "id": "angling-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Ever tilted your hips mid-way to chase an angle that just landed better?"
+          "body": "Ever tilted your hips mid-way and felt the whole thing land differently?"
         },
         {
           "id": "angling-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Angling is tilting your pelvis—forward, back, or side to side—to change where internal stimulation lands."
+          "body": "Angling is tilting your pelvis—forward, back, or side to side—so internal pressure lands somewhere better."
         },
         {
           "id": "angling-media",
           "type": "media",
           "title": "See It",
-          "body": "How pelvic tilt redirects pressure along the anterior wall",
+          "body": "A few degrees of tilt — pressure landing somewhere new",
           "mediaId": "angling-diagram"
         },
         {
           "id": "angling-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "In the OMGyes Pleasure Report (Hensel et al., 2021), about nine in ten women reported using angling. Research suggests that naming a movement can help you notice it in the moment and repeat what works—instead of relying on vague “that felt good last time.”",
+          "body": "Hensel et al. (2021) found angling widely reported. Naming a tiny pelvic shift helps you catch it in the moment and repeat what works — instead of hoping “that felt good last time” shows up again.",
           "citationIds": [
             "angling-source-1"
           ]
@@ -44,7 +44,7 @@
           "id": "angling-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "When a small shift suddenly made things click, could you tell what changed — or did your body find it before you could name it?",
+          "body": "When a small tilt suddenly made things click, what actually changed — depth, pressure, or where it landed inside?",
           "privateByDefault": true
         },
         {
@@ -84,7 +84,7 @@
           "id": "angling-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to find the exact tilt that lights things up, instead of stumbling onto it by luck.",
+          "body": "I want to notice which small tilts actually change the feeling — instead of hoping I stumble into one.",
           "tone": "curious"
         },
         {
@@ -320,8 +320,8 @@
       "name": "Pairing",
       "category": "technique",
       "reviewStatus": "approved",
-      "definition": "Adding external clitoral stimulation during penetration, either solo or with a partner.",
-      "summary": "Pairing means combining internal penetration with external clitoral stimulation - using your own hand, a partner's hand, a toy, or body positioning to add external touch during penetrative activity.",
+      "definition": "Adding external clitoral touch during penetration — hand, partner, toy, or position — so inside and outside work together.",
+      "summary": "Pairing is penetration plus clitoral touch at the same time — your hand, a partner's, a toy, or a position that keeps outside contact alive.",
       "blocks": [
         {
           "id": "pairing-recognize",
@@ -333,20 +333,20 @@
           "id": "pairing-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Pairing is combining penetration with clitoral stimulation—your hand, a partner's hand, a toy, or positioning that adds external touch."
+          "body": "Pairing is combining penetration with clitoral touch—your hand, a partner's, a toy, or a position that keeps outside contact alive."
         },
         {
           "id": "pairing-media",
           "type": "media",
           "title": "See It",
-          "body": "Internal and external stimulation in parallel",
+          "body": "Inside and outside touch at once — not either-or",
           "mediaId": "pairing-diagram"
         },
         {
           "id": "pairing-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Research consistently links clitoral stimulation with higher orgasm likelihood during partnered sex. Frederick et al. (2018) and the OMGyes work (Hensel et al., 2021) report that many women pair penetration with external touch—not as a fix, but as a common, physiologically sensible pattern.",
+          "body": "Clitoral involvement tracks with higher orgasm likelihood during partnered sex (Frederick et al., 2018; Hensel et al., 2021). Pairing adds that touch during penetration — common physiology, not a workaround for something broken.",
           "citationIds": [
             "pairing-source-1",
             "pairing-source-2"
@@ -356,7 +356,7 @@
           "id": "pairing-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "When you've combined penetration with outside touch, what shifted — and is it something you find easy to ask for?",
+          "body": "When penetration plus outside touch landed better than either alone, what actually changed — intensity, focus, or how close you got?",
           "privateByDefault": true
         },
         {
@@ -397,7 +397,7 @@
           "id": "pairing-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to find the rhythm where the inside and outside touch work with each other.",
+          "body": "I want to notice the rhythm where the inside and outside touch start working with each other.",
           "tone": "curious"
         },
         {
@@ -544,8 +544,8 @@
       "name": "Plateauing",
       "category": "sensation",
       "reviewStatus": "approved",
-      "definition": "Sustained arousal at a consistent level without increase - a holding pattern that may precede orgasm or signal a need for change.",
-      "summary": "Plateauing is the experience of arousal staying at a steady level - neither building toward climax nor fading. It's like reaching a landing on a staircase and staying there for a while.",
+      "definition": "Arousal that holds steady — not climbing, not fading — a hover you can savor or read as a cue to change.",
+      "summary": "Plateauing is arousal holding altitude — steady, not tipping over, not dropping away.",
       "blocks": [
         {
           "id": "plateauing-recognize",
@@ -563,14 +563,14 @@
           "id": "plateauing-media",
           "type": "media",
           "title": "See It",
-          "body": "Sustained activation without a new peak",
+          "body": "Arousal holding altitude — not climbing, not dropping",
           "mediaId": "plateauing-illustration"
         },
         {
           "id": "plateauing-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Classic sexual response research describes a plateau phase—high arousal maintained without immediate climax (Masters & Johnson). Recognizing it helps you choose: savor the hover, or adjust stimulation if you want something to change.",
+          "body": "Sexual response models name a plateau phase — high arousal held without immediate climax (Masters & Johnson). Catching the hover lets you choose: stay with it, or change what you're doing if you want the climb again.",
           "citationIds": [
             "plateauing-source-1"
           ]
@@ -579,7 +579,7 @@
           "id": "plateauing-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Next time you're at that hovering point, notice: do you want to savor it, or change something? What does your body seem to ask for?",
+          "body": "When arousal held at a hover instead of climbing, what did you want — more of that steadiness, or a shift in pace or touch?",
           "privateByDefault": true
         },
         {
@@ -1085,8 +1085,8 @@
       "name": "Responsive Desire",
       "category": "timing",
       "reviewStatus": "approved",
-      "definition": "Sexual interest that arises in response to stimulation or erotic context, rather than appearing spontaneously beforehand.",
-      "summary": "Responsive desire describes a pattern where sexual interest emerges in response to something - a partner's initiation, an erotic situation, or physical stimulation that's already begun - rather than arising spontaneously as an internal urge.",
+      "definition": "Wanting that wakes once touch, mood, or connection is already underway — not as a spontaneous urge beforehand.",
+      "summary": "Responsive desire is wanting that shows up after something has started — a kiss, a hand, a mood — not as an out-of-the-blue urge.",
       "blocks": [
         {
           "id": "responsive-desire-recognize",
@@ -1098,20 +1098,20 @@
           "id": "responsive-desire-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Responsive desire is interest that shows up after stimulation, context, or connection—not as a spontaneous urge beforehand."
+          "body": "Responsive desire is wanting that wakes after stimulation, context, or connection—not as a spontaneous urge beforehand."
         },
         {
           "id": "responsive-desire-media",
           "type": "media",
           "title": "See It",
-          "body": "A spark of context, then desire blooming",
+          "body": "Context first — wanting blooming once things begin",
           "mediaId": "responsive-desire-illustration"
         },
         {
           "id": "responsive-desire-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Desire research (Basson, 2000; Nagoski, 2015) describes responsive desire as a common, healthy pattern—especially for women and in long-term relationships. Lack of spontaneous urge beforehand does not mean low libido; many people become interested once touch or mood engages them.",
+          "body": "Desire research describes responsive desire as a common, healthy pattern (Basson, 2000; Nagoski, 2015) — interest that wakes once touch or mood engages you. Missing a spontaneous spark beforehand is not low desire by itself.",
           "citationIds": [
             "responsive-desire-source-1",
             "responsive-desire-source-2"
@@ -1121,7 +1121,7 @@
           "id": "responsive-desire-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Think back to a time wanting showed up late, only after you'd started. What helped you get there — and what made it hard to trust it would come?",
+          "body": "When wanting showed up only after you'd already started, what helped it arrive — pace, kind of touch, or feeling unhurried?",
           "privateByDefault": true
         },
         {
@@ -1161,7 +1161,7 @@
           "id": "responsive-desire-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I'd like to learn what actually turns the key for me — what gets me from 'not thinking about it' to 'yes'.",
+          "body": "I want to notice what gets me from not-thinking-about-it to yes — the on-ramp, not a spark I have to force.",
           "tone": "curious"
         },
         {
@@ -2290,33 +2290,33 @@
       "name": "Internal Clitoral Stimulation",
       "category": "anatomy",
       "reviewStatus": "approved",
-      "definition": "Stimulating internal clitoral tissue through the vaginal wall - what's often called \"G-spot\" sensation.",
-      "summary": "Internal clitoral stimulation refers to reaching the internal portions of the clitoris through the vaginal wall.",
+      "definition": "Pleasure from front-wall pressure that reaches internal clitoral tissue — often what people mean by “G-spot” feeling.",
+      "summary": "Internal clitoral stimulation is front-wall pressure that reaches the rest of the clitoris through the vaginal lining — toward the belly button, not deeper for depth's sake.",
       "blocks": [
         {
           "id": "internal-stimulation-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Noticed certain angles create pleasure on the front wall — different from deeper penetration?"
+          "body": "Felt a fuller yes when pressure found the front wall — not deeper, just angled right?"
         },
         {
           "id": "internal-stimulation-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Internal clitoral stimulation is reaching clitoral tissue through the vaginal wall—especially the anterior (front) wall toward the belly button."
+          "body": "Internal clitoral stimulation is front-wall pressure that reaches internal clitoral tissue—often what people mean by “G-spot” feeling."
         },
         {
           "id": "internal-stimulation-media",
           "type": "media",
           "title": "See It",
-          "body": "Pressure on the anterior wall engaging internal crura",
+          "body": "Front-wall pressure reaching the rest of the clitoris",
           "mediaId": "internal-stimulation-illustration"
         },
         {
           "id": "internal-stimulation-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Research suggests many “vaginal” orgasms involve internal clitoral stimulation (Foldes & Buisson, 2009). Techniques like angling can improve contact with the anterior wall where crura and urethral sponge lie close to the surface.",
+          "body": "Imaging and clinical work suggest many “vaginal” orgasms involve internal clitoral stimulation (Foldes & Buisson, 2009). Angling and similar moves help because they press the front wall where internal tissue sits close — explore contact there, not harder thrust.",
           "citationIds": [
             "internal-stimulation-source-1",
             "internal-stimulation-source-2"
@@ -2326,7 +2326,7 @@
           "id": "internal-stimulation-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "When front-wall stimulation has worked, what position or angle got you there? What would help you find it again?",
+          "body": "When front-wall pressure worked, was it the angle, the curve, or how steady the contact stayed?",
           "privateByDefault": true
         },
         {
@@ -2367,14 +2367,14 @@
           "id": "internal-stimulation-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to find the angles that press right where the internal clitoris sits.",
+          "body": "I want to notice which angles press where the internal clitoris actually sits.",
           "tone": "curious"
         },
         {
           "id": "internal-stimulation-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "If deep penetration alone doesn't do much, that's normal — it's about reaching the right tissue, not trying harder.",
+          "body": "If deep alone doesn't do much, it may just not be reaching the tissue that does — angle usually beats force.",
           "tone": "reassuring"
         }
       ],
@@ -2469,7 +2469,7 @@
       "kind": "diagram",
       "path": "native://diagram/angling",
       "alt": "Native diagram for Angling.",
-      "caption": "How pelvic tilt redirects pressure along the anterior wall",
+      "caption": "A few degrees of tilt — pressure landing somewhere new",
       "reducedMotionFallback": "assets/images/concepts/illustrations/angling.png"
     },
     {
@@ -2477,7 +2477,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/angling.png",
       "alt": "Warm educational illustration for Angling.",
-      "caption": "How pelvic tilt redirects pressure along the anterior wall",
+      "caption": "A few degrees of tilt — pressure landing somewhere new",
       "reducedMotionFallback": "assets/images/concepts/illustrations/angling.png"
     },
     {
@@ -2517,7 +2517,7 @@
       "kind": "diagram",
       "path": "native://diagram/pairing",
       "alt": "Native diagram for Pairing.",
-      "caption": "Internal and external stimulation in parallel",
+      "caption": "Inside and outside touch at once — not either-or",
       "reducedMotionFallback": "assets/images/concepts/illustrations/pairing.png"
     },
     {
@@ -2525,7 +2525,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/pairing.png",
       "alt": "Warm educational illustration for Pairing.",
-      "caption": "Internal and external stimulation in parallel",
+      "caption": "Inside and outside touch at once — not either-or",
       "reducedMotionFallback": "assets/images/concepts/illustrations/pairing.png"
     },
     {
@@ -2549,7 +2549,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/plateauing.png",
       "alt": "Warm educational illustration for Plateauing.",
-      "caption": "Sustained activation without a new peak",
+      "caption": "Arousal holding altitude — not climbing, not dropping",
       "reducedMotionFallback": "assets/images/concepts/illustrations/plateauing.png"
     },
     {
@@ -2613,7 +2613,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/responsive-desire.png",
       "alt": "Warm educational illustration for Responsive Desire.",
-      "caption": "A spark of context, then desire blooming",
+      "caption": "Context first — wanting blooming once things begin",
       "reducedMotionFallback": "assets/images/concepts/illustrations/responsive-desire.png"
     },
     {
@@ -2621,7 +2621,7 @@
       "kind": "video",
       "path": "assets/videos/responsive-desire.mp4",
       "alt": "Motion study for Responsive Desire.",
-      "caption": "A spark of context, then desire blooming",
+      "caption": "Context first — wanting blooming once things begin",
       "reducedMotionFallback": "assets/images/concepts/illustrations/responsive-desire.png"
     },
     {
@@ -2709,7 +2709,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/internal-stimulation.png",
       "alt": "Warm educational illustration for Internal Clitoral Stimulation.",
-      "caption": "Pressure on the anterior wall engaging internal crura",
+      "caption": "Front-wall pressure reaching the rest of the clitoris",
       "reducedMotionFallback": "assets/images/concepts/illustrations/internal-stimulation.png"
     },
     {

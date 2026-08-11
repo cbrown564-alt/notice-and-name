@@ -10,12 +10,12 @@ export const concepts: Concept[] = [
     name: 'Angling',
     category: 'technique',
     definition:
-      'Rotating, raising, or lowering the pelvis during penetration to adjust where internal stimulation occurs.',
-    description: `Angling involves making subtle adjustments to pelvic position during penetrative activity. By tilting, raising, or lowering your pelvis, you can change the angle of penetration to target different areas of internal sensation.
+      'Tilting or shifting the pelvis during penetration so internal pressure lands somewhere better.',
+    description: `Angling is a small pelvic tilt — forward, back, or side to side — that changes where pressure lands inside.
 
-Many people discover this technique intuitively - you might notice yourself naturally shifting position to find an angle that feels better. Naming this movement makes it easier to recognize when you're doing it and to communicate about it.
+Many people already do it without a name: hips shift mid-way because something suddenly feels more right. Naming the move makes that catch repeatable, and easier to ask for.
 
-The adjustment can be small - even a slight change in pelvic tilt can shift sensations significantly. Some find certain angles consistently feel better, while others enjoy varying the angle throughout an experience.`,
+It does not have to be dramatic. A few degrees can redirect everything; some people chase one favorite tilt, others keep adjusting as sensation moves.`,
     researchBasis:
       'Identified in the OMGyes Pleasure Report research as one of four named techniques associated with enhanced pleasure. The research found that having language for this movement helped women recognize and replicate what works for them.',
     source: 'Hensel et al., 2021, PLOS ONE',
@@ -31,21 +31,21 @@ The adjustment can be small - even a slight change in pelvic tilt can shift sens
     slides: [
       {
         type: 'recognize',
-        content: 'Have you ever shifted your hips during penetration to find an angle that felt better?',
+        content: 'Ever tilted your hips mid-way and felt the whole thing land differently?',
       },
       {
         type: 'name',
-        content: 'Angling is tilting your pelvis—forward, back, or side to side—to change where internal stimulation lands.',
+        content: 'Angling is tilting your pelvis—forward, back, or side to side—so internal pressure lands somewhere better.',
       },
       {
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/angling.png'),
-        illustrationCaption: 'How pelvic tilt redirects pressure along the anterior wall',
+        illustrationCaption: 'A few degrees of tilt — pressure landing somewhere new',
       },
       {
         type: 'understand',
-        content: 'In the OMGyes Pleasure Report (Hensel et al., 2021), about nine in ten women reported using angling. Research suggests that naming a movement can help you notice it in the moment and repeat what works—instead of relying on vague “that felt good last time.”',
+        content: 'Hensel et al. (2021) found angling widely reported. Naming a tiny pelvic shift helps you catch it in the moment and repeat what works — instead of hoping “that felt good last time” shows up again.',
       },
       {
         type: 'explore',
@@ -158,12 +158,12 @@ Circling, light pressure, teasing, or simply staying put reframes shallow penetr
     category: 'technique',
     thumbnail: require('@/assets/images/concepts/thumbnails/pairing.png'),
     definition:
-      'Adding external clitoral stimulation during penetration, either solo or with a partner.',
-    description: `Pairing means combining internal penetration with external clitoral stimulation - using your own hand, a partner's hand, a toy, or body positioning to add external touch during penetrative activity.
+      'Adding external clitoral touch during penetration — hand, partner, toy, or position — so inside and outside work together.',
+    description: `Pairing is penetration plus clitoral touch at the same time — your hand, a partner's, a toy, or a position that keeps outside contact alive.
 
-This technique directly addresses what research consistently shows: most women need clitoral stimulation for orgasm, and penetration alone often doesn't provide sufficient clitoral contact. Pairing treats this not as a problem but as useful information about how bodies work.
+Penetration alone often skips the tissue that does most of the work. Pairing treats that as information, not a flaw: two inputs, one experience.
 
-Pairing can happen in many ways - reaching down yourself, guiding a partner's hand, using a small vibrator, or choosing positions that naturally create external contact. The key insight is that adding this stimulation is normal, common, and makes physiological sense.`,
+Reaching down, guiding a hand, or picking a closer position are all pairing. The point is combination, not either-or.`,
     researchBasis:
       'Extensive research shows that the clitoris, not the vagina, is the primary site of orgasmic sensation for most women. Studies find that adding clitoral stimulation during penetration significantly increases likelihood of orgasm.',
     source: 'Hensel et al., 2021, PLOS ONE; Frederick et al., 2018',
@@ -178,21 +178,21 @@ Pairing can happen in many ways - reaching down yourself, guiding a partner's ha
     slides: [
       {
         type: 'recognize',
-        content: 'Have you found that penetration alone doesn\'t quite get you there—but adding clitoral touch changes everything?',
+        content: 'Found that penetration alone doesn\'t quite get you there, but adding clitoral touch changes everything?',
       },
       {
         type: 'name',
-        content: 'Pairing is combining penetration with clitoral stimulation—your hand, a partner\'s hand, a toy, or positioning that adds external touch.',
+        content: 'Pairing is combining penetration with clitoral touch—your hand, a partner\'s, a toy, or a position that keeps outside contact alive.',
       },
       {
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/pairing.png'),
-        illustrationCaption: 'Internal and external stimulation in parallel',
+        illustrationCaption: 'Inside and outside touch at once — not either-or',
       },
       {
         type: 'understand',
-        content: 'Research consistently links clitoral stimulation with higher orgasm likelihood during partnered sex. Frederick et al. (2018) and the OMGyes work (Hensel et al., 2021) report that many women pair penetration with external touch—not as a fix, but as a common, physiologically sensible pattern.',
+        content: 'Clitoral involvement tracks with higher orgasm likelihood during partnered sex (Frederick et al., 2018; Hensel et al., 2021). Pairing adds that touch during penetration — common physiology, not a workaround for something broken.',
       },
       {
         type: 'explore',
@@ -258,12 +258,12 @@ Rushing past the climb often flattens the peak. Letting it accumulate is not del
     category: 'sensation',
     thumbnail: require('@/assets/images/concepts/thumbnails/plateauing.png'),
     definition:
-      'Sustained arousal at a consistent level without increase - a holding pattern that may precede orgasm or signal a need for change.',
-    description: `Plateauing is the experience of arousal staying at a steady level - neither building toward climax nor fading. It's like reaching a landing on a staircase and staying there for a while.
+      'Arousal that holds steady — not climbing, not fading — a hover you can savor or read as a cue to change.',
+    description: `Plateauing is arousal holding altitude — steady, not tipping over, not dropping away.
 
-This can happen for different reasons. Sometimes plateauing is a natural pause before orgasm, a moment of hovering at high arousal. Other times, it signals that what's happening isn't quite leading where you want to go - perhaps something needs to shift, change pace, or add new stimulation.
+Sometimes that hover is the good part: high and even, worth staying with. Other times it is information that pace, pressure, or kind of touch wants a shift.
 
-Recognizing a plateau helps you respond to it intentionally. You might choose to savor the sustained pleasure, or you might use it as information that it's time to try something different.`,
+Naming the plateau drops the panic that something stalled. You can stay, or change — both are responses, not failures.`,
     researchBasis:
       'Sexual response research identifies a plateau phase as common in arousal cycles. Understanding this phase helps differentiate between a natural pause and a signal that stimulation needs adjustment.',
     source: 'Masters & Johnson sexual response cycle',
@@ -277,7 +277,7 @@ Recognizing a plateau helps you respond to it intentionally. You might choose to
     slides: [
       {
         type: 'recognize',
-        content: 'Have you reached a point where arousal stays steady—not fading, but not climbing either? Like hovering at a certain altitude?',
+        content: 'Reached a point where arousal just holds — steady, not fading, not climbing — like hovering?',
       },
       {
         type: 'name',
@@ -287,11 +287,11 @@ Recognizing a plateau helps you respond to it intentionally. You might choose to
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/plateauing.png'),
-        illustrationCaption: 'Sustained activation without a new peak',
+        illustrationCaption: 'Arousal holding altitude — not climbing, not dropping',
       },
       {
         type: 'understand',
-        content: 'Classic sexual response research describes a plateau phase—high arousal maintained without immediate climax (Masters & Johnson). Recognizing it helps you choose: savor the hover, or adjust stimulation if you want something to change.',
+        content: 'Sexual response models name a plateau phase — high arousal held without immediate climax (Masters & Johnson). Catching the hover lets you choose: stay with it, or change what you\'re doing if you want the climb again.',
       },
       {
         type: 'explore',
@@ -502,12 +502,12 @@ Owning the window reframes that slower start as the good part of the night, not 
     name: 'Responsive Desire',
     category: 'timing',
     definition:
-      'Sexual interest that arises in response to stimulation or erotic context, rather than appearing spontaneously beforehand.',
-    description: `Responsive desire describes a pattern where sexual interest emerges in response to something - a partner's initiation, an erotic situation, or physical stimulation that's already begun - rather than arising spontaneously as an internal urge.
+      'Wanting that wakes once touch, mood, or connection is already underway — not as a spontaneous urge beforehand.',
+    description: `Responsive desire is wanting that shows up after something has started — a kiss, a hand, a mood — not as an out-of-the-blue urge.
 
-This is an extremely common pattern, especially for women in long-term relationships. Research suggests that responsive desire is just as valid and healthy as spontaneous desire - it's simply a different pathway to the same destination.
+It is a common, healthy pattern, especially in longer relationships. Missing a spontaneous spark beforehand is not low desire by itself; many people get fully into it once the on-ramp begins.
 
-Understanding responsive desire can be liberating. It means you don't need to "feel like it" beforehand to enjoy sex. Many people with responsive desire find that once things start and they get into the experience, desire and arousal build naturally. The absence of spontaneous desire isn't a problem to fix.`,
+Naming this drops the pressure to “feel like it” first. You can begin gently, stay free to pause, and let wanting arrive when the conditions are right.`,
     researchBasis:
       'Dr. Emily Nagoski\'s synthesis of desire research highlights responsive desire as a normal, common pattern. Studies show responsive desire is particularly common for women and doesn\'t indicate low libido.',
     source: 'Nagoski, 2015; Basson circular model of desire',
@@ -522,22 +522,22 @@ Understanding responsive desire can be liberating. It means you don't need to "f
     slides: [
       {
         type: 'recognize',
-        content: 'Do you rarely feel random urges for sex—but once things start, you get into it and enjoy yourself fully?',
+        content: 'Notice you don\'t get many out-of-the-blue urges — but once things get going, you\'re all in?',
       },
       {
         type: 'name',
-        content: 'Responsive desire is interest that shows up after stimulation, context, or connection—not as a spontaneous urge beforehand.',
+        content: 'Responsive desire is wanting that wakes after stimulation, context, or connection—not as a spontaneous urge beforehand.',
       },
       {
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/responsive-desire.png'),
         illustrationVideo: require('@/assets/videos/responsive-desire.mp4'),
-        illustrationCaption: 'A spark of context, then desire blooming',
+        illustrationCaption: 'Context first — wanting blooming once things begin',
       },
       {
         type: 'understand',
-        content: 'Desire research (Basson, 2000; Nagoski, 2015) describes responsive desire as a common, healthy pattern—especially for women and in long-term relationships. Lack of spontaneous urge beforehand does not mean low libido; many people become interested once touch or mood engages them.',
+        content: 'Desire research describes responsive desire as a common, healthy pattern (Basson, 2000; Nagoski, 2015) — interest that wakes once touch or mood engages you. Missing a spontaneous spark beforehand is not low desire by itself.',
       },
       {
         type: 'explore',
@@ -1035,12 +1035,12 @@ That shift helps: stop hunting a spot, explore what pressure and angle actually 
     name: 'Internal Clitoral Stimulation',
     category: 'anatomy',
     definition:
-      'Stimulating internal clitoral tissue through the vaginal wall - what\'s often called "G-spot" sensation.',
-    description: `Internal clitoral stimulation refers to reaching the internal portions of the clitoris through the vaginal wall. The area of sensitivity on the front vaginal wall (toward the belly button) is where internal clitoral tissue and the urethral sponge can be felt through the vaginal lining.
+      'Pleasure from front-wall pressure that reaches internal clitoral tissue — often what people mean by “G-spot” feeling.',
+    description: `Internal clitoral stimulation is front-wall pressure that reaches the rest of the clitoris through the vaginal lining — toward the belly button, not deeper for depth's sake.
 
-This reframes "vaginal orgasm" - rather than a completely different type of orgasm, internal stimulation is often still clitoral stimulation, just accessed differently. The sensations may feel distinct from external touch because different portions of the structure are being stimulated.
+CUV names the linked anatomy; angling is one way to get there. This concept is the felt part: a fuller, different yes than surface touch, still the same organ accessed from inside.
 
-Techniques like angling and certain positions work because they optimize contact with this anterior wall area. Understanding this helps with intentional exploration rather than hoping to accidentally find the right spot.`,
+When deep alone does little, the tissue that matters may simply not be getting pressed. Angle and curve usually beat force.`,
     researchBasis:
       'Studies suggest that vaginal orgasms likely involve internal clitoral stimulation. The anterior vaginal wall\'s sensitivity corresponds to underlying clitoral and urethral tissue.',
     source: 'Foldes & Buisson, 2009; G-spot research',
@@ -1055,21 +1055,21 @@ Techniques like angling and certain positions work because they optimize contact
     slides: [
       {
         type: 'recognize',
-        content: 'Have you noticed that certain angles or positions create pleasurable sensations on the front wall of the vagina—different from deeper penetration?',
+        content: 'Felt a fuller yes when pressure found the front wall — not deeper, just angled right?',
       },
       {
         type: 'name',
-        content: 'Internal clitoral stimulation is reaching clitoral tissue through the vaginal wall—especially the anterior (front) wall toward the belly button.',
+        content: 'Internal clitoral stimulation is front-wall pressure that reaches internal clitoral tissue—often what people mean by “G-spot” feeling.',
       },
       {
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/internal-stimulation.png'),
-        illustrationCaption: 'Pressure on the anterior wall engaging internal crura',
+        illustrationCaption: 'Front-wall pressure reaching the rest of the clitoris',
       },
       {
         type: 'understand',
-        content: 'Research suggests many “vaginal” orgasms involve internal clitoral stimulation (Foldes & Buisson, 2009). Techniques like angling can improve contact with the anterior wall where crura and urethral sponge lie close to the surface.',
+        content: 'Imaging and clinical work suggest many “vaginal” orgasms involve internal clitoral stimulation (Foldes & Buisson, 2009). Angling and similar moves help because they press the front wall where internal tissue sits close — explore contact there, not harder thrust.',
       },
       {
         type: 'explore',

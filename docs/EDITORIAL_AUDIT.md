@@ -9,8 +9,9 @@ Phase B rewrite batches landed 2026-08-11 (Europe/London):
 - **Batch 1:** `sexual-self-esteem`, `body-appreciation`, `edging`, `rocking`, `golden-trio`
 - **Batch 2:** `warmup-window`, `non-concordance`, `pulsing`, `spreading`, `spectatoring`
 - **Batch 3:** `embodied-presence`, `building`, `shallowing`, `spontaneous-desire`, `clitoral-structure`, `nerve-density`, `clitourethrovaginal`
+- **Batch 4:** `angling`, `pairing`, `plateauing`, `responsive-desire`, `internal-stimulation`
 
-Remaining concepts below keep audit priorities until rewritten.
+All 22 shipping concepts are conceptually rewritten. Remaining work is cross-cutting UI/label polish (not concept copy).
 
 ## Cross-cutting findings
 
@@ -23,7 +24,7 @@ Remaining concepts below keep audit priorities until rewritten.
 | Summaries often open with describes / refers to / is the practice of | P2 | Cover/list copy; rewrite toward private noticing language. |
 | Reflection prompts overuse Think of a time / Recall a time / How do you feel | P1 | Worksheet intake. Prefer one concrete noticing question. |
 | Curiosity phrases often I want to learn / I am curious what | P2 | Fine in small doses; too many sound like therapy homework. |
-| All 22 concepts are reviewStatus approved with full phrase use-cases | — | Coverage exists; quality is uneven. |
+| All 22 concepts are reviewStatus approved with full phrase use-cases | — | Coverage + concept rewrite batches 1–4 complete. |
 
 ### Priority summary
 
@@ -31,17 +32,17 @@ Remaining concepts below keep audit priorities until rewritten.
 | --- | --- | --- |
 | **P0** | **0** | Cleared by rewrite batch 1 (was 3). |
 | **P1** | **0** | Cleared by rewrite batch 3 (was 7). |
-| **P2** | **5** | Solid enough to ship; polish Understand / See / summary voice later. |
-| **Rewritten** | **17** | Batches 1–3 (see below). |
+| **P2** | **0** | Cleared by rewrite batch 4 (was 5). |
+| **Rewritten** | **22** | Batches 1–4 — all shipping concepts. |
 
 ---
 
 ## Concepts
 
-### 1. `angling` — Angling (technique) — **P2**
+### 1. `angling` — Angling (technique) — **Rewritten**
 - **Strengths:** Clean Notice moment; Name precise; Keep and partner-request sayable and adult.
-- **Weak spots:** Understand leads with study branding; SEE caption slightly clinical; curiosity a touch goal-seeking.
-- **Priority:** P2
+- **Rewrite (batch 4):** Understand drops OMGyes study branding for Hensel + adult insight; See caption felt (few degrees / pressure landing); curiosity noticing not goal-seeking; summary/Name leave textbook.
+- **Priority:** Rewritten (was P2)
 
 ### 2. `rocking` — Rocking (technique) — **Rewritten**
 - **Strengths:** Partner-request excellent (losing the good spot when separating); reassurance owns minimal movement without apology.
@@ -53,20 +54,20 @@ Remaining concepts below keep audit priorities until rewritten.
 - **Rewrite (batch 3):** Notice names entrance as the point; Reflect asks what you wanted more of; See caption drops introitus lab-speak; Understand keeps Hensel with adult insight; Name/summary leave research-report voice.
 - **Priority:** Rewritten (was P1)
 
-### 4. `pairing` — Pairing (technique) — **P2**
+### 4. `pairing` — Pairing (technique) — **Rewritten**
 - **Strengths:** Recognize lived; partner-request and boundary (reaching down) practical and non-shaming.
-- **Weak spots:** Understand citation-stack heavy; Reflect second clause tips into skills-coaching.
-- **Priority:** P2
+- **Rewrite (batch 4):** Reflect drops skills-coaching ask for a concrete what-changed question; Understand keeps citations with one adult insight; See caption inside-and-outside not lab parallel; summary/Name leave essay voice.
+- **Priority:** Rewritten (was P2)
 
 ### 5. `building` — Building (sensation) — **Rewritten**
 - **Strengths:** Recognize has sensory specificity; Keep / partner-request private and precise.
 - **Rewrite (batch 3):** Reflect leaves worksheet recall for a concrete climb question; See caption warmth-gathering not vascular/neural lab; summary/Name drop textbook framing.
 - **Priority:** Rewritten (was P1)
 
-### 6. `plateauing` — Plateauing (sensation) — **P2**
+### 6. `plateauing` — Plateauing (sensation) — **Rewritten**
 - **Strengths:** Names a rarely-honored state without pathologizing; Keep legitimizes not tipping over; phrases partner-safe.
-- **Weak spots:** Understand lecture-y; Reflect slightly instructs ('Next time… notice').
-- **Priority:** P2
+- **Rewrite (batch 4):** Reflect leaves Next-time instruct for a concrete hover choice; See caption altitude not activation-lab; Understand keeps Masters & Johnson with adult choose-stay-or-shift insight; summary/Name private noticing voice.
+- **Priority:** Rewritten (was P2)
 
 ### 7. `edging` — Edging (sensation) — **Rewritten**
 - **Strengths:** Recognize and Reflect embodied and adult; Keep sharp; reassurance ('not a test I can fail') on-brand.
@@ -88,10 +89,10 @@ Remaining concepts below keep audit priorities until rewritten.
 - **Rewrite (batch 2):** See caption warmth-before-specificity; Understand keeps citation with adult insight; Reflect one concrete noticing question; curiosity drops homework.
 - **Priority:** Rewritten (was P1)
 
-### 11. `responsive-desire` — Responsive Desire (timing) — **P2**
+### 11. `responsive-desire` — Responsive Desire (timing) — **Rewritten**
 - **Strengths:** Strong launch concept; Keep and reassurance partner-safe and non-pathologizing; boundary protects pause.
-- **Weak spots:** Understand name-drops theorists in-body; Reflect long. Still above bar overall.
-- **Priority:** P2
+- **Rewrite (batch 4):** Reflect one concrete on-ramp question; Understand keeps Basson/Nagoski with adult insight, drops gender-othering lead; curiosity/See less homework; Name/summary wanting-wakes voice.
+- **Priority:** Rewritten (was P2)
 
 ### 12. `spontaneous-desire` — Spontaneous Desire (timing) — **Rewritten**
 - **Strengths:** Boundary (urge is not an obligation) excellent; reassurance avoids prescribing frequency.
@@ -143,10 +144,10 @@ Remaining concepts below keep audit priorities until rewritten.
 - **Rewrite (batch 3):** Notice names front-wall yes; partner-request stays with pressure instead of hunting a spot; Understand keeps Jannini without polemic; Name/summary adult and precise.
 - **Priority:** Rewritten (was P1)
 
-### 22. `internal-stimulation` — Internal Clitoral Stimulation (anatomy) — **P2**
+### 22. `internal-stimulation` — Internal Clitoral Stimulation (anatomy) — **Rewritten**
 - **Strengths:** Tight link to angling; partner-request and boundary (angle rather than harder) precise and partner-safe; Keep clear.
-- **Weak spots:** Overlaps CUV / angling / structure (editorial fatigue); Recognize average; reassure 'normal' slightly clinical.
-- **Priority:** P2
+- **Rewrite (batch 4):** Notice/Reflect felt front-wall yes; summary distinguishes CUV (map) / angling (move) / this (felt access); reassure drops clinical 'normal' for angle-beats-force; See caption felt not crura-lab.
+- **Priority:** Rewritten (was P2)
 
 ---
 
@@ -188,17 +189,25 @@ Edited `content/v2/copy/concept-copy.json` + `data/vocabulary.ts` (definition / 
 
 ---
 
-## Recommended next rewrite batch
+## Rewrite batch 4 (landed)
 
-Remaining **P2** polish (no concept-level P1 left):
+Edited `content/v2/copy/concept-copy.json` + `data/vocabulary.ts` (definition / summary / Name / Understand / See), then regenerated the v2 full bundle:
 
-1. `angling` — Understand study branding; SEE slightly clinical; curiosity goal-seeking.
-2. `pairing` — Understand citation-stack; Reflect skills-coaching tip.
-3. `plateauing` — Understand lecture-y; Reflect slightly instructs.
-4. `responsive-desire` — Understand name-drops; Reflect long.
-5. `internal-stimulation` — overlap fatigue with CUV/angling/structure; reassure slightly clinical.
+1. `angling` — Notice, Reflect, curiosity; See/Name/summary/Understand (was P2).
+2. `pairing` — Reflect, curiosity; See/Name/summary/Understand (was P2).
+3. `plateauing` — Notice, Reflect; See/Name/summary/Understand (was P2).
+4. `responsive-desire` — Reflect, curiosity; See/Name/summary/Understand (was P2).
+5. `internal-stimulation` — Notice, Reflect, reassure/curiosity; See/Name/summary/Understand (was P2).
 
-Cross-cutting P1 rows (Recognize UI label; See It captions; Reflect worksheet) may still apply globally even when concept P1 count is 0 — leave those rows unless separately fixed.
+## Remaining (not concept rewrite)
+
+Concept-level P0/P1/P2 copy is cleared for all 22. Cross-cutting polish still open — do **not** expand into StoreKit:
+
+- **P1 UI label:** step still says **Recognize** in `ConceptPages.swift` while brand loop is **Notice** (bundle type may stay `recognize`).
+- **P2 titles:** bundle reflection titled Field Note vs UI Reflect.
+- Global See/Understand/curiosity hygiene may still apply on older surface copy outside these rewrites; spot-check on device.
+
+Phase B next per `PLAN.md`: device QA, export via share sheet / Files, worst media gaps only.
 
 ## Edit surfaces reminder
 
