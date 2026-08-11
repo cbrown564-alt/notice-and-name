@@ -27,7 +27,7 @@ struct ConceptDiagramView: View {
     let caption: String?
 
     /// Ids this view knows how to draw natively.
-    static let knownDiagramIds: Set<String> = ["angling", "rocking", "shallowing", "pairing", "edging", "iceberg", "nerve-density", "cuv-complex", "internal-stimulation", "building", "plateauing", "pulsing", "spreading"]
+    static let knownDiagramIds: Set<String> = ["angling", "rocking", "shallowing", "pairing", "edging", "iceberg", "nerve-density", "cuv-complex", "internal-stimulation", "building", "plateauing", "pulsing", "spreading", "warmup-window", "responsive-desire", "spontaneous-desire", "spectatoring", "embodied-presence", "non-concordance"]
 
     /// Returns the diagram id for a `native://diagram/<id>` path, or `nil` for
     /// any other path (so non-native diagrams keep the framed placeholder).
@@ -70,6 +70,18 @@ struct ConceptDiagramView: View {
             labeled { PulsingDiagramView() }
         case "spreading":
             labeled { SpreadingDiagramView() }
+        case "warmup-window":
+            labeled { WarmupWindowDiagramView() }
+        case "responsive-desire":
+            labeled { ResponsiveDesireDiagramView() }
+        case "spontaneous-desire":
+            labeled { SpontaneousDesireDiagramView() }
+        case "spectatoring":
+            labeled { SpectatoringDiagramView() }
+        case "embodied-presence":
+            labeled { EmbodiedPresenceDiagramView() }
+        case "non-concordance":
+            labeled { NonConcordanceDiagramView() }
         default:
             // Unknown id: reuse the shared framed placeholder.
             MediaPlaceholderCard(
@@ -2247,6 +2259,846 @@ private struct SpreadingDiagramView: View {
             lengths.append(sum)
         }
         return lengths
+    }
+}
+
+
+
+
+// MARK: - Warm-up Window
+
+/// Slow cooker: fast drags fill nothing; slow sustained drag fills engorgement.
+/// Insight: Too fast / Warming / Ready.
+private struct WarmupWindowDiagramView: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var fill: Double = 0.08
+    @State private var hasInteracted = false
+    @State private var readyHaptic = false
+    @State private var lastSample: (Date, CGPoint)?
+    @State private var recentSpeed: Double = 0
+    @State private var isDragging = false
+    @State private var lastTick: Date?
+
+    private let natural = CGSize(width: 280, height: 280)
+    private let readyMark = 0.78
+    /// Screen points/sec — above this, fill stalls / drains slightly.
+    private let slowCeiling: Double = 140
+
+    var body: some View {
+        let level = reduceMotion ? 0.52 : fill
+        DiagramSurface(
+            idlePulse: !hasInteracted && !reduceMotion,
+            pulseOffset: CGSize(width: 0, height: 40)
+        ) {
+            ZStack(alignment: .top) {
+                TimelineView(.animation(minimumInterval: 1.0 / 30.0, paused: reduceMotion)) { timeline in
+                    Canvas { context, size in
+                        draw(context, size: size, fill: level, dragging: isDragging && !reduceMotion)
+                    }
+                    .onChange(of: timeline.date) { _, date in
+                        idleDecay(to: date)
+                    }
+                }
+                DiagramInsightChip(text: insightLabel(level: level, speed: recentSpeed, dragging: isDragging && !reduceMotion))
+                VStack {
+                    Spacer()
+                    DiagramAffordanceHint(text: "Drag slowly", visible: !hasInteracted && !reduceMotion)
+                        .padding(.bottom, 14)
+                }
+            }
+            .contentShape(Rectangle())
+            .modifier(DiagramDragModifier(enabled: !reduceMotion, gesture: dragGesture))
+        }
+    }
+
+    private func insightLabel(level: Double, speed: Double, dragging: Bool) -> String {
+        if level >= readyMark { return "Ready" }
+        if dragging && speed > slowCeiling { return "Too fast" }
+        return "Warming"
+    }
+
+    private func idleDecay(to date: Date) {
+        guard !reduceMotion else { return }
+        let dt: Double
+        if let lastTick {
+            dt = min(0.05, date.timeIntervalSince(lastTick))
+        } else {
+            dt = 1.0 / 30.0
+        }
+        lastTick = date
+        if !isDragging && hasInteracted {
+            fill = max(0.06, fill - dt * 0.05)
+            if fill < readyMark - 0.08 { readyHaptic = false }
+        }
+    }
+
+    private var dragGesture: some Gesture {
+        DragGesture(minimumDistance: 0)
+            .onChanged { value in
+                if !hasInteracted { hasInteracted = true }
+                isDragging = true
+                let now = Date()
+                let loc = value.location
+                var speed = recentSpeed
+                if let last = lastSample {
+                    let dt = max(0.001, now.timeIntervalSince(last.0))
+                    let dx = Double(loc.x - last.1.x)
+                    let dy = Double(loc.y - last.1.y)
+                    let instant = sqrt(dx * dx + dy * dy) / dt
+                    speed = speed * 0.55 + instant * 0.45
+                }
+                lastSample = (now, loc)
+                recentSpeed = speed
+
+                // Slow sustained motion fills; fast motion does nothing useful.
+                let slowFactor = max(0, 1 - speed / slowCeiling)
+                let gain = 0.012 * pow(slowFactor, 1.6)
+                if gain > 0.0015 {
+                    fill = min(1, fill + gain)
+                } else if speed > slowCeiling * 1.15 {
+                    fill = max(0.06, fill - 0.004)
+                }
+
+                if fill >= readyMark && !readyHaptic {
+                    readyHaptic = true
+                    NativeHaptics.impactLight()
+                }
+            }
+            .onEnded { _ in
+                isDragging = false
+                lastSample = nil
+                recentSpeed = 0
+            }
+    }
+
+    private func draw(_ context: GraphicsContext, size: CGSize, fill: Double, dragging: Bool) {
+        let world = worldTransform(in: size, natural: natural)
+        let cx: CGFloat = 140
+        let potTop: CGFloat = 72
+        let potBottom: CGFloat = 210
+        let potW: CGFloat = 110
+        let warmth = smoothstep(0.1, readyMark, fill)
+
+        // Vessel
+        var pot = Path()
+        pot.move(to: CGPoint(x: cx - potW / 2, y: potTop))
+        pot.addLine(to: CGPoint(x: cx - potW / 2 + 8, y: potBottom))
+        pot.addQuadCurve(
+            to: CGPoint(x: cx + potW / 2 - 8, y: potBottom),
+            control: CGPoint(x: cx, y: potBottom + 18)
+        )
+        pot.addLine(to: CGPoint(x: cx + potW / 2, y: potTop))
+        let potScreen = pot.applying(world)
+        context.stroke(potScreen, with: .color(AppColor.diagramPassive), style: StrokeStyle(lineWidth: 2.5, lineCap: .round, lineJoin: .round))
+        context.fill(potScreen, with: .color(AppColor.diagramPassive.opacity(0.1)))
+
+        // Engorgement fill
+        let innerH = potBottom - potTop - 16
+        let fillH = CGFloat(fill) * innerH
+        let fillRect = CGRect(
+            x: cx - potW / 2 + 16,
+            y: potBottom - 8 - fillH,
+            width: potW - 32,
+            height: max(0, fillH)
+        )
+        let fillPath = Path(roundedRect: fillRect, cornerRadius: 18)
+        let fillScreen = fillPath.applying(world)
+        context.fill(
+            fillScreen,
+            with: .color(blend(AppColor.diagramPassive, AppColor.diagramActive, 0.25 + 0.75 * warmth).opacity(0.45 + 0.35 * warmth))
+        )
+        context.glowFill(fillScreen, color: AppColor.diagramGlow, blur: 16, opacity: 0.18 + 0.5 * warmth)
+
+        // Soft steam / glow when warming
+        if fill > 0.2 {
+            for i in 0..<3 {
+                let t = CGFloat(i)
+                let sx = cx - 18 + t * 18
+                let sy = potTop - 8 - CGFloat(fill) * 10 - t * 4
+                let puff = circlePath(cx: sx, cy: sy, r: 5 + CGFloat(warmth) * 4).applying(world)
+                context.glowFill(puff, color: AppColor.diagramGlow, blur: 8, opacity: 0.12 + 0.25 * warmth)
+            }
+        }
+
+        // Ready tick
+        let markY = potBottom - 8 - CGFloat(readyMark) * innerH
+        var tick = Path()
+        tick.move(to: CGPoint(x: cx + potW / 2 + 6, y: markY))
+        tick.addLine(to: CGPoint(x: cx + potW / 2 + 20, y: markY))
+        context.stroke(
+            tick.applying(world),
+            with: .color(AppColor.diagramActive.opacity(0.5 + 0.4 * (fill >= readyMark ? 1 : 0))),
+            style: StrokeStyle(lineWidth: 2, lineCap: .round)
+        )
+
+        // Drag locus ember
+        let ember = circlePath(cx: cx, cy: potBottom + 22, r: 7 + CGFloat(3 * warmth)).applying(world)
+        context.glowFill(ember, color: AppColor.diagramGlow, blur: 10, opacity: 0.2 + 0.4 * warmth)
+        context.fill(
+            circlePath(cx: cx, cy: potBottom + 22, r: 4.5).applying(world),
+            with: .color(blend(AppColor.diagramPassive, AppColor.diagramActive, warmth).opacity(0.85))
+        )
+        _ = dragging
+    }
+}
+
+
+// MARK: - Responsive Desire
+
+/// Ember rub: dormant coal; glows only after sustained circular / context gesture.
+/// Insight: Dormant / Waking / Lit. Contrast pair with spontaneous wellspring.
+private struct ResponsiveDesireDiagramView: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var glow: Double = 0.04
+    @State private var hasInteracted = false
+    @State private var litHaptic = false
+    @State private var lastAngle: Double?
+    @State private var isRubbing = false
+    @State private var lastTick: Date?
+
+    private let natural = CGSize(width: 280, height: 280)
+    private let litMark = 0.72
+
+    var body: some View {
+        let level = reduceMotion ? 0.55 : glow
+        DiagramSurface(
+            idlePulse: !hasInteracted && !reduceMotion,
+            pulseOffset: .zero
+        ) {
+            ZStack(alignment: .top) {
+                TimelineView(.animation(minimumInterval: 1.0 / 30.0, paused: reduceMotion)) { timeline in
+                    Canvas { context, size in
+                        draw(context, size: size, glow: level, rubbing: isRubbing && !reduceMotion)
+                    }
+                    .onChange(of: timeline.date) { _, date in
+                        cool(to: date)
+                    }
+                }
+                DiagramInsightChip(text: insightLabel(level: level))
+                VStack {
+                    Spacer()
+                    DiagramAffordanceHint(text: "Rub in a circle", visible: !hasInteracted && !reduceMotion)
+                        .padding(.bottom, 14)
+                }
+            }
+            .contentShape(Rectangle())
+            .modifier(DiagramDragModifier(enabled: !reduceMotion, gesture: rubGesture))
+        }
+    }
+
+    private func insightLabel(level: Double) -> String {
+        if level >= litMark { return "Lit" }
+        if level >= 0.28 { return "Waking" }
+        return "Dormant"
+    }
+
+    private func cool(to date: Date) {
+        guard !reduceMotion else { return }
+        let dt: Double
+        if let lastTick {
+            dt = min(0.05, date.timeIntervalSince(lastTick))
+        } else {
+            dt = 1.0 / 30.0
+        }
+        lastTick = date
+        if !isRubbing && hasInteracted {
+            glow = max(0.04, glow - dt * 0.08)
+            if glow < litMark - 0.1 { litHaptic = false }
+        }
+    }
+
+    private var rubGesture: some Gesture {
+        DragGesture(minimumDistance: 0)
+            .onChanged { value in
+                if !hasInteracted { hasInteracted = true }
+                isRubbing = true
+                // Angle around canvas center — circular travel charges the ember.
+                let dx = Double(value.location.x - 150)
+                let dy = Double(value.location.y - 150)
+                let angle = atan2(dy, dx)
+                if let last = lastAngle {
+                    var delta = angle - last
+                    while delta > .pi { delta -= 2 * .pi }
+                    while delta < -.pi { delta += 2 * .pi }
+                    // Sustained circling fills; small jitters barely move it.
+                    let gain = min(0.035, abs(delta) * 0.085)
+                    glow = min(1, glow + gain)
+                }
+                lastAngle = angle
+                if glow >= litMark && !litHaptic {
+                    litHaptic = true
+                    NativeHaptics.impactLight()
+                }
+            }
+            .onEnded { _ in
+                isRubbing = false
+                lastAngle = nil
+            }
+    }
+
+    private func draw(_ context: GraphicsContext, size: CGSize, glow: Double, rubbing: Bool) {
+        let world = worldTransform(in: size, natural: natural)
+        let cx: CGFloat = 140
+        let cy: CGFloat = 150
+        let wake = smoothstep(0.08, litMark, glow)
+
+        // Soft bed / ash ring
+        let bed = circlePath(cx: cx, cy: cy, r: 54).applying(world)
+        context.fill(bed, with: .color(AppColor.diagramPassive.opacity(0.18)))
+        context.stroke(bed, with: .color(AppColor.diagramPassive.opacity(0.55)), style: StrokeStyle(lineWidth: 1.5))
+
+        // Context orbit hint
+        let orbit = circlePath(cx: cx, cy: cy, r: 72).applying(world)
+        context.stroke(
+            orbit,
+            with: .color(AppColor.diagramPassive.opacity(0.25 + 0.25 * wake)),
+            style: StrokeStyle(lineWidth: 1.2, dash: [4, 6])
+        )
+
+        // Coal body
+        let coalR: CGFloat = 18 + CGFloat(4 * wake)
+        let coal = circlePath(cx: cx, cy: cy, r: coalR).applying(world)
+        context.fill(
+            coal,
+            with: .color(blend(AppColor.diagramPassive, AppColor.diagramActive, 0.15 + 0.85 * wake).opacity(0.75 + 0.2 * wake))
+        )
+        context.glowFill(coal, color: AppColor.diagramGlow, blur: 10 + 18 * wake, opacity: 0.08 + 0.55 * wake)
+        if glow >= litMark {
+            context.glowFill(coal, color: AppColor.diagramActive, blur: 22, opacity: 0.35)
+        }
+
+        // Tiny spark flecks when waking
+        if wake > 0.25 {
+            for i in 0..<4 {
+                let a = Double(i) * (.pi / 2) + glow * 1.2
+                let r = 28 + CGFloat(wake) * 16
+                let p = circlePath(
+                    cx: cx + CGFloat(cos(a)) * r,
+                    cy: cy + CGFloat(sin(a)) * r,
+                    r: 2.2
+                ).applying(world)
+                context.fill(p, with: .color(AppColor.diagramActive.opacity(0.35 + 0.4 * wake)))
+            }
+        }
+        _ = rubbing
+    }
+}
+
+
+// MARK: - Spontaneous Desire
+
+/// Wellspring: bubbles / filaments rise on their own (timer). Optional light tap
+/// to notice — does NOT require charging. Insight: Rising on its own.
+private struct SpontaneousBubble: Identifiable {
+    let id = UUID()
+    let born: Date
+    let x: CGFloat
+    let size: CGFloat
+    let drift: CGFloat
+    let life: TimeInterval
+}
+
+private struct SpontaneousDesireDiagramView: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var bubbles: [SpontaneousBubble] = []
+    @State private var hasInteracted = false
+    @State private var lastSpawn: Date = .distantPast
+    @State private var now = Date()
+
+    private let natural = CGSize(width: 280, height: 280)
+
+    var body: some View {
+        DiagramSurface(
+            idlePulse: !hasInteracted && !reduceMotion,
+            pulseOffset: CGSize(width: 0, height: 50)
+        ) {
+            ZStack(alignment: .top) {
+                TimelineView(.animation(minimumInterval: 1.0 / 30.0, paused: reduceMotion)) { timeline in
+                    Canvas { context, size in
+                        if reduceMotion {
+                            let frozen = Date()
+                            let demo = [
+                                SpontaneousBubble(born: frozen.addingTimeInterval(-1.1), x: 118, size: 7, drift: -6, life: 2.8),
+                                SpontaneousBubble(born: frozen.addingTimeInterval(-0.55), x: 150, size: 9, drift: 4, life: 2.8),
+                                SpontaneousBubble(born: frozen.addingTimeInterval(-1.7), x: 172, size: 6, drift: 8, life: 2.8),
+                            ]
+                            draw(context, size: size, bubbles: demo, now: frozen)
+                        } else {
+                            draw(context, size: size, bubbles: bubbles, now: timeline.date)
+                        }
+                    }
+                    .onChange(of: timeline.date) { _, date in
+                        now = date
+                        spawnIfNeeded(at: date)
+                        bubbles.removeAll { date.timeIntervalSince($0.born) > $0.life }
+                    }
+                }
+                DiagramInsightChip(text: "Rising on its own")
+                VStack {
+                    Spacer()
+                    DiagramAffordanceHint(text: "Tap to notice", visible: !hasInteracted && !reduceMotion)
+                        .padding(.bottom, 14)
+                }
+            }
+            .contentShape(Rectangle())
+            .onTapGesture {
+                guard !reduceMotion else { return }
+                if !hasInteracted { hasInteracted = true }
+                NativeHaptics.impactLight()
+                // Notice tap adds one soft bubble — never a charge mechanic.
+                bubbles.append(
+                    SpontaneousBubble(
+                        born: Date(),
+                        x: CGFloat.random(in: 110...170),
+                        size: CGFloat.random(in: 6...10),
+                        drift: CGFloat.random(in: -10...10),
+                        life: 2.6
+                    )
+                )
+            }
+        }
+        .onAppear {
+            if !reduceMotion {
+                // Seed a few so the wellspring is immediately alive.
+                let t = Date()
+                bubbles = [
+                    SpontaneousBubble(born: t.addingTimeInterval(-0.8), x: 130, size: 7, drift: -4, life: 2.8),
+                    SpontaneousBubble(born: t.addingTimeInterval(-0.2), x: 155, size: 8, drift: 5, life: 2.8),
+                ]
+                lastSpawn = t
+            }
+        }
+    }
+
+    private func spawnIfNeeded(at date: Date) {
+        guard !reduceMotion else { return }
+        if date.timeIntervalSince(lastSpawn) >= 0.55 {
+            lastSpawn = date
+            bubbles.append(
+                SpontaneousBubble(
+                    born: date,
+                    x: CGFloat.random(in: 108...172),
+                    size: CGFloat.random(in: 5...10),
+                    drift: CGFloat.random(in: -12...12),
+                    life: TimeInterval.random(in: 2.4...3.2)
+                )
+            )
+        }
+    }
+
+    private func draw(_ context: GraphicsContext, size: CGSize, bubbles: [SpontaneousBubble], now: Date) {
+        let world = worldTransform(in: size, natural: natural)
+        let cx: CGFloat = 140
+        let springY: CGFloat = 210
+
+        // Internal spring bowl (contrast to external ember of responsive)
+        var bowl = Path()
+        bowl.addEllipse(in: CGRect(x: cx - 48, y: springY - 18, width: 96, height: 36))
+        let bowlScreen = bowl.applying(world)
+        context.fill(bowlScreen, with: .color(AppColor.diagramPassive.opacity(0.22)))
+        context.stroke(bowlScreen, with: .color(AppColor.diagramPassive.opacity(0.7)), style: StrokeStyle(lineWidth: 2))
+
+        // Soft pool glow
+        let pool = circlePath(cx: cx, cy: springY - 4, r: 22).applying(world)
+        context.glowFill(pool, color: AppColor.diagramGlow, blur: 14, opacity: 0.35)
+        context.fill(circlePath(cx: cx, cy: springY - 4, r: 10).applying(world),
+                     with: .color(AppColor.diagramActive.opacity(0.55)))
+
+        // Rising filaments / bubbles
+        for b in bubbles {
+            let u = min(1, max(0, now.timeIntervalSince(b.born) / b.life))
+            let y = springY - 10 - CGFloat(u) * 150
+            let x = b.x + b.drift * CGFloat(u)
+            let opacity = (1 - u) * 0.85
+            let r = b.size * (0.85 + CGFloat(u) * 0.35)
+            let bubble = circlePath(cx: x, cy: y, r: r).applying(world)
+            context.glowFill(bubble, color: AppColor.diagramGlow, blur: 6, opacity: opacity * 0.55)
+            context.fill(bubble, with: .color(AppColor.diagramActive.opacity(opacity * 0.75)))
+            context.stroke(bubble, with: .color(AppColor.surface.opacity(opacity * 0.7)), style: StrokeStyle(lineWidth: 1))
+
+            // Soft filament trail
+            var trail = Path()
+            trail.move(to: CGPoint(x: x, y: y + r + 2))
+            trail.addLine(to: CGPoint(x: x - b.drift * 0.15, y: min(springY - 8, y + 28)))
+            context.stroke(
+                trail.applying(world),
+                with: .color(AppColor.diagramGlow.opacity(opacity * 0.45)),
+                style: StrokeStyle(lineWidth: 1.5, lineCap: .round)
+            )
+        }
+    }
+}
+
+
+// MARK: - Spectatoring
+
+/// Focus misalign: cool detachment ghost orb off-body; drag to align with warm
+/// body locus. Insight: Watching yourself / Back in the body.
+private struct SpectatoringDiagramView: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var ghost = CGPoint(x: 210, y: 78)
+    @State private var dragBase = CGPoint(x: 210, y: 78)
+    @State private var gestureActive = false
+    @State private var hasInteracted = false
+    @State private var alignHaptic = false
+
+    private let natural = CGSize(width: 300, height: 280)
+    private let bodyLocus = CGPoint(x: 140, y: 158)
+    private let alignRadius: CGFloat = 28
+
+    var body: some View {
+        let pos = reduceMotion ? bodyLocus : ghost
+        let aligned = hypot(pos.x - bodyLocus.x, pos.y - bodyLocus.y) <= alignRadius
+        DiagramSurface(
+            idlePulse: !hasInteracted && !reduceMotion,
+            pulseOffset: CGSize(width: 70, height: -60)
+        ) {
+            ZStack(alignment: .top) {
+                Canvas { context, size in
+                    draw(context, size: size, ghost: pos, aligned: aligned)
+                }
+                DiagramInsightChip(text: aligned ? "Back in the body" : "Watching yourself")
+                VStack {
+                    Spacer()
+                    DiagramAffordanceHint(text: "Drag attention back", visible: !hasInteracted && !reduceMotion)
+                        .padding(.bottom, 14)
+                }
+            }
+            .contentShape(Rectangle())
+            .modifier(DiagramDragModifier(enabled: !reduceMotion, gesture: dragGesture))
+        }
+    }
+
+    private var dragGesture: some Gesture {
+        DragGesture(minimumDistance: 2)
+            .onChanged { value in
+                if !hasInteracted { hasInteracted = true }
+                if !gestureActive {
+                    gestureActive = true
+                    dragBase = ghost
+                }
+                // Map translation into natural space roughly 1:1 with view points.
+                let nx = dragBase.x + value.translation.width * 0.55
+                let ny = dragBase.y + value.translation.height * 0.55
+                ghost = CGPoint(
+                    x: min(270, max(30, nx)),
+                    y: min(250, max(40, ny))
+                )
+                let dist = hypot(ghost.x - bodyLocus.x, ghost.y - bodyLocus.y)
+                if dist <= alignRadius && !alignHaptic {
+                    alignHaptic = true
+                    NativeHaptics.impactLight()
+                } else if dist > alignRadius + 10 {
+                    alignHaptic = false
+                }
+            }
+            .onEnded { _ in
+                gestureActive = false
+                dragBase = ghost
+            }
+    }
+
+    private func draw(_ context: GraphicsContext, size: CGSize, ghost: CGPoint, aligned: Bool) {
+        let world = worldTransform(in: size, natural: natural)
+        let alignAmt = aligned ? 1.0 : 0.0
+
+        // Soft body silhouette (warm locus)
+        var body = Path()
+        body.addEllipse(in: CGRect(x: bodyLocus.x - 36, y: bodyLocus.y - 56, width: 72, height: 120))
+        let bodyScreen = body.applying(world)
+        context.fill(bodyScreen, with: .color(AppColor.diagramPassive.opacity(0.22 + 0.2 * alignAmt)))
+        context.stroke(bodyScreen, with: .color(AppColor.diagramPassive.opacity(0.75)), style: StrokeStyle(lineWidth: 2))
+
+        let warmCore = circlePath(cx: bodyLocus.x, cy: bodyLocus.y, r: 14).applying(world)
+        context.glowFill(warmCore, color: AppColor.diagramGlow, blur: 14, opacity: 0.25 + 0.45 * alignAmt)
+        context.fill(warmCore, with: .color(AppColor.diagramActive.opacity(0.55 + 0.35 * alignAmt)))
+
+        // Ghost spectator orb (cool detachment) — fades when aligned
+        let ghostPath = circlePath(cx: ghost.x, cy: ghost.y, r: 13).applying(world)
+        let cool = AppColor.diagramDetachment
+        if !aligned {
+            // Soft tether from ghost to body
+            var tether = Path()
+            tether.move(to: ghost)
+            tether.addQuadCurve(to: bodyLocus, control: CGPoint(x: (ghost.x + bodyLocus.x) / 2 + 20, y: (ghost.y + bodyLocus.y) / 2 - 30))
+            context.stroke(
+                tether.applying(world),
+                with: .color(cool.opacity(0.35)),
+                style: StrokeStyle(lineWidth: 1.5, dash: [3, 5])
+            )
+        }
+        context.glowFill(ghostPath, color: cool, blur: 12, opacity: aligned ? 0.12 : 0.45)
+        context.fill(ghostPath, with: .color(cool.opacity(aligned ? 0.25 : 0.78)))
+        context.stroke(ghostPath, with: .color(AppColor.surface.opacity(0.85)), style: StrokeStyle(lineWidth: 1.1))
+
+        if aligned {
+            // Unified warm presence when back in body
+            context.glowFill(warmCore, color: AppColor.diagramActive, blur: 18, opacity: 0.35)
+        }
+    }
+}
+
+
+// MARK: - Embodied Presence
+
+/// Fill outline: drag warmth into a soft silhouette until saturated.
+/// Commentary quiet — no cool orb. Insight: Arriving / Here.
+private struct EmbodiedPresenceDiagramView: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var fill: Double = 0.12
+    @State private var hasInteracted = false
+    @State private var fullHaptic = false
+    @State private var isDragging = false
+
+    private let natural = CGSize(width: 280, height: 300)
+    private let hereMark = 0.82
+
+    var body: some View {
+        let level = reduceMotion ? 0.7 : fill
+        DiagramSurface(
+            height: 300,
+            idlePulse: !hasInteracted && !reduceMotion,
+            pulseOffset: CGSize(width: 0, height: 20)
+        ) {
+            ZStack(alignment: .top) {
+                Canvas { context, size in
+                    draw(context, size: size, fill: level)
+                }
+                DiagramInsightChip(text: level >= hereMark ? "Here" : "Arriving")
+                VStack {
+                    Spacer()
+                    DiagramAffordanceHint(text: "Drag to fill", visible: !hasInteracted && !reduceMotion)
+                        .padding(.bottom, 14)
+                }
+            }
+            .contentShape(Rectangle())
+            .modifier(DiagramDragModifier(enabled: !reduceMotion, gesture: dragGesture))
+        }
+    }
+
+    private var dragGesture: some Gesture {
+        DragGesture(minimumDistance: 0)
+            .onChanged { value in
+                if !hasInteracted { hasInteracted = true }
+                isDragging = true
+                // Sustained drag gathers warmth into the silhouette.
+                let travel = hypot(Double(value.translation.width), Double(value.translation.height))
+                let upward = max(0, Double(-value.translation.height)) / 200
+                let gather = min(0.03, 0.006 + travel / 4000 + upward * 0.02)
+                fill = min(1, fill + gather)
+                if fill >= hereMark && !fullHaptic {
+                    fullHaptic = true
+                    NativeHaptics.impactLight()
+                }
+            }
+            .onEnded { _ in
+                isDragging = false
+            }
+    }
+
+    private func draw(_ context: GraphicsContext, size: CGSize, fill: Double) {
+        let world = worldTransform(in: size, natural: natural)
+        let cx: CGFloat = 140
+        let top: CGFloat = 48
+        let height: CGFloat = 200
+        let width: CGFloat = 88
+        let warmth = smoothstep(0.1, hereMark, fill)
+
+        // Soft silhouette outline
+        var silhouette = Path()
+        // Head
+        silhouette.addEllipse(in: CGRect(x: cx - 18, y: top, width: 36, height: 36))
+        // Body
+        silhouette.move(to: CGPoint(x: cx - width / 2, y: top + 44))
+        silhouette.addQuadCurve(
+            to: CGPoint(x: cx + width / 2, y: top + 44),
+            control: CGPoint(x: cx, y: top + 36)
+        )
+        silhouette.addLine(to: CGPoint(x: cx + width / 2 - 6, y: top + height))
+        silhouette.addQuadCurve(
+            to: CGPoint(x: cx - width / 2 + 6, y: top + height),
+            control: CGPoint(x: cx, y: top + height + 14)
+        )
+        silhouette.closeSubpath()
+
+        let outline = silhouette.applying(world)
+        context.stroke(outline, with: .color(AppColor.diagramPassive.opacity(0.85)), style: StrokeStyle(lineWidth: 2.2, lineJoin: .round))
+        context.fill(outline, with: .color(AppColor.diagramPassive.opacity(0.08)))
+
+        // Warmth fill rising from base — clip-like by layered rounded mass
+        let fillH = CGFloat(fill) * (height - 10)
+        let fillRect = CGRect(
+            x: cx - width / 2 + 10,
+            y: top + height - fillH,
+            width: width - 20,
+            height: max(0, fillH)
+        )
+        var warm = Path()
+        warm.addRoundedRect(in: fillRect, cornerSize: CGSize(width: 22, height: 22))
+        // Also soft head fill when nearly full
+        if fill > 0.75 {
+            let headFill = circlePath(cx: cx, cy: top + 18, r: 12).applying(world)
+            context.glowFill(headFill, color: AppColor.diagramGlow, blur: 10, opacity: 0.35 * warmth)
+            context.fill(headFill, with: .color(AppColor.diagramActive.opacity(0.45 * warmth)))
+        }
+        let warmScreen = warm.applying(world)
+        context.fill(
+            warmScreen,
+            with: .color(blend(AppColor.diagramPassive, AppColor.diagramActive, 0.3 + 0.7 * warmth).opacity(0.4 + 0.4 * warmth))
+        )
+        context.glowFill(warmScreen, color: AppColor.diagramGlow, blur: 16, opacity: 0.15 + 0.45 * warmth)
+
+        // Quiet — no cool orb, no commentary mark
+        _ = isDragging
+    }
+}
+
+
+// MARK: - Non-concordance
+
+/// Dual meter: Body response (coral) vs Felt desire (cool) — deliberately
+/// uncorrelated; user can set any combo. Insight: They can diverge / Aligned.
+private struct NonConcordanceDiagramView: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var bodyLevel: Double = 0.35
+    @State private var feltLevel: Double = 0.35
+    @State private var activeTrack: Int? = nil // 0 body, 1 felt
+    @State private var hasInteracted = false
+    @State private var divergeHaptic = false
+
+    private let natural = CGSize(width: 300, height: 280)
+    private let divergeDelta = 0.22
+
+    var body: some View {
+        let b = reduceMotion ? 0.78 : bodyLevel
+        let f = reduceMotion ? 0.28 : feltLevel
+        let divergent = abs(b - f) >= divergeDelta
+        DiagramSurface(
+            idlePulse: !hasInteracted && !reduceMotion,
+            pulseOffset: CGSize(width: -40, height: 0)
+        ) {
+            ZStack(alignment: .top) {
+                Canvas { context, size in
+                    draw(context, size: size, body: b, felt: f, divergent: divergent)
+                }
+                DiagramInsightChip(text: divergent ? "They can diverge" : "Aligned")
+                VStack {
+                    Spacer()
+                    DiagramAffordanceHint(text: "Drag each meter", visible: !hasInteracted && !reduceMotion)
+                        .padding(.bottom, 14)
+                }
+            }
+            .contentShape(Rectangle())
+            .modifier(DiagramDragModifier(enabled: !reduceMotion, gesture: dragGesture))
+        }
+    }
+
+    private var dragGesture: some Gesture {
+        DragGesture(minimumDistance: 0)
+            .onChanged { value in
+                if !hasInteracted { hasInteracted = true }
+                // Pick nearest track by x once per gesture.
+                if activeTrack == nil {
+                    activeTrack = value.startLocation.x < 160 ? 0 : 1
+                }
+                // Map y: top = 1, bottom = 0 within meter band (~70...230 in view pts)
+                let y = Double(value.location.y)
+                let t = min(1, max(0, 1 - (y - 70) / 160))
+                if activeTrack == 0 {
+                    bodyLevel = t
+                } else {
+                    feltLevel = t
+                }
+                if abs(bodyLevel - feltLevel) >= divergeDelta && !divergeHaptic {
+                    divergeHaptic = true
+                    NativeHaptics.impactLight()
+                }
+            }
+            .onEnded { _ in
+                activeTrack = nil
+            }
+    }
+
+    private func draw(_ context: GraphicsContext, size: CGSize, body: Double, felt: Double, divergent: Bool) {
+        let world = worldTransform(in: size, natural: natural)
+        drawMeter(
+            context, world: world,
+            x: 96, level: body,
+            fill: AppColor.diagramActive,
+            glow: AppColor.diagramGlow,
+            passiveOpacity: 0.7
+        )
+        drawMeter(
+            context, world: world,
+            x: 204, level: felt,
+            fill: AppColor.diagramDetachment,
+            glow: AppColor.diagramDetachment,
+            passiveOpacity: 0.7
+        )
+
+        // Soft link between meters — solid when aligned, dashed/faint when divergent
+        let yBody = meterY(body)
+        let yFelt = meterY(felt)
+        var link = Path()
+        link.move(to: CGPoint(x: 118, y: yBody))
+        link.addQuadCurve(
+            to: CGPoint(x: 182, y: yFelt),
+            control: CGPoint(x: 150, y: (yBody + yFelt) / 2 - (divergent ? 24 : 8))
+        )
+        context.stroke(
+            link.applying(world),
+            with: .color((divergent ? AppColor.diagramDetachment : AppColor.diagramActive).opacity(divergent ? 0.35 : 0.45)),
+            style: StrokeStyle(lineWidth: 1.8, lineCap: .round, dash: divergent ? [4, 5] : [])
+        )
+    }
+
+    private func meterY(_ level: Double) -> CGFloat {
+        let top: CGFloat = 58
+        let bottom: CGFloat = 220
+        return bottom - CGFloat(level) * (bottom - top)
+    }
+
+    private func drawMeter(
+        _ context: GraphicsContext,
+        world: CGAffineTransform,
+        x: CGFloat,
+        level: Double,
+        fill: Color,
+        glow: Color,
+        passiveOpacity: Double
+    ) {
+        let top: CGFloat = 58
+        let bottom: CGFloat = 220
+        let width: CGFloat = 36
+
+        var track = Path()
+        track.addRoundedRect(
+            in: CGRect(x: x - width / 2, y: top, width: width, height: bottom - top),
+            cornerSize: CGSize(width: 14, height: 14)
+        )
+        let trackScreen = track.applying(world)
+        context.fill(trackScreen, with: .color(AppColor.diagramPassive.opacity(0.14)))
+        context.stroke(trackScreen, with: .color(AppColor.diagramPassive.opacity(passiveOpacity)), style: StrokeStyle(lineWidth: 2))
+
+        let innerInset: CGFloat = 5
+        let innerH = (bottom - top) - innerInset * 2
+        let fillH = CGFloat(level) * innerH
+        let fillRect = CGRect(
+            x: x - width / 2 + innerInset,
+            y: bottom - innerInset - fillH,
+            width: width - innerInset * 2,
+            height: max(0, fillH)
+        )
+        let fillPath = Path(roundedRect: fillRect, cornerRadius: 12)
+        let fillScreen = fillPath.applying(world)
+        context.fill(fillScreen, with: .color(fill.opacity(0.55 + 0.3 * level)))
+        context.glowFill(fillScreen, color: glow, blur: 12, opacity: 0.2 + 0.4 * level)
+
+        // Thumb
+        let thumbY = bottom - innerInset - fillH
+        let thumb = circlePath(cx: x, cy: thumbY, r: 8).applying(world)
+        context.fill(thumb, with: .color(fill.opacity(0.9)))
+        context.stroke(thumb, with: .color(AppColor.surface.opacity(0.9)), style: StrokeStyle(lineWidth: 1.1))
     }
 }
 

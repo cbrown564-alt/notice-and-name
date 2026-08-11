@@ -475,6 +475,7 @@ Owning the window reframes that slower start as the good part of the night, not 
     ],
     relatedConcepts: ['building', 'responsive-desire'],
     tier: 'free',
+    diagramType: 'warmup-window',
     slides: [
       {
         type: 'recognize',
@@ -522,6 +523,7 @@ Naming this drops the pressure to “feel like it” first. You can begin gently
     ],
     relatedConcepts: ['spontaneous-desire', 'warmup-window'],
     tier: 'free',
+    diagramType: 'responsive-desire',
     thumbnail: require('@/assets/images/concepts/thumbnails/responsive-desire.png'),
     slides: [
       {
@@ -571,6 +573,7 @@ Naming it as one door among others drops the pressure that desire should always 
     ],
     relatedConcepts: ['responsive-desire'],
     tier: 'free',
+    diagramType: 'spontaneous-desire',
     thumbnail: require('@/assets/images/concepts/thumbnails/spontaneous-desire.png'),
     slides: [
       {
@@ -669,6 +672,7 @@ It is common, and it flattens pleasure. Coming back is rarely a pep talk — it 
     ],
     relatedConcepts: ['embodied-presence', 'sexual-self-esteem'],
     tier: 'free',
+    diagramType: 'spectatoring',
     thumbnail: require('@/assets/images/concepts/thumbnails/spectatoring.png'),
     slides: [
       {
@@ -717,6 +721,7 @@ When attention lands on sensation, pleasure usually sharpens. Quiet can be prese
     ],
     relatedConcepts: ['spectatoring', 'body-appreciation'],
     tier: 'free',
+    diagramType: 'embodied-presence',
     thumbnail: require('@/assets/images/concepts/thumbnails/embodied-presence.png'),
     slides: [
       {
@@ -765,6 +770,7 @@ That split is ordinary, not a verdict. Trust words and felt wanting over body si
     ],
     relatedConcepts: ['responsive-desire', 'embodied-presence'],
     tier: 'free',
+    diagramType: 'non-concordance',
     thumbnail: require('@/assets/images/concepts/thumbnails/non-concordance.png'),
     slides: [
       {

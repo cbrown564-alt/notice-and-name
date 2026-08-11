@@ -999,7 +999,7 @@
           "type": "media",
           "title": "See It",
           "body": "Warmth building before touch gets specific",
-          "mediaId": "warmup-window-illustration"
+          "mediaId": "warmup-window-diagram"
         },
         {
           "id": "warmup-window-mechanism",
@@ -1081,6 +1081,7 @@
         }
       ],
       "mediaIds": [
+        "warmup-window-diagram",
         "warmup-window-illustration"
       ]
     },
@@ -1109,7 +1110,7 @@
           "type": "media",
           "title": "See It",
           "body": "Context first \u2014 wanting blooming once things begin",
-          "mediaId": "responsive-desire-illustration"
+          "mediaId": "responsive-desire-diagram"
         },
         {
           "id": "responsive-desire-mechanism",
@@ -1191,6 +1192,7 @@
         }
       ],
       "mediaIds": [
+        "responsive-desire-diagram",
         "responsive-desire-illustration",
         "responsive-desire-video"
       ]
@@ -1220,7 +1222,7 @@
           "type": "media",
           "title": "See It",
           "body": "Wanting rising on its own, before anyone starts",
-          "mediaId": "spontaneous-desire-illustration"
+          "mediaId": "spontaneous-desire-diagram"
         },
         {
           "id": "spontaneous-desire-mechanism",
@@ -1301,6 +1303,7 @@
         }
       ],
       "mediaIds": [
+        "spontaneous-desire-diagram",
         "spontaneous-desire-illustration"
       ]
     },
@@ -1432,7 +1435,7 @@
           "type": "media",
           "title": "See It",
           "body": "Split between the touch and the inner commentary",
-          "mediaId": "spectatoring-illustration"
+          "mediaId": "spectatoring-diagram"
         },
         {
           "id": "spectatoring-mechanism",
@@ -1514,6 +1517,7 @@
         }
       ],
       "mediaIds": [
+        "spectatoring-diagram",
         "spectatoring-illustration"
       ]
     },
@@ -1542,7 +1546,7 @@
           "type": "media",
           "title": "See It",
           "body": "Heat and pressure filling the body, commentary gone quiet",
-          "mediaId": "embodied-presence-illustration"
+          "mediaId": "embodied-presence-diagram"
         },
         {
           "id": "embodied-presence-mechanism",
@@ -1624,6 +1628,7 @@
         }
       ],
       "mediaIds": [
+        "embodied-presence-diagram",
         "embodied-presence-illustration"
       ]
     },
@@ -1652,7 +1657,7 @@
           "type": "media",
           "title": "See It",
           "body": "Body signs and wanting running on different tracks",
-          "mediaId": "non-concordance-illustration"
+          "mediaId": "non-concordance-diagram"
         },
         {
           "id": "non-concordance-mechanism",
@@ -1734,6 +1739,7 @@
         }
       ],
       "mediaIds": [
+        "non-concordance-diagram",
         "non-concordance-illustration"
       ]
     },
@@ -2811,6 +2817,54 @@
       "path": "assets/images/explainers/communication-science-101.png",
       "alt": "Communication Science",
       "reducedMotionFallback": "assets/images/explainers/communication-science-101.png"
+    },
+    {
+      "id": "warmup-window-diagram",
+      "kind": "diagram",
+      "path": "native://diagram/warmup-window",
+      "alt": "Native diagram for Warm-up Window.",
+      "caption": "Warmth building before touch gets specific",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/warmup-window.png"
+    },
+    {
+      "id": "responsive-desire-diagram",
+      "kind": "diagram",
+      "path": "native://diagram/responsive-desire",
+      "alt": "Native diagram for Responsive Desire.",
+      "caption": "Context first \u2014 wanting blooming once things begin",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/responsive-desire.png"
+    },
+    {
+      "id": "spontaneous-desire-diagram",
+      "kind": "diagram",
+      "path": "native://diagram/spontaneous-desire",
+      "alt": "Native diagram for Spontaneous Desire.",
+      "caption": "Wanting rising on its own, before anyone starts",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/spontaneous-desire.png"
+    },
+    {
+      "id": "spectatoring-diagram",
+      "kind": "diagram",
+      "path": "native://diagram/spectatoring",
+      "alt": "Native diagram for Spectatoring.",
+      "caption": "Split between the touch and the inner commentary",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/spectatoring.png"
+    },
+    {
+      "id": "embodied-presence-diagram",
+      "kind": "diagram",
+      "path": "native://diagram/embodied-presence",
+      "alt": "Native diagram for Embodied Presence.",
+      "caption": "Heat and pressure filling the body, commentary gone quiet",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/embodied-presence.png"
+    },
+    {
+      "id": "non-concordance-diagram",
+      "kind": "diagram",
+      "path": "native://diagram/non-concordance",
+      "alt": "Native diagram for Non-concordance.",
+      "caption": "Body signs and wanting running on different tracks",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/non-concordance.png"
     }
   ],
   "explainers": [

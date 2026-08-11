@@ -1,6 +1,6 @@
 # Interactive diagrams — living plan
 
-**Status:** S2 done (Sensation 4 shipped; S1 Anatomy + S0 Technique done)  
+**Status:** S3 done (Timing/mind 6 shipped; S2 Sensation + S1 Anatomy + S0 Technique done)  
 **Owner:** Sensory Success  
 **Code:** `ios/Sources/PleasureVocabularyApp/ConceptDiagrams.swift`  
 **Product home:** See page (priority: native diagram → video → illustration → placeholder)  
@@ -27,7 +27,13 @@ Conor wants a diagram for **every concept (22/22)**. Approach locked: polish the
 | Plateauing | Pan — climb onto flat ridge | **ship** (S2) |
 | Pulsing | Tap — concentric pulse rings (~0.8s) | **ship** (S2) |
 | Spreading | Tap — ripple through nerve tree | **ship** (S2) |
-| Remaining 9 | — | **todo** (planned below) |
+| Warm-up Window | Slow cooker — tempo-gated engorgement | **ship** (S3) |
+| Responsive Desire | Ember rub — context wakes coal | **ship** (S3) |
+| Spontaneous Desire | Wellspring — rises on its own | **ship** (S3) |
+| Spectatoring | Focus misalign — cool orb → body | **ship** (S3) |
+| Embodied Presence | Fill outline — warmth saturates | **ship** (S3) |
+| Non-concordance | Dual meter — body vs felt desire | **ship** (S3) |
+| Remaining 3 | — | **todo** (S4) |
 
 Shared kit: affordance hint, insight chip, optional idle pulse, insight haptics. Canvas-only. Reduce Motion = static teaching frame.
 
@@ -68,12 +74,12 @@ Every interactive must earn its place on See:
 | 11 | Plateauing | Ridge walk | Climb then walk a flat ridge — hover without climbing or fading. | pan (along curve) | **ship** (S2) |
 | 12 | Pulsing | Rhythm tap | High-arousal throb as a calm pulse the user can match. | tap (tempo) | **ship** (S2) |
 | 13 | Spreading | Ripple origin | Pleasure radiates outward from a touch origin through a nerve tree. | tap (origin) | **ship** (S2) |
-| 14 | Warm-up Window | Slow cooker | Fast drags do nothing; slow sustained drag fills engorgement. | pan (tempo-gated) | todo |
-| 15 | Responsive Desire | Ember rub | Desire wakes after sustained “context” — coal glows only with patience. | pan (circular) | todo |
-| 16 | Spontaneous Desire | Wellspring | Wanting rises on its own; bubbles without user charge. | observe / light tap | todo |
-| 17 | Spectatoring | Focus misalign | Attention drifts to grading self; drag cool orb back onto the body. | pan (align) | todo |
-| 18 | Embodied Presence | Fill outline | Warmth saturates a body silhouette as attention stays in sensation. | pan (fill) | todo |
-| 19 | Non-concordance | Dual meter | Genital response and felt desire can move independently. | dual slider | todo |
+| 14 | Warm-up Window | Slow cooker | Fast drags do nothing; slow sustained drag fills engorgement. | pan (tempo-gated) | **ship** (S3) |
+| 15 | Responsive Desire | Ember rub | Desire wakes after sustained “context” — coal glows only with patience. | pan (circular) | **ship** (S3) |
+| 16 | Spontaneous Desire | Wellspring | Wanting rises on its own; bubbles without user charge. | observe / light tap | **ship** (S3) |
+| 17 | Spectatoring | Focus misalign | Attention drifts to grading self; drag cool orb back onto the body. | pan (align) | **ship** (S3) |
+| 18 | Embodied Presence | Fill outline | Warmth saturates a body silhouette as attention stays in sensation. | pan (fill) | **ship** (S3) |
+| 19 | Non-concordance | Dual meter | Genital response and felt desire can move independently. | dual slider | **ship** (S3) |
 | 20 | Golden Trio | Soft triad | Intercourse + manual + oral as three gentle channels — variety, not a combo score. | triple toggle (light) | todo |
 | 21 | Sexual Self-Esteem | Permission glow | Regard for oneself as allowed to want pleasure — soft fill, no grade. | hold / tap | todo |
 | 22 | Body Appreciation | Felt map | Value the body for what it feels now — warm zones, not appearance scores. | tap zones | todo |
@@ -107,7 +113,7 @@ Previously deferred in the archived plan; Conor wants them too. Keep non-gamifie
 S0  Polish shipped 5                       ← done
 S1  Anatomy 4: clitoral-structure → nerve-density → clitourethrovaginal → internal-stimulation  ← done
 S2  Sensation: building → plateauing → pulsing → spreading  ← done
-S3  Timing / mind: warmup-window → responsive-desire + spontaneous-desire → spectatoring + embodied-presence → non-concordance
+S3  Timing / mind: warmup-window → responsive-desire + spontaneous-desire → spectatoring + embodied-presence → non-concordance  ← done
 S4  Remaining 3: golden-trio → sexual-self-esteem → body-appreciation
 ```
 
@@ -146,6 +152,14 @@ Optional: `docs/pipelines/prompts/diagrams/{id}.md` interaction spec (mechanic, 
 `SeePageBody` prefers **native diagram (if present) → video (if motion allowed) → illustration → placeholder**.
 
 Rationale: the interactive is the product differentiator. Sensation concepts may still ship videos; those remain optional/ambient later, not the primary teaching moment when a `diagramType` is wired.
+
+---
+
+## 7b. See media priority (S3)
+
+Same as S2: **native diagram → video → illustration → placeholder**. Timing/mind concepts now ship `*-diagram` as the See `mediaId`; illustrations remain secondary / RM fallback paths on the media item.
+
+Detachment accent `#7A7AFF` (`AppColor.diagramDetachment`) is reserved for mind-split concepts: spectatoring ghost orb and non-concordance felt-desire track.
 
 ---
 

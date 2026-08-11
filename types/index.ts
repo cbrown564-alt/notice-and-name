@@ -37,6 +37,11 @@ export type DiagramType =
   | 'pulsing'
   | 'spreading'
   | 'warmup-window'
+  | 'responsive-desire'
+  | 'spontaneous-desire'
+  | 'spectatoring'
+  | 'embodied-presence'
+  | 'non-concordance'
   | 'none';
 
 export interface Concept {

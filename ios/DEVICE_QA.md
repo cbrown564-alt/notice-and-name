@@ -51,7 +51,7 @@ then repeat the persistence checks after force-quitting and reopening the app.
 - Small phone width: buttons, status labels, and pathway rows do not truncate awkwardly.
 - Dark environments: contrast remains readable with the warm light palette.
 
-## Interactive Diagrams (S0 + S1 + S2)
+## Interactive Diagrams (S0 + S1 + S2 + S3)
 
 Run with Reduce Motion off first, then on. Confirm insight chips update; no in-canvas text.
 
@@ -74,8 +74,16 @@ Run with Reduce Motion off first, then on. Confirm insight chips update; no in-c
 - Pulsing: tap emits concentric rings (~0.8s); insight Still / Pulse; light haptic per tap; RM one soft mid-expand ring.
 - Spreading: tap origin; ripples through nerve tree; insight Contact / Spreading; haptic on origin tap; RM mid-spread frame.
 
+### Timing / mind six (S3)
+- Warm-up Window: slow drag fills engorgement; fast drag stalls (“Too fast”); Ready + haptic at full; RM mid-warm.
+- Responsive Desire: circular rub wakes ember Dormant → Waking → Lit; haptic on Lit; RM gently lit coal.
+- Spontaneous Desire: bubbles rise on timer without charging; optional notice tap + soft haptic; RM mid-rise bubbles. Visually contrasts ember (internal spring).
+- Spectatoring: cool `#7A7AFF` ghost orb starts off-body; drag to warm locus; Watching yourself → Back in the body; haptic on align; RM aligned.
+- Embodied Presence: drag fills soft silhouette Arriving → Here; no cool orb; haptic near full; RM mostly filled.
+- Non-concordance: dual independent meters (coral Body / cool Felt desire); They can diverge vs Aligned; haptic on first divergence; RM clearly divergent.
+
 ### Diagram a11y / feel
-- Reduce Motion: each of the 13 shows a static teaching frame (no idle pulse, no required animation).
+- Reduce Motion: each of the 19 shows a static teaching frame (no idle pulse, no required animation).
 - VoiceOver: diagram treated as single image with caption label.
-- Small phone: chip buttons (Pairing, CUV) wrap without truncating awkwardly.
+- Small phone: chip buttons (Pairing, CUV) wrap without truncating awkwardly; dual meters remain tappable.
 - Haptics: light impact only at insight moments (never continuous).
