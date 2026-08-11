@@ -813,7 +813,7 @@ Sexual self-esteem can be affected by many factors: upbringing, past experiences
     slides: [
       {
         type: 'recognize',
-        content: 'How do you feel about yourself as a sexual person? Do you carry confidence into intimate experiences—or do negative beliefs hold you back?',
+        content: "Caught an old story about yourself mid-intimacy — that you're too much, not enough, or somehow failing at this?",
       },
       {
         type: 'name',

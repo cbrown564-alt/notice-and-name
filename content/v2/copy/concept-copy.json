@@ -73,7 +73,7 @@
       "phrases": [
         { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "The pause is the point for me — I'd rather draw the climb out than rush the top." },
         { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "Could we slow right down each time I get close, then start again? I want to see how far the build goes." },
-        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "If the stop-and-start tips into teasing, just say so and we'll let it happen." },
+        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "If the pause starts to feel like teasing instead of building, let's stop holding back and let it tip over." },
         { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I keep wondering whether holding at the edge longer changes how the release feels." },
         { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "Some nights the edge tips over early — that's not a test I can fail." }
       ]
@@ -178,7 +178,7 @@
       ]
     },
     "sexual-self-esteem": {
-      "recognize": "How do you feel about yourself as a sexual person — confidence you bring in, or old beliefs that hold you back?",
+      "recognize": "Caught an old story about yourself mid-intimacy — that you're too much, not enough, or somehow failing at this?",
       "reflection": "Where did your beliefs about yourself as a sexual person come from? Which ones would you actually want to keep?",
       "phrases": [
         { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "My pleasure is worth taking up space for — I'm allowed to want, and to ask." },
@@ -196,7 +196,7 @@
         { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "When I get self-conscious about my body, it helps to be reminded you actually want to be here." },
         { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "I don't want to spend our time hiding how I look — keep the lights where I'm comfortable, and if I get self-conscious, let's not stop to fix it." },
         { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I want to find out how much more I feel when I'm not monitoring how I look." },
-        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "How my body looks doesn't decide whether I get to enjoy this — it doesn't." }
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "How my body looks doesn't decide whether I get to enjoy this." }
       ]
     },
     "clitoral-structure": {

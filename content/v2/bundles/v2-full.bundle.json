@@ -716,7 +716,7 @@
           "id": "edging-boundary",
           "useCase": "boundary",
           "label": "Set a boundary",
-          "body": "If the stop-and-start tips into teasing, just say so and we'll let it happen.",
+          "body": "If the pause starts to feel like teasing instead of building, let's stop holding back and let it tip over.",
           "tone": "direct"
         },
         {
@@ -1745,7 +1745,7 @@
           "id": "sexual-self-esteem-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "How do you feel about yourself as a sexual person — confidence you bring in, or old beliefs that hold you back?"
+          "body": "Caught an old story about yourself mid-intimacy — that you're too much, not enough, or somehow failing at this?"
         },
         {
           "id": "sexual-self-esteem-definition",
@@ -1932,7 +1932,7 @@
           "id": "body-appreciation-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "How my body looks doesn't decide whether I get to enjoy this — it doesn't.",
+          "body": "How my body looks doesn't decide whether I get to enjoy this.",
           "tone": "reassuring"
         }
       ],

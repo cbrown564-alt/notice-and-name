@@ -22,7 +22,7 @@ Good-enough / later: Today cleverness, pathway polish, full video coverage, modu
 - [x] Treat v2 bundle pipeline as sole content truth (see docs/CONTENT.md)
 
 ### B — Core loop to bar
-- [ ] Editorial pass on 22 concepts
+- [ ] Editorial pass on 22 concepts — audit in [`EDITORIAL_AUDIT.md`](./EDITORIAL_AUDIT.md); rewrite P0/P1 batches next
 - [ ] Device QA (current + small phone)
 - [ ] Export via share sheet / Files
 - [ ] Fix worst media gaps only

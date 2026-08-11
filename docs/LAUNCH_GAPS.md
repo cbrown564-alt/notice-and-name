@@ -4,11 +4,11 @@ Ordered by remaining plan phases. Price locked: **£15** non-consumable — **do
 
 ## Phase B — Core loop to bar
 
-- [ ] Concept experience to quality bar (Notice → Name → Reflect → Keep)
+- [ ] Concept experience to quality bar (Notice → Name → Reflect → Keep) — see [`EDITORIAL_AUDIT.md`](./EDITORIAL_AUDIT.md) (3 P0 / 14 P1 / 5 P2)
 - [ ] Felt privacy polish (app lock / local-first already present; tighten UX)
-- [ ] Partner-safe phrases editorial pass
+- [ ] Partner-safe phrases editorial pass — tracked in editorial audit; 3 surgical P0 phrase fixes landed
 - [ ] Export UX review (JSON export exists; confirm discoverability & clarity)
-- [ ] Editorial pass on v2 shipping content (22 concepts, 5 pathways, 4 explainers)
+- [ ] Editorial pass on v2 shipping content (22 concepts, 5 pathways, 4 explainers) — audit started; rewrite batches pending
 - [ ] Device QA on real hardware (Today / Vocabulary / Explore / Journal / Settings)
 
 ## Phase C — StoreKit / business
