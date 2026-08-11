@@ -124,19 +124,46 @@ public struct AppSettings: Codable, Equatable, Sendable {
     public var appLockEnabled: Bool
     public var notificationPrivacyEnabled: Bool
     public var reduceSensitivePreviews: Bool
+    public var soundEffectsEnabled: Bool
+    public var voiceGuidanceEnabled: Bool
 
     public init(
         completedOnboarding: Bool = false,
         privacyPledgeAcceptedAt: Date? = nil,
         appLockEnabled: Bool = false,
         notificationPrivacyEnabled: Bool = true,
-        reduceSensitivePreviews: Bool = true
+        reduceSensitivePreviews: Bool = true,
+        soundEffectsEnabled: Bool = true,
+        voiceGuidanceEnabled: Bool = true
     ) {
         self.completedOnboarding = completedOnboarding
         self.privacyPledgeAcceptedAt = privacyPledgeAcceptedAt
         self.appLockEnabled = appLockEnabled
         self.notificationPrivacyEnabled = notificationPrivacyEnabled
         self.reduceSensitivePreviews = reduceSensitivePreviews
+        self.soundEffectsEnabled = soundEffectsEnabled
+        self.voiceGuidanceEnabled = voiceGuidanceEnabled
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case completedOnboarding
+        case privacyPledgeAcceptedAt
+        case appLockEnabled
+        case notificationPrivacyEnabled
+        case reduceSensitivePreviews
+        case soundEffectsEnabled
+        case voiceGuidanceEnabled
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        completedOnboarding = try container.decode(Bool.self, forKey: .completedOnboarding)
+        privacyPledgeAcceptedAt = try container.decodeIfPresent(Date.self, forKey: .privacyPledgeAcceptedAt)
+        appLockEnabled = try container.decode(Bool.self, forKey: .appLockEnabled)
+        notificationPrivacyEnabled = try container.decode(Bool.self, forKey: .notificationPrivacyEnabled)
+        reduceSensitivePreviews = try container.decode(Bool.self, forKey: .reduceSensitivePreviews)
+        soundEffectsEnabled = try container.decodeIfPresent(Bool.self, forKey: .soundEffectsEnabled) ?? true
+        voiceGuidanceEnabled = try container.decodeIfPresent(Bool.self, forKey: .voiceGuidanceEnabled) ?? true
     }
 }
 

@@ -25,7 +25,8 @@
     "media-master-sheet": "node scripts/generate-media-master-sheet.js --write-md && node scripts/preview-media-master-sheet.js",
     "sync-ios-media": "node scripts/sync-ios-media.js",
     "batch-asset-queue": "node scripts/batch-asset-queue.js",
-    "enrich-illustration-prompts": "node scripts/enrich-illustration-prompts.js"
+    "enrich-illustration-prompts": "node scripts/enrich-illustration-prompts.js",
+    "sync-ios-audio": "node scripts/sync-ios-audio.js"
   },
   "devDependencies": {
     "sharp": "^0.34.5",

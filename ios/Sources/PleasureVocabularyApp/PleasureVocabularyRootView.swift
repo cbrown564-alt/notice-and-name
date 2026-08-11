@@ -99,6 +99,7 @@ private struct UnavailableStateView: View {
 private struct OnboardingView: View {
     @ObservedObject var model: PleasureVocabularyViewModel
     @State private var appLockEnabled = true
+    @ObservedObject private var audio = AppAudioPlayer.shared
 
     var body: some View {
         NavigationStack {
@@ -113,6 +114,22 @@ private struct OnboardingView: View {
                             .font(AppFont.note)
                             .foregroundStyle(AppColor.secondaryInk)
                             .fixedSize(horizontal: false, vertical: true)
+                        if let full = SoundCatalog.onboardingFull() {
+                            Button {
+                                if audio.isPlaying {
+                                    audio.stop()
+                                } else {
+                                    audio.play(full)
+                                }
+                            } label: {
+                                Label(audio.isPlaying ? "Pause" : "Listen",
+                                      systemImage: audio.isPlaying ? "pause.circle.fill" : "play.circle.fill")
+                                    .font(AppFont.note)
+                                    .foregroundStyle(AppColor.plum)
+                            }
+                            .buttonStyle(.plain)
+                            .accessibilityHint("Plays the onboarding voiceover. Does not start automatically.")
+                        }
                     }
                     .padding(.top, 8)
 
@@ -151,6 +168,7 @@ private struct OnboardingView: View {
             }
         }
         .fullScreenAppBackground()
+        .onDisappear { audio.stop() }
     }
 }
 
@@ -570,6 +588,34 @@ private struct SettingsView: View {
                                 set: { model.setReduceSensitivePreviews($0) }
                             )) {
                                 Label("Reduced previews", systemImage: "eye.slash")
+                                    .foregroundStyle(AppColor.ink)
+                            }
+                            .font(AppFont.cardTitle)
+                            .tint(AppColor.plum)
+                        }
+                    }
+
+                    QuietCard {
+                        VStack(alignment: .leading, spacing: 14) {
+                            Text("Sound")
+                                .font(AppFont.section)
+                                .foregroundStyle(AppColor.ink)
+
+                            Toggle(isOn: Binding(
+                                get: { model.settings.soundEffectsEnabled },
+                                set: { model.setSoundEffectsEnabled($0) }
+                            )) {
+                                Label("Sound effects", systemImage: "speaker.wave.2")
+                                    .foregroundStyle(AppColor.ink)
+                            }
+                            .font(AppFont.cardTitle)
+                            .tint(AppColor.plum)
+
+                            Toggle(isOn: Binding(
+                                get: { model.settings.voiceGuidanceEnabled },
+                                set: { model.setVoiceGuidanceEnabled($0) }
+                            )) {
+                                Label("Voice playback", systemImage: "waveform")
                                     .foregroundStyle(AppColor.ink)
                             }
                             .font(AppFont.cardTitle)

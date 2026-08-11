@@ -78,11 +78,17 @@ struct ExplainerSummaryRow: View {
 struct ExplainerDetailView: View {
     @ObservedObject var model: PleasureVocabularyViewModel
     let explainer: ResearchExplainer
+    @ObservedObject private var audio = AppAudioPlayer.shared
+
+    private var narrationURLs: [URL] { SoundCatalog.explainerBeats(explainerId: explainer.id) }
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 22) {
                 heroHeader
+                if !narrationURLs.isEmpty {
+                    narrationControl
+                }
                 overviewSection
                 takeawaysSection
 
@@ -107,6 +113,7 @@ struct ExplainerDetailView: View {
         .navigationTitle(explainer.title)
         .compactNavigationTitle()
         .appScreenBackground()
+        .onDisappear { audio.stop() }
     }
 
     private var heroHeader: some View {
@@ -129,6 +136,27 @@ struct ExplainerDetailView: View {
                 .font(AppFont.label)
                 .foregroundStyle(AppColor.secondaryInk)
         }
+    }
+
+
+    private var narrationControl: some View {
+        Button {
+            if audio.isPlaying || audio.isPaused {
+                audio.togglePlayPause()
+            } else {
+                audio.playPlaylist(narrationURLs)
+            }
+        } label: {
+            Label(audio.isPlaying ? "Pause narration" : "Play narration",
+                  systemImage: audio.isPlaying ? "pause.circle.fill" : "play.circle.fill")
+                .font(AppFont.cardTitle)
+                .foregroundStyle(AppColor.plum)
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .buttonStyle(.plain)
+        .padding(14)
+        .background(AppColor.plum.opacity(0.08), in: RoundedRectangle(cornerRadius: 10))
+        .accessibilityHint("Plays sequenced explainer narration. Does not start automatically.")
     }
 
     private var overviewSection: some View {

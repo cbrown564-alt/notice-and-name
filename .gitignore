@@ -51,3 +51,15 @@ ios/Sources/PleasureVocabularyApp/Resources/media/videos/*
 !ios/Sources/PleasureVocabularyApp/Resources/media/videos/.gitkeep
 ios/Sources/PleasureVocabularyApp/Resources/media/explainers/*
 !ios/Sources/PleasureVocabularyApp/Resources/media/explainers/.gitkeep
+
+# iOS audio — generated from assets/audio via sync-ios-media / sync-ios-audio
+ios/Sources/PleasureVocabularyApp/Resources/media/audio/phrases/*
+!ios/Sources/PleasureVocabularyApp/Resources/media/audio/phrases/.gitkeep
+ios/Sources/PleasureVocabularyApp/Resources/media/audio/onboarding/*
+!ios/Sources/PleasureVocabularyApp/Resources/media/audio/onboarding/.gitkeep
+ios/Sources/PleasureVocabularyApp/Resources/media/audio/notice-moments/*
+!ios/Sources/PleasureVocabularyApp/Resources/media/audio/notice-moments/.gitkeep
+ios/Sources/PleasureVocabularyApp/Resources/media/audio/explainers/*
+!ios/Sources/PleasureVocabularyApp/Resources/media/audio/explainers/.gitkeep
+ios/Sources/PleasureVocabularyApp/Resources/media/audio/sfx/*
+!ios/Sources/PleasureVocabularyApp/Resources/media/audio/sfx/.gitkeep

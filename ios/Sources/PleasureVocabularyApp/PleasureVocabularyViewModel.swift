@@ -93,6 +93,9 @@ public final class PleasureVocabularyViewModel: ObservableObject {
         do {
             try store?.acceptPrivacyPledge(appLockEnabled: appLockEnabled)
             NativeHaptics.success()
+            if appLockEnabled {
+                AppAudioPlayer.shared.playSFX("app-lock")
+            }
             try refresh()
         } catch {
             loadError = error.localizedDescription
@@ -125,6 +128,7 @@ public final class PleasureVocabularyViewModel: ObservableObject {
         do {
             try store?.addFieldNote(FieldNote(conceptId: conceptId, pathwayId: pathwayId, body: trimmed))
             NativeHaptics.success()
+            AppAudioPlayer.shared.playSFX("reflect-saved")
             try refresh()
         } catch {
             loadError = error.localizedDescription
@@ -142,6 +146,7 @@ public final class PleasureVocabularyViewModel: ObservableObject {
                 )
             )
             NativeHaptics.success()
+            AppAudioPlayer.shared.playSFX("keep")
             try refresh()
         } catch {
             loadError = error.localizedDescription
@@ -171,6 +176,9 @@ public final class PleasureVocabularyViewModel: ObservableObject {
         updateSettings { settings in
             settings.appLockEnabled = enabled
         }
+        if enabled {
+            AppAudioPlayer.shared.playSFX("app-lock")
+        }
     }
 
     public func setReduceSensitivePreviews(_ enabled: Bool) {
@@ -178,6 +186,21 @@ public final class PleasureVocabularyViewModel: ObservableObject {
             settings.reduceSensitivePreviews = enabled
         }
     }
+
+    public func setSoundEffectsEnabled(_ enabled: Bool) {
+        updateSettings { settings in
+            settings.soundEffectsEnabled = enabled
+        }
+        AppAudioPlayer.shared.soundEffectsEnabled = enabled
+    }
+
+    public func setVoiceGuidanceEnabled(_ enabled: Bool) {
+        updateSettings { settings in
+            settings.voiceGuidanceEnabled = enabled
+        }
+        AppAudioPlayer.shared.voiceGuidanceEnabled = enabled
+    }
+
 
     public func prepareExport() {
         do {
@@ -226,6 +249,8 @@ public final class PleasureVocabularyViewModel: ObservableObject {
         fieldNotes = try store.fieldNotes()
         savedPhrases = try store.savedPhrases()
         pathwayProgress = Dictionary(uniqueKeysWithValues: try store.pathwayProgress().map { ($0.pathwayId, $0) })
+        AppAudioPlayer.shared.soundEffectsEnabled = settings.soundEffectsEnabled
+        AppAudioPlayer.shared.voiceGuidanceEnabled = settings.voiceGuidanceEnabled
     }
 
     private static func databaseURL() throws -> URL {

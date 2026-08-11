@@ -110,8 +110,13 @@ struct ConceptPagesView: View {
         .onAppear {
             if currentPageID == nil { currentPageID = pages.first?.id }
         }
-        .onChange(of: currentPageID) { _, _ in
+        .onChange(of: currentPageID) { _, newValue in
             NativeHaptics.selection()
+            if let newValue,
+               let page = pages.first(where: { $0.id == newValue }),
+               page.kind == .keep {
+                AppAudioPlayer.shared.playSFX("concept-complete")
+            }
         }
     }
 
@@ -253,7 +258,7 @@ struct ConceptPageView: View {
             PageScaffold(layout: layout) {
                 switch page.kind {
                 case .cover:      EmptyView()
-                case .recognize:  RecognizePageBody(page: page)
+                case .recognize:  RecognizePageBody(concept: concept, page: page)
                 case .name:       NamePageBody(concept: concept, page: page)
                 case .see:        SeePageBody(model: model, concept: concept, page: page)
                 case .understand: UnderstandPageBody(concept: concept, page: page)
@@ -370,7 +375,11 @@ private struct CoverPageBody: View {
 }
 
 private struct RecognizePageBody: View {
+    let concept: Concept
     let page: ConceptPage
+    @ObservedObject private var audio = AppAudioPlayer.shared
+
+    private var noticeURL: URL? { SoundCatalog.noticeMoment(conceptId: concept.id) }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -380,7 +389,25 @@ private struct RecognizePageBody: View {
                 .foregroundStyle(AppColor.ink)
                 .lineSpacing(7)
                 .fixedSize(horizontal: false, vertical: true)
+            if let noticeURL {
+                Button {
+                    if audio.isPlaying {
+                        audio.stop()
+                    } else {
+                        AppAudioPlayer.shared.playSFX("notice-start")
+                        audio.play(noticeURL)
+                    }
+                } label: {
+                    Label(audio.isPlaying ? "Pause notice" : "Listen to this moment",
+                          systemImage: audio.isPlaying ? "pause.circle.fill" : "play.circle.fill")
+                        .font(AppFont.note)
+                        .foregroundStyle(AppColor.plum)
+                }
+                .buttonStyle(.plain)
+                .accessibilityHint("Plays a short guided notice for this concept. Does not start automatically.")
+            }
         }
+        .onDisappear { audio.stop() }
     }
 }
 
@@ -607,10 +634,13 @@ private struct PhraseKeepCard: View {
     @ObservedObject var model: PleasureVocabularyViewModel
     let concept: Concept
     let template: PhraseTemplate
+    @ObservedObject private var audio = AppAudioPlayer.shared
 
     private var isSaved: Bool {
         model.phrases(for: concept.id).contains { $0.body == template.body }
     }
+
+    private var phraseURL: URL? { SoundCatalog.phrase(id: template.id) }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -618,19 +648,36 @@ private struct PhraseKeepCard: View {
                 .font(.system(.body, design: .serif))
                 .foregroundStyle(AppColor.ink)
                 .fixedSize(horizontal: false, vertical: true)
-            Button {
-                if !isSaved {
-                    model.savePhrase(template, conceptId: concept.id)
-                    NativeHaptics.success()
+            HStack(spacing: 16) {
+                if let phraseURL {
+                    Button {
+                        if audio.isPlaying {
+                            audio.stop()
+                        } else {
+                            audio.play(phraseURL)
+                        }
+                    } label: {
+                        Label(audio.isPlaying ? "Pause" : "Play",
+                              systemImage: audio.isPlaying ? "pause.circle.fill" : "play.circle.fill")
+                            .font(AppFont.note)
+                            .foregroundStyle(AppColor.plum)
+                    }
+                    .buttonStyle(.plain)
                 }
-            } label: {
-                Label(isSaved ? "Kept" : "Keep this phrase",
-                      systemImage: isSaved ? "bookmark.fill" : "bookmark")
-                    .font(AppFont.note)
-                    .foregroundStyle(isSaved ? AppColor.gold : AppColor.plum)
+                Button {
+                    if !isSaved {
+                        model.savePhrase(template, conceptId: concept.id)
+                        NativeHaptics.success()
+                    }
+                } label: {
+                    Label(isSaved ? "Kept" : "Keep this phrase",
+                          systemImage: isSaved ? "bookmark.fill" : "bookmark")
+                        .font(AppFont.note)
+                        .foregroundStyle(isSaved ? AppColor.gold : AppColor.plum)
+                }
+                .buttonStyle(.plain)
+                .disabled(isSaved)
             }
-            .buttonStyle(.plain)
-            .disabled(isSaved)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(16)

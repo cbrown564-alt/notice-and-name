@@ -179,3 +179,6 @@ function main() {
 }
 
 main();
+
+const __audio = require("./sync-ios-audio");
+__audio.syncAudio({ check: CHECK, dryRun: DRY_RUN });

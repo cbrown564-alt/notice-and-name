@@ -2,8 +2,8 @@ import Foundation
 import GRDB
 
 public final class UserStore: @unchecked Sendable {
-    public static let currentSchemaVersion = 2
-    public static let currentMigrationId = "v2_schema_metadata"
+    public static let currentSchemaVersion = 3
+    public static let currentMigrationId = "v3_audio_settings"
 
     private let dbQueue: DatabaseQueue
 
@@ -52,22 +52,27 @@ public final class UserStore: @unchecked Sendable {
                 sql: """
                     INSERT INTO app_settings (
                         id, completedOnboarding, privacyPledgeAcceptedAt, appLockEnabled,
-                        notificationPrivacyEnabled, reduceSensitivePreviews
+                        notificationPrivacyEnabled, reduceSensitivePreviews,
+                        soundEffectsEnabled, voiceGuidanceEnabled
                     )
-                    VALUES ('singleton', ?, ?, ?, ?, ?)
+                    VALUES ('singleton', ?, ?, ?, ?, ?, ?, ?)
                     ON CONFLICT(id) DO UPDATE SET
                         completedOnboarding = excluded.completedOnboarding,
                         privacyPledgeAcceptedAt = excluded.privacyPledgeAcceptedAt,
                         appLockEnabled = excluded.appLockEnabled,
                         notificationPrivacyEnabled = excluded.notificationPrivacyEnabled,
-                        reduceSensitivePreviews = excluded.reduceSensitivePreviews
+                        reduceSensitivePreviews = excluded.reduceSensitivePreviews,
+                        soundEffectsEnabled = excluded.soundEffectsEnabled,
+                        voiceGuidanceEnabled = excluded.voiceGuidanceEnabled
                     """,
                 arguments: [
                     settings.completedOnboarding,
                     timestamp(settings.privacyPledgeAcceptedAt),
                     settings.appLockEnabled,
                     settings.notificationPrivacyEnabled,
-                    settings.reduceSensitivePreviews
+                    settings.reduceSensitivePreviews,
+                    settings.soundEffectsEnabled,
+                    settings.voiceGuidanceEnabled
                 ]
             )
         }
@@ -318,9 +323,10 @@ public final class UserStore: @unchecked Sendable {
                 sql: """
                     INSERT OR IGNORE INTO app_settings (
                         id, completedOnboarding, privacyPledgeAcceptedAt, appLockEnabled,
-                        notificationPrivacyEnabled, reduceSensitivePreviews
+                        notificationPrivacyEnabled, reduceSensitivePreviews,
+                        soundEffectsEnabled, voiceGuidanceEnabled
                     )
-                    VALUES ('singleton', 0, NULL, 0, 1, 1)
+                    VALUES ('singleton', 0, NULL, 0, 1, 1, 1, 1)
                     """
             )
         }
@@ -329,6 +335,7 @@ public final class UserStore: @unchecked Sendable {
 
 private let v1UserStateMigrationId = "v1_user_state"
 private let v2SchemaMetadataMigrationId = "v2_schema_metadata"
+private let v3AudioSettingsMigrationId = "v3_audio_settings"
 
 private var migrator: DatabaseMigrator {
     var migrator = DatabaseMigrator()
@@ -409,16 +416,44 @@ private var migrator: DatabaseMigrator {
         )
     }
 
+
+    migrator.registerMigration(v3AudioSettingsMigrationId) { db in
+        try db.alter(table: "app_settings") { table in
+            table.add(column: "soundEffectsEnabled", .boolean).notNull().defaults(to: true)
+            table.add(column: "voiceGuidanceEnabled", .boolean).notNull().defaults(to: true)
+        }
+
+        try db.execute(
+            sql: """
+                INSERT INTO app_metadata (key, schemaVersion, lastMigrationId, migratedAt)
+                VALUES ('schema', ?, ?, ?)
+                ON CONFLICT(key) DO UPDATE SET
+                    schemaVersion = excluded.schemaVersion,
+                    lastMigrationId = excluded.lastMigrationId,
+                    migratedAt = excluded.migratedAt
+                """,
+            arguments: [
+                UserStore.currentSchemaVersion,
+                UserStore.currentMigrationId,
+                Date().timeIntervalSince1970
+            ]
+        )
+    }
+
     return migrator
 }
 
 private func appSettings(from row: Row) -> AppSettings {
-    AppSettings(
+    let soundEffects: Bool? = row["soundEffectsEnabled"]
+    let voiceGuidance: Bool? = row["voiceGuidanceEnabled"]
+    return AppSettings(
         completedOnboarding: row["completedOnboarding"],
         privacyPledgeAcceptedAt: date(row["privacyPledgeAcceptedAt"]),
         appLockEnabled: row["appLockEnabled"],
         notificationPrivacyEnabled: row["notificationPrivacyEnabled"],
-        reduceSensitivePreviews: row["reduceSensitivePreviews"]
+        reduceSensitivePreviews: row["reduceSensitivePreviews"],
+        soundEffectsEnabled: soundEffects ?? true,
+        voiceGuidanceEnabled: voiceGuidance ?? true
     )
 }
 
