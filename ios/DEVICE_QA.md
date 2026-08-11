@@ -51,7 +51,7 @@ then repeat the persistence checks after force-quitting and reopening the app.
 - Small phone width: buttons, status labels, and pathway rows do not truncate awkwardly.
 - Dark environments: contrast remains readable with the warm light palette.
 
-## Interactive Diagrams (S0 + S1)
+## Interactive Diagrams (S0 + S1 + S2)
 
 Run with Reduce Motion off first, then on. Confirm insight chips update; no in-canvas text.
 
@@ -68,8 +68,14 @@ Run with Reduce Motion off first, then on. Confirm insight chips update; no in-c
 - CUV Complex: toggle Clitoral / Urethral / Anterior; overlap glow ≥2; One cluster + haptic on full triad; RM all three on.
 - Internal Stimulation: vertical drag; Anterior path glows vs Deep pressure dull; haptic on anterior engage; RM anterior teaching frame.
 
+### Sensation four (S2)
+- Building: hold fills reservoir; release leaks; insight Gathering / Held / Easing; haptic ~70%; RM mid-fill.
+- Plateauing: drag along climb→ridge; insight Climbing / On the ridge / Sliding off; haptic on first ridge arrival; RM parked on plateau.
+- Pulsing: tap emits concentric rings (~0.8s); insight Still / Pulse; light haptic per tap; RM one soft mid-expand ring.
+- Spreading: tap origin; ripples through nerve tree; insight Contact / Spreading; haptic on origin tap; RM mid-spread frame.
+
 ### Diagram a11y / feel
-- Reduce Motion: each of the 9 shows a static teaching frame (no idle pulse, no required animation).
+- Reduce Motion: each of the 13 shows a static teaching frame (no idle pulse, no required animation).
 - VoiceOver: diagram treated as single image with caption label.
 - Small phone: chip buttons (Pairing, CUV) wrap without truncating awkwardly.
 - Haptics: light impact only at insight moments (never continuous).

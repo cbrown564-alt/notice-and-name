@@ -224,6 +224,7 @@ Rushing past the climb often flattens the peak. Letting it accumulate is not del
     ],
     relatedConcepts: ['plateauing', 'edging', 'warmup-window'],
     tier: 'free',
+    diagramType: 'building',
     thumbnail: require('@/assets/images/concepts/thumbnails/building.png'),
     slides: [
       {
@@ -274,6 +275,7 @@ Naming the plateau drops the panic that something stalled. You can stay, or chan
     ],
     relatedConcepts: ['building', 'edging'],
     tier: 'free',
+    diagramType: 'plateauing',
     slides: [
       {
         type: 'recognize',
@@ -370,6 +372,7 @@ Noticing it can shift the night: less chasing one spot, more room for the feelin
     ],
     relatedConcepts: ['building', 'pulsing', 'embodied-presence'],
     tier: 'free',
+    diagramType: 'spreading',
     thumbnail: require('@/assets/images/concepts/thumbnails/spreading.png'),
     slides: [
       {
@@ -419,6 +422,7 @@ Naming the pulse makes it easier to ask for the rhythm that actually carries you
     ],
     relatedConcepts: ['building', 'spreading'],
     tier: 'free',
+    diagramType: 'pulsing',
     thumbnail: require('@/assets/images/concepts/thumbnails/pulsing.png'),
     slides: [
       {

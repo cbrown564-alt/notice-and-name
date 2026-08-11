@@ -10,7 +10,7 @@
       "category": "technique",
       "reviewStatus": "approved",
       "definition": "Tilting or shifting the pelvis during penetration so internal pressure lands somewhere better.",
-      "summary": "Angling is a small pelvic tilt — forward, back, or side to side — that changes where pressure lands inside.",
+      "summary": "Angling is a small pelvic tilt \u2014 forward, back, or side to side \u2014 that changes where pressure lands inside.",
       "blocks": [
         {
           "id": "angling-recognize",
@@ -22,20 +22,20 @@
           "id": "angling-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Angling is tilting your pelvis—forward, back, or side to side—so internal pressure lands somewhere better."
+          "body": "Angling is tilting your pelvis\u2014forward, back, or side to side\u2014so internal pressure lands somewhere better."
         },
         {
           "id": "angling-media",
           "type": "media",
           "title": "See It",
-          "body": "A few degrees of tilt — pressure landing somewhere new",
+          "body": "A few degrees of tilt \u2014 pressure landing somewhere new",
           "mediaId": "angling-diagram"
         },
         {
           "id": "angling-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Hensel et al. (2021) found angling widely reported. Naming a tiny pelvic shift helps you catch it in the moment and repeat what works — instead of hoping “that felt good last time” shows up again.",
+          "body": "Hensel et al. (2021) found angling widely reported. Naming a tiny pelvic shift helps you catch it in the moment and repeat what works \u2014 instead of hoping \u201cthat felt good last time\u201d shows up again.",
           "citationIds": [
             "angling-source-1"
           ]
@@ -44,14 +44,14 @@
           "id": "angling-reflection",
           "type": "reflection",
           "title": "Reflect",
-          "body": "When a small tilt suddenly made things click, what actually changed — depth, pressure, or where it landed inside?",
+          "body": "When a small tilt suddenly made things click, what actually changed \u2014 depth, pressure, or where it landed inside?",
           "privateByDefault": true
         },
         {
           "id": "angling-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "A few degrees changes everything for me — the angle matters more than I used to admit."
+          "body": "A few degrees changes everything for me \u2014 the angle matters more than I used to admit."
         }
       ],
       "relatedConceptIds": [
@@ -63,7 +63,7 @@
           "id": "angling-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "A few degrees changes everything for me — the angle matters more than I used to admit.",
+          "body": "A few degrees changes everything for me \u2014 the angle matters more than I used to admit.",
           "tone": "soft"
         },
         {
@@ -77,21 +77,21 @@
           "id": "angling-boundary",
           "useCase": "boundary",
           "label": "Set a boundary",
-          "body": "If I need to stop and adjust to find the angle, that's not a complaint — let me reposition.",
+          "body": "If I need to stop and adjust to find the angle, that's not a complaint \u2014 let me reposition.",
           "tone": "direct"
         },
         {
           "id": "angling-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to notice which small tilts actually change the feeling — instead of hoping I stumble into one.",
+          "body": "I want to notice which small tilts actually change the feeling \u2014 instead of hoping I stumble into one.",
           "tone": "curious"
         },
         {
           "id": "angling-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "There's no 'right' position here — we're just following what feels good, wherever that is.",
+          "body": "There's no 'right' position here \u2014 we're just following what feels good, wherever that is.",
           "tone": "reassuring"
         }
       ],
@@ -114,25 +114,25 @@
       "category": "technique",
       "reviewStatus": "approved",
       "definition": "A grinding or rocking motion that keeps steady external contact during penetration.",
-      "summary": "Rocking is staying close and moving in a grind, circle, or wave during penetration — so external contact doesn't break with each thrust.",
+      "summary": "Rocking is staying close and moving in a grind, circle, or wave during penetration \u2014 so external contact doesn't break with each thrust.",
       "blocks": [
         {
           "id": "rocking-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Ever stayed pressed close and ground in small circles — and felt that hold better than thrusting in and out?"
+          "body": "Ever stayed pressed close and ground in small circles \u2014 and felt that hold better than thrusting in and out?"
         },
         {
           "id": "rocking-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Rocking is a grinding or wave-like motion that keeps steady external contact during penetration—often without using your hands."
+          "body": "Rocking is a grinding or wave-like motion that keeps steady external contact during penetration\u2014often without using your hands."
         },
         {
           "id": "rocking-media",
           "type": "media",
           "title": "See It",
-          "body": "Bodies close — pressure holding instead of breaking with each thrust",
+          "body": "Bodies close \u2014 pressure holding instead of breaking with each thrust",
           "mediaId": "rocking-diagram"
         },
         {
@@ -155,7 +155,7 @@
           "id": "rocking-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "Steady contact does more for me than big movement — closeness over distance."
+          "body": "Steady contact does more for me than big movement \u2014 closeness over distance."
         }
       ],
       "relatedConceptIds": [
@@ -167,7 +167,7 @@
           "id": "rocking-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "Steady contact does more for me than big movement — closeness over distance.",
+          "body": "Steady contact does more for me than big movement \u2014 closeness over distance.",
           "tone": "soft"
         },
         {
@@ -195,7 +195,7 @@
           "id": "rocking-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "Wanting to stay close and barely move isn't boring — it's exactly what works for me.",
+          "body": "Wanting to stay close and barely move isn't boring \u2014 it's exactly what works for me.",
           "tone": "reassuring"
         }
       ],
@@ -217,33 +217,33 @@
       "name": "Shallowing",
       "category": "technique",
       "reviewStatus": "approved",
-      "definition": "Focusing stimulation at or just inside the vaginal entrance — treating shallow as the destination, not a warm-up.",
-      "summary": "Shallowing is pleasurable touch right at the vaginal entrance and the first inch or two inside — fingertips, tongue, tip of a toy or partner — without treating depth as the goal.",
+      "definition": "Focusing stimulation at or just inside the vaginal entrance \u2014 treating shallow as the destination, not a warm-up.",
+      "summary": "Shallowing is pleasurable touch right at the vaginal entrance and the first inch or two inside \u2014 fingertips, tongue, tip of a toy or partner \u2014 without treating depth as the goal.",
       "blocks": [
         {
           "id": "shallowing-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Noticed that right at the entrance can feel more alive than going deep — and that lingering there is the point?"
+          "body": "Noticed that right at the entrance can feel more alive than going deep \u2014 and that lingering there is the point?"
         },
         {
           "id": "shallowing-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Shallowing is focusing touch at the vaginal entrance and the first inch or two inside—not treating depth as the goal."
+          "body": "Shallowing is focusing touch at the vaginal entrance and the first inch or two inside\u2014not treating depth as the goal."
         },
         {
           "id": "shallowing-media",
           "type": "media",
           "title": "See It",
-          "body": "Nerve-rich entrance — shallow contact as the destination",
+          "body": "Nerve-rich entrance \u2014 shallow contact as the destination",
           "mediaId": "shallowing-diagram"
         },
         {
           "id": "shallowing-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "The vaginal entrance is densely innervated. Hensel et al. (2021) found shallowing widely reported; many said lingering there made later touch feel better — anatomy and preference, not “just teasing.”",
+          "body": "The vaginal entrance is densely innervated. Hensel et al. (2021) found shallowing widely reported; many said lingering there made later touch feel better \u2014 anatomy and preference, not \u201cjust teasing.\u201d",
           "citationIds": [
             "shallowing-source-1"
           ]
@@ -252,14 +252,14 @@
           "id": "shallowing-reflection",
           "type": "reflection",
           "title": "Reflect",
-          "body": "When you've stayed near the entrance on purpose, what did you actually want more of — pressure, circling, or just more time there?",
+          "body": "When you've stayed near the entrance on purpose, what did you actually want more of \u2014 pressure, circling, or just more time there?",
           "privateByDefault": true
         },
         {
           "id": "shallowing-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "The entrance is where I'm most sensitive — shallow isn't a warm-up, it's the good part."
+          "body": "The entrance is where I'm most sensitive \u2014 shallow isn't a warm-up, it's the good part."
         }
       ],
       "relatedConceptIds": [
@@ -270,7 +270,7 @@
           "id": "shallowing-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "The entrance is where I'm most sensitive — shallow isn't a warm-up, it's the good part.",
+          "body": "The entrance is where I'm most sensitive \u2014 shallow isn't a warm-up, it's the good part.",
           "tone": "soft"
         },
         {
@@ -284,7 +284,7 @@
           "id": "shallowing-boundary",
           "useCase": "boundary",
           "label": "Set a boundary",
-          "body": "Deeper isn't always more for me — if I ask to stay shallow, slow down rather than pushing deeper.",
+          "body": "Deeper isn't always more for me \u2014 if I ask to stay shallow, slow down rather than pushing deeper.",
           "tone": "direct"
         },
         {
@@ -298,7 +298,7 @@
           "id": "shallowing-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "Staying shallow isn't teasing or holding back — it's genuinely what feels best.",
+          "body": "Staying shallow isn't teasing or holding back \u2014 it's genuinely what feels best.",
           "tone": "reassuring"
         }
       ],
@@ -320,8 +320,8 @@
       "name": "Pairing",
       "category": "technique",
       "reviewStatus": "approved",
-      "definition": "Adding external clitoral touch during penetration — hand, partner, toy, or position — so inside and outside work together.",
-      "summary": "Pairing is penetration plus clitoral touch at the same time — your hand, a partner's, a toy, or a position that keeps outside contact alive.",
+      "definition": "Adding external clitoral touch during penetration \u2014 hand, partner, toy, or position \u2014 so inside and outside work together.",
+      "summary": "Pairing is penetration plus clitoral touch at the same time \u2014 your hand, a partner's, a toy, or a position that keeps outside contact alive.",
       "blocks": [
         {
           "id": "pairing-recognize",
@@ -333,20 +333,20 @@
           "id": "pairing-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Pairing is combining penetration with clitoral touch—your hand, a partner's, a toy, or a position that keeps outside contact alive."
+          "body": "Pairing is combining penetration with clitoral touch\u2014your hand, a partner's, a toy, or a position that keeps outside contact alive."
         },
         {
           "id": "pairing-media",
           "type": "media",
           "title": "See It",
-          "body": "Inside and outside touch at once — not either-or",
+          "body": "Inside and outside touch at once \u2014 not either-or",
           "mediaId": "pairing-diagram"
         },
         {
           "id": "pairing-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Clitoral involvement tracks with higher orgasm likelihood during partnered sex (Frederick et al., 2018; Hensel et al., 2021). Pairing adds that touch during penetration — common physiology, not a workaround for something broken.",
+          "body": "Clitoral involvement tracks with higher orgasm likelihood during partnered sex (Frederick et al., 2018; Hensel et al., 2021). Pairing adds that touch during penetration \u2014 common physiology, not a workaround for something broken.",
           "citationIds": [
             "pairing-source-1",
             "pairing-source-2"
@@ -356,14 +356,14 @@
           "id": "pairing-reflection",
           "type": "reflection",
           "title": "Reflect",
-          "body": "When penetration plus outside touch landed better than either alone, what actually changed — intensity, focus, or how close you got?",
+          "body": "When penetration plus outside touch landed better than either alone, what actually changed \u2014 intensity, focus, or how close you got?",
           "privateByDefault": true
         },
         {
           "id": "pairing-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "Penetration plus clitoral touch is what actually works for me — together, not either-or."
+          "body": "Penetration plus clitoral touch is what actually works for me \u2014 together, not either-or."
         }
       ],
       "relatedConceptIds": [
@@ -376,7 +376,7 @@
           "id": "pairing-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "Penetration plus clitoral touch is what actually works for me — together, not either-or.",
+          "body": "Penetration plus clitoral touch is what actually works for me \u2014 together, not either-or.",
           "tone": "soft"
         },
         {
@@ -390,7 +390,7 @@
           "id": "pairing-boundary",
           "useCase": "boundary",
           "label": "Set a boundary",
-          "body": "If I reach down to touch myself, that's me helping — don't stop or take it as something being wrong.",
+          "body": "If I reach down to touch myself, that's me helping \u2014 don't stop or take it as something being wrong.",
           "tone": "direct"
         },
         {
@@ -404,7 +404,7 @@
           "id": "pairing-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "Needing both at once isn't asking for too much — it's just how my body adds up.",
+          "body": "Needing both at once isn't asking for too much \u2014 it's just how my body adds up.",
           "tone": "reassuring"
         }
       ],
@@ -432,33 +432,33 @@
       "name": "Building",
       "category": "sensation",
       "reviewStatus": "approved",
-      "definition": "Arousal that gathers gradually — warmth and intensity rising over time, not all at once.",
-      "summary": "Building is arousal gathering — a little warmth that turns insistent if you leave it alone long enough.",
+      "definition": "Arousal that gathers gradually \u2014 warmth and intensity rising over time, not all at once.",
+      "summary": "Building is arousal gathering \u2014 a little warmth that turns insistent if you leave it alone long enough.",
       "blocks": [
         {
           "id": "building-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Felt arousal start as barely anything — a little warmth — then slowly grow into something undeniable?"
+          "body": "Felt arousal start as barely anything \u2014 a little warmth \u2014 then slowly grow into something undeniable?"
         },
         {
           "id": "building-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Building is arousal that gathers gradually—warmth and intensity increasing over time rather than arriving all at once."
+          "body": "Building is arousal that gathers gradually\u2014warmth and intensity increasing over time rather than arriving all at once."
         },
         {
           "id": "building-media",
           "type": "media",
           "title": "See It",
           "body": "Warmth gathering under the skin, intensity rising",
-          "mediaId": "building-illustration"
+          "mediaId": "building-diagram"
         },
         {
           "id": "building-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Sexual response models describe an arousal-building phase before plateau or orgasm (Masters & Johnson; Basson, 2000). Leaving sensation room to accumulate — instead of chasing the peak — often lands as a fuller climb.",
+          "body": "Sexual response models describe an arousal-building phase before plateau or orgasm (Masters & Johnson; Basson, 2000). Leaving sensation room to accumulate \u2014 instead of chasing the peak \u2014 often lands as a fuller climb.",
           "citationIds": [
             "building-source-1",
             "building-source-2"
@@ -468,14 +468,14 @@
           "id": "building-reflection",
           "type": "reflection",
           "title": "Reflect",
-          "body": "When you let a slow climb go longer than usual, what showed up in the middle — more heat, more focus, or something else?",
+          "body": "When you let a slow climb go longer than usual, what showed up in the middle \u2014 more heat, more focus, or something else?",
           "privateByDefault": true
         },
         {
           "id": "building-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "I get the most when I let it build slowly — rushing flattens it for me."
+          "body": "I get the most when I let it build slowly \u2014 rushing flattens it for me."
         }
       ],
       "relatedConceptIds": [
@@ -488,7 +488,7 @@
           "id": "building-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "I get the most when I let it build slowly — rushing flattens it for me.",
+          "body": "I get the most when I let it build slowly \u2014 rushing flattens it for me.",
           "tone": "soft"
         },
         {
@@ -516,7 +516,7 @@
           "id": "building-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "Taking a while to warm up isn't a problem — it's where the good stuff comes from for me.",
+          "body": "Taking a while to warm up isn't a problem \u2014 it's where the good stuff comes from for me.",
           "tone": "reassuring"
         }
       ],
@@ -535,6 +535,7 @@
         }
       ],
       "mediaIds": [
+        "building-diagram",
         "building-illustration",
         "building-video"
       ]
@@ -544,33 +545,33 @@
       "name": "Plateauing",
       "category": "sensation",
       "reviewStatus": "approved",
-      "definition": "Arousal that holds steady — not climbing, not fading — a hover you can savor or read as a cue to change.",
-      "summary": "Plateauing is arousal holding altitude — steady, not tipping over, not dropping away.",
+      "definition": "Arousal that holds steady \u2014 not climbing, not fading \u2014 a hover you can savor or read as a cue to change.",
+      "summary": "Plateauing is arousal holding altitude \u2014 steady, not tipping over, not dropping away.",
       "blocks": [
         {
           "id": "plateauing-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Reached a point where arousal just holds — steady, not fading, not climbing — like hovering?"
+          "body": "Reached a point where arousal just holds \u2014 steady, not fading, not climbing \u2014 like hovering?"
         },
         {
           "id": "plateauing-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Plateauing is arousal holding steady—neither climbing toward orgasm nor fading away."
+          "body": "Plateauing is arousal holding steady\u2014neither climbing toward orgasm nor fading away."
         },
         {
           "id": "plateauing-media",
           "type": "media",
           "title": "See It",
-          "body": "Arousal holding altitude — not climbing, not dropping",
-          "mediaId": "plateauing-illustration"
+          "body": "Arousal holding altitude \u2014 not climbing, not dropping",
+          "mediaId": "plateauing-diagram"
         },
         {
           "id": "plateauing-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Sexual response models name a plateau phase — high arousal held without immediate climax (Masters & Johnson). Catching the hover lets you choose: stay with it, or change what you're doing if you want the climb again.",
+          "body": "Sexual response models name a plateau phase \u2014 high arousal held without immediate climax (Masters & Johnson). Catching the hover lets you choose: stay with it, or change what you're doing if you want the climb again.",
           "citationIds": [
             "plateauing-source-1"
           ]
@@ -579,14 +580,14 @@
           "id": "plateauing-reflection",
           "type": "reflection",
           "title": "Reflect",
-          "body": "When arousal held at a hover instead of climbing, what did you want — more of that steadiness, or a shift in pace or touch?",
+          "body": "When arousal held at a hover instead of climbing, what did you want \u2014 more of that steadiness, or a shift in pace or touch?",
           "privateByDefault": true
         },
         {
           "id": "plateauing-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "That steady hover is its own kind of good — I don't always need it to tip over."
+          "body": "That steady hover is its own kind of good \u2014 I don't always need it to tip over."
         }
       ],
       "relatedConceptIds": [
@@ -598,21 +599,21 @@
           "id": "plateauing-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "That steady hover is its own kind of good — I don't always need it to tip over.",
+          "body": "That steady hover is its own kind of good \u2014 I don't always need it to tip over.",
           "tone": "soft"
         },
         {
           "id": "plateauing-partner-request",
           "useCase": "partner-request",
           "label": "Ask for support",
-          "body": "Sometimes I want to just stay at this level for a while — can we hold here instead of pushing on?",
+          "body": "Sometimes I want to just stay at this level for a while \u2014 can we hold here instead of pushing on?",
           "tone": "direct"
         },
         {
           "id": "plateauing-boundary",
           "useCase": "boundary",
           "label": "Set a boundary",
-          "body": "If I've leveled off and want something different, I'll say so — it's not pressure, just information.",
+          "body": "If I've leveled off and want something different, I'll say so \u2014 it's not pressure, just information.",
           "tone": "direct"
         },
         {
@@ -626,7 +627,7 @@
           "id": "plateauing-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "Hovering without finishing isn't a letdown — sometimes it's exactly where I want to be.",
+          "body": "Hovering without finishing isn't a letdown \u2014 sometimes it's exactly where I want to be.",
           "tone": "reassuring"
         }
       ],
@@ -639,6 +640,7 @@
         }
       ],
       "mediaIds": [
+        "plateauing-diagram",
         "plateauing-illustration"
       ]
     },
@@ -648,19 +650,19 @@
       "category": "sensation",
       "reviewStatus": "approved",
       "definition": "Intentionally approaching the edge of orgasm, then easing back before it happens - often repeated multiple times.",
-      "summary": "Edging is bringing yourself (or being brought) close to orgasm, then deliberately pausing or slowing before you cross — often more than once.",
+      "summary": "Edging is bringing yourself (or being brought) close to orgasm, then deliberately pausing or slowing before you cross \u2014 often more than once.",
       "blocks": [
         {
           "id": "edging-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Ever get almost there, ease off on purpose, then climb again — and found the release hit harder for the wait?"
+          "body": "Ever get almost there, ease off on purpose, then climb again \u2014 and found the release hit harder for the wait?"
         },
         {
           "id": "edging-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Edging is deliberately approaching orgasm, then easing back before you cross—often repeating the cycle."
+          "body": "Edging is deliberately approaching orgasm, then easing back before you cross\u2014often repeating the cycle."
         },
         {
           "id": "edging-media",
@@ -673,7 +675,7 @@
           "id": "edging-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Research on orgasm delay suggests that prolonged arousal before release is often subjectively more intense for some people. Edging can also sharpen awareness of your own pre-orgasm signals—when to slow, pause, or change rhythm.",
+          "body": "Research on orgasm delay suggests that prolonged arousal before release is often subjectively more intense for some people. Edging can also sharpen awareness of your own pre-orgasm signals\u2014when to slow, pause, or change rhythm.",
           "citationIds": [
             "edging-source-1"
           ]
@@ -682,14 +684,14 @@
           "id": "edging-reflection",
           "type": "reflection",
           "title": "Reflect",
-          "body": "When you've lingered at the edge, what did the waiting itself feel like — restless, delicious, both?",
+          "body": "When you've lingered at the edge, what did the waiting itself feel like \u2014 restless, delicious, both?",
           "privateByDefault": true
         },
         {
           "id": "edging-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "The pause is the point for me — I'd rather draw the climb out than rush the top."
+          "body": "The pause is the point for me \u2014 I'd rather draw the climb out than rush the top."
         }
       ],
       "relatedConceptIds": [
@@ -702,7 +704,7 @@
           "id": "edging-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "The pause is the point for me — I'd rather draw the climb out than rush the top.",
+          "body": "The pause is the point for me \u2014 I'd rather draw the climb out than rush the top.",
           "tone": "soft"
         },
         {
@@ -730,7 +732,7 @@
           "id": "edging-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "Some nights the edge tips over early — that's not a test I can fail.",
+          "body": "Some nights the edge tips over early \u2014 that's not a test I can fail.",
           "tone": "reassuring"
         }
       ],
@@ -753,26 +755,26 @@
       "category": "sensation",
       "reviewStatus": "approved",
       "definition": "Pleasure radiating outward from where you're touched, through the rest of the body.",
-      "summary": "Spreading is when pleasure leaves the contact point and moves — through the pelvis, up the spine, into the limbs, or across the whole body.",
+      "summary": "Spreading is when pleasure leaves the contact point and moves \u2014 through the pelvis, up the spine, into the limbs, or across the whole body.",
       "blocks": [
         {
           "id": "spreading-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Felt pleasure leave the spot you were touching — warmth or tingling traveling through the rest of you?"
+          "body": "Felt pleasure leave the spot you were touching \u2014 warmth or tingling traveling through the rest of you?"
         },
         {
           "id": "spreading-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Spreading is arousal moving outward from where you're touched—into the pelvis, spine, limbs, or whole body."
+          "body": "Spreading is arousal moving outward from where you're touched\u2014into the pelvis, spine, limbs, or whole body."
         },
         {
           "id": "spreading-media",
           "type": "media",
           "title": "See It",
           "body": "Warmth moving past the place you're touched",
-          "mediaId": "spreading-illustration"
+          "mediaId": "spreading-diagram"
         },
         {
           "id": "spreading-mechanism",
@@ -788,14 +790,14 @@
           "id": "spreading-reflection",
           "type": "reflection",
           "title": "Reflect",
-          "body": "When sensation left the contact point, where did it go first — and what were you doing when it traveled?",
+          "body": "When sensation left the contact point, where did it go first \u2014 and what were you doing when it traveled?",
           "privateByDefault": true
         },
         {
           "id": "spreading-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "When I stop chasing one spot, the feeling spreads through the rest of me — that's what I'm after."
+          "body": "When I stop chasing one spot, the feeling spreads through the rest of me \u2014 that's what I'm after."
         }
       ],
       "relatedConceptIds": [
@@ -808,7 +810,7 @@
           "id": "spreading-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "When I stop chasing one spot, the feeling spreads through the rest of me — that's what I'm after.",
+          "body": "When I stop chasing one spot, the feeling spreads through the rest of me \u2014 that's what I'm after.",
           "tone": "soft"
         },
         {
@@ -836,7 +838,7 @@
           "id": "spreading-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "It's okay if I go quiet and still — I'm following something moving through me.",
+          "body": "It's okay if I go quiet and still \u2014 I'm following something moving through me.",
           "tone": "reassuring"
         }
       ],
@@ -855,6 +857,7 @@
         }
       ],
       "mediaIds": [
+        "spreading-diagram",
         "spreading-illustration",
         "spreading-video"
       ]
@@ -864,33 +867,33 @@
       "name": "Pulsing",
       "category": "sensation",
       "reviewStatus": "approved",
-      "definition": "A rhythmic, wave-like quality in high arousal or orgasm — beating or throbbing rather than flat.",
-      "summary": "Pulsing is pleasure with a beat — throbbing, wave-like, not a flat steady hum. It shows up clearest in orgasm, when pelvic muscles contract in rhythm, but many people feel a pulse earlier in high arousal too.",
+      "definition": "A rhythmic, wave-like quality in high arousal or orgasm \u2014 beating or throbbing rather than flat.",
+      "summary": "Pulsing is pleasure with a beat \u2014 throbbing, wave-like, not a flat steady hum. It shows up clearest in orgasm, when pelvic muscles contract in rhythm, but many people feel a pulse earlier in high arousal too.",
       "blocks": [
         {
           "id": "pulsing-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Caught a throb or wave-beat in high arousal — sensation with its own tempo, not a flat hum?"
+          "body": "Caught a throb or wave-beat in high arousal \u2014 sensation with its own tempo, not a flat hum?"
         },
         {
           "id": "pulsing-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Pulsing is the rhythmic, throbbing quality pleasure can take—waves of sensation rather than a flat steady tone."
+          "body": "Pulsing is the rhythmic, throbbing quality pleasure can take\u2014waves of sensation rather than a flat steady tone."
         },
         {
           "id": "pulsing-media",
           "type": "media",
           "title": "See It",
           "body": "A beat running through the body at the high end of arousal",
-          "mediaId": "pulsing-illustration"
+          "mediaId": "pulsing-diagram"
         },
         {
           "id": "pulsing-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Physiology studies describe rhythmic pelvic muscle contractions during orgasm, often about once per second (Meston & Buss, 2009). Many people also feel a pulse earlier in arousal—and some prefer touch that matches or plays against that tempo.",
+          "body": "Physiology studies describe rhythmic pelvic muscle contractions during orgasm, often about once per second (Meston & Buss, 2009). Many people also feel a pulse earlier in arousal\u2014and some prefer touch that matches or plays against that tempo.",
           "citationIds": [
             "pulsing-source-1",
             "pulsing-source-2"
@@ -900,14 +903,14 @@
           "id": "pulsing-reflection",
           "type": "reflection",
           "title": "Reflect",
-          "body": "When that pulse showed up, what touch met it — matching the beat, holding still, or something slower?",
+          "body": "When that pulse showed up, what touch met it \u2014 matching the beat, holding still, or something slower?",
           "privateByDefault": true
         },
         {
           "id": "pulsing-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "There's a rhythm my body wants — when touch matches that beat, it's a different level."
+          "body": "There's a rhythm my body wants \u2014 when touch matches that beat, it's a different level."
         }
       ],
       "relatedConceptIds": [
@@ -919,7 +922,7 @@
           "id": "pulsing-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "There's a rhythm my body wants — when touch matches that beat, it's a different level.",
+          "body": "There's a rhythm my body wants \u2014 when touch matches that beat, it's a different level.",
           "tone": "soft"
         },
         {
@@ -940,14 +943,14 @@
           "id": "pulsing-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to notice the tempo my body already has — and what happens when touch meets it.",
+          "body": "I want to notice the tempo my body already has \u2014 and what happens when touch meets it.",
           "tone": "curious"
         },
         {
           "id": "pulsing-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "Wanting the same steady rhythm over and over isn't dull — it's what carries me there.",
+          "body": "Wanting the same steady rhythm over and over isn't dull \u2014 it's what carries me there.",
           "tone": "reassuring"
         }
       ],
@@ -966,6 +969,7 @@
         }
       ],
       "mediaIds": [
+        "pulsing-diagram",
         "pulsing-illustration",
         "pulsing-video"
       ]
@@ -975,20 +979,20 @@
       "name": "Warm-up Window",
       "category": "timing",
       "reviewStatus": "approved",
-      "definition": "The time many bodies need for whole-body arousal before genital-focused touch feels best — often twenty minutes or more.",
-      "summary": "The warm-up window is how long many bodies need before genital-focused touch feels good — often twenty minutes or more of unhurried, whole-body contact. It is timing, not a delay to apologize for.",
+      "definition": "The time many bodies need for whole-body arousal before genital-focused touch feels best \u2014 often twenty minutes or more.",
+      "summary": "The warm-up window is how long many bodies need before genital-focused touch feels good \u2014 often twenty minutes or more of unhurried, whole-body contact. It is timing, not a delay to apologize for.",
       "blocks": [
         {
           "id": "warmup-window-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Ever notice genital touch feels muted until you've had unhurried time first — then suddenly it lands?"
+          "body": "Ever notice genital touch feels muted until you've had unhurried time first \u2014 then suddenly it lands?"
         },
         {
           "id": "warmup-window-definition",
           "type": "definition",
           "title": "Name",
-          "body": "The warm-up window is how long many bodies need before genital-focused touch feels best—often twenty unhurried minutes or more of whole-body contact."
+          "body": "The warm-up window is how long many bodies need before genital-focused touch feels best\u2014often twenty unhurried minutes or more of whole-body contact."
         },
         {
           "id": "warmup-window-media",
@@ -1001,7 +1005,7 @@
           "id": "warmup-window-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Arousal often rises gradually—blood flow, lubrication, and wanting can take twenty to forty-five minutes to catch up (Chivers et al., 2010). Skipping that window isn't efficiency; it's skipping the part that makes the rest feel good.",
+          "body": "Arousal often rises gradually\u2014blood flow, lubrication, and wanting can take twenty to forty-five minutes to catch up (Chivers et al., 2010). Skipping that window isn't efficiency; it's skipping the part that makes the rest feel good.",
           "citationIds": [
             "warmup-window-source-1",
             "warmup-window-source-2"
@@ -1011,14 +1015,14 @@
           "id": "warmup-window-reflection",
           "type": "reflection",
           "title": "Reflect",
-          "body": "When unhurried time actually changed how touch felt, what was different — the pace, where hands went, or just not being rushed?",
+          "body": "When unhurried time actually changed how touch felt, what was different \u2014 the pace, where hands went, or just not being rushed?",
           "privateByDefault": true
         },
         {
           "id": "warmup-window-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "I need real time to warm up before anything genital feels good — that's just my timing."
+          "body": "I need real time to warm up before anything genital feels good \u2014 that's just my timing."
         }
       ],
       "relatedConceptIds": [
@@ -1030,7 +1034,7 @@
           "id": "warmup-window-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "I need real time to warm up before anything genital feels good — that's just my timing.",
+          "body": "I need real time to warm up before anything genital feels good \u2014 that's just my timing.",
           "tone": "soft"
         },
         {
@@ -1058,7 +1062,7 @@
           "id": "warmup-window-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "Needing a long warm-up doesn't mean something's off — it's how my body gets there.",
+          "body": "Needing a long warm-up doesn't mean something's off \u2014 it's how my body gets there.",
           "tone": "reassuring"
         }
       ],
@@ -1085,33 +1089,33 @@
       "name": "Responsive Desire",
       "category": "timing",
       "reviewStatus": "approved",
-      "definition": "Wanting that wakes once touch, mood, or connection is already underway — not as a spontaneous urge beforehand.",
-      "summary": "Responsive desire is wanting that shows up after something has started — a kiss, a hand, a mood — not as an out-of-the-blue urge.",
+      "definition": "Wanting that wakes once touch, mood, or connection is already underway \u2014 not as a spontaneous urge beforehand.",
+      "summary": "Responsive desire is wanting that shows up after something has started \u2014 a kiss, a hand, a mood \u2014 not as an out-of-the-blue urge.",
       "blocks": [
         {
           "id": "responsive-desire-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Notice you don't get many out-of-the-blue urges — but once things get going, you're all in?"
+          "body": "Notice you don't get many out-of-the-blue urges \u2014 but once things get going, you're all in?"
         },
         {
           "id": "responsive-desire-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Responsive desire is wanting that wakes after stimulation, context, or connection—not as a spontaneous urge beforehand."
+          "body": "Responsive desire is wanting that wakes after stimulation, context, or connection\u2014not as a spontaneous urge beforehand."
         },
         {
           "id": "responsive-desire-media",
           "type": "media",
           "title": "See It",
-          "body": "Context first — wanting blooming once things begin",
+          "body": "Context first \u2014 wanting blooming once things begin",
           "mediaId": "responsive-desire-illustration"
         },
         {
           "id": "responsive-desire-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Desire research describes responsive desire as a common, healthy pattern (Basson, 2000; Nagoski, 2015) — interest that wakes once touch or mood engages you. Missing a spontaneous spark beforehand is not low desire by itself.",
+          "body": "Desire research describes responsive desire as a common, healthy pattern (Basson, 2000; Nagoski, 2015) \u2014 interest that wakes once touch or mood engages you. Missing a spontaneous spark beforehand is not low desire by itself.",
           "citationIds": [
             "responsive-desire-source-1",
             "responsive-desire-source-2"
@@ -1121,14 +1125,14 @@
           "id": "responsive-desire-reflection",
           "type": "reflection",
           "title": "Reflect",
-          "body": "When wanting showed up only after you'd already started, what helped it arrive — pace, kind of touch, or feeling unhurried?",
+          "body": "When wanting showed up only after you'd already started, what helped it arrive \u2014 pace, kind of touch, or feeling unhurried?",
           "privateByDefault": true
         },
         {
           "id": "responsive-desire-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "My wanting usually shows up after we start, not before — that's how I'm wired, not something to fix."
+          "body": "My wanting usually shows up after we start, not before \u2014 that's how I'm wired, not something to fix."
         }
       ],
       "relatedConceptIds": [
@@ -1140,7 +1144,7 @@
           "id": "responsive-desire-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "My wanting usually shows up after we start, not before — that's how I'm wired, not something to fix.",
+          "body": "My wanting usually shows up after we start, not before \u2014 that's how I'm wired, not something to fix.",
           "tone": "soft"
         },
         {
@@ -1161,7 +1165,7 @@
           "id": "responsive-desire-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to notice what gets me from not-thinking-about-it to yes — the on-ramp, not a spark I have to force.",
+          "body": "I want to notice what gets me from not-thinking-about-it to yes \u2014 the on-ramp, not a spark I have to force.",
           "tone": "curious"
         },
         {
@@ -1196,20 +1200,20 @@
       "name": "Spontaneous Desire",
       "category": "timing",
       "reviewStatus": "approved",
-      "definition": "Wanting that shows up on its own — an urge without an obvious external trigger.",
-      "summary": "Spontaneous desire is wanting that arrives without a warm-up scene — an internal urge people often call “being in the mood.”",
+      "definition": "Wanting that shows up on its own \u2014 an urge without an obvious external trigger.",
+      "summary": "Spontaneous desire is wanting that arrives without a warm-up scene \u2014 an internal urge people often call \u201cbeing in the mood.\u201d",
       "blocks": [
         {
           "id": "spontaneous-desire-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Ever get hit with wanting out of nowhere — mid-commute, mid-dish, no warm-up scene required?"
+          "body": "Ever get hit with wanting out of nowhere \u2014 mid-commute, mid-dish, no warm-up scene required?"
         },
         {
           "id": "spontaneous-desire-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Spontaneous desire is wanting that appears on its own—often “being in the mood” without an obvious trigger."
+          "body": "Spontaneous desire is wanting that appears on its own\u2014often \u201cbeing in the mood\u201d without an obvious trigger."
         },
         {
           "id": "spontaneous-desire-media",
@@ -1222,7 +1226,7 @@
           "id": "spontaneous-desire-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Desire research distinguishes spontaneous from responsive patterns (Basson, 2000). Spontaneous desire shows up across genders and life stages, often more early in relationships — one valid pattern in a mix, not a required standard.",
+          "body": "Desire research distinguishes spontaneous from responsive patterns (Basson, 2000). Spontaneous desire shows up across genders and life stages, often more early in relationships \u2014 one valid pattern in a mix, not a required standard.",
           "citationIds": [
             "spontaneous-desire-source-1",
             "spontaneous-desire-source-2"
@@ -1232,14 +1236,14 @@
           "id": "spontaneous-desire-reflection",
           "type": "reflection",
           "title": "Reflect",
-          "body": "When an unprompted urge shows up, what do you usually do with it first — act, shelve it, or check whether the timing fits?",
+          "body": "When an unprompted urge shows up, what do you usually do with it first \u2014 act, shelve it, or check whether the timing fits?",
           "privateByDefault": true
         },
         {
           "id": "spontaneous-desire-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "When wanting shows up out of nowhere, I get to treat it as real information — not something I have to ignore or obey."
+          "body": "When wanting shows up out of nowhere, I get to treat it as real information \u2014 not something I have to ignore or obey."
         }
       ],
       "relatedConceptIds": [
@@ -1250,35 +1254,35 @@
           "id": "spontaneous-desire-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "When wanting shows up out of nowhere, I get to treat it as real information — not something I have to ignore or obey.",
+          "body": "When wanting shows up out of nowhere, I get to treat it as real information \u2014 not something I have to ignore or obey.",
           "tone": "soft"
         },
         {
           "id": "spontaneous-desire-partner-request",
           "useCase": "partner-request",
           "label": "Ask for support",
-          "body": "Sometimes I just want you out of the blue — can we make room for that when it strikes?",
+          "body": "Sometimes I just want you out of the blue \u2014 can we make room for that when it strikes?",
           "tone": "direct"
         },
         {
           "id": "spontaneous-desire-boundary",
           "useCase": "boundary",
           "label": "Set a boundary",
-          "body": "An urge isn't an obligation for either of us — either of us can pause or pass when the timing's off.",
+          "body": "An urge isn't an obligation for either of us \u2014 either of us can pause or pass when the timing's off.",
           "tone": "direct"
         },
         {
           "id": "spontaneous-desire-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to notice when those sudden urges show up for me — and when they don't.",
+          "body": "I want to notice when those sudden urges show up for me \u2014 and when they don't.",
           "tone": "curious"
         },
         {
           "id": "spontaneous-desire-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "However often these urges come — a lot or rarely — there's no right amount.",
+          "body": "However often these urges come \u2014 a lot or rarely \u2014 there's no right amount.",
           "tone": "reassuring"
         }
       ],
@@ -1305,26 +1309,26 @@
       "name": "Golden Trio",
       "category": "timing",
       "reviewStatus": "approved",
-      "definition": "Combining intercourse with manual and oral stimulation in the same encounter — a pattern where variety often serves pleasure better than one act alone.",
-      "summary": "The Golden Trio names a combination that shows up often in satisfying encounters: vaginal intercourse plus manual stimulation plus oral sex in the same session — not necessarily all at once.",
+      "definition": "Combining intercourse with manual and oral stimulation in the same encounter \u2014 a pattern where variety often serves pleasure better than one act alone.",
+      "summary": "The Golden Trio names a combination that shows up often in satisfying encounters: vaginal intercourse plus manual stimulation plus oral sex in the same session \u2014 not necessarily all at once.",
       "blocks": [
         {
           "id": "golden-trio-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Ever noticed one kind of touch alone rarely gets you there — but layering hands, mouth, and penetration finally does?"
+          "body": "Ever noticed one kind of touch alone rarely gets you there \u2014 but layering hands, mouth, and penetration finally does?"
         },
         {
           "id": "golden-trio-definition",
           "type": "definition",
           "title": "Name",
-          "body": "The golden trio is intercourse plus manual and oral stimulation in the same encounter—not a checklist, just a pattern where variety (especially clitoral touch) tends to show up."
+          "body": "The golden trio is intercourse plus manual and oral stimulation in the same encounter\u2014not a checklist, just a pattern where variety (especially clitoral touch) tends to show up."
         },
         {
           "id": "golden-trio-media",
           "type": "media",
           "title": "See It",
-          "body": "Hands, mouth, and penetration — layered, not a script",
+          "body": "Hands, mouth, and penetration \u2014 layered, not a script",
           "mediaId": "golden-trio-illustration"
         },
         {
@@ -1340,14 +1344,14 @@
           "id": "golden-trio-reflection",
           "type": "reflection",
           "title": "Reflect",
-          "body": "When different kinds of touch stacked in one encounter, which mix actually moved you — and which felt like going through the motions?",
+          "body": "When different kinds of touch stacked in one encounter, which mix actually moved you \u2014 and which felt like going through the motions?",
           "privateByDefault": true
         },
         {
           "id": "golden-trio-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "Variety is what works for me — one kind of touch alone rarely gets me all the way."
+          "body": "Variety is what works for me \u2014 one kind of touch alone rarely gets me all the way."
         }
       ],
       "relatedConceptIds": [
@@ -1359,21 +1363,21 @@
           "id": "golden-trio-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "Variety is what works for me — one kind of touch alone rarely gets me all the way.",
+          "body": "Variety is what works for me \u2014 one kind of touch alone rarely gets me all the way.",
           "tone": "soft"
         },
         {
           "id": "golden-trio-partner-request",
           "useCase": "partner-request",
           "label": "Ask for support",
-          "body": "Can we mix it up — hands, mouth, and penetration together rather than just one?",
+          "body": "Can we mix it up \u2014 hands, mouth, and penetration together rather than just one?",
           "tone": "direct"
         },
         {
           "id": "golden-trio-boundary",
           "useCase": "boundary",
           "label": "Set a boundary",
-          "body": "I don't want it to feel like ticking boxes — let's stop anything that turns into a chore and keep what feels good.",
+          "body": "I don't want it to feel like ticking boxes \u2014 let's stop anything that turns into a chore and keep what feels good.",
           "tone": "direct"
         },
         {
@@ -1387,7 +1391,7 @@
           "id": "golden-trio-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "Needing more than one thing isn't greedy or complicated — it's just what adds up for me.",
+          "body": "Needing more than one thing isn't greedy or complicated \u2014 it's just what adds up for me.",
           "tone": "reassuring"
         }
       ],
@@ -1409,19 +1413,19 @@
       "category": "psychological",
       "reviewStatus": "approved",
       "definition": "Watching and grading yourself during sex instead of staying with what you feel.",
-      "summary": "Spectatoring is stepping outside yourself mid-sex to watch and grade — how you look, how long you're taking, whether you're responding “right,” what they might be thinking.",
+      "summary": "Spectatoring is stepping outside yourself mid-sex to watch and grade \u2014 how you look, how long you're taking, whether you're responding \u201cright,\u201d what they might be thinking.",
       "blocks": [
         {
           "id": "spectatoring-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Ever caught yourself watching yourself during sex — how you look, how long you're taking, what they're thinking?"
+          "body": "Ever caught yourself watching yourself during sex \u2014 how you look, how long you're taking, what they're thinking?"
         },
         {
           "id": "spectatoring-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Spectatoring is watching and grading yourself during sex instead of staying with sensation—performance thoughts replacing feeling."
+          "body": "Spectatoring is watching and grading yourself during sex instead of staying with sensation\u2014performance thoughts replacing feeling."
         },
         {
           "id": "spectatoring-media",
@@ -1444,14 +1448,14 @@
           "id": "spectatoring-reflection",
           "type": "reflection",
           "title": "Reflect",
-          "body": "When you catch yourself watching instead of feeling, what usually yanked you out — and what, if anything, dropped you back in?",
+          "body": "When you catch yourself watching instead of feeling, what usually yanked you out \u2014 and what, if anything, dropped you back in?",
           "privateByDefault": true
         },
         {
           "id": "spectatoring-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "When I'm watching myself instead of feeling, the sex goes flat — I want the sensation back, not a better performance."
+          "body": "When I'm watching myself instead of feeling, the sex goes flat \u2014 I want the sensation back, not a better performance."
         }
       ],
       "relatedConceptIds": [
@@ -1463,7 +1467,7 @@
           "id": "spectatoring-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "When I'm watching myself instead of feeling, the sex goes flat — I want the sensation back, not a better performance.",
+          "body": "When I'm watching myself instead of feeling, the sex goes flat \u2014 I want the sensation back, not a better performance.",
           "tone": "soft"
         },
         {
@@ -1477,21 +1481,21 @@
           "id": "spectatoring-boundary",
           "useCase": "boundary",
           "label": "Set a boundary",
-          "body": "If I go quiet and distant, it's not you — give me a moment to pause and come back to my body.",
+          "body": "If I go quiet and distant, it's not you \u2014 give me a moment to pause and come back to my body.",
           "tone": "direct"
         },
         {
           "id": "spectatoring-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to notice what knocks me into watching mode — and what lets me drop back into feeling.",
+          "body": "I want to notice what knocks me into watching mode \u2014 and what lets me drop back into feeling.",
           "tone": "curious"
         },
         {
           "id": "spectatoring-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "Drifting into my head sometimes doesn't mean I'm not enjoying you — I'm just finding my way back.",
+          "body": "Drifting into my head sometimes doesn't mean I'm not enjoying you \u2014 I'm just finding my way back.",
           "tone": "reassuring"
         }
       ],
@@ -1518,20 +1522,20 @@
       "name": "Embodied Presence",
       "category": "psychological",
       "reviewStatus": "approved",
-      "definition": "Staying with what your body feels during intimacy — attention in sensation, not in commentary.",
-      "summary": "Embodied presence is being all the way in the touch — heat, pressure, breath — instead of narrating or grading it.",
+      "definition": "Staying with what your body feels during intimacy \u2014 attention in sensation, not in commentary.",
+      "summary": "Embodied presence is being all the way in the touch \u2014 heat, pressure, breath \u2014 instead of narrating or grading it.",
       "blocks": [
         {
           "id": "embodied-presence-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Ever been so deep in a touch that the commentary cut out — just heat, pressure, breath?"
+          "body": "Ever been so deep in a touch that the commentary cut out \u2014 just heat, pressure, breath?"
         },
         {
           "id": "embodied-presence-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Embodied presence is staying with bodily sensation during intimacy—feeling the touch instead of commenting on it."
+          "body": "Embodied presence is staying with bodily sensation during intimacy\u2014feeling the touch instead of commenting on it."
         },
         {
           "id": "embodied-presence-media",
@@ -1544,7 +1548,7 @@
           "id": "embodied-presence-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Present-focused attention during sex tracks with higher arousal and satisfaction in clinical work (Brotto, 2018). The adult move is simple: when the mind drifts, return to one concrete sensation — not a performance of mindfulness.",
+          "body": "Present-focused attention during sex tracks with higher arousal and satisfaction in clinical work (Brotto, 2018). The adult move is simple: when the mind drifts, return to one concrete sensation \u2014 not a performance of mindfulness.",
           "citationIds": [
             "embodied-presence-source-1",
             "embodied-presence-source-2"
@@ -1554,14 +1558,14 @@
           "id": "embodied-presence-reflection",
           "type": "reflection",
           "title": "Reflect",
-          "body": "When you last dropped all the way into sensation, what was happening in the room — pace, quiet, how you were touched?",
+          "body": "When you last dropped all the way into sensation, what was happening in the room \u2014 pace, quiet, how you were touched?",
           "privateByDefault": true
         },
         {
           "id": "embodied-presence-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "When I drop fully into sensation, that's the best of it — I want to protect that, not perform."
+          "body": "When I drop fully into sensation, that's the best of it \u2014 I want to protect that, not perform."
         }
       ],
       "relatedConceptIds": [
@@ -1573,7 +1577,7 @@
           "id": "embodied-presence-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "When I drop fully into sensation, that's the best of it — I want to protect that, not perform.",
+          "body": "When I drop fully into sensation, that's the best of it \u2014 I want to protect that, not perform.",
           "tone": "soft"
         },
         {
@@ -1587,21 +1591,21 @@
           "id": "embodied-presence-boundary",
           "useCase": "boundary",
           "label": "Set a boundary",
-          "body": "If I need quiet to stay present, that's not distance — if talking pulls me out, let's slow down and go wordless.",
+          "body": "If I need quiet to stay present, that's not distance \u2014 if talking pulls me out, let's slow down and go wordless.",
           "tone": "direct"
         },
         {
           "id": "embodied-presence-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to notice what keeps me in my body — and what knocks me back into my head.",
+          "body": "I want to notice what keeps me in my body \u2014 and what knocks me back into my head.",
           "tone": "curious"
         },
         {
           "id": "embodied-presence-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "Getting lost in sensation and going quiet isn't checking out — it's me all the way here.",
+          "body": "Getting lost in sensation and going quiet isn't checking out \u2014 it's me all the way here.",
           "tone": "reassuring"
         }
       ],
@@ -1628,20 +1632,20 @@
       "name": "Non-concordance",
       "category": "psychological",
       "reviewStatus": "approved",
-      "definition": "When physical arousal signs (lubrication, erection) and how turned on you feel don't match — either way.",
-      "summary": "Non-concordance is when body signs and wanting split. You might feel very into it with nothing obvious showing — or notice wetness or an erection when you are not actually interested.",
+      "definition": "When physical arousal signs (lubrication, erection) and how turned on you feel don't match \u2014 either way.",
+      "summary": "Non-concordance is when body signs and wanting split. You might feel very into it with nothing obvious showing \u2014 or notice wetness or an erection when you are not actually interested.",
       "blocks": [
         {
           "id": "non-concordance-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Felt very into it while nothing showed — or noticed wetness when you weren't actually interested?"
+          "body": "Felt very into it while nothing showed \u2014 or noticed wetness when you weren't actually interested?"
         },
         {
           "id": "non-concordance-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Non-concordance is when physical arousal signs and how turned on you feel don't match—wetness without wanting, or wanting without obvious signs."
+          "body": "Non-concordance is when physical arousal signs and how turned on you feel don't match\u2014wetness without wanting, or wanting without obvious signs."
         },
         {
           "id": "non-concordance-media",
@@ -1654,7 +1658,7 @@
           "id": "non-concordance-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Meta-analyses find only modest correlation between genital response and subjective arousal in women—often cited around 10–30% overlap (Chivers et al., 2010; Nagoski, 2015). Genital response can happen without desire; desire can exist without obvious signs. Wanting is communicated — not inferred from wetness or erection.",
+          "body": "Meta-analyses find only modest correlation between genital response and subjective arousal in women\u2014often cited around 10\u201330% overlap (Chivers et al., 2010; Nagoski, 2015). Genital response can happen without desire; desire can exist without obvious signs. Wanting is communicated \u2014 not inferred from wetness or erection.",
           "citationIds": [
             "non-concordance-source-1",
             "non-concordance-source-2"
@@ -1664,14 +1668,14 @@
           "id": "non-concordance-reflection",
           "type": "reflection",
           "title": "Reflect",
-          "body": "When body signs and wanting split, which one did you listen to — and what did trusting the wrong one cost you?",
+          "body": "When body signs and wanting split, which one did you listen to \u2014 and what did trusting the wrong one cost you?",
           "privateByDefault": true
         },
         {
           "id": "non-concordance-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "What I feel matters more than what my body's doing — wetness isn't the same as wanting, for me."
+          "body": "What I feel matters more than what my body's doing \u2014 wetness isn't the same as wanting, for me."
         }
       ],
       "relatedConceptIds": [
@@ -1683,7 +1687,7 @@
           "id": "non-concordance-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "What I feel matters more than what my body's doing — wetness isn't the same as wanting, for me.",
+          "body": "What I feel matters more than what my body's doing \u2014 wetness isn't the same as wanting, for me.",
           "tone": "soft"
         },
         {
@@ -1697,7 +1701,7 @@
           "id": "non-concordance-boundary",
           "useCase": "boundary",
           "label": "Set a boundary",
-          "body": "Physical signs aren't a yes on their own — ask me, and if my words say stop, trust them over my body.",
+          "body": "Physical signs aren't a yes on their own \u2014 ask me, and if my words say stop, trust them over my body.",
           "tone": "direct"
         },
         {
@@ -1711,7 +1715,7 @@
           "id": "non-concordance-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "If my body and my wanting disagree sometimes, that doesn't mean either one is lying — they're just not the same signal.",
+          "body": "If my body and my wanting disagree sometimes, that doesn't mean either one is lying \u2014 they're just not the same signal.",
           "tone": "reassuring"
         }
       ],
@@ -1738,20 +1742,20 @@
       "name": "Sexual Self-Esteem",
       "category": "psychological",
       "reviewStatus": "approved",
-      "definition": "How you regard yourself as a sexual person — whether pleasure feels like something you get to want.",
-      "summary": "Sexual self-esteem is the quiet background sense of whether you belong in your own desire — whether wanting, asking, and taking up space feel allowed, or somehow earned.",
+      "definition": "How you regard yourself as a sexual person \u2014 whether pleasure feels like something you get to want.",
+      "summary": "Sexual self-esteem is the quiet background sense of whether you belong in your own desire \u2014 whether wanting, asking, and taking up space feel allowed, or somehow earned.",
       "blocks": [
         {
           "id": "sexual-self-esteem-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Caught an old story mid-intimacy — that you're too much, not enough, or somehow failing at wanting what you want?"
+          "body": "Caught an old story mid-intimacy \u2014 that you're too much, not enough, or somehow failing at wanting what you want?"
         },
         {
           "id": "sexual-self-esteem-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Sexual self-esteem is how you regard yourself as a sexual person—whether pleasure feels like something you get to want, not something you have to deserve."
+          "body": "Sexual self-esteem is how you regard yourself as a sexual person\u2014whether pleasure feels like something you get to want, not something you have to deserve."
         },
         {
           "id": "sexual-self-esteem-media",
@@ -1764,7 +1768,7 @@
           "id": "sexual-self-esteem-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Research links sexual self-esteem with satisfaction, communication, and sexual function. Feeling entitled to your own pleasure—not perfect confidence every day—tends to travel with better outcomes over time.",
+          "body": "Research links sexual self-esteem with satisfaction, communication, and sexual function. Feeling entitled to your own pleasure\u2014not perfect confidence every day\u2014tends to travel with better outcomes over time.",
           "citationIds": [
             "sexual-self-esteem-source-1",
             "sexual-self-esteem-source-2"
@@ -1774,14 +1778,14 @@
           "id": "sexual-self-esteem-reflection",
           "type": "reflection",
           "title": "Reflect",
-          "body": "When that story interrupts, what do you lose contact with first — sensation, wanting, or the nerve to ask?",
+          "body": "When that story interrupts, what do you lose contact with first \u2014 sensation, wanting, or the nerve to ask?",
           "privateByDefault": true
         },
         {
           "id": "sexual-self-esteem-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "My pleasure is worth taking up space — I'm allowed to want, and to ask."
+          "body": "My pleasure is worth taking up space \u2014 I'm allowed to want, and to ask."
         }
       ],
       "relatedConceptIds": [
@@ -1793,21 +1797,21 @@
           "id": "sexual-self-esteem-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "My pleasure is worth taking up space — I'm allowed to want, and to ask.",
+          "body": "My pleasure is worth taking up space \u2014 I'm allowed to want, and to ask.",
           "tone": "soft"
         },
         {
           "id": "sexual-self-esteem-partner-request",
           "useCase": "partner-request",
           "label": "Ask for support",
-          "body": "When I'm hard on myself, it helps to hear one specific thing you enjoy about being with me — not a pep talk, just something true.",
+          "body": "When I'm hard on myself, it helps to hear one specific thing you enjoy about being with me \u2014 not a pep talk, just something true.",
           "tone": "direct"
         },
         {
           "id": "sexual-self-esteem-boundary",
           "useCase": "boundary",
           "label": "Set a boundary",
-          "body": "If I start talking myself down, I'd rather we pause than turn it into a pep talk — let me come back to what's actually feeling good.",
+          "body": "If I start talking myself down, I'd rather we pause than turn it into a pep talk \u2014 let me come back to what's actually feeling good.",
           "tone": "direct"
         },
         {
@@ -1821,7 +1825,7 @@
           "id": "sexual-self-esteem-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "I don't need to feel confident every night to deserve good sex — wanting pleasure is enough.",
+          "body": "I don't need to feel confident every night to deserve good sex \u2014 wanting pleasure is enough.",
           "tone": "reassuring"
         }
       ],
@@ -1849,7 +1853,7 @@
       "category": "psychological",
       "reviewStatus": "approved",
       "definition": "Valuing your body for what it feels and does in the moment, instead of grading its appearance.",
-      "summary": "Body appreciation is staying with sensation — what your body feels, holds, and opens to — rather than running a live review of how it looks.",
+      "summary": "Body appreciation is staying with sensation \u2014 what your body feels, holds, and opens to \u2014 rather than running a live review of how it looks.",
       "blocks": [
         {
           "id": "body-appreciation-recognize",
@@ -1861,13 +1865,13 @@
           "id": "body-appreciation-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Body appreciation is valuing your body for sensation and capacity in the moment—not mainly for how it looks."
+          "body": "Body appreciation is valuing your body for sensation and capacity in the moment\u2014not mainly for how it looks."
         },
         {
           "id": "body-appreciation-media",
           "type": "media",
           "title": "See It",
-          "body": "Sensation first — not a live review of how you look",
+          "body": "Sensation first \u2014 not a live review of how you look",
           "mediaId": "body-appreciation-illustration"
         },
         {
@@ -1884,14 +1888,14 @@
           "id": "body-appreciation-reflection",
           "type": "reflection",
           "title": "Reflect",
-          "body": "When the appearance noise drops out, what usually lets sensation take over — light, pace, trust, something else?",
+          "body": "When the appearance noise drops out, what usually lets sensation take over \u2014 light, pace, trust, something else?",
           "privateByDefault": true
         },
         {
           "id": "body-appreciation-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "I'd rather feel my body than watch it — what it can feel matters more than how it looks."
+          "body": "I'd rather feel my body than watch it \u2014 what it can feel matters more than how it looks."
         }
       ],
       "relatedConceptIds": [
@@ -1904,14 +1908,14 @@
           "id": "body-appreciation-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "I'd rather feel my body than watch it — what it can feel matters more than how it looks.",
+          "body": "I'd rather feel my body than watch it \u2014 what it can feel matters more than how it looks.",
           "tone": "soft"
         },
         {
           "id": "body-appreciation-partner-request",
           "useCase": "partner-request",
           "label": "Ask for support",
-          "body": "When I get self-conscious, it helps to be reminded you actually want to be here — not that I look a certain way.",
+          "body": "When I get self-conscious, it helps to be reminded you actually want to be here \u2014 not that I look a certain way.",
           "tone": "direct"
         },
         {
@@ -1959,33 +1963,33 @@
       "name": "Clitoral Structure",
       "category": "anatomy",
       "reviewStatus": "approved",
-      "definition": "The clitoris is mostly internal — a larger organ (~9 cm) with legs and bulbs, not just the visible tip.",
+      "definition": "The clitoris is mostly internal \u2014 a larger organ (~9 cm) with legs and bulbs, not just the visible tip.",
       "summary": "What you can see of the clitoris is only the tip. The full organ runs about 9 cm inside, with legs (crura) wrapping the vaginal canal and bulbs that fill with blood when aroused.",
       "blocks": [
         {
           "id": "clitoral-structure-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Ever noticed pleasure show up deeper or wider than the little tip you can see — like the whole area is involved?"
+          "body": "Ever noticed pleasure show up deeper or wider than the little tip you can see \u2014 like the whole area is involved?"
         },
         {
           "id": "clitoral-structure-definition",
           "type": "definition",
           "title": "Name",
-          "body": "The clitoris is mostly internal—glans, shaft, legs (crura), and bulbs—about 9 cm total, not just the visible tip."
+          "body": "The clitoris is mostly internal\u2014glans, shaft, legs (crura), and bulbs\u2014about 9 cm total, not just the visible tip."
         },
         {
           "id": "clitoral-structure-media",
           "type": "media",
           "title": "See It",
-          "body": "Internal legs and bulbs — more than the tip you can see",
+          "body": "Internal legs and bulbs \u2014 more than the tip you can see",
           "mediaId": "clitoral-structure-diagram"
         },
         {
           "id": "clitoral-structure-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "MRI and dissection mapped the full clitoral structure (O'Connell et al., 2005). Anterior vaginal sensitivity often reflects internal clitoral and urethral tissue — not a separate organ. Most vaginal pleasure is still clitoral, reached indirectly.",
+          "body": "MRI and dissection mapped the full clitoral structure (O'Connell et al., 2005). Anterior vaginal sensitivity often reflects internal clitoral and urethral tissue \u2014 not a separate organ. Most vaginal pleasure is still clitoral, reached indirectly.",
           "citationIds": [
             "clitoral-structure-source-1",
             "clitoral-structure-source-2"
@@ -1995,14 +1999,14 @@
           "id": "clitoral-structure-reflection",
           "type": "reflection",
           "title": "Reflect",
-          "body": "When internal pressure or wider contact felt good, where did it land — and does that change what you reach for next?",
+          "body": "When internal pressure or wider contact felt good, where did it land \u2014 and does that change what you reach for next?",
           "privateByDefault": true
         },
         {
           "id": "clitoral-structure-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "Most of my clitoris is internal — so 'vaginal' pleasure and clitoral pleasure aren't really separate for me."
+          "body": "Most of my clitoris is internal \u2014 so 'vaginal' pleasure and clitoral pleasure aren't really separate for me."
         }
       ],
       "relatedConceptIds": [
@@ -2015,21 +2019,21 @@
           "id": "clitoral-structure-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "Most of my clitoris is internal — so 'vaginal' pleasure and clitoral pleasure aren't really separate for me.",
+          "body": "Most of my clitoris is internal \u2014 so 'vaginal' pleasure and clitoral pleasure aren't really separate for me.",
           "tone": "soft"
         },
         {
           "id": "clitoral-structure-partner-request",
           "useCase": "partner-request",
           "label": "Ask for support",
-          "body": "There's way more clitoris than what's on the surface — pressure deeper and around it counts too.",
+          "body": "There's way more clitoris than what's on the surface \u2014 pressure deeper and around it counts too.",
           "tone": "direct"
         },
         {
           "id": "clitoral-structure-boundary",
           "useCase": "boundary",
           "label": "Set a boundary",
-          "body": "I know my own anatomy — if guessing isn't working, slow down and let me guide you to what reaches.",
+          "body": "I know my own anatomy \u2014 if guessing isn't working, slow down and let me guide you to what reaches.",
           "tone": "direct"
         },
         {
@@ -2043,7 +2047,7 @@
           "id": "clitoral-structure-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "If direct touch is too much, there's a whole internal structure to work with — there's no wrong build here.",
+          "body": "If direct touch is too much, there's a whole internal structure to work with \u2014 there's no wrong build here.",
           "tone": "reassuring"
         }
       ],
@@ -2071,8 +2075,8 @@
       "name": "Nerve Density",
       "category": "anatomy",
       "reviewStatus": "approved",
-      "definition": "How packed with nerve endings the clitoral glans is — extreme sensitivity in a small area.",
-      "summary": "The clitoral glans holds thousands of nerve endings in a small tip — roughly 8,000 — so tiny changes in pressure, angle, or rhythm land loud.",
+      "definition": "How packed with nerve endings the clitoral glans is \u2014 extreme sensitivity in a small area.",
+      "summary": "The clitoral glans holds thousands of nerve endings in a small tip \u2014 roughly 8,000 \u2014 so tiny changes in pressure, angle, or rhythm land loud.",
       "blocks": [
         {
           "id": "nerve-density-recognize",
@@ -2084,7 +2088,7 @@
           "id": "nerve-density-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Nerve density is how packed with nerve endings the clitoral glans is—thousands in a small tip, so touch quality lands loud."
+          "body": "Nerve density is how packed with nerve endings the clitoral glans is\u2014thousands in a small tip, so touch quality lands loud."
         },
         {
           "id": "nerve-density-media",
@@ -2097,7 +2101,7 @@
           "id": "nerve-density-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Anatomical studies count thousands of nerve endings in the clitoral glans (O'Connell et al.). That packing helps explain why pressure, rhythm, and indirect vs direct matter so much — and why “too much” is often timing and technique, not a closed door.",
+          "body": "Anatomical studies count thousands of nerve endings in the clitoral glans (O'Connell et al.). That packing helps explain why pressure, rhythm, and indirect vs direct matter so much \u2014 and why \u201ctoo much\u201d is often timing and technique, not a closed door.",
           "citationIds": [
             "nerve-density-source-1",
             "nerve-density-source-2"
@@ -2107,14 +2111,14 @@
           "id": "nerve-density-reflection",
           "type": "reflection",
           "title": "Reflect",
-          "body": "When touch landed just right — or suddenly too sharp — what changed: pressure, angle, rhythm, or how aroused you already were?",
+          "body": "When touch landed just right \u2014 or suddenly too sharp \u2014 what changed: pressure, angle, rhythm, or how aroused you already were?",
           "privateByDefault": true
         },
         {
           "id": "nerve-density-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "I'm extremely sensitive there — touch quality matters way more than pressure or speed."
+          "body": "I'm extremely sensitive there \u2014 touch quality matters way more than pressure or speed."
         }
       ],
       "relatedConceptIds": [
@@ -2126,21 +2130,21 @@
           "id": "nerve-density-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "I'm extremely sensitive there — touch quality matters way more than pressure or speed.",
+          "body": "I'm extremely sensitive there \u2014 touch quality matters way more than pressure or speed.",
           "tone": "soft"
         },
         {
           "id": "nerve-density-partner-request",
           "useCase": "partner-request",
           "label": "Ask for support",
-          "body": "Lighter and more indirect usually works better for me — small changes make a big difference.",
+          "body": "Lighter and more indirect usually works better for me \u2014 small changes make a big difference.",
           "tone": "direct"
         },
         {
           "id": "nerve-density-boundary",
           "useCase": "boundary",
           "label": "Set a boundary",
-          "body": "If direct touch is too intense, pause and let me guide you somewhere nearby — it's sensitivity, not rejection.",
+          "body": "If direct touch is too intense, pause and let me guide you somewhere nearby \u2014 it's sensitivity, not rejection.",
           "tone": "direct"
         },
         {
@@ -2154,7 +2158,7 @@
           "id": "nerve-density-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "If it's sometimes too much, that's how packed with sensation that spot is — ease off with me, don't take it personally.",
+          "body": "If it's sometimes too much, that's how packed with sensation that spot is \u2014 ease off with me, don't take it personally.",
           "tone": "reassuring"
         }
       ],
@@ -2182,20 +2186,20 @@
       "name": "CUV Complex",
       "category": "anatomy",
       "reviewStatus": "approved",
-      "definition": "The linked cluster of clitoris, urethra, and front vaginal wall — the anatomy behind many “G-spot” feelings.",
-      "summary": "The CUV complex is how the clitoris, urethra, and front vaginal wall share tissue and pressure — one connected area, not three lonely parts.",
+      "definition": "The linked cluster of clitoris, urethra, and front vaginal wall \u2014 the anatomy behind many \u201cG-spot\u201d feelings.",
+      "summary": "The CUV complex is how the clitoris, urethra, and front vaginal wall share tissue and pressure \u2014 one connected area, not three lonely parts.",
       "blocks": [
         {
           "id": "clitourethrovaginal-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Felt a different kind of yes on the front wall — fuller, deeper, not the same as surface touch?"
+          "body": "Felt a different kind of yes on the front wall \u2014 fuller, deeper, not the same as surface touch?"
         },
         {
           "id": "clitourethrovaginal-definition",
           "type": "definition",
           "title": "Name",
-          "body": "The CUV complex is the linked cluster of clitoris, urethra, and front vaginal wall—the anatomy behind many “G-spot” feelings."
+          "body": "The CUV complex is the linked cluster of clitoris, urethra, and front vaginal wall\u2014the anatomy behind many \u201cG-spot\u201d feelings."
         },
         {
           "id": "clitourethrovaginal-media",
@@ -2208,7 +2212,7 @@
           "id": "clitourethrovaginal-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Imaging shows the clitoris, urethra, and anterior wall are physically linked (Jannini et al., 2014). Front-wall sensitivity is real because pressure compresses that shared tissue — explore what feels good there, rather than proving a separate organ exists.",
+          "body": "Imaging shows the clitoris, urethra, and anterior wall are physically linked (Jannini et al., 2014). Front-wall sensitivity is real because pressure compresses that shared tissue \u2014 explore what feels good there, rather than proving a separate organ exists.",
           "citationIds": [
             "clitourethrovaginal-source-1",
             "clitourethrovaginal-source-2"
@@ -2218,14 +2222,14 @@
           "id": "clitourethrovaginal-reflection",
           "type": "reflection",
           "title": "Reflect",
-          "body": "When front-wall pressure felt good, what reached it — angle, ease, firmness — and did chasing a ‘spot’ help or get in the way?",
+          "body": "When front-wall pressure felt good, what reached it \u2014 angle, ease, firmness \u2014 and did chasing a \u2018spot\u2019 help or get in the way?",
           "privateByDefault": true
         },
         {
           "id": "clitourethrovaginal-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "That front-wall feeling is real for me — it's connected internal tissue, not some separate magic spot."
+          "body": "That front-wall feeling is real for me \u2014 it's connected internal tissue, not some separate magic spot."
         }
       ],
       "relatedConceptIds": [
@@ -2237,21 +2241,21 @@
           "id": "clitourethrovaginal-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "That front-wall feeling is real for me — it's connected internal tissue, not some separate magic spot.",
+          "body": "That front-wall feeling is real for me \u2014 it's connected internal tissue, not some separate magic spot.",
           "tone": "soft"
         },
         {
           "id": "clitourethrovaginal-partner-request",
           "useCase": "partner-request",
           "label": "Ask for support",
-          "body": "Firm, steady pressure toward the front wall can feel really good for me — can we stay with that instead of hunting?",
+          "body": "Firm, steady pressure toward the front wall can feel really good for me \u2014 can we stay with that instead of hunting?",
           "tone": "direct"
         },
         {
           "id": "clitourethrovaginal-boundary",
           "useCase": "boundary",
           "label": "Set a boundary",
-          "body": "Finding that spot takes patience — if it's not happening, let's stop and not force it.",
+          "body": "Finding that spot takes patience \u2014 if it's not happening, let's stop and not force it.",
           "tone": "direct"
         },
         {
@@ -2265,7 +2269,7 @@
           "id": "clitourethrovaginal-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "If we can't find a 'G-spot,' nothing's missing — it's connected tissue, and it varies for everyone.",
+          "body": "If we can't find a 'G-spot,' nothing's missing \u2014 it's connected tissue, and it varies for everyone.",
           "tone": "reassuring"
         }
       ],
@@ -2293,20 +2297,20 @@
       "name": "Internal Clitoral Stimulation",
       "category": "anatomy",
       "reviewStatus": "approved",
-      "definition": "Pleasure from front-wall pressure that reaches internal clitoral tissue — often what people mean by “G-spot” feeling.",
-      "summary": "Internal clitoral stimulation is front-wall pressure that reaches the rest of the clitoris through the vaginal lining — toward the belly button, not deeper for depth's sake.",
+      "definition": "Pleasure from front-wall pressure that reaches internal clitoral tissue \u2014 often what people mean by \u201cG-spot\u201d feeling.",
+      "summary": "Internal clitoral stimulation is front-wall pressure that reaches the rest of the clitoris through the vaginal lining \u2014 toward the belly button, not deeper for depth's sake.",
       "blocks": [
         {
           "id": "internal-stimulation-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Felt a fuller yes when pressure found the front wall — not deeper, just angled right?"
+          "body": "Felt a fuller yes when pressure found the front wall \u2014 not deeper, just angled right?"
         },
         {
           "id": "internal-stimulation-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Internal clitoral stimulation is front-wall pressure that reaches internal clitoral tissue—often what people mean by “G-spot” feeling."
+          "body": "Internal clitoral stimulation is front-wall pressure that reaches internal clitoral tissue\u2014often what people mean by \u201cG-spot\u201d feeling."
         },
         {
           "id": "internal-stimulation-media",
@@ -2319,7 +2323,7 @@
           "id": "internal-stimulation-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Imaging and clinical work suggest many “vaginal” orgasms involve internal clitoral stimulation (Foldes & Buisson, 2009). Angling and similar moves help because they press the front wall where internal tissue sits close — explore contact there, not harder thrust.",
+          "body": "Imaging and clinical work suggest many \u201cvaginal\u201d orgasms involve internal clitoral stimulation (Foldes & Buisson, 2009). Angling and similar moves help because they press the front wall where internal tissue sits close \u2014 explore contact there, not harder thrust.",
           "citationIds": [
             "internal-stimulation-source-1",
             "internal-stimulation-source-2"
@@ -2336,7 +2340,7 @@
           "id": "internal-stimulation-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "What feels like a deep 'vaginal' thing is really internal clitoris for me — angle is everything."
+          "body": "What feels like a deep 'vaginal' thing is really internal clitoris for me \u2014 angle is everything."
         }
       ],
       "relatedConceptIds": [
@@ -2349,21 +2353,21 @@
           "id": "internal-stimulation-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "What feels like a deep 'vaginal' thing is really internal clitoris for me — angle is everything.",
+          "body": "What feels like a deep 'vaginal' thing is really internal clitoris for me \u2014 angle is everything.",
           "tone": "soft"
         },
         {
           "id": "internal-stimulation-partner-request",
           "useCase": "partner-request",
           "label": "Ask for support",
-          "body": "Aiming toward the front wall does more for me than going deep — can we play with angle?",
+          "body": "Aiming toward the front wall does more for me than going deep \u2014 can we play with angle?",
           "tone": "direct"
         },
         {
           "id": "internal-stimulation-boundary",
           "useCase": "boundary",
           "label": "Set a boundary",
-          "body": "Deeper isn't the goal for me — if it's not working, try a different angle rather than just going harder.",
+          "body": "Deeper isn't the goal for me \u2014 if it's not working, try a different angle rather than just going harder.",
           "tone": "direct"
         },
         {
@@ -2377,7 +2381,7 @@
           "id": "internal-stimulation-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "If deep alone doesn't do much, it may just not be reaching the tissue that does — angle usually beats force.",
+          "body": "If deep alone doesn't do much, it may just not be reaching the tissue that does \u2014 angle usually beats force.",
           "tone": "reassuring"
         }
       ],
@@ -2473,7 +2477,7 @@
       "kind": "diagram",
       "path": "native://diagram/angling",
       "alt": "Native diagram for Angling.",
-      "caption": "A few degrees of tilt — pressure landing somewhere new",
+      "caption": "A few degrees of tilt \u2014 pressure landing somewhere new",
       "reducedMotionFallback": "assets/images/concepts/illustrations/angling.png"
     },
     {
@@ -2481,7 +2485,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/angling.png",
       "alt": "Warm educational illustration for Angling.",
-      "caption": "A few degrees of tilt — pressure landing somewhere new",
+      "caption": "A few degrees of tilt \u2014 pressure landing somewhere new",
       "reducedMotionFallback": "assets/images/concepts/illustrations/angling.png"
     },
     {
@@ -2489,7 +2493,7 @@
       "kind": "diagram",
       "path": "native://diagram/rocking",
       "alt": "Native diagram for Rocking.",
-      "caption": "Bodies close — pressure holding instead of breaking with each thrust",
+      "caption": "Bodies close \u2014 pressure holding instead of breaking with each thrust",
       "reducedMotionFallback": "assets/images/concepts/illustrations/rocking.png"
     },
     {
@@ -2497,7 +2501,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/rocking.png",
       "alt": "Warm educational illustration for Rocking.",
-      "caption": "Bodies close — pressure holding instead of breaking with each thrust",
+      "caption": "Bodies close \u2014 pressure holding instead of breaking with each thrust",
       "reducedMotionFallback": "assets/images/concepts/illustrations/rocking.png"
     },
     {
@@ -2505,7 +2509,7 @@
       "kind": "diagram",
       "path": "native://diagram/shallowing",
       "alt": "Native diagram for Shallowing.",
-      "caption": "Nerve-rich entrance — shallow contact as the destination",
+      "caption": "Nerve-rich entrance \u2014 shallow contact as the destination",
       "reducedMotionFallback": "assets/images/concepts/illustrations/shallowing.png"
     },
     {
@@ -2513,7 +2517,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/shallowing.png",
       "alt": "Warm educational illustration for Shallowing.",
-      "caption": "Nerve-rich entrance — shallow contact as the destination",
+      "caption": "Nerve-rich entrance \u2014 shallow contact as the destination",
       "reducedMotionFallback": "assets/images/concepts/illustrations/shallowing.png"
     },
     {
@@ -2521,7 +2525,7 @@
       "kind": "diagram",
       "path": "native://diagram/pairing",
       "alt": "Native diagram for Pairing.",
-      "caption": "Inside and outside touch at once — not either-or",
+      "caption": "Inside and outside touch at once \u2014 not either-or",
       "reducedMotionFallback": "assets/images/concepts/illustrations/pairing.png"
     },
     {
@@ -2529,8 +2533,16 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/pairing.png",
       "alt": "Warm educational illustration for Pairing.",
-      "caption": "Inside and outside touch at once — not either-or",
+      "caption": "Inside and outside touch at once \u2014 not either-or",
       "reducedMotionFallback": "assets/images/concepts/illustrations/pairing.png"
+    },
+    {
+      "id": "building-diagram",
+      "kind": "diagram",
+      "path": "native://diagram/building",
+      "alt": "Native diagram for Building.",
+      "caption": "Warmth gathering under the skin, intensity rising",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/building.png"
     },
     {
       "id": "building-illustration",
@@ -2549,11 +2561,19 @@
       "reducedMotionFallback": "assets/images/concepts/illustrations/building.png"
     },
     {
+      "id": "plateauing-diagram",
+      "kind": "diagram",
+      "path": "native://diagram/plateauing",
+      "alt": "Native diagram for Plateauing.",
+      "caption": "Arousal holding altitude \u2014 not climbing, not dropping",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/plateauing.png"
+    },
+    {
       "id": "plateauing-illustration",
       "kind": "image",
       "path": "assets/images/concepts/illustrations/plateauing.png",
       "alt": "Warm educational illustration for Plateauing.",
-      "caption": "Arousal holding altitude — not climbing, not dropping",
+      "caption": "Arousal holding altitude \u2014 not climbing, not dropping",
       "reducedMotionFallback": "assets/images/concepts/illustrations/plateauing.png"
     },
     {
@@ -2573,6 +2593,14 @@
       "reducedMotionFallback": "assets/images/concepts/illustrations/edging.png"
     },
     {
+      "id": "spreading-diagram",
+      "kind": "diagram",
+      "path": "native://diagram/spreading",
+      "alt": "Native diagram for Spreading.",
+      "caption": "Warmth moving past the place you're touched",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/spreading.png"
+    },
+    {
       "id": "spreading-illustration",
       "kind": "image",
       "path": "assets/images/concepts/illustrations/spreading.png",
@@ -2587,6 +2615,14 @@
       "alt": "Motion study for Spreading.",
       "caption": "Warmth moving past the place you're touched",
       "reducedMotionFallback": "assets/images/concepts/illustrations/spreading.png"
+    },
+    {
+      "id": "pulsing-diagram",
+      "kind": "diagram",
+      "path": "native://diagram/pulsing",
+      "alt": "Native diagram for Pulsing.",
+      "caption": "A beat running through the body at the high end of arousal",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/pulsing.png"
     },
     {
       "id": "pulsing-illustration",
@@ -2617,7 +2653,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/responsive-desire.png",
       "alt": "Warm educational illustration for Responsive Desire.",
-      "caption": "Context first — wanting blooming once things begin",
+      "caption": "Context first \u2014 wanting blooming once things begin",
       "reducedMotionFallback": "assets/images/concepts/illustrations/responsive-desire.png"
     },
     {
@@ -2625,7 +2661,7 @@
       "kind": "video",
       "path": "assets/videos/responsive-desire.mp4",
       "alt": "Motion study for Responsive Desire.",
-      "caption": "Context first — wanting blooming once things begin",
+      "caption": "Context first \u2014 wanting blooming once things begin",
       "reducedMotionFallback": "assets/images/concepts/illustrations/responsive-desire.png"
     },
     {
@@ -2641,7 +2677,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/golden-trio.png",
       "alt": "Warm educational illustration for Golden Trio.",
-      "caption": "Hands, mouth, and penetration — layered, not a script",
+      "caption": "Hands, mouth, and penetration \u2014 layered, not a script",
       "reducedMotionFallback": "assets/images/concepts/illustrations/golden-trio.png"
     },
     {
@@ -2681,7 +2717,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/body-appreciation.png",
       "alt": "Warm educational illustration for Body Appreciation.",
-      "caption": "Sensation first — not a live review of how you look",
+      "caption": "Sensation first \u2014 not a live review of how you look",
       "reducedMotionFallback": "assets/images/concepts/illustrations/body-appreciation.png"
     },
     {
@@ -2689,7 +2725,7 @@
       "kind": "diagram",
       "path": "native://diagram/iceberg",
       "alt": "Native diagram for Clitoral Structure.",
-      "caption": "Internal legs and bulbs — more than the tip you can see",
+      "caption": "Internal legs and bulbs \u2014 more than the tip you can see",
       "reducedMotionFallback": "assets/images/concepts/illustrations/clitoral-structure.png"
     },
     {
@@ -2697,7 +2733,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/clitoral-structure.png",
       "alt": "Warm educational illustration for Clitoral Structure.",
-      "caption": "Internal legs and bulbs — more than the tip you can see",
+      "caption": "Internal legs and bulbs \u2014 more than the tip you can see",
       "reducedMotionFallback": "assets/images/concepts/illustrations/clitoral-structure.png"
     },
     {
@@ -2785,9 +2821,9 @@
       "icon": "chart.bar",
       "heroImageId": "explainer-orgasm-gap",
       "readTime": "6 min read",
-      "overview": "In heterosexual encounters, women orgasm significantly less often than men—but this gap nearly disappears in same-sex encounters. Research shows this isn't about biology; it's about what happens during sex. Understanding the gap is the first step to closing it.",
+      "overview": "In heterosexual encounters, women orgasm significantly less often than men\u2014but this gap nearly disappears in same-sex encounters. Research shows this isn't about biology; it's about what happens during sex. Understanding the gap is the first step to closing it.",
       "keyTakeaways": [
-        "Heterosexual women orgasm 65% of the time vs 95% for men—but lesbian women reach 86%",
+        "Heterosexual women orgasm 65% of the time vs 95% for men\u2014but lesbian women reach 86%",
         "The gap is behavioral, not biological: it's about what activities occur during sex",
         "Only 18% of women orgasm from penetration alone; most need clitoral stimulation",
         "Communication about preferences correlates strongly (r=.43) with satisfaction",
@@ -2799,7 +2835,7 @@
           "contentBlocks": [
             {
               "type": "text",
-              "body": "The \"orgasm gap\" refers to the consistent finding that in heterosexual partnered encounters, women orgasm significantly less frequently than men. This disparity has been documented across multiple large-scale studies and appears consistently across age groups and relationship types.\n\nA landmark study of over 52,000 adults found that heterosexual men reported orgasming 95% of the time during partnered sexual encounters, while heterosexual women reported orgasming only 65% of the time. This 30-percentage-point gap represents a substantial and persistent inequality in sexual outcomes.\n\nImportantly, the gap is much smaller in same-sex encounters. Lesbian women reported orgasming 86% of the time—demonstrating that this isn't about women's bodies being \"harder to please\" but about what happens during different types of sexual encounters."
+              "body": "The \"orgasm gap\" refers to the consistent finding that in heterosexual partnered encounters, women orgasm significantly less frequently than men. This disparity has been documented across multiple large-scale studies and appears consistently across age groups and relationship types.\n\nA landmark study of over 52,000 adults found that heterosexual men reported orgasming 95% of the time during partnered sexual encounters, while heterosexual women reported orgasming only 65% of the time. This 30-percentage-point gap represents a substantial and persistent inequality in sexual outcomes.\n\nImportantly, the gap is much smaller in same-sex encounters. Lesbian women reported orgasming 86% of the time\u2014demonstrating that this isn't about women's bodies being \"harder to please\" but about what happens during different types of sexual encounters."
             }
           ],
           "statistic": {
@@ -2813,7 +2849,7 @@
           "contentBlocks": [
             {
               "type": "text",
-              "body": "The gap is not biological—research clearly demonstrates that women have equal physiological capacity for orgasm. Instead, the gap emerges from behavioral patterns: specifically, what activities are prioritized during heterosexual encounters versus same-sex encounters.\n\nThe primary factor is clitoral stimulation. Research consistently shows that only about 18% of women can orgasm from penetration alone, yet penetration remains the primary focus of many heterosexual encounters. In contrast, same-sex encounters between women tend to include more direct clitoral stimulation."
+              "body": "The gap is not biological\u2014research clearly demonstrates that women have equal physiological capacity for orgasm. Instead, the gap emerges from behavioral patterns: specifically, what activities are prioritized during heterosexual encounters versus same-sex encounters.\n\nThe primary factor is clitoral stimulation. Research consistently shows that only about 18% of women can orgasm from penetration alone, yet penetration remains the primary focus of many heterosexual encounters. In contrast, same-sex encounters between women tend to include more direct clitoral stimulation."
             },
             {
               "type": "callout",
@@ -2822,7 +2858,7 @@
             },
             {
               "type": "text",
-              "body": "Cultural scripts about sex—particularly the idea that penetration is the \"main event\"—contribute to this pattern. When sex is defined as penis-in-vagina intercourse, activities that are more reliably pleasurable for women may be treated as optional extras rather than central components."
+              "body": "Cultural scripts about sex\u2014particularly the idea that penetration is the \"main event\"\u2014contribute to this pattern. When sex is defined as penis-in-vagina intercourse, activities that are more reliably pleasurable for women may be treated as optional extras rather than central components."
             }
           ],
           "statistic": {
@@ -2836,7 +2872,7 @@
           "contentBlocks": [
             {
               "type": "text",
-              "body": "Research has identified specific factors that predict higher orgasm rates for women in heterosexual encounters. The most significant is receiving adequate clitoral stimulation—whether from hands, mouth, toys, or positioning that creates contact during penetration.\n\nVariety matters too. Women who receive multiple types of stimulation (oral sex, manual stimulation, and penetration) in the same encounter report significantly higher orgasm rates than those receiving only one type. One study found an 86% orgasm rate when all three were included."
+              "body": "Research has identified specific factors that predict higher orgasm rates for women in heterosexual encounters. The most significant is receiving adequate clitoral stimulation\u2014whether from hands, mouth, toys, or positioning that creates contact during penetration.\n\nVariety matters too. Women who receive multiple types of stimulation (oral sex, manual stimulation, and penetration) in the same encounter report significantly higher orgasm rates than those receiving only one type. One study found an 86% orgasm rate when all three were included."
             },
             {
               "type": "quote",
@@ -2845,7 +2881,7 @@
             },
             {
               "type": "text",
-              "body": "Communication is equally crucial. Studies show a strong correlation between sexual communication and satisfaction. Women who communicate about their preferences—what feels good, what they'd like more of, what they'd like to try—report better outcomes. This includes in-the-moment guidance as well as conversations outside the bedroom."
+              "body": "Communication is equally crucial. Studies show a strong correlation between sexual communication and satisfaction. Women who communicate about their preferences\u2014what feels good, what they'd like more of, what they'd like to try\u2014report better outcomes. This includes in-the-moment guidance as well as conversations outside the bedroom."
             }
           ],
           "statistic": {
@@ -2859,7 +2895,7 @@
           "contentBlocks": [
             {
               "type": "text",
-              "body": "Understanding the orgasm gap reframes the conversation: if you've ever felt that something was \"wrong\" with you because orgasm didn't come easily during partnered sex, the research suggests it's not you—it's the script you've been handed.\n\nThis knowledge is empowering. If the gap is behavioral rather than biological, it can be addressed through behavior change: incorporating more of what works (clitoral stimulation, variety, communication), and less adherence to scripts that prioritize activities less likely to produce pleasure.\n\nBuilding vocabulary for your preferences—knowing the words for what you like and how to express them—is a concrete step toward closing your personal orgasm gap. The concepts in this app are tools for that project."
+              "body": "Understanding the orgasm gap reframes the conversation: if you've ever felt that something was \"wrong\" with you because orgasm didn't come easily during partnered sex, the research suggests it's not you\u2014it's the script you've been handed.\n\nThis knowledge is empowering. If the gap is behavioral rather than biological, it can be addressed through behavior change: incorporating more of what works (clitoral stimulation, variety, communication), and less adherence to scripts that prioritize activities less likely to produce pleasure.\n\nBuilding vocabulary for your preferences\u2014knowing the words for what you like and how to express them\u2014is a concrete step toward closing your personal orgasm gap. The concepts in this app are tools for that project."
             }
           ]
         }
@@ -2914,10 +2950,10 @@
       "icon": "figure.stand",
       "heroImageId": "explainer-anatomy-101",
       "readTime": "5 min read",
-      "overview": "For centuries, female genital anatomy was poorly understood and rarely studied. Modern imaging has revealed that the clitoris is a much larger organ than previously recognized—mostly internal, richly innervated, and central to understanding pleasure.",
+      "overview": "For centuries, female genital anatomy was poorly understood and rarely studied. Modern imaging has revealed that the clitoris is a much larger organ than previously recognized\u2014mostly internal, richly innervated, and central to understanding pleasure.",
       "keyTakeaways": [
         "The clitoris is approximately 9cm in total size, with most of the structure internal",
-        "The external glans contains over 8,000 nerve endings—roughly equal to the entire penis",
+        "The external glans contains over 8,000 nerve endings\u2014roughly equal to the entire penis",
         "Internal clitoral tissue wraps around the vaginal canal, explaining internal sensitivity",
         "The \"G-spot\" is likely internal clitoral stimulation through the vaginal wall",
         "Understanding anatomy helps explain why certain techniques and positions feel different"
@@ -2928,12 +2964,12 @@
           "contentBlocks": [
             {
               "type": "text",
-              "body": "What's visible of the clitoris—the glans and clitoral hood—represents only a fraction of the full organ. Modern MRI studies have mapped the complete clitoral structure, revealing it to be approximately 9cm in total size, with internal legs (crura) and vestibular bulbs extending inside the body.\n\nThe crura are two elongated structures that extend backward from the glans along the pubic bone. The vestibular bulbs are erectile tissue that flank the vaginal opening and fill with blood during arousal, contributing to the sensation of engorgement."
+              "body": "What's visible of the clitoris\u2014the glans and clitoral hood\u2014represents only a fraction of the full organ. Modern MRI studies have mapped the complete clitoral structure, revealing it to be approximately 9cm in total size, with internal legs (crura) and vestibular bulbs extending inside the body.\n\nThe crura are two elongated structures that extend backward from the glans along the pubic bone. The vestibular bulbs are erectile tissue that flank the vaginal opening and fill with blood during arousal, contributing to the sensation of engorgement."
             },
             {
               "type": "callout",
               "title": "Internal Structure",
-              "body": "The internal clitoris wraps around the vaginal canal, which explains why some internal stimulation feels pleasurable—pressure on the vaginal walls can affect the surrounding clitoral tissue."
+              "body": "The internal clitoris wraps around the vaginal canal, which explains why some internal stimulation feels pleasurable\u2014pressure on the vaginal walls can affect the surrounding clitoral tissue."
             }
           ],
           "statistic": {
@@ -2947,7 +2983,7 @@
           "contentBlocks": [
             {
               "type": "text",
-              "body": "The clitoral glans—the external, visible portion—contains over 8,000 nerve endings. This is approximately equal to the number found in the entire penis, but concentrated in a much smaller area. This density explains the glans' exquisite sensitivity.\n\nBecause of this concentration, direct stimulation of the glans can sometimes feel too intense, particularly before adequate arousal. Many women prefer indirect stimulation through the hood, or stimulation of the surrounding area rather than the glans directly. Sensitivity also varies with arousal level—what feels like too much early on may feel perfect later."
+              "body": "The clitoral glans\u2014the external, visible portion\u2014contains over 8,000 nerve endings. This is approximately equal to the number found in the entire penis, but concentrated in a much smaller area. This density explains the glans' exquisite sensitivity.\n\nBecause of this concentration, direct stimulation of the glans can sometimes feel too intense, particularly before adequate arousal. Many women prefer indirect stimulation through the hood, or stimulation of the surrounding area rather than the glans directly. Sensitivity also varies with arousal level\u2014what feels like too much early on may feel perfect later."
             },
             {
               "type": "quote",
@@ -2955,7 +2991,7 @@
             },
             {
               "type": "text",
-              "body": "The high nerve density also explains why small differences in technique can produce very different sensations. This is why having specific vocabulary for preferences matters—there's a lot of nuance to communicate."
+              "body": "The high nerve density also explains why small differences in technique can produce very different sensations. This is why having specific vocabulary for preferences matters\u2014there's a lot of nuance to communicate."
             }
           ],
           "statistic": {
@@ -2969,7 +3005,7 @@
           "contentBlocks": [
             {
               "type": "text",
-              "body": "The \"G-spot\" has been debated for decades, but modern anatomical understanding offers clarification. The sensitive area on the anterior (front) vaginal wall—typically 1-3 inches inside, toward the belly button—corresponds to where internal clitoral tissue and the urethral sponge can be felt through the vaginal lining.\n\nResearchers now refer to this integrated area as the clitourethrovaginal (CUV) complex. Stimulation of this area affects multiple sensitive structures simultaneously: internal clitoral tissue, the urethra (surrounded by nerve-rich tissue), and the vaginal wall itself.\n\nThis explains why there's no single \"spot\" that works for everyone—the anatomy varies between individuals, and responsiveness can change with arousal level. Rather than searching for a magic button, it's more helpful to explore the general area and notice what feels pleasurable."
+              "body": "The \"G-spot\" has been debated for decades, but modern anatomical understanding offers clarification. The sensitive area on the anterior (front) vaginal wall\u2014typically 1-3 inches inside, toward the belly button\u2014corresponds to where internal clitoral tissue and the urethral sponge can be felt through the vaginal lining.\n\nResearchers now refer to this integrated area as the clitourethrovaginal (CUV) complex. Stimulation of this area affects multiple sensitive structures simultaneously: internal clitoral tissue, the urethra (surrounded by nerve-rich tissue), and the vaginal wall itself.\n\nThis explains why there's no single \"spot\" that works for everyone\u2014the anatomy varies between individuals, and responsiveness can change with arousal level. Rather than searching for a magic button, it's more helpful to explore the general area and notice what feels pleasurable."
             }
           ]
         },
@@ -2978,7 +3014,7 @@
           "contentBlocks": [
             {
               "type": "text",
-              "body": "Understanding clitoral anatomy has practical implications. It explains why external stimulation is important for most women's pleasure and orgasm—you're accessing the most nerve-dense part of a larger organ. It explains why positions and techniques that create clitoral contact often feel better.\n\nIt also explains internal pleasure. Techniques like angling (tilting the pelvis to change where penetration creates pressure) work because they optimize contact with internal clitoral tissue. The \"G-spot\" isn't separate from the clitoris—it's another way to access it.\n\nThis anatomical knowledge can help with exploration and communication. Instead of thinking something is wrong if penetration alone isn't enough, you can recognize that you're working with anatomy that's designed for multi-point stimulation."
+              "body": "Understanding clitoral anatomy has practical implications. It explains why external stimulation is important for most women's pleasure and orgasm\u2014you're accessing the most nerve-dense part of a larger organ. It explains why positions and techniques that create clitoral contact often feel better.\n\nIt also explains internal pleasure. Techniques like angling (tilting the pelvis to change where penetration creates pressure) work because they optimize contact with internal clitoral tissue. The \"G-spot\" isn't separate from the clitoris\u2014it's another way to access it.\n\nThis anatomical knowledge can help with exploration and communication. Instead of thinking something is wrong if penetration alone isn't enough, you can recognize that you're working with anatomy that's designed for multi-point stimulation."
             }
           ]
         }
@@ -2994,7 +3030,7 @@
         },
         {
           "myth": "Vaginal and clitoral orgasms are completely different",
-          "fact": "Given the anatomical overlap (internal clitoral tissue surrounds the vagina), many \"vaginal\" orgasms likely involve clitoral stimulation—just accessed internally rather than externally."
+          "fact": "Given the anatomical overlap (internal clitoral tissue surrounds the vagina), many \"vaginal\" orgasms likely involve clitoral stimulation\u2014just accessed internally rather than externally."
         }
       ],
       "keySources": [
@@ -3028,10 +3064,10 @@
       "icon": "lightbulb",
       "heroImageId": "explainer-mind-body",
       "readTime": "6 min read",
-      "overview": "Sexual response isn't purely physical—your brain plays a central role in arousal and pleasure. Research shows that mental factors like attention, presence, and self-evaluation significantly impact sexual experience. Understanding these patterns opens new avenues for enhancing pleasure.",
+      "overview": "Sexual response isn't purely physical\u2014your brain plays a central role in arousal and pleasure. Research shows that mental factors like attention, presence, and self-evaluation significantly impact sexual experience. Understanding these patterns opens new avenues for enhancing pleasure.",
       "keyTakeaways": [
         "Spectatoring (mentally watching yourself during sex) interferes with arousal and pleasure",
-        "Embodied presence—focused attention on sensation—enhances sexual experience",
+        "Embodied presence\u2014focused attention on sensation\u2014enhances sexual experience",
         "Non-concordance (when physical signs don't match how turned on you feel) is normal",
         "Mindfulness-based approaches significantly improve sexual satisfaction",
         "Where you direct your attention during sex matters as much as what's happening physically"
@@ -3042,7 +3078,7 @@
           "contentBlocks": [
             {
               "type": "text",
-              "body": "Sexual arousal involves a complex interplay between body and brain. Physical stimulation sends signals to the brain, but the brain's interpretation of those signals—influenced by attention, emotions, thoughts, and context—shapes the experience of pleasure.\n\nAttention is particularly crucial. When attention is focused on bodily sensations, pleasure tends to be enhanced. When attention is diverted—to worries, self-evaluation, or distractions—the same physical stimulation may produce less pleasure or none at all.\n\nThis is why sex can feel completely different depending on your mental state. The same touch that feels electric when you're relaxed and present might barely register when you're stressed or distracted. Understanding this gives you a lever for enhancing pleasure that doesn't require any change to physical technique."
+              "body": "Sexual arousal involves a complex interplay between body and brain. Physical stimulation sends signals to the brain, but the brain's interpretation of those signals\u2014influenced by attention, emotions, thoughts, and context\u2014shapes the experience of pleasure.\n\nAttention is particularly crucial. When attention is focused on bodily sensations, pleasure tends to be enhanced. When attention is diverted\u2014to worries, self-evaluation, or distractions\u2014the same physical stimulation may produce less pleasure or none at all.\n\nThis is why sex can feel completely different depending on your mental state. The same touch that feels electric when you're relaxed and present might barely register when you're stressed or distracted. Understanding this gives you a lever for enhancing pleasure that doesn't require any change to physical technique."
             }
           ]
         },
@@ -3051,7 +3087,7 @@
           "contentBlocks": [
             {
               "type": "text",
-              "body": "\"Spectatoring\" is a term coined by pioneering sex researchers Masters and Johnson to describe a common barrier to sexual enjoyment: mentally stepping outside yourself to observe and evaluate your own performance during sex.\n          \nWhen you're spectatoring, you're not fully in the experience—you're watching yourself as if from the outside, often running critical commentary. \"Do I look okay? Am I taking too long? Is my partner getting bored? Am I doing this right?\" This self-focused attention pulls cognitive resources away from processing pleasure."
+              "body": "\"Spectatoring\" is a term coined by pioneering sex researchers Masters and Johnson to describe a common barrier to sexual enjoyment: mentally stepping outside yourself to observe and evaluate your own performance during sex.\n          \nWhen you're spectatoring, you're not fully in the experience\u2014you're watching yourself as if from the outside, often running critical commentary. \"Do I look okay? Am I taking too long? Is my partner getting bored? Am I doing this right?\" This self-focused attention pulls cognitive resources away from processing pleasure."
             },
             {
               "type": "callout",
@@ -3083,7 +3119,7 @@
           "contentBlocks": [
             {
               "type": "text",
-              "body": "\"Non-concordance\" refers to the common experience of disconnect between physical arousal signs (like lubrication or genital blood flow) and the subjective feeling of being turned on. Your body might show physical signs of arousal when you don't feel interested, or you might feel very mentally aroused while your body isn't visibly responding.\n\nResearch shows that for women, there's only about a 10-25% overlap between genital response and subjective arousal. This is strikingly different from men, where the correlation is much higher. Non-concordance is now understood as normal female sexual response, not a dysfunction.\n\nThis has important implications. Physical response alone doesn't indicate desire or consent. And lack of visible physical response doesn't mean you're not aroused or that something is wrong. Your felt sense of arousal—how turned on you actually feel—is what matters, regardless of what your body appears to be doing."
+              "body": "\"Non-concordance\" refers to the common experience of disconnect between physical arousal signs (like lubrication or genital blood flow) and the subjective feeling of being turned on. Your body might show physical signs of arousal when you don't feel interested, or you might feel very mentally aroused while your body isn't visibly responding.\n\nResearch shows that for women, there's only about a 10-25% overlap between genital response and subjective arousal. This is strikingly different from men, where the correlation is much higher. Non-concordance is now understood as normal female sexual response, not a dysfunction.\n\nThis has important implications. Physical response alone doesn't indicate desire or consent. And lack of visible physical response doesn't mean you're not aroused or that something is wrong. Your felt sense of arousal\u2014how turned on you actually feel\u2014is what matters, regardless of what your body appears to be doing."
             }
           ],
           "statistic": {
@@ -3096,7 +3132,7 @@
       "misconceptions": [
         {
           "myth": "Physical arousal signs mean you're turned on",
-          "fact": "Non-concordance is common—bodies can respond to sexually relevant stimuli without subjective arousal. Only you know if you're actually turned on; physical signs aren't reliable indicators."
+          "fact": "Non-concordance is common\u2014bodies can respond to sexually relevant stimuli without subjective arousal. Only you know if you're actually turned on; physical signs aren't reliable indicators."
         },
         {
           "myth": "Being present during sex should come naturally",
@@ -3143,7 +3179,7 @@
       "icon": "bubble.left.and.bubble.right",
       "heroImageId": "explainer-communication-science",
       "readTime": "5 min read",
-      "overview": "Research consistently shows that sexual communication is one of the strongest predictors of sexual satisfaction—yet many people find it difficult. Understanding why communication works and what holds us back can help bridge the gap between knowing what you want and being able to ask for it.",
+      "overview": "Research consistently shows that sexual communication is one of the strongest predictors of sexual satisfaction\u2014yet many people find it difficult. Understanding why communication works and what holds us back can help bridge the gap between knowing what you want and being able to ask for it.",
       "keyTakeaways": [
         "Sexual communication correlates r=.43 with sexual satisfaction (a strong effect)",
         "Over half of women (55%) want to communicate about sex but choose not to",
@@ -3157,7 +3193,7 @@
           "contentBlocks": [
             {
               "type": "text",
-              "body": "The relationship between sexual communication and sexual satisfaction is one of the most robust findings in sex research. A comprehensive meta-analysis found a correlation of r=.43 between communication about sex and sexual satisfaction—a strong effect in psychological research.\n\nThis relationship appears across different types of communication: talking about preferences, giving in-the-moment feedback, discussing what feels good, and expressing desires. All forms of sexual communication are associated with better outcomes.\n\nImportantly, the effect is even stronger for women than for men. This makes sense given the orgasm gap—if women's pleasure requires activities and attention that aren't always automatically included, communication becomes essential for ensuring those needs are met."
+              "body": "The relationship between sexual communication and sexual satisfaction is one of the most robust findings in sex research. A comprehensive meta-analysis found a correlation of r=.43 between communication about sex and sexual satisfaction\u2014a strong effect in psychological research.\n\nThis relationship appears across different types of communication: talking about preferences, giving in-the-moment feedback, discussing what feels good, and expressing desires. All forms of sexual communication are associated with better outcomes.\n\nImportantly, the effect is even stronger for women than for men. This makes sense given the orgasm gap\u2014if women's pleasure requires activities and attention that aren't always automatically included, communication becomes essential for ensuring those needs are met."
             }
           ],
           "statistic": {
@@ -3171,7 +3207,7 @@
           "contentBlocks": [
             {
               "type": "text",
-              "body": "Despite knowing that communication helps, many people don't communicate about sex. Research has mapped the specific barriers people report:\n\nFear of hurting their partner's feelings is the most common barrier, cited by 42% of people. Many worry that expressing a preference implies criticism of what their partner is currently doing. Discomfort with explicit discussion comes second at 40%—even in intimate relationships, talking explicitly about sex can feel more vulnerable than having it.\n\nEmbarrassment about desires (38%) and worry about seeming demanding (35%) round out the top barriers. These fears often overestimate the negative reaction partners will have. Studies show that partners typically respond more positively to sexual communication than people predict."
+              "body": "Despite knowing that communication helps, many people don't communicate about sex. Research has mapped the specific barriers people report:\n\nFear of hurting their partner's feelings is the most common barrier, cited by 42% of people. Many worry that expressing a preference implies criticism of what their partner is currently doing. Discomfort with explicit discussion comes second at 40%\u2014even in intimate relationships, talking explicitly about sex can feel more vulnerable than having it.\n\nEmbarrassment about desires (38%) and worry about seeming demanding (35%) round out the top barriers. These fears often overestimate the negative reaction partners will have. Studies show that partners typically respond more positively to sexual communication than people predict."
             }
           ],
           "statistic": {
@@ -3185,12 +3221,12 @@
           "contentBlocks": [
             {
               "type": "text",
-              "body": "Research on effective sexual communication points to several principles. Framing preferences positively (\"I love when you...\") tends to be received better than negative framing (\"Don't do...\"). Specific guidance (\"a little slower\" or \"right there\") is more useful than vague statements.\n\nTiming matters too. Some conversations are better outside the bedroom—discussing new things to try, addressing patterns, or sharing what you've learned about yourself. Other communication works best in the moment—guiding pressure, speed, or location of touch."
+              "body": "Research on effective sexual communication points to several principles. Framing preferences positively (\"I love when you...\") tends to be received better than negative framing (\"Don't do...\"). Specific guidance (\"a little slower\" or \"right there\") is more useful than vague statements.\n\nTiming matters too. Some conversations are better outside the bedroom\u2014discussing new things to try, addressing patterns, or sharing what you've learned about yourself. Other communication works best in the moment\u2014guiding pressure, speed, or location of touch."
             },
             {
               "type": "callout",
               "title": "Why Vocabulary Matters",
-              "body": "When you can name what you want—using terms like \"angling\" or \"pairing\"—communication becomes more precise and less awkward."
+              "body": "When you can name what you want\u2014using terms like \"angling\" or \"pairing\"\u2014communication becomes more precise and less awkward."
             }
           ]
         },
@@ -3199,7 +3235,7 @@
           "contentBlocks": [
             {
               "type": "text",
-              "body": "Knowing that communication works is different from actually doing it. The gap between intention and action is where many people get stuck. Some practical bridges:\n\nStart small. You don't have to have a big vulnerable conversation to begin communicating. Simple in-the-moment guidance (\"that feels good\" or \"a little softer\") builds both your confidence and your partner's responsiveness.\n\nUse tools. The Communication Toolkit in this app provides scripts and starters—model language you can adapt. Sometimes having the words ready makes it easier to speak."
+              "body": "Knowing that communication works is different from actually doing it. The gap between intention and action is where many people get stuck. Some practical bridges:\n\nStart small. You don't have to have a big vulnerable conversation to begin communicating. Simple in-the-moment guidance (\"that feels good\" or \"a little softer\") builds both your confidence and your partner's responsiveness.\n\nUse tools. The Communication Toolkit in this app provides scripts and starters\u2014model language you can adapt. Sometimes having the words ready makes it easier to speak."
             },
             {
               "type": "quote",
@@ -3211,7 +3247,7 @@
       "misconceptions": [
         {
           "myth": "Good partners should just know what you want",
-          "fact": "Even the most attentive partner can't read your mind. Bodies differ, preferences differ, and what you want may change. Communication is always necessary—it's not a sign of inadequacy."
+          "fact": "Even the most attentive partner can't read your mind. Bodies differ, preferences differ, and what you want may change. Communication is always necessary\u2014it's not a sign of inadequacy."
         },
         {
           "myth": "Asking for what you want ruins the mood",
@@ -3219,7 +3255,7 @@
         },
         {
           "myth": "Being direct means being demanding or critical",
-          "fact": "Expressing preferences is an act of trust and intimacy, not criticism. Partners generally appreciate knowing what feels good—it takes the guesswork out of pleasing you."
+          "fact": "Expressing preferences is an act of trust and intimacy, not criticism. Partners generally appreciate knowing what feels good\u2014it takes the guesswork out of pleasing you."
         }
       ],
       "keySources": [

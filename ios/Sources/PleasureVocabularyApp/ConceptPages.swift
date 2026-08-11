@@ -445,17 +445,17 @@ private struct SeePageBody: View {
         }
     }
 
-    // The pivotal "see how it works" moment: the demonstration video where one
-    // ships and motion is allowed, otherwise the native diagram, otherwise the
-    // mechanism illustration.
+    // Primary See moment: native interactive diagram when present (the product
+    // differentiator), then demonstration video when motion is allowed, then
+    // illustration, then placeholder. Videos remain available as ambient/later.
     @ViewBuilder
     private var mediaView: some View {
         let media = model.media(withId: page.block?.mediaId)
-        if !reduceMotion, let videoURL = BundledMedia.videoURL(forConceptId: concept.id) {
-            ConceptVideoView(url: videoURL, caption: media?.caption ?? media?.alt)
-        } else if let media, media.kind == .diagram,
-                  let id = ConceptDiagramView.diagramId(fromNativePath: media.path) {
+        if let media, media.kind == .diagram,
+           let id = ConceptDiagramView.diagramId(fromNativePath: media.path) {
             ConceptDiagramView(diagramId: id, caption: media.caption ?? media.alt)
+        } else if !reduceMotion, let videoURL = BundledMedia.videoURL(forConceptId: concept.id) {
+            ConceptVideoView(url: videoURL, caption: media?.caption ?? media?.alt)
         } else if let media, media.kind == .image {
             IllustrationCard(media: media)
         } else {

@@ -1,9 +1,9 @@
 # Interactive diagrams — living plan
 
-**Status:** S1 done (Anatomy 4 shipped; S0 polish done on original 5)  
+**Status:** S2 done (Sensation 4 shipped; S1 Anatomy + S0 Technique done)  
 **Owner:** Sensory Success  
 **Code:** `ios/Sources/PleasureVocabularyApp/ConceptDiagrams.swift`  
-**Product home:** See page (priority: video → native diagram → illustration)  
+**Product home:** See page (priority: native diagram → video → illustration → placeholder)  
 **Archived sketch:** `docs/_archive/2026-08-11-pre-reset/pipelines/INTERACTIVE_DIAGRAMS_PLAN.md`
 
 Conor wants a diagram for **every concept (22/22)**. Approach locked: polish the existing five to a high bar, then expand. No approach picker.
@@ -23,7 +23,11 @@ Conor wants a diagram for **every concept (22/22)**. Approach locked: polish the
 | Nerve Density | Pan — zoom densifies filaments | **ship** (S1) |
 | CUV Complex | Triple toggle — overlap cluster glow | **ship** (S1) |
 | Internal Stimulation | Pan — anterior path vs deep pressure | **ship** (S1) |
-| Remaining 13 | — | **todo** (planned below) |
+| Building | Hold — reservoir fills; release leaks | **ship** (S2) |
+| Plateauing | Pan — climb onto flat ridge | **ship** (S2) |
+| Pulsing | Tap — concentric pulse rings (~0.8s) | **ship** (S2) |
+| Spreading | Tap — ripple through nerve tree | **ship** (S2) |
+| Remaining 9 | — | **todo** (planned below) |
 
 Shared kit: affordance hint, insight chip, optional idle pulse, insight haptics. Canvas-only. Reduce Motion = static teaching frame.
 
@@ -60,10 +64,10 @@ Every interactive must earn its place on See:
 | 7 | Nerve Density | Density dial | Extreme endings packed in a small glans area. | pan (vertical zoom) | ship |
 | 8 | CUV Complex | Pressure triad | Clitoris, urethra, and front wall form one integrated cluster. | triple toggle | ship |
 | 9 | Internal Stimulation | Anterior path | Front-wall pressure reaches internal clitoral tissue — not “deeper = better.” | pan (angle) | ship |
-| 10 | Building | Hold to charge | Arousal gathers gradually; hold fills, release leaks slightly. | hold | todo |
-| 11 | Plateauing | Ridge walk | Climb then walk a flat ridge — hover without climbing or fading. | pan (along curve) | todo |
-| 12 | Pulsing | Rhythm tap | High-arousal throb as a calm pulse the user can match. | tap (tempo) | todo |
-| 13 | Spreading | Ripple origin | Pleasure radiates outward from a touch origin through a nerve tree. | tap (origin) | todo |
+| 10 | Building | Hold to charge | Arousal gathers gradually; hold fills, release leaks slightly. | hold | **ship** (S2) |
+| 11 | Plateauing | Ridge walk | Climb then walk a flat ridge — hover without climbing or fading. | pan (along curve) | **ship** (S2) |
+| 12 | Pulsing | Rhythm tap | High-arousal throb as a calm pulse the user can match. | tap (tempo) | **ship** (S2) |
+| 13 | Spreading | Ripple origin | Pleasure radiates outward from a touch origin through a nerve tree. | tap (origin) | **ship** (S2) |
 | 14 | Warm-up Window | Slow cooker | Fast drags do nothing; slow sustained drag fills engorgement. | pan (tempo-gated) | todo |
 | 15 | Responsive Desire | Ember rub | Desire wakes after sustained “context” — coal glows only with patience. | pan (circular) | todo |
 | 16 | Spontaneous Desire | Wellspring | Wanting rises on its own; bubbles without user charge. | observe / light tap | todo |
@@ -102,7 +106,7 @@ Previously deferred in the archived plan; Conor wants them too. Keep non-gamifie
 ```
 S0  Polish shipped 5                       ← done
 S1  Anatomy 4: clitoral-structure → nerve-density → clitourethrovaginal → internal-stimulation  ← done
-S2  Sensation: building → plateauing → pulsing → spreading
+S2  Sensation: building → plateauing → pulsing → spreading  ← done
 S3  Timing / mind: warmup-window → responsive-desire + spontaneous-desire → spectatoring + embodied-presence → non-concordance
 S4  Remaining 3: golden-trio → sexual-self-esteem → body-appreciation
 ```
@@ -133,6 +137,15 @@ Optional: `docs/pipelines/prompts/diagrams/{id}.md` interaction spec (mechanic, 
 - Every interactive has a meaningful Reduce Motion teaching frame
 - Palette matches Soft Intimate diagram tokens — no drift
 - `cd ios && swift test` stays green (9 tests)
+
+
+---
+
+## 7a. See media priority (S2)
+
+`SeePageBody` prefers **native diagram (if present) → video (if motion allowed) → illustration → placeholder**.
+
+Rationale: the interactive is the product differentiator. Sensation concepts may still ship videos; those remain optional/ambient later, not the primary teaching moment when a `diagramType` is wired.
 
 ---
 

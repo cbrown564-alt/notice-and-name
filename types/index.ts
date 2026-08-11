@@ -32,6 +32,10 @@ export type DiagramType =
   | 'nerve-density'
   | 'cuv-complex'
   | 'internal-stimulation'
+  | 'building'
+  | 'plateauing'
+  | 'pulsing'
+  | 'spreading'
   | 'warmup-window'
   | 'none';
 
