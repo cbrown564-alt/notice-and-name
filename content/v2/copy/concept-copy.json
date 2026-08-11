@@ -13,13 +13,13 @@
       ]
     },
     "rocking": {
-      "recognize": "Notice that grinding or circling can land better than straight thrusting?",
-      "reflection": "Think of a time staying close and grinding felt better than movement with more distance. What was different about it for you?",
+      "recognize": "Ever stayed pressed close and ground in small circles — and felt that hold better than thrusting in and out?",
+      "reflection": "When staying close worked better than pulling apart, what was your body getting that bigger movement lost?",
       "phrases": [
-        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "Steady contact does more for me than big movement — closeness over friction." },
+        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "Steady contact does more for me than big movement — closeness over distance." },
         { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "Could we stay pressed close and grind instead of pulling back and forth? I lose the good spot when we separate." },
         { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "If the pace gets to be too much, I'd rather slow down and keep contact than speed up." },
-        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I'm curious what happens if we keep constant pressure the whole time, not just in waves." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I wonder what happens if we keep that steady pressure the whole time, not just in waves." },
         { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "Wanting to stay close and barely move isn't boring — it's exactly what works for me." }
       ]
     },
@@ -134,8 +134,8 @@
       ]
     },
     "golden-trio": {
-      "recognize": "Noticed that mixing kinds of touch — not penetration alone — makes things more intense?",
-      "reflection": "Think of an encounter that layered different kinds of touch. What combination did your body respond to most?",
+      "recognize": "Ever noticed one kind of touch alone rarely gets you there — but layering hands, mouth, and penetration finally does?",
+      "reflection": "When different kinds of touch stacked in one encounter, which mix actually moved you — and which felt like going through the motions?",
       "phrases": [
         { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "Variety is what works for me — one kind of touch alone rarely gets me all the way." },
         { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "Can we mix it up — hands, mouth, and penetration together rather than just one?" },
@@ -178,24 +178,24 @@
       ]
     },
     "sexual-self-esteem": {
-      "recognize": "Caught an old story about yourself mid-intimacy — that you're too much, not enough, or somehow failing at this?",
-      "reflection": "Where did your beliefs about yourself as a sexual person come from? Which ones would you actually want to keep?",
+      "recognize": "Caught an old story mid-intimacy — that you're too much, not enough, or somehow failing at wanting what you want?",
+      "reflection": "When that story interrupts, what do you lose contact with first — sensation, wanting, or the nerve to ask?",
       "phrases": [
-        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "My pleasure is worth taking up space for — I'm allowed to want, and to ask." },
-        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "It helps me to hear what you enjoy about me — I'm still learning to believe I'm good in bed." },
-        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "I won't talk myself down in bed anymore — if I start, gently stop me rather than agreeing." },
-        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I'm curious who I am sexually when I'm not judging myself the whole time." },
-        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "I don't need to feel confident every day to deserve good sex — feeling entitled to pleasure is enough." }
+        { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "My pleasure is worth taking up space — I'm allowed to want, and to ask." },
+        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "When I'm hard on myself, it helps to hear one specific thing you enjoy about being with me — not a pep talk, just something true." },
+        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "If I start talking myself down, I'd rather we pause than turn it into a pep talk — let me come back to what's actually feeling good." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I want to find out what sex feels like when I'm not grading myself through it." },
+        { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "I don't need to feel confident every night to deserve good sex — wanting pleasure is enough." }
       ]
     },
     "body-appreciation": {
-      "recognize": "During sex, are you more caught up in how your body looks, or how it feels? Do appearance worries pull you out?",
-      "reflection": "Think of a moment you forgot how you looked and just felt. What made that possible?",
+      "recognize": "Mid-touch, caught yourself checking how you look instead of what you're feeling?",
+      "reflection": "When the appearance noise drops out, what usually lets sensation take over — light, pace, trust, something else?",
       "phrases": [
         { "useCase": "self-understanding", "label": "For myself", "tone": "soft", "body": "I'd rather feel my body than watch it — what it can feel matters more than how it looks." },
-        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "When I get self-conscious about my body, it helps to be reminded you actually want to be here." },
-        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "I don't want to spend our time hiding how I look — keep the lights where I'm comfortable, and if I get self-conscious, let's not stop to fix it." },
-        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I want to find out how much more I feel when I'm not monitoring how I look." },
+        { "useCase": "partner-request", "label": "Ask for support", "tone": "direct", "body": "When I get self-conscious, it helps to be reminded you actually want to be here — not that I look a certain way." },
+        { "useCase": "boundary", "label": "Set a boundary", "tone": "direct", "body": "If I get self-conscious about my body, I'd rather we pause or keep going than stop to talk about how I look." },
+        { "useCase": "curiosity", "label": "Open curiosity", "tone": "curious", "body": "I'm curious how much more lands when I'm inside the feeling, not watching myself." },
         { "useCase": "reassurance", "label": "Reassure", "tone": "reassuring", "body": "How my body looks doesn't decide whether I get to enjoy this." }
       ]
     },

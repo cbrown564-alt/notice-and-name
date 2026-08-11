@@ -113,14 +113,14 @@
       "name": "Rocking",
       "category": "technique",
       "reviewStatus": "approved",
-      "definition": "A grinding or rocking motion that keeps consistent contact with external areas during penetration.",
-      "summary": "Rocking refers to a grinding, circular, or back-and-forth motion during penetrative activity that maintains continuous contact between bodies - particularly at the point where external sensitive areas meet a partner's body.",
+      "definition": "A grinding or rocking motion that keeps steady external contact during penetration.",
+      "summary": "Rocking is staying close and moving in a grind, circle, or wave during penetration — so external contact doesn't break with each thrust.",
       "blocks": [
         {
           "id": "rocking-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Notice that grinding or circling can land better than straight thrusting?"
+          "body": "Ever stayed pressed close and ground in small circles — and felt that hold better than thrusting in and out?"
         },
         {
           "id": "rocking-definition",
@@ -132,14 +132,14 @@
           "id": "rocking-media",
           "type": "media",
           "title": "See It",
-          "body": "Compression and friction at the pubic mound",
+          "body": "Bodies close — pressure holding instead of breaking with each thrust",
           "mediaId": "rocking-diagram"
         },
         {
           "id": "rocking-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Studies suggest most women need clitoral stimulation for orgasm; penetration alone often provides limited external contact. Rocking keeps bodies close so pressure on the clitoral area can stay continuous rather than breaking with each thrust (Hensel et al., 2021).",
+          "body": "Most women need some form of clitoral stimulation for orgasm; penetration alone often breaks external contact with each thrust. Rocking keeps bodies close so that pressure can stay continuous (Hensel et al., 2021).",
           "citationIds": [
             "rocking-source-1"
           ]
@@ -148,14 +148,14 @@
           "id": "rocking-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Think of a time staying close and grinding felt better than movement with more distance. What was different about it for you?",
+          "body": "When staying close worked better than pulling apart, what was your body getting that bigger movement lost?",
           "privateByDefault": true
         },
         {
           "id": "rocking-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "Steady contact does more for me than big movement — closeness over friction."
+          "body": "Steady contact does more for me than big movement — closeness over distance."
         }
       ],
       "relatedConceptIds": [
@@ -167,7 +167,7 @@
           "id": "rocking-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "Steady contact does more for me than big movement — closeness over friction.",
+          "body": "Steady contact does more for me than big movement — closeness over distance.",
           "tone": "soft"
         },
         {
@@ -188,7 +188,7 @@
           "id": "rocking-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I'm curious what happens if we keep constant pressure the whole time, not just in waves.",
+          "body": "I wonder what happens if we keep that steady pressure the whole time, not just in waves.",
           "tone": "curious"
         },
         {
@@ -648,7 +648,7 @@
       "category": "sensation",
       "reviewStatus": "approved",
       "definition": "Intentionally approaching the edge of orgasm, then easing back before it happens - often repeated multiple times.",
-      "summary": "Edging is the practice of bringing yourself (or being brought) close to orgasm, then deliberately pausing or slowing to pull back from the edge.",
+      "summary": "Edging is bringing yourself (or being brought) close to orgasm, then deliberately pausing or slowing before you cross — often more than once.",
       "blocks": [
         {
           "id": "edging-recognize",
@@ -666,7 +666,7 @@
           "id": "edging-media",
           "type": "media",
           "title": "See It",
-          "body": "Intensity rising toward a threshold, then receding",
+          "body": "Climbing toward the edge, then easing back",
           "mediaId": "edging-diagram"
         },
         {
@@ -1305,26 +1305,26 @@
       "name": "Golden Trio",
       "category": "timing",
       "reviewStatus": "approved",
-      "definition": "Combining intercourse with manual and oral stimulation - a combination associated with 86% orgasm rates in research.",
-      "summary": "The Golden Trio refers to a specific combination of activities that research has found particularly effective for women's orgasms: vaginal intercourse combined with manual stimulation combined with oral sex (in the same session, not necessarily simultaneously).",
+      "definition": "Combining intercourse with manual and oral stimulation in the same encounter — a pattern where variety often serves pleasure better than one act alone.",
+      "summary": "The Golden Trio names a combination that shows up often in satisfying encounters: vaginal intercourse plus manual stimulation plus oral sex in the same session — not necessarily all at once.",
       "blocks": [
         {
           "id": "golden-trio-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Noticed that mixing kinds of touch — not penetration alone — makes things more intense?"
+          "body": "Ever noticed one kind of touch alone rarely gets you there — but layering hands, mouth, and penetration finally does?"
         },
         {
           "id": "golden-trio-definition",
           "type": "definition",
           "title": "Name",
-          "body": "The golden trio is vaginal intercourse plus manual and oral stimulation in the same encounter—a combination linked in research to higher reported orgasm rates."
+          "body": "The golden trio is intercourse plus manual and oral stimulation in the same encounter—not a checklist, just a pattern where variety (especially clitoral touch) tends to show up."
         },
         {
           "id": "golden-trio-media",
           "type": "media",
           "title": "See It",
-          "body": "Three stimulation types in one session",
+          "body": "Hands, mouth, and penetration — layered, not a script",
           "mediaId": "golden-trio-illustration"
         },
         {
@@ -1340,7 +1340,7 @@
           "id": "golden-trio-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Think of an encounter that layered different kinds of touch. What combination did your body respond to most?",
+          "body": "When different kinds of touch stacked in one encounter, which mix actually moved you — and which felt like going through the motions?",
           "privateByDefault": true
         },
         {
@@ -1738,33 +1738,33 @@
       "name": "Sexual Self-Esteem",
       "category": "psychological",
       "reviewStatus": "approved",
-      "definition": "A positive self-concept around sexuality - feeling good about yourself as a sexual person.",
-      "summary": "Sexual self-esteem is how you feel about yourself as a sexual being - whether you view your sexuality positively, feel confident in your desirability, and have a healthy relationship with your own sexual self.",
+      "definition": "How you regard yourself as a sexual person — whether pleasure feels like something you get to want.",
+      "summary": "Sexual self-esteem is the quiet background sense of whether you belong in your own desire — whether wanting, asking, and taking up space feel allowed, or somehow earned.",
       "blocks": [
         {
           "id": "sexual-self-esteem-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Caught an old story about yourself mid-intimacy — that you're too much, not enough, or somehow failing at this?"
+          "body": "Caught an old story mid-intimacy — that you're too much, not enough, or somehow failing at wanting what you want?"
         },
         {
           "id": "sexual-self-esteem-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Sexual self-esteem is how positively you see yourself as a sexual person—including confidence, worthiness of pleasure, and comfort with your sexuality."
+          "body": "Sexual self-esteem is how you regard yourself as a sexual person—whether pleasure feels like something you get to want, not something you have to deserve."
         },
         {
           "id": "sexual-self-esteem-media",
           "type": "media",
           "title": "See It",
-          "body": "Warm core sense of sexual confidence",
+          "body": "Belonging in your own desire",
           "mediaId": "sexual-self-esteem-illustration"
         },
         {
           "id": "sexual-self-esteem-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Research links sexual self-esteem with satisfaction, communication, and sexual function. Valuing your own pleasure and feeling entitled to it—not perfect confidence every day—is associated in studies with better outcomes over time.",
+          "body": "Research links sexual self-esteem with satisfaction, communication, and sexual function. Feeling entitled to your own pleasure—not perfect confidence every day—tends to travel with better outcomes over time.",
           "citationIds": [
             "sexual-self-esteem-source-1",
             "sexual-self-esteem-source-2"
@@ -1774,14 +1774,14 @@
           "id": "sexual-self-esteem-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Where did your beliefs about yourself as a sexual person come from? Which ones would you actually want to keep?",
+          "body": "When that story interrupts, what do you lose contact with first — sensation, wanting, or the nerve to ask?",
           "privateByDefault": true
         },
         {
           "id": "sexual-self-esteem-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "My pleasure is worth taking up space for — I'm allowed to want, and to ask."
+          "body": "My pleasure is worth taking up space — I'm allowed to want, and to ask."
         }
       ],
       "relatedConceptIds": [
@@ -1793,35 +1793,35 @@
           "id": "sexual-self-esteem-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "My pleasure is worth taking up space for — I'm allowed to want, and to ask.",
+          "body": "My pleasure is worth taking up space — I'm allowed to want, and to ask.",
           "tone": "soft"
         },
         {
           "id": "sexual-self-esteem-partner-request",
           "useCase": "partner-request",
           "label": "Ask for support",
-          "body": "It helps me to hear what you enjoy about me — I'm still learning to believe I'm good in bed.",
+          "body": "When I'm hard on myself, it helps to hear one specific thing you enjoy about being with me — not a pep talk, just something true.",
           "tone": "direct"
         },
         {
           "id": "sexual-self-esteem-boundary",
           "useCase": "boundary",
           "label": "Set a boundary",
-          "body": "I won't talk myself down in bed anymore — if I start, gently stop me rather than agreeing.",
+          "body": "If I start talking myself down, I'd rather we pause than turn it into a pep talk — let me come back to what's actually feeling good.",
           "tone": "direct"
         },
         {
           "id": "sexual-self-esteem-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I'm curious who I am sexually when I'm not judging myself the whole time.",
+          "body": "I want to find out what sex feels like when I'm not grading myself through it.",
           "tone": "curious"
         },
         {
           "id": "sexual-self-esteem-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "I don't need to feel confident every day to deserve good sex — feeling entitled to pleasure is enough.",
+          "body": "I don't need to feel confident every night to deserve good sex — wanting pleasure is enough.",
           "tone": "reassuring"
         }
       ],
@@ -1848,26 +1848,26 @@
       "name": "Body Appreciation",
       "category": "psychological",
       "reviewStatus": "approved",
-      "definition": "Valuing your body for what it does and feels rather than evaluating its appearance.",
-      "summary": "Body appreciation is the practice of relating to your body based on sensation, function, and experience rather than visual evaluation.",
+      "definition": "Valuing your body for what it feels and does in the moment, instead of grading its appearance.",
+      "summary": "Body appreciation is staying with sensation — what your body feels, holds, and opens to — rather than running a live review of how it looks.",
       "blocks": [
         {
           "id": "body-appreciation-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "During sex, are you more caught up in how your body looks, or how it feels? Do appearance worries pull you out?"
+          "body": "Mid-touch, caught yourself checking how you look instead of what you're feeling?"
         },
         {
           "id": "body-appreciation-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Body appreciation is valuing your body for sensation and capacity—not mainly for how it looks in the moment."
+          "body": "Body appreciation is valuing your body for sensation and capacity in the moment—not mainly for how it looks."
         },
         {
           "id": "body-appreciation-media",
           "type": "media",
           "title": "See It",
-          "body": "Touch activating sensory response, not visual critique",
+          "body": "Sensation first — not a live review of how you look",
           "mediaId": "body-appreciation-illustration"
         },
         {
@@ -1884,7 +1884,7 @@
           "id": "body-appreciation-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Think of a moment you forgot how you looked and just felt. What made that possible?",
+          "body": "When the appearance noise drops out, what usually lets sensation take over — light, pace, trust, something else?",
           "privateByDefault": true
         },
         {
@@ -1911,21 +1911,21 @@
           "id": "body-appreciation-partner-request",
           "useCase": "partner-request",
           "label": "Ask for support",
-          "body": "When I get self-conscious about my body, it helps to be reminded you actually want to be here.",
+          "body": "When I get self-conscious, it helps to be reminded you actually want to be here — not that I look a certain way.",
           "tone": "direct"
         },
         {
           "id": "body-appreciation-boundary",
           "useCase": "boundary",
           "label": "Set a boundary",
-          "body": "I don't want to spend our time hiding how I look — keep the lights where I'm comfortable, and if I get self-conscious, let's not stop to fix it.",
+          "body": "If I get self-conscious about my body, I'd rather we pause or keep going than stop to talk about how I look.",
           "tone": "direct"
         },
         {
           "id": "body-appreciation-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to find out how much more I feel when I'm not monitoring how I look.",
+          "body": "I'm curious how much more lands when I'm inside the feeling, not watching myself.",
           "tone": "curious"
         },
         {
@@ -2485,7 +2485,7 @@
       "kind": "diagram",
       "path": "native://diagram/rocking",
       "alt": "Native diagram for Rocking.",
-      "caption": "Compression and friction at the pubic mound",
+      "caption": "Bodies close — pressure holding instead of breaking with each thrust",
       "reducedMotionFallback": "assets/images/concepts/illustrations/rocking.png"
     },
     {
@@ -2493,7 +2493,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/rocking.png",
       "alt": "Warm educational illustration for Rocking.",
-      "caption": "Compression and friction at the pubic mound",
+      "caption": "Bodies close — pressure holding instead of breaking with each thrust",
       "reducedMotionFallback": "assets/images/concepts/illustrations/rocking.png"
     },
     {
@@ -2557,7 +2557,7 @@
       "kind": "diagram",
       "path": "native://diagram/edging",
       "alt": "Native diagram for Edging.",
-      "caption": "Intensity rising toward a threshold, then receding",
+      "caption": "Climbing toward the edge, then easing back",
       "reducedMotionFallback": "assets/images/concepts/illustrations/edging.png"
     },
     {
@@ -2565,7 +2565,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/edging.png",
       "alt": "Warm educational illustration for Edging.",
-      "caption": "Intensity rising toward a threshold, then receding",
+      "caption": "Climbing toward the edge, then easing back",
       "reducedMotionFallback": "assets/images/concepts/illustrations/edging.png"
     },
     {
@@ -2637,7 +2637,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/golden-trio.png",
       "alt": "Warm educational illustration for Golden Trio.",
-      "caption": "Three stimulation types in one session",
+      "caption": "Hands, mouth, and penetration — layered, not a script",
       "reducedMotionFallback": "assets/images/concepts/illustrations/golden-trio.png"
     },
     {
@@ -2669,7 +2669,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/sexual-self-esteem.png",
       "alt": "Warm educational illustration for Sexual Self-Esteem.",
-      "caption": "Warm core sense of sexual confidence",
+      "caption": "Belonging in your own desire",
       "reducedMotionFallback": "assets/images/concepts/illustrations/sexual-self-esteem.png"
     },
     {
@@ -2677,7 +2677,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/body-appreciation.png",
       "alt": "Warm educational illustration for Body Appreciation.",
-      "caption": "Touch activating sensory response, not visual critique",
+      "caption": "Sensation first — not a live review of how you look",
       "reducedMotionFallback": "assets/images/concepts/illustrations/body-appreciation.png"
     },
     {

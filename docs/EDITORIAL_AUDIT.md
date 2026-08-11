@@ -5,7 +5,7 @@
 **Sources read:** `content/v2/bundles/v2-full.bundle.json`, `content/v2/copy/concept-copy.json`, `content/v2/editorial-review.json`, `data/vocabulary.ts`, `docs/CURRENT_STATE.md`, iOS `ConceptPages.swift`  
 **Quality bar:** private, precise, adult, non-clinical-worksheet; subtitle *Notice what you like, name it.*; loop **Notice → Name → Reflect → Keep** (UI descent also includes See / Understand).
 
-This is an **audit**, not a full rewrite. Tiny P0 phrase fixes may land in the same change set; wholesale copy rewrite is the next batch.
+Phase B rewrite batch 1 landed 2026-08-11 (Europe/London): `sexual-self-esteem`, `body-appreciation`, `edging`, `rocking`, `golden-trio`. Remaining concepts below keep audit priorities until rewritten.
 
 ## Cross-cutting findings
 
@@ -24,9 +24,10 @@ This is an **audit**, not a full rewrite. Tiny P0 phrase fixes may land in the s
 
 | Priority | Count (concepts) | Meaning |
 | --- | --- | --- |
-| **P0** | **3** | Must fix before launch (broken phrase, wrong boundary speaker, or intake-worksheet Notice). |
-| **P1** | **14** | Should rewrite in first editorial batches; tone / partner-sayability / thin Notice and Reflect. |
+| **P0** | **0** | Cleared by rewrite batch 1 (was 3). |
+| **P1** | **12** | Remaining first-batch tone / partner-sayability / thin Notice and Reflect. |
 | **P2** | **5** | Solid enough to ship; polish Understand / See / summary voice later. |
+| **Rewritten** | **5** | Batch 1: sexual-self-esteem, body-appreciation, edging, rocking, golden-trio. |
 
 ---
 
@@ -37,10 +38,10 @@ This is an **audit**, not a full rewrite. Tiny P0 phrase fixes may land in the s
 - **Weak spots:** Understand leads with study branding; SEE caption slightly clinical; curiosity a touch goal-seeking.
 - **Priority:** P2
 
-### 2. `rocking` — Rocking (technique) — **P1**
+### 2. `rocking` — Rocking (technique) — **Rewritten**
 - **Strengths:** Partner-request excellent (losing the good spot when separating); reassurance owns minimal movement without apology.
-- **Weak spots:** Recognize opens didactic 'Notice that…'; Reflect is 'Think of a time…' worksheet; long textbook summary; clinical SEE.
-- **Priority:** P1
+- **Rewrite (batch 1):** Notice moment replaces didactic opener; Reflect drops worksheet recall; summary/See leave textbook/lab voice; Keep stays closeness-over-distance.
+- **Priority:** Rewritten (was P1)
 
 ### 3. `shallowing` — Shallowing (technique) — **P1**
 - **Strengths:** Keep is brand-true (shallow is the good part, not a warm-up); boundary and reassurance partner-safe.
@@ -62,10 +63,10 @@ This is an **audit**, not a full rewrite. Tiny P0 phrase fixes may land in the s
 - **Weak spots:** Understand lecture-y; Reflect slightly instructs ('Next time… notice').
 - **Priority:** P2
 
-### 7. `edging` — Edging (sensation) — **P0**
+### 7. `edging` — Edging (sensation) — **Rewritten**
 - **Strengths:** Recognize and Reflect embodied and adult; Keep sharp; reassurance ('not a test I can fail') on-brand.
-- **Weak spots:** P0: boundary phrase broken / wrong speaker ('just say so and we'll let it happen'). Reads as instructing partner, not user say-later line. Summary 'practice of…' worksheet-adjacent.
-- **Priority:** P0
+- **Rewrite (batch 1):** Boundary already first-person partner-safe; summary drops 'practice of…'; See caption more felt. P0 cleared.
+- **Priority:** Rewritten (was P0)
 
 ### 8. `spreading` — Spreading (sensation) — **P1**
 - **Strengths:** Keep private and anti-chase; reassurance about going quiet is partner-safe gold.
@@ -92,10 +93,10 @@ This is an **audit**, not a full rewrite. Tiny P0 phrase fixes may land in the s
 - **Weak spots:** Recognize thinner than responsive twin; Keep slightly self-helpy; Understand gender-comparison can feel othering if misread.
 - **Priority:** P1
 
-### 13. `golden-trio` — Golden Trio (timing) — **P1**
+### 13. `golden-trio` — Golden Trio (timing) — **Rewritten**
 - **Strengths:** Boundary against ticking boxes on-voice; Keep values variety without shame.
-- **Weak spots:** P1: definition leads with 86% rate — outcome-promise adjacent on Name card; Recognize generic; Reflect worksheet; title gimmicky vs quieter concepts.
-- **Priority:** P1
+- **Rewrite (batch 1):** 86% rate removed from definition/Name (stats stay in Understand); Notice/Reflect more lived; See caption anti-checklist. Title kept as shipping name.
+- **Priority:** Rewritten (was P1)
 
 ### 14. `spectatoring` — Spectatoring (psychological) — **P1**
 - **Strengths:** Recognize vivid and adult; boundary/reassurance handle going quiet without making partner the therapist.
@@ -112,15 +113,15 @@ This is an **audit**, not a full rewrite. Tiny P0 phrase fixes may land in the s
 - **Weak spots:** SEE textbook pathways; Understand meta-analysis density; Reflect worksheets the insight; curiosity self-improvement tone; reassure 'normal/broken' slightly clinical. Protect partner phrases; rewrite Notice/See/Reflect.
 - **Priority:** P1
 
-### 17. `sexual-self-esteem` — Sexual Self-Esteem (psychological) — **P0**
-- **Strengths:** Keep ('worth taking up space') brand-aligned; curiosity has promise if softened.
-- **Weak spots:** P0: Recognize is intake-worksheet ('How do you feel about yourself as a sexual person…'). Partner-request imports performance grading ('good in bed') and cheerleader role. Boundary asks partner to police self-talk. Glossary summary.
-- **Priority:** P0
+### 17. `sexual-self-esteem` — Sexual Self-Esteem (psychological) — **Rewritten**
+- **Strengths:** Keep ('worth taking up space') brand-aligned.
+- **Rewrite (batch 1):** Notice moment for the old story; Reflect names what drops out; partner-request asks for one true specific, not grading; boundary pauses instead of policing self-talk; summary/Name leave glossary voice. P0 cleared.
+- **Priority:** Rewritten (was P0)
 
-### 18. `body-appreciation` — Body Appreciation (psychological) — **P0**
+### 18. `body-appreciation` — Body Appreciation (psychological) — **Rewritten**
 - **Strengths:** Keep clean; partner-request intimate without therapy-speak.
-- **Weak spots:** P0: reassurance broken dangling repeat ('— it doesn't'). Boundary overloaded / hard to say aloud. Recognize two stacked therapy questions. Reflect 'Think of a moment…'.
-- **Priority:** P0
+- **Rewrite (batch 1):** Reassurance dangling clause already fixed; Notice is one mid-touch catch; Reflect concrete; boundary sayable (pause/keep going, no body postmortem); See/summary sensation-first. P0 cleared.
+- **Priority:** Rewritten (was P0)
 
 ### 19. `clitoral-structure` — Clitoral Structure (anatomy) — **P1**
 - **Strengths:** Keep reframes internal vs external well; reassurance about indirect touch partner-safe.
@@ -144,27 +145,25 @@ This is an **audit**, not a full rewrite. Tiny P0 phrase fixes may land in the s
 
 ---
 
-## Tiny fixes applied with this audit
+## Rewrite batch 1 (landed)
 
-Surgical edits landed in `content/v2/copy/concept-copy.json` (+ `data/vocabulary.ts` recognize for sexual-self-esteem), then bundle regenerated:
+Edited `content/v2/copy/concept-copy.json` + `data/vocabulary.ts` (definition / summary / Name / Understand / See), then regenerated the v2 full bundle:
 
-1. `edging` boundary — first-person partner-safe say-later line.
-2. `body-appreciation` reassurance — removed broken dangling clause.
-3. `sexual-self-esteem` recognize — Notice moment instead of intake question.
-
-Full rewrites for those concepts (and the P1 batch) remain open. Concepts stay P0 until partner-request / boundary polish lands for sexual-self-esteem and body-appreciation.
+1. `sexual-self-esteem` — Notice, Reflect, partner phrases, summary/Name (was P0).
+2. `body-appreciation` — Notice, Reflect, boundary, summary/See (was P0).
+3. `edging` — summary/See polish on top of earlier boundary fix (was P0).
+4. `rocking` — Notice, Reflect, summary/See (was P1).
+5. `golden-trio` — removed rate-promise from Name/definition; Notice/Reflect/See (was P1).
 
 ---
 
-## Recommended next rewrite batch (do these 5 first)
+## Recommended next rewrite batch
 
-1. `sexual-self-esteem` — P0 Notice + partner phrases.
-2. `body-appreciation` — P0 broken Keep set.
-3. `edging` — P0 boundary; otherwise close to bar.
-4. `rocking` — template fix for technique cluster.
-5. `golden-trio` — remove rate-promise from Name/definition.
-
-Follow-on: warmup-window, non-concordance, pulsing/spreading SEE, anatomy Notice frames.
+1. `warmup-window` — clinical SEE; lit-review Understand; coach-intake Reflect.
+2. `non-concordance` — protect partner phrases; rewrite Notice/See/Reflect.
+3. `pulsing` / `spreading` — SEE lab voice; Reflect thin/worksheet.
+4. `spectatoring` / `embodied-presence` — Keep/self-help and Reflect polish.
+5. Anatomy cluster Notice frames (`clitoral-structure`, `nerve-density`, `clitourethrovaginal`).
 
 ## Edit surfaces reminder
 

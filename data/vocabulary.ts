@@ -59,12 +59,12 @@ The adjustment can be small - even a slight change in pelvic tilt can shift sens
     name: 'Rocking',
     category: 'technique',
     definition:
-      'A grinding or rocking motion that keeps consistent contact with external areas during penetration.',
-    description: `Rocking refers to a grinding, circular, or back-and-forth motion during penetrative activity that maintains continuous contact between bodies - particularly at the point where external sensitive areas meet a partner's body.
+      'A grinding or rocking motion that keeps steady external contact during penetration.',
+    description: `Rocking is staying close and moving in a grind, circle, or wave during penetration — so external contact doesn't break with each thrust.
 
-Unlike thrusting motions that create movement in and out, rocking keeps bodies close together with a rhythmic motion that provides consistent external stimulation alongside any internal sensations.
+Unlike in-and-out thrusting, rocking keeps bodies pressed together with a rhythmic motion that can hold pressure on external sensitive areas alongside whatever is happening inside.
 
-This technique can be particularly relevant because it allows for simultaneous internal and external stimulation without needing hands. The motion comes from the hips and pelvis, creating a wave-like or circular movement rather than linear motion.`,
+The motion comes from the hips and pelvis. For many people it is a way to get continuous external stimulation without needing hands — closeness doing the work that distance loses.`,
     researchBasis:
       'Research shows that consistent external stimulation is important for pleasure for many women. Rocking was identified as a specific named technique that facilitates this during partnered penetrative activity.',
     source: 'Hensel et al., 2021, PLOS ONE',
@@ -80,7 +80,7 @@ This technique can be particularly relevant because it allows for simultaneous i
     slides: [
       {
         type: 'recognize',
-        content: 'Have you noticed that grinding or circular movements sometimes feel better than thrusting?',
+        content: 'Ever stayed pressed close and ground in small circles — and felt that hold better than thrusting in and out?',
       },
       {
         type: 'name',
@@ -90,11 +90,11 @@ This technique can be particularly relevant because it allows for simultaneous i
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/rocking.png'),
-        illustrationCaption: 'Compression and friction at the pubic mound',
+        illustrationCaption: 'Bodies close — pressure holding instead of breaking with each thrust',
       },
       {
         type: 'understand',
-        content: 'Studies suggest most women need clitoral stimulation for orgasm; penetration alone often provides limited external contact. Rocking keeps bodies close so pressure on the clitoral area can stay continuous rather than breaking with each thrust (Hensel et al., 2021).',
+        content: 'Most women need some form of clitoral stimulation for orgasm; penetration alone often breaks external contact with each thrust. Rocking keeps bodies close so that pressure can stay continuous (Hensel et al., 2021).',
       },
       {
         type: 'explore',
@@ -306,11 +306,11 @@ Recognizing a plateau helps you respond to it intentionally. You might choose to
     category: 'sensation',
     definition:
       'Intentionally approaching the edge of orgasm, then easing back before it happens - often repeated multiple times.',
-    description: `Edging is the practice of bringing yourself (or being brought) close to orgasm, then deliberately pausing or slowing to pull back from the edge. This cycle of approaching and retreating can be repeated multiple times.
+    description: `Edging is bringing yourself (or being brought) close to orgasm, then deliberately pausing or slowing before you cross — often more than once.
 
-Some people practice edging to extend the duration of pleasurable sensations, finding that prolonged arousal is satisfying in itself. Others find that edging leads to more intense eventual orgasms, as the repeated buildup seems to amplify the release.
+Some people edge to stretch the climb, finding prolonged arousal satisfying on its own. Others find the eventual release hits harder after the wait, as if the buildup had somewhere to go.
 
-Edging requires body awareness - learning to recognize your own signs of approaching orgasm in time to pause. It's also a form of intentional control over sexual experience, turning what might feel like a race to the finish line into a more exploratory journey.`,
+It asks for body awareness: catching your own pre-orgasm signals in time to ease off. The point is not a perfect performance of control — it is turning a rush to the finish into something you can actually feel.`,
     researchBasis:
       'Studies on orgasm intensity suggest that delayed orgasm following extended arousal often feels more powerful. Edging is also studied as a technique for orgasm control and sexual mindfulness.',
     source: 'Research on orgasm delay and intensity',
@@ -326,7 +326,7 @@ Edging requires body awareness - learning to recognize your own signs of approac
     slides: [
       {
         type: 'recognize',
-        content: 'Have you ever gotten close to orgasm, pulled back, then approached again—and noticed the eventual release felt more intense?',
+        content: 'Ever get almost there, ease off on purpose, then climb again — and found the release hit harder for the wait?',
       },
       {
         type: 'name',
@@ -336,7 +336,7 @@ Edging requires body awareness - learning to recognize your own signs of approac
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/edging.png'),
-        illustrationCaption: 'Intensity rising toward a threshold, then receding',
+        illustrationCaption: 'Climbing toward the edge, then easing back',
       },
       {
         type: 'understand',
@@ -600,12 +600,12 @@ Understanding spontaneous desire as one pattern among others helps remove the ex
     category: 'timing',
     thumbnail: require('@/assets/images/concepts/thumbnails/golden-trio.png'),
     definition:
-      'Combining intercourse with manual and oral stimulation - a combination associated with 86% orgasm rates in research.',
-    description: `The Golden Trio refers to a specific combination of activities that research has found particularly effective for women's orgasms: vaginal intercourse combined with manual stimulation combined with oral sex (in the same session, not necessarily simultaneously).
+      'Combining intercourse with manual and oral stimulation in the same encounter — a pattern where variety often serves pleasure better than one act alone.',
+    description: `The Golden Trio names a combination that shows up often in satisfying encounters: vaginal intercourse plus manual stimulation plus oral sex in the same session — not necessarily all at once.
 
-In a large study of women's sexual experiences, those who received all three types of stimulation reported an 86% orgasm rate - significantly higher than any single activity alone or pairs of activities. This isn't prescriptive - it's information about what statistically tends to work.
+Research finds this mix associated with higher reported orgasm rates than intercourse alone or any single pair of acts. That is information about patterns, not a script to perform.
 
-The takeaway isn't that everyone should do exactly this combination, but rather that variety and multiple forms of stimulation often serve pleasure better than a singular focus. The Golden Trio also implicitly acknowledges that penetration alone rarely produces orgasm for women.`,
+The quieter takeaway: variety and clitoral involvement usually serve pleasure better than a singular focus. Penetration alone rarely does the whole job.`,
     researchBasis:
       'Frederick et al. (2018) found that women who received genital stimulation, oral sex, and deep kissing in addition to vaginal intercourse reported the highest rates of orgasm during partnered sex.',
     source: 'Frederick et al., 2018, Archives of Sexual Behavior',
@@ -619,17 +619,17 @@ The takeaway isn't that everyone should do exactly this combination, but rather 
     slides: [
       {
         type: 'recognize',
-        content: 'Have you noticed that combining different kinds of stimulation—not just penetration—leads to more intense experiences?',
+        content: 'Ever noticed one kind of touch alone rarely gets you there — but layering hands, mouth, and penetration finally does?',
       },
       {
         type: 'name',
-        content: 'The golden trio is vaginal intercourse plus manual and oral stimulation in the same encounter—a combination linked in research to higher reported orgasm rates.',
+        content: 'The golden trio is intercourse plus manual and oral stimulation in the same encounter—not a checklist, just a pattern where variety (especially clitoral touch) tends to show up.',
       },
       {
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/golden-trio.png'),
-        illustrationCaption: 'Three stimulation types in one session',
+        illustrationCaption: 'Hands, mouth, and penetration — layered, not a script',
       },
       {
         type: 'understand',
@@ -793,12 +793,12 @@ Understanding non-concordance is liberating. It means you can trust your felt ex
     name: 'Sexual Self-Esteem',
     category: 'psychological',
     definition:
-      'A positive self-concept around sexuality - feeling good about yourself as a sexual person.',
-    description: `Sexual self-esteem is how you feel about yourself as a sexual being - whether you view your sexuality positively, feel confident in your desirability, and have a healthy relationship with your own sexual self.
+      'How you regard yourself as a sexual person — whether pleasure feels like something you get to want.',
+    description: `Sexual self-esteem is the quiet background sense of whether you belong in your own desire — whether wanting, asking, and taking up space feel allowed, or somehow earned.
 
-Higher sexual self-esteem is associated with better sexual outcomes: more pleasure, more orgasms, more communication with partners, and more satisfaction. This makes sense - feeling good about your sexuality creates conditions for enjoying it more fully.
+Higher sexual self-esteem tends to travel with more pleasure, more communication, and more satisfaction. Feeling entitled to your own pleasure creates room to notice what you like and say it.
 
-Sexual self-esteem can be affected by many factors: upbringing, past experiences, body image, relationship history, cultural messages. The good news is that it can be developed - through positive experiences, self-exploration, challenging negative beliefs, and building sexual self-knowledge.`,
+It can be shaped by upbringing, past experiences, body image, relationship history, and cultural messages. It can also shift — through lived experiences that contradict the old story, not through pep talks alone.`,
     researchBasis:
       'Research consistently links sexual self-esteem to sexual satisfaction and function. Studies show it predicts orgasm frequency, arousal, and relationship satisfaction.',
     source: 'Sexuality research; self-esteem and outcomes studies',
@@ -813,21 +813,21 @@ Sexual self-esteem can be affected by many factors: upbringing, past experiences
     slides: [
       {
         type: 'recognize',
-        content: "Caught an old story about yourself mid-intimacy — that you're too much, not enough, or somehow failing at this?",
+        content: "Caught an old story mid-intimacy — that you're too much, not enough, or somehow failing at wanting what you want?",
       },
       {
         type: 'name',
-        content: 'Sexual self-esteem is how positively you see yourself as a sexual person—including confidence, worthiness of pleasure, and comfort with your sexuality.',
+        content: 'Sexual self-esteem is how you regard yourself as a sexual person—whether pleasure feels like something you get to want, not something you have to deserve.',
       },
       {
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/sexual-self-esteem.png'),
-        illustrationCaption: 'Warm core sense of sexual confidence',
+        illustrationCaption: 'Belonging in your own desire',
       },
       {
         type: 'understand',
-        content: 'Research links sexual self-esteem with satisfaction, communication, and sexual function. Valuing your own pleasure and feeling entitled to it—not perfect confidence every day—is associated in studies with better outcomes over time.',
+        content: 'Research links sexual self-esteem with satisfaction, communication, and sexual function. Feeling entitled to your own pleasure—not perfect confidence every day—tends to travel with better outcomes over time.',
       },
       {
         type: 'explore',
@@ -841,12 +841,12 @@ Sexual self-esteem can be affected by many factors: upbringing, past experiences
     name: 'Body Appreciation',
     category: 'psychological',
     definition:
-      'Valuing your body for what it does and feels rather than evaluating its appearance.',
-    description: `Body appreciation is the practice of relating to your body based on sensation, function, and experience rather than visual evaluation. It's appreciating what your body feels, does, and allows you to experience, rather than how it looks.
+      'Valuing your body for what it feels and does in the moment, instead of grading its appearance.',
+    description: `Body appreciation is staying with sensation — what your body feels, holds, and opens to — rather than running a live review of how it looks.
 
-During sexual experiences, body appreciation means staying with how things feel rather than worrying about how you look. It means appreciating your body's capacity for sensation rather than critiquing its appearance. This shift in orientation supports greater pleasure.
+During sex, that means attention on touch and response instead of appearance monitoring. The shift is not about deciding your body is perfect; it is about not letting appearance concerns steal the sensory experience.
 
-Body appreciation isn't about thinking your body is perfect or ignoring appearance entirely - it's about not letting appearance concerns interfere with sensory experience. Research shows this orientation correlates with better sexual outcomes.`,
+Research links this orientation with greater satisfaction and less distraction. How you relate to your body in the moment often matters more than how it measures up.`,
     researchBasis:
       'Studies link body appreciation and positive body image to better sexual satisfaction. Women who focus on body function versus appearance during sex report more orgasms and less distraction.',
     source: 'Body image and sexuality research; Satinsky et al., 2012',
@@ -861,17 +861,17 @@ Body appreciation isn't about thinking your body is perfect or ignoring appearan
     slides: [
       {
         type: 'recognize',
-        content: 'During sex, are you more focused on how your body looks—or how it feels? Do appearance concerns pull you out of sensation?',
+        content: 'Mid-touch, caught yourself checking how you look instead of what you\'re feeling?',
       },
       {
         type: 'name',
-        content: 'Body appreciation is valuing your body for sensation and capacity—not mainly for how it looks in the moment.',
+        content: 'Body appreciation is valuing your body for sensation and capacity in the moment—not mainly for how it looks.',
       },
       {
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/body-appreciation.png'),
-        illustrationCaption: 'Touch activating sensory response, not visual critique',
+        illustrationCaption: 'Sensation first — not a live review of how you look',
       },
       {
         type: 'understand',
