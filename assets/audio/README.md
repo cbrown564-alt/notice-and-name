@@ -2,11 +2,18 @@
 
 Voice: Notice & Name — Soft Intimate (ElevenLabs custom design A3)
 voice_id: see VOICE_ID.txt
-Model for phrases: eleven_turbo_v2_5
+Model: eleven_turbo_v2_5
 
 ## phrases/
-110 partner-phrase MP3s, one per phraseTemplate id (e.g. responsive-desire-partner-request.mp3).
-Playback wiring in the iOS app is still TODO — assets only for now.
+110 partner-phrase MP3s (one per phraseTemplate id).
 
-## Planned next
-onboarding/, notice-moments/, explainers/ narrations with the same voice.
+## onboarding/
+6 beats + 00-full continuous. Script: docs/ONBOARDING_SCRIPT.md (approved).
+
+## notice-moments/
+22 guided Notice moments (one per concept). Scripts: content/v2/audio-scripts/notice-moments.json
+
+## explainers/
+27 beats across 4 explainers. Scripts: content/v2/audio-scripts/explainers.json
+
+App playback wiring still TODO — assets only for now.
