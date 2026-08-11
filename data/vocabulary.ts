@@ -108,12 +108,12 @@ The motion comes from the hips and pelvis. For many people it is a way to get co
     name: 'Shallowing',
     category: 'technique',
     definition:
-      'Focusing stimulation at or just inside the vaginal entrance rather than deeper penetration.',
-    description: `Shallowing describes pleasurable touch that focuses on the vaginal entrance and the area just inside - using fingertips, tongue, or the tip of a toy or partner rather than deeper penetration.
+      'Focusing stimulation at or just inside the vaginal entrance — treating shallow as the destination, not a warm-up.',
+    description: `Shallowing is pleasurable touch right at the vaginal entrance and the first inch or two inside — fingertips, tongue, tip of a toy or partner — without treating depth as the goal.
 
-The entrance area has a high concentration of nerve endings, and many people find stimulation here to be particularly sensitive and pleasurable. Shallowing treats this area as a destination rather than just a passage to somewhere else.
+That rim is nerve-rich. For many people it is more sensitive than deeper contact, and lingering there can make later touch land better.
 
-This technique can involve gentle circling, light pressure, teasing movements, or simply pausing to appreciate sensations in this area. It reframes shallow penetration as intentional and pleasurable rather than incomplete.`,
+Circling, light pressure, teasing, or simply staying put reframes shallow penetration as intentional pleasure, not something incomplete.`,
     researchBasis:
       'The vaginal entrance (introitus) contains a high density of nerve endings. Research identified shallowing as a distinct technique that many women find pleasurable, challenging assumptions that deeper always means better.',
     source: 'Hensel et al., 2021, PLOS ONE',
@@ -129,7 +129,7 @@ This technique can involve gentle circling, light pressure, teasing movements, o
     slides: [
       {
         type: 'recognize',
-        content: 'Have you noticed that the first moments of penetration—right at the entrance—can feel especially sensitive?',
+        content: 'Noticed that right at the entrance can feel more alive than going deep — and that lingering there is the point?',
       },
       {
         type: 'name',
@@ -139,11 +139,11 @@ This technique can involve gentle circling, light pressure, teasing movements, o
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/shallowing.png'),
-        illustrationCaption: 'Nerve-rich tissue at the introitus',
+        illustrationCaption: 'Nerve-rich entrance — shallow contact as the destination',
       },
       {
         type: 'understand',
-        content: 'The introitus is densely innervated. In Hensel et al. (2021), shallowing was widely reported, and many participants said lingering at the entrance made later touch feel better—consistent with anatomy, not “just teasing.”',
+        content: 'The vaginal entrance is densely innervated. Hensel et al. (2021) found shallowing widely reported; many said lingering there made later touch feel better — anatomy and preference, not “just teasing.”',
       },
       {
         type: 'explore',
@@ -208,12 +208,12 @@ Pairing can happen in many ways - reaching down yourself, guiding a partner's ha
     name: 'Building',
     category: 'sensation',
     definition:
-      'A gradual increase in arousal intensity over time, like a wave gathering strength.',
-    description: `Building describes the experience of arousal intensifying progressively - not jumping immediately to peak sensation, but allowing pleasure to accumulate and deepen over time.
+      'Arousal that gathers gradually — warmth and intensity rising over time, not all at once.',
+    description: `Building is arousal gathering — a little warmth that turns insistent if you leave it alone long enough.
 
-This sensation often feels like something is gathering momentum. It might start as a subtle warmth or tingling, then gradually become more pronounced, more focused, more insistent. The building phase is often where anticipation and actual sensation blend together.
+It can feel like momentum under the skin: subtle at first, then more focused, more hard to ignore. Anticipation and sensation blend here.
 
-Understanding building as a named experience helps recognize that arousal doesn't need to be instant or linear. Some people find that rushing through this phase diminishes the eventual peak, while allowing building to unfold naturally leads to more intense experiences.`,
+Rushing past the climb often flattens the peak. Letting it accumulate is not delay — for many people it is the good part.`,
     researchBasis:
       'Research on sexual response cycles identifies arousal building as a distinct phase. Studies show that extended arousal periods often correlate with more satisfying experiences and stronger orgasms.',
     source: 'Masters & Johnson; Basson, 2000',
@@ -228,7 +228,7 @@ Understanding building as a named experience helps recognize that arousal doesn'
     slides: [
       {
         type: 'recognize',
-        content: 'Have you felt arousal start small—a hint of warmth, a whisper of tingling—then slowly intensify into something unmistakable?',
+        content: 'Felt arousal start as barely anything — a little warmth — then slowly grow into something undeniable?',
       },
       {
         type: 'name',
@@ -239,11 +239,11 @@ Understanding building as a named experience helps recognize that arousal doesn'
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/building.png'),
         illustrationVideo: require('@/assets/videos/building.mp4'),
-        illustrationCaption: 'Vascular and neural intensity rising over time',
+        illustrationCaption: 'Warmth gathering under the skin, intensity rising',
       },
       {
         type: 'understand',
-        content: 'Sexual response models describe an arousal-building phase before plateau or orgasm. Research suggests that allowing sensation to accumulate—rather than rushing—is often associated with stronger peaks (Masters & Johnson; Basson, 2000).',
+        content: 'Sexual response models describe an arousal-building phase before plateau or orgasm (Masters & Johnson; Basson, 2000). Leaving sensation room to accumulate — instead of chasing the peak — often lands as a fuller climb.',
       },
       {
         type: 'explore',
@@ -551,12 +551,12 @@ Understanding responsive desire can be liberating. It means you don't need to "f
     name: 'Spontaneous Desire',
     category: 'timing',
     definition:
-      'Sexual interest that arises on its own, without an external trigger - a seemingly random urge for sexual activity.',
-    description: `Spontaneous desire is sexual interest that appears to come from nowhere - an internal urge or wanting that arises without an obvious external stimulus. This is what people typically think of as "being in the mood" or "feeling horny."
+      'Wanting that shows up on its own — an urge without an obvious external trigger.',
+    description: `Spontaneous desire is wanting that arrives without a warm-up scene — an internal urge people often call “being in the mood.”
 
-While often portrayed as the normal or ideal form of desire, spontaneous desire is actually just one of two common patterns. It tends to be more common in men and in the early stages of relationships, becoming less frequent over time for many people.
+It is one common pattern, not the ideal. Plenty of people feel it early in relationships or some days and not others; responsive desire (wanting that wakes once things start) is equally ordinary.
 
-Understanding spontaneous desire as one pattern among others helps remove the expectation that it should always be present. People experience different mixes of spontaneous and responsive desire, and this can vary with life circumstances, stress, relationship stage, and other factors.`,
+Naming it as one door among others drops the pressure that desire should always strike first. Frequency shifts with stress, sleep, relationship stage, and life — no moral attached.`,
     researchBasis:
       'Research distinguishes between spontaneous and responsive desire patterns. Studies show that spontaneous desire is more common in men but occurs in all genders, and often decreases in frequency during long-term relationships.',
     source: 'Basson, 2000; desire research',
@@ -571,21 +571,21 @@ Understanding spontaneous desire as one pattern among others helps remove the ex
     slides: [
       {
         type: 'recognize',
-        content: 'Do you sometimes feel sexually interested out of nowhere—an urge that appears without any obvious cause?',
+        content: 'Ever get hit with wanting out of nowhere — mid-commute, mid-dish, no warm-up scene required?',
       },
       {
         type: 'name',
-        content: 'Spontaneous desire is interest that appears on its own—often described as “being in the mood” without an obvious trigger.',
+        content: 'Spontaneous desire is wanting that appears on its own—often “being in the mood” without an obvious trigger.',
       },
       {
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/spontaneous-desire.png'),
-        illustrationCaption: 'Internal arousal signals rising independently',
+        illustrationCaption: 'Wanting rising on its own, before anyone starts',
       },
       {
         type: 'understand',
-        content: 'Population studies suggest spontaneous desire is reported more often by men than women, and more often early in relationships (Basson, 2000). It is one valid pattern—not the only one. Many people experience a mix of spontaneous and responsive desire over time.',
+        content: 'Desire research distinguishes spontaneous from responsive patterns (Basson, 2000). Spontaneous desire shows up across genders and life stages, often more early in relationships — one valid pattern in a mix, not a required standard.',
       },
       {
         type: 'explore',
@@ -697,12 +697,12 @@ It is common, and it flattens pleasure. Coming back is rarely a pep talk — it 
     name: 'Embodied Presence',
     category: 'psychological',
     definition:
-      'Focused attention on bodily sensations during intimacy - being fully in your body rather than in your head.',
-    description: `Embodied presence is the opposite of spectatoring - it's being fully in your body and present to sensations rather than caught up in thoughts, judgments, or mental chatter. It's what happens when you're so absorbed in feeling that thinking temporarily fades.
+      'Staying with what your body feels during intimacy — attention in sensation, not in commentary.',
+    description: `Embodied presence is being all the way in the touch — heat, pressure, breath — instead of narrating or grading it.
 
-This isn't about forcing your mind to be blank, but about gently returning attention to physical sensation whenever you notice it has wandered. What does this touch actually feel like? What sensations are present right now? Where in my body do I feel pleasure?
+It is not a blank mind. Attention wanders; you notice, then drop back onto one concrete feeling. Opposite of spectatoring, not a mindfulness homework module.
 
-Cultivating embodied presence can significantly enhance sexual experience. When attention is fully on sensation, pleasure typically intensifies. Mindfulness practices outside the bedroom can strengthen this capacity over time.`,
+When attention lands on sensation, pleasure usually sharpens. Quiet can be presence, not distance.`,
     researchBasis:
       'Mindfulness-based interventions for sexual difficulties show significant improvements in arousal and satisfaction. Research links present-focused attention during sex to better outcomes across multiple measures.',
     source: 'Brotto, 2018; mindfulness and sexuality research',
@@ -717,21 +717,21 @@ Cultivating embodied presence can significantly enhance sexual experience. When 
     slides: [
       {
         type: 'recognize',
-        content: 'Have you experienced moments of being so absorbed in physical sensation that thinking temporarily faded—fully in your body rather than your head?',
+        content: 'Ever been so deep in a touch that the commentary cut out — just heat, pressure, breath?',
       },
       {
         type: 'name',
-        content: 'Embodied presence is staying with bodily sensation during intimacy—attention in the body rather than in commentary or judgment.',
+        content: 'Embodied presence is staying with bodily sensation during intimacy—feeling the touch instead of commenting on it.',
       },
       {
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/embodied-presence.png'),
-        illustrationCaption: 'Attention filling the outline of the body',
+        illustrationCaption: 'Heat and pressure filling the body, commentary gone quiet',
       },
       {
         type: 'understand',
-        content: 'Mindfulness-based interventions for sexual concerns show improvements in arousal and satisfaction in clinical studies (Brotto, 2018). Present-moment focus on touch is a skill—when the mind wanders, you can gently return.',
+        content: 'Present-focused attention during sex tracks with higher arousal and satisfaction in clinical work (Brotto, 2018). The adult move is simple: when the mind drifts, return to one concrete sensation — not a performance of mindfulness.',
       },
       {
         type: 'explore',
@@ -891,12 +891,12 @@ Research links this orientation with greater satisfaction and less distraction. 
     name: 'Clitoral Structure',
     category: 'anatomy',
     definition:
-      'The full clitoral organ is approximately 9cm in size, with internal legs (crura) and bulbs extending inside the body.',
-    description: `The clitoris is much larger than it appears from the outside. What's visible - the glans and hood - is just the tip of an organ that extends about 9cm internally, with legs (crura) that wrap around the vaginal canal and erectile bulbs that fill with blood during arousal.
+      'The clitoris is mostly internal — a larger organ (~9 cm) with legs and bulbs, not just the visible tip.',
+    description: `What you can see of the clitoris is only the tip. The full organ runs about 9 cm inside, with legs (crura) wrapping the vaginal canal and bulbs that fill with blood when aroused.
 
-Understanding this internal structure reframes anatomy. The "G-spot" area is actually where internal clitoral tissue can be stimulated through the vaginal wall. Much of what we call vaginal pleasure involves indirect clitoral stimulation.
+That shape reframes a lot of “vaginal” pleasure: pressure through the front wall often reaches internal clitoral tissue. External and internal feeling are usually the same organ, accessed differently.
 
-This anatomical reality explains why external stimulation is important for most women's pleasure and orgasm - the clitoris is the primary pleasure organ, and its visible portion is just the most accessible part of a larger structure.`,
+Knowing the map makes indirect touch count — not as a compromise, but as reaching the rest of the structure.`,
     researchBasis:
       'MRI imaging studies have mapped the full clitoral structure, revealing it to be approximately 9cm including internal tissue. This research transformed understanding of female genital anatomy.',
     source: 'O\'Connell et al., 2005; clitoral anatomy research',
@@ -911,21 +911,21 @@ This anatomical reality explains why external stimulation is important for most 
     slides: [
       {
         type: 'recognize',
-        content: 'Did you know that what you can see of the clitoris is just the tip? The full structure extends about 9cm inside your body.',
+        content: 'Ever noticed pleasure show up deeper or wider than the little tip you can see — like the whole area is involved?',
       },
       {
         type: 'name',
-        content: 'The clitoris is mostly internal: glans, shaft, crura (“legs”), and vestibular bulbs—about 9 cm total, not just the visible tip.',
+        content: 'The clitoris is mostly internal—glans, shaft, legs (crura), and bulbs—about 9 cm total, not just the visible tip.',
       },
       {
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/clitoral-structure.png'),
-        illustrationCaption: 'Crura and bulbs wrapping the vaginal canal',
+        illustrationCaption: 'Internal legs and bulbs — more than the tip you can see',
       },
       {
         type: 'understand',
-        content: 'MRI and dissection work mapped the full clitoral structure (O\'Connell et al., 2005). Anterior vaginal sensitivity often reflects internal clitoral and urethral tissue—not a separate “spot.” Most vaginal pleasure is still clitoral stimulation, accessed indirectly.',
+        content: 'MRI and dissection mapped the full clitoral structure (O\'Connell et al., 2005). Anterior vaginal sensitivity often reflects internal clitoral and urethral tissue — not a separate organ. Most vaginal pleasure is still clitoral, reached indirectly.',
       },
       {
         type: 'explore',
@@ -939,12 +939,12 @@ This anatomical reality explains why external stimulation is important for most 
     name: 'Nerve Density',
     category: 'anatomy',
     definition:
-      'The clitoral glans contains over 8,000 nerve endings - approximately equal to the entire penis.',
-    description: `The clitoral glans (the visible external portion) contains more than 8,000 nerve endings - a remarkable concentration in a structure much smaller than the penis, which has approximately the same number spread across a larger area.
+      'How packed with nerve endings the clitoral glans is — extreme sensitivity in a small area.',
+    description: `The clitoral glans holds thousands of nerve endings in a small tip — roughly 8,000 — so tiny changes in pressure, angle, or rhythm land loud.
 
-This density of nerve endings makes the clitoral glans extremely sensitive. This is why direct, intense stimulation of the glans can sometimes feel like too much, while the right kind of touch can produce intense pleasure. Sensitivity varies individually and can change with arousal level.
+That is why direct, hard touch can tip into too much, while lighter or more indirect contact can feel intensely good. Sensitivity also shifts with arousal.
 
-Understanding nerve density helps explain why clitoral stimulation is central to most women's orgasms - this is where the highest concentration of pleasure-sensing nerves exists. It's also why touch approach matters so much - all those nerves respond to subtleties of pressure, rhythm, and technique.`,
+Quality beats force here. Those nerves are picky in a useful way: they reward precision more than pressure.`,
     researchBasis:
       'Anatomical studies have counted approximately 8,000 nerve endings in the clitoral glans. This exceeds nerve density in almost any other body part of similar size.',
     source: 'Clitoral anatomy research; O\'Connell et al.',
@@ -959,21 +959,21 @@ Understanding nerve density helps explain why clitoral stimulation is central to
     slides: [
       {
         type: 'recognize',
-        content: 'Have you noticed how incredibly sensitive the clitoral area can be—how subtle differences in pressure or touch create dramatically different sensations?',
+        content: 'Noticed how a tiny shift in pressure there can tip from perfect to too much in a second?',
       },
       {
         type: 'name',
-        content: 'Nerve density describes how packed with nerve endings the clitoral glans is—roughly 8,000 in a small area, comparable to the penis but more concentrated.',
+        content: 'Nerve density is how packed with nerve endings the clitoral glans is—thousands in a small tip, so touch quality lands loud.',
       },
       {
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/nerve-density.png'),
-        illustrationCaption: 'Dense neural network in the glans',
+        illustrationCaption: 'A small tip where tiny pressure changes land loud',
       },
       {
         type: 'understand',
-        content: 'Anatomical studies count thousands of nerve endings in the clitoral glans (O\'Connell et al.). That density helps explain why touch quality—pressure, rhythm, indirect vs direct—matters so much, and why intensity can feel “too much” for some people at the wrong moment.',
+        content: 'Anatomical studies count thousands of nerve endings in the clitoral glans (O\'Connell et al.). That packing helps explain why pressure, rhythm, and indirect vs direct matter so much — and why “too much” is often timing and technique, not a closed door.',
       },
       {
         type: 'explore',
@@ -987,12 +987,12 @@ Understanding nerve density helps explain why clitoral stimulation is central to
     name: 'CUV Complex',
     category: 'anatomy',
     definition:
-      'The integrated tissue cluster where clitoris, urethra, and anterior vaginal wall interact - explaining "G-spot" sensitivity.',
-    description: `The clitourethrovaginal (CUV) complex describes how the clitoris, urethra, and front vaginal wall are interconnected rather than separate structures. This tissue cluster explains the sensitivity of the area often called the "G-spot."
+      'The linked cluster of clitoris, urethra, and front vaginal wall — the anatomy behind many “G-spot” feelings.',
+    description: `The CUV complex is how the clitoris, urethra, and front vaginal wall share tissue and pressure — one connected area, not three lonely parts.
 
-When the front wall of the vagina feels particularly sensitive, it's because pressure there affects the internal portions of the clitoris and the urethra - all richly supplied with nerves. There isn't a distinct "spot" so much as an area where multiple sensitive structures can be stimulated together.
+When the front wall feels especially good, it is often because pressure there reaches internal clitoral and urethral tissue together. The sensitivity is real; a separate magic button is the myth.
 
-Understanding the CUV complex resolves debates about whether the G-spot "exists." The sensitivity is real, but it's explained by anatomy rather than a mysterious separate organ. This integrated understanding helps explore what actually feels good rather than searching for a magic button.`,
+That shift helps: stop hunting a spot, explore what pressure and angle actually feel like in that area.`,
     researchBasis:
       'Anatomical imaging and dissection studies show the clitoris, urethra, and vaginal wall form an integrated complex. Stimulation of one component affects the others.',
     source: 'Jannini et al., 2014; anatomical imaging studies',
@@ -1007,21 +1007,21 @@ Understanding the CUV complex resolves debates about whether the G-spot "exists.
     slides: [
       {
         type: 'recognize',
-        content: 'Have you experienced sensitivity on the front wall of the vagina—an area that feels different from the rest?',
+        content: 'Felt a different kind of yes on the front wall — fuller, deeper, not the same as surface touch?',
       },
       {
         type: 'name',
-        content: 'The CUV complex (clitourethrovaginal) is the integrated cluster of clitoris, urethra, and anterior vaginal wall—often discussed as the “G-spot” area.',
+        content: 'The CUV complex is the linked cluster of clitoris, urethra, and front vaginal wall—the anatomy behind many “G-spot” feelings.',
       },
       {
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/clitourethrovaginal.png'),
-        illustrationCaption: 'Shared tissue and pressure between three structures',
+        illustrationCaption: 'Front-wall pressure reaching shared internal tissue',
       },
       {
         type: 'understand',
-        content: 'Imaging studies show these structures are physically connected, not isolated (Jannini et al., 2014). Front-wall sensitivity is real because pressure there compresses internal clitoral and urethral tissue—there is no separate magic organ to hunt for.',
+        content: 'Imaging shows the clitoris, urethra, and anterior wall are physically linked (Jannini et al., 2014). Front-wall sensitivity is real because pressure compresses that shared tissue — explore what feels good there, rather than proving a separate organ exists.',
       },
       {
         type: 'explore',

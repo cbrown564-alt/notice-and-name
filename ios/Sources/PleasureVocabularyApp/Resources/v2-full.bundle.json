@@ -217,14 +217,14 @@
       "name": "Shallowing",
       "category": "technique",
       "reviewStatus": "approved",
-      "definition": "Focusing stimulation at or just inside the vaginal entrance rather than deeper penetration.",
-      "summary": "Shallowing describes pleasurable touch that focuses on the vaginal entrance and the area just inside - using fingertips, tongue, or the tip of a toy or partner rather than deeper penetration.",
+      "definition": "Focusing stimulation at or just inside the vaginal entrance — treating shallow as the destination, not a warm-up.",
+      "summary": "Shallowing is pleasurable touch right at the vaginal entrance and the first inch or two inside — fingertips, tongue, tip of a toy or partner — without treating depth as the goal.",
       "blocks": [
         {
           "id": "shallowing-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Noticed the first moments — right at the entrance — can be the most sensitive part?"
+          "body": "Noticed that right at the entrance can feel more alive than going deep — and that lingering there is the point?"
         },
         {
           "id": "shallowing-definition",
@@ -236,14 +236,14 @@
           "id": "shallowing-media",
           "type": "media",
           "title": "See It",
-          "body": "Nerve-rich tissue at the introitus",
+          "body": "Nerve-rich entrance — shallow contact as the destination",
           "mediaId": "shallowing-diagram"
         },
         {
           "id": "shallowing-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "The introitus is densely innervated. In Hensel et al. (2021), shallowing was widely reported, and many participants said lingering at the entrance made later touch feel better—consistent with anatomy, not “just teasing.”",
+          "body": "The vaginal entrance is densely innervated. Hensel et al. (2021) found shallowing widely reported; many said lingering there made later touch feel better — anatomy and preference, not “just teasing.”",
           "citationIds": [
             "shallowing-source-1"
           ]
@@ -252,7 +252,7 @@
           "id": "shallowing-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "When you've lingered near the entrance, did it build something, or did you feel a pull to go deeper? What did you actually want?",
+          "body": "When you've stayed near the entrance on purpose, what did you actually want more of — pressure, circling, or just more time there?",
           "privateByDefault": true
         },
         {
@@ -432,8 +432,8 @@
       "name": "Building",
       "category": "sensation",
       "reviewStatus": "approved",
-      "definition": "A gradual increase in arousal intensity over time, like a wave gathering strength.",
-      "summary": "Building describes the experience of arousal intensifying progressively - not jumping immediately to peak sensation, but allowing pleasure to accumulate and deepen over time.",
+      "definition": "Arousal that gathers gradually — warmth and intensity rising over time, not all at once.",
+      "summary": "Building is arousal gathering — a little warmth that turns insistent if you leave it alone long enough.",
       "blocks": [
         {
           "id": "building-recognize",
@@ -451,14 +451,14 @@
           "id": "building-media",
           "type": "media",
           "title": "See It",
-          "body": "Vascular and neural intensity rising over time",
+          "body": "Warmth gathering under the skin, intensity rising",
           "mediaId": "building-illustration"
         },
         {
           "id": "building-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Sexual response models describe an arousal-building phase before plateau or orgasm. Research suggests that allowing sensation to accumulate—rather than rushing—is often associated with stronger peaks (Masters & Johnson; Basson, 2000).",
+          "body": "Sexual response models describe an arousal-building phase before plateau or orgasm (Masters & Johnson; Basson, 2000). Leaving sensation room to accumulate — instead of chasing the peak — often lands as a fuller climb.",
           "citationIds": [
             "building-source-1",
             "building-source-2"
@@ -468,7 +468,7 @@
           "id": "building-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Recall a time you let arousal build slowly instead of chasing the peak. What did the slow climb give you?",
+          "body": "When you let a slow climb go longer than usual, what showed up in the middle — more heat, more focus, or something else?",
           "privateByDefault": true
         },
         {
@@ -1196,33 +1196,33 @@
       "name": "Spontaneous Desire",
       "category": "timing",
       "reviewStatus": "approved",
-      "definition": "Sexual interest that arises on its own, without an external trigger - a seemingly random urge for sexual activity.",
-      "summary": "Spontaneous desire is sexual interest that appears to come from nowhere - an internal urge or wanting that arises without an obvious external stimulus.",
+      "definition": "Wanting that shows up on its own — an urge without an obvious external trigger.",
+      "summary": "Spontaneous desire is wanting that arrives without a warm-up scene — an internal urge people often call “being in the mood.”",
       "blocks": [
         {
           "id": "spontaneous-desire-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Sometimes feel turned on out of nowhere — an urge with no obvious cause?"
+          "body": "Ever get hit with wanting out of nowhere — mid-commute, mid-dish, no warm-up scene required?"
         },
         {
           "id": "spontaneous-desire-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Spontaneous desire is interest that appears on its own—often described as “being in the mood” without an obvious trigger."
+          "body": "Spontaneous desire is wanting that appears on its own—often “being in the mood” without an obvious trigger."
         },
         {
           "id": "spontaneous-desire-media",
           "type": "media",
           "title": "See It",
-          "body": "Internal arousal signals rising independently",
+          "body": "Wanting rising on its own, before anyone starts",
           "mediaId": "spontaneous-desire-illustration"
         },
         {
           "id": "spontaneous-desire-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Population studies suggest spontaneous desire is reported more often by men than women, and more often early in relationships (Basson, 2000). It is one valid pattern—not the only one. Many people experience a mix of spontaneous and responsive desire over time.",
+          "body": "Desire research distinguishes spontaneous from responsive patterns (Basson, 2000). Spontaneous desire shows up across genders and life stages, often more early in relationships — one valid pattern in a mix, not a required standard.",
           "citationIds": [
             "spontaneous-desire-source-1",
             "spontaneous-desire-source-2"
@@ -1232,14 +1232,14 @@
           "id": "spontaneous-desire-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "When desire shows up unprompted, what do you tend to do with it? Does it feel welcome, or like it arrives at the wrong time?",
+          "body": "When an unprompted urge shows up, what do you usually do with it first — act, shelve it, or check whether the timing fits?",
           "privateByDefault": true
         },
         {
           "id": "spontaneous-desire-phrase",
           "type": "phrase",
           "title": "A Phrase To Keep",
-          "body": "When the urge hits me out of nowhere, I'd like to treat it as worth acting on, not ignoring."
+          "body": "When wanting shows up out of nowhere, I get to treat it as real information — not something I have to ignore or obey."
         }
       ],
       "relatedConceptIds": [
@@ -1250,7 +1250,7 @@
           "id": "spontaneous-desire-self-understanding",
           "useCase": "self-understanding",
           "label": "For myself",
-          "body": "When the urge hits me out of nowhere, I'd like to treat it as worth acting on, not ignoring.",
+          "body": "When wanting shows up out of nowhere, I get to treat it as real information — not something I have to ignore or obey.",
           "tone": "soft"
         },
         {
@@ -1271,7 +1271,7 @@
           "id": "spontaneous-desire-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I'm curious what tends to spark those sudden urges for me — whether there's a pattern.",
+          "body": "I want to notice when those sudden urges show up for me — and when they don't.",
           "tone": "curious"
         },
         {
@@ -1518,33 +1518,33 @@
       "name": "Embodied Presence",
       "category": "psychological",
       "reviewStatus": "approved",
-      "definition": "Focused attention on bodily sensations during intimacy - being fully in your body rather than in your head.",
-      "summary": "Embodied presence is the opposite of spectatoring - it's being fully in your body and present to sensations rather than caught up in thoughts, judgments, or mental chatter.",
+      "definition": "Staying with what your body feels during intimacy — attention in sensation, not in commentary.",
+      "summary": "Embodied presence is being all the way in the touch — heat, pressure, breath — instead of narrating or grading it.",
       "blocks": [
         {
           "id": "embodied-presence-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Had moments so absorbed in sensation that thinking just faded — fully in your body, not your head?"
+          "body": "Ever been so deep in a touch that the commentary cut out — just heat, pressure, breath?"
         },
         {
           "id": "embodied-presence-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Embodied presence is staying with bodily sensation during intimacy—attention in the body rather than in commentary or judgment."
+          "body": "Embodied presence is staying with bodily sensation during intimacy—feeling the touch instead of commenting on it."
         },
         {
           "id": "embodied-presence-media",
           "type": "media",
           "title": "See It",
-          "body": "Attention filling the outline of the body",
+          "body": "Heat and pressure filling the body, commentary gone quiet",
           "mediaId": "embodied-presence-illustration"
         },
         {
           "id": "embodied-presence-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Mindfulness-based interventions for sexual concerns show improvements in arousal and satisfaction in clinical studies (Brotto, 2018). Present-moment focus on touch is a skill—when the mind wanders, you can gently return.",
+          "body": "Present-focused attention during sex tracks with higher arousal and satisfaction in clinical work (Brotto, 2018). The adult move is simple: when the mind drifts, return to one concrete sensation — not a performance of mindfulness.",
           "citationIds": [
             "embodied-presence-source-1",
             "embodied-presence-source-2"
@@ -1554,7 +1554,7 @@
           "id": "embodied-presence-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Recall a time you were completely in your body. What let you get there, and what tends to call you back out?",
+          "body": "When you last dropped all the way into sensation, what was happening in the room — pace, quiet, how you were touched?",
           "privateByDefault": true
         },
         {
@@ -1594,7 +1594,7 @@
           "id": "embodied-presence-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to learn what helps me stay in my body instead of drifting into my head.",
+          "body": "I want to notice what keeps me in my body — and what knocks me back into my head.",
           "tone": "curious"
         },
         {
@@ -1959,33 +1959,33 @@
       "name": "Clitoral Structure",
       "category": "anatomy",
       "reviewStatus": "approved",
-      "definition": "The full clitoral organ is approximately 9cm in size, with internal legs (crura) and bulbs extending inside the body.",
-      "summary": "The clitoris is much larger than it appears from the outside.",
+      "definition": "The clitoris is mostly internal — a larger organ (~9 cm) with legs and bulbs, not just the visible tip.",
+      "summary": "What you can see of the clitoris is only the tip. The full organ runs about 9 cm inside, with legs (crura) wrapping the vaginal canal and bulbs that fill with blood when aroused.",
       "blocks": [
         {
           "id": "clitoral-structure-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Did you know the part you can see is just the tip — the whole clitoris runs about 9cm inside?"
+          "body": "Ever noticed pleasure show up deeper or wider than the little tip you can see — like the whole area is involved?"
         },
         {
           "id": "clitoral-structure-definition",
           "type": "definition",
           "title": "Name",
-          "body": "The clitoris is mostly internal: glans, shaft, crura (“legs”), and vestibular bulbs—about 9 cm total, not just the visible tip."
+          "body": "The clitoris is mostly internal—glans, shaft, legs (crura), and bulbs—about 9 cm total, not just the visible tip."
         },
         {
           "id": "clitoral-structure-media",
           "type": "media",
           "title": "See It",
-          "body": "Crura and bulbs wrapping the vaginal canal",
+          "body": "Internal legs and bulbs — more than the tip you can see",
           "mediaId": "clitoral-structure-illustration"
         },
         {
           "id": "clitoral-structure-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "MRI and dissection work mapped the full clitoral structure (O'Connell et al., 2005). Anterior vaginal sensitivity often reflects internal clitoral and urethral tissue—not a separate “spot.” Most vaginal pleasure is still clitoral stimulation, accessed indirectly.",
+          "body": "MRI and dissection mapped the full clitoral structure (O'Connell et al., 2005). Anterior vaginal sensitivity often reflects internal clitoral and urethral tissue — not a separate organ. Most vaginal pleasure is still clitoral, reached indirectly.",
           "citationIds": [
             "clitoral-structure-source-1",
             "clitoral-structure-source-2"
@@ -1995,7 +1995,7 @@
           "id": "clitoral-structure-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "Does knowing the clitoris is mostly internal change where you'd expect to feel things? What might you explore differently?",
+          "body": "When internal pressure or wider contact felt good, where did it land — and does that change what you reach for next?",
           "privateByDefault": true
         },
         {
@@ -2070,33 +2070,33 @@
       "name": "Nerve Density",
       "category": "anatomy",
       "reviewStatus": "approved",
-      "definition": "The clitoral glans contains over 8,000 nerve endings - approximately equal to the entire penis.",
-      "summary": "The clitoral glans (the visible external portion) contains more than 8,000 nerve endings - a remarkable concentration in a structure much smaller than the penis, which has approximately the same number spread across a larger area.",
+      "definition": "How packed with nerve endings the clitoral glans is — extreme sensitivity in a small area.",
+      "summary": "The clitoral glans holds thousands of nerve endings in a small tip — roughly 8,000 — so tiny changes in pressure, angle, or rhythm land loud.",
       "blocks": [
         {
           "id": "nerve-density-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Noticed how intensely sensitive the clitoris is — how a tiny change in pressure changes everything?"
+          "body": "Noticed how a tiny shift in pressure there can tip from perfect to too much in a second?"
         },
         {
           "id": "nerve-density-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Nerve density describes how packed with nerve endings the clitoral glans is—roughly 8,000 in a small area, comparable to the penis but more concentrated."
+          "body": "Nerve density is how packed with nerve endings the clitoral glans is—thousands in a small tip, so touch quality lands loud."
         },
         {
           "id": "nerve-density-media",
           "type": "media",
           "title": "See It",
-          "body": "Dense neural network in the glans",
+          "body": "A small tip where tiny pressure changes land loud",
           "mediaId": "nerve-density-illustration"
         },
         {
           "id": "nerve-density-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Anatomical studies count thousands of nerve endings in the clitoral glans (O'Connell et al.). That density helps explain why touch quality—pressure, rhythm, indirect vs direct—matters so much, and why intensity can feel “too much” for some people at the wrong moment.",
+          "body": "Anatomical studies count thousands of nerve endings in the clitoral glans (O'Connell et al.). That packing helps explain why pressure, rhythm, and indirect vs direct matter so much — and why “too much” is often timing and technique, not a closed door.",
           "citationIds": [
             "nerve-density-source-1",
             "nerve-density-source-2"
@@ -2106,7 +2106,7 @@
           "id": "nerve-density-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "When touch has been just right — or way too much — what was the difference? What would you want to be able to say in the moment?",
+          "body": "When touch landed just right — or suddenly too sharp — what changed: pressure, angle, rhythm, or how aroused you already were?",
           "privateByDefault": true
         },
         {
@@ -2153,7 +2153,7 @@
           "id": "nerve-density-reassurance",
           "useCase": "reassurance",
           "label": "Reassure",
-          "body": "If it's sometimes 'too much,' that's just how many nerve endings are there — nothing's wrong.",
+          "body": "If it's sometimes too much, that's how packed with sensation that spot is — ease off with me, don't take it personally.",
           "tone": "reassuring"
         }
       ],
@@ -2180,33 +2180,33 @@
       "name": "CUV Complex",
       "category": "anatomy",
       "reviewStatus": "approved",
-      "definition": "The integrated tissue cluster where clitoris, urethra, and anterior vaginal wall interact - explaining \"G-spot\" sensitivity.",
-      "summary": "The clitourethrovaginal (CUV) complex describes how the clitoris, urethra, and front vaginal wall are interconnected rather than separate structures.",
+      "definition": "The linked cluster of clitoris, urethra, and front vaginal wall — the anatomy behind many “G-spot” feelings.",
+      "summary": "The CUV complex is how the clitoris, urethra, and front vaginal wall share tissue and pressure — one connected area, not three lonely parts.",
       "blocks": [
         {
           "id": "clitourethrovaginal-recognize",
           "type": "recognize",
           "title": "Recognize",
-          "body": "Felt a sensitivity on the front wall of the vagina that feels different from everywhere else?"
+          "body": "Felt a different kind of yes on the front wall — fuller, deeper, not the same as surface touch?"
         },
         {
           "id": "clitourethrovaginal-definition",
           "type": "definition",
           "title": "Name",
-          "body": "The CUV complex (clitourethrovaginal) is the integrated cluster of clitoris, urethra, and anterior vaginal wall—often discussed as the “G-spot” area."
+          "body": "The CUV complex is the linked cluster of clitoris, urethra, and front vaginal wall—the anatomy behind many “G-spot” feelings."
         },
         {
           "id": "clitourethrovaginal-media",
           "type": "media",
           "title": "See It",
-          "body": "Shared tissue and pressure between three structures",
+          "body": "Front-wall pressure reaching shared internal tissue",
           "mediaId": "clitourethrovaginal-illustration"
         },
         {
           "id": "clitourethrovaginal-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Imaging studies show these structures are physically connected, not isolated (Jannini et al., 2014). Front-wall sensitivity is real because pressure there compresses internal clitoral and urethral tissue—there is no separate magic organ to hunt for.",
+          "body": "Imaging shows the clitoris, urethra, and anterior wall are physically linked (Jannini et al., 2014). Front-wall sensitivity is real because pressure compresses that shared tissue — explore what feels good there, rather than proving a separate organ exists.",
           "citationIds": [
             "clitourethrovaginal-source-1",
             "clitourethrovaginal-source-2"
@@ -2216,7 +2216,7 @@
           "id": "clitourethrovaginal-reflection",
           "type": "reflection",
           "title": "Field Note",
-          "body": "When the front wall has felt good, what kind of pressure reached it? Does it feel connected to the rest of your pleasure, or separate?",
+          "body": "When front-wall pressure felt good, what reached it — angle, ease, firmness — and did chasing a ‘spot’ help or get in the way?",
           "privateByDefault": true
         },
         {
@@ -2242,7 +2242,7 @@
           "id": "clitourethrovaginal-partner-request",
           "useCase": "partner-request",
           "label": "Ask for support",
-          "body": "There's a spot on the front wall that responds to firm pressure — can we take time to find it?",
+          "body": "Firm, steady pressure toward the front wall can feel really good for me — can we stay with that instead of hunting?",
           "tone": "direct"
         },
         {
@@ -2501,7 +2501,7 @@
       "kind": "diagram",
       "path": "native://diagram/shallowing",
       "alt": "Native diagram for Shallowing.",
-      "caption": "Nerve-rich tissue at the introitus",
+      "caption": "Nerve-rich entrance — shallow contact as the destination",
       "reducedMotionFallback": "assets/images/concepts/illustrations/shallowing.png"
     },
     {
@@ -2509,7 +2509,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/shallowing.png",
       "alt": "Warm educational illustration for Shallowing.",
-      "caption": "Nerve-rich tissue at the introitus",
+      "caption": "Nerve-rich entrance — shallow contact as the destination",
       "reducedMotionFallback": "assets/images/concepts/illustrations/shallowing.png"
     },
     {
@@ -2533,7 +2533,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/building.png",
       "alt": "Warm educational illustration for Building.",
-      "caption": "Vascular and neural intensity rising over time",
+      "caption": "Warmth gathering under the skin, intensity rising",
       "reducedMotionFallback": "assets/images/concepts/illustrations/building.png"
     },
     {
@@ -2541,7 +2541,7 @@
       "kind": "video",
       "path": "assets/videos/building.mp4",
       "alt": "Motion study for Building.",
-      "caption": "Vascular and neural intensity rising over time",
+      "caption": "Warmth gathering under the skin, intensity rising",
       "reducedMotionFallback": "assets/images/concepts/illustrations/building.png"
     },
     {
@@ -2629,7 +2629,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/spontaneous-desire.png",
       "alt": "Warm educational illustration for Spontaneous Desire.",
-      "caption": "Internal arousal signals rising independently",
+      "caption": "Wanting rising on its own, before anyone starts",
       "reducedMotionFallback": "assets/images/concepts/illustrations/spontaneous-desire.png"
     },
     {
@@ -2653,7 +2653,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/embodied-presence.png",
       "alt": "Warm educational illustration for Embodied Presence.",
-      "caption": "Attention filling the outline of the body",
+      "caption": "Heat and pressure filling the body, commentary gone quiet",
       "reducedMotionFallback": "assets/images/concepts/illustrations/embodied-presence.png"
     },
     {
@@ -2685,7 +2685,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/clitoral-structure.png",
       "alt": "Warm educational illustration for Clitoral Structure.",
-      "caption": "Crura and bulbs wrapping the vaginal canal",
+      "caption": "Internal legs and bulbs — more than the tip you can see",
       "reducedMotionFallback": "assets/images/concepts/illustrations/clitoral-structure.png"
     },
     {
@@ -2693,7 +2693,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/nerve-density.png",
       "alt": "Warm educational illustration for Nerve Density.",
-      "caption": "Dense neural network in the glans",
+      "caption": "A small tip where tiny pressure changes land loud",
       "reducedMotionFallback": "assets/images/concepts/illustrations/nerve-density.png"
     },
     {
@@ -2701,7 +2701,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/clitourethrovaginal.png",
       "alt": "Warm educational illustration for CUV Complex.",
-      "caption": "Shared tissue and pressure between three structures",
+      "caption": "Front-wall pressure reaching shared internal tissue",
       "reducedMotionFallback": "assets/images/concepts/illustrations/clitourethrovaginal.png"
     },
     {

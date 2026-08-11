@@ -8,6 +8,7 @@
 Phase B rewrite batches landed 2026-08-11 (Europe/London):
 - **Batch 1:** `sexual-self-esteem`, `body-appreciation`, `edging`, `rocking`, `golden-trio`
 - **Batch 2:** `warmup-window`, `non-concordance`, `pulsing`, `spreading`, `spectatoring`
+- **Batch 3:** `embodied-presence`, `building`, `shallowing`, `spontaneous-desire`, `clitoral-structure`, `nerve-density`, `clitourethrovaginal`
 
 Remaining concepts below keep audit priorities until rewritten.
 
@@ -29,9 +30,9 @@ Remaining concepts below keep audit priorities until rewritten.
 | Priority | Count (concepts) | Meaning |
 | --- | --- | --- |
 | **P0** | **0** | Cleared by rewrite batch 1 (was 3). |
-| **P1** | **7** | Remaining first-batch tone / partner-sayability / thin Notice and Reflect. |
+| **P1** | **0** | Cleared by rewrite batch 3 (was 7). |
 | **P2** | **5** | Solid enough to ship; polish Understand / See / summary voice later. |
-| **Rewritten** | **10** | Batches 1–2 (see below). |
+| **Rewritten** | **17** | Batches 1–3 (see below). |
 
 ---
 
@@ -47,20 +48,20 @@ Remaining concepts below keep audit priorities until rewritten.
 - **Rewrite (batch 1):** Notice moment replaces didactic opener; Reflect drops worksheet recall; summary/See leave textbook/lab voice; Keep stays closeness-over-distance.
 - **Priority:** Rewritten (was P1)
 
-### 3. `shallowing` — Shallowing (technique) — **P1**
+### 3. `shallowing` — Shallowing (technique) — **Rewritten**
 - **Strengths:** Keep is brand-true (shallow is the good part, not a warm-up); boundary and reassurance partner-safe.
-- **Weak spots:** SEE uses introitus; Understand research-report heavy; Recognize thin vs Keep conviction.
-- **Priority:** P1
+- **Rewrite (batch 3):** Notice names entrance as the point; Reflect asks what you wanted more of; See caption drops introitus lab-speak; Understand keeps Hensel with adult insight; Name/summary leave research-report voice.
+- **Priority:** Rewritten (was P1)
 
 ### 4. `pairing` — Pairing (technique) — **P2**
 - **Strengths:** Recognize lived; partner-request and boundary (reaching down) practical and non-shaming.
 - **Weak spots:** Understand citation-stack heavy; Reflect second clause tips into skills-coaching.
 - **Priority:** P2
 
-### 5. `building` — Building (sensation) — **P1**
+### 5. `building` — Building (sensation) — **Rewritten**
 - **Strengths:** Recognize has sensory specificity; Keep / partner-request private and precise.
-- **Weak spots:** Reflect 'Recall a time…' worksheet; SEE vascular/neural lab voice; textbook summary.
-- **Priority:** P1
+- **Rewrite (batch 3):** Reflect leaves worksheet recall for a concrete climb question; See caption warmth-gathering not vascular/neural lab; summary/Name drop textbook framing.
+- **Priority:** Rewritten (was P1)
 
 ### 6. `plateauing` — Plateauing (sensation) — **P2**
 - **Strengths:** Names a rarely-honored state without pathologizing; Keep legitimizes not tipping over; phrases partner-safe.
@@ -92,10 +93,10 @@ Remaining concepts below keep audit priorities until rewritten.
 - **Weak spots:** Understand name-drops theorists in-body; Reflect long. Still above bar overall.
 - **Priority:** P2
 
-### 12. `spontaneous-desire` — Spontaneous Desire (timing) — **P1**
+### 12. `spontaneous-desire` — Spontaneous Desire (timing) — **Rewritten**
 - **Strengths:** Boundary (urge is not an obligation) excellent; reassurance avoids prescribing frequency.
-- **Weak spots:** Recognize thinner than responsive twin; Keep slightly self-helpy; Understand gender-comparison can feel othering if misread.
-- **Priority:** P1
+- **Rewrite (batch 3):** Notice lived (mid-commute urge); Keep/phrases leave self-help; Understand drops gender-othering and over-strong “everyone” claim; Reflect concrete choice with the urge.
+- **Priority:** Rewritten (was P1)
 
 ### 13. `golden-trio` — Golden Trio (timing) — **Rewritten**
 - **Strengths:** Boundary against ticking boxes on-voice; Keep values variety without shame.
@@ -107,10 +108,10 @@ Remaining concepts below keep audit priorities until rewritten.
 - **Rewrite (batch 2):** Keep drops gentle-return mantra for sensation-over-performance; Reflect/curiosity more noticing than meta-homework; See/Understand lean adult.
 - **Priority:** Rewritten (was P1)
 
-### 15. `embodied-presence` — Embodied Presence (psychological) — **P1**
+### 15. `embodied-presence` — Embodied Presence (psychological) — **Rewritten**
 - **Strengths:** Partner-request (slow enough to feel each thing) and reassurance (quiet is not checking out) strong.
-- **Weak spots:** Reflect 'Recall a time…'; Understand clinical-studies voice; Name glossary-like; mindfulness-module risk next to spectatoring.
-- **Priority:** P1
+- **Rewrite (batch 3):** Reflect leaves worksheet recall; Name/summary leave glossary; Understand keeps Brotto with adult insight; Notice more lived; framed as opposite of spectatoring, not mindfulness homework.
+- **Priority:** Rewritten (was P1)
 
 ### 16. `non-concordance` — Non-concordance (psychological) — **Rewritten**
 - **Strengths:** Critical partner-safety concept; partner-request and boundary (trust words over body signs) launch-critical — preserved as-is.
@@ -127,20 +128,20 @@ Remaining concepts below keep audit priorities until rewritten.
 - **Rewrite (batch 1):** Reassurance dangling clause already fixed; Notice is one mid-touch catch; Reflect concrete; boundary sayable (pause/keep going, no body postmortem); See/summary sensation-first. P0 cleared.
 - **Priority:** Rewritten (was P0)
 
-### 19. `clitoral-structure` — Clitoral Structure (anatomy) — **P1**
+### 19. `clitoral-structure` — Clitoral Structure (anatomy) — **Rewritten**
 - **Strengths:** Keep reframes internal vs external well; reassurance about indirect touch partner-safe.
-- **Weak spots:** Recognize is trivia ('Did you know…') not noticing; Reflect didactic; Name dumps glossary terms without warmth.
-- **Priority:** P1
+- **Rewrite (batch 3):** Notice drops trivia for felt wider/deeper pleasure; Reflect concrete map question; Name/summary keep anatomy accurate with warmth; See caption internal legs/bulbs not lab labels.
+- **Priority:** Rewritten (was P1)
 
-### 20. `nerve-density` — Nerve Density (anatomy) — **P1**
+### 20. `nerve-density` — Nerve Density (anatomy) — **Rewritten**
 - **Strengths:** Partner-request (lighter / more indirect) immediately usable; boundary frames intensity as sensitivity not rejection.
-- **Weak spots:** Reflect coachy double question; reassure 'nothing wrong' clinical; Name TED-fact comparison framing.
-- **Priority:** P1
+- **Rewrite (batch 3):** Reflect one concrete “what changed” question; reassure leaves “nothing wrong” clinical; Name/summary drop TED-fact comparison framing for touch-quality voice.
+- **Priority:** Rewritten (was P1)
 
-### 21. `clitourethrovaginal` — CUV Complex (anatomy) — **P1**
+### 21. `clitourethrovaginal` — CUV Complex (anatomy) — **Rewritten**
 - **Strengths:** Keep demystifies without sneering; reassurance kind; boundary against forcing good.
-- **Weak spots:** Display name clinical for consumer UI; Recognize thin; partner-request still hunts a spot; Understand slightly polemic.
-- **Priority:** P1
+- **Rewrite (batch 3):** Notice names front-wall yes; partner-request stays with pressure instead of hunting a spot; Understand keeps Jannini without polemic; Name/summary adult and precise.
+- **Priority:** Rewritten (was P1)
 
 ### 22. `internal-stimulation` — Internal Clitoral Stimulation (anatomy) — **P2**
 - **Strengths:** Tight link to angling; partner-request and boundary (angle rather than harder) precise and partner-safe; Keep clear.
@@ -173,13 +174,31 @@ Edited `content/v2/copy/concept-copy.json` + `data/vocabulary.ts` (definition / 
 
 ---
 
+## Rewrite batch 3 (landed)
+
+Edited `content/v2/copy/concept-copy.json` + `data/vocabulary.ts` (definition / summary / Name / Understand / See), then regenerated the v2 full bundle:
+
+1. `embodied-presence` — Notice, Reflect; Name/summary/See/Understand (was P1).
+2. `building` — Notice, Reflect; See/Name/summary/Understand (was P1).
+3. `shallowing` — Notice, Reflect; See/Name/summary/Understand (was P1).
+4. `spontaneous-desire` — Notice, Reflect, Keep/phrases; Name/summary/Understand (was P1).
+5. `clitoral-structure` — Notice, Reflect; Name/summary/See/Understand (was P1).
+6. `nerve-density` — Notice, Reflect, reassure; Name/summary/See/Understand (was P1).
+7. `clitourethrovaginal` — Notice, Reflect, partner phrases; Name/summary/See/Understand (was P1).
+
+---
+
 ## Recommended next rewrite batch
 
-1. `embodied-presence` — Reflect worksheet; Understand clinical-studies; Name glossary-like.
-2. Anatomy cluster Notice frames (`clitoral-structure`, `nerve-density`, `clitourethrovaginal`).
-3. `building` — Reflect worksheet; SEE vascular/neural lab; textbook summary.
-4. `shallowing` — SEE introitus; Understand research-report; Recognize thin.
-5. `spontaneous-desire` — Recognize thinner than responsive twin; Keep slightly self-helpy.
+Remaining **P2** polish (no concept-level P1 left):
+
+1. `angling` — Understand study branding; SEE slightly clinical; curiosity goal-seeking.
+2. `pairing` — Understand citation-stack; Reflect skills-coaching tip.
+3. `plateauing` — Understand lecture-y; Reflect slightly instructs.
+4. `responsive-desire` — Understand name-drops; Reflect long.
+5. `internal-stimulation` — overlap fatigue with CUV/angling/structure; reassure slightly clinical.
+
+Cross-cutting P1 rows (Recognize UI label; See It captions; Reflect worksheet) may still apply globally even when concept P1 count is 0 — leave those rows unless separately fixed.
 
 ## Edit surfaces reminder
 
