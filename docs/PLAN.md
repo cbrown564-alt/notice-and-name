@@ -17,8 +17,8 @@ Good-enough / later: Today cleverness, pathway polish, full video coverage, modu
 - [x] Archive old docs
 - [x] Lean tests + CI on branch
 - [x] Working docs (this folder)
-- [ ] Merge rename PR
-- [ ] Remove Expo litter when touching repo
+- [x] Merge rename PR
+- [x] Remove Expo litter when touching repo
 - [ ] Treat v2 bundle pipeline as sole content truth
 
 ### B — Core loop to bar
