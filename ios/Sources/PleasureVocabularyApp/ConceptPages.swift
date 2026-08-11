@@ -39,7 +39,7 @@ struct ConceptPage: Identifiable {
     var indexLabel: String {
         switch kind {
         case .cover:      return "Cover"
-        case .recognize:  return "Recognize"
+        case .recognize:  return "Notice"
         case .name:       return "Name"
         case .see:        return "See"
         case .understand: return "Understand"
@@ -383,7 +383,7 @@ private struct RecognizePageBody: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            PageLabel(text: "Recognize", accent: page.accent)
+            PageLabel(text: "Notice", accent: page.accent)
             Text(page.block?.body ?? "")
                 .font(.system(.title, design: .serif).italic())
                 .foregroundStyle(AppColor.ink)

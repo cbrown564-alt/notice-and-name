@@ -11,7 +11,7 @@ Ordered by remaining plan phases. Updated 2026-08-11 evening.
 - [ ] Device QA on real hardware (Today / Vocabulary / Explore / Journal / Settings)
 - [ ] Export UX (JSON exists; share sheet / Files discoverability)
 - [ ] Worst media gaps (prefer abstract/educational stills & video — Gemini Omni / GPT-Image 2)
-- [ ] UI label polish (Recognize→Notice, Field Note vs Reflect)
+- [x] UI label polish (Recognize→Notice, Field Note vs Reflect)
 
 ## Phase C — StoreKit / business
 

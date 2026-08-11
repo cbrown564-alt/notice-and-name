@@ -28,7 +28,7 @@ Good-enough / later: Today cleverness, pathway polish, full video coverage, modu
 - [ ] Device QA (current + small phone) — Conor
 - [ ] Export via share sheet / Files
 - [ ] Fix worst media gaps only (Gemini Omni video / GPT-Image 2 stills; abstract/educational to clear blockers)
-- [ ] Cross-cutting UI polish (Recognize→Notice labels, Field Note vs Reflect) — from editorial audit
+- [x] Cross-cutting UI polish (Recognize→Notice labels, Field Note vs Reflect) — from editorial audit
 
 ### C — Business
 - [x] Lock unlock price (£15 one-time)

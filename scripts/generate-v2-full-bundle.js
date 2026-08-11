@@ -325,7 +325,7 @@ function buildBlocks(concept, citations, mediaIds, override) {
     {
       id: blockId(concept.id, 'recognize'),
       type: 'recognize',
-      title: 'Recognize',
+      title: 'Notice',
       body: (override && override.recognize) || recognize?.content || (concept.recognitionPrompts || [])[0] || concept.summary,
     },
     {
@@ -357,7 +357,7 @@ function buildBlocks(concept, citations, mediaIds, override) {
     {
       id: blockId(concept.id, 'reflection'),
       type: 'reflection',
-      title: 'Field Note',
+      title: 'Reflect',
       body: buildReflectionPrompt(concept, override),
       privateByDefault: true,
     },
