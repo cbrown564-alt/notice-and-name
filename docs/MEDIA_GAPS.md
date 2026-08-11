@@ -58,7 +58,8 @@ Implication: shipping a bad plate is worse than shipping nothing — the app sho
 - LAUNCH_GAPS / PLAN: Phase B still lists worst media gaps only; full video coverage is later / good-enough.
 - MEDIA_POLICY (archived): Technique needs diagram+image; building / spreading / responsive-desire need image+video; else image-required. Current bundle meets required kinds.
 - media-review-decisions (2026-07-01): 9 plates marked regen; video masters deleted for angling/rocking (spreading historically delete but wired MP4 still ships); keep-masters for building / responsive-desire / shallowing originals.
-- media-regen-queue remaining plate regen: embodied-presence, golden-trio, plateauing, pulsing, sexual-self-esteem, spectatoring, spontaneous-desire, spreading, warmup-window.
+- media-regen-queue remaining plate regen: pulsing, spontaneous-desire, spreading (plus optional thumbs: angling / body-appreciation / clitourethrovaginal).
+- **Batch 1 plates generated 2026-08-11 (my-generator):** spectatoring, golden-trio, plateauing, sexual-self-esteem, warmup-window, embodied-presence — illustration + thumbnail each. Synced to iOS. **Pending taste review vs GPT-Image 2 tomorrow**; old PNGs archived under `assets/images/concepts/_archive/2026-08-11-batch1-old/`.
 - Thumbnail-only regen (plates kept): angling, body-appreciation, clitourethrovaginal.
 - Angling illustration: registry promotionDecision rejected — in-image titles/labels (See uses native diagram; fallback/poster problem).
 - Media sprint (Aug 2026): Gemini video handoff closed; building candidate in staging unpromoted; clitoral-structure + nerve-density video jobs unfulfilled. Staging is not shipping.
@@ -75,12 +76,12 @@ Priority = how much it hurts the See moment (sole visual x wrong metaphor / styl
 
 | # | Concept | Missing / weak | Why it hurts |
 |---|---------|----------------|--------------|
-| 1 | spectatoring | Weak plate (regen); ethereal thinker + floating head | Sole See visual for a core psychological concept; reads as generic introspection, not split between touch and inner commentary. |
-| 2 | golden-trio | Weak plate (regen); parchment Venn + notebook stains/scribbles | Sole See visual; does not teach hands / mouth / penetration as layered options. |
-| 3 | plateauing | Weak plate (regen); male sagittal + battery + chart chrome | Sole See visual; wrong body context; UI chrome fights no-labels style rule. |
-| 4 | sexual-self-esteem | Weak plate (regen); glowing heart/lungs torso | Sole See visual; generic wellness anatomy, not belonging in your own desire. |
-| 5 | warmup-window | Weak plate (regen); explicit genital engraving | Sole See visual; concept is timing before touch gets specific, but plate is graphic anatomy — App Store / model-regen friction and off-message. |
-| 6 | embodied-presence | Weak plate (regen); golden fluid pouring through pelvis | Sole See visual; muddled vs spectatoring pair; ethereal drift from Scientific Warmth anchors. |
+| 1 | spectatoring | **Generated (my-generator) — pending taste review** (was: ethereal thinker + floating head) | Sole See visual for a core psychological concept; reads as generic introspection, not split between touch and inner commentary. |
+| 2 | golden-trio | **Generated (my-generator) — pending taste review** (was: parchment Venn + notebook stains/scribbles) | Sole See visual; does not teach hands / mouth / penetration as layered options. |
+| 3 | plateauing | **Generated (my-generator) — pending taste review** (was: male sagittal + battery + chart chrome) | Sole See visual; wrong body context; UI chrome fights no-labels style rule. |
+| 4 | sexual-self-esteem | **Generated (my-generator) — pending taste review** (was: glowing heart/lungs torso) | Sole See visual; generic wellness anatomy, not belonging in your own desire. |
+| 5 | warmup-window | **Generated (my-generator) — pending taste review** (was: explicit genital engraving) | Sole See visual; concept is timing before touch gets specific, but plate is graphic anatomy — App Store / model-regen friction and off-message. |
+| 6 | embodied-presence | **Generated (my-generator) — pending taste review** (was: golden fluid pouring through pelvis) | Sole See visual; muddled vs spectatoring pair; ethereal drift from Scientific Warmth anchors. |
 | 7 | spontaneous-desire | Weak plate (regen); spore/emergence abstract | Sole See visual; pretty but weak teaching vs responsive-desire plate/video. |
 
 ### P1 — next (cards / fallbacks more than primary See)
@@ -104,9 +105,11 @@ Priority = how much it hurts the See moment (sole visual x wrong metaphor / styl
 
 ## 5. Recommended first generation batch (stills)
 
-Prefer stills. Required videos already ship. Do not generate images until this batch is approved.
+Prefer stills. Required videos already ship.
 
-Generate 6 illustration plates (1024x1024 or 3:4 @2x PNG) plus matching thumbnails (512x512 glyph of each plate):
+**Status 2026-08-11:** Batch 1 **generated** via my-generator (6 plates + thumbs). Assets live under `assets/images/concepts/{illustrations,thumbnails}/`; iOS synced (`node scripts/sync-ios-media.js --check` OK). Old files in `_archive/2026-08-11-batch1-old/`. **Pending Conor taste review vs GPT-Image 2 tomorrow** before treating as final.
+
+Batch targets (illustration + thumbnail each):
 
 | Order | Asset | Anchor plate | Teaching job |
 |------:|-------|--------------|--------------|
@@ -121,7 +124,7 @@ Optional 7th/8th: spontaneous-desire plate (+ thumb); then thumbnail-only pass f
 
 Defer: new anatomy videos; regenerating keep anchors; promoting staging media-sprint.
 
-After delivery: replace illustration/thumbnail PNGs, compress-assets, sync-ios-media, registry sync, device QA.
+After delivery: ~~replace illustration/thumbnail PNGs, sync-ios-media~~ (done for batch1) — still: compress-assets if needed, registry sync, device QA, taste review vs GPT-Image 2.
 
 ---
 
@@ -187,8 +190,8 @@ See = VIDEO       building spreading pulsing responsive-desire
 See = ILLUSTRATION (keep)   non-concordance body-appreciation
                             clitoral-structure nerve-density
                             clitourethrovaginal internal-stimulation
-See = ILLUSTRATION (regen)  spectatoring golden-trio plateauing
-                            sexual-self-esteem warmup-window
-                            embodied-presence spontaneous-desire
+See = ILLUSTRATION (batch1 generated, pending taste)  spectatoring golden-trio plateauing
+                            sexual-self-esteem warmup-window embodied-presence
+See = ILLUSTRATION (regen)  spontaneous-desire
 ```
 
