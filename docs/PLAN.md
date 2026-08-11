@@ -29,6 +29,7 @@ Good-enough / later: Today cleverness, pathway polish, full video coverage, modu
 - [ ] Export via share sheet / Files
 - [~] Fix worst media gaps only (Gemini Omni video / GPT-Image 2 stills; abstract/educational to clear blockers) — **batch1 6 plates+thumbs generated (my-generator), pending taste vs GPT-Image 2**
 - [x] Cross-cutting UI polish (Recognize→Notice labels, Field Note vs Reflect) — from editorial audit
+- [~] Interactive diagrams for all 22 concepts — polish 5 → expand ([`INTERACTIVES.md`](./INTERACTIVES.md); Phase B track)
 
 ### C — Business
 - [x] Lock unlock price (£15 one-time)
@@ -51,3 +52,4 @@ Good-enough / later: Today cleverness, pathway polish, full video coverage, modu
 - Taste / reuse across repos: [`TASTE_SURVEY.md`](./TASTE_SURVEY.md)
 - Launch checklist: [`LAUNCH_GAPS.md`](./LAUNCH_GAPS.md)
 - Onboarding VO script (approved): [`ONBOARDING_SCRIPT.md`](./ONBOARDING_SCRIPT.md)
+- Interactive diagrams (all 22): [`INTERACTIVES.md`](./INTERACTIVES.md)

@@ -17,7 +17,7 @@ import AVFoundation
 /// `path` is `native://diagram/<id>`. These five concepts are drawn in-app
 /// (no image asset ships for them). When Reduce Motion is off, diagrams are
 /// user-driven with pan or tap gestures; when on, a static teaching
-/// frame is shown. See `docs/pipelines/INTERACTIVE_DIAGRAMS_PLAN.md` Phase 0.
+/// frame is shown. See `docs/INTERACTIVES.md`.
 ///
 /// An unrecognised id falls back to the same framed placeholder used for
 /// images/videos (`MediaPlaceholderCard`), so a new diagram id can ship before
@@ -286,8 +286,13 @@ private final class LoopingPlayerUIView: UIView {
 // MARK: - Diagram plumbing
 
 /// Shared diagram frame: concept canvas, 1px border, ~300pt height.
+/// Optional idle pulse sits in chrome (not burned into Canvas art) and only
+/// runs when Reduce Motion is off and the caller still wants a first-paint cue.
 private struct DiagramSurface<Content: View>: View {
     var height: CGFloat = 300
+    var idlePulse: Bool = false
+    var pulseOffset: CGSize = .zero
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @ViewBuilder var content: () -> Content
 
     var body: some View {
@@ -299,7 +304,69 @@ private struct DiagramSurface<Content: View>: View {
                 RoundedRectangle(cornerRadius: 8)
                     .stroke(AppColor.line, lineWidth: 1)
             }
+            .overlay {
+                if idlePulse && !reduceMotion {
+                    DiagramIdlePulse()
+                        .offset(pulseOffset)
+                }
+            }
             .clipShape(RoundedRectangle(cornerRadius: 8))
+    }
+}
+
+/// Consistent top overlay for insight feedback across diagrams.
+private struct DiagramInsightChip: View {
+    let text: String
+
+    var body: some View {
+        Text(text)
+            .font(AppFont.label)
+            .foregroundStyle(AppColor.secondaryInk)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 6)
+            .background(AppColor.surface.opacity(0.92), in: Capsule())
+            .overlay {
+                Capsule().stroke(AppColor.line.opacity(0.55), lineWidth: 1)
+            }
+            .padding(.top, 12)
+            .accessibilityHidden(true)
+    }
+}
+
+/// First-paint affordance chrome — fades after the first drag/tap.
+private struct DiagramAffordanceHint: View {
+    let text: String
+    let visible: Bool
+
+    var body: some View {
+        Text(text)
+            .font(AppFont.label)
+            .foregroundStyle(AppColor.secondaryInk.opacity(0.9))
+            .padding(.horizontal, 14)
+            .padding(.vertical, 8)
+            .background(AppColor.surface.opacity(0.94), in: Capsule())
+            .overlay {
+                Capsule().stroke(AppColor.line.opacity(0.5), lineWidth: 1)
+            }
+            .opacity(visible ? 1 : 0)
+            .animation(.easeOut(duration: 0.4), value: visible)
+            .allowsHitTesting(false)
+            .accessibilityHidden(true)
+    }
+}
+
+/// Very subtle breath on the active control region before first interaction.
+private struct DiagramIdlePulse: View {
+    @State private var expanded = false
+
+    var body: some View {
+        Circle()
+            .stroke(AppColor.diagramActive.opacity(expanded ? 0.18 : 0.06), lineWidth: 1.5)
+            .frame(width: expanded ? 54 : 40, height: expanded ? 54 : 40)
+            .animation(.easeInOut(duration: 1.35).repeatForever(autoreverses: true), value: expanded)
+            .onAppear { expanded = true }
+            .allowsHitTesting(false)
+            .accessibilityHidden(true)
     }
 }
 
@@ -363,34 +430,44 @@ private struct AnglingDiagramView: View {
     @State private var angleDeg: Double = 0
     @State private var dragBaseAngle: Double = 0
     @State private var sweetSpotHaptic = false
+    @State private var hasInteracted = false
 
     private let natural = CGSize(width: 300, height: 220)
-    private let pivot = CGPoint(x: 150, y: 130)
+    private let pivot = CGPoint(x: 150, y: 128)
 
     var body: some View {
-        DiagramSurface {
-            let angle = reduceMotion ? -15.0 : angleDeg
-            let glow = smoothstep(4, 12, -angle)
+        let angle = reduceMotion ? -15.0 : angleDeg
+        let glow = smoothstep(2, 14, -angle)
+        DiagramSurface(idlePulse: !hasInteracted && !reduceMotion, pulseOffset: CGSize(width: 0, height: 28)) {
             ZStack(alignment: .top) {
                 Canvas { context, size in
                     draw(context, size: size, angleDeg: angle, glow: glow)
                 }
-                Text(angle < -5 ? "Posterior tilt" : (angle > 5 ? "Anterior tilt" : "Neutral"))
-                    .font(AppFont.label)
-                    .foregroundStyle(AppColor.secondaryInk)
-                    .padding(.top, 12)
-                    .accessibilityHidden(true)
+                DiagramInsightChip(text: insightLabel(for: angle))
+                VStack {
+                    Spacer()
+                    DiagramAffordanceHint(text: "Drag to explore", visible: !hasInteracted && !reduceMotion)
+                        .padding(.bottom, 14)
+                }
             }
             .contentShape(Rectangle())
             .modifier(DiagramDragModifier(enabled: !reduceMotion, gesture: dragGesture))
         }
     }
 
+    private func insightLabel(for angle: Double) -> String {
+        if angle < -5 { return "Posterior tilt" }
+        if angle > 5 { return "Anterior tilt" }
+        return "Neutral"
+    }
+
     private var dragGesture: some Gesture {
-        DragGesture(minimumDistance: 4)
+        DragGesture(minimumDistance: 3)
             .onChanged { value in
-                let delta = -Double(value.translation.height) / 5
-                angleDeg = min(20, max(-20, dragBaseAngle + delta))
+                if !hasInteracted { hasInteracted = true }
+                // Slightly snappier vertical mapping; soft clamp.
+                let delta = -Double(value.translation.height) / 4.2
+                angleDeg = min(18, max(-18, dragBaseAngle + delta))
                 let inSweetSpot = angleDeg < -10
                 if inSweetSpot && !sweetSpotHaptic {
                     sweetSpotHaptic = true
@@ -407,22 +484,31 @@ private struct AnglingDiagramView: View {
     private func draw(_ context: GraphicsContext, size: CGSize, angleDeg: Double, glow: Double) {
         let world = worldTransform(in: size, natural: natural)
 
+        // Soft torso / spine guide
         var spine = Path()
-        spine.move(to: CGPoint(x: 150, y: 40))
-        spine.addQuadCurve(to: CGPoint(x: 150, y: 130), control: CGPoint(x: 150, y: 100))
-        context.stroke(spine.applying(world), with: .color(AppColor.diagramPassive),
-                       style: StrokeStyle(lineWidth: 4, lineCap: .round))
+        spine.move(to: CGPoint(x: 150, y: 36))
+        spine.addQuadCurve(to: CGPoint(x: 150, y: 120), control: CGPoint(x: 148, y: 86))
+        context.stroke(spine.applying(world), with: .color(AppColor.diagramPassive.opacity(0.85)),
+                       style: StrokeStyle(lineWidth: 3.5, lineCap: .round))
 
+        // Clearer pelvis bowl
         var pelvis = Path()
-        pelvis.move(to: CGPoint(x: 90, y: 130))
-        pelvis.addQuadCurve(to: CGPoint(x: 210, y: 130), control: CGPoint(x: 150, y: 200))
-        pelvis.addLine(to: CGPoint(x: 200, y: 130))
-        pelvis.addQuadCurve(to: CGPoint(x: 100, y: 130), control: CGPoint(x: 150, y: 180))
+        pelvis.move(to: CGPoint(x: 86, y: 118))
+        pelvis.addQuadCurve(to: CGPoint(x: 214, y: 118), control: CGPoint(x: 150, y: 108))
+        pelvis.addQuadCurve(to: CGPoint(x: 198, y: 168), control: CGPoint(x: 220, y: 148))
+        pelvis.addQuadCurve(to: CGPoint(x: 102, y: 168), control: CGPoint(x: 150, y: 198))
+        pelvis.addQuadCurve(to: CGPoint(x: 86, y: 118), control: CGPoint(x: 80, y: 148))
         pelvis.closeSubpath()
 
+        // Anterior contact path — the teaching curve along the front wall
         var contact = Path()
-        contact.move(to: CGPoint(x: 130, y: 150))
-        contact.addQuadCurve(to: CGPoint(x: 170, y: 150), control: CGPoint(x: 150, y: 170))
+        contact.move(to: CGPoint(x: 128, y: 142))
+        contact.addQuadCurve(to: CGPoint(x: 172, y: 142), control: CGPoint(x: 150, y: 168))
+
+        // Secondary inner path for readability at sweet spot
+        var inner = Path()
+        inner.move(to: CGPoint(x: 136, y: 148))
+        inner.addQuadCurve(to: CGPoint(x: 164, y: 148), control: CGPoint(x: 150, y: 162))
 
         let rotation = CGAffineTransform(translationX: pivot.x, y: pivot.y)
             .rotated(by: angleDeg * .pi / 180)
@@ -430,18 +516,26 @@ private struct AnglingDiagramView: View {
 
         let pelvisScreen = pelvis.applying(rotation).applying(world)
         let contactScreen = contact.applying(rotation).applying(world)
+        let innerScreen = inner.applying(rotation).applying(world)
 
         context.fill(pelvisScreen, with: .color(AppColor.surface))
-        context.stroke(pelvisScreen, with: .color(AppColor.diagramPassive.opacity(0.85)),
-                       style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
+        context.stroke(pelvisScreen, with: .color(AppColor.diagramPassive.opacity(0.9)),
+                       style: StrokeStyle(lineWidth: 2.25, lineCap: .round, lineJoin: .round))
 
+        // Passive contact underlay
         context.stroke(contactScreen, with: .color(AppColor.diagramPassive),
-                       style: StrokeStyle(lineWidth: 4, lineCap: .round))
+                       style: StrokeStyle(lineWidth: 5, lineCap: .round))
+        // Active glow — strongest on posterior tuck
+        context.glowStroke(contactScreen, color: AppColor.diagramGlow,
+                           lineWidth: 10 + 10 * glow, blur: 8 + 4 * glow, opacity: 0.35 + 0.55 * glow)
         context.glowStroke(contactScreen, color: AppColor.diagramActive,
-                           lineWidth: 4 + 5 * glow, blur: 5, opacity: glow)
+                           lineWidth: 4 + 6 * glow, blur: 4, opacity: glow)
+        context.stroke(innerScreen, with: .color(AppColor.diagramActive.opacity(0.25 + 0.65 * glow)),
+                       style: StrokeStyle(lineWidth: 2.5, lineCap: .round))
 
-        let dot = circlePath(cx: pivot.x, cy: pivot.y, r: 4).applying(world)
-        context.fill(dot, with: .color(AppColor.diagramPassive.opacity(0.5)))
+        let dot = circlePath(cx: pivot.x, cy: pivot.y, r: 4.5).applying(world)
+        context.fill(dot, with: .color(AppColor.diagramPassive.opacity(0.55)))
+        context.stroke(dot, with: .color(AppColor.surface), style: StrokeStyle(lineWidth: 1))
     }
 }
 
@@ -451,25 +545,31 @@ private struct AnglingDiagramView: View {
 /// the contact point; warmth builds at high contact.
 private struct RockingDiagramView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @State private var partnerOffset = CGSize(width: -60, height: -40)
-    @State private var dragBaseOffset = CGSize(width: -60, height: -40)
+    @State private var partnerOffset = CGSize(width: -58, height: -38)
+    @State private var dragBaseOffset = CGSize(width: -58, height: -38)
     @State private var contactHaptic = false
+    @State private var hasInteracted = false
 
     private let natural = CGSize(width: 300, height: 220)
-    private let pubic = CGPoint(x: 140, y: 150)
+    private let pubic = CGPoint(x: 142, y: 148)
 
     var body: some View {
-        DiagramSurface {
-            let intensity = contactIntensity(at: partnerOffset)
+        let offset = reduceMotion ? CGSize.zero : partnerOffset
+        let intensity = contactIntensity(at: offset)
+        DiagramSurface(
+            idlePulse: !hasInteracted && !reduceMotion,
+            pulseOffset: CGSize(width: -36, height: -8)
+        ) {
             ZStack(alignment: .top) {
                 Canvas { context, size in
-                    draw(context, size: size, partnerOffset: partnerOffset, intensity: intensity)
+                    draw(context, size: size, partnerOffset: offset, intensity: intensity)
                 }
-                Text(intensity > 0.6 ? "Contact" : (intensity > 0.1 ? "Near" : "No contact"))
-                    .font(AppFont.label)
-                    .foregroundStyle(AppColor.secondaryInk)
-                    .padding(.top, 12)
-                    .accessibilityHidden(true)
+                DiagramInsightChip(text: insightLabel(for: intensity))
+                VStack {
+                    Spacer()
+                    DiagramAffordanceHint(text: "Drag to explore", visible: !hasInteracted && !reduceMotion)
+                        .padding(.bottom, 14)
+                }
             }
             .contentShape(Rectangle())
             .modifier(DiagramDragModifier(enabled: !reduceMotion, gesture: dragGesture))
@@ -482,18 +582,25 @@ private struct RockingDiagramView: View {
         }
     }
 
+    private func insightLabel(for intensity: Double) -> String {
+        if intensity > 0.62 { return "Contact" }
+        if intensity > 0.18 { return "Near" }
+        return "No contact"
+    }
+
     private var dragGesture: some Gesture {
         DragGesture(minimumDistance: 2)
             .onChanged { value in
+                if !hasInteracted { hasInteracted = true }
                 partnerOffset = CGSize(
                     width: dragBaseOffset.width + value.translation.width,
                     height: dragBaseOffset.height + value.translation.height
                 )
                 let intensity = contactIntensity(at: partnerOffset)
-                if intensity > 0.8 && !contactHaptic {
+                if intensity > 0.78 && !contactHaptic {
                     contactHaptic = true
                     NativeHaptics.impactLight()
-                } else if intensity <= 0.8 {
+                } else if intensity <= 0.78 {
                     contactHaptic = false
                 }
             }
@@ -503,42 +610,53 @@ private struct RockingDiagramView: View {
     }
 
     private func contactIntensity(at offset: CGSize) -> Double {
-        let dx = offset.width
-        let dy = offset.height
-        let distance = sqrt(dx * dx + dy * dy)
-        return min(1, max(0, 1 - distance / 60))
+        let distance = sqrt(offset.width * offset.width + offset.height * offset.height)
+        return min(1, max(0, 1 - distance / 54))
     }
 
     private func draw(_ context: GraphicsContext, size: CGSize, partnerOffset: CGSize, intensity: Double) {
         let world = worldTransform(in: size, natural: natural)
 
+        // Soft pelvis silhouette into the pubic mound
         var pelvis = Path()
-        pelvis.move(to: CGPoint(x: pubic.x + 40, y: 90))
-        pelvis.addQuadCurve(to: pubic, control: CGPoint(x: pubic.x, y: 130))
-        pelvis.addLine(to: CGPoint(x: pubic.x + 20, y: pubic.y + 40))
+        pelvis.move(to: CGPoint(x: pubic.x + 48, y: 78))
+        pelvis.addQuadCurve(to: CGPoint(x: pubic.x + 8, y: pubic.y - 8), control: CGPoint(x: pubic.x + 18, y: 110))
+        pelvis.addQuadCurve(to: CGPoint(x: pubic.x + 28, y: pubic.y + 42), control: CGPoint(x: pubic.x - 6, y: pubic.y + 28))
         context.stroke(pelvis.applying(world), with: .color(AppColor.diagramPassive),
-                       style: StrokeStyle(lineWidth: 6, lineCap: .round, lineJoin: .round))
+                       style: StrokeStyle(lineWidth: 5.5, lineCap: .round, lineJoin: .round))
 
-        let heat = circlePath(cx: pubic.x, cy: pubic.y, r: 26).applying(world)
-        context.glowFill(heat, color: AppColor.diagramGlow, blur: 8 + 12 * intensity, opacity: 0.6 * intensity)
+        // Readable pubic mound (soft oval)
+        let moundOuter = Path(ellipseIn: CGRect(x: pubic.x - 18, y: pubic.y - 14, width: 36, height: 28)).applying(world)
+        context.fill(moundOuter, with: .color(AppColor.diagramPassive.opacity(0.35)))
+        context.stroke(moundOuter, with: .color(AppColor.diagramPassive.opacity(0.8)),
+                       style: StrokeStyle(lineWidth: 1.5))
 
-        let mound = circlePath(cx: pubic.x, cy: pubic.y, r: 8).applying(world)
-        context.fill(mound, with: .color(AppColor.diagramPassive))
+        // Heat — unmistakable at contact
+        let heat = circlePath(cx: pubic.x, cy: pubic.y, r: 30).applying(world)
+        context.glowFill(heat, color: AppColor.diagramGlow, blur: 10 + 16 * intensity, opacity: 0.25 + 0.7 * intensity)
+        context.glowFill(circlePath(cx: pubic.x, cy: pubic.y, r: 14).applying(world),
+                         color: AppColor.diagramActive, blur: 6, opacity: 0.15 + 0.55 * intensity)
 
+        let mound = circlePath(cx: pubic.x, cy: pubic.y, r: 7).applying(world)
+        context.fill(mound, with: .color(blend(AppColor.diagramPassive, AppColor.diagramActive, intensity * 0.7)))
+
+        // Partner wedge — clearer silhouette with tip marker
         let tip = CGPoint(x: pubic.x + partnerOffset.width, y: pubic.y + partnerOffset.height)
         var wedge = Path()
-        wedge.move(to: CGPoint(x: 0, y: -28))
-        wedge.addLine(to: CGPoint(x: 26, y: -28))
-        wedge.addQuadCurve(to: CGPoint(x: 0, y: 0), control: CGPoint(x: 26, y: 0))
-        wedge.addLine(to: CGPoint(x: -26, y: -28))
+        wedge.move(to: CGPoint(x: 0, y: 0))
+        wedge.addLine(to: CGPoint(x: 30, y: -34))
+        wedge.addQuadCurve(to: CGPoint(x: -30, y: -34), control: CGPoint(x: 0, y: -22))
         wedge.closeSubpath()
         let wedgeScreen = wedge
             .applying(CGAffineTransform(translationX: tip.x, y: tip.y))
             .applying(world)
-        context.fill(wedgeScreen, with: .color(AppColor.diagramActive.opacity(0.55 + 0.35 * intensity)))
+        context.fill(wedgeScreen, with: .color(AppColor.diagramActive.opacity(0.5 + 0.4 * intensity)))
+        context.stroke(wedgeScreen, with: .color(AppColor.diagramActive.opacity(0.85)),
+                       style: StrokeStyle(lineWidth: 1.5, lineJoin: .round))
 
-        let tipDot = circlePath(cx: tip.x, cy: tip.y, r: 4).applying(world)
+        let tipDot = circlePath(cx: tip.x, cy: tip.y, r: 4.5).applying(world)
         context.fill(tipDot, with: .color(AppColor.surface))
+        context.stroke(tipDot, with: .color(AppColor.diagramActive), style: StrokeStyle(lineWidth: 1.25))
     }
 }
 
@@ -550,25 +668,32 @@ private struct ShallowingDiagramView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var probeX: CGFloat = 50
     @State private var dragBaseX: CGFloat = 50
+    @State private var entranceHaptic = false
+    @State private var hasInteracted = false
 
     private let natural = CGSize(width: 280, height: 240)
-    private let entranceX: CGFloat = 50
+    private let entranceX: CGFloat = 52
     private let canalY: CGFloat = 150
     private let canalLength: CGFloat = 240
 
     var body: some View {
-        DiagramSurface {
+        DiagramSurface(
+            idlePulse: !hasInteracted && !reduceMotion,
+            pulseOffset: CGSize(width: -70, height: 18)
+        ) {
             GeometryReader { geo in
-                let intensity = probeIntensity(at: probeX)
+                let x = reduceMotion ? entranceX : probeX
+                let intensity = probeIntensity(at: x)
                 ZStack(alignment: .top) {
                     Canvas { context, size in
-                        draw(context, size: size, probeX: probeX, intensity: intensity)
+                        draw(context, size: size, probeX: x, intensity: intensity)
                     }
-                    Text(intensity > 0.5 ? "Shallow · sensitive" : "Deep · pressure")
-                        .font(AppFont.label)
-                        .foregroundStyle(AppColor.secondaryInk)
-                        .padding(.top, 12)
-                        .accessibilityHidden(true)
+                    DiagramInsightChip(text: intensity > 0.55 ? "Shallow · sensitive" : "Deep · pressure")
+                    VStack {
+                        Spacer()
+                        DiagramAffordanceHint(text: "Drag to explore", visible: !hasInteracted && !reduceMotion)
+                            .padding(.bottom, 14)
+                    }
                 }
                 .contentShape(Rectangle())
                 .modifier(DiagramDragModifier(enabled: !reduceMotion, gesture: dragGesture(in: geo.size)))
@@ -585,9 +710,17 @@ private struct ShallowingDiagramView: View {
     private func dragGesture(in size: CGSize) -> some Gesture {
         DragGesture(minimumDistance: 2)
             .onChanged { value in
+                if !hasInteracted { hasInteracted = true }
                 let scale = natural.width / max(1, size.width)
                 let x = dragBaseX + value.translation.width * scale
                 probeX = min(canalLength, max(0, x))
+                let intensity = probeIntensity(at: probeX)
+                if intensity > 0.72 && !entranceHaptic {
+                    entranceHaptic = true
+                    NativeHaptics.impactLight()
+                } else if intensity <= 0.72 {
+                    entranceHaptic = false
+                }
             }
             .onEnded { _ in
                 dragBaseX = probeX
@@ -595,32 +728,55 @@ private struct ShallowingDiagramView: View {
     }
 
     private func probeIntensity(at x: CGFloat) -> Double {
-        smoothstep(170, Double(entranceX), Double(x))
+        // Peak near entrance; falls off toward deep.
+        smoothstep(190, Double(entranceX), Double(x))
     }
 
     private func draw(_ context: GraphicsContext, size: CGSize, probeX: CGFloat, intensity: Double) {
         let world = worldTransform(in: size, natural: natural)
 
-        let zone = circlePath(cx: entranceX + 10, cy: canalY, r: 48).applying(world)
-        context.glowFill(zone, color: AppColor.diagramGlow, blur: 22, opacity: 0.30)
+        // Depth axis — subtle ticks so shallow vs deep reads immediately
+        for i in 0..<5 {
+            let tx = entranceX + CGFloat(i) * 42
+            let tick = Path { p in
+                p.move(to: CGPoint(x: tx, y: canalY - 46))
+                p.addLine(to: CGPoint(x: tx, y: canalY - 38))
+            }.applying(world)
+            context.stroke(tick, with: .color(AppColor.diagramPassive.opacity(0.55)),
+                           style: StrokeStyle(lineWidth: 1.5, lineCap: .round))
+        }
+        var axis = Path()
+        axis.move(to: CGPoint(x: entranceX, y: canalY - 42))
+        axis.addLine(to: CGPoint(x: canalLength - 8, y: canalY - 42))
+        context.stroke(axis.applying(world), with: .color(AppColor.diagramPassive.opacity(0.4)),
+                       style: StrokeStyle(lineWidth: 1, lineCap: .round))
+
+        // Entrance sensitivity halo — always faintly present, peaks with probe
+        let zone = circlePath(cx: entranceX + 12, cy: canalY, r: 50).applying(world)
+        context.glowFill(zone, color: AppColor.diagramGlow, blur: 20, opacity: 0.22 + 0.35 * intensity)
 
         var top = Path()
-        top.move(to: CGPoint(x: 0, y: 100))
-        top.addQuadCurve(to: CGPoint(x: entranceX + 50, y: 112), control: CGPoint(x: entranceX, y: 100))
-        top.addLine(to: CGPoint(x: 280, y: 112))
+        top.move(to: CGPoint(x: 8, y: 102))
+        top.addQuadCurve(to: CGPoint(x: entranceX + 46, y: 114), control: CGPoint(x: entranceX, y: 100))
+        top.addLine(to: CGPoint(x: 276, y: 114))
         var bottom = Path()
-        bottom.move(to: CGPoint(x: 0, y: 200))
-        bottom.addQuadCurve(to: CGPoint(x: entranceX + 50, y: 188), control: CGPoint(x: entranceX, y: 200))
-        bottom.addLine(to: CGPoint(x: 280, y: 188))
+        bottom.move(to: CGPoint(x: 8, y: 198))
+        bottom.addQuadCurve(to: CGPoint(x: entranceX + 46, y: 186), control: CGPoint(x: entranceX, y: 200))
+        bottom.addLine(to: CGPoint(x: 276, y: 186))
         context.stroke(top.applying(world), with: .color(AppColor.diagramPassive),
                        style: StrokeStyle(lineWidth: 4, lineCap: .round))
         context.stroke(bottom.applying(world), with: .color(AppColor.diagramPassive),
                        style: StrokeStyle(lineWidth: 4, lineCap: .round))
 
-        let aura = circlePath(cx: probeX, cy: canalY, r: 24).applying(world)
-        context.glowFill(aura, color: AppColor.diagramGlow, blur: 14, opacity: 0.45 * intensity)
+        // Entrance ring — obvious peak vs deep
+        let ring = circlePath(cx: entranceX + 10, cy: canalY, r: 22).applying(world)
+        context.stroke(ring, with: .color(AppColor.diagramActive.opacity(0.2 + 0.65 * intensity)),
+                       style: StrokeStyle(lineWidth: 2 + 2 * intensity))
 
-        let core = circlePath(cx: probeX, cy: canalY, r: 12).applying(world)
+        let aura = circlePath(cx: probeX, cy: canalY, r: 26).applying(world)
+        context.glowFill(aura, color: AppColor.diagramGlow, blur: 12 + 6 * intensity, opacity: 0.2 + 0.55 * intensity)
+
+        let core = circlePath(cx: probeX, cy: canalY, r: 11).applying(world)
         let coreColor = blend(AppColor.diagramPassive, AppColor.diagramActive, intensity)
         context.fill(core, with: .color(coreColor))
         context.stroke(core, with: .color(AppColor.surface), style: StrokeStyle(lineWidth: 2))
@@ -636,44 +792,35 @@ private struct PairingDiagramView: View {
     @State private var externalOn = false
     @State private var internalOn = false
     @State private var pairedHaptic = false
+    @State private var hasInteracted = false
 
     private let natural = CGSize(width: 300, height: 300)
 
     var body: some View {
-        DiagramSurface(height: 300) {
-            let paired = reduceMotion ? 1.0 : (externalOn && internalOn ? 1.0 : 0.0)
+        let ext = reduceMotion || externalOn
+        let inn = reduceMotion || internalOn
+        let paired = (ext && inn) ? 1.0 : 0.0
+        DiagramSurface(height: 300, idlePulse: !hasInteracted && !reduceMotion, pulseOffset: CGSize(width: 0, height: -40)) {
             ZStack {
                 Canvas { context, size in
-                    draw(
-                        context,
-                        size: size,
-                        externalOn: reduceMotion || externalOn,
-                        internalOn: reduceMotion || internalOn,
-                        paired: paired
-                    )
+                    draw(context, size: size, externalOn: ext, internalOn: inn, paired: paired)
                 }
-                if !reduceMotion {
-                    VStack {
+                VStack(spacing: 0) {
+                    DiagramInsightChip(text: insightLabel(externalActive: ext, internalActive: inn))
+                    if !reduceMotion {
                         Button("External · glans") { toggleExternal() }
-                            .buttonStyle(DiagramChipButtonStyle())
-                            .padding(.top, 10)
+                            .buttonStyle(DiagramChipButtonStyle(active: externalOn))
+                            .padding(.top, 6)
                         Spacer()
                         Button("Internal · crura") { toggleInternal() }
-                            .buttonStyle(DiagramChipButtonStyle())
+                            .buttonStyle(DiagramChipButtonStyle(active: internalOn))
                             .padding(.bottom, 14)
-                    }
-                    .font(AppFont.label)
-                    .foregroundStyle(AppColor.secondaryInk)
-                    .accessibilityHidden(true)
-                } else {
-                    VStack {
-                        Text("External · glans").padding(.top, 10)
+                    } else {
                         Spacer()
-                        Text("Internal · crura").padding(.bottom, 14)
                     }
-                    .font(AppFont.label)
-                    .foregroundStyle(AppColor.secondaryInk)
-                    .accessibilityHidden(true)
+                }
+                if !reduceMotion {
+                    DiagramAffordanceHint(text: "Tap to explore", visible: !hasInteracted)
                 }
             }
         }
@@ -687,11 +834,20 @@ private struct PairingDiagramView: View {
         .onChange(of: internalOn) { _, _ in checkPairingHaptic() }
     }
 
+    private func insightLabel(externalActive: Bool, internalActive: Bool) -> String {
+        if externalActive && internalActive { return "Paired" }
+        if externalActive { return "External only" }
+        if internalActive { return "Internal only" }
+        return "Tap both routes"
+    }
+
     private func toggleExternal() {
+        if !hasInteracted { hasInteracted = true }
         externalOn.toggle()
     }
 
     private func toggleInternal() {
+        if !hasInteracted { hasInteracted = true }
         internalOn.toggle()
     }
 
@@ -712,41 +868,70 @@ private struct PairingDiagramView: View {
         let internalT = internalOn ? 1.0 : 0.0
 
         var canal = Path()
-        canal.move(to: CGPoint(x: cx - 22, y: 140))
-        canal.addLine(to: CGPoint(x: cx - 18, y: 250))
-        canal.addQuadCurve(to: CGPoint(x: cx + 18, y: 250), control: CGPoint(x: cx, y: 264))
-        canal.addLine(to: CGPoint(x: cx + 22, y: 140))
+        canal.move(to: CGPoint(x: cx - 24, y: 138))
+        canal.addLine(to: CGPoint(x: cx - 18, y: 248))
+        canal.addQuadCurve(to: CGPoint(x: cx + 18, y: 248), control: CGPoint(x: cx, y: 262))
+        canal.addLine(to: CGPoint(x: cx + 24, y: 138))
         let canalScreen = canal.applying(world)
-        context.fill(canalScreen, with: .color(AppColor.diagramPassive.opacity(0.4)))
+        context.fill(canalScreen, with: .color(AppColor.diagramPassive.opacity(0.35)))
         context.stroke(canalScreen, with: .color(AppColor.diagramPassive), style: StrokeStyle(lineWidth: 2))
 
+        // Internal legs / crura — clearer nodes
         var legs = Path()
-        legs.move(to: CGPoint(x: cx - 10, y: 110))
-        legs.addQuadCurve(to: CGPoint(x: cx - 50, y: 230), control: CGPoint(x: cx - 60, y: 150))
-        legs.addQuadCurve(to: CGPoint(x: cx - 30, y: 190), control: CGPoint(x: cx - 30, y: 236))
-        legs.addQuadCurve(to: CGPoint(x: cx - 10, y: 116), control: CGPoint(x: cx - 30, y: 150))
-        legs.move(to: CGPoint(x: cx + 10, y: 110))
-        legs.addQuadCurve(to: CGPoint(x: cx + 50, y: 230), control: CGPoint(x: cx + 60, y: 150))
-        legs.addQuadCurve(to: CGPoint(x: cx + 30, y: 190), control: CGPoint(x: cx + 30, y: 236))
-        legs.addQuadCurve(to: CGPoint(x: cx + 10, y: 116), control: CGPoint(x: cx + 30, y: 150))
+        legs.move(to: CGPoint(x: cx - 10, y: 112))
+        legs.addQuadCurve(to: CGPoint(x: cx - 54, y: 228), control: CGPoint(x: cx - 62, y: 152))
+        legs.addQuadCurve(to: CGPoint(x: cx - 28, y: 188), control: CGPoint(x: cx - 30, y: 236))
+        legs.addQuadCurve(to: CGPoint(x: cx - 10, y: 118), control: CGPoint(x: cx - 28, y: 152))
+        legs.move(to: CGPoint(x: cx + 10, y: 112))
+        legs.addQuadCurve(to: CGPoint(x: cx + 54, y: 228), control: CGPoint(x: cx + 62, y: 152))
+        legs.addQuadCurve(to: CGPoint(x: cx + 28, y: 188), control: CGPoint(x: cx + 30, y: 236))
+        legs.addQuadCurve(to: CGPoint(x: cx + 10, y: 118), control: CGPoint(x: cx + 28, y: 152))
         let legsScreen = legs.applying(world)
-        context.fill(legsScreen, with: .color(blend(AppColor.diagramPassive, AppColor.diagramActive, internalT).opacity(0.65)))
+        context.fill(legsScreen, with: .color(blend(AppColor.diagramPassive, AppColor.diagramActive, internalT).opacity(0.7)))
+        if internalOn {
+            context.glowFill(legsScreen, color: AppColor.diagramGlow, blur: 10, opacity: 0.35)
+        }
 
-        let glans = circlePath(cx: cx, cy: 92, r: 16).applying(world)
+        // External glans node with ring for tap clarity
+        let glans = circlePath(cx: cx, cy: 90, r: 18).applying(world)
+        let glansRing = circlePath(cx: cx, cy: 90, r: 26).applying(world)
+        context.stroke(glansRing, with: .color(AppColor.diagramPassive.opacity(0.55 + 0.35 * externalT)),
+                       style: StrokeStyle(lineWidth: 1.5))
         context.fill(glans, with: .color(blend(AppColor.diagramPassive, AppColor.diagramActive, externalT)))
+        if externalOn {
+            context.glowFill(glans, color: AppColor.diagramGlow, blur: 10, opacity: 0.45)
+        }
 
-        let bridge = circlePath(cx: cx, cy: 108, r: 34).applying(world)
-        context.glowFill(bridge, color: AppColor.diagramGlow, blur: 24, opacity: 0.5 * paired)
-        context.glowFill(glans, color: AppColor.diagramGlow, blur: 8, opacity: 0.5 * paired)
+        // Bridge glow — the pairing insight
+        let bridge = circlePath(cx: cx, cy: 112, r: 40).applying(world)
+        context.glowFill(bridge, color: AppColor.diagramGlow, blur: 26, opacity: 0.62 * paired)
+        context.glowFill(glans, color: AppColor.diagramActive, blur: 8, opacity: 0.35 * paired)
+        if paired > 0.5 {
+            var link = Path()
+            link.move(to: CGPoint(x: cx, y: 102))
+            link.addQuadCurve(to: CGPoint(x: cx - 22, y: 150), control: CGPoint(x: cx - 28, y: 120))
+            link.move(to: CGPoint(x: cx, y: 102))
+            link.addQuadCurve(to: CGPoint(x: cx + 22, y: 150), control: CGPoint(x: cx + 28, y: 120))
+            context.glowStroke(link.applying(world), color: AppColor.diagramActive,
+                               lineWidth: 3, blur: 5, opacity: 0.55)
+        }
     }
 }
 
 private struct DiagramChipButtonStyle: ButtonStyle {
+    var active: Bool = false
+
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
-            .background(Color.white.opacity(configuration.isPressed ? 0.65 : 0.85), in: Capsule())
+            .background(
+                (active ? AppColor.diagramGlow.opacity(0.45) : Color.white.opacity(configuration.isPressed ? 0.65 : 0.85)),
+                in: Capsule()
+            )
+            .overlay {
+                Capsule().stroke(AppColor.line.opacity(active ? 0.8 : 0.45), lineWidth: 1)
+            }
     }
 }
 
@@ -755,32 +940,37 @@ private struct DiagramChipButtonStyle: ButtonStyle {
 /// Arousal curve — climb the rising path toward the crest, release to recede.
 private struct EdgingDiagramView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @State private var intensity: Double = 0.1
-    @State private var dragBase: Double = 0.1
+    @State private var intensity: Double = 0.12
+    @State private var dragBase: Double = 0.12
     @State private var isReceding = false
     @State private var thresholdHaptic = false
     @State private var gestureActive = false
+    @State private var hasInteracted = false
 
     private let natural = CGSize(width: 280, height: 260)
     private let threshold = 0.85
-    private let dragRange: Double = 170
-    private let riseP0 = CGPoint(x: 42, y: 232)
-    private let riseP1 = CGPoint(x: 72, y: 198)
-    private let riseP2 = CGPoint(x: 188, y: 108)
-    private let riseP3 = CGPoint(x: 232, y: 68)
+    private let dragRange: Double = 155
+    private let riseP0 = CGPoint(x: 40, y: 228)
+    private let riseP1 = CGPoint(x: 78, y: 196)
+    private let riseP2 = CGPoint(x: 176, y: 112)
+    private let riseP3 = CGPoint(x: 228, y: 72)
 
     var body: some View {
-        DiagramSurface {
-            let level = reduceMotion ? 0.8 : intensity
+        let level = reduceMotion ? 0.8 : intensity
+        DiagramSurface(
+            idlePulse: !hasInteracted && !reduceMotion,
+            pulseOffset: CGSize(width: -20, height: 50)
+        ) {
             ZStack(alignment: .top) {
                 Canvas { context, size in
                     draw(context, size: size, intensity: level)
                 }
-                Text(feedbackLabel(for: level, receding: isReceding && !reduceMotion))
-                    .font(AppFont.label)
-                    .foregroundStyle(AppColor.secondaryInk)
-                    .padding(.top, 12)
-                    .accessibilityHidden(true)
+                DiagramInsightChip(text: feedbackLabel(for: level, receding: isReceding && !reduceMotion))
+                VStack {
+                    Spacer()
+                    DiagramAffordanceHint(text: "Drag to explore", visible: !hasInteracted && !reduceMotion)
+                        .padding(.bottom, 14)
+                }
             }
             .contentShape(Rectangle())
             .modifier(DiagramDragModifier(enabled: !reduceMotion, gesture: dragGesture))
@@ -788,16 +978,16 @@ private struct EdgingDiagramView: View {
     }
 
     private func feedbackLabel(for level: Double, receding: Bool) -> String {
-        if receding { return "Receding" }
-        if level >= threshold { return "At threshold" }
-        if level >= 0.65 { return "Approaching edge" }
-        if level >= 0.25 { return "Building" }
-        return "Low intensity"
+        if receding { return "Easing back" }
+        if level >= threshold { return "Near the edge" }
+        if level >= 0.28 { return "Rising" }
+        return "Rising"
     }
 
     private var dragGesture: some Gesture {
-        DragGesture(minimumDistance: 4)
+        DragGesture(minimumDistance: 3)
             .onChanged { value in
+                if !hasInteracted { hasInteracted = true }
                 if !gestureActive {
                     gestureActive = true
                     dragBase = intensity
@@ -815,10 +1005,10 @@ private struct EdgingDiagramView: View {
             .onEnded { _ in
                 gestureActive = false
                 isReceding = true
-                withAnimation(.spring(response: 0.7, dampingFraction: 0.82)) {
-                    intensity = 0.08
+                withAnimation(.spring(response: 0.78, dampingFraction: 0.78)) {
+                    intensity = 0.1
                 }
-                dragBase = 0.08
+                dragBase = 0.1
             }
     }
 
@@ -831,7 +1021,7 @@ private struct EdgingDiagramView: View {
         return CGPoint(x: x, y: y)
     }
 
-    private func riseSamples(steps: Int = 64) -> [CGPoint] {
+    private func riseSamples(steps: Int = 72) -> [CGPoint] {
         (0...steps).map { cubicPoint(Double($0) / Double(steps)) }
     }
 
@@ -849,12 +1039,22 @@ private struct EdgingDiagramView: View {
         let thresholdPt = cubicPoint(threshold)
         let orb = cubicPoint(intensity)
 
+        // Soft under-fill along the climb (elegant throttle feel)
+        var fill = Path()
+        fill.move(to: CGPoint(x: riseP0.x, y: 240))
+        fill.addLine(to: samples[0])
+        let fillIdx = max(1, min(samples.count - 1, Int(intensity * Double(samples.count - 1))))
+        for i in 1...fillIdx { fill.addLine(to: samples[i]) }
+        fill.addLine(to: CGPoint(x: samples[fillIdx].x, y: 240))
+        fill.closeSubpath()
+        context.fill(fill.applying(world), with: .color(AppColor.diagramGlow.opacity(0.18 + 0.22 * intensity)))
+
         // Dashed hint after crest
         var after = Path()
         after.move(to: riseP3)
-        after.addQuadCurve(to: CGPoint(x: 258, y: 98), control: CGPoint(x: 248, y: 72))
-        context.stroke(after.applying(world), with: .color(AppColor.diagramPassive.opacity(0.45)),
-                       style: StrokeStyle(lineWidth: 1.5, lineCap: .round, dash: [6, 8]))
+        after.addQuadCurve(to: CGPoint(x: 256, y: 102), control: CGPoint(x: 246, y: 74))
+        context.stroke(after.applying(world), with: .color(AppColor.diagramPassive.opacity(0.4)),
+                       style: StrokeStyle(lineWidth: 1.5, lineCap: .round, dash: [5, 7]))
 
         // Full rise curve
         var rise = Path()
@@ -865,30 +1065,36 @@ private struct EdgingDiagramView: View {
 
         // Active trace
         let trace = partialPath(from: samples, progress: max(0.02, intensity))
-        let traceOpacity = smoothstep(0.3, threshold, intensity) * 0.9
-        let traceWidth = 3 + 5 * smoothstep(0, threshold, intensity)
+        let near = smoothstep(0.45, threshold, intensity)
+        let traceWidth = 3 + 4.5 * near
         context.glowStroke(trace.applying(world), color: AppColor.diagramActive,
-                           lineWidth: traceWidth, blur: 8, opacity: traceOpacity)
-        context.stroke(trace.applying(world), with: .color(AppColor.diagramGlow.opacity(traceOpacity)),
+                           lineWidth: traceWidth, blur: 7, opacity: 0.25 + 0.55 * near)
+        context.stroke(trace.applying(world), with: .color(AppColor.diagramGlow.opacity(0.35 + 0.5 * near)),
                        style: StrokeStyle(lineWidth: traceWidth, lineCap: .round, lineJoin: .round))
 
-        // Threshold marker
-        let marker = circlePath(cx: thresholdPt.x, cy: thresholdPt.y, r: 16).applying(world)
-        context.glowFill(marker, color: AppColor.diagramActive, blur: 10, opacity: 0.2)
-        let markerCore = circlePath(cx: thresholdPt.x, cy: thresholdPt.y, r: 5).applying(world)
-        context.fill(markerCore, with: .color(AppColor.diagramActive.opacity(0.55)))
+        // Coral threshold line (not alarm red) — short tick across the curve
+        var threshLine = Path()
+        threshLine.move(to: CGPoint(x: thresholdPt.x - 22, y: thresholdPt.y))
+        threshLine.addLine(to: CGPoint(x: thresholdPt.x + 22, y: thresholdPt.y))
+        context.stroke(threshLine.applying(world), with: .color(AppColor.diagramActive.opacity(0.7)),
+                       style: StrokeStyle(lineWidth: 2, lineCap: .round))
+        let marker = circlePath(cx: thresholdPt.x, cy: thresholdPt.y, r: 14).applying(world)
+        context.glowFill(marker, color: AppColor.diagramGlow, blur: 10, opacity: 0.35)
+        let markerCore = circlePath(cx: thresholdPt.x, cy: thresholdPt.y, r: 4.5).applying(world)
+        context.fill(markerCore, with: .color(AppColor.diagramActive.opacity(0.75)))
 
         // Traveler orb
-        let orbR = 7 + 7 * smoothstep(0, threshold, intensity)
+        let orbR = 6.5 + 6 * near
         let orbGlow = circlePath(cx: orb.x, cy: orb.y, r: orbR).applying(world)
-        context.glowFill(orbGlow, color: AppColor.diagramGlow, blur: 14, opacity: traceOpacity)
-        context.fill(orbGlow, with: .color(AppColor.diagramActive.opacity(0.85)))
+        context.glowFill(orbGlow, color: AppColor.diagramGlow, blur: 12, opacity: 0.3 + 0.5 * near)
+        context.fill(orbGlow, with: .color(AppColor.diagramActive.opacity(0.88)))
+        context.stroke(orbGlow, with: .color(AppColor.surface.opacity(0.9)), style: StrokeStyle(lineWidth: 1))
 
         // Origin ember
-        let origin = circlePath(cx: riseP0.x, cy: riseP0.y, r: 14).applying(world)
-        context.glowFill(origin, color: AppColor.moss, blur: 8, opacity: 0.25)
-        context.fill(circlePath(cx: riseP0.x, cy: riseP0.y, r: 6).applying(world),
-                       with: .color(AppColor.diagramPassive.opacity(0.7)))
+        let origin = circlePath(cx: riseP0.x, cy: riseP0.y, r: 12).applying(world)
+        context.glowFill(origin, color: AppColor.moss, blur: 7, opacity: 0.22)
+        context.fill(circlePath(cx: riseP0.x, cy: riseP0.y, r: 5.5).applying(world),
+                       with: .color(AppColor.diagramPassive.opacity(0.75)))
     }
 }
 
