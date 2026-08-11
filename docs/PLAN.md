@@ -1,37 +1,40 @@
 # Notice & Name — plan
 
-Working plan from code + market assessment (2026-08-11). Replaces archived roadmaps.
+Working plan from code + market assessment (updated 2026-08-11 evening). Replaces archived roadmaps.
 
 ## Quality bar (must be excellent)
 
-1. Concept experience (Recognize → Keep)
+1. Concept experience (Notice → Name → Reflect → Keep)
 2. Felt privacy (lock, export, delete, no account)
 3. Partner-safe phrases
 4. App Store presence (listing, privacy story, screenshots)
 
-Good-enough / later: Today cleverness, pathway polish, full video coverage, module rename, coaching, community.
+Good-enough / later: Today cleverness, pathway polish, full video coverage, module rename (`PleasureVocabulary*`), coaching, community.
 
 ## Phases
 
 ### A — Stabilize
 - [x] Archive old docs
-- [x] Lean tests + CI on branch
+- [x] Lean tests + CI
 - [x] Working docs (this folder)
-- [x] Merge rename PR
-- [x] Remove Expo litter when touching repo
-- [x] Treat v2 bundle pipeline as sole content truth (see docs/CONTENT.md)
+- [x] Merge rename PR → direct-to-main workflow after
+- [x] Remove Expo litter
+- [x] Treat v2 bundle pipeline as sole content truth (see [`CONTENT.md`](./CONTENT.md))
 
 ### B — Core loop to bar
-- [x] Editorial pass on 22 concepts — audit in [`EDITORIAL_AUDIT.md`](./EDITORIAL_AUDIT.md); rewrite batches 1–4 landed (all 22); concept P2 cleared; cross-cutting UI/label polish noted separately
-- [ ] Device QA (current + small phone)
+- [x] Editorial pass on 22 concepts ([`EDITORIAL_AUDIT.md`](./EDITORIAL_AUDIT.md); batches 1–4)
+- [x] Soft Intimate voice + audio packs (phrases, onboarding, Notice moments, explainers, SFX, App Store VO)
+- [x] Wire audio into iOS (sync, playback, Settings toggles)
+- [ ] Device QA (current + small phone) — Conor
 - [ ] Export via share sheet / Files
-- [ ] Fix worst media gaps only
+- [ ] Fix worst media gaps only (Gemini Omni video / GPT-Image 2 stills; abstract/educational to clear blockers)
+- [ ] Cross-cutting UI polish (Recognize→Notice labels, Field Note vs Reflect) — from editorial audit
 
 ### C — Business
 - [x] Lock unlock price (£15 one-time)
-- [ ] StoreKit non-consumable + preview boundary
-- [ ] Support email + privacy policy URL
-- [ ] Metadata, screenshots, review notes
+- [ ] StoreKit non-consumable + preview boundary (Responsive Desire, Angling, Non-concordance + one explainer)
+- [ ] Support email + privacy policy URL — Conor
+- [ ] Metadata, screenshots, review notes (App Store VO takes ready in `assets/audio/app-store/`)
 
 ### D — Beta → submit
 - [ ] Small TestFlight cohort
@@ -39,6 +42,12 @@ Good-enough / later: Today cleverness, pathway polish, full video coverage, modu
 
 ## Ownership
 
-**Conor:** price, support email/domain, Apple auth / real-device QA, taste on copy & screenshots, merge decisions.
+**Conor:** support email/domain, Apple auth / real-device QA, taste on copy & screenshots, media blocker calls.
 
-**Sensory Success:** engineering, content drafts, StoreKit, docs, CI, metadata drafts, beta synthesis, implementation PRs.
+**Sensory Success:** engineering, content drafts, StoreKit, docs, CI, metadata drafts, beta synthesis. Commits go straight to `main` (no PRs).
+
+## Reference
+
+- Taste / reuse across repos: [`TASTE_SURVEY.md`](./TASTE_SURVEY.md)
+- Launch checklist: [`LAUNCH_GAPS.md`](./LAUNCH_GAPS.md)
+- Onboarding VO script (approved): [`ONBOARDING_SCRIPT.md`](./ONBOARDING_SCRIPT.md)
