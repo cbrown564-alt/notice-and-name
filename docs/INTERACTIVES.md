@@ -1,6 +1,6 @@
 # Interactive diagrams — living plan
 
-**Status:** S3 done (Timing/mind 6 shipped; S2 Sensation + S1 Anatomy + S0 Technique done)  
+**Status:** **22/22 ship** — S4 done (Golden Trio + Sexual Self-Esteem + Body Appreciation; S3 Timing/mind + S2 Sensation + S1 Anatomy + S0 Technique done)  
 **Owner:** Sensory Success  
 **Code:** `ios/Sources/PleasureVocabularyApp/ConceptDiagrams.swift`  
 **Product home:** See page (priority: native diagram → video → illustration → placeholder)  
@@ -33,7 +33,9 @@ Conor wants a diagram for **every concept (22/22)**. Approach locked: polish the
 | Spectatoring | Focus misalign — cool orb → body | **ship** (S3) |
 | Embodied Presence | Fill outline — warmth saturates | **ship** (S3) |
 | Non-concordance | Dual meter — body vs felt desire | **ship** (S3) |
-| Remaining 3 | — | **todo** (S4) |
+| Golden Trio | Triple toggle — multi-path glow (≥2) | **ship** (S4) |
+| Sexual Self-Esteem | Hold orb — permission glow → silhouette | **ship** (S4) |
+| Body Appreciation | Tap zones — felt warmth map | **ship** (S4) |
 
 Shared kit: affordance hint, insight chip, optional idle pulse, insight haptics. Canvas-only. Reduce Motion = static teaching frame.
 
@@ -80,9 +82,9 @@ Every interactive must earn its place on See:
 | 17 | Spectatoring | Focus misalign | Attention drifts to grading self; drag cool orb back onto the body. | pan (align) | **ship** (S3) |
 | 18 | Embodied Presence | Fill outline | Warmth saturates a body silhouette as attention stays in sensation. | pan (fill) | **ship** (S3) |
 | 19 | Non-concordance | Dual meter | Genital response and felt desire can move independently. | dual slider | **ship** (S3) |
-| 20 | Golden Trio | Soft triad | Intercourse + manual + oral as three gentle channels — variety, not a combo score. | triple toggle (light) | todo |
-| 21 | Sexual Self-Esteem | Permission glow | Regard for oneself as allowed to want pleasure — soft fill, no grade. | hold / tap | todo |
-| 22 | Body Appreciation | Felt map | Value the body for what it feels now — warm zones, not appearance scores. | tap zones | todo |
+| 20 | Golden Trio | Soft triad | Intercourse + manual + oral as three gentle channels — variety, not a combo score. | triple toggle (light) | **ship** (S4) |
+| 21 | Sexual Self-Esteem | Permission glow | Regard for oneself as allowed to want pleasure — soft fill, no grade. | hold / tap | **ship** (S4) |
+| 22 | Body Appreciation | Felt map | Value the body for what it feels now — warm zones, not appearance scores. | tap zones | **ship** (S4) |
 
 ---
 
@@ -114,7 +116,7 @@ S0  Polish shipped 5                       ← done
 S1  Anatomy 4: clitoral-structure → nerve-density → clitourethrovaginal → internal-stimulation  ← done
 S2  Sensation: building → plateauing → pulsing → spreading  ← done
 S3  Timing / mind: warmup-window → responsive-desire + spontaneous-desire → spectatoring + embodied-presence → non-concordance  ← done
-S4  Remaining 3: golden-trio → sexual-self-esteem → body-appreciation
+S4  Remaining 3: golden-trio → sexual-self-esteem → body-appreciation  ← done
 ```
 
 Do **not** regenerate media plates as part of diagram work. Plates stay reduce-motion / library backups.
@@ -162,6 +164,14 @@ Same as S2: **native diagram → video → illustration → placeholder**. Timin
 Detachment accent `#7A7AFF` (`AppColor.diagramDetachment`) is reserved for mind-split concepts: spectatoring ghost orb and non-concordance felt-desire track.
 
 ---
+
+
+
+## 7c. See media priority (S4)
+
+Same as S2/S3: **native diagram → video → illustration → placeholder**. Final three concepts ship `*-diagram` as the See `mediaId`; illustrations remain secondary / RM fallback paths on the media item.
+
+Status: **22/22 ship** (device QA pending).
 
 ## 8. Related docs
 

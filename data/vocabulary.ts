@@ -623,6 +623,7 @@ The quieter takeaway: variety and clitoral involvement usually serve pleasure be
     ],
     relatedConcepts: ['pairing', 'warmup-window'],
     tier: 'free',
+    diagramType: 'golden-trio',
     slides: [
       {
         type: 'recognize',
@@ -819,6 +820,7 @@ It can be shaped by upbringing, past experiences, body image, relationship histo
     ],
     relatedConcepts: ['body-appreciation', 'spectatoring'],
     tier: 'free',
+    diagramType: 'sexual-self-esteem',
     thumbnail: require('@/assets/images/concepts/thumbnails/sexual-self-esteem.png'),
     slides: [
       {
@@ -867,6 +869,7 @@ Research links this orientation with greater satisfaction and less distraction. 
     ],
     relatedConcepts: ['embodied-presence', 'sexual-self-esteem', 'spectatoring'],
     tier: 'free',
+    diagramType: 'body-appreciation',
     thumbnail: require('@/assets/images/concepts/thumbnails/body-appreciation.png'),
     slides: [
       {

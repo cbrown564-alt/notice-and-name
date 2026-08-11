@@ -42,6 +42,9 @@ export type DiagramType =
   | 'spectatoring'
   | 'embodied-presence'
   | 'non-concordance'
+  | 'golden-trio'
+  | 'sexual-self-esteem'
+  | 'body-appreciation'
   | 'none';
 
 export interface Concept {

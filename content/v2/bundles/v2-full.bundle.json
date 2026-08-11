@@ -1332,7 +1332,7 @@
           "type": "media",
           "title": "See It",
           "body": "Hands, mouth, and penetration \u2014 layered, not a script",
-          "mediaId": "golden-trio-illustration"
+          "mediaId": "golden-trio-diagram"
         },
         {
           "id": "golden-trio-mechanism",
@@ -1407,6 +1407,7 @@
         }
       ],
       "mediaIds": [
+        "golden-trio-diagram",
         "golden-trio-illustration"
       ]
     },
@@ -1768,7 +1769,7 @@
           "type": "media",
           "title": "See It",
           "body": "Belonging in your own desire",
-          "mediaId": "sexual-self-esteem-illustration"
+          "mediaId": "sexual-self-esteem-diagram"
         },
         {
           "id": "sexual-self-esteem-mechanism",
@@ -1850,6 +1851,7 @@
         }
       ],
       "mediaIds": [
+        "sexual-self-esteem-diagram",
         "sexual-self-esteem-illustration"
       ]
     },
@@ -1878,7 +1880,7 @@
           "type": "media",
           "title": "See It",
           "body": "Sensation first \u2014 not a live review of how you look",
-          "mediaId": "body-appreciation-illustration"
+          "mediaId": "body-appreciation-diagram"
         },
         {
           "id": "body-appreciation-mechanism",
@@ -1961,6 +1963,7 @@
         }
       ],
       "mediaIds": [
+        "body-appreciation-diagram",
         "body-appreciation-illustration"
       ]
     },
@@ -2865,6 +2868,30 @@
       "alt": "Native diagram for Non-concordance.",
       "caption": "Body signs and wanting running on different tracks",
       "reducedMotionFallback": "assets/images/concepts/illustrations/non-concordance.png"
+    },
+    {
+      "id": "golden-trio-diagram",
+      "kind": "diagram",
+      "path": "native://diagram/golden-trio",
+      "alt": "Native diagram for Golden Trio.",
+      "caption": "Hands, mouth, and penetration \u2014 layered, not a script",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/golden-trio.png"
+    },
+    {
+      "id": "sexual-self-esteem-diagram",
+      "kind": "diagram",
+      "path": "native://diagram/sexual-self-esteem",
+      "alt": "Native diagram for Sexual Self-Esteem.",
+      "caption": "Belonging in your own desire",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/sexual-self-esteem.png"
+    },
+    {
+      "id": "body-appreciation-diagram",
+      "kind": "diagram",
+      "path": "native://diagram/body-appreciation",
+      "alt": "Native diagram for Body Appreciation.",
+      "caption": "Sensation first \u2014 not a live review of how you look",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/body-appreciation.png"
     }
   ],
   "explainers": [

@@ -51,7 +51,7 @@ then repeat the persistence checks after force-quitting and reopening the app.
 - Small phone width: buttons, status labels, and pathway rows do not truncate awkwardly.
 - Dark environments: contrast remains readable with the warm light palette.
 
-## Interactive Diagrams (S0 + S1 + S2 + S3)
+## Interactive Diagrams (S0 + S1 + S2 + S3 + S4)
 
 Run with Reduce Motion off first, then on. Confirm insight chips update; no in-canvas text.
 
@@ -82,8 +82,13 @@ Run with Reduce Motion off first, then on. Confirm insight chips update; no in-c
 - Embodied Presence: drag fills soft silhouette Arriving → Here; no cool orb; haptic near full; RM mostly filled.
 - Non-concordance: dual independent meters (coral Body / cool Felt desire); They can diverge vs Aligned; haptic on first divergence; RM clearly divergent.
 
+### Remaining three (S4)
+- Golden Trio: toggle Intercourse / Manual / Oral; multi-path glow when ≥2; insight One channel / More than one path; haptic on variety (≥2), not a "complete" celebration; RM all three gently lit.
+- Sexual Self-Esteem: hold soft orb; permission glow expands into quiet silhouette; insight Gathering / Allowed to want; haptic near full; RM mid-fill glow. No numeric ratings.
+- Body Appreciation: tap 3–4 abstract zones; each lights with felt warmth; insight Noticing → What it feels; light haptic per zone first activation; RM several zones softly lit. No beauty markers / faces / mirrors.
+
 ### Diagram a11y / feel
-- Reduce Motion: each of the 19 shows a static teaching frame (no idle pulse, no required animation).
+- Reduce Motion: each of the 22 shows a static teaching frame (no idle pulse, no required animation).
 - VoiceOver: diagram treated as single image with caption label.
-- Small phone: chip buttons (Pairing, CUV) wrap without truncating awkwardly; dual meters remain tappable.
+- Small phone: chip buttons (Pairing, CUV, Golden Trio) wrap without truncating awkwardly; dual meters remain tappable; body zones remain hittable.
 - Haptics: light impact only at insight moments (never continuous).

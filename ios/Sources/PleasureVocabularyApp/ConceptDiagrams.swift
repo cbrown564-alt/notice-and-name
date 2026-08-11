@@ -27,7 +27,7 @@ struct ConceptDiagramView: View {
     let caption: String?
 
     /// Ids this view knows how to draw natively.
-    static let knownDiagramIds: Set<String> = ["angling", "rocking", "shallowing", "pairing", "edging", "iceberg", "nerve-density", "cuv-complex", "internal-stimulation", "building", "plateauing", "pulsing", "spreading", "warmup-window", "responsive-desire", "spontaneous-desire", "spectatoring", "embodied-presence", "non-concordance"]
+    static let knownDiagramIds: Set<String> = ["angling", "rocking", "shallowing", "pairing", "edging", "iceberg", "nerve-density", "cuv-complex", "internal-stimulation", "building", "plateauing", "pulsing", "spreading", "warmup-window", "responsive-desire", "spontaneous-desire", "spectatoring", "embodied-presence", "non-concordance", "golden-trio", "sexual-self-esteem", "body-appreciation"]
 
     /// Returns the diagram id for a `native://diagram/<id>` path, or `nil` for
     /// any other path (so non-native diagrams keep the framed placeholder).
@@ -82,6 +82,12 @@ struct ConceptDiagramView: View {
             labeled { EmbodiedPresenceDiagramView() }
         case "non-concordance":
             labeled { NonConcordanceDiagramView() }
+        case "golden-trio":
+            labeled { GoldenTrioDiagramView() }
+        case "sexual-self-esteem":
+            labeled { SexualSelfEsteemDiagramView() }
+        case "body-appreciation":
+            labeled { BodyAppreciationDiagramView() }
         default:
             // Unknown id: reuse the shared framed placeholder.
             MediaPlaceholderCard(
@@ -3099,6 +3105,430 @@ private struct NonConcordanceDiagramView: View {
         let thumb = circlePath(cx: x, cy: thumbY, r: 8).applying(world)
         context.fill(thumb, with: .color(fill.opacity(0.9)))
         context.stroke(thumb, with: .color(AppColor.surface.opacity(0.9)), style: StrokeStyle(lineWidth: 1.1))
+    }
+}
+
+
+
+// MARK: - Golden Trio
+
+/// Three gentle channels (intercourse / manual / oral). When ≥2 are on, a calm
+/// multi-path glow appears — variety serves, not a combo score.
+/// Insight: One channel / More than one path. Haptic on the variety moment (≥2).
+private struct GoldenTrioDiagramView: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var intercourseOn = false
+    @State private var manualOn = false
+    @State private var oralOn = false
+    @State private var varietyHaptic = false
+    @State private var hasInteracted = false
+
+    private let natural = CGSize(width: 300, height: 300)
+
+    var body: some View {
+        let i = reduceMotion || intercourseOn
+        let m = reduceMotion || manualOn
+        let o = reduceMotion || oralOn
+        let activeCount = (i ? 1 : 0) + (m ? 1 : 0) + (o ? 1 : 0)
+        DiagramSurface(
+            height: 300,
+            idlePulse: !hasInteracted && !reduceMotion,
+            pulseOffset: CGSize(width: 0, height: -8)
+        ) {
+            ZStack {
+                Canvas { context, size in
+                    draw(context, size: size, intercourse: i, manual: m, oral: o)
+                }
+                VStack(spacing: 0) {
+                    DiagramInsightChip(text: insightLabel(count: activeCount))
+                    if !reduceMotion {
+                        HStack(spacing: 8) {
+                            Button("Intercourse") { toggleIntercourse() }
+                                .buttonStyle(DiagramChipButtonStyle(active: intercourseOn))
+                            Button("Manual") { toggleManual() }
+                                .buttonStyle(DiagramChipButtonStyle(active: manualOn))
+                            Button("Oral") { toggleOral() }
+                                .buttonStyle(DiagramChipButtonStyle(active: oralOn))
+                        }
+                        .padding(.top, 8)
+                        Spacer()
+                    } else {
+                        Spacer()
+                    }
+                }
+                if !reduceMotion {
+                    DiagramAffordanceHint(text: "Tap to explore", visible: !hasInteracted)
+                }
+            }
+        }
+        .onAppear {
+            if reduceMotion {
+                intercourseOn = true
+                manualOn = true
+                oralOn = true
+            }
+        }
+        .onChange(of: intercourseOn) { _, _ in checkVarietyHaptic() }
+        .onChange(of: manualOn) { _, _ in checkVarietyHaptic() }
+        .onChange(of: oralOn) { _, _ in checkVarietyHaptic() }
+    }
+
+    private func insightLabel(count: Int) -> String {
+        if count >= 2 { return "More than one path" }
+        if count == 1 { return "One channel" }
+        return "Tap channels"
+    }
+
+    private func toggleIntercourse() {
+        if !hasInteracted { hasInteracted = true }
+        intercourseOn.toggle()
+    }
+    private func toggleManual() {
+        if !hasInteracted { hasInteracted = true }
+        manualOn.toggle()
+    }
+    private func toggleOral() {
+        if !hasInteracted { hasInteracted = true }
+        oralOn.toggle()
+    }
+
+    /// Haptic when the second channel turns on — variety moment, not a "complete" celebration.
+    private func checkVarietyHaptic() {
+        let count = (intercourseOn ? 1 : 0) + (manualOn ? 1 : 0) + (oralOn ? 1 : 0)
+        if count >= 2 && !varietyHaptic {
+            varietyHaptic = true
+            NativeHaptics.impactLight()
+        } else if count < 2 {
+            varietyHaptic = false
+        }
+    }
+
+    private func draw(
+        _ context: GraphicsContext,
+        size: CGSize,
+        intercourse: Bool,
+        manual: Bool,
+        oral: Bool
+    ) {
+        let world = worldTransform(in: size, natural: natural)
+        let iT = intercourse ? 1.0 : 0.0
+        let mT = manual ? 1.0 : 0.0
+        let oT = oral ? 1.0 : 0.0
+        let variety = smoothstep(1.2, 2.4, Double((intercourse ? 1 : 0) + (manual ? 1 : 0) + (oral ? 1 : 0)))
+
+        // Three soft channel nodes arranged as a gentle triad — abstract, not literal acts
+        let nodes: [(CGPoint, Double)] = [
+            (CGPoint(x: 150, y: 118), iT), // intercourse — top
+            (CGPoint(x: 108, y: 188), mT), // manual — lower left
+            (CGPoint(x: 192, y: 188), oT), // oral — lower right
+        ]
+
+        // Calm multi-path arcs when ≥2 channels are lit
+        let pairs = [(0, 1), (1, 2), (2, 0)]
+        for (a, b) in pairs {
+            let ta = nodes[a].1
+            let tb = nodes[b].1
+            let link = min(ta, tb)
+            guard link > 0.01 || variety > 0.2 else { continue }
+            var path = Path()
+            path.move(to: nodes[a].0)
+            let mid = CGPoint(
+                x: (nodes[a].0.x + nodes[b].0.x) / 2,
+                y: (nodes[a].0.y + nodes[b].0.y) / 2 - 10
+            )
+            path.addQuadCurve(to: nodes[b].0, control: mid)
+            let strength = max(link, variety * 0.55)
+            context.glowStroke(
+                path.applying(world),
+                color: AppColor.diagramGlow,
+                lineWidth: 5,
+                blur: 8,
+                opacity: 0.18 + 0.4 * strength
+            )
+            context.stroke(
+                path.applying(world),
+                with: .color(AppColor.diagramActive.opacity(0.25 + 0.45 * strength)),
+                style: StrokeStyle(lineWidth: 2, lineCap: .round)
+            )
+        }
+
+        // Soft center wash when variety is present
+        if variety > 0.15 {
+            let core = circlePath(cx: 150, cy: 164, r: 22 + CGFloat(10 * variety)).applying(world)
+            context.glowFill(core, color: AppColor.diagramGlow, blur: 18, opacity: 0.12 + 0.4 * variety)
+        }
+
+        for (center, t) in nodes {
+            let r: CGFloat = 26
+            let node = circlePath(cx: center.x, cy: center.y, r: r).applying(world)
+            context.fill(node, with: .color(AppColor.diagramPassive.opacity(0.22 + 0.4 * t)))
+            context.stroke(
+                node,
+                with: .color(blend(AppColor.diagramPassive, AppColor.diagramActive, t).opacity(0.65 + 0.3 * t)),
+                style: StrokeStyle(lineWidth: 2.2)
+            )
+            if t > 0.5 {
+                context.glowFill(node, color: AppColor.diagramGlow, blur: 12, opacity: 0.28)
+                let inner = circlePath(cx: center.x, cy: center.y, r: 8).applying(world)
+                context.fill(inner, with: .color(AppColor.diagramActive.opacity(0.55 + 0.3 * t)))
+            } else {
+                let inner = circlePath(cx: center.x, cy: center.y, r: 6).applying(world)
+                context.fill(inner, with: .color(AppColor.diagramPassive.opacity(0.55)))
+            }
+        }
+    }
+}
+
+
+// MARK: - Sexual Self-Esteem
+
+/// Hold a soft orb; warm permission glow expands into a quiet silhouette.
+/// Insight: Gathering / Allowed to want. No grades, no progress-bar homework.
+private struct SexualSelfEsteemDiagramView: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var fill: Double = 0.12
+    @State private var isHolding = false
+    @State private var fullHaptic = false
+    @State private var hasInteracted = false
+    @State private var lastTick: Date?
+
+    private let natural = CGSize(width: 280, height: 300)
+    private let allowedMark = 0.82
+
+    var body: some View {
+        let level = reduceMotion ? 0.55 : fill
+        DiagramSurface(
+            height: 300,
+            idlePulse: !hasInteracted && !reduceMotion,
+            pulseOffset: CGSize(width: 0, height: 28)
+        ) {
+            ZStack(alignment: .top) {
+                TimelineView(.animation(minimumInterval: 1.0 / 30.0, paused: reduceMotion)) { timeline in
+                    Canvas { context, size in
+                        draw(context, size: size, fill: level, holding: isHolding && !reduceMotion)
+                    }
+                    .onChange(of: timeline.date) { _, date in
+                        advanceFill(to: date)
+                    }
+                }
+                DiagramInsightChip(text: insightLabel(level: level))
+                VStack {
+                    Spacer()
+                    DiagramAffordanceHint(text: "Hold to gather", visible: !hasInteracted && !reduceMotion)
+                        .padding(.bottom, 14)
+                }
+            }
+            .contentShape(Rectangle())
+            .modifier(DiagramDragModifier(enabled: !reduceMotion, gesture: holdGesture))
+        }
+    }
+
+    private func advanceFill(to date: Date) {
+        guard !reduceMotion else { return }
+        let dt: Double
+        if let lastTick {
+            dt = min(0.05, date.timeIntervalSince(lastTick))
+        } else {
+            dt = 1.0 / 30.0
+        }
+        lastTick = date
+        if isHolding {
+            fill = min(1, fill + dt * 0.38)
+            if fill >= allowedMark && !fullHaptic {
+                fullHaptic = true
+                NativeHaptics.impactLight()
+            }
+        } else if hasInteracted {
+            // Soft settle — keeps some glow rather than draining to empty
+            fill = max(0.1, fill - dt * 0.08)
+            if fill < allowedMark - 0.08 { fullHaptic = false }
+        }
+    }
+
+    private func insightLabel(level: Double) -> String {
+        if level >= allowedMark { return "Allowed to want" }
+        return "Gathering"
+    }
+
+    private var holdGesture: some Gesture {
+        DragGesture(minimumDistance: 0)
+            .onChanged { _ in
+                if !hasInteracted { hasInteracted = true }
+                isHolding = true
+            }
+            .onEnded { _ in
+                isHolding = false
+            }
+    }
+
+    private func draw(_ context: GraphicsContext, size: CGSize, fill: Double, holding: Bool) {
+        let world = worldTransform(in: size, natural: natural)
+        let cx: CGFloat = 140
+        let warmth = smoothstep(0.12, allowedMark, fill)
+        let permission = smoothstep(0.45, allowedMark, fill)
+
+        // Quiet silhouette emerges as permission grows — soft, not graded
+        var silhouette = Path()
+        silhouette.addEllipse(in: CGRect(x: cx - 16, y: 52, width: 32, height: 32))
+        silhouette.move(to: CGPoint(x: cx - 40, y: 96))
+        silhouette.addQuadCurve(
+            to: CGPoint(x: cx + 40, y: 96),
+            control: CGPoint(x: cx, y: 88)
+        )
+        silhouette.addLine(to: CGPoint(x: cx + 34, y: 210))
+        silhouette.addQuadCurve(
+            to: CGPoint(x: cx - 34, y: 210),
+            control: CGPoint(x: cx, y: 224)
+        )
+        silhouette.closeSubpath()
+        let outline = silhouette.applying(world)
+        context.stroke(
+            outline,
+            with: .color(AppColor.diagramPassive.opacity(0.25 + 0.55 * permission)),
+            style: StrokeStyle(lineWidth: 2, lineJoin: .round)
+        )
+        context.fill(outline, with: .color(AppColor.diagramPassive.opacity(0.04 + 0.1 * permission)))
+        if permission > 0.05 {
+            context.glowFill(outline, color: AppColor.diagramGlow, blur: 16, opacity: 0.1 + 0.35 * permission)
+        }
+
+        // Soft permission orb — held at center, expands warmth
+        let orbR: CGFloat = 22 + CGFloat(18 * warmth)
+        let orb = circlePath(cx: cx, cy: 148, r: orbR).applying(world)
+        context.glowFill(orb, color: AppColor.diagramGlow, blur: 14 + 10 * warmth, opacity: 0.2 + 0.45 * warmth)
+        context.fill(
+            orb,
+            with: .color(blend(AppColor.diagramPassive, AppColor.diagramActive, 0.25 + 0.65 * warmth).opacity(0.4 + 0.35 * warmth))
+        )
+        let core = circlePath(cx: cx, cy: 148, r: 8 + CGFloat(4 * warmth)).applying(world)
+        context.fill(core, with: .color(AppColor.diagramActive.opacity(0.55 + 0.3 * warmth)))
+        if holding {
+            let ring = circlePath(cx: cx, cy: 148, r: orbR + 8).applying(world)
+            context.stroke(ring, with: .color(AppColor.diagramGlow.opacity(0.35)), style: StrokeStyle(lineWidth: 1.5))
+        }
+    }
+}
+
+
+// MARK: - Body Appreciation
+
+/// Tap abstract body zones; each lights with felt warmth — sensation map, not appearance.
+/// Insight: Noticing / What it feels. No beauty markers, faces, or scores.
+private struct BodyAppreciationDiagramView: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var lit: [Bool] = [false, false, false, false]
+    @State private var hasInteracted = false
+    @State private var gestureArmed = false
+
+    private let natural = CGSize(width: 280, height: 300)
+    /// Soft abstract zones — torso / hips feel-map, never a face or mirror.
+    private let zones: [CGPoint] = [
+        CGPoint(x: 140, y: 96),
+        CGPoint(x: 108, y: 150),
+        CGPoint(x: 172, y: 150),
+        CGPoint(x: 140, y: 208),
+    ]
+
+    var body: some View {
+        let active = reduceMotion ? [true, true, false, true] : lit
+        let litCount = active.filter { $0 }.count
+        DiagramSurface(
+            height: 300,
+            idlePulse: !hasInteracted && !reduceMotion,
+            pulseOffset: CGSize(width: 0, height: 10)
+        ) {
+            GeometryReader { geo in
+                ZStack(alignment: .top) {
+                    Canvas { context, size in
+                        draw(context, size: size, active: active)
+                    }
+                    DiagramInsightChip(text: insightLabel(litCount: litCount))
+                    VStack {
+                        Spacer()
+                        DiagramAffordanceHint(text: "Tap zones", visible: !hasInteracted && !reduceMotion)
+                            .padding(.bottom, 14)
+                    }
+                }
+                .contentShape(Rectangle())
+                .modifier(DiagramDragModifier(enabled: !reduceMotion, gesture: tapGesture(in: geo.size)))
+            }
+        }
+    }
+
+    private func insightLabel(litCount: Int) -> String {
+        if litCount >= 1 { return "What it feels" }
+        return "Noticing"
+    }
+
+    private func tapGesture(in size: CGSize) -> some Gesture {
+        DragGesture(minimumDistance: 0)
+            .onChanged { value in
+                guard !gestureArmed else { return }
+                gestureArmed = true
+                activateNearest(to: value.startLocation, in: size)
+            }
+            .onEnded { _ in
+                gestureArmed = false
+            }
+    }
+
+    private func activateNearest(to location: CGPoint, in size: CGSize) {
+        // Map view tap into natural space using the same aspect-fit transform.
+        let s = min(size.width / natural.width, size.height / natural.height)
+        let tx = (size.width - natural.width * s) / 2
+        let ty = (size.height - natural.height * s) / 2
+        let naturalPoint = CGPoint(
+            x: (location.x - tx) / s,
+            y: (location.y - ty) / s
+        )
+        var best = 0
+        var bestDist = CGFloat.greatestFiniteMagnitude
+        for (idx, zone) in zones.enumerated() {
+            let d = hypot(naturalPoint.x - zone.x, naturalPoint.y - zone.y)
+            if d < bestDist {
+                bestDist = d
+                best = idx
+            }
+        }
+        guard bestDist < 42 else { return }
+        if !hasInteracted { hasInteracted = true }
+        if !lit[best] {
+            lit[best] = true
+            NativeHaptics.impactLight()
+        }
+    }
+
+    private func draw(_ context: GraphicsContext, size: CGSize, active: [Bool]) {
+        let world = worldTransform(in: size, natural: natural)
+        let cx: CGFloat = 140
+
+        // Soft abstract body mass — no face, no mirror, no beauty markers
+        var mass = Path()
+        mass.addRoundedRect(
+            in: CGRect(x: cx - 48, y: 64, width: 96, height: 170),
+            cornerSize: CGSize(width: 40, height: 48)
+        )
+        let massScreen = mass.applying(world)
+        context.fill(massScreen, with: .color(AppColor.diagramPassive.opacity(0.14)))
+        context.stroke(massScreen, with: .color(AppColor.diagramPassive.opacity(0.7)), style: StrokeStyle(lineWidth: 2))
+
+        for (idx, center) in zones.enumerated() {
+            let on = idx < active.count ? active[idx] : false
+            let t = on ? 1.0 : 0.0
+            let r: CGFloat = 22
+            let zone = circlePath(cx: center.x, cy: center.y, r: r).applying(world)
+            context.fill(zone, with: .color(AppColor.diagramPassive.opacity(0.18 + 0.35 * t)))
+            context.stroke(
+                zone,
+                with: .color(blend(AppColor.diagramPassive, AppColor.diagramActive, t).opacity(0.55 + 0.35 * t)),
+                style: StrokeStyle(lineWidth: 2)
+            )
+            if on {
+                context.glowFill(zone, color: AppColor.diagramGlow, blur: 12, opacity: 0.4)
+                let inner = circlePath(cx: center.x, cy: center.y, r: 7).applying(world)
+                context.fill(inner, with: .color(AppColor.diagramActive.opacity(0.7)))
+            }
+        }
     }
 }
 
