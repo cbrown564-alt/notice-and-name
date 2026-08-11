@@ -250,7 +250,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pleasurevocab.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.noticeandname.app;
 				PRODUCT_NAME = PleasureVocabulary;
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = NO;
@@ -273,7 +273,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pleasurevocab.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.noticeandname.app;
 				PRODUCT_NAME = PleasureVocabulary;
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = NO;
