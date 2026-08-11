@@ -907,6 +907,7 @@ Knowing the map makes indirect touch count — not as a compromise, but as reach
     ],
     relatedConcepts: ['nerve-density', 'clitourethrovaginal', 'internal-stimulation'],
     tier: 'free',
+    diagramType: 'iceberg',
     thumbnail: require('@/assets/images/concepts/thumbnails/clitoral-structure.png'),
     slides: [
       {
@@ -955,6 +956,7 @@ Quality beats force here. Those nerves are picky in a useful way: they reward pr
     ],
     relatedConcepts: ['clitoral-structure', 'pairing'],
     tier: 'free',
+    diagramType: 'nerve-density',
     thumbnail: require('@/assets/images/concepts/thumbnails/nerve-density.png'),
     slides: [
       {
@@ -1003,6 +1005,7 @@ That shift helps: stop hunting a spot, explore what pressure and angle actually 
     ],
     relatedConcepts: ['clitoral-structure', 'internal-stimulation'],
     tier: 'free',
+    diagramType: 'cuv-complex',
     thumbnail: require('@/assets/images/concepts/thumbnails/clitourethrovaginal.png'),
     slides: [
       {
@@ -1051,6 +1054,7 @@ When deep alone does little, the tissue that matters may simply not be getting p
     ],
     relatedConcepts: ['clitourethrovaginal', 'clitoral-structure', 'angling'],
     tier: 'free',
+    diagramType: 'internal-stimulation',
     thumbnail: require('@/assets/images/concepts/thumbnails/internal-stimulation.png'),
     slides: [
       {

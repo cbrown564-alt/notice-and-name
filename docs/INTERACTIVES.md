@@ -1,6 +1,6 @@
 # Interactive diagrams — living plan
 
-**Status:** S0 in progress (polish the shipped 5, then expand to all 22)  
+**Status:** S1 done (Anatomy 4 shipped; S0 polish done on original 5)  
 **Owner:** Sensory Success  
 **Code:** `ios/Sources/PleasureVocabularyApp/ConceptDiagrams.swift`  
 **Product home:** See page (priority: video → native diagram → illustration)  
@@ -14,14 +14,18 @@ Conor wants a diagram for **every concept (22/22)**. Approach locked: polish the
 
 | Concept | Mechanic | Status |
 |---------|----------|--------|
-| Angling | Pan — pelvis tilt, glow at posterior tuck | **ship → polish** |
-| Rocking | Pan — partner wedge → pubic contact heat | **ship → polish** |
-| Shallowing | Pan — depth vs entrance intensity | **ship → polish** |
-| Pairing | Tap — external + internal nodes, bridge glow | **ship → polish** |
-| Edging | Pan — intensity throttle; release recedes | **ship → polish** |
-| Remaining 17 | — | **todo** (planned below) |
+| Angling | Pan — pelvis tilt, glow at posterior tuck | **ship** (S0 polish) |
+| Rocking | Pan — partner wedge → pubic contact heat | **ship** (S0 polish) |
+| Shallowing | Pan — depth vs entrance intensity | **ship** (S0 polish) |
+| Pairing | Tap — external + internal nodes, bridge glow | **ship** (S0 polish) |
+| Edging | Pan — intensity throttle; release recedes | **ship** (S0 polish) |
+| Clitoral Structure | Tap/drag — iceberg peel glans→bulbs→crura | **ship** (S1) |
+| Nerve Density | Pan — zoom densifies filaments | **ship** (S1) |
+| CUV Complex | Triple toggle — overlap cluster glow | **ship** (S1) |
+| Internal Stimulation | Pan — anterior path vs deep pressure | **ship** (S1) |
+| Remaining 13 | — | **todo** (planned below) |
 
-Shared kit (this turn): affordance hint, insight chip, optional idle pulse, insight haptics on all five. Canvas-only. Reduce Motion = static teaching frame.
+Shared kit: affordance hint, insight chip, optional idle pulse, insight haptics. Canvas-only. Reduce Motion = static teaching frame.
 
 ---
 
@@ -47,15 +51,15 @@ Every interactive must earn its place on See:
 
 | # | Concept | Mechanic name | One-sentence teach | Interaction | Status |
 |---|---------|---------------|--------------------|-------------|--------|
-| 1 | Angling | Pelvis tilt | Tilting the pelvis redirects internal pressure along the anterior wall. | pan (vertical) | polish |
-| 2 | Rocking | Pubic contact | Steady external contact at the pubic mound during penetration. | pan (free) | polish |
-| 3 | Shallowing | Depth probe | Nerve-rich entrance peaks; deep is pressure, not “better.” | pan (horizontal) | polish |
-| 4 | Pairing | Dual nodes | External + internal together light the bridge — combination is the insight. | dual tap | polish |
-| 5 | Edging | Throttle & release | Rise toward a coral threshold, then ease back — approach and retreat. | pan (vertical) + release | polish |
-| 6 | Clitoral Structure | Iceberg peel | Most of the clitoris is internal (~9 cm): glans → bulbs → crura. | tap / slide layers | todo |
-| 7 | Nerve Density | Density dial | Extreme endings packed in a small glans area. | pinch / slider | todo |
-| 8 | CUV Complex | Pressure triad | Clitoris, urethra, and front wall form one integrated cluster. | triple toggle | todo |
-| 9 | Internal Stimulation | Anterior path | Front-wall pressure reaches internal clitoral tissue — not “deeper = better.” | pan (angle) | todo |
+| 1 | Angling | Pelvis tilt | Tilting the pelvis redirects internal pressure along the anterior wall. | pan (vertical) | ship |
+| 2 | Rocking | Pubic contact | Steady external contact at the pubic mound during penetration. | pan (free) | ship |
+| 3 | Shallowing | Depth probe | Nerve-rich entrance peaks; deep is pressure, not “better.” | pan (horizontal) | ship |
+| 4 | Pairing | Dual nodes | External + internal together light the bridge — combination is the insight. | dual tap | ship |
+| 5 | Edging | Throttle & release | Rise toward a coral threshold, then ease back — approach and retreat. | pan (vertical) + release | ship |
+| 6 | Clitoral Structure | Iceberg peel | Most of the clitoris is internal (~9 cm): glans → bulbs → crura. | tap / slide layers | ship |
+| 7 | Nerve Density | Density dial | Extreme endings packed in a small glans area. | pan (vertical zoom) | ship |
+| 8 | CUV Complex | Pressure triad | Clitoris, urethra, and front wall form one integrated cluster. | triple toggle | ship |
+| 9 | Internal Stimulation | Anterior path | Front-wall pressure reaches internal clitoral tissue — not “deeper = better.” | pan (angle) | ship |
 | 10 | Building | Hold to charge | Arousal gathers gradually; hold fills, release leaks slightly. | hold | todo |
 | 11 | Plateauing | Ridge walk | Climb then walk a flat ridge — hover without climbing or fading. | pan (along curve) | todo |
 | 12 | Pulsing | Rhythm tap | High-arousal throb as a calm pulse the user can match. | tap (tempo) | todo |
@@ -96,8 +100,8 @@ Previously deferred in the archived plan; Conor wants them too. Keep non-gamifie
 ## 5. Execution order
 
 ```
-S0  Polish shipped 5 (this turn)          ← current
-S1  Anatomy 4: clitoral-structure → nerve-density → clitourethrovaginal → internal-stimulation
+S0  Polish shipped 5                       ← done
+S1  Anatomy 4: clitoral-structure → nerve-density → clitourethrovaginal → internal-stimulation  ← done
 S2  Sensation: building → plateauing → pulsing → spreading
 S3  Timing / mind: warmup-window → responsive-desire + spontaneous-desire → spectatoring + embodied-presence → non-concordance
 S4  Remaining 3: golden-trio → sexual-self-esteem → body-appreciation

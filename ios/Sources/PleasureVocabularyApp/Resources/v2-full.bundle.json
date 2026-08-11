@@ -1979,7 +1979,7 @@
           "type": "media",
           "title": "See It",
           "body": "Internal legs and bulbs — more than the tip you can see",
-          "mediaId": "clitoral-structure-illustration"
+          "mediaId": "clitoral-structure-diagram"
         },
         {
           "id": "clitoral-structure-mechanism",
@@ -2062,6 +2062,7 @@
         }
       ],
       "mediaIds": [
+        "clitoral-structure-diagram",
         "clitoral-structure-illustration"
       ]
     },
@@ -2090,7 +2091,7 @@
           "type": "media",
           "title": "See It",
           "body": "A small tip where tiny pressure changes land loud",
-          "mediaId": "nerve-density-illustration"
+          "mediaId": "nerve-density-diagram"
         },
         {
           "id": "nerve-density-mechanism",
@@ -2172,6 +2173,7 @@
         }
       ],
       "mediaIds": [
+        "nerve-density-diagram",
         "nerve-density-illustration"
       ]
     },
@@ -2200,7 +2202,7 @@
           "type": "media",
           "title": "See It",
           "body": "Front-wall pressure reaching shared internal tissue",
-          "mediaId": "clitourethrovaginal-illustration"
+          "mediaId": "clitourethrovaginal-diagram"
         },
         {
           "id": "clitourethrovaginal-mechanism",
@@ -2282,6 +2284,7 @@
         }
       ],
       "mediaIds": [
+        "clitourethrovaginal-diagram",
         "clitourethrovaginal-illustration"
       ]
     },
@@ -2310,7 +2313,7 @@
           "type": "media",
           "title": "See It",
           "body": "Front-wall pressure reaching the rest of the clitoris",
-          "mediaId": "internal-stimulation-illustration"
+          "mediaId": "internal-stimulation-diagram"
         },
         {
           "id": "internal-stimulation-mechanism",
@@ -2393,6 +2396,7 @@
         }
       ],
       "mediaIds": [
+        "internal-stimulation-diagram",
         "internal-stimulation-illustration"
       ]
     }
@@ -2681,12 +2685,28 @@
       "reducedMotionFallback": "assets/images/concepts/illustrations/body-appreciation.png"
     },
     {
+      "id": "clitoral-structure-diagram",
+      "kind": "diagram",
+      "path": "native://diagram/iceberg",
+      "alt": "Native diagram for Clitoral Structure.",
+      "caption": "Internal legs and bulbs — more than the tip you can see",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/clitoral-structure.png"
+    },
+    {
       "id": "clitoral-structure-illustration",
       "kind": "image",
       "path": "assets/images/concepts/illustrations/clitoral-structure.png",
       "alt": "Warm educational illustration for Clitoral Structure.",
       "caption": "Internal legs and bulbs — more than the tip you can see",
       "reducedMotionFallback": "assets/images/concepts/illustrations/clitoral-structure.png"
+    },
+    {
+      "id": "nerve-density-diagram",
+      "kind": "diagram",
+      "path": "native://diagram/nerve-density",
+      "alt": "Native diagram for Nerve Density.",
+      "caption": "A small tip where tiny pressure changes land loud",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/nerve-density.png"
     },
     {
       "id": "nerve-density-illustration",
@@ -2697,12 +2717,28 @@
       "reducedMotionFallback": "assets/images/concepts/illustrations/nerve-density.png"
     },
     {
+      "id": "clitourethrovaginal-diagram",
+      "kind": "diagram",
+      "path": "native://diagram/cuv-complex",
+      "alt": "Native diagram for CUV Complex.",
+      "caption": "Front-wall pressure reaching shared internal tissue",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/clitourethrovaginal.png"
+    },
+    {
       "id": "clitourethrovaginal-illustration",
       "kind": "image",
       "path": "assets/images/concepts/illustrations/clitourethrovaginal.png",
       "alt": "Warm educational illustration for CUV Complex.",
       "caption": "Front-wall pressure reaching shared internal tissue",
       "reducedMotionFallback": "assets/images/concepts/illustrations/clitourethrovaginal.png"
+    },
+    {
+      "id": "internal-stimulation-diagram",
+      "kind": "diagram",
+      "path": "native://diagram/internal-stimulation",
+      "alt": "Native diagram for Internal Clitoral Stimulation.",
+      "caption": "Front-wall pressure reaching the rest of the clitoris",
+      "reducedMotionFallback": "assets/images/concepts/illustrations/internal-stimulation.png"
     },
     {
       "id": "internal-stimulation-illustration",

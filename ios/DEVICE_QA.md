@@ -50,3 +50,26 @@ then repeat the persistence checks after force-quitting and reopening the app.
 - VoiceOver: tab labels, lock button, status menu, export, and delete controls are named.
 - Small phone width: buttons, status labels, and pathway rows do not truncate awkwardly.
 - Dark environments: contrast remains readable with the warm light palette.
+
+## Interactive Diagrams (S0 + S1)
+
+Run with Reduce Motion off first, then on. Confirm insight chips update; no in-canvas text.
+
+### Technique five (S0)
+- Angling: vertical drag tilts pelvis; posterior tuck glows; insight Neutral / Anterior / Posterior.
+- Rocking: free drag partner wedge; heat at pubic contact; insight No contact → Near → Contact.
+- Shallowing: horizontal drag; entrance peak vs deep pressure; insight Shallow · sensitive / Deep · pressure.
+- Pairing: tap External + Internal; bridge glow when both on; insight Paired.
+- Edging: vertical drag climbs; release eases back; insight Near the edge / Easing back.
+
+### Anatomy four (S1)
+- Clitoral Structure (`iceberg`): drag/tap peels Glans → Bulbs → Crura; light haptic per new layer; RM shows soft full iceberg.
+- Nerve Density: vertical drag zooms; filaments densify Sparse field → Crowded endings; haptic entering dense zone; RM dense frame.
+- CUV Complex: toggle Clitoral / Urethral / Anterior; overlap glow ≥2; One cluster + haptic on full triad; RM all three on.
+- Internal Stimulation: vertical drag; Anterior path glows vs Deep pressure dull; haptic on anterior engage; RM anterior teaching frame.
+
+### Diagram a11y / feel
+- Reduce Motion: each of the 9 shows a static teaching frame (no idle pulse, no required animation).
+- VoiceOver: diagram treated as single image with caption label.
+- Small phone: chip buttons (Pairing, CUV) wrap without truncating awkwardly.
+- Haptics: light impact only at insight moments (never continuous).

@@ -31,6 +31,7 @@ export type DiagramType =
   | 'iceberg'
   | 'nerve-density'
   | 'cuv-complex'
+  | 'internal-stimulation'
   | 'warmup-window'
   | 'none';
 

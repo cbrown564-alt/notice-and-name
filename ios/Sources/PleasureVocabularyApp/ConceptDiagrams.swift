@@ -14,10 +14,10 @@ import AVFoundation
 // MARK: - Entry point
 
 /// Renders one of the app's native vector diagrams for a `MediaItem` whose
-/// `path` is `native://diagram/<id>`. These five concepts are drawn in-app
-/// (no image asset ships for them). When Reduce Motion is off, diagrams are
-/// user-driven with pan or tap gestures; when on, a static teaching
-/// frame is shown. See `docs/INTERACTIVES.md`.
+/// `path` is `native://diagram/<id>`. Anatomy + technique concepts are drawn
+/// in-app (no image asset required for them). When Reduce Motion is off,
+/// diagrams are user-driven with pan or tap gestures; when on, a static
+/// teaching frame is shown. See `docs/INTERACTIVES.md`.
 ///
 /// An unrecognised id falls back to the same framed placeholder used for
 /// images/videos (`MediaPlaceholderCard`), so a new diagram id can ship before
@@ -27,7 +27,7 @@ struct ConceptDiagramView: View {
     let caption: String?
 
     /// Ids this view knows how to draw natively.
-    static let knownDiagramIds: Set<String> = ["angling", "rocking", "shallowing", "pairing", "edging"]
+    static let knownDiagramIds: Set<String> = ["angling", "rocking", "shallowing", "pairing", "edging", "iceberg", "nerve-density", "cuv-complex", "internal-stimulation"]
 
     /// Returns the diagram id for a `native://diagram/<id>` path, or `nil` for
     /// any other path (so non-native diagrams keep the framed placeholder).
@@ -54,6 +54,14 @@ struct ConceptDiagramView: View {
             labeled { PairingDiagramView() }
         case "edging":
             labeled { EdgingDiagramView() }
+        case "iceberg":
+            labeled { ClitoralStructureDiagramView() }
+        case "nerve-density":
+            labeled { NerveDensityDiagramView() }
+        case "cuv-complex":
+            labeled { CUVComplexDiagramView() }
+        case "internal-stimulation":
+            labeled { InternalStimulationDiagramView() }
         default:
             // Unknown id: reuse the shared framed placeholder.
             MediaPlaceholderCard(
@@ -1095,6 +1103,598 @@ private struct EdgingDiagramView: View {
         context.glowFill(origin, color: AppColor.moss, blur: 7, opacity: 0.22)
         context.fill(circlePath(cx: riseP0.x, cy: riseP0.y, r: 5.5).applying(world),
                        with: .color(AppColor.diagramPassive.opacity(0.75)))
+    }
+}
+
+
+// MARK: - Clitoral Structure (iceberg)
+
+/// Most of the clitoris is internal. Tap or drag vertically to peel layers:
+/// glans → bulbs → crura (the “iceberg” below the surface).
+private struct ClitoralStructureDiagramView: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var reveal: Double = 0
+    @State private var dragBase: Double = 0
+    @State private var lastLayer = -1
+    @State private var hasInteracted = false
+
+    private let natural = CGSize(width: 280, height: 300)
+
+    var body: some View {
+        let level = reduceMotion ? 2.0 : reveal
+        DiagramSurface(
+            idlePulse: !hasInteracted && !reduceMotion,
+            pulseOffset: CGSize(width: 0, height: -70)
+        ) {
+            ZStack(alignment: .top) {
+                Canvas { context, size in
+                    draw(context, size: size, reveal: level)
+                }
+                DiagramInsightChip(text: insightLabel(for: level))
+                VStack {
+                    Spacer()
+                    DiagramAffordanceHint(
+                        text: "Drag or tap to explore",
+                        visible: !hasInteracted && !reduceMotion
+                    )
+                    .padding(.bottom, 14)
+                }
+            }
+            .contentShape(Rectangle())
+            .modifier(DiagramDragModifier(enabled: !reduceMotion, gesture: dragGesture))
+            .onTapGesture {
+                guard !reduceMotion else { return }
+                if !hasInteracted { hasInteracted = true }
+                let next = min(2, floor(reveal) + 1)
+                withAnimation(.easeOut(duration: 0.28)) {
+                    reveal = next == floor(reveal) && reveal >= 1.95 ? 0 : next
+                }
+                dragBase = reveal
+                maybeHaptic(for: reveal)
+            }
+        }
+        .onAppear {
+            if reduceMotion {
+                reveal = 2
+                dragBase = 2
+            }
+        }
+    }
+
+    private func insightLabel(for level: Double) -> String {
+        if level < 0.55 { return "Glans" }
+        if level < 1.45 { return "Bulbs" }
+        return "Crura"
+    }
+
+    private var dragGesture: some Gesture {
+        DragGesture(minimumDistance: 4)
+            .onChanged { value in
+                if !hasInteracted { hasInteracted = true }
+                // Drag up peels deeper layers (iceberg below the waterline).
+                let delta = -Double(value.translation.height) / 90
+                reveal = min(2, max(0, dragBase + delta))
+                maybeHaptic(for: reveal)
+            }
+            .onEnded { _ in
+                let snapped = round(reveal)
+                withAnimation(.easeOut(duration: 0.22)) {
+                    reveal = snapped
+                }
+                dragBase = snapped
+            }
+    }
+
+    private func maybeHaptic(for level: Double) {
+        let layer = Int(round(level))
+        if layer != lastLayer {
+            lastLayer = layer
+            if layer > 0 {
+                NativeHaptics.impactLight()
+            }
+        }
+    }
+
+    private func draw(_ context: GraphicsContext, size: CGSize, reveal: Double) {
+        let world = worldTransform(in: size, natural: natural)
+        let cx: CGFloat = 140
+        let waterY: CGFloat = 108
+
+        // Soft waterline — external above, internal below
+        var water = Path()
+        water.move(to: CGPoint(x: 28, y: waterY))
+        water.addQuadCurve(to: CGPoint(x: 252, y: waterY), control: CGPoint(x: cx, y: waterY - 6))
+        context.stroke(
+            water.applying(world),
+            with: .color(AppColor.diagramPassive.opacity(0.55)),
+            style: StrokeStyle(lineWidth: 1.5, lineCap: .round, dash: [4, 6])
+        )
+
+        let bulbsT = smoothstep(0.15, 1.0, reveal)
+        let cruraT = smoothstep(1.05, 2.0, reveal)
+        // Reduce Motion teaching frame: all layers soft-visible
+        let bulbsOpacity = reduceMotion ? 0.55 : (0.15 + 0.85 * bulbsT)
+        let cruraOpacity = reduceMotion ? 0.5 : (0.12 + 0.88 * cruraT)
+
+        // Crura — deep legs of the iceberg
+        var crura = Path()
+        crura.move(to: CGPoint(x: cx - 8, y: 128))
+        crura.addQuadCurve(to: CGPoint(x: cx - 62, y: 250), control: CGPoint(x: cx - 70, y: 168))
+        crura.addQuadCurve(to: CGPoint(x: cx - 30, y: 210), control: CGPoint(x: cx - 34, y: 258))
+        crura.addQuadCurve(to: CGPoint(x: cx - 6, y: 134), control: CGPoint(x: cx - 26, y: 168))
+        crura.move(to: CGPoint(x: cx + 8, y: 128))
+        crura.addQuadCurve(to: CGPoint(x: cx + 62, y: 250), control: CGPoint(x: cx + 70, y: 168))
+        crura.addQuadCurve(to: CGPoint(x: cx + 30, y: 210), control: CGPoint(x: cx + 34, y: 258))
+        crura.addQuadCurve(to: CGPoint(x: cx + 6, y: 134), control: CGPoint(x: cx + 26, y: 168))
+        let cruraScreen = crura.applying(world)
+        context.fill(cruraScreen, with: .color(AppColor.diagramPassive.opacity(0.35 * cruraOpacity)))
+        context.stroke(
+            cruraScreen,
+            with: .color(blend(AppColor.diagramPassive, AppColor.diagramActive, cruraT).opacity(cruraOpacity)),
+            style: StrokeStyle(lineWidth: 2.25, lineCap: .round, lineJoin: .round)
+        )
+        if cruraT > 0.35 || reduceMotion {
+            context.glowFill(cruraScreen, color: AppColor.diagramGlow, blur: 12, opacity: 0.22 * cruraOpacity)
+        }
+
+        // Bulbs — mid layer under the waterline
+        var bulbs = Path()
+        bulbs.addEllipse(in: CGRect(x: cx - 48, y: 118, width: 38, height: 52))
+        bulbs.addEllipse(in: CGRect(x: cx + 10, y: 118, width: 38, height: 52))
+        let bulbsScreen = bulbs.applying(world)
+        context.fill(bulbsScreen, with: .color(AppColor.diagramPassive.opacity(0.4 * bulbsOpacity)))
+        context.stroke(
+            bulbsScreen,
+            with: .color(blend(AppColor.diagramPassive, AppColor.diagramActive, bulbsT).opacity(0.55 + 0.45 * bulbsOpacity)),
+            style: StrokeStyle(lineWidth: 2, lineCap: .round)
+        )
+        if bulbsT > 0.3 || reduceMotion {
+            context.glowFill(bulbsScreen, color: AppColor.diagramGlow, blur: 10, opacity: 0.28 * bulbsOpacity)
+        }
+
+        // Glans — always visible tip above waterline
+        let glans = circlePath(cx: cx, cy: 78, r: 16).applying(world)
+        let glansRing = circlePath(cx: cx, cy: 78, r: 24).applying(world)
+        context.stroke(glansRing, with: .color(AppColor.diagramPassive.opacity(0.5)), style: StrokeStyle(lineWidth: 1.25))
+        context.fill(glans, with: .color(AppColor.diagramActive.opacity(0.85)))
+        context.glowFill(glans, color: AppColor.diagramGlow, blur: 8, opacity: 0.4)
+
+        // Soft shaft bridge into internal structure
+        var shaft = Path()
+        shaft.move(to: CGPoint(x: cx, y: 92))
+        shaft.addLine(to: CGPoint(x: cx, y: 122))
+        context.stroke(
+            shaft.applying(world),
+            with: .color(AppColor.diagramPassive.opacity(0.65)),
+            style: StrokeStyle(lineWidth: 3.5, lineCap: .round)
+        )
+    }
+}
+
+// MARK: - Nerve Density
+
+/// Extreme nerve endings packed in a small glans area. Vertical drag zooms
+/// into the tip; filaments multiply and brighten with density.
+private struct NerveDensityDiagramView: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var zoom: Double = 0.08
+    @State private var dragBase: Double = 0.08
+    @State private var denseHaptic = false
+    @State private var hasInteracted = false
+
+    private let natural = CGSize(width: 280, height: 280)
+
+    var body: some View {
+        let level = reduceMotion ? 0.92 : zoom
+        DiagramSurface(
+            idlePulse: !hasInteracted && !reduceMotion,
+            pulseOffset: CGSize(width: 0, height: -10)
+        ) {
+            ZStack(alignment: .top) {
+                Canvas { context, size in
+                    draw(context, size: size, zoom: level)
+                }
+                DiagramInsightChip(text: level > 0.55 ? "Crowded endings" : "Sparse field")
+                VStack {
+                    Spacer()
+                    DiagramAffordanceHint(
+                        text: "Drag to explore",
+                        visible: !hasInteracted && !reduceMotion
+                    )
+                    .padding(.bottom, 14)
+                }
+            }
+            .contentShape(Rectangle())
+            .modifier(DiagramDragModifier(enabled: !reduceMotion, gesture: dragGesture))
+        }
+        .onAppear {
+            if reduceMotion {
+                zoom = 0.92
+                dragBase = 0.92
+            }
+        }
+    }
+
+    private var dragGesture: some Gesture {
+        DragGesture(minimumDistance: 3)
+            .onChanged { value in
+                if !hasInteracted { hasInteracted = true }
+                let delta = -Double(value.translation.height) / 160
+                zoom = min(1, max(0, dragBase + delta))
+                if zoom > 0.62 && !denseHaptic {
+                    denseHaptic = true
+                    NativeHaptics.impactLight()
+                } else if zoom <= 0.62 {
+                    denseHaptic = false
+                }
+            }
+            .onEnded { _ in
+                dragBase = zoom
+            }
+    }
+
+    private func draw(_ context: GraphicsContext, size: CGSize, zoom: Double) {
+        let world = worldTransform(in: size, natural: natural)
+        let cx: CGFloat = 140
+        let cy: CGFloat = 132
+        let scale = 1.0 + 0.85 * zoom
+
+        // Soft field oval (glans region)
+        let fieldR: CGFloat = 54 / CGFloat(scale) + 18
+        let field = circlePath(cx: cx, cy: cy, r: fieldR).applying(world)
+        context.fill(field, with: .color(AppColor.diagramPassive.opacity(0.22 + 0.12 * zoom)))
+        context.stroke(field, with: .color(AppColor.diagramPassive.opacity(0.7)), style: StrokeStyle(lineWidth: 1.75))
+
+        // Filaments densify with zoom — deterministic radial pattern
+        let count = 10 + Int(28 * zoom)
+        let bright = 0.25 + 0.75 * zoom
+        for i in 0..<count {
+            let angle = Double(i) * (.pi * 2 / Double(count)) + zoom * 0.35
+            let inner = 6.0 + 4.0 * (1 - zoom)
+            let outer = Double(fieldR) * (0.55 + 0.4 * zoom)
+            let wobble = sin(Double(i) * 1.7) * 4.0
+            var filament = Path()
+            let x0 = Double(cx) + cos(angle) * inner
+            let y0 = Double(cy) + sin(angle) * inner
+            let x1 = Double(cx) + cos(angle) * (outer + wobble)
+            let y1 = Double(cy) + sin(angle) * (outer + wobble)
+            filament.move(to: CGPoint(x: x0, y: y0))
+            filament.addQuadCurve(
+                to: CGPoint(x: x1, y: y1),
+                control: CGPoint(
+                    x: Double(cx) + cos(angle + 0.2) * (outer * 0.55),
+                    y: Double(cy) + sin(angle + 0.2) * (outer * 0.55)
+                )
+            )
+            let screen = filament.applying(world)
+            context.glowStroke(
+                screen,
+                color: AppColor.diagramGlow,
+                lineWidth: 2 + 2.5 * zoom,
+                blur: 3 + 3 * zoom,
+                opacity: 0.2 + 0.55 * bright
+            )
+            context.stroke(
+                screen,
+                with: .color(AppColor.diagramActive.opacity(0.35 + 0.55 * bright)),
+                style: StrokeStyle(lineWidth: 1.25 + CGFloat(zoom), lineCap: .round)
+            )
+        }
+
+        // Core tip
+        let core = circlePath(cx: cx, cy: cy, r: 7 + CGFloat(4 * zoom)).applying(world)
+        context.glowFill(core, color: AppColor.diagramGlow, blur: 8 + 6 * zoom, opacity: 0.35 + 0.4 * zoom)
+        context.fill(core, with: .color(blend(AppColor.diagramPassive, AppColor.diagramActive, 0.45 + 0.55 * zoom)))
+        context.stroke(core, with: .color(AppColor.surface), style: StrokeStyle(lineWidth: 1.25))
+    }
+}
+
+// MARK: - CUV Complex
+
+/// Clitoris, urethra, and anterior wall as one integrated cluster — not a
+/// magic spot. Three toggles; overlap glow strongest when all three are on.
+private struct CUVComplexDiagramView: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var clitoralOn = false
+    @State private var urethralOn = false
+    @State private var anteriorOn = false
+    @State private var triadHaptic = false
+    @State private var hasInteracted = false
+
+    private let natural = CGSize(width: 300, height: 300)
+
+    var body: some View {
+        let c = reduceMotion || clitoralOn
+        let u = reduceMotion || urethralOn
+        let a = reduceMotion || anteriorOn
+        let activeCount = (c ? 1 : 0) + (u ? 1 : 0) + (a ? 1 : 0)
+        DiagramSurface(
+            height: 300,
+            idlePulse: !hasInteracted && !reduceMotion,
+            pulseOffset: CGSize(width: 0, height: -8)
+        ) {
+            ZStack {
+                Canvas { context, size in
+                    draw(context, size: size, clitoral: c, urethral: u, anterior: a)
+                }
+                VStack(spacing: 0) {
+                    DiagramInsightChip(text: insightLabel(count: activeCount))
+                    if !reduceMotion {
+                        HStack(spacing: 8) {
+                            Button("Clitoral") { toggleClitoral() }
+                                .buttonStyle(DiagramChipButtonStyle(active: clitoralOn))
+                            Button("Urethral") { toggleUrethral() }
+                                .buttonStyle(DiagramChipButtonStyle(active: urethralOn))
+                            Button("Anterior") { toggleAnterior() }
+                                .buttonStyle(DiagramChipButtonStyle(active: anteriorOn))
+                        }
+                        .padding(.top, 8)
+                        Spacer()
+                    } else {
+                        Spacer()
+                    }
+                }
+                if !reduceMotion {
+                    DiagramAffordanceHint(text: "Tap to explore", visible: !hasInteracted)
+                }
+            }
+        }
+        .onAppear {
+            if reduceMotion {
+                clitoralOn = true
+                urethralOn = true
+                anteriorOn = true
+            }
+        }
+        .onChange(of: clitoralOn) { _, _ in checkTriadHaptic() }
+        .onChange(of: urethralOn) { _, _ in checkTriadHaptic() }
+        .onChange(of: anteriorOn) { _, _ in checkTriadHaptic() }
+    }
+
+    private func insightLabel(count: Int) -> String {
+        if count >= 3 { return "One cluster" }
+        if count >= 2 { return "Overlap" }
+        if count == 1 { return "One channel" }
+        return "Tap channels"
+    }
+
+    private func toggleClitoral() {
+        if !hasInteracted { hasInteracted = true }
+        clitoralOn.toggle()
+    }
+    private func toggleUrethral() {
+        if !hasInteracted { hasInteracted = true }
+        urethralOn.toggle()
+    }
+    private func toggleAnterior() {
+        if !hasInteracted { hasInteracted = true }
+        anteriorOn.toggle()
+    }
+
+    private func checkTriadHaptic() {
+        let full = clitoralOn && urethralOn && anteriorOn
+        if full && !triadHaptic {
+            triadHaptic = true
+            NativeHaptics.impactLight()
+        } else if !full {
+            triadHaptic = false
+        }
+    }
+
+    private func draw(
+        _ context: GraphicsContext,
+        size: CGSize,
+        clitoral: Bool,
+        urethral: Bool,
+        anterior: Bool
+    ) {
+        let world = worldTransform(in: size, natural: natural)
+        let cT = clitoral ? 1.0 : 0.0
+        let uT = urethral ? 1.0 : 0.0
+        let aT = anterior ? 1.0 : 0.0
+        let overlap = Double((clitoral ? 1 : 0) + (urethral ? 1 : 0) + (anterior ? 1 : 0))
+        let cluster = smoothstep(1.2, 3.0, overlap)
+
+        // Three soft overlapping ovals — abstract cluster, not literal anatomy
+        let clitoralOval = Path(ellipseIn: CGRect(x: 98, y: 88, width: 78, height: 70)).applying(world)
+        let urethralOval = Path(ellipseIn: CGRect(x: 118, y: 118, width: 64, height: 78)).applying(world)
+        let anteriorOval = Path(ellipseIn: CGRect(x: 108, y: 148, width: 84, height: 72)).applying(world)
+
+        context.fill(clitoralOval, with: .color(AppColor.diagramPassive.opacity(0.28 + 0.35 * cT)))
+        context.fill(urethralOval, with: .color(AppColor.diagramPassive.opacity(0.25 + 0.35 * uT)))
+        context.fill(anteriorOval, with: .color(AppColor.diagramPassive.opacity(0.25 + 0.35 * aT)))
+
+        context.stroke(
+            clitoralOval,
+            with: .color(blend(AppColor.diagramPassive, AppColor.diagramActive, cT).opacity(0.7 + 0.3 * cT)),
+            style: StrokeStyle(lineWidth: 2)
+        )
+        context.stroke(
+            urethralOval,
+            with: .color(blend(AppColor.diagramPassive, AppColor.diagramActive, uT).opacity(0.7 + 0.3 * uT)),
+            style: StrokeStyle(lineWidth: 2)
+        )
+        context.stroke(
+            anteriorOval,
+            with: .color(blend(AppColor.diagramPassive, AppColor.diagramActive, aT).opacity(0.7 + 0.3 * aT)),
+            style: StrokeStyle(lineWidth: 2)
+        )
+
+        if cT > 0.5 { context.glowFill(clitoralOval, color: AppColor.diagramGlow, blur: 10, opacity: 0.28) }
+        if uT > 0.5 { context.glowFill(urethralOval, color: AppColor.diagramGlow, blur: 10, opacity: 0.26) }
+        if aT > 0.5 { context.glowFill(anteriorOval, color: AppColor.diagramGlow, blur: 10, opacity: 0.26) }
+
+        // Overlap core — strongest when all three channels lit
+        let core = circlePath(cx: 150, cy: 148, r: 28 + CGFloat(10 * cluster)).applying(world)
+        context.glowFill(core, color: AppColor.diagramGlow, blur: 18 + 10 * cluster, opacity: 0.15 + 0.55 * cluster)
+        context.glowFill(core, color: AppColor.diagramActive, blur: 8, opacity: 0.12 + 0.4 * cluster)
+        if cluster > 0.55 {
+            context.stroke(
+                circlePath(cx: 150, cy: 148, r: 18).applying(world),
+                with: .color(AppColor.diagramActive.opacity(0.55 + 0.35 * cluster)),
+                style: StrokeStyle(lineWidth: 2)
+            )
+        }
+    }
+}
+
+// MARK: - Internal Stimulation
+
+/// Front-wall pressure reaches internal clitoral tissue — not deeper=better.
+/// Drag tilts the contact path toward the anterior/internal bulbs vs deep/dull.
+private struct InternalStimulationDiagramView: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var angleDeg: Double = 8
+    @State private var dragBaseAngle: Double = 8
+    @State private var anteriorHaptic = false
+    @State private var hasInteracted = false
+
+    private let natural = CGSize(width: 300, height: 240)
+    private let pivot = CGPoint(x: 150, y: 132)
+
+    var body: some View {
+        let angle = reduceMotion ? -14.0 : angleDeg
+        let anterior = smoothstep(2, 14, -angle)
+        DiagramSurface(
+            idlePulse: !hasInteracted && !reduceMotion,
+            pulseOffset: CGSize(width: 0, height: 24)
+        ) {
+            ZStack(alignment: .top) {
+                Canvas { context, size in
+                    draw(context, size: size, angleDeg: angle, anterior: anterior)
+                }
+                DiagramInsightChip(text: anterior > 0.45 ? "Anterior path" : "Deep pressure")
+                VStack {
+                    Spacer()
+                    DiagramAffordanceHint(
+                        text: "Drag to explore",
+                        visible: !hasInteracted && !reduceMotion
+                    )
+                    .padding(.bottom, 14)
+                }
+            }
+            .contentShape(Rectangle())
+            .modifier(DiagramDragModifier(enabled: !reduceMotion, gesture: dragGesture))
+        }
+        .onAppear {
+            if reduceMotion {
+                angleDeg = -14
+                dragBaseAngle = -14
+            }
+        }
+    }
+
+    private var dragGesture: some Gesture {
+        DragGesture(minimumDistance: 3)
+            .onChanged { value in
+                if !hasInteracted { hasInteracted = true }
+                let delta = -Double(value.translation.height) / 4.2
+                angleDeg = min(18, max(-18, dragBaseAngle + delta))
+                let engaged = angleDeg < -9
+                if engaged && !anteriorHaptic {
+                    anteriorHaptic = true
+                    NativeHaptics.impactLight()
+                } else if !engaged {
+                    anteriorHaptic = false
+                }
+            }
+            .onEnded { _ in
+                dragBaseAngle = angleDeg
+            }
+    }
+
+    private func draw(_ context: GraphicsContext, size: CGSize, angleDeg: Double, anterior: Double) {
+        let world = worldTransform(in: size, natural: natural)
+
+        // Soft spine guide
+        var spine = Path()
+        spine.move(to: CGPoint(x: 150, y: 40))
+        spine.addQuadCurve(to: CGPoint(x: 150, y: 118), control: CGPoint(x: 148, y: 86))
+        context.stroke(
+            spine.applying(world),
+            with: .color(AppColor.diagramPassive.opacity(0.8)),
+            style: StrokeStyle(lineWidth: 3.5, lineCap: .round)
+        )
+
+        // Pelvis bowl
+        var pelvis = Path()
+        pelvis.move(to: CGPoint(x: 88, y: 120))
+        pelvis.addQuadCurve(to: CGPoint(x: 212, y: 120), control: CGPoint(x: 150, y: 110))
+        pelvis.addQuadCurve(to: CGPoint(x: 196, y: 172), control: CGPoint(x: 218, y: 150))
+        pelvis.addQuadCurve(to: CGPoint(x: 104, y: 172), control: CGPoint(x: 150, y: 200))
+        pelvis.addQuadCurve(to: CGPoint(x: 88, y: 120), control: CGPoint(x: 82, y: 150))
+        pelvis.closeSubpath()
+
+        // Deep / posterior path (dull when anterior engaged)
+        var deep = Path()
+        deep.move(to: CGPoint(x: 150, y: 138))
+        deep.addQuadCurve(to: CGPoint(x: 150, y: 188), control: CGPoint(x: 168, y: 164))
+
+        // Anterior contact path toward internal bulbs
+        var anteriorPath = Path()
+        anteriorPath.move(to: CGPoint(x: 134, y: 140))
+        anteriorPath.addQuadCurve(to: CGPoint(x: 118, y: 168), control: CGPoint(x: 112, y: 148))
+
+        // Internal bulb markers (target tissue)
+        let bulbL = circlePath(cx: 112, cy: 170, r: 10)
+        let bulbR = circlePath(cx: 188, cy: 170, r: 10)
+
+        let rotation = CGAffineTransform(translationX: pivot.x, y: pivot.y)
+            .rotated(by: angleDeg * .pi / 180)
+            .translatedBy(x: -pivot.x, y: -pivot.y)
+
+        let pelvisScreen = pelvis.applying(rotation).applying(world)
+        let deepScreen = deep.applying(rotation).applying(world)
+        let anteriorScreen = anteriorPath.applying(rotation).applying(world)
+        let bulbLScreen = bulbL.applying(rotation).applying(world)
+        let bulbRScreen = bulbR.applying(rotation).applying(world)
+
+        context.fill(pelvisScreen, with: .color(AppColor.surface))
+        context.stroke(
+            pelvisScreen,
+            with: .color(AppColor.diagramPassive.opacity(0.9)),
+            style: StrokeStyle(lineWidth: 2.25, lineCap: .round, lineJoin: .round)
+        )
+
+        // Deep path — fades as anterior engages
+        let deepOpacity = 0.55 * (1 - 0.7 * anterior)
+        context.stroke(
+            deepScreen,
+            with: .color(AppColor.diagramPassive.opacity(deepOpacity)),
+            style: StrokeStyle(lineWidth: 5, lineCap: .round)
+        )
+
+        // Anterior path glow — the teaching insight
+        context.stroke(
+            anteriorScreen,
+            with: .color(AppColor.diagramPassive),
+            style: StrokeStyle(lineWidth: 5, lineCap: .round)
+        )
+        context.glowStroke(
+            anteriorScreen,
+            color: AppColor.diagramGlow,
+            lineWidth: 10 + 10 * anterior,
+            blur: 8 + 4 * anterior,
+            opacity: 0.3 + 0.55 * anterior
+        )
+        context.glowStroke(
+            anteriorScreen,
+            color: AppColor.diagramActive,
+            lineWidth: 4 + 5 * anterior,
+            blur: 4,
+            opacity: anterior
+        )
+
+        // Internal bulbs light when anterior path engages
+        context.fill(bulbLScreen, with: .color(blend(AppColor.diagramPassive, AppColor.diagramActive, anterior).opacity(0.55 + 0.4 * anterior)))
+        context.fill(bulbRScreen, with: .color(AppColor.diagramPassive.opacity(0.35)))
+        if anterior > 0.35 {
+            context.glowFill(bulbLScreen, color: AppColor.diagramGlow, blur: 10, opacity: 0.35 + 0.4 * anterior)
+        }
+
+        let dot = circlePath(cx: pivot.x, cy: pivot.y, r: 4.5).applying(world)
+        context.fill(dot, with: .color(AppColor.diagramPassive.opacity(0.55)))
+        context.stroke(dot, with: .color(AppColor.surface), style: StrokeStyle(lineWidth: 1))
     }
 }
 

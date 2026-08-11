@@ -24,26 +24,71 @@
     "non-concordance": "video",
     "sexual-self-esteem": "static",
     "body-appreciation": "static",
-    "clitoral-structure": "video",
-    "nerve-density": "video",
-    "clitourethrovaginal": "video",
-    "internal-stimulation": "video"
+    "clitoral-structure": "interactive",
+    "nerve-density": "interactive",
+    "clitourethrovaginal": "interactive",
+    "internal-stimulation": "interactive"
   },
   "videoProfiles": {
-    "building": { "tier": "abstract-loop", "priority": "P0" },
-    "pulsing": { "tier": "abstract-loop", "priority": "P0" },
-    "spreading": { "tier": "abstract-loop", "priority": "P1" },
-    "responsive-desire": { "tier": "process-explainer", "priority": "P1" },
-    "spontaneous-desire": { "tier": "embodied-presence", "priority": "P1" },
-    "embodied-presence": { "tier": "embodied-presence", "priority": "P1" },
-    "warmup-window": { "tier": "process-explainer", "priority": "P1" },
-    "non-concordance": { "tier": "process-explainer", "priority": "P1" },
-    "plateauing": { "tier": "process-explainer", "priority": "P2" },
-    "golden-trio": { "tier": "process-explainer", "priority": "P2" },
-    "spectatoring": { "tier": "embodied-presence", "priority": "P2" },
-    "clitoral-structure": { "tier": "scientific-journey", "priority": "P0" },
-    "nerve-density": { "tier": "scientific-journey", "priority": "P0" },
-    "clitourethrovaginal": { "tier": "scientific-journey", "priority": "P1" },
-    "internal-stimulation": { "tier": "scientific-journey", "priority": "P1" }
+    "building": {
+      "tier": "abstract-loop",
+      "priority": "P0"
+    },
+    "pulsing": {
+      "tier": "abstract-loop",
+      "priority": "P0"
+    },
+    "spreading": {
+      "tier": "abstract-loop",
+      "priority": "P1"
+    },
+    "responsive-desire": {
+      "tier": "process-explainer",
+      "priority": "P1"
+    },
+    "spontaneous-desire": {
+      "tier": "embodied-presence",
+      "priority": "P1"
+    },
+    "embodied-presence": {
+      "tier": "embodied-presence",
+      "priority": "P1"
+    },
+    "warmup-window": {
+      "tier": "process-explainer",
+      "priority": "P1"
+    },
+    "non-concordance": {
+      "tier": "process-explainer",
+      "priority": "P1"
+    },
+    "plateauing": {
+      "tier": "process-explainer",
+      "priority": "P2"
+    },
+    "golden-trio": {
+      "tier": "process-explainer",
+      "priority": "P2"
+    },
+    "spectatoring": {
+      "tier": "embodied-presence",
+      "priority": "P2"
+    },
+    "clitoral-structure": {
+      "tier": "scientific-journey",
+      "priority": "P0"
+    },
+    "nerve-density": {
+      "tier": "scientific-journey",
+      "priority": "P0"
+    },
+    "clitourethrovaginal": {
+      "tier": "scientific-journey",
+      "priority": "P1"
+    },
+    "internal-stimulation": {
+      "tier": "scientific-journey",
+      "priority": "P1"
+    }
   }
 }
