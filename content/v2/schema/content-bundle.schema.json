@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://pleasure-vocabulary-builder.local/schema/content-bundle.schema.json",
-  "title": "Pleasure Vocabulary Builder V2 Content Bundle",
+  "title": "Notice & Name V2 Content Bundle",
   "type": "object",
   "additionalProperties": false,
   "required": ["schemaVersion", "bundleId", "contentVersion", "generatedAt", "concepts", "pathways", "media"],

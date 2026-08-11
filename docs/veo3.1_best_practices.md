@@ -2,7 +2,7 @@
 
 **This document is retired as of May 20, 2026.**
 
-Video generation for Pleasure Vocabulary Builder now uses **Gemini Omni** (via Google Flow / Gemini app), not Veo 3.1.
+Video generation for Notice & Name now uses **Gemini Omni** (via Google Flow / Gemini app), not Veo 3.1.
 
 → **Read instead:** [`gemini_omni_best_practices.md`](./gemini_omni_best_practices.md)  
 → **Pipeline:** [`pipelines/VIDEO_GENERATION.md`](./pipelines/VIDEO_GENERATION.md)

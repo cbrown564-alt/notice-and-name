@@ -1,7 +1,7 @@
-# Market Analysis: Pleasure Vocabulary Builder
+# Market Analysis: Notice & Name
 
 ## 1. Executive Summary
-**Pleasure Vocabulary Builder** is a specialized educational tool designed to bridge the "Orgasm Gap" by providing precise language and scientific understanding of female sexual pleasure. Unlike broad sexual wellness apps, it focuses on the power of *naming* concepts (e.g., "Angling," "Rocking") to validate experiences and facilitate communication.
+**Notice & Name** is a specialized educational tool designed to bridge the "Orgasm Gap" by providing precise language and scientific understanding of female sexual pleasure. Unlike broad sexual wellness apps, it focuses on the power of *naming* concepts (e.g., "Angling," "Rocking") to validate experiences and facilitate communication.
 
 ## 2. Core Analysis
 
@@ -9,7 +9,7 @@
 To empower users (primarily women and their partners) with a **vocabulary** and **scientific framework** for pleasure. The app operates on the premise that naming specific techniques and sensations moves them from intuitive/random occurrences to reproducible skills.
 
 ### Core Features
-*   **Pleasure Vocabulary:** A dictionary of actionable techniques (e.g., Angling, Pairing, Shallowing) and sensations (e.g., Building, Spreading).
+*   **Notice & Name:** A dictionary of actionable techniques (e.g., Angling, Pairing, Shallowing) and sensations (e.g., Building, Spreading).
 *   **Science-Based Explainers:** In-depth articles debunking myths and explaining anatomy (e.g., CUV Complex, Nerve Density) and psychology (Spectatoring).
 *   **Research Citations:** Content is heavily anchored in academic studies (Hensel et al., Masters & Johnson), lending high credibility.
 *   **Pathways (implied):** Structured learning journeys to guide users through concepts.
@@ -25,15 +25,15 @@ To empower users (primarily women and their partners) with a **vocabulary** and 
 
 | App | Core Value Prop | Key Features | Format |
 | :--- | :--- | :--- | :--- |
-| **Pleasure Vocab Builder** | **Language & Science** | Vocabulary, Anatomy, Myth-busting | Text + Illustrations |
+| **Notice & Name** | **Language & Science** | Vocabulary, Anatomy, Myth-busting | Text + Illustrations |
 | **OMGyes** | **Technique Demo** | Video demonstrations, touch simulations | Web-based Video |
 | **Ferly** | **Mindful Sex** | Audio guides, CBT, Journaling | Audio App |
 | **Rosy** | **Holistic Health** | Low libido help, connection to doctors | App + Community |
 | **Dipsea / Emjoy** | **Arousal & Mood** | Audio erotica, mood-setting stories | Audio App |
 
 ### Key Differentiators
-*   **vs. OMGyes:** Pleasure Vocab is likely more accessible/portable (app vs. web) and focuses on *conceptual understanding* over explicit video demonstration. It's "theory" to OMGyes' "lab."
-*   **vs. Audio Apps (Dipsea/Ferly):** Pleasure Vocab is educational/reference-based, not mood/entertainment-based. It's for *learning*, not just *feeling*.
+*   **vs. OMGyes:** Notice & Name is likely more accessible/portable (app vs. web) and focuses on *conceptual understanding* over explicit video demonstration. It's "theory" to OMGyes' "lab."
+*   **vs. Audio Apps (Dipsea/Ferly):** Notice & Name is educational/reference-based, not mood/entertainment-based. It's for *learning*, not just *feeling*.
 
 ---
 

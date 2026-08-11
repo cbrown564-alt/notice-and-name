@@ -1,4 +1,4 @@
-// Learning pathways for Pleasure Vocabulary Builder
+// Learning pathways for Notice & Name
 // Structured progressions through related concepts
 
 import { Pathway } from '@/types';

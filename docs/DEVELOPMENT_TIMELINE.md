@@ -1,6 +1,6 @@
-# Pleasure Vocabulary Builder — Development Journey
+# Notice & Name — Development Journey
 
-A chronological narrative of how the Pleasure Vocabulary Builder evolved, focusing on major milestones, feature directions, and design priorities captured in the git history.
+A chronological narrative of how the Notice & Name evolved, focusing on major milestones, feature directions, and design priorities captured in the git history.
 
 ## Timeline
 

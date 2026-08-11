@@ -10,8 +10,8 @@ the legacy 17+ equivalent.
 
 ## App name
 
-**Display:** Pleasure Vocabulary  
-**Subtitle (iOS):** Science-backed pleasure concepts
+**Display:** Notice & Name  
+**Subtitle (iOS):** Notice what you like, name it
 
 ---
 
@@ -23,7 +23,7 @@ Find clearer words for what fits, what does not, and what you may want to say la
 
 ## Full description
 
-Pleasure Vocabulary helps you recognize an experience, learn a useful word for it, decide
+Notice & Name helps you recognize an experience, learn a useful word for it, decide
 whether it fits, and keep language you may want to use later.
 
 **What you get**

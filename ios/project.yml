@@ -30,7 +30,7 @@ targets:
     info:
       path: AppHost/Info.plist
       properties:
-        CFBundleDisplayName: Pleasure Vocabulary
+        CFBundleDisplayName: "Notice & Name"
         CFBundleShortVersionString: "$(MARKETING_VERSION)"
         CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
         LSRequiresIPhoneOS: true

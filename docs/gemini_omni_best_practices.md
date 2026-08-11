@@ -31,7 +31,7 @@ Early demos (I/O 2026, DeepMind, community) include:
 - **Physics** — marble chain-reaction continuous shot.
 - **Complex sequences** — A–Z objects with timed lower-thirds; quantum computing visual metaphor with specified art direction.
 
-For **Pleasure Vocabulary Builder**, we now target **four video profiles** — not only abstract loops. Anatomy and mechanism concepts can use **scientific-journey** motion on the Illustrate slide.
+For **Notice & Name**, we now target **four video profiles** — not only abstract loops. Anatomy and mechanism concepts can use **scientific-journey** motion on the Illustrate slide.
 
 ---
 
