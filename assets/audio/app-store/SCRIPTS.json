@@ -1,0 +1,60 @@
+[
+  {
+    "id": "preview-a-core",
+    "chars": 244,
+    "bytes": 234519,
+    "text": "Notice what you like. Name it. Notice and Name is a private vocabulary for pleasure \u2014 short concepts, clear words, and phrases you can actually say. Everything stays on your phone. No account. No feed. Start free. Unlock once when you're ready.",
+    "path": "/workspace/elevenlabs-phrases/audio/app-store/preview-a-core.mp3"
+  },
+  {
+    "id": "preview-b-privacy",
+    "chars": 256,
+    "bytes": 243296,
+    "text": "Wanting can be hard to name. Notice and Name helps you notice what you feel, find precise language for it, and keep partner-safe phrases for later. It's private by design \u2014 on your device, lockable, yours alone. Download free. Unlock the full library once.",
+    "path": "/workspace/elevenlabs-phrases/audio/app-store/preview-b-privacy.mp3"
+  },
+  {
+    "id": "preview-c-loop",
+    "chars": 202,
+    "bytes": 221562,
+    "text": "Notice. Name. Reflect. Keep. A calm, private app for building a vocabulary of what actually feels good \u2014 not a course, not a feed, not a subscription. Try a free concept. Unlock everything when it fits.",
+    "path": "/workspace/elevenlabs-phrases/audio/app-store/preview-c-loop.mp3"
+  },
+  {
+    "id": "preview-d-extended",
+    "chars": 330,
+    "bytes": 313931,
+    "text": "Most of us were never given good words for pleasure. Notice and Name is a private place to notice what you like and name it clearly \u2014 with short, research-backed concepts and phrases you might say out loud later. No account. No one watching. Just language that fits you. Start free on the App Store. Unlock once \u2014 no subscription.",
+    "path": "/workspace/elevenlabs-phrases/audio/app-store/preview-d-extended.mp3"
+  },
+  {
+    "id": "preview-e-soft-close",
+    "chars": 179,
+    "bytes": 185199,
+    "text": "This is Notice and Name. Notice what you like. Name it. Keep the words that fit. Private. On your phone. Yours alone. Free to begin. Unlock the full library once when you're sure.",
+    "path": "/workspace/elevenlabs-phrases/audio/app-store/preview-e-soft-close.mp3"
+  },
+  {
+    "id": "preview-f-trailer",
+    "chars": 416,
+    "bytes": 420928,
+    "text": "Notice what you like. Name it. Notice and Name helps adults build a private, precise vocabulary for sexual pleasure \u2014 short concepts you can feel, language you can keep, and partner-safe phrases for when you're ready to speak. Everything stays on your device. Lock it. Export it. Delete it. No account, no feed, no subscription treadmill. Start with a free concept. When it feels right, unlock the full library once.",
+    "path": "/workspace/elevenlabs-phrases/audio/app-store/preview-f-trailer.mp3"
+  },
+  {
+    "id": "preview-a-core-alt",
+    "chars": 244,
+    "bytes": 242460,
+    "text": "Notice what you like. Name it. Notice and Name is a private vocabulary for pleasure \u2014 short concepts, clear words, and phrases you can actually say. Everything stays on your phone. No account. No feed. Start free. Unlock once when you're ready.",
+    "alt": true,
+    "path": "/workspace/elevenlabs-phrases/audio/app-store/preview-a-core-alt.mp3"
+  },
+  {
+    "id": "preview-d-extended-alt",
+    "chars": 330,
+    "bytes": 341516,
+    "text": "Most of us were never given good words for pleasure. Notice and Name is a private place to notice what you like and name it clearly \u2014 with short, research-backed concepts and phrases you might say out loud later. No account. No one watching. Just language that fits you. Start free on the App Store. Unlock once \u2014 no subscription.",
+    "alt": true,
+    "path": "/workspace/elevenlabs-phrases/audio/app-store/preview-d-extended-alt.mp3"
+  }
+]

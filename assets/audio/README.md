@@ -17,3 +17,9 @@ Model: eleven_turbo_v2_5
 27 beats across 4 explainers. Scripts: content/v2/audio-scripts/explainers.json
 
 App playback wiring still TODO — assets only for now.
+
+## app-store/
+App Store preview VO variants (Soft Intimate). See SCRIPTS.json for copy.
+
+## sfx/
+Soft UI sound effects (2 variants each): keep, phrase-copied, concept-complete, unlock, app-lock, page-transition, notice-start, reflect-saved.

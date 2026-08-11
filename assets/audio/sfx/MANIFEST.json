@@ -1,0 +1,130 @@
+[
+  {
+    "id": "keep-v1",
+    "effect": "keep",
+    "duration": 0.9,
+    "influence": 0.6,
+    "bytes": 15090,
+    "prompt": "Soft warm UI confirmation chime, gentle glass tone, quiet, minimal, pleasant, high quality app feedback sound, no voice, no reverb wash"
+  },
+  {
+    "id": "keep-v2",
+    "effect": "keep",
+    "duration": 0.9,
+    "influence": 0.35,
+    "bytes": 15090,
+    "prompt": "Soft warm UI confirmation chime, gentle glass tone, quiet, minimal, pleasant, high quality app feedback sound, no voice, no reverb wash"
+  },
+  {
+    "id": "phrase-copied-v1",
+    "effect": "phrase-copied",
+    "duration": 0.7,
+    "influence": 0.6,
+    "bytes": 12164,
+    "prompt": "Very soft subtle UI tick with a tiny warm bell overtone, quiet copy-to-clipboard feedback, minimal, clean, no voice"
+  },
+  {
+    "id": "phrase-copied-v2",
+    "effect": "phrase-copied",
+    "duration": 0.7,
+    "influence": 0.35,
+    "bytes": 12164,
+    "prompt": "Very soft subtle UI tick with a tiny warm bell overtone, quiet copy-to-clipboard feedback, minimal, clean, no voice"
+  },
+  {
+    "id": "concept-complete-v1",
+    "effect": "concept-complete",
+    "duration": 1.2,
+    "influence": 0.6,
+    "bytes": 20106,
+    "prompt": "Soft resolving two-note chime, warm and calm, sense of gentle completion, premium mobile app, quiet, no voice"
+  },
+  {
+    "id": "concept-complete-v2",
+    "effect": "concept-complete",
+    "duration": 1.2,
+    "influence": 0.35,
+    "bytes": 20106,
+    "prompt": "Soft resolving two-note chime, warm and calm, sense of gentle completion, premium mobile app, quiet, no voice"
+  },
+  {
+    "id": "unlock-v1",
+    "effect": "unlock",
+    "duration": 1.4,
+    "influence": 0.6,
+    "bytes": 23031,
+    "prompt": "Soft elegant unlock chime, warm rising tones, calm premium app purchase success, gentle not celebratory, no voice"
+  },
+  {
+    "id": "unlock-v2",
+    "effect": "unlock",
+    "duration": 1.4,
+    "influence": 0.35,
+    "bytes": 23031,
+    "prompt": "Soft elegant unlock chime, warm rising tones, calm premium app purchase success, gentle not celebratory, no voice"
+  },
+  {
+    "id": "app-lock-v1",
+    "effect": "app-lock",
+    "duration": 0.8,
+    "influence": 0.6,
+    "bytes": 13836,
+    "prompt": "Soft muted lock click with a quiet low tone, secure but gentle, minimal UI, no voice"
+  },
+  {
+    "id": "app-lock-v2",
+    "effect": "app-lock",
+    "duration": 0.8,
+    "influence": 0.35,
+    "bytes": 13836,
+    "prompt": "Soft muted lock click with a quiet low tone, secure but gentle, minimal UI, no voice"
+  },
+  {
+    "id": "page-transition-v1",
+    "effect": "page-transition",
+    "duration": 0.6,
+    "influence": 0.6,
+    "bytes": 10493,
+    "prompt": "Soft airy whoosh transition, very quiet, smooth paper-like page turn for calm app, no voice"
+  },
+  {
+    "id": "page-transition-v2",
+    "effect": "page-transition",
+    "duration": 0.6,
+    "influence": 0.35,
+    "bytes": 10493,
+    "prompt": "Soft airy whoosh transition, very quiet, smooth paper-like page turn for calm app, no voice"
+  },
+  {
+    "id": "notice-start-v1",
+    "effect": "notice-start",
+    "duration": 1.0,
+    "influence": 0.6,
+    "bytes": 17180,
+    "prompt": "Soft breathy warm pad swell opening, intimate calm focus cue for meditation-like moment, very gentle, no voice, short"
+  },
+  {
+    "id": "notice-start-v2",
+    "effect": "notice-start",
+    "duration": 1.0,
+    "influence": 0.35,
+    "bytes": 17180,
+    "prompt": "Soft breathy warm pad swell opening, intimate calm focus cue for meditation-like moment, very gentle, no voice, short"
+  },
+  {
+    "id": "reflect-saved-v1",
+    "effect": "reflect-saved",
+    "duration": 0.9,
+    "influence": 0.6,
+    "bytes": 15090,
+    "prompt": "Soft warm double tap chime, quiet journal save feedback, cozy minimal, no voice"
+  },
+  {
+    "id": "reflect-saved-v2",
+    "effect": "reflect-saved",
+    "duration": 0.9,
+    "influence": 0.35,
+    "bytes": 15090,
+    "prompt": "Soft warm double tap chime, quiet journal save feedback, cozy minimal, no voice"
+  }
+]
