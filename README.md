@@ -52,7 +52,7 @@ Open `ios/` in Xcode to run on a simulator or device. See the runbooks below for
 
 | Document | Purpose |
 | --- | --- |
-| [**docs/v2/README.md**](./docs/v2/README.md) | V2 product brief, architecture, content system, and roadmap |
+| [**docs/CONTENT.md**](./docs/CONTENT.md) | Content pipeline: edit surfaces vs shipping v2 bundle |
 | [**ios/TESTFLIGHT_RUNBOOK.md**](./ios/TESTFLIGHT_RUNBOOK.md) | Xcode archive and TestFlight distribution |
 | [**ios/DEVICE_QA.md**](./ios/DEVICE_QA.md) | On-device QA checklist before release |
 | [**docs/README.md**](./docs/README.md) | Full documentation index |

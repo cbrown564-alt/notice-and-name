@@ -29,10 +29,11 @@
 - Media: 22 illustrations/thumbnails, 4 videos, 5 native diagrams
 - No StoreKit yet
 
-## Dual eras & rename leftovers
+## Content truth & rename leftovers
 
-- Dual content eras still in repo: Expo-shaped `data/vocabulary.ts` + `content/v2/copy` + generator; shipping truth is the v2 native bundle
-- Repo litter: `.expo/`, `dist/`, `ios-native/`, `components/` (Phase A strips when touching)
+- **Shipping truth:** v2 full bundle in iOS Resources (see `docs/CONTENT.md`)
+- **Edit truth for generation:** Expo-shaped `data/*.ts` + `content/v2/copy` + `editorial-review.json` + `assets/` — still required by the generator; not dead Expo runtime
+- Repo litter dirs are gitignored; stripped when touching
 - Xcode targets/modules still `PleasureVocabulary*`
 - On-disk DB dir still `PleasureVocabulary`
 

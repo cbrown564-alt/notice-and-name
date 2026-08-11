@@ -1,29 +1,31 @@
 # V2 Content Package
 
-This folder contains the early content contract for the premium native rebuild.
+Native shipping contract for Notice & Name.
 
-The SwiftUI app should consume generated bundles from `bundles/`. Source drafts,
-validation schemas, and migration tools can live next to them until the content system
-outgrows this repository.
+The SwiftUI app consumes the generated full bundle only. See docs/CONTENT.md
+for the full pipeline, edit surfaces, and what not to hand-edit.
 
-Research explainers (long-form science articles) ship in the v2 bundle under
-`explainers` and appear in the native app's Explore tab.
-
-## Current Files
+## Current files
 
 | Path | Purpose |
 | --- | --- |
-| `schema/content-bundle.schema.json` | JSON Schema for v2 content bundles |
-| `bundles/golden-path.bundle.json` | First five-concept prototype bundle |
+| schema/content-bundle.schema.json | JSON Schema for v2 content bundles |
+| bundles/v2-full.bundle.json | Generated shipping bundle (also copied into ios Resources) |
+| bundles/golden-path.bundle.json | Small prototype / contract fixture |
+| copy/concept-copy.json | Hand overrides (recognize / reflection / phrases) |
+| editorial-review.json | Per-concept reviewStatus + citationAudit |
 
-## Validation
+## Commands
 
-```bash
-npm run validate-v2-bundle
-```
+Use package.json scripts:
 
-## Migration Note
+- generate-v2-full-bundle
+- validate-v2-bundle:full
+- lint-v2-content
+- sync-ios-media
 
-`data/explainers.ts` remains the editorial source for research explainers until content
-moves fully into `content/v2/`. Regenerate the bundle with `npm run generate-v2-full-bundle`.
-Do not delete or rewrite `data/vocabulary.ts` as part of v2 setup.
+## Source of truth
+
+- Shipping truth: ios Resources v2-full.bundle.json (+ synced media)
+- Edit truth for generation: data TS + content/v2/copy + editorial-review.json + assets/
+- Do not delete data/vocabulary.ts, pathways.ts, or explainers.ts; the generator still reads them.
