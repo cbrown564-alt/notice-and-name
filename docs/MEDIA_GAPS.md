@@ -1,6 +1,6 @@
 # Notice & Name — Media Gaps
 
-**Date:** 2026-08-11
+**Date:** 2026-08-12
 
 **Scope:** Shipping content in `content/v2/bundles/v2-full.bundle.json` (22 approved concepts).
 **Goal:** Rank the worst See-page gaps to fix first — not full video coverage.
@@ -58,9 +58,9 @@ Implication: shipping a bad plate is worse than shipping nothing — the app sho
 - LAUNCH_GAPS / PLAN: Phase B still lists worst media gaps only; full video coverage is later / good-enough.
 - MEDIA_POLICY (archived): Technique needs diagram+image; building / spreading / responsive-desire need image+video; else image-required. Current bundle meets required kinds.
 - media-review-decisions (2026-07-01): 9 plates marked regen; video masters deleted for angling/rocking (spreading historically delete but wired MP4 still ships); keep-masters for building / responsive-desire / shallowing originals.
-- media-regen-queue remaining plate regen: pulsing, spontaneous-desire, spreading (plus optional thumbs: angling / body-appreciation / clitourethrovaginal).
-- **Batch 1 plates generated 2026-08-11 (my-generator):** spectatoring, golden-trio, plateauing, sexual-self-esteem, warmup-window, embodied-presence — illustration + thumbnail each. Synced to iOS. **Pending taste review vs GPT-Image 2 tomorrow**; old PNGs archived under `assets/images/concepts/_archive/2026-08-11-batch1-old/`.
-- Thumbnail-only regen (plates kept): angling, body-appreciation, clitourethrovaginal.
+- media-regen-queue remaining plate regen: pulsing, spreading (spontaneous-desire + optional thumbs angling / body-appreciation / clitourethrovaginal landed in batch2; still pending taste).
+- **Batch 1 plates generated 2026-08-11 (my-generator):** spectatoring, golden-trio, plateauing, sexual-self-esteem, warmup-window, embodied-presence — illustration + thumbnail each. Synced to iOS. **Pending taste review vs GPT-Image 2**; old PNGs archived under `assets/images/concepts/_archive/2026-08-11-batch1-old/`.
+- **Batch 2 landed 2026-08-12:** spontaneous-desire illustration + thumb (my-generator; pending taste vs GPT-Image 2); angling / body-appreciation / clitourethrovaginal thumbs regenerated from kept plates (512 crop). Synced to iOS. Old files under `assets/images/concepts/_archive/2026-08-12-batch2-old/`.
 - Angling illustration: registry promotionDecision rejected — in-image titles/labels (See uses native diagram; fallback/poster problem).
 - Media sprint (Aug 2026): Gemini video handoff closed; building candidate in staging unpromoted; clitoral-structure + nerve-density video jobs unfulfilled. Staging is not shipping.
 
@@ -82,15 +82,15 @@ Priority = how much it hurts the See moment (sole visual x wrong metaphor / styl
 | 4 | sexual-self-esteem | **Generated (my-generator) — pending taste review** (was: glowing heart/lungs torso) | Sole See visual; generic wellness anatomy, not belonging in your own desire. |
 | 5 | warmup-window | **Generated (my-generator) — pending taste review** (was: explicit genital engraving) | Sole See visual; concept is timing before touch gets specific, but plate is graphic anatomy — App Store / model-regen friction and off-message. |
 | 6 | embodied-presence | **Generated (my-generator) — pending taste review** (was: golden fluid pouring through pelvis) | Sole See visual; muddled vs spectatoring pair; ethereal drift from Scientific Warmth anchors. |
-| 7 | spontaneous-desire | Weak plate (regen); spore/emergence abstract | Sole See visual; pretty but weak teaching vs responsive-desire plate/video. |
+| 7 | spontaneous-desire | **Generated (my-generator) — pending taste review** (was: spore/emergence abstract) | Sole See visual; pretty but weak teaching vs responsive-desire plate/video. |
 
 ### P1 — next (cards / fallbacks more than primary See)
 
 | Concept | Gap | Why |
 |---------|-----|-----|
-| angling | Illustration has embedded labels; thumb weak (~24 KB) | See uses native diagram (OK). Plate is reduce-motion/poster fallback; thumb weakens Vocabulary cards. |
-| body-appreciation | Thumbnail-only regen; tiny thumb (~16 KB) | Plate kept; library card is the gap. |
-| clitourethrovaginal | Thumbnail-only regen; tiny thumb (~17 KB) | Anatomy card looks unfinished vs neighbors. |
+| angling | Illustration has embedded labels; **thumb regenerated 2026-08-12** (512 crop from kept plate; was ~24 KB) | See uses native diagram (OK). Plate is still reduce-motion/poster fallback with in-image labels. |
+| body-appreciation | **Thumb regenerated 2026-08-12** (512 crop from kept plate; was ~16 KB) | Plate kept; library card gap closed pending device QA. |
+| clitourethrovaginal | **Thumb regenerated 2026-08-12** (512 crop from kept plate; was ~17 KB) | Plate kept; anatomy card thumb refreshed pending device QA. |
 | pulsing, spreading | Plates marked regen | Primary See is video (OK); plates matter for Reduce Motion + poster. Prefer still regen. |
 | clitoral-structure, nerve-density | Optional video missing (Gemini jobs failed) | Kept plates OK; video optional — do not block launch. |
 | Orphan videos/originals/shallowing.mp4 | Not synced | Intentional: See uses native diagram. |
@@ -107,7 +107,7 @@ Priority = how much it hurts the See moment (sole visual x wrong metaphor / styl
 
 Prefer stills. Required videos already ship.
 
-**Status 2026-08-11:** Batch 1 **generated** via my-generator (6 plates + thumbs). Assets live under `assets/images/concepts/{illustrations,thumbnails}/`; iOS synced (`node scripts/sync-ios-media.js --check` OK). Old files in `_archive/2026-08-11-batch1-old/`. **Pending Conor taste review vs GPT-Image 2 tomorrow** before treating as final.
+**Status 2026-08-12:** Batch 1 **generated** via my-generator (6 plates + thumbs). Batch 2 **landed**: spontaneous-desire plate + thumb (my-generator) and thumbnail-only regen for angling / body-appreciation / clitourethrovaginal (512 crop from kept plates). Assets under `assets/images/concepts/{illustrations,thumbnails}/`; iOS synced (`node scripts/sync-ios-media.js --check` OK). Old batch2 files in `_archive/2026-08-12-batch2-old/`. **Pending Conor taste review vs GPT-Image 2** before treating batch1/batch2 plates as final.
 
 Batch targets (illustration + thumbnail each):
 
@@ -120,11 +120,11 @@ Batch targets (illustration + thumbnail each):
 | 5 | warmup-window illustration (+ thumb) | responsive-desire.png | Warmth gathering before touch focuses — abstract timing metaphor. |
 | 6 | embodied-presence illustration (+ thumb) | non-concordance.png | Settled fullness / quiet commentary; pair-contrast with new spectatoring. |
 
-Optional 7th/8th: spontaneous-desire plate (+ thumb); then thumbnail-only pass for angling / body-appreciation / clitourethrovaginal.
+Optional 7th/8th: ~~spontaneous-desire plate (+ thumb); then thumbnail-only pass for angling / body-appreciation / clitourethrovaginal~~ — **done in batch2 (2026-08-12)**.
 
 Defer: new anatomy videos; regenerating keep anchors; promoting staging media-sprint.
 
-After delivery: ~~replace illustration/thumbnail PNGs, sync-ios-media~~ (done for batch1) — still: compress-assets if needed, registry sync, device QA, taste review vs GPT-Image 2.
+After delivery: ~~replace illustration/thumbnail PNGs, sync-ios-media~~ (done for batch1 + batch2) — still: compress-assets if needed, registry sync, device QA, taste review vs GPT-Image 2.
 
 ---
 
@@ -192,6 +192,6 @@ See = ILLUSTRATION (keep)   non-concordance body-appreciation
                             clitourethrovaginal internal-stimulation
 See = ILLUSTRATION (batch1 generated, pending taste)  spectatoring golden-trio plateauing
                             sexual-self-esteem warmup-window embodied-presence
-See = ILLUSTRATION (regen)  spontaneous-desire
+See = ILLUSTRATION (batch2 generated, pending taste)  spontaneous-desire
 ```
 

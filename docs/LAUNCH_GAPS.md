@@ -10,7 +10,7 @@ Ordered by remaining plan phases. Updated 2026-08-11 evening.
 - [x] Soft UI SFX + Settings: Sound effects / Voice playback
 - [ ] Device QA on real hardware (Today / Vocabulary / Explore / Journal / Settings)
 - [ ] Export UX (JSON exists; share sheet / Files discoverability)
-- [~] Worst media gaps (prefer abstract/educational stills & video — Gemini Omni / GPT-Image 2) — batch1 stills generated (my-generator); taste review pending
+- [~] Worst media gaps (prefer abstract/educational stills & video — Gemini Omni / GPT-Image 2) — batch1 stills + batch2 spontaneous-desire + 3 thumbs landed (my-generator / 512 crop); taste review pending
 - [x] UI label polish (Recognize→Notice, Field Note vs Reflect)
 - [x] Interactive diagrams — **22/22 ship**, pending device QA ([`INTERACTIVES.md`](./INTERACTIVES.md))
 

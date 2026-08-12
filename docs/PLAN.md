@@ -27,7 +27,7 @@ Good-enough / later: Today cleverness, pathway polish, full video coverage, modu
 - [x] Wire audio into iOS (sync, playback, Settings toggles)
 - [ ] Device QA (current + small phone) — Conor
 - [ ] Export via share sheet / Files
-- [~] Fix worst media gaps only (Gemini Omni video / GPT-Image 2 stills; abstract/educational to clear blockers) — **batch1 6 plates+thumbs generated (my-generator), pending taste vs GPT-Image 2**
+- [~] Fix worst media gaps only (Gemini Omni video / GPT-Image 2 stills; abstract/educational to clear blockers) — **batch1 6 plates+thumbs + batch2 spontaneous-desire plate/thumb + 3 thumbs (my-generator / 512 crop), pending taste vs GPT-Image 2**
 - [x] Cross-cutting UI polish (Recognize→Notice labels, Field Note vs Reflect) — from editorial audit
 - [x] Interactive diagrams for all 22 concepts — **22/22 ship**, pending device QA ([`INTERACTIVES.md`](./INTERACTIVES.md); Phase B track)
 
