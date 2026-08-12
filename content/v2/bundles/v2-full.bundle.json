@@ -16,7 +16,7 @@
           "id": "angling-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Ever tilted your hips mid-way and felt the whole thing land differently?"
+          "body": "A small tilt can make the whole thing land differently."
         },
         {
           "id": "angling-definition",
@@ -35,7 +35,7 @@
           "id": "angling-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Hensel et al. (2021) found angling widely reported. Naming a tiny pelvic shift helps you catch it in the moment and repeat what works — instead of hoping “that felt good last time” shows up again.",
+          "body": "A tiny pelvic shift can change where pressure lands. Hensel et al. (2021) found angling widely reported; giving that shift a name helps you catch and repeat what works instead of hoping it happens again.",
           "citationIds": [
             "angling-source-1"
           ]
@@ -50,7 +50,7 @@
         {
           "id": "angling-phrase",
           "type": "phrase",
-          "title": "A Phrase To Keep",
+          "title": "Keep",
           "body": "A few degrees changes everything for me — the angle matters more than I used to admit."
         }
       ],
@@ -84,7 +84,7 @@
           "id": "angling-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to notice which small tilts actually change the feeling — instead of hoping I stumble into one.",
+          "body": "I'd like to notice which small tilts actually change the feeling — instead of hoping I stumble into one.",
           "tone": "curious"
         },
         {
@@ -120,7 +120,7 @@
           "id": "rocking-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Ever stayed pressed close and ground in small circles — and felt that hold better than thrusting in and out?"
+          "body": "Staying pressed close can hold a feeling that thrusting loses."
         },
         {
           "id": "rocking-definition",
@@ -139,7 +139,7 @@
           "id": "rocking-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Most women need some form of clitoral stimulation for orgasm; penetration alone often breaks external contact with each thrust. Rocking keeps bodies close so that pressure can stay continuous (Hensel et al., 2021).",
+          "body": "If steady external contact matters to your pleasure, pulling apart with each thrust can interrupt it. Rocking keeps bodies close so pressure can stay continuous; Hensel et al. (2021) identified it as one named way people do that.",
           "citationIds": [
             "rocking-source-1"
           ]
@@ -154,7 +154,7 @@
         {
           "id": "rocking-phrase",
           "type": "phrase",
-          "title": "A Phrase To Keep",
+          "title": "Keep",
           "body": "Steady contact does more for me than big movement — closeness over distance."
         }
       ],
@@ -224,26 +224,26 @@
           "id": "shallowing-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Noticed that right at the entrance can feel more alive than going deep — and that lingering there is the point?"
+          "body": "Right at the entrance can feel more alive than going deep; lingering there can be the point."
         },
         {
           "id": "shallowing-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Shallowing is focusing touch at the vaginal entrance and the first inch or two inside—not treating depth as the goal."
+          "body": "Shallowing means making the entrance and first inch or two the focus—not treating depth as the goal."
         },
         {
           "id": "shallowing-media",
           "type": "media",
           "title": "See It",
-          "body": "Nerve-rich entrance — shallow contact as the destination",
+          "body": "The entrance — shallow contact as the destination",
           "mediaId": "shallowing-diagram"
         },
         {
           "id": "shallowing-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "The vaginal entrance is densely innervated. Hensel et al. (2021) found shallowing widely reported; many said lingering there made later touch feel better — anatomy and preference, not “just teasing.”",
+          "body": "The entrance can be the most responsive part for you, and staying there can make later touch feel better. Hensel et al. (2021) found shallowing widely reported; it is a preference and a point of pleasure, not “just teasing.”",
           "citationIds": [
             "shallowing-source-1"
           ]
@@ -258,7 +258,7 @@
         {
           "id": "shallowing-phrase",
           "type": "phrase",
-          "title": "A Phrase To Keep",
+          "title": "Keep",
           "body": "The entrance is where I'm most sensitive — shallow isn't a warm-up, it's the good part."
         }
       ],
@@ -291,7 +291,7 @@
           "id": "shallowing-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I'd like to see how long we can linger right at the edge before moving on.",
+          "body": "What happens when we linger right at the edge before moving on?",
           "tone": "curious"
         },
         {
@@ -327,13 +327,13 @@
           "id": "pairing-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Found that penetration alone doesn't quite get you there, but adding clitoral touch changes everything?"
+          "body": "Penetration alone may not be enough; adding clitoral touch can change the whole experience."
         },
         {
           "id": "pairing-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Pairing is combining penetration with clitoral touch—your hand, a partner's, a toy, or a position that keeps outside contact alive."
+          "body": "Pairing means keeping clitoral touch alongside penetration—by hand, toy, partner, or position."
         },
         {
           "id": "pairing-media",
@@ -362,7 +362,7 @@
         {
           "id": "pairing-phrase",
           "type": "phrase",
-          "title": "A Phrase To Keep",
+          "title": "Keep",
           "body": "Penetration plus clitoral touch is what actually works for me — together, not either-or."
         }
       ],
@@ -397,7 +397,7 @@
           "id": "pairing-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to notice the rhythm where the inside and outside touch start working with each other.",
+          "body": "Notice the rhythm where inside and outside touch start working with each other.",
           "tone": "curious"
         },
         {
@@ -439,7 +439,7 @@
           "id": "building-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Felt arousal start as barely anything — a little warmth — then slowly grow into something undeniable?"
+          "body": "Arousal can start as barely anything — a little warmth — then slowly become undeniable."
         },
         {
           "id": "building-definition",
@@ -458,7 +458,7 @@
           "id": "building-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Sexual response models describe an arousal-building phase before plateau or orgasm (Masters & Johnson; Basson, 2000). Leaving sensation room to accumulate — instead of chasing the peak — often lands as a fuller climb.",
+          "body": "Arousal can gather in stages: a little warmth, then more focus and intensity. Sexual response models describe this building phase (Masters & Johnson; Basson, 2000); leaving it room to accumulate can make the climb itself feel fuller.",
           "citationIds": [
             "building-source-1",
             "building-source-2"
@@ -474,7 +474,7 @@
         {
           "id": "building-phrase",
           "type": "phrase",
-          "title": "A Phrase To Keep",
+          "title": "Keep",
           "body": "I get the most when I let it build slowly — rushing flattens it for me."
         }
       ],
@@ -509,7 +509,7 @@
           "id": "building-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to see how high the build can go if we just don't rush it.",
+          "body": "What changes when the build has room to rise without being rushed?",
           "tone": "curious"
         },
         {
@@ -552,7 +552,7 @@
           "id": "plateauing-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Reached a point where arousal just holds — steady, not fading, not climbing — like hovering?"
+          "body": "Sometimes arousal just holds — steady, not fading, not climbing — like hovering."
         },
         {
           "id": "plateauing-definition",
@@ -571,7 +571,7 @@
           "id": "plateauing-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Sexual response models name a plateau phase — high arousal held without immediate climax (Masters & Johnson). Catching the hover lets you choose: stay with it, or change what you're doing if you want the climb again.",
+          "body": "High arousal can hold steady without meaning anything has gone wrong. Sexual response models call this a plateau phase (Masters & Johnson); you can stay with the hover or change what you are doing if you want movement again.",
           "citationIds": [
             "plateauing-source-1"
           ]
@@ -586,7 +586,7 @@
         {
           "id": "plateauing-phrase",
           "type": "phrase",
-          "title": "A Phrase To Keep",
+          "title": "Keep",
           "body": "That steady hover is its own kind of good — I don't always need it to tip over."
         }
       ],
@@ -649,14 +649,14 @@
       "name": "Edging",
       "category": "sensation",
       "reviewStatus": "approved",
-      "definition": "Intentionally approaching the edge of orgasm, then easing back before it happens - often repeated multiple times.",
+      "definition": "Intentionally approaching the edge of orgasm, then easing back before it happens — often repeated multiple times.",
       "summary": "Edging is bringing yourself (or being brought) close to orgasm, then deliberately pausing or slowing before you cross — often more than once.",
       "blocks": [
         {
           "id": "edging-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Ever get almost there, ease off on purpose, then climb again — and found the release hit harder for the wait?"
+          "body": "Getting close, easing off, then climbing again can change how the release feels."
         },
         {
           "id": "edging-definition",
@@ -690,7 +690,7 @@
         {
           "id": "edging-phrase",
           "type": "phrase",
-          "title": "A Phrase To Keep",
+          "title": "Keep",
           "body": "The pause is the point for me — I'd rather draw the climb out than rush the top."
         }
       ],
@@ -761,7 +761,7 @@
           "id": "spreading-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Felt pleasure leave the spot you were touching — warmth or tingling traveling through the rest of you?"
+          "body": "Pleasure can leave the place you are touching — warmth or tingling traveling through the rest of you."
         },
         {
           "id": "spreading-definition",
@@ -780,7 +780,7 @@
           "id": "spreading-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Embodied sexuality research links attention to whole-body sensation with more satisfying experiences. Spreading is one pattern people name when arousal feels less pinned to a single spot and more free to travel.",
+          "body": "Sometimes pleasure stops feeling pinned to one contact point and starts moving through the rest of you. Research on embodied sexuality links attention to whole-body sensation with more satisfying experiences; spreading is one way people describe that movement.",
           "citationIds": [
             "spreading-source-1",
             "spreading-source-2"
@@ -796,7 +796,7 @@
         {
           "id": "spreading-phrase",
           "type": "phrase",
-          "title": "A Phrase To Keep",
+          "title": "Keep",
           "body": "When I stop chasing one spot, the feeling spreads through the rest of me — that's what I'm after."
         }
       ],
@@ -868,13 +868,13 @@
       "category": "sensation",
       "reviewStatus": "approved",
       "definition": "A rhythmic, wave-like quality in high arousal or orgasm — beating or throbbing rather than flat.",
-      "summary": "Pulsing is pleasure with a beat — throbbing, wave-like, not a flat steady hum. It shows up clearest in orgasm, when pelvic muscles contract in rhythm, but many people feel a pulse earlier in high arousal too.",
+      "summary": "Pulsing is pleasure with a beat — throbbing, wave-like, not a flat steady hum. You may notice it during high arousal or orgasm, and it may invite touch that matches, holds, or plays against the rhythm.",
       "blocks": [
         {
           "id": "pulsing-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Caught a throb or wave-beat in high arousal — sensation with its own tempo, not a flat hum?"
+          "body": "High arousal can bring a throb or wave-beat — sensation with its own tempo."
         },
         {
           "id": "pulsing-definition",
@@ -893,7 +893,7 @@
           "id": "pulsing-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Physiology studies describe rhythmic pelvic muscle contractions during orgasm, often about once per second (Meston & Buss, 2009). Many people also feel a pulse earlier in arousal—and some prefer touch that matches or plays against that tempo.",
+          "body": "A pulse can give pleasure its own tempo. Physiology studies describe rhythmic pelvic muscle contractions during orgasm, often about once per second (Meston & Buss, 2009); some people feel a similar rhythm earlier and like touch that meets it or moves differently.",
           "citationIds": [
             "pulsing-source-1",
             "pulsing-source-2"
@@ -909,7 +909,7 @@
         {
           "id": "pulsing-phrase",
           "type": "phrase",
-          "title": "A Phrase To Keep",
+          "title": "Keep",
           "body": "There's a rhythm my body wants — when touch matches that beat, it's a different level."
         }
       ],
@@ -943,7 +943,7 @@
           "id": "pulsing-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to notice the tempo my body already has — and what happens when touch meets it.",
+          "body": "Notice the tempo your body already has — and what happens when touch meets it.",
           "tone": "curious"
         },
         {
@@ -986,13 +986,13 @@
           "id": "warmup-window-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Ever notice genital touch feels muted until you've had unhurried time first — then suddenly it lands?"
+          "body": "Genital touch can feel muted until you've had unhurried time first — then suddenly it lands."
         },
         {
           "id": "warmup-window-definition",
           "type": "definition",
           "title": "Name",
-          "body": "The warm-up window is how long many bodies need before genital-focused touch feels best—often twenty unhurried minutes or more of whole-body contact."
+          "body": "The warm-up window is the time before genital-focused touch feels best—often twenty unhurried minutes or more of whole-body contact."
         },
         {
           "id": "warmup-window-media",
@@ -1021,7 +1021,7 @@
         {
           "id": "warmup-window-phrase",
           "type": "phrase",
-          "title": "A Phrase To Keep",
+          "title": "Keep",
           "body": "I need real time to warm up before anything genital feels good — that's just my timing."
         }
       ],
@@ -1055,7 +1055,7 @@
           "id": "warmup-window-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to notice what actually warms me before the rest feels right.",
+          "body": "Notice what actually warms you before the rest feels right.",
           "tone": "curious"
         },
         {
@@ -1097,7 +1097,7 @@
           "id": "responsive-desire-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Notice you don't get many out-of-the-blue urges — but once things get going, you're all in?"
+          "body": "Wanting does not always arrive first; sometimes it wakes once things get going."
         },
         {
           "id": "responsive-desire-definition",
@@ -1132,7 +1132,7 @@
         {
           "id": "responsive-desire-phrase",
           "type": "phrase",
-          "title": "A Phrase To Keep",
+          "title": "Keep",
           "body": "My wanting usually shows up after we start, not before — that's how I'm wired, not something to fix."
         }
       ],
@@ -1166,7 +1166,7 @@
           "id": "responsive-desire-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to notice what gets me from not-thinking-about-it to yes — the on-ramp, not a spark I have to force.",
+          "body": "Notice what gets you from not-thinking-about-it to yes — the on-ramp, not a spark you have to force.",
           "tone": "curious"
         },
         {
@@ -1209,7 +1209,7 @@
           "id": "spontaneous-desire-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Ever get hit with wanting out of nowhere — mid-commute, mid-dish, no warm-up scene required?"
+          "body": "Wanting can arrive out of nowhere — mid-commute, mid-dish, with no warm-up scene required."
         },
         {
           "id": "spontaneous-desire-definition",
@@ -1244,7 +1244,7 @@
         {
           "id": "spontaneous-desire-phrase",
           "type": "phrase",
-          "title": "A Phrase To Keep",
+          "title": "Keep",
           "body": "When wanting shows up out of nowhere, I get to treat it as real information — not something I have to ignore or obey."
         }
       ],
@@ -1277,7 +1277,7 @@
           "id": "spontaneous-desire-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to notice when those sudden urges show up for me — and when they don't.",
+          "body": "Notice when those sudden urges show up — and when they don't.",
           "tone": "curious"
         },
         {
@@ -1312,20 +1312,20 @@
       "name": "Golden Trio",
       "category": "timing",
       "reviewStatus": "approved",
-      "definition": "Combining intercourse with manual and oral stimulation in the same encounter — a pattern where variety often serves pleasure better than one act alone.",
-      "summary": "The Golden Trio names a combination that shows up often in satisfying encounters: vaginal intercourse plus manual stimulation plus oral sex in the same session — not necessarily all at once.",
+      "definition": "A pattern where more than one kind of touch works together in the same encounter — especially when clitoral touch is part of the mix.",
+      "summary": "Sometimes pleasure is built from more than one kind of touch. For some people, hands, mouth, and penetration work together in the same encounter — not necessarily all at once.",
       "blocks": [
         {
           "id": "golden-trio-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Ever noticed one kind of touch alone rarely gets you there — but layering hands, mouth, and penetration finally does?"
+          "body": "One kind of touch alone may not be the whole story; layering hands, mouth, and penetration can change things."
         },
         {
           "id": "golden-trio-definition",
           "type": "definition",
           "title": "Name",
-          "body": "The golden trio is intercourse plus manual and oral stimulation in the same encounter—not a checklist, just a pattern where variety (especially clitoral touch) tends to show up."
+          "body": "The golden trio is a pattern of combining intercourse, manual, and oral stimulation—not a checklist, just one way variety can work."
         },
         {
           "id": "golden-trio-media",
@@ -1338,7 +1338,7 @@
           "id": "golden-trio-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Frederick et al. (2018) found that women who received intercourse, manual genital stimulation, and oral sex in the same encounter reported orgasm more often than with intercourse alone. The takeaway is statistical, not prescriptive: variety and clitoral involvement are common in high-satisfaction reports.",
+          "body": "One kind of touch is not always the whole story. In reports studied by Frederick et al. (2018), women who experienced intercourse alongside manual genital stimulation and oral sex reported orgasm more often than those reporting intercourse alone. That describes a pattern, not a recipe: choose the mix that actually feels good.",
           "citationIds": [
             "golden-trio-source-1"
           ]
@@ -1353,7 +1353,7 @@
         {
           "id": "golden-trio-phrase",
           "type": "phrase",
-          "title": "A Phrase To Keep",
+          "title": "Keep",
           "body": "Variety is what works for me — one kind of touch alone rarely gets me all the way."
         }
       ],
@@ -1423,7 +1423,7 @@
           "id": "spectatoring-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Ever caught yourself watching yourself during sex — how you look, how long you're taking, what they're thinking?"
+          "body": "Sometimes you start watching yourself during sex — how you look, how long you're taking, what they're thinking."
         },
         {
           "id": "spectatoring-definition",
@@ -1442,7 +1442,7 @@
           "id": "spectatoring-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Masters and Johnson named spectatoring as a barrier to enjoyment; later work links self-focused attention during sex with lower arousal and satisfaction (Barlow, 1986). Coming back to one concrete sensation is often more useful than trying to think your way into presence (Brotto, 2018).",
+          "body": "When attention turns into a live review of your body or performance, sensation has less room. Masters and Johnson named spectatoring as a barrier to enjoyment; later work links self-focused attention with lower arousal and satisfaction (Barlow, 1986). Returning to one concrete sensation can help (Brotto, 2018).",
           "citationIds": [
             "spectatoring-source-1",
             "spectatoring-source-2"
@@ -1458,7 +1458,7 @@
         {
           "id": "spectatoring-phrase",
           "type": "phrase",
-          "title": "A Phrase To Keep",
+          "title": "Keep",
           "body": "When I'm watching myself instead of feeling, the sex goes flat — I want the sensation back, not a better performance."
         }
       ],
@@ -1492,7 +1492,7 @@
           "id": "spectatoring-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to notice what knocks me into watching mode — and what lets me drop back into feeling.",
+          "body": "Notice what knocks you into watching mode — and what lets you drop back into feeling.",
           "tone": "curious"
         },
         {
@@ -1534,7 +1534,7 @@
           "id": "embodied-presence-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Ever been so deep in a touch that the commentary cut out — just heat, pressure, breath?"
+          "body": "There are moments when the commentary cuts out — just heat, pressure, breath."
         },
         {
           "id": "embodied-presence-definition",
@@ -1569,7 +1569,7 @@
         {
           "id": "embodied-presence-phrase",
           "type": "phrase",
-          "title": "A Phrase To Keep",
+          "title": "Keep",
           "body": "When I drop fully into sensation, that's the best of it — I want to protect that, not perform."
         }
       ],
@@ -1603,7 +1603,7 @@
           "id": "embodied-presence-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to notice what keeps me in my body — and what knocks me back into my head.",
+          "body": "Notice what keeps you in your body — and what knocks you back into your head.",
           "tone": "curious"
         },
         {
@@ -1680,7 +1680,7 @@
         {
           "id": "non-concordance-phrase",
           "type": "phrase",
-          "title": "A Phrase To Keep",
+          "title": "Keep",
           "body": "What I feel matters more than what my body's doing — wetness isn't the same as wanting, for me."
         }
       ],
@@ -1714,7 +1714,7 @@
           "id": "non-concordance-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to notice the difference between physical signs and what I actually want.",
+          "body": "Notice the difference between physical signs and what you actually want.",
           "tone": "curious"
         },
         {
@@ -1768,7 +1768,7 @@
           "id": "sexual-self-esteem-media",
           "type": "media",
           "title": "See It",
-          "body": "Belonging in your own desire",
+          "body": "Letting your own wanting take up room",
           "mediaId": "sexual-self-esteem-diagram"
         },
         {
@@ -1791,7 +1791,7 @@
         {
           "id": "sexual-self-esteem-phrase",
           "type": "phrase",
-          "title": "A Phrase To Keep",
+          "title": "Keep",
           "body": "My pleasure is worth taking up space — I'm allowed to want, and to ask."
         }
       ],
@@ -1825,7 +1825,7 @@
           "id": "sexual-self-esteem-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to find out what sex feels like when I'm not grading myself through it.",
+          "body": "What does sex feel like when you are not grading yourself through it?",
           "tone": "curious"
         },
         {
@@ -1902,7 +1902,7 @@
         {
           "id": "body-appreciation-phrase",
           "type": "phrase",
-          "title": "A Phrase To Keep",
+          "title": "Keep",
           "body": "I'd rather feel my body than watch it — what it can feel matters more than how it looks."
         }
       ],
@@ -1972,8 +1972,8 @@
       "name": "Clitoral Structure",
       "category": "anatomy",
       "reviewStatus": "approved",
-      "definition": "The clitoris is mostly internal — a larger organ (~9 cm) with legs and bulbs, not just the visible tip.",
-      "summary": "What you can see of the clitoris is only the tip. The full organ runs about 9 cm inside, with legs (crura) wrapping the vaginal canal and bulbs that fill with blood when aroused.",
+      "definition": "The clitoris is more than the visible glans — a connected organ with internal parts that can be reached in different ways.",
+      "summary": "What you can see of the clitoris is only one part of the organ. It continues inside the body, with legs (crura) and bulbs that can be reached through different kinds of pressure and contact.",
       "blocks": [
         {
           "id": "clitoral-structure-recognize",
@@ -1985,7 +1985,7 @@
           "id": "clitoral-structure-definition",
           "type": "definition",
           "title": "Name",
-          "body": "The clitoris is mostly internal—glans, shaft, legs (crura), and bulbs—about 9 cm total, not just the visible tip."
+          "body": "The clitoris is more than the visible glans—its connected structure includes the shaft, legs (crura), and bulbs."
         },
         {
           "id": "clitoral-structure-media",
@@ -1998,7 +1998,7 @@
           "id": "clitoral-structure-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "MRI and dissection mapped the full clitoral structure (O'Connell et al., 2005). Anterior vaginal sensitivity often reflects internal clitoral and urethral tissue — not a separate organ. Most vaginal pleasure is still clitoral, reached indirectly.",
+          "body": "The visible glans is only one part of a larger organ, which helps explain why pressure around the front wall can feel connected to clitoral pleasure. MRI and dissection mapped that internal structure at about 9 cm in total (O'Connell et al., 2005); the map is useful, but your own felt access still varies.",
           "citationIds": [
             "clitoral-structure-source-1",
             "clitoral-structure-source-2"
@@ -2014,7 +2014,7 @@
         {
           "id": "clitoral-structure-phrase",
           "type": "phrase",
-          "title": "A Phrase To Keep",
+          "title": "Keep",
           "body": "Most of my clitoris is internal — so 'vaginal' pleasure and clitoral pleasure aren't really separate for me."
         }
       ],
@@ -2049,7 +2049,7 @@
           "id": "clitoral-structure-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to explore the parts of the clitoris that aren't the obvious tip.",
+          "body": "Notice whether the parts of the clitoris beyond the obvious tip change what you feel.",
           "tone": "curious"
         },
         {
@@ -2084,8 +2084,8 @@
       "name": "Nerve Density",
       "category": "anatomy",
       "reviewStatus": "approved",
-      "definition": "How packed with nerve endings the clitoral glans is — extreme sensitivity in a small area.",
-      "summary": "The clitoral glans holds thousands of nerve endings in a small tip — roughly 8,000 — so tiny changes in pressure, angle, or rhythm land loud.",
+      "definition": "How densely packed with nerve endings the clitoral glans is — intense sensitivity in a small area.",
+      "summary": "The clitoral glans is a small, highly sensitive area, so tiny changes in pressure, angle, or rhythm can land loudly.",
       "blocks": [
         {
           "id": "nerve-density-recognize",
@@ -2097,7 +2097,7 @@
           "id": "nerve-density-definition",
           "type": "definition",
           "title": "Name",
-          "body": "Nerve density is how packed with nerve endings the clitoral glans is—thousands in a small tip, so touch quality lands loud."
+          "body": "Nerve density helps explain why touch quality matters so much in the small, sensitive glans."
         },
         {
           "id": "nerve-density-media",
@@ -2110,7 +2110,7 @@
           "id": "nerve-density-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Anatomical studies count thousands of nerve endings in the clitoral glans (O'Connell et al.). That packing helps explain why pressure, rhythm, and indirect vs direct matter so much — and why “too much” is often timing and technique, not a closed door.",
+          "body": "A small change in pressure can feel enormous when touch lands on a densely sensitive area. Anatomical studies count thousands of nerve endings in the clitoral glans (O'Connell et al.), which helps explain why lighter, indirect, or well-timed touch can work better than force.",
           "citationIds": [
             "nerve-density-source-1",
             "nerve-density-source-2"
@@ -2126,7 +2126,7 @@
         {
           "id": "nerve-density-phrase",
           "type": "phrase",
-          "title": "A Phrase To Keep",
+          "title": "Keep",
           "body": "I'm extremely sensitive there — touch quality matters way more than pressure or speed."
         }
       ],
@@ -2160,7 +2160,7 @@
           "id": "nerve-density-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to map exactly what kind of touch this sensitive spot actually likes.",
+          "body": "I'd like to notice which kinds of touch this sensitive spot actually likes.",
           "tone": "curious"
         },
         {
@@ -2202,13 +2202,13 @@
           "id": "clitourethrovaginal-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Felt a different kind of yes on the front wall — fuller, deeper, not the same as surface touch?"
+          "body": "Ever felt several kinds of sensation meet in the same front-wall area — pressure, warmth, and a deeper yes together?"
         },
         {
           "id": "clitourethrovaginal-definition",
           "type": "definition",
           "title": "Name",
-          "body": "The CUV complex is the linked cluster of clitoris, urethra, and front vaginal wall—the anatomy behind many “G-spot” feelings."
+          "body": "The CUV complex is the connected area where the clitoris, urethra, and front vaginal wall meet."
         },
         {
           "id": "clitourethrovaginal-media",
@@ -2221,7 +2221,7 @@
           "id": "clitourethrovaginal-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Imaging shows the clitoris, urethra, and anterior wall are physically linked (Jannini et al., 2014). Front-wall sensitivity is real because pressure compresses that shared tissue — explore what feels good there, rather than proving a separate organ exists.",
+          "body": "That front-wall feeling can involve several connected tissues, which is why it may feel fuller than one isolated point. Imaging shows the clitoris, urethra, and anterior wall are physically linked (Jannini et al., 2014); explore the area without needing to find a separate organ.",
           "citationIds": [
             "clitourethrovaginal-source-1",
             "clitourethrovaginal-source-2"
@@ -2237,7 +2237,7 @@
         {
           "id": "clitourethrovaginal-phrase",
           "type": "phrase",
-          "title": "A Phrase To Keep",
+          "title": "Keep",
           "body": "That front-wall feeling is real for me — it's connected internal tissue, not some separate magic spot."
         }
       ],
@@ -2257,7 +2257,7 @@
           "id": "clitourethrovaginal-partner-request",
           "useCase": "partner-request",
           "label": "Ask for support",
-          "body": "Firm, steady pressure toward the front wall can feel really good for me — can we stay with that instead of hunting?",
+          "body": "Can we explore that whole connected area instead of trying to find one exact spot?",
           "tone": "direct"
         },
         {
@@ -2271,7 +2271,7 @@
           "id": "clitourethrovaginal-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I'm curious what angles and pressure actually reach that front-wall area for me.",
+          "body": "I'm curious how that connected area responds to different kinds of contact for me.",
           "tone": "curious"
         },
         {
@@ -2313,7 +2313,7 @@
           "id": "internal-stimulation-recognize",
           "type": "recognize",
           "title": "Notice",
-          "body": "Felt a fuller yes when pressure found the front wall — not deeper, just angled right?"
+          "body": "Sometimes pressure inside feels fuller when it reaches the front wall — not deeper, just more connected?"
         },
         {
           "id": "internal-stimulation-definition",
@@ -2325,14 +2325,14 @@
           "id": "internal-stimulation-media",
           "type": "media",
           "title": "See It",
-          "body": "Front-wall pressure reaching the rest of the clitoris",
+          "body": "A fuller internal feeling from front-wall contact",
           "mediaId": "internal-stimulation-diagram"
         },
         {
           "id": "internal-stimulation-mechanism",
           "type": "mechanism",
           "title": "Understand",
-          "body": "Imaging and clinical work suggest many “vaginal” orgasms involve internal clitoral stimulation (Foldes & Buisson, 2009). Angling and similar moves help because they press the front wall where internal tissue sits close — explore contact there, not harder thrust.",
+          "body": "A fuller internal feeling does not necessarily come from going deeper. Imaging and clinical work suggest many “vaginal” orgasms involve internal clitoral stimulation (Foldes & Buisson, 2009); angling helps when it brings contact toward the front wall where that tissue sits close.",
           "citationIds": [
             "internal-stimulation-source-1",
             "internal-stimulation-source-2"
@@ -2348,7 +2348,7 @@
         {
           "id": "internal-stimulation-phrase",
           "type": "phrase",
-          "title": "A Phrase To Keep",
+          "title": "Keep",
           "body": "What feels like a deep 'vaginal' thing is really internal clitoris for me — angle is everything."
         }
       ],
@@ -2383,7 +2383,7 @@
           "id": "internal-stimulation-curiosity",
           "useCase": "curiosity",
           "label": "Open curiosity",
-          "body": "I want to notice which angles press where the internal clitoris actually sits.",
+          "body": "I'd like to notice what kind of contact creates that fuller feeling inside.",
           "tone": "curious"
         },
         {
@@ -2518,7 +2518,7 @@
       "kind": "diagram",
       "path": "native://diagram/shallowing",
       "alt": "Native diagram for Shallowing.",
-      "caption": "Nerve-rich entrance — shallow contact as the destination",
+      "caption": "The entrance — shallow contact as the destination",
       "reducedMotionFallback": "assets/images/concepts/illustrations/shallowing.png"
     },
     {
@@ -2526,7 +2526,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/shallowing.png",
       "alt": "Warm educational illustration for Shallowing.",
-      "caption": "Nerve-rich entrance — shallow contact as the destination",
+      "caption": "The entrance — shallow contact as the destination",
       "reducedMotionFallback": "assets/images/concepts/illustrations/shallowing.png"
     },
     {
@@ -2774,7 +2774,7 @@
       "kind": "diagram",
       "path": "native://diagram/sexual-self-esteem",
       "alt": "Native diagram for Sexual Self-Esteem.",
-      "caption": "Belonging in your own desire",
+      "caption": "Letting your own wanting take up room",
       "reducedMotionFallback": "assets/images/concepts/illustrations/sexual-self-esteem.png"
     },
     {
@@ -2782,7 +2782,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/sexual-self-esteem.png",
       "alt": "Warm educational illustration for Sexual Self-Esteem.",
-      "caption": "Belonging in your own desire",
+      "caption": "Letting your own wanting take up room",
       "reducedMotionFallback": "assets/images/concepts/illustrations/sexual-self-esteem.png"
     },
     {
@@ -2854,7 +2854,7 @@
       "kind": "diagram",
       "path": "native://diagram/internal-stimulation",
       "alt": "Native diagram for Internal Clitoral Stimulation.",
-      "caption": "Front-wall pressure reaching the rest of the clitoris",
+      "caption": "A fuller internal feeling from front-wall contact",
       "reducedMotionFallback": "assets/images/concepts/illustrations/internal-stimulation.png"
     },
     {
@@ -2862,7 +2862,7 @@
       "kind": "image",
       "path": "assets/images/concepts/illustrations/internal-stimulation.png",
       "alt": "Warm educational illustration for Internal Clitoral Stimulation.",
-      "caption": "Front-wall pressure reaching the rest of the clitoris",
+      "caption": "A fuller internal feeling from front-wall contact",
       "reducedMotionFallback": "assets/images/concepts/illustrations/internal-stimulation.png"
     },
     {

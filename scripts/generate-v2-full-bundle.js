@@ -364,7 +364,7 @@ function buildBlocks(concept, citations, mediaIds, override) {
     {
       id: blockId(concept.id, 'phrase'),
       type: 'phrase',
-      title: 'A Phrase To Keep',
+      title: 'Keep',
       body: phrase,
     }
   );

@@ -6,8 +6,7 @@
 
 - **Brand:** Notice & Name (formerly Pleasure Vocabulary / Pleasure Vocabulary Builder)
 - **Subtitle:** "Notice what you like, name it."
-- **Core loop:** Notice → Name → Reflect → Keep  
-  (UI descent often: Recognize → Name → See → Understand → Reflect → Keep)
+- **Core loop:** Notice → Name → See → Understand → Reflect → Keep
 
 ## Code & identity
 

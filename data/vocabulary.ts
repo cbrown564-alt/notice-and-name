@@ -45,7 +45,7 @@ It does not have to be dramatic. A few degrees can redirect everything; some peo
       },
       {
         type: 'understand',
-        content: 'Hensel et al. (2021) found angling widely reported. Naming a tiny pelvic shift helps you catch it in the moment and repeat what works — instead of hoping “that felt good last time” shows up again.',
+        content: 'A tiny pelvic shift can change where pressure lands. Hensel et al. (2021) found angling widely reported; giving that shift a name helps you catch and repeat what works instead of hoping it happens again.',
       },
       {
         type: 'explore',
@@ -94,7 +94,7 @@ The motion comes from the hips and pelvis. For many people it is a way to get co
       },
       {
         type: 'understand',
-        content: 'Most women need some form of clitoral stimulation for orgasm; penetration alone often breaks external contact with each thrust. Rocking keeps bodies close so that pressure can stay continuous (Hensel et al., 2021).',
+        content: 'If steady external contact matters to your pleasure, pulling apart with each thrust can interrupt it. Rocking keeps bodies close so pressure can stay continuous; Hensel et al. (2021) identified it as one named way people do that.',
       },
       {
         type: 'explore',
@@ -133,17 +133,17 @@ Circling, light pressure, teasing, or simply staying put reframes shallow penetr
       },
       {
         type: 'name',
-        content: 'Shallowing is focusing touch at the vaginal entrance and the first inch or two inside—not treating depth as the goal.',
+        content: 'Shallowing means making the entrance and first inch or two the focus—not treating depth as the goal.',
       },
       {
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/shallowing.png'),
-        illustrationCaption: 'Nerve-rich entrance — shallow contact as the destination',
+        illustrationCaption: 'The entrance — shallow contact as the destination',
       },
       {
         type: 'understand',
-        content: 'The vaginal entrance is densely innervated. Hensel et al. (2021) found shallowing widely reported; many said lingering there made later touch feel better — anatomy and preference, not “just teasing.”',
+        content: 'The entrance can be the most responsive part for you, and staying there can make later touch feel better. Hensel et al. (2021) found shallowing widely reported; it is a preference and a point of pleasure, not “just teasing.”',
       },
       {
         type: 'explore',
@@ -182,7 +182,7 @@ Reaching down, guiding a hand, or picking a closer position are all pairing. The
       },
       {
         type: 'name',
-        content: 'Pairing is combining penetration with clitoral touch—your hand, a partner\'s, a toy, or a position that keeps outside contact alive.',
+        content: 'Pairing means keeping clitoral touch alongside penetration—by hand, toy, partner, or position.',
       },
       {
         type: 'illustrate',
@@ -244,7 +244,7 @@ Rushing past the climb often flattens the peak. Letting it accumulate is not del
       },
       {
         type: 'understand',
-        content: 'Sexual response models describe an arousal-building phase before plateau or orgasm (Masters & Johnson; Basson, 2000). Leaving sensation room to accumulate — instead of chasing the peak — often lands as a fuller climb.',
+        content: 'Arousal can gather in stages: a little warmth, then more focus and intensity. Sexual response models describe this building phase (Masters & Johnson; Basson, 2000); leaving it room to accumulate can make the climb itself feel fuller.',
       },
       {
         type: 'explore',
@@ -293,7 +293,7 @@ Naming the plateau drops the panic that something stalled. You can stay, or chan
       },
       {
         type: 'understand',
-        content: 'Sexual response models name a plateau phase — high arousal held without immediate climax (Masters & Johnson). Catching the hover lets you choose: stay with it, or change what you\'re doing if you want the climb again.',
+        content: 'High arousal can hold steady without meaning anything has gone wrong. Sexual response models call this a plateau phase (Masters & Johnson); you can stay with the hover or change what you are doing if you want movement again.',
       },
       {
         type: 'explore',
@@ -307,7 +307,7 @@ Naming the plateau drops the panic that something stalled. You can stay, or chan
     name: 'Edging',
     category: 'sensation',
     definition:
-      'Intentionally approaching the edge of orgasm, then easing back before it happens - often repeated multiple times.',
+      'Intentionally approaching the edge of orgasm, then easing back before it happens — often repeated multiple times.',
     description: `Edging is bringing yourself (or being brought) close to orgasm, then deliberately pausing or slowing before you cross — often more than once.
 
 Some people edge to stretch the climb, finding prolonged arousal satisfying on its own. Others find the eventual release hits harder after the wait, as if the buildup had somewhere to go.
@@ -392,7 +392,7 @@ Noticing it can shift the night: less chasing one spot, more room for the feelin
       },
       {
         type: 'understand',
-        content: 'Embodied sexuality research links attention to whole-body sensation with more satisfying experiences. Spreading is one pattern people name when arousal feels less pinned to a single spot and more free to travel.',
+        content: 'Sometimes pleasure stops feeling pinned to one contact point and starts moving through the rest of you. Research on embodied sexuality links attention to whole-body sensation with more satisfying experiences; spreading is one way people describe that movement.',
       },
       {
         type: 'explore',
@@ -407,7 +407,7 @@ Noticing it can shift the night: less chasing one spot, more room for the feelin
     category: 'sensation',
     definition:
       'A rhythmic, wave-like quality in high arousal or orgasm — beating or throbbing rather than flat.',
-    description: `Pulsing is pleasure with a beat — throbbing, wave-like, not a flat steady hum. It shows up clearest in orgasm, when pelvic muscles contract in rhythm, but many people feel a pulse earlier in high arousal too.
+    description: `Pulsing is pleasure with a beat — throbbing, wave-like, not a flat steady hum. You may notice it during high arousal or orgasm, and it may invite touch that matches, holds, or plays against the rhythm.
 
 Sometimes it tracks the heartbeat; sometimes it is its own tempo. Either way, it is information: some people want touch that matches that beat, holds still with it, or plays against it.
 
@@ -442,7 +442,7 @@ Naming the pulse makes it easier to ask for the rhythm that actually carries you
       },
       {
         type: 'understand',
-        content: 'Physiology studies describe rhythmic pelvic muscle contractions during orgasm, often about once per second (Meston & Buss, 2009). Many people also feel a pulse earlier in arousal—and some prefer touch that matches or plays against that tempo.',
+        content: 'A pulse can give pleasure its own tempo. Physiology studies describe rhythmic pelvic muscle contractions during orgasm, often about once per second (Meston & Buss, 2009); some people feel a similar rhythm earlier and like touch that meets it or moves differently.',
       },
       {
         type: 'explore',
@@ -483,7 +483,7 @@ Owning the window reframes that slower start as the good part of the night, not 
       },
       {
         type: 'name',
-        content: 'The warm-up window is how long many bodies need before genital-focused touch feels best—often twenty unhurried minutes or more of whole-body contact.',
+        content: 'The warm-up window is the time before genital-focused touch feels best—often twenty unhurried minutes or more of whole-body contact.',
       },
       {
         type: 'illustrate',
@@ -607,12 +607,12 @@ Naming it as one door among others drops the pressure that desire should always 
     category: 'timing',
     thumbnail: require('@/assets/images/concepts/thumbnails/golden-trio.png'),
     definition:
-      'Combining intercourse with manual and oral stimulation in the same encounter — a pattern where variety often serves pleasure better than one act alone.',
-    description: `The Golden Trio names a combination that shows up often in satisfying encounters: vaginal intercourse plus manual stimulation plus oral sex in the same session — not necessarily all at once.
+      'A pattern where more than one kind of touch works together in the same encounter — especially when clitoral touch is part of the mix.',
+    description: `Sometimes pleasure is built from more than one kind of touch. For some people, hands, mouth, and penetration work together in the same encounter — not necessarily all at once.
 
 Research finds this mix associated with higher reported orgasm rates than intercourse alone or any single pair of acts. That is information about patterns, not a script to perform.
 
-The quieter takeaway: variety and clitoral involvement usually serve pleasure better than a singular focus. Penetration alone rarely does the whole job.`,
+The useful question is not whether you can fit every act in. It is which combination helps your body stay interested and feel good.`,
     researchBasis:
       'Frederick et al. (2018) found that women who received genital stimulation, oral sex, and deep kissing in addition to vaginal intercourse reported the highest rates of orgasm during partnered sex.',
     source: 'Frederick et al., 2018, Archives of Sexual Behavior',
@@ -631,7 +631,7 @@ The quieter takeaway: variety and clitoral involvement usually serve pleasure be
       },
       {
         type: 'name',
-        content: 'The golden trio is intercourse plus manual and oral stimulation in the same encounter—not a checklist, just a pattern where variety (especially clitoral touch) tends to show up.',
+        content: 'The golden trio is a pattern of combining intercourse, manual, and oral stimulation—not a checklist, just one way variety can work.',
       },
       {
         type: 'illustrate',
@@ -641,7 +641,7 @@ The quieter takeaway: variety and clitoral involvement usually serve pleasure be
       },
       {
         type: 'understand',
-        content: 'Frederick et al. (2018) found that women who received intercourse, manual genital stimulation, and oral sex in the same encounter reported orgasm more often than with intercourse alone. The takeaway is statistical, not prescriptive: variety and clitoral involvement are common in high-satisfaction reports.',
+        content: 'One kind of touch is not always the whole story. In reports studied by Frederick et al. (2018), women who experienced intercourse alongside manual genital stimulation and oral sex reported orgasm more often than those reporting intercourse alone. That describes a pattern, not a recipe: choose the mix that actually feels good.',
       },
       {
         type: 'explore',
@@ -692,7 +692,7 @@ It is common, and it flattens pleasure. Coming back is rarely a pep talk — it 
       },
       {
         type: 'understand',
-        content: 'Masters and Johnson named spectatoring as a barrier to enjoyment; later work links self-focused attention during sex with lower arousal and satisfaction (Barlow, 1986). Coming back to one concrete sensation is often more useful than trying to think your way into presence (Brotto, 2018).',
+        content: 'When attention turns into a live review of your body or performance, sensation has less room. Masters and Johnson named spectatoring as a barrier to enjoyment; later work links self-focused attention with lower arousal and satisfaction (Barlow, 1986). Returning to one concrete sensation can help (Brotto, 2018).',
       },
       {
         type: 'explore',
@@ -835,7 +835,7 @@ It can be shaped by upbringing, past experiences, body image, relationship histo
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/sexual-self-esteem.png'),
-        illustrationCaption: 'Belonging in your own desire',
+        illustrationCaption: 'Letting your own wanting take up room',
       },
       {
         type: 'understand',
@@ -904,10 +904,10 @@ Research links this orientation with greater satisfaction and less distraction. 
     name: 'Clitoral Structure',
     category: 'anatomy',
     definition:
-      'The clitoris is mostly internal — a larger organ (~9 cm) with legs and bulbs, not just the visible tip.',
-    description: `What you can see of the clitoris is only the tip. The full organ runs about 9 cm inside, with legs (crura) wrapping the vaginal canal and bulbs that fill with blood when aroused.
+      'The clitoris is more than the visible glans — a connected organ with internal parts that can be reached in different ways.',
+    description: `What you can see of the clitoris is only one part of the organ. It continues inside the body, with legs (crura) and bulbs that can be reached through different kinds of pressure and contact.
 
-That shape reframes a lot of “vaginal” pleasure: pressure through the front wall often reaches internal clitoral tissue. External and internal feeling are usually the same organ, accessed differently.
+That shape can reframe “vaginal” pleasure: external and internal feeling may be the same organ, accessed differently.
 
 Knowing the map makes indirect touch count — not as a compromise, but as reaching the rest of the structure.`,
     researchBasis:
@@ -929,7 +929,7 @@ Knowing the map makes indirect touch count — not as a compromise, but as reach
       },
       {
         type: 'name',
-        content: 'The clitoris is mostly internal—glans, shaft, legs (crura), and bulbs—about 9 cm total, not just the visible tip.',
+        content: 'The clitoris is more than the visible glans—its connected structure includes the shaft, legs (crura), and bulbs.',
       },
       {
         type: 'illustrate',
@@ -939,7 +939,7 @@ Knowing the map makes indirect touch count — not as a compromise, but as reach
       },
       {
         type: 'understand',
-        content: 'MRI and dissection mapped the full clitoral structure (O\'Connell et al., 2005). Anterior vaginal sensitivity often reflects internal clitoral and urethral tissue — not a separate organ. Most vaginal pleasure is still clitoral, reached indirectly.',
+        content: 'The visible glans is only one part of a larger organ, which helps explain why pressure around the front wall can feel connected to clitoral pleasure. MRI and dissection mapped that internal structure at about 9 cm in total (O\'Connell et al., 2005); the map is useful, but your own felt access still varies.',
       },
       {
         type: 'explore',
@@ -953,8 +953,8 @@ Knowing the map makes indirect touch count — not as a compromise, but as reach
     name: 'Nerve Density',
     category: 'anatomy',
     definition:
-      'How packed with nerve endings the clitoral glans is — extreme sensitivity in a small area.',
-    description: `The clitoral glans holds thousands of nerve endings in a small tip — roughly 8,000 — so tiny changes in pressure, angle, or rhythm land loud.
+      'How densely packed with nerve endings the clitoral glans is — intense sensitivity in a small area.',
+    description: `The clitoral glans is a small, highly sensitive area, so tiny changes in pressure, angle, or rhythm can land loudly.
 
 That is why direct, hard touch can tip into too much, while lighter or more indirect contact can feel intensely good. Sensitivity also shifts with arousal.
 
@@ -978,7 +978,7 @@ Quality beats force here. Those nerves are picky in a useful way: they reward pr
       },
       {
         type: 'name',
-        content: 'Nerve density is how packed with nerve endings the clitoral glans is—thousands in a small tip, so touch quality lands loud.',
+        content: 'Nerve density helps explain why touch quality matters so much in the small, sensitive glans.',
       },
       {
         type: 'illustrate',
@@ -988,7 +988,7 @@ Quality beats force here. Those nerves are picky in a useful way: they reward pr
       },
       {
         type: 'understand',
-        content: 'Anatomical studies count thousands of nerve endings in the clitoral glans (O\'Connell et al.). That packing helps explain why pressure, rhythm, and indirect vs direct matter so much — and why “too much” is often timing and technique, not a closed door.',
+        content: 'A small change in pressure can feel enormous when touch lands on a densely sensitive area. Anatomical studies count thousands of nerve endings in the clitoral glans (O\'Connell et al.), which helps explain why lighter, indirect, or well-timed touch can work better than force.',
       },
       {
         type: 'explore',
@@ -1023,11 +1023,11 @@ That shift helps: stop hunting a spot, explore what pressure and angle actually 
     slides: [
       {
         type: 'recognize',
-        content: 'Felt a different kind of yes on the front wall — fuller, deeper, not the same as surface touch?',
+        content: 'Ever felt several kinds of sensation meet in the same front-wall area — pressure, warmth, and a deeper yes together?',
       },
       {
         type: 'name',
-        content: 'The CUV complex is the linked cluster of clitoris, urethra, and front vaginal wall—the anatomy behind many “G-spot” feelings.',
+        content: 'The CUV complex is the connected area where the clitoris, urethra, and front vaginal wall meet.',
       },
       {
         type: 'illustrate',
@@ -1037,12 +1037,12 @@ That shift helps: stop hunting a spot, explore what pressure and angle actually 
       },
       {
         type: 'understand',
-        content: 'Imaging shows the clitoris, urethra, and anterior wall are physically linked (Jannini et al., 2014). Front-wall sensitivity is real because pressure compresses that shared tissue — explore what feels good there, rather than proving a separate organ exists.',
+        content: 'That front-wall feeling can involve several connected tissues, which is why it may feel fuller than one isolated point. Imaging shows the clitoris, urethra, and anterior wall are physically linked (Jannini et al., 2014); explore the area without needing to find a separate organ.',
       },
       {
         type: 'explore',
         title: 'Know This',
-        content: 'There isn\'t a magic button to find. Instead, the front vaginal wall is an area where multiple sensitive structures can be reached. Understanding this shifts focus from "finding the spot" to exploring what actually feels good.',
+        content: 'The CUV complex is a connected map, not a target to find. Notice what the whole area feels like, and let your own response matter more than a label.',
       },
     ],
   },
@@ -1082,16 +1082,16 @@ When deep alone does little, the tissue that matters may simply not be getting p
         type: 'illustrate',
         content: '',
         illustrationAsset: require('@/assets/images/concepts/illustrations/internal-stimulation.png'),
-        illustrationCaption: 'Front-wall pressure reaching the rest of the clitoris',
+        illustrationCaption: 'A fuller internal feeling from front-wall contact',
       },
       {
         type: 'understand',
-        content: 'Imaging and clinical work suggest many “vaginal” orgasms involve internal clitoral stimulation (Foldes & Buisson, 2009). Angling and similar moves help because they press the front wall where internal tissue sits close — explore contact there, not harder thrust.',
+        content: 'A fuller internal feeling does not necessarily come from going deeper. Imaging and clinical work suggest many “vaginal” orgasms involve internal clitoral stimulation (Foldes & Buisson, 2009); angling helps when it brings contact toward the front wall where that tissue sits close.',
       },
       {
         type: 'explore',
-        title: 'Try This',
-        content: 'Explore the front wall (toward your belly button) with fingers or a curved toy. Notice if certain spots feel more sensitive. Understanding the anatomy helps you explore intentionally rather than hoping to find something by accident.',
+        title: 'Notice This',
+        content: 'Notice whether pressure toward the front wall creates a fuller or different feeling. It may be more about contact and angle than depth; if it does not feel good, there is nothing to force.',
       },
     ],
   },

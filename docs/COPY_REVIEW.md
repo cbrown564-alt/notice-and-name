@@ -3,7 +3,7 @@
 **Date:** 2026-08-12 (Europe/London)  
 **Scope:** All 22 shipping concepts in `content/v2/bundles/v2-full.bundle.json`  
 **Also read:** `content/v2/copy/concept-copy.json`, `docs/EDITORIAL_AUDIT.md`, `docs/TASTE_SURVEY.md` (voice bits), `docs/INTERACTIVES.md` / `docs/CONTENT.md`, iOS `ConceptPages.swift` labels  
-**Quality bar:** Soft Intimate — private, precise, adult, calm; anti-gamification; anti-TED/lab/worksheet; one idea per encounter; partner phrases sayable and non-shaming. Loop: **Notice → Name → See → Understand → Reflect → Keep**.  
+**Quality bar:** Soft Intimate — private, precise, adult, calm; anti-gamification; anti-TED/lab/worksheet; one idea per encounter; partner phrases sayable and non-shaming. The actual user-facing loop is **Notice → Name → See → Understand → Reflect → Keep**.
 **Method:** Fresh surface-by-surface pass (Cover/summary, Notice, Name, See, Understand, Reflect, Keep + five phrase templates). Review only — no concept rewrite in this pass.
 
 ---
@@ -23,6 +23,35 @@ The set is **close to launch-ready editorially, not quite clean**. Phase B batch
 ---
 
 ## 2. Cross-cutting findings
+
+### Canonical concept loop
+
+The six-stage sequence above is the product's user-facing loop, not just an editorial checklist. Keep these names aligned across the concept pages, bundle titles, and documentation. The journal may still use “field notes” where that is a separate journal feature, but concept-page copy should use **Reflect**.
+
+### Understand: current opening and target shape
+
+Current `golden-trio` opening:
+
+> “Frederick et al. (2018) found that women who received intercourse, manual genital stimulation, and oral sex in the same encounter reported orgasm more often than with intercourse alone.”
+
+This leads with the study and its comparison before telling the reader what to notice. An insight-first version would lead with the lived meaning, then seat the evidence:
+
+> “One kind of touch is not always the whole story. Variety can help because clitoral touch is often part of what makes an encounter work; the study supports that pattern, not a recipe.”
+
+That is the target shape: felt insight first, evidence second, and a clear boundary against turning the finding into a prescription. The wording is a model for structure, not proposed final copy.
+
+### Anatomy ownership table
+
+The four nearby concepts need distinct jobs. Rewrites should preserve these boundaries:
+
+| Concept | Owns | Primary reader question | Avoid absorbing |
+| --- | --- | --- | --- |
+| `clitoral-structure` | The organ's full internal/external structure | “What is the larger map of the clitoris?” | Front-wall technique or a general lesson that all internal pleasure is clitoral |
+| `clitourethrovaginal` | The connected clitoris–urethra–front-wall anatomy | “What structures are connected in this area?” | A how-to move, depth/angle advice, or a “find the G-spot” glossary lesson |
+| `internal-stimulation` | The felt access to internal clitoral tissue | “What might this fuller internal feeling be?” | Re-teaching the anatomical map or becoming a generic front-wall exploration guide |
+| `angling` | Changing direction, tilt, or contact to find what feels better | “How can a small change in angle alter the sensation?” | Explaining the whole organ or claiming that one angle is universally right |
+
+The shortest distinction is: **structure is the organ, CUV is the connected map, internal stimulation is the felt access, and angling is the adjustment.**
 
 | Issue | Priority | Notes |
 | --- | --- | --- |
@@ -155,4 +184,4 @@ What “good” meant in this pass:
 
 ---
 
-*End of review. Next action: Batch A rewrites in `concept-copy.json` + `data/vocabulary.ts`, then regenerate bundle.*
+*Batch A source rewrites are complete. Batch B covers the flagged Understand/See surfaces, varies the repeated Notice openers, and softens curiosity lines that felt like assignments. Batch C alignment also reduced Name/summary repetition, changed generated phrase-block titles to **Keep**, fixed the edging dash, and replaced the abstract sexual-self-esteem caption. Both shipping bundle copies were regenerated and pass full validation, content lint, and Swift package tests. Remaining verification is visual review in the app when CoreSimulator is available.*
