@@ -19,20 +19,6 @@ public enum SoundCatalog {
         url(resource: name, subdirectory: "media/audio/onboarding")
     }
 
-    /// Sorted explainer narration beats for an explainer id (`anatomy-101`, …).
-    public static func explainerBeats(explainerId: String) -> [URL] {
-        let prefix = explainerId + "-beat-"
-        let urls = Bundle.module.urls(
-            forResourcesWithExtension: "mp3",
-            subdirectory: "media/audio/explainers"
-        ) ?? []
-        return urls
-            .filter { $0.deletingPathExtension().lastPathComponent.hasPrefix(prefix) }
-            .sorted {
-                $0.deletingPathExtension().lastPathComponent
-                    < $1.deletingPathExtension().lastPathComponent
-            }
-    }
 
     /// Soft UI SFX. Pass the effect name without version (`keep`, `notice-start`).
     public static func sfx(_ name: String) -> URL? {

@@ -17,7 +17,7 @@ Destination (gitignored): ios/Sources/PleasureVocabularyApp/Resources/media/audi
 - phrases/*.mp3
 - onboarding/*.mp3 (00-full + beats; skip *-rushed-backup*)
 - notice-moments/*.mp3
-- explainers/*.mp3
+- explainers/ — retired (no narration MP3s synced)
 - sfx/*-v1.mp3 only
 
 Package.swift .copy("Resources/media") includes audio once synced.
@@ -27,7 +27,7 @@ Package.swift .copy("Resources/media") includes audio once synced.
 - Keep PhraseKeepCard Play: phrases/{phraseTemplate.id}.mp3
 - Keep bookmark SFX: sfx/keep-v1.mp3
 - Recognize Listen (no autoplay): notice-moments/{conceptId}.mp3 + notice-start
-- Explainer Play/Pause: explainers/{id}-beat-NN.mp3 sequenced
+- Explainer detail: read-only article (narration retired; no ElevenLabs credits)
 - Onboarding Listen (no autoplay): onboarding/00-full.mp3
 - Reflect save note SFX: sfx/reflect-saved-v1.mp3
 - App lock enabled SFX: sfx/app-lock-v1.mp3
@@ -47,7 +47,8 @@ AppAudioPlayer.playUnlockSFX() ready for future StoreKit unlock UI.
 22 guided Notice moments. Scripts: content/v2/audio-scripts/notice-moments.json
 
 ## explainers/
-27 beats across 4 explainers. Scripts: content/v2/audio-scripts/explainers.json
+Explainer narration retired 2026-08-12 (Soft Intimate copy pass; no ElevenLabs credits).
+Directory kept empty so sync-ios-audio clears stale iOS Resources. Do not regenerate VO.
 
 ## app-store/
 App Store preview VO variants. Not synced into the app bundle.

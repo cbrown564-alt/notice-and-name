@@ -106,3 +106,7 @@ Until then:
 4. Run validate-v2-bundle:full and lint-v2-content.
 5. If media changed: run sync-ios-media.
 6. Commit the regenerated bundle JSON(s) with the source edits.
+
+## Changelog note
+
+- **2026-08-12:** Explainers Soft Intimate copy pass; explainer narration retired (no ElevenLabs credits). Phrase / onboarding / notice-moment / SFX audio unchanged.

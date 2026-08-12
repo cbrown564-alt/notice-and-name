@@ -219,3 +219,10 @@ Phase B next per `PLAN.md`: device QA, export via share sheet / Files, worst med
 | Then | generate-v2-full-bundle, validate, lint |
 
 Do not hand-edit `v2-full.bundle.json`.
+
+---
+
+## Explainers Soft Intimate pass (2026-08-12)
+
+All 4 research explainers in `data/explainers.ts` rewritten Soft Intimate / Notice & Name voice (lens-not-loom; evidence short; anti-TED). Explainer audio narration removed product-wide (no ElevenLabs credits) — detail views are read-only articles; phrase / onboarding / notice-moment / SFX audio unchanged.
+

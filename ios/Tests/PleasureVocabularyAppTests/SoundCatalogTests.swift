@@ -18,12 +18,6 @@ import Testing
     #expect(SoundCatalog.sfx("not-a-real-effect") == nil)
 }
 
-@Test func soundCatalogResolvesOnboardingAndExplainerBeats() {
+@Test func soundCatalogResolvesOnboardingFull() {
     #expect(SoundCatalog.onboardingFull() != nil)
-    let beats = SoundCatalog.explainerBeats(explainerId: "anatomy-101")
-    #expect(!beats.isEmpty)
-    #expect(beats == beats.sorted {
-        $0.deletingPathExtension().lastPathComponent
-            < $1.deletingPathExtension().lastPathComponent
-    })
 }

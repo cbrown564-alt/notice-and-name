@@ -1,6 +1,7 @@
 /**
  * Copy canonical app audio from assets/audio into the iOS SPM resource bundle.
- * Source: phrases, onboarding (no rushed-backup), notice-moments, explainers, sfx *-v1.
+ * Source: phrases, onboarding (no rushed-backup), notice-moments, sfx *-v1.
+ * Explainer narration retired (no ElevenLabs credits); explainers/ sync clears stale dest.
  * Dest: ios/Sources/PleasureVocabularyApp/Resources/media/audio/
  * Usage: node scripts/sync-ios-audio.js [--check|--dry-run]
  * Also invoked from sync-ios-media.js.
@@ -33,10 +34,12 @@ const SYNC_RULES = [
     match: (name) => name.endsWith(".mp3") && !name.startsWith("."),
   },
   {
+    // Explainer narration retired — keep rule so empty/missing source clears iOS Resources.
     label: "explainers",
     from: path.join(ROOT, "assets/audio/explainers"),
     to: path.join(IOS_AUDIO_ROOT, "explainers"),
     match: (name) => name.endsWith(".mp3") && !name.startsWith("."),
+    optionalSource: true,
   },
   {
     label: "sfx",
@@ -53,6 +56,7 @@ function sha256File(filePath) {
 
 function listSourceFiles(rule) {
   if (!fs.existsSync(rule.from)) {
+    if (rule.optionalSource) return [];
     throw new Error("Missing source directory: " + path.relative(ROOT, rule.from));
   }
   return fs.readdirSync(rule.from).filter(rule.match).map((name) => ({
