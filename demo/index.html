@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f9f5f1">
+    <meta name="description" content="A public preview of Notice & Name: an adult educational exhibit about body response and felt desire.">
+    <title>Non-concordance · Notice & Name</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="boundary" id="boundary" role="dialog" aria-modal="true" aria-labelledby="boundary-title">
+      <div class="boundary__card">
+        <p class="eyebrow">Before you enter</p>
+        <h1 id="boundary-title">An adult educational preview</h1>
+        <p>This short exhibit uses plain language about sexual response. It contains no explicit imagery, but it is intended for adults.</p>
+        <p class="boundary__small">Nothing you do here is saved. This is not medical advice or a substitute for consent.</p>
+        <button class="button button--dark" id="enter" type="button">Enter the exhibit</button>
+        <a class="boundary__leave" href="https://www.google.com">Leave</a>
+      </div>
+    </div>
+
+    <main class="page" id="main" aria-hidden="true">
+      <header class="topbar">
+        <a class="wordmark" href="./">Notice <span>&amp;</span> Name</a>
+        <p class="demo-label">Public preview · no save</p>
+      </header>
+
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero__copy">
+          <p class="eyebrow">A vocabulary for what you notice</p>
+          <h1 id="page-title">Your body can speak one signal. Your wanting can speak another.</h1>
+          <p class="hero__lead">Sometimes physical response and felt desire move on separate tracks. Non-concordance is the name for that split.</p>
+          <p class="hero__note">A small, abstract preview of the Notice &amp; Name iOS experience.</p>
+        </div>
+        <div class="hero__mark" aria-hidden="true"><span></span><span></span></div>
+      </section>
+
+      <section class="exhibit" aria-labelledby="exhibit-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">See it</p>
+            <h2 id="exhibit-title">Let the signals move independently.</h2>
+          </div>
+          <p class="insight" id="insight" aria-live="polite">Aligned</p>
+        </div>
+
+        <div class="meter-stage" id="meter-stage">
+          <div class="connector" aria-hidden="true"><span id="connector-dot"></span></div>
+          <div class="meter-row">
+            <label class="meter" for="body-level">
+              <span class="meter__label"><span class="swatch swatch--coral"></span>Body response</span>
+              <span class="meter__hint">physical signs</span>
+              <input id="body-level" type="range" min="0" max="100" value="35" aria-describedby="meter-help">
+            </label>
+            <label class="meter" for="felt-level">
+              <span class="meter__label"><span class="swatch swatch--violet"></span>Felt desire</span>
+              <span class="meter__hint">what you want</span>
+              <input id="felt-level" type="range" min="0" max="100" value="35" aria-describedby="meter-help">
+            </label>
+          </div>
+          <p class="meter-help" id="meter-help">Move either track. There is no right alignment.</p>
+        </div>
+
+        <div class="motion-note" id="motion-note" role="status">You can explore this with a keyboard, touch, or pointer.</div>
+      </section>
+
+      <section class="learning" id="learning" aria-labelledby="learning-title" hidden>
+        <div class="learning__column">
+          <p class="eyebrow">Name</p>
+          <h2 id="learning-title">Non-concordance</h2>
+          <p>Physical signs are not a yes on their own. Wanting is communicated — not inferred from wetness or an erection.</p>
+        </div>
+        <div class="learning__column learning__column--quiet">
+          <p class="eyebrow">Understand</p>
+          <p>Meta-analyses find only modest correlation between genital response and subjective arousal in women—often cited around 10–30% overlap. Genital response can happen without desire; desire can exist without obvious signs. Wanting is communicated — not inferred from wetness or erection.</p>
+          <p class="source">Chivers et al., 2010 · Nagoski, 2015</p>
+        </div>
+        <div class="phrase-card">
+          <p class="eyebrow">Keep</p>
+          <p>“What I feel matters more than what my body’s doing — wetness isn’t the same as wanting, for me.”</p>
+          <p class="phrase-card__note">A partner-safe phrase from the approved concept content.</p>
+        </div>
+      </section>
+
+      <section class="handoff" aria-labelledby="handoff-title">
+        <div>
+          <p class="eyebrow">The fuller experience</p>
+          <h2 id="handoff-title">This is the doorway, not the whole room.</h2>
+          <p>The native iOS app carries the private loop: Notice, Name, See, Understand, Reflect, Keep — with on-device notes, app lock, export, and delete.</p>
+        </div>
+        <div class="handoff__aside">
+          <p class="demo-label">Native walkthrough</p>
+          <p class="handoff__status">Recorded preview coming next.</p>
+          <p class="handoff__small">This browser exhibit does not save notes, create an account, or collect analytics.</p>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>Notice &amp; Name · an adult educational concept preview</p>
+        <button class="text-button" id="reset" type="button">Reset exhibit</button>
+      </footer>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>

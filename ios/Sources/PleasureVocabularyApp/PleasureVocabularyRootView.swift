@@ -8,6 +8,7 @@ import LocalAuthentication
 public struct PleasureVocabularyRootView: View {
     @StateObject private var model: PleasureVocabularyViewModel
     @StateObject private var lockCoordinator: AppLockCoordinator
+    @State private var didApplyRecordingDemoReset = false
     @Environment(\.scenePhase) private var scenePhase
 
     public init(model: PleasureVocabularyViewModel = PleasureVocabularyViewModel()) {
@@ -41,6 +42,9 @@ public struct PleasureVocabularyRootView: View {
                 model.clearExportPreview()
             }
         }
+        .onAppear {
+            applyRecordingDemoResetIfRequested()
+        }
         .alert("Something needs attention", isPresented: errorBinding) {
             Button("OK") {
                 model.clearError()
@@ -55,6 +59,30 @@ public struct PleasureVocabularyRootView: View {
             get: { model.loadError != nil && !model.bundle.concepts.isEmpty },
             set: { if !$0 { model.clearError() } }
         )
+    }
+
+    private func applyRecordingDemoResetIfRequested() {
+        guard !didApplyRecordingDemoReset else { return }
+        didApplyRecordingDemoReset = true
+        guard RecordingDemo.resetRequested else { return }
+        model.deleteAllData()
+    }
+}
+
+/// Launch-argument-only route for recording the native vertical slice.
+/// Production behavior stays unchanged unless the explicit local recording
+/// arguments are supplied from Xcode or simctl.
+private enum RecordingDemo {
+    static let conceptId = "non-concordance"
+    private static let routeArgument = "-NoticeAndNameRecordingDemo"
+    private static let resetArgument = "-NoticeAndNameRecordingDemoReset"
+
+    static var routeEnabled: Bool {
+        ProcessInfo.processInfo.arguments.contains(routeArgument)
+    }
+
+    static var resetRequested: Bool {
+        ProcessInfo.processInfo.arguments.contains(resetArgument)
     }
 }
 
@@ -283,13 +311,20 @@ private struct TodayView: View {
     @ObservedObject var model: PleasureVocabularyViewModel
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
+    private var featuredConcept: Concept? {
+        if RecordingDemo.routeEnabled {
+            return model.concept(withId: RecordingDemo.conceptId)
+        }
+        return model.todayConcept
+    }
+
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 18) {
                     HeaderBlock(title: "Today", subtitle: "One word, one note, one phrase.")
 
-                    if let concept = model.todayConcept {
+                    if let concept = featuredConcept {
                         QuietCard {
                             VStack(alignment: .leading, spacing: 14) {
                                 StatusPill(status: model.status(for: concept.id))
@@ -744,6 +779,19 @@ private struct ConceptSummaryRow: View {
                 .font(AppFont.note)
                 .foregroundStyle(AppColor.secondaryInk)
                 .lineLimit(3)
+
+            if let phrase = model.phrases(for: concept.id).first {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Kept phrase")
+                        .font(AppFont.label)
+                        .foregroundStyle(AppColor.moss)
+                    Text("“" + phrase.body + "”")
+                        .font(AppFont.note)
+                        .foregroundStyle(AppColor.ink)
+                        .lineLimit(3)
+                }
+                .padding(.top, 2)
+            }
         }
         .padding(.vertical, 6)
     }

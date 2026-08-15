@@ -44,6 +44,18 @@ xcrun simctl install booted DerivedData/Build/Products/Debug-iphonesimulator/Ple
 xcrun simctl launch booted com.noticeandname.app
 ```
 
+## Recording the native vertical slice
+
+For a deterministic local recording, add these launch arguments in the Xcode
+scheme's Run action:
+
+- NoticeAndNameRecordingDemo — Today opens the approved Non-concordance concept.
+- NoticeAndNameRecordingDemoReset — clears local demo state once at launch, returning to the privacy pledge.
+
+The route is: privacy pledge and app-lock offer -> Today / Non-concordance -> Notice -> Name -> See -> Understand -> Reflect -> Keep -> mark Resonates and keep the partner-safe phrase -> Vocabulary shows the status and kept phrase -> Settings shows app lock, export, and delete-all.
+
+These arguments are opt-in and do not change the normal Today recommendation or production persistence behavior. Use the reset argument only for a recording run because it genuinely deletes the local app data, as the in-app Delete all local data action does.
+
 ## Physical Device Requirements
 
 For a local iPhone or iPad install, Xcode still needs development signing. TestFlight is
