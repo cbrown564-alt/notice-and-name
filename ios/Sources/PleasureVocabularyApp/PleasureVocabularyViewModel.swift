@@ -13,6 +13,7 @@ public final class PleasureVocabularyViewModel: ObservableObject {
     @Published public private(set) var loadError: String?
     @Published public var journalSearchText = ""
     @Published public var exportText: String?
+    @Published public var exportFileURL: URL?
 
     private var store: UserStore?
 
@@ -201,11 +202,13 @@ public final class PleasureVocabularyViewModel: ObservableObject {
         AppAudioPlayer.shared.voiceGuidanceEnabled = enabled
     }
 
-
     public func prepareExport() {
         do {
             guard let data = try store?.exportJSONData() else { return }
             exportText = String(decoding: data, as: UTF8.self)
+            let url = FileManager.default.temporaryDirectory.appendingPathComponent(LocalExportFile.filename())
+            try data.write(to: url, options: .atomic)
+            exportFileURL = url
             NativeHaptics.success()
         } catch {
             loadError = error.localizedDescription
@@ -214,12 +217,14 @@ public final class PleasureVocabularyViewModel: ObservableObject {
 
     public func clearExportPreview() {
         exportText = nil
+        exportFileURL = nil
     }
 
     public func deleteAllData() {
         do {
             try store?.deleteAllData()
             exportText = nil
+            exportFileURL = nil
             NativeHaptics.warning()
             try refresh()
         } catch {
@@ -263,5 +268,19 @@ public final class PleasureVocabularyViewModel: ObservableObject {
         let directory = base.appendingPathComponent("PleasureVocabulary", isDirectory: true)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
         return directory.appendingPathComponent("v2.sqlite")
+    }
+}
+
+public enum LocalExportFile {
+    public static func filename(
+        for date: Date = Date(),
+        timeZone: TimeZone = TimeZone(identifier: "Europe/London") ?? .gmt
+    ) -> String {
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .gregorian)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = timeZone
+        formatter.dateFormat = "yyyy-MM-dd"
+        return "notice-and-name-export-\(formatter.string(from: date)).json"
     }
 }
