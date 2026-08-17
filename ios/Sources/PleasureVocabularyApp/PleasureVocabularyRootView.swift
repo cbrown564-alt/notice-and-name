@@ -9,7 +9,7 @@ public struct PleasureVocabularyRootView: View {
     @StateObject private var model: PleasureVocabularyViewModel
     @StateObject private var lockCoordinator: AppLockCoordinator
     @State private var didApplyRecordingDemoReset = false
-    @Environment(\u005c.scenePhase) private var scenePhase
+    @Environment(\.scenePhase) private var scenePhase
 
     public init(model: PleasureVocabularyViewModel = PleasureVocabularyViewModel()) {
         _model = StateObject(wrappedValue: model)
@@ -309,7 +309,7 @@ private struct MainTabView: View {
 
 private struct TodayView: View {
     @ObservedObject var model: PleasureVocabularyViewModel
-    @Environment(\u005c.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     private var featuredConcept: Concept? {
         if RecordingDemo.routeEnabled {
@@ -350,9 +350,9 @@ private struct TodayView: View {
                             Text("Saved so far")
                                 .font(AppFont.section)
                             HStack(spacing: 12) {
-                                MetricTile(value: "\u005c(model.vocabularyConcepts.count)", label: "words")
-                                MetricTile(value: "\u005c(model.fieldNotes.count)", label: "notes")
-                                MetricTile(value: "\u005c(model.savedPhrases.count)", label: "phrases")
+                                MetricTile(value: "\(model.vocabularyConcepts.count)", label: "words")
+                                MetricTile(value: "\(model.fieldNotes.count)", label: "notes")
+                                MetricTile(value: "\(model.savedPhrases.count)", label: "phrases")
                             }
                         }
                     }
@@ -475,7 +475,7 @@ private struct PathwayDetailView: View {
             }
 
             Section("Words") {
-                ForEach(pathway.conceptIds, id: \u005c.self) { conceptId in
+                ForEach(pathway.conceptIds, id: \.self) { conceptId in
                     if let concept = model.concept(withId: conceptId) {
                         NavigationLink {
                             ConceptDetailView(model: model, concept: concept)
@@ -520,7 +520,7 @@ private struct ConceptDetailView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu {
-                        ForEach(ConceptStatus.allCases, id: \u005c.self) { item in
+                        ForEach(ConceptStatus.allCases, id: \.self) { item in
                             Button {
                                 model.setStatus(item, for: concept.id)
                             } label: {
