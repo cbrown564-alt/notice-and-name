@@ -9,7 +9,7 @@ public struct PleasureVocabularyRootView: View {
     @StateObject private var model: PleasureVocabularyViewModel
     @StateObject private var lockCoordinator: AppLockCoordinator
     @State private var didApplyRecordingDemoReset = false
-    @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.scenePhase) private var scenePhase
 
     public init(model: PleasureVocabularyViewModel = PleasureVocabularyViewModel()) {
         _model = StateObject(wrappedValue: model)
@@ -309,7 +309,7 @@ private struct MainTabView: View {
 
 private struct TodayView: View {
     @ObservedObject var model: PleasureVocabularyViewModel
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     private var featuredConcept: Concept? {
         if RecordingDemo.routeEnabled {
@@ -589,6 +589,7 @@ private struct JournalView: View {
     }
 }
 
+
 private struct SettingsView: View {
     @ObservedObject var model: PleasureVocabularyViewModel
     @State private var confirmDelete = false
@@ -672,6 +673,7 @@ private struct SettingsView: View {
                                     .foregroundStyle(AppColor.plum)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                             }
+                            .accessibilityHint("Prepares a JSON file of notes and phrases on this device. You can then share it or save it to Files.")
 
                             Button(role: .destructive) {
                                 confirmDelete = true
@@ -689,15 +691,28 @@ private struct SettingsView: View {
                                 Text("Export")
                                     .font(AppFont.section)
                                     .foregroundStyle(AppColor.ink)
+                                Text("This file stays on this device until you share it.")
+                                    .font(AppFont.note)
+                                    .foregroundStyle(AppColor.secondaryInk)
+                                if let url = model.exportFileURL {
+                                    ShareLink(item: url, preview: SharePreview("Notice & Name export")) {
+                                        Label("Share or save this file", systemImage: "square.and.arrow.up")
+                                            .font(AppFont.cardTitle)
+                                            .foregroundStyle(AppColor.plum)
+                                            .frame(maxWidth: .infinity, alignment: .leading)
+                                    }
+                                    .accessibilityHint("Opens the system share sheet so you can Save to Files, AirDrop, or Mail.")
+                                }
                                 TextEditor(text: Binding(
                                     get: { model.exportText ?? "" },
                                     set: { _ in }
                                 ))
                                 .font(.system(.footnote, design: .monospaced))
                                 .foregroundStyle(AppColor.ink)
-                                .frame(minHeight: 220)
+                                .frame(minHeight: 160)
                                 .padding(8)
                                 .background(AppColor.canvas, in: RoundedRectangle(cornerRadius: 8))
+                                .accessibilityLabel("Export preview")
                             }
                         }
                     }
