@@ -1,6 +1,6 @@
 # Notice & Name — Current State
 
-**Date:** 2026-08-11
+**Date:** 2026-08-18
 
 ## Product
 
@@ -26,7 +26,8 @@
   - 4 explainers
   - 35 media refs
 - Media: 22 illustrations/thumbnails, 4 videos, 5 native diagrams
-- No StoreKit yet
+- StoreKit 2 full unlock + free preview boundary on main (`8f9700e`): product id `com.noticeandname.app.fullunlock`, quiet unlock sheet, Settings restore/unlock, `Configuration.storekit` for Xcode
+- App Store listing packet draft: [`docs/APP_STORE.md`](./APP_STORE.md)
 
 ## Content truth & rename leftovers
 
@@ -36,10 +37,10 @@
 - Xcode targets/modules still `PleasureVocabulary*`
 - On-disk DB dir still `PleasureVocabulary`
 
-## Pricing (locked, not implemented)
+## Pricing (locked; in-app implemented)
 
-- Free download with useful private preview
-- One non-consumable full unlock at £15
+- Free download with useful private preview (Responsive Desire, Angling, Non-concordance + `mind-body` explainer)
+- One non-consumable full unlock at £15 — StoreKit client wired; **App Store Connect IAP still Conor**
 - No subscription at launch
 
 ## Quality bar (target)

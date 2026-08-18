@@ -35,7 +35,7 @@ Good-enough / later: Today cleverness, pathway polish, full video coverage, modu
 - [x] Lock unlock price (£15 one-time)
 - [x] StoreKit non-consumable + preview boundary (Responsive Desire, Angling, Non-concordance + `mind-body` explainer) — engineering landed; App Store Connect product still Conor
 - [ ] Support email + privacy policy URL — Conor
-- [ ] Metadata, screenshots, review notes (App Store VO takes ready in `assets/audio/app-store/`)
+- [x] Metadata / screenshots **draft** in [`APP_STORE.md`](./APP_STORE.md) (listing copy, review notes, 6.7" capture list, VO pairing) — screenshots capture + taste still Conor
 
 ### D — Beta → submit
 - [ ] Small TestFlight cohort
@@ -51,6 +51,7 @@ Good-enough / later: Today cleverness, pathway polish, full video coverage, modu
 
 - Taste / reuse across repos: [`TASTE_SURVEY.md`](./TASTE_SURVEY.md)
 - Launch checklist: [`LAUNCH_GAPS.md`](./LAUNCH_GAPS.md)
+- App Store listing packet: [`APP_STORE.md`](./APP_STORE.md)
 - Onboarding VO script (approved): [`ONBOARDING_SCRIPT.md`](./ONBOARDING_SCRIPT.md)
 - Interactive diagrams (all 22): [`INTERACTIVES.md`](./INTERACTIVES.md)
 

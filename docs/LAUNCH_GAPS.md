@@ -26,8 +26,8 @@ Ordered by remaining plan phases. Updated 2026-08-11 evening.
 
 ## Phase D — TestFlight / submit
 
-- [ ] App Store metadata (name, subtitle "Notice what you like, name it.", description, keywords)
-- [ ] Screenshots (preview VO takes ready under `assets/audio/app-store/`)
+- [x] App Store metadata **draft** — paste packet in [`APP_STORE.md`](./APP_STORE.md) (name, subtitle, description, keywords, What’s New, review notes)
+- [~] Screenshots — capture list + captions in [`APP_STORE.md`](./APP_STORE.md); VO takes in `assets/audio/app-store/`; **real device capture + taste still Conor**
 - [ ] TestFlight build & testing
 - [ ] Submit for App Review
 

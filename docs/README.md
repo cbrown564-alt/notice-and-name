@@ -9,6 +9,7 @@ They are based on the current code and content bundle, not old roadmaps.
 | [MARKET.md](./MARKET.md) | Competitors, positioning, £15 pricing |
 | [LAUNCH_GAPS.md](./LAUNCH_GAPS.md) | What must improve before App Store launch |
 | [PLAN.md](./PLAN.md) | Phases A–D, quality bar, ownership |
+| [APP_STORE.md](./APP_STORE.md) | App Store listing packet (metadata, review notes, screenshot capture list) |
 | [TESTING.md](./TESTING.md) | What CI and tests cover (and why they are small) |
 | [CONTENT.md](./CONTENT.md) | Content pipeline: edit surfaces vs shipping bundle |
 
