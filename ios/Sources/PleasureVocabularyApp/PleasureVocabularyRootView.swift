@@ -8,12 +8,18 @@ import LocalAuthentication
 public struct PleasureVocabularyRootView: View {
     @StateObject private var model: PleasureVocabularyViewModel
     @StateObject private var lockCoordinator: AppLockCoordinator
+    @StateObject private var unlockStore: FullUnlockStore
     @State private var didApplyRecordingDemoReset = false
+    @State private var didStartUnlockStore = false
     @Environment(\.scenePhase) private var scenePhase
 
-    public init(model: PleasureVocabularyViewModel = PleasureVocabularyViewModel()) {
+    public init(
+        model: PleasureVocabularyViewModel = PleasureVocabularyViewModel(),
+        unlockStore: FullUnlockStore = FullUnlockStore()
+    ) {
         _model = StateObject(wrappedValue: model)
         _lockCoordinator = StateObject(wrappedValue: AppLockCoordinator(settings: model.settings))
+        _unlockStore = StateObject(wrappedValue: unlockStore)
     }
 
     public var body: some View {
@@ -27,7 +33,7 @@ public struct PleasureVocabularyRootView: View {
             } else if !model.settings.completedOnboarding {
                 OnboardingView(model: model)
             } else {
-                LockGateView(model: model, coordinator: lockCoordinator)
+                LockGateView(model: model, coordinator: lockCoordinator, unlockStore: unlockStore)
             }
         }
         .tint(AppColor.plum)
@@ -36,6 +42,9 @@ public struct PleasureVocabularyRootView: View {
         .onChange(of: model.settings) { _, settings in
             lockCoordinator.syncSettings(settings)
         }
+        .onChange(of: unlockStore.isUnlocked) { _, unlocked in
+            model.isLibraryUnlocked = unlocked
+        }
         .onChange(of: scenePhase) { _, phase in
             guard phase == .background || phase == .inactive else { return }
             if lockCoordinator.lockForBackgroundPrivacy() {
@@ -43,7 +52,9 @@ public struct PleasureVocabularyRootView: View {
             }
         }
         .onAppear {
+            model.isLibraryUnlocked = unlockStore.isUnlocked
             applyRecordingDemoResetIfRequested()
+            startUnlockStoreIfNeeded()
         }
         .alert("Something needs attention", isPresented: errorBinding) {
             Button("OK") {
@@ -66,6 +77,15 @@ public struct PleasureVocabularyRootView: View {
         didApplyRecordingDemoReset = true
         guard RecordingDemo.resetRequested else { return }
         model.deleteAllData()
+    }
+
+    private func startUnlockStoreIfNeeded() {
+        guard !didStartUnlockStore else { return }
+        didStartUnlockStore = true
+        Task {
+            await unlockStore.start()
+            model.isLibraryUnlocked = unlockStore.isUnlocked
+        }
     }
 }
 
@@ -221,12 +241,13 @@ private struct PrivacyRow: View {
 private struct LockGateView: View {
     @ObservedObject var model: PleasureVocabularyViewModel
     @ObservedObject var coordinator: AppLockCoordinator
+    @ObservedObject var unlockStore: FullUnlockStore
 
     var body: some View {
         if coordinator.isLocked {
             LockScreen(coordinator: coordinator)
         } else {
-            MainTabView(model: model)
+            MainTabView(model: model, unlockStore: unlockStore)
         }
     }
 }
@@ -289,6 +310,8 @@ private struct LockScreen: View {
 
 private struct MainTabView: View {
     @ObservedObject var model: PleasureVocabularyViewModel
+    @ObservedObject var unlockStore: FullUnlockStore
+    @StateObject private var unlockPresenter = UnlockPresenter()
 
     var body: some View {
         TabView {
@@ -300,10 +323,25 @@ private struct MainTabView: View {
                 .tabItem { Label("Explore", systemImage: "sparkle.magnifyingglass") }
             JournalView(model: model)
                 .tabItem { Label("Journal", systemImage: "note.text") }
-            SettingsView(model: model)
+            SettingsView(model: model, unlockStore: unlockStore)
                 .tabItem { Label("Settings", systemImage: "gearshape") }
         }
         .appScreenBackground()
+        .environmentObject(unlockPresenter)
+        .environmentObject(unlockStore)
+        .sheet(isPresented: $unlockPresenter.isPresented) {
+            UnlockSheet(unlock: unlockStore) {
+                unlockPresenter.isPresented = false
+            }
+            .presentationDetents([.medium, .large])
+            .presentationDragIndicator(.visible)
+        }
+        .onChange(of: unlockStore.isUnlocked) { _, unlocked in
+            model.isLibraryUnlocked = unlocked
+            if unlocked {
+                unlockPresenter.isPresented = false
+            }
+        }
     }
 }
 
@@ -334,9 +372,7 @@ private struct TodayView: View {
                                 Text(concept.summary)
                                     .font(AppFont.body)
                                     .foregroundStyle(AppColor.secondaryInk)
-                                NavigationLink {
-                                    ConceptDetailView(model: model, concept: concept)
-                                } label: {
+                                GatedConceptOpenButton(model: model, concept: concept) {
                                     Label("Open word", systemImage: "arrow.right.circle")
                                 }
                                 .buttonStyle(PrimaryButtonStyle())
@@ -385,9 +421,7 @@ private struct VocabularyView: View {
                         .listRowBackground(AppColor.canvas)
                 } else {
                     ForEach(model.vocabularyConcepts) { concept in
-                        NavigationLink {
-                            ConceptDetailView(model: model, concept: concept)
-                        } label: {
+                        GatedConceptNavigationLink(model: model, concept: concept) {
                             ConceptSummaryRow(model: model, concept: concept)
                         }
                     }
@@ -413,12 +447,11 @@ private struct ExploreView: View {
                 if !model.bundle.explainers.isEmpty {
                     Section("Research Explainers") {
                         ForEach(model.bundle.explainers) { explainer in
-                            NavigationLink {
-                                ExplainerDetailView(model: model, explainer: explainer)
-                            } label: {
+                            GatedExplainerNavigationLink(model: model, explainer: explainer) {
                                 ExplainerSummaryRow(
                                     explainer: explainer,
-                                    heroMedia: model.media(withId: explainer.heroImageId)
+                                    heroMedia: model.media(withId: explainer.heroImageId),
+                                    showsPreviewLock: model.isExplainerGated(explainer.id)
                                 )
                             }
                             .listRowBackground(AppColor.surface)
@@ -447,10 +480,12 @@ private struct ExploreView: View {
 
                 Section("Concept Library") {
                     ForEach(model.bundle.concepts) { concept in
-                        NavigationLink {
-                            ConceptDetailView(model: model, concept: concept)
-                        } label: {
-                            ConceptSummaryRow(model: model, concept: concept)
+                        GatedConceptNavigationLink(model: model, concept: concept) {
+                            ConceptSummaryRow(
+                                model: model,
+                                concept: concept,
+                                showsPreviewLock: model.isConceptGated(concept.id)
+                            )
                         }
                         .listRowBackground(AppColor.surface)
                     }
@@ -477,16 +512,25 @@ private struct PathwayDetailView: View {
             Section("Words") {
                 ForEach(pathway.conceptIds, id: \.self) { conceptId in
                     if let concept = model.concept(withId: conceptId) {
-                        NavigationLink {
-                            ConceptDetailView(model: model, concept: concept)
-                                .onAppear {
-                                    model.updatePathway(pathway, currentConceptId: concept.id)
-                                }
-                                .onDisappear {
-                                    model.updatePathway(pathway, currentConceptId: concept.id, completedConceptId: concept.id)
-                                }
-                        } label: {
-                            ConceptSummaryRow(model: model, concept: concept)
+                        GatedConceptNavigationLink(
+                            model: model,
+                            concept: concept,
+                            onOpened: {
+                                model.updatePathway(pathway, currentConceptId: concept.id)
+                            },
+                            onClosed: {
+                                model.updatePathway(
+                                    pathway,
+                                    currentConceptId: concept.id,
+                                    completedConceptId: concept.id
+                                )
+                            }
+                        ) {
+                            ConceptSummaryRow(
+                                model: model,
+                                concept: concept,
+                                showsPreviewLock: model.isConceptGated(concept.id)
+                            )
                         }
                         .listRowBackground(AppColor.surface)
                     }
@@ -592,7 +636,9 @@ private struct JournalView: View {
 
 private struct SettingsView: View {
     @ObservedObject var model: PleasureVocabularyViewModel
+    @ObservedObject var unlockStore: FullUnlockStore
     @State private var confirmDelete = false
+    @State private var showUnlockSheet = false
 
     var body: some View {
         NavigationStack {
@@ -602,6 +648,67 @@ private struct SettingsView: View {
                         title: "Settings",
                         subtitle: "Privacy and data on this device."
                     )
+
+                    QuietCard {
+                        VStack(alignment: .leading, spacing: 14) {
+                            Text("Library")
+                                .font(AppFont.section)
+                                .foregroundStyle(AppColor.ink)
+
+                            HStack {
+                                Text(unlockStore.isUnlocked ? "Full library" : "Free preview")
+                                    .font(AppFont.cardTitle)
+                                    .foregroundStyle(AppColor.ink)
+                                Spacer()
+                                Text(unlockStore.isUnlocked ? "Unlocked" : "Preview")
+                                    .font(AppFont.label)
+                                    .foregroundStyle(AppColor.secondaryInk)
+                            }
+                            .accessibilityElement(children: .combine)
+
+                            HStack {
+                                Text("Full unlock")
+                                    .font(AppFont.cardTitle)
+                                    .foregroundStyle(AppColor.ink)
+                                Spacer()
+                                Text(unlockStore.displayPrice)
+                                    .font(AppFont.cardTitle)
+                                    .foregroundStyle(AppColor.plum)
+                            }
+                            .accessibilityElement(children: .combine)
+                            .accessibilityLabel("Full unlock price \(unlockStore.displayPrice)")
+
+                            if !unlockStore.isUnlocked {
+                                Button {
+                                    showUnlockSheet = true
+                                } label: {
+                                    Label("Unlock", systemImage: "lock.open")
+                                        .font(AppFont.cardTitle)
+                                        .foregroundStyle(AppColor.plum)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                }
+                                .disabled(unlockStore.isBusy)
+                            }
+
+                            Button {
+                                Task { _ = await unlockStore.restorePurchases() }
+                            } label: {
+                                Label("Restore Purchases", systemImage: "arrow.clockwise")
+                                    .font(AppFont.cardTitle)
+                                    .foregroundStyle(AppColor.plum)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                            .disabled(unlockStore.isBusy)
+                            .accessibilityHint("Restores a previous unlock for this Apple ID.")
+
+                            if let message = unlockStore.lastErrorMessage {
+                                Text(message)
+                                    .font(AppFont.note)
+                                    .foregroundStyle(AppColor.blush)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
+                        }
+                    }
 
                     QuietCard {
                         VStack(alignment: .leading, spacing: 14) {
@@ -726,6 +833,100 @@ private struct SettingsView: View {
                 }
                 Button("Cancel", role: .cancel) {}
             }
+            .sheet(isPresented: $showUnlockSheet) {
+                UnlockSheet(unlock: unlockStore) {
+                    showUnlockSheet = false
+                }
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.visible)
+            }
+            .onChange(of: unlockStore.isUnlocked) { _, unlocked in
+                model.isLibraryUnlocked = unlocked
+                if unlocked {
+                    showUnlockSheet = false
+                }
+            }
+        }
+    }
+}
+
+private struct GatedConceptOpenButton<Label: View>: View {
+    @ObservedObject var model: PleasureVocabularyViewModel
+    let concept: Concept
+    @ViewBuilder var label: () -> Label
+    @EnvironmentObject private var unlockPresenter: UnlockPresenter
+    @State private var navigate = false
+
+    var body: some View {
+        Button {
+            if model.canOpenConcept(concept.id) {
+                navigate = true
+            } else {
+                unlockPresenter.isPresented = true
+            }
+        } label: {
+            label()
+        }
+        .navigationDestination(isPresented: $navigate) {
+            ConceptDetailView(model: model, concept: concept)
+        }
+    }
+}
+
+private struct GatedConceptNavigationLink<Label: View>: View {
+    @ObservedObject var model: PleasureVocabularyViewModel
+    let concept: Concept
+    var onOpened: (() -> Void)? = nil
+    var onClosed: (() -> Void)? = nil
+    @ViewBuilder var label: () -> Label
+    @EnvironmentObject private var unlockPresenter: UnlockPresenter
+
+    var body: some View {
+        if model.canOpenConcept(concept.id) {
+            NavigationLink {
+                ConceptDetailView(model: model, concept: concept)
+                    .onAppear { onOpened?() }
+                    .onDisappear { onClosed?() }
+            } label: {
+                label()
+            }
+        } else {
+            Button {
+                unlockPresenter.isPresented = true
+            } label: {
+                label()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            .accessibilityHint("Opens the quiet unlock sheet for the full library.")
+        }
+    }
+}
+
+private struct GatedExplainerNavigationLink<Label: View>: View {
+    @ObservedObject var model: PleasureVocabularyViewModel
+    let explainer: ResearchExplainer
+    @ViewBuilder var label: () -> Label
+    @EnvironmentObject private var unlockPresenter: UnlockPresenter
+
+    var body: some View {
+        if model.canOpenExplainer(explainer.id) {
+            NavigationLink {
+                ExplainerDetailView(model: model, explainer: explainer)
+            } label: {
+                label()
+            }
+        } else {
+            Button {
+                unlockPresenter.isPresented = true
+            } label: {
+                label()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            .accessibilityHint("Opens the quiet unlock sheet for the full library.")
         }
     }
 }
@@ -780,6 +981,7 @@ private struct StatusPill: View {
 private struct ConceptSummaryRow: View {
     @ObservedObject var model: PleasureVocabularyViewModel
     let concept: Concept
+    var showsPreviewLock: Bool = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 7) {
@@ -787,6 +989,12 @@ private struct ConceptSummaryRow: View {
                 Text(concept.name)
                     .font(AppFont.cardTitle)
                     .foregroundStyle(AppColor.ink)
+                if showsPreviewLock {
+                    Image(systemName: "lock")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(AppColor.secondaryInk)
+                        .accessibilityLabel("Full unlock")
+                }
                 Spacer()
                 StatusPill(status: model.status(for: concept.id))
             }

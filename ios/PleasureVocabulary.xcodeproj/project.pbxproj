@@ -15,6 +15,7 @@
 /* Begin PBXFileReference section */
 		075007084EEABDCC4B6345E8 /* PleasureVocabulary.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = PleasureVocabulary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AD0E33C8C2264851A4F20AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7F3A91C2E8B04D6A9C1E5F20 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		D9D9C6B29757445F2D5EDFD9 /* PleasureVocabularyHostApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PleasureVocabularyHostApp.swift; sourceTree = "<group>"; };
 		EDB144638FCA0399A87C3916 /* ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ios; path = .; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -34,6 +35,7 @@
 		023572DDA3559599C395A5DC = {
 			isa = PBXGroup;
 			children = (
+				7F3A91C2E8B04D6A9C1E5F20 /* Configuration.storekit */,
 				48EA938A2CE13BF04AE83AF1 /* AppHost */,
 				A9FC2FD62AA49A707625F0A8 /* Packages */,
 				E44737323A00995B44B0A2F6 /* Products */,

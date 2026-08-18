@@ -29,6 +29,28 @@ then repeat the persistence checks after force-quitting and reopening the app.
   blocks without missing copy.
 - Video media entries show a static fallback when Reduce Motion is enabled.
 
+## StoreKit Full Unlock (Phase C)
+
+Product id: `com.noticeandname.app.fullunlock` (non-consumable). Local StoreKit config:
+`ios/Configuration.storekit` (wired on the PleasureVocabulary scheme).
+
+### Preview boundary
+- Free without purchase: Responsive Desire, Angling, Non-concordance, and research explainer
+  `mind-body`.
+- Explore / Vocabulary still list gated titles (and explainer thumbs); opening gated content
+  presents the quiet unlock sheet — it does not hide the catalog.
+- Settings shows unlock status, live StoreKit price with £15 fallback, Unlock, and Restore
+  Purchases.
+
+### Device checks (after App Store Connect product exists, or with the local `.storekit` file)
+- Fresh install: free preview concepts and `mind-body` open fully.
+- Opening a gated concept or gated explainer presents the Soft Intimate unlock sheet (not a
+  shouty paywall).
+- Purchase with the local StoreKit config unlocks the library; relaunch keeps access offline.
+- Restore Purchases recovers the entitlement for the same Apple ID / StoreKit test account.
+- Settings price matches StoreKit when loaded; otherwise shows £15.
+- Canceling a purchase leaves local notes and app lock untouched.
+
 ## Privacy And Data
 
 - Settings toggles app lock without losing state.
@@ -39,6 +61,7 @@ then repeat the persistence checks after force-quitting and reopening the app.
   content version.
 - Delete all local data restores default private settings.
 - No screen asks for account creation, sync, analytics, or network permissions.
+
 
 ## Feel Pass
 

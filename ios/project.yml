@@ -10,6 +10,8 @@ settings:
 packages:
   PleasureVocabularyNative:
     path: .
+fileGroups:
+  - Configuration.storekit
 targets:
   PleasureVocabulary:
     type: application
@@ -59,5 +61,6 @@ schemes:
         PleasureVocabulary: all
     run:
       config: Debug
+      storeKitConfiguration: Configuration.storekit
     archive:
       config: Release

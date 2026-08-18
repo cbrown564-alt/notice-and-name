@@ -17,8 +17,9 @@ Ordered by remaining plan phases. Updated 2026-08-11 evening.
 ## Phase C — StoreKit / business
 
 - [x] Price: £15 one-time unlock
-- [ ] StoreKit non-consumable + free preview boundary
-- [ ] Wire preview set (Responsive Desire, Angling, Non-concordance + one research explainer)
+- [x] StoreKit non-consumable + free preview boundary (StoreKit 2 client, quiet unlock sheet, Settings restore/unlock, `Configuration.storekit` for Xcode)
+- [x] Wire preview set: Responsive Desire, Angling, Non-concordance + research explainer `mind-body`
+- [ ] Create IAP `com.noticeandname.app.fullunlock` in App Store Connect (£15 GBP) — Conor
 - [ ] Support email for App Store listing
 - [ ] Privacy policy URL
 - [ ] Finish brand rename leftovers in Xcode targets/modules/DB dir (`PleasureVocabulary*`)

@@ -14,10 +14,13 @@ public final class PleasureVocabularyViewModel: ObservableObject {
     @Published public var journalSearchText = ""
     @Published public var exportText: String?
     @Published public var exportFileURL: URL?
+    /// Synced from `FullUnlockStore` / a fake entitlement in tests.
+    @Published public var isLibraryUnlocked = false
 
     private var store: UserStore?
 
-    public init(bundleURL: URL? = nil, store: UserStore? = nil) {
+    public init(bundleURL: URL? = nil, store: UserStore? = nil, isLibraryUnlocked: Bool = false) {
+        self.isLibraryUnlocked = isLibraryUnlocked
         do {
             let resolvedBundleURL = bundleURL ?? Bundle.module.url(forResource: "v2-full.bundle", withExtension: "json")
             guard let resolvedBundleURL else {
@@ -38,10 +41,27 @@ public final class PleasureVocabularyViewModel: ObservableObject {
     }
 
     public var todayConcept: Concept? {
-        bundle.concepts.first { concept in
+        let accessible = bundle.concepts.filter { canOpenConcept($0.id) }
+        return accessible.first { concept in
             let status = status(for: concept.id)
             return status == .unexplored || status == .explored || status == .curious
-        } ?? bundle.concepts.first
+        } ?? accessible.first
+    }
+
+    public func canOpenConcept(_ conceptID: String) -> Bool {
+        PreviewBoundary.canAccessConcept(conceptID, isUnlocked: isLibraryUnlocked)
+    }
+
+    public func canOpenExplainer(_ explainerID: String) -> Bool {
+        PreviewBoundary.canAccessExplainer(explainerID, isUnlocked: isLibraryUnlocked)
+    }
+
+    public func isConceptGated(_ conceptID: String) -> Bool {
+        PreviewBoundary.isGatedConcept(conceptID) && !isLibraryUnlocked
+    }
+
+    public func isExplainerGated(_ explainerID: String) -> Bool {
+        PreviewBoundary.isGatedExplainer(explainerID) && !isLibraryUnlocked
     }
 
     public var vocabularyConcepts: [Concept] {

@@ -33,7 +33,7 @@ Good-enough / later: Today cleverness, pathway polish, full video coverage, modu
 
 ### C — Business
 - [x] Lock unlock price (£15 one-time)
-- [ ] StoreKit non-consumable + preview boundary (Responsive Desire, Angling, Non-concordance + one explainer)
+- [x] StoreKit non-consumable + preview boundary (Responsive Desire, Angling, Non-concordance + `mind-body` explainer) — engineering landed; App Store Connect product still Conor
 - [ ] Support email + privacy policy URL — Conor
 - [ ] Metadata, screenshots, review notes (App Store VO takes ready in `assets/audio/app-store/`)
 

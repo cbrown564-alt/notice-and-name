@@ -77,7 +77,7 @@ public final class AppAudioPlayer: NSObject, ObservableObject {
         }
     }
 
-    /// Ready for StoreKit unlock UI later.
+    /// Soft unlock chime used after a successful StoreKit full-library purchase.
     public func playUnlockSFX() {
         playSFX("unlock")
     }

@@ -29,6 +29,7 @@ enum ExplainerMedia {
 struct ExplainerSummaryRow: View {
     let explainer: ResearchExplainer
     let heroMedia: MediaItem?
+    var showsPreviewLock: Bool = false
 
     var body: some View {
         HStack(alignment: .top, spacing: 14) {
@@ -41,9 +42,17 @@ struct ExplainerSummaryRow: View {
                 }
 
             VStack(alignment: .leading, spacing: 6) {
-                Text(explainer.title)
-                    .font(AppFont.cardTitle)
-                    .foregroundStyle(AppColor.ink)
+                HStack(alignment: .firstTextBaseline, spacing: 6) {
+                    Text(explainer.title)
+                        .font(AppFont.cardTitle)
+                        .foregroundStyle(AppColor.ink)
+                    if showsPreviewLock {
+                        Image(systemName: "lock")
+                            .font(.caption.weight(.semibold))
+                            .foregroundStyle(AppColor.secondaryInk)
+                            .accessibilityLabel("Full unlock")
+                    }
+                }
                 Text(explainer.subtitle)
                     .font(AppFont.note)
                     .foregroundStyle(AppColor.secondaryInk)
@@ -297,33 +306,67 @@ struct ExplainerDetailView: View {
 
                 ForEach(explainer.relatedConceptIds, id: \.self) { conceptId in
                     if let concept = model.concept(withId: conceptId) {
-                        NavigationLink {
-                            ConceptPagesView(model: model, concept: concept)
-                                .navigationTitle(concept.name)
-                                .compactNavigationTitle()
-                                .onAppear {
-                                    model.markOpened(concept.id)
-                                }
-                        } label: {
-                            HStack {
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(concept.name)
-                                        .font(AppFont.cardTitle)
-                                        .foregroundStyle(AppColor.ink)
-                                    Text(concept.definition)
-                                        .font(AppFont.note)
-                                        .foregroundStyle(AppColor.secondaryInk)
-                                        .lineLimit(2)
-                                }
-                                Spacer(minLength: 8)
-                                Image(systemName: "chevron.right")
-                                    .font(.caption.weight(.semibold))
-                                    .foregroundStyle(AppColor.secondaryInk)
-                            }
-                        }
+                        RelatedConceptRow(model: model, concept: concept)
                     }
                 }
             }
+        }
+    }
+}
+
+private struct RelatedConceptRow: View {
+    @ObservedObject var model: PleasureVocabularyViewModel
+    let concept: Concept
+    @EnvironmentObject private var unlockPresenter: UnlockPresenter
+
+    var body: some View {
+        Group {
+            if model.canOpenConcept(concept.id) {
+                NavigationLink {
+                    ConceptPagesView(model: model, concept: concept)
+                        .navigationTitle(concept.name)
+                        .compactNavigationTitle()
+                        .onAppear {
+                            model.markOpened(concept.id)
+                        }
+                } label: {
+                    rowLabel(showsLock: false)
+                }
+            } else {
+                Button {
+                    unlockPresenter.isPresented = true
+                } label: {
+                    rowLabel(showsLock: true)
+                }
+                .buttonStyle(.plain)
+                .accessibilityHint("Opens the quiet unlock sheet for the full library.")
+            }
+        }
+    }
+
+    private func rowLabel(showsLock: Bool) -> some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 4) {
+                HStack(spacing: 6) {
+                    Text(concept.name)
+                        .font(AppFont.cardTitle)
+                        .foregroundStyle(AppColor.ink)
+                    if showsLock {
+                        Image(systemName: "lock")
+                            .font(.caption.weight(.semibold))
+                            .foregroundStyle(AppColor.secondaryInk)
+                            .accessibilityLabel("Full unlock")
+                    }
+                }
+                Text(concept.definition)
+                    .font(AppFont.note)
+                    .foregroundStyle(AppColor.secondaryInk)
+                    .lineLimit(2)
+            }
+            Spacer(minLength: 8)
+            Image(systemName: "chevron.right")
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(AppColor.secondaryInk)
         }
     }
 }
