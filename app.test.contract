@@ -73,7 +73,23 @@ test "easing back from the edge counts as an approach, and going over releases"
   expect state aReleasing == true
   expect text "caption" == "Over the edge. After approaching and easing back, release often lands deeper."
 
-test "a word, a phrase and a note are kept, shown in Yours, and can be erased"
+test "erase everything empties Yours"
+  at "/atlas/angling"
+  tap "status-curious"
+  type "note-draft" "To be erased."
+  tap "note-save"
+  clock data
+  tap "tab-yours"
+  expect text "word-angling" == "Angling"
+  tap "erase-open"
+  clock settle
+  tap "erase-confirm"
+  clock data
+  expect tree has "words-empty"
+  expect tree has "notes-empty"
+  expect state curious == []
+
+test "a word, a phrase and a note are kept and shown in Yours"
   at "/atlas/angling"
   tap "status-resonates"
   tap "keep-angling-partner-request"
@@ -86,10 +102,3 @@ test "a word, a phrase and a note are kept, shown in Yours, and can be erased"
   expect text "word-angling" == "Angling"
   expect text "kept-angling-partner-request" == "Can we play with tilting my hips a little and see what shifts? I'll show you when something lands."
   expect text "yours-note-1" == "A small tilt forward."
-  tap "erase-open"
-  clock settle
-  tap "erase-confirm"
-  clock data
-  expect tree has "words-empty"
-  expect tree has "notes-empty"
-  expect state kept == []

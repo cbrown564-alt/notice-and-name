@@ -23,4 +23,11 @@ theme
   rose = light-dark(#EDBFB2, #7E4F49)
   rose.deep = light-dark(#CE8172, #B87064)
   bone = light-dark(#E6DCCF, #3B333D)
-  ink.on-ember = #FFFFFF  scheme=fixed
+  honey.deep = light-dark(#8A5F10, #F2CC80)  pair=paper.raised
+  rose.ink = light-dark(#A4503F, #E7A99C)  pair=paper.raised
+  chip.ember = light-dark(#C94B2A, #F6A187)
+  chip.honey = light-dark(#9A6A12, #F2CC80)
+  chip.sage = light-dark(#4B7155, #A9CBB1)
+  chip.dusk = light-dark(#5A53B8, #BDB8F5)
+  chip.ink = light-dark(#66575F, #BBADB4)
+  ink.on-chip = light-dark(#FFFFFF, #1B1216)

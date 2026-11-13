@@ -38,6 +38,9 @@ component Caption
     column min-height="4.4em" justify-content="center" padding="0 6px"
       text line testId="caption" aria-live="polite" class=Serif font-size="1.0625rem" line-height=1.4 color="ink" text-align="center" text-wrap="balance"
 
+// A lit Chip's fill: a tone dark enough (light enough, in dark mode) for its label.
+fn chipFill(tone: string): string = tone == "ember" ? "chip.ember" : tone == "honey" ? "chip.honey" : tone == "sage" ? "chip.sage" : tone == "dusk" ? "chip.dusk" : "chip.ink"
+
 component Chip
   props
     label: string
@@ -47,7 +50,7 @@ component Chip
     tid: string
   view
     button press=press testId=tid appearance="none" aria-pressed=on padding="9px 15px" border-radius=999
-      background-color=(on ? tone : "paper.sunk") color=(on ? "ink.on-ember" : "ink")
+      background-color=(on ? chipFill(tone) : "paper.sunk") color=(on ? "ink.on-chip" : "ink")
       font-size="0.9375rem" font-weight=500 transition="background-color 180ms ease, color 180ms ease"
       text label
 

@@ -213,12 +213,12 @@ component App
                         if keptPhrases.length == 0
                           text "Sentences you keep from any idea's “Say it” collect here, ready when you want them." font-size="0.9375rem" line-height=1.45 color="ink.soft" testId="phrases-empty"
                         for p in keptPhrases key=p.id
-                          row class=Card gap=12 align-items="flex-start"
-                            column flex=1 min-width=0 gap=4
-                              text p.label font-size="0.8125rem" font-weight=600 color="ink.soft"
-                              text p.body class=Serif font-size="1.125rem" line-height=1.4 testId=`kept-${p.id}`
-                            button press=toggleKeep(p.id) aria-label="Remove from kept phrases" testId=`unkeep-${p.id}`
-                              image "symbol:bookmark-fill"
+                          column class=Card gap=8
+                            text p.label font-size="0.8125rem" font-weight=600 color="ink.soft"
+                            text p.body class=Serif font-size="1.125rem" line-height=1.4 testId=`kept-${p.id}`
+                            row justify-content="flex-end"
+                              button press=toggleKeep(p.id) aria-label="Remove from kept phrases" testId=`unkeep-${p.id}`
+                                image "symbol:bookmark-fill"
                       column gap=10
                         text "Field notes" class=Eyebrow
                         if notes.length == 0

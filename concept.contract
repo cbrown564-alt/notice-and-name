@@ -11,7 +11,8 @@ fn conceptChapter(lib: Library, id: string): string = match first(lib.concepts.f
 fn chapterName(lib: Library, id: string): string = match first(lib.chapters.filter(c => c.id == id)) { case some(c) => c.name, case none => "" }
 // The concept after this one in the atlas's order, or "" at the end.
 fn nextId(lib: Library, id: string): string = match lib.concepts.at(lib.concepts.map(c => c.id).indexOf(id) + 1) { case some(c) => c.id, case none => "" }
-fn toneOf(chapter: string): string = chapter == "map" ? "rose.deep" : chapter == "curve" ? "ember" : chapter == "wanting" ? "honey" : chapter == "attention" ? "dusk" : chapter == "touch" ? "sage" : "ember.deep"
+// A chapter's tone, dark enough to set text in.
+fn toneOf(chapter: string): string = chapter == "map" ? "rose.ink" : chapter == "curve" ? "ember.deep" : chapter == "wanting" ? "honey.deep" : chapter == "attention" ? "dusk.deep" : chapter == "touch" ? "sage.deep" : "ink.soft"
 
 style Card
   background-color="paper.raised"
@@ -88,15 +89,15 @@ component ConceptPage
         column gap=10
           text "Say it" class=Eyebrow
           for p in c.phrases key=p.id
-            row class=Card gap=12 align-items="flex-start"
-              column flex=1 min-width=0 gap=4
-                text p.label font-size="0.8125rem" font-weight=600 color="ink.soft"
-                text p.body class=Serif font-size="1.125rem" line-height=1.4 testId=`phrase-${p.id}`
-              button press=send(p.body) aria-label="Share this phrase" testId=`share-${p.id}`
-                image "symbol:share"
-              button press=toggleKeep(p.id) aria-label=(kept.includes(p.id) ? "Remove from kept phrases" : "Keep this phrase")
-                aria-pressed=kept.includes(p.id) testId=`keep-${p.id}`
-                image (kept.includes(p.id) ? "symbol:bookmark-fill" : "symbol:bookmark")
+            column class=Card gap=8
+              text p.label font-size="0.8125rem" font-weight=600 color="ink.soft"
+              text p.body class=Serif font-size="1.125rem" line-height=1.4 testId=`phrase-${p.id}`
+              row gap=8 justify-content="flex-end"
+                button press=send(p.body) aria-label="Share this phrase" testId=`share-${p.id}`
+                  image "symbol:share"
+                button press=toggleKeep(p.id) aria-label=(kept.includes(p.id) ? "Remove from kept phrases" : "Keep this phrase")
+                  aria-pressed=kept.includes(p.id) testId=`keep-${p.id}`
+                  image (kept.includes(p.id) ? "symbol:bookmark-fill" : "symbol:bookmark")
         column gap=10
           text "Reflect" class=Eyebrow
           text c.reflect class=Serif font-size="1.3125rem" line-height=1.4
