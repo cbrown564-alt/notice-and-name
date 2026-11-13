@@ -132,6 +132,7 @@ component NerveDensity
           text ndName(region) testId="nd-where" x=228 y=80 class=Serif font-size=19 font-weight=600 fill="ink"
           text `${fired}` testId="nd-count" x=228 y=132 class=Serif font-size=44 font-weight=600 fill=(flood ? "ember" : "ember.deep")
           text (fired == 1 ? "ending fires" : flood ? "endings, all at once" : "endings fire") testId="nd-signal" x=228 y=150 font-size=11 fill="ink.soft"
+          text "in this sketch, not a count" x=228 y=165 font-size=10.5 fill="ink.soft" opacity=0.75
         // The skin.
         g pointer-events="none"
           rect x=20 y=246 width=300 height=40 rx=20 fill="url(#nd-skin)"
