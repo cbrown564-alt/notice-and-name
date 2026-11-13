@@ -9,6 +9,8 @@ use WarmupWindow from "./instruments/warmup-window.contract"
 fn conceptName(lib: Library, id: string): string = match first(lib.concepts.filter(c => c.id == id)) { case some(c) => c.name, case none => "" }
 fn conceptChapter(lib: Library, id: string): string = match first(lib.concepts.filter(c => c.id == id)) { case some(c) => c.chapter, case none => "" }
 fn chapterName(lib: Library, id: string): string = match first(lib.chapters.filter(c => c.id == id)) { case some(c) => c.name, case none => "" }
+// The concept after this one in the atlas's order, or "" at the end.
+fn nextId(lib: Library, id: string): string = match lib.concepts.at(lib.concepts.map(c => c.id).indexOf(id) + 1) { case some(c) => c.id, case none => "" }
 fn toneOf(chapter: string): string = chapter == "map" ? "rose.deep" : chapter == "curve" ? "ember" : chapter == "wanting" ? "honey" : chapter == "attention" ? "dusk" : chapter == "touch" ? "sage" : "ember.deep"
 
 style Card
@@ -124,3 +126,9 @@ component ConceptPage
                 Glyph(id=r, chapter=conceptChapter(lib, r))
                 text conceptName(lib, r) class=Serif font-size="1.125rem" font-weight=600 flex=1 min-width=0
                 image "symbol:forward-chevron" color="ink.soft"
+        if nextId(lib, c.id) != ""
+          link href=`/${tab}/${nextId(lib, c.id)}` testId="next-concept" display="flex" align-items="center" gap=14 padding="14px 4px" text-decoration="none" color="ink"
+            column flex=1 min-width=0 gap=2
+              text "Next in the atlas" class=Eyebrow
+              text conceptName(lib, nextId(lib, c.id)) class=Serif font-size="1.3125rem" font-weight=600
+            image "symbol:forward-chevron" color="ink.soft"
