@@ -116,11 +116,27 @@ touch, heat, arousal. `rose` is the body at rest, `sage` is calm and safety,
 instrument's Caption are set in the system serif; everything else is the
 platform's own text. The full rules are in [`INSTRUMENTS.md`](INSTRUMENTS.md).
 
+## Where it is going
+
+The aim is the place a person, and then a couple, goes to understand how
+pleasure works, find out how it works for them, and say it to someone.
+
+- **Free: the atlas.** All concepts and instruments, in the app and on the web.
+- **Paid: the personal layer.** A *personal map* built from what the person does
+  with the instruments (their touch settings, their brakes, the curve they
+  draw), private and on the device; and a *partner mode* in which each person
+  answers alone and only overlaps and curiosities are revealed.
+
+In order: run on iOS and restore purchases and app lock; have the content
+reviewed by a named clinician or researcher; build the personal map; publish
+the free web atlas; build partner mode; add life-stage chapters.
+
 ## Not carried over, and next
 
 - **Purchases and app lock.** The previous client had a StoreKit unlock and a
   biometric lock. Exact has recipes for both (`purchases`, `permissions`);
-  neither is wired yet, so every concept is open.
+  neither is wired yet. The atlas stays free; purchases will gate the personal
+  layer when it exists.
 - **Voice.** The recorded phrases in `archive/audio` match the original 22
   concepts' sentences and could be played from *Say it*.
 - **Native polish.** The app is developed on Exact's web host and its tests

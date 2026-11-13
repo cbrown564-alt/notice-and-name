@@ -21,13 +21,15 @@ Not entertainment; not a therapy session. A personal naming tool that stays priv
 
 ## Pricing decision
 
-- **Free download** with useful private preview
-- **One non-consumable** full unlock at **£15**
-- **No subscription** at launch
+Decided 2026-11-13, replacing the earlier "£15 full unlock":
 
-£15 sits under OMGyes pay-once pricing, still premium vs tip-jar.
+- **The atlas is free.** Every concept and its instrument, with no preview boundary.
+  It is the acquisition layer, in the app and as free web pages.
+- **The personal layer is paid:** the personal map (what the instruments learn
+  about you, kept on the device) and partner mode. Price and model (one-time or
+  subscription) are still open; neither feature is built yet.
 
-## Preview concepts (proposed)
+## Preview concepts (superseded: the whole atlas is free)
 
 - Responsive Desire
 - Angling
