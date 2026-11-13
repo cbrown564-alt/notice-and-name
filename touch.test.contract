@@ -1,0 +1,70 @@
+// One test per instrument added in this pass: open its page, make the main
+// gesture through its testIds, and read what the stage says back.
+
+test "nerve density: the lens finds the glans, and firm pressure floods it"
+  at "/atlas/nerve-density"
+  expect text "nd-where" == "Inner thigh"
+  type "nd-stage" key "ArrowRight"
+  type "nd-stage" key "ArrowRight"
+  type "nd-stage" key "ArrowRight"
+  type "nd-stage" key "ArrowRight"
+  type "nd-stage" key "ArrowRight"
+  type "nd-stage" key "ArrowRight"
+  expect text "nd-where" == "Outer lips"
+  tap "nd-stage" drag 200 0
+  expect text "nd-where" == "Glans"
+  tap "nd-firm"
+  expect text "nd-signal" == "endings, all at once"
+  tap "nd-feather"
+  expect text "nd-signal" == "endings fire"
+
+test "pulsing: taps 0.8 seconds apart meet the beat"
+  at "/atlas/pulsing"
+  expect text "pu-tempo" == ""
+  tap "pu-tap"
+  clock +800
+  tap "pu-tap"
+  clock +800
+  tap "pu-tap"
+  expect text "pu-tempo" == "With the beat"
+  clock +1500
+  tap "pu-tap"
+  clock +1500
+  tap "pu-tap"
+  clock +1500
+  tap "pu-tap"
+  clock +1500
+  tap "pu-tap"
+  expect text "pu-tempo" == "Slower than the beat"
+
+test "rocking: rocking keeps the contact that thrusting breaks"
+  at "/atlas/rocking"
+  expect text "ro-contact" == "Contact: broken each stroke"
+  tap "ro-rock"
+  expect text "ro-contact" == "Contact: unbroken"
+  tap "ro-stage" drag 90 0
+  expect text "ro-contact" == "Contact: none"
+  tap "ro-thrust"
+  expect text "ro-contact" == "Contact: broken each stroke"
+
+test "golden trio: each kind of touch added lights more of the crowd"
+  at "/atlas/golden-trio"
+  expect text "gt-number" == "50"
+  tap "gt-two"
+  expect text "gt-number" == "71"
+  tap "gt-three"
+  expect text "gt-number" == "86"
+  type "gt-stage" key "ArrowLeft"
+  expect text "gt-number" == "71"
+
+test "touch language: four choices make one sentence"
+  at "/atlas/touch-language"
+  expect text "tl-words" == "Light · Slow · Circles · Beside"
+  tap "tl-pressure-firm"
+  tap "tl-pace-quick"
+  tap "tl-pattern-updown"
+  tap "tl-place-on"
+  expect text "tl-words" == "Firm · Quick · Up and down · Directly on"
+  tap "tl-pace-still"
+  tap "tl-place-around"
+  expect text "tl-words" == "Firm · Still · Up and down · Around"

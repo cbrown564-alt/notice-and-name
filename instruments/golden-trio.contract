@@ -1,0 +1,128 @@
+// The Golden Trio: add one kind of touch at a time and watch the crowd change.
+// Richters et al., 2006: of 100 women, 50 reached orgasm at their last
+// encounter with intercourse alone, 71 with manual touch added, 86 with manual
+// and oral as well. Only those three combinations are drawn.
+use rnd, Serif, Caption, Chip from "./kit.contract"
+
+fn gtCount(step: number): number = step >= 3 ? 86 : step == 2 ? 71 : 50
+fn gtTone(i: number): string = i < 50 ? "url(#gt-a)" : i < 71 ? "url(#gt-b)" : "url(#gt-c)"
+fn gtX(i: number): number = 14 + (i % 20) * 16 + (floor(i / 20) % 2) * 8 + (rnd(i + 3) - 0.5) * 1.4
+fn gtY(i: number): number = 200 + floor(i / 20) * 14.6 + (rnd(i + 41) - 0.5) * 1.4
+fn gtFar(x: number, y: number, cx: number, cy: number): number = (x - cx) * (x - cx) + (y - cy) * (y - cy)
+fn gtLine(step: number): string = step >= 3 ? "With hands and mouth as well, 86 in 100. It is a pattern across many people, not a checklist." : step == 2 ? "When touch by hand was part of it too, 71 in 100 did." : "In a national Australian survey, 50 in 100 women reached orgasm the last time they had sex, when it was intercourse alone."
+fn gtLabel(step: number): string = step >= 3 ? "86 in 100 women reached orgasm with intercourse, hands and mouth together" : step == 2 ? "71 in 100 women reached orgasm with intercourse and hands" : "50 in 100 women reached orgasm with intercourse alone"
+
+keyframes gt-pop
+  from opacity=0 scale=0.2
+  60% scale=1.25
+
+keyframes gt-rise
+  from opacity=0 translate="0px 10px"
+
+keyframes gt-breathe
+  50% scale=1.035
+
+keyframes gt-bloom
+  from opacity=0 scale=0.7
+
+component GoldenTrio
+  inject
+    still: bool
+  props
+    uid: string
+  state step = 1
+  state was = 0
+  action go(n: number)
+    was = gtCount(step)
+    step = n
+  action touch(e: PointerEvent)
+    let x = e.offsetX / frame(`gt-${uid}`).width * 340
+    let y = e.offsetY / frame(`gt-${uid}`).width * 340
+    let a = gtFar(x, y, 96, 68)
+    let b = gtFar(x, y, 68, 114)
+    let c = gtFar(x, y, 124, 114)
+    let near = min(a, min(b, c))
+    if near < 1800
+      was = gtCount(step)
+      step = c == near ? 3 : b == near ? 2 : 1
+  action onKey(k: string, e: KeyboardEvent)
+    if k == "ArrowRight" or k == "ArrowUp"
+      preventDefault()
+      was = gtCount(step)
+      step = min(3, step + 1)
+    if k == "ArrowLeft" or k == "ArrowDown"
+      preventDefault()
+      was = gtCount(step)
+      step = max(1, step - 1)
+  view
+    column gap=14
+      svg id=`gt-${uid}` testId="gt-stage" viewBox="0 0 340 278" width="100%" display="block" tabindex=0
+        role="slider" aria-label="Kinds of touch together" aria-valuetext=gtLabel(step) key=onKey pointerdown=touch
+        outline="none" border-radius=16
+        :focus-visible
+          box-shadow="0 0 0 2px ember"
+        defs
+          radialGradient id="gt-a" cx="40%" cy="35%" r="80%"
+            stop offset=0 stop-color="rose"
+            stop offset=1 stop-color="rose.deep"
+          radialGradient id="gt-b" cx="40%" cy="35%" r="80%"
+            stop offset=0 stop-color="ember.light"
+            stop offset=0.45 stop-color="ember"
+            stop offset=1 stop-color="ember.deep"
+          radialGradient id="gt-c" cx="40%" cy="35%" r="80%"
+            stop offset=0 stop-color="ember.light"
+            stop offset=0.5 stop-color="honey"
+            stop offset=1 stop-color="honey"
+          radialGradient id="gt-heart"
+            stop offset=0 stop-color="honey" stop-opacity=0.9
+            stop offset=1 stop-color="ember" stop-opacity=0
+        // The three kinds of touch: each disc lights as it joins.
+        g
+          g
+            circle cx=96 cy=68 r=40 fill="url(#gt-a)" opacity=0.82
+              transform-box="fill-box" transform-origin="center" animation=(still ? "none" : "gt-breathe 5200ms ease-in-out infinite")
+            circle cx=96 cy=68 r=40 fill="none" stroke="ink" stroke-width=1.1 opacity=0.4
+          g
+            circle cx=68 cy=114 r=40 fill="paper.sunk" opacity=(step >= 2 ? 0 : 0.5) transition=(still ? "none" : "opacity 500ms ease")
+            if step >= 2
+              circle cx=68 cy=114 r=40 fill="url(#gt-b)" opacity=0.8
+                transform-box="fill-box" transform-origin="center" animation=(still ? "none" : "gt-bloom 700ms ease-out both, gt-breathe 5200ms ease-in-out 900ms infinite")
+            circle cx=68 cy=114 r=40 fill="none" stroke="ink" stroke-width=1.1 opacity=(step >= 2 ? 0.4 : 0.35)
+              stroke-dasharray=(step >= 2 ? "none" : "2 5") stroke-linecap="round"
+          g
+            circle cx=124 cy=114 r=40 fill="paper.sunk" opacity=(step >= 3 ? 0 : 0.5) transition=(still ? "none" : "opacity 500ms ease")
+            if step >= 3
+              circle cx=124 cy=114 r=40 fill="url(#gt-c)" opacity=0.8
+                transform-box="fill-box" transform-origin="center" animation=(still ? "none" : "gt-bloom 700ms ease-out both, gt-breathe 5200ms ease-in-out 1800ms infinite")
+            circle cx=124 cy=114 r=40 fill="none" stroke="ink" stroke-width=1.1 opacity=(step >= 3 ? 0.4 : 0.35)
+              stroke-dasharray=(step >= 3 ? "none" : "2 5") stroke-linecap="round"
+          // Where all three overlap, a warm heart once they are all here.
+          circle cx=96 cy=100 r=22 fill="url(#gt-heart)" opacity=(step >= 3 ? 1 : 0) pointer-events="none"
+            transition=(still ? "none" : "opacity 900ms ease 300ms")
+          g font-size=11.5 pointer-events="none"
+            text "Intercourse" x=96 y=19 text-anchor="middle" fill="ink.soft"
+            text "Hands" x=40 y=170 text-anchor="middle" fill="ink.soft" opacity=(step >= 2 ? 1 : 0.55) transition=(still ? "none" : "opacity 400ms ease")
+            text "Mouth" x=152 y=170 text-anchor="middle" fill="ink.soft" opacity=(step >= 3 ? 1 : 0.55) transition=(still ? "none" : "opacity 400ms ease")
+        // The number.
+        g pointer-events="none"
+          for n in [gtCount(step)] key=n
+            g animation=(still ? "none" : "gt-rise 520ms ease-out both")
+              text `${n}` testId="gt-number" x=250 y=102 text-anchor="middle" class=Serif font-size=76 font-weight=600
+                fill=(step >= 3 ? "honey" : step == 2 ? "ember" : "rose.deep")
+          text "in 100 women" x=250 y=128 text-anchor="middle" font-size=12 fill="ink.soft"
+          text "reached orgasm" x=250 y=144 text-anchor="middle" font-size=12 fill="ink.soft"
+        // A hundred women: one dot each.
+        g pointer-events="none"
+          for i in range(100) key=i
+            g
+              circle cx=gtX(i) cy=gtY(i) r=(5.9 + rnd(i + 17) * 0.9) fill="ink.faint" opacity=(i < gtCount(step) ? 0 : 0.6)
+                transition=(still ? "none" : "opacity 400ms ease")
+              if i < gtCount(step)
+                circle cx=gtX(i) cy=gtY(i) r=(6.1 + rnd(i + 17) * 0.9) fill=gtTone(i)
+                  transform-box="fill-box" transform-origin="center"
+                  animation=(still or i < was ? "none" : `gt-pop 460ms ease-out ${(i - was) * 26}ms both`)
+      Caption(line=gtLine(step))
+      row gap=8 justify-content="center" flex-wrap="wrap"
+        Chip(label="Intercourse alone", on=(step == 1), tone="rose.deep", press=go(1), tid="gt-one")
+        Chip(label="+ hands", on=(step == 2), tone="ember", press=go(2), tid="gt-two")
+        Chip(label="+ hands and mouth", on=(step >= 3), tone="honey", press=go(3), tid="gt-three")

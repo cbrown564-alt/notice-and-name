@@ -1,0 +1,137 @@
+// Pulsing: a slow beat leaves the centre every 0.8 seconds, the rhythm of the
+// pelvic muscles at orgasm. Tap along: your own rings go out in honey, and
+// when your tempo meets the body's the two sets travel together.
+use clamp, mag, Caption, Chip from "./kit.contract"
+
+// Where a tempo sits on the dial: -1 half the body's speed, 0 with it, 1 double.
+fn puPos(gap: number): number = gap <= 0 ? 0 : clamp(gap >= 800 ? 1 - gap / 800 : 800 / gap - 1, -1, 1)
+fn puDialX(p: number): number = 170 + 84 * p
+fn puDialY(p: number): number = 286 - 22 * (1 - p * p)
+fn puSecs(gap: number): string = gap >= 995 and gap < 1005 ? "second" : `${(gap / 1000).toFixed(1)} seconds`
+fn puWith(n: number, gap: number): bool = n >= 2 and mag(gap - 800) <= 96
+fn puWord(n: number, gap: number, locked: bool): string = n < 2 ? "" : locked ? "With the beat" : gap > 800 ? "Slower than the beat" : "Quicker than the beat"
+fn puLine(n: number, gap: number, locked: bool): string = n == 0 ? "A pulse leaves the centre about every 0.8 seconds: the rhythm of the pelvic muscles at orgasm. Tap along with it." : n < 2 ? "Keep tapping. A few touches in a row and your tempo shows on the dial." : locked ? "You are with it: about one beat every 0.8 seconds. Touch that meets the pulse can ride it." : gap > 800 ? `You are slower than the pulse, about one touch every ${puSecs(gap)}. Playing against the beat is its own kind of touch.` : `You are quicker than the pulse, about one touch every ${puSecs(gap)}. Ease off a little to meet it, or stay ahead and feel the difference.`
+
+keyframes pu-ring
+  from r=15 opacity=0.75
+  to r=104 opacity=0
+
+keyframes pu-tap
+  from r=20 opacity=0.95
+  to r=110 opacity=0
+
+keyframes pu-beat
+  0% scale=1
+  14% scale=1.16
+  40% scale=1
+  100% scale=1
+
+component Pulsing
+  inject
+    still: bool
+  props
+    uid: string
+  state taps: number[] = []
+  state gaps: number[] = []
+  state count = 0
+  state last = 0
+  state sync = 0
+  derive gap = gaps.length == 0 ? 0 : sum(gaps) / gaps.length
+  derive locked = puWith(gaps.length, gap)
+  action tap
+    let now = performanceNow()
+    let since = now - last
+    let fresh = count == 0 or since > 2600
+    let next = fresh ? [] : gaps.concat([since])
+    let kept = next.length > 4 ? next.slice(next.length - 4) : next
+    let mean = kept.length == 0 ? 0 : sum(kept) / kept.length
+    let id = count + 1
+    count = id
+    last = now
+    gaps = kept
+    taps = taps.length >= 4 ? taps.slice(taps.length - 3).concat([id]) : taps.concat([id])
+    if puWith(kept.length, mean)
+      sync = id
+  action touch(e: PointerEvent)
+    tap()
+  action onKey(k: string, e: KeyboardEvent)
+    if k == " " or k == "Enter" or k == "Space" or k == "Spacebar"
+      preventDefault()
+      tap()
+  action reset
+    taps = []
+    gaps = []
+    count = 0
+    last = 0
+  view
+    column gap=14
+      svg id=`pu-${uid}` testId="pu-stage" viewBox="0 0 340 300" width="100%" display="block" touch-action="manipulation" tabindex=0
+        role="button" aria-label=`Tap in time with the pulse. ${puLine(gaps.length, gap, locked)}` key=onKey pointerdown=touch
+        outline="none" border-radius=16
+        :focus-visible
+          box-shadow="0 0 0 2px ember"
+        defs
+          radialGradient id="pu-core" cx="42%" cy="36%" r="75%"
+            stop offset=0 stop-color="ember.light"
+            stop offset=0.5 stop-color="ember"
+            stop offset=1 stop-color="ember.deep"
+          radialGradient id="pu-halo"
+            stop offset=0 stop-color="ember" stop-opacity=0.5
+            stop offset=0.55 stop-color="rose" stop-opacity=0.28
+            stop offset=1 stop-color="rose" stop-opacity=0
+          radialGradient id="pu-warm"
+            stop offset=0 stop-color="honey" stop-opacity=0.6
+            stop offset=0.5 stop-color="ember" stop-opacity=0.3
+            stop offset=1 stop-color="ember" stop-opacity=0
+        // A transparent ground so a tap anywhere lands.
+        rect width=340 height=300 fill="paper" opacity=0
+        // The body's field: always a little warm.
+        circle cx=170 cy=128 r=104 fill="url(#pu-halo)" pointer-events="none"
+        circle cx=170 cy=128 r=(locked ? 96 : 60) fill="url(#pu-warm)" opacity=(locked ? 1 : 0) pointer-events="none"
+          transition=(still ? "none" : "opacity 900ms ease, r 900ms ease")
+        // The body's beat: a ring leaves the core every 0.8 s.
+        g fill="none" pointer-events="none"
+          if still
+            g stroke=(locked ? "ember" : "rose.deep")
+              circle cx=170 cy=128 r=38 stroke-width=2.4 opacity=0.75
+              circle cx=170 cy=128 r=64 stroke-width=1.8 opacity=0.5
+              circle cx=170 cy=128 r=90 stroke-width=1.2 opacity=0.28
+          else
+            for k in [sync] key=k
+              g stroke=(locked ? "ember" : "rose.deep") stroke-width=(locked ? 3 : 2.2)
+                for j in range(3) key=j
+                  circle cx=170 cy=128 r=15 opacity=0 animation=`pu-ring 2400ms cubic-bezier(0.2, 0.6, 0.4, 1) ${0 - j * 800}ms infinite`
+        // Your taps: a ring each, in honey.
+        g fill="none" stroke="honey" stroke-width=3.2 pointer-events="none"
+          if still
+            circle cx=170 cy=128 r=51 stroke-width=3 opacity=(taps.length > 0 ? 0.9 : 0)
+              stroke-dasharray=(locked ? "none" : "3 7") stroke-linecap="round"
+          else
+            for t in taps key=t
+              circle cx=170 cy=128 r=15 opacity=0 animation="pu-tap 2400ms cubic-bezier(0.2, 0.6, 0.4, 1) both"
+        // The core.
+        g pointer-events="none"
+          for k in [sync] key=k
+            g transform-box="fill-box" transform-origin="center" animation=(still ? "none" : "pu-beat 800ms ease-out infinite")
+              circle cx=170 cy=128 r=26 fill="url(#pu-warm)" opacity=(locked ? 1 : 0.5) transition=(still ? "none" : "opacity 900ms ease")
+              circle cx=170 cy=128 r=14 fill="url(#pu-core)"
+              circle cx=170 cy=128 r=14 fill="none" stroke="ink" stroke-width=1 opacity=0.35
+        // The tempo dial: the body's mark is fixed, yours moves.
+        g pointer-events="none"
+          path d="M86 286Q170 242 254 286" fill="none" stroke="ink.faint" stroke-width=3 stroke-linecap="round"
+          path d=`M${puDialX(-0.12)} ${puDialY(-0.12)}Q170 ${2 * 264 - puDialY(-0.12)} ${puDialX(0.12)} ${puDialY(0.12)}` fill="none"
+            stroke=(locked ? "honey" : "rose.deep") stroke-width=5 stroke-linecap="round" opacity=(locked ? 1 : 0.7)
+            transition=(still ? "none" : "stroke 500ms ease, opacity 500ms ease")
+          line x1=170 y1=256 x2=170 y2=272 stroke="ember" stroke-width=2.4 stroke-linecap="round"
+          text "0.8 s" x=170 y=249 text-anchor="middle" font-size=11 fill="ink.soft"
+          text "slower" x=80 y=298 text-anchor="end" font-size=10.5 fill="ink.soft"
+          text "quicker" x=260 y=298 font-size=10.5 fill="ink.soft"
+          circle cx=puDialX(puPos(gap)) cy=puDialY(puPos(gap)) r=7.5 fill="honey" stroke="paper.raised" stroke-width=2.5
+            opacity=(gaps.length >= 1 ? 1 : 0)
+            transition=(still ? "none" : "cx 500ms ease, cy 500ms ease, opacity 300ms ease")
+          text puWord(gaps.length, gap, locked) testId="pu-tempo" x=170 y=292 text-anchor="middle" font-size=11.5
+            fill=(locked ? "ember.deep" : "ink.soft") font-weight=(locked ? 600 : 400)
+      Caption(line=puLine(gaps.length, gap, locked))
+      row gap=8 justify-content="center" flex-wrap="wrap"
+        Chip(label="Tap", on=false, tone="honey", press=tap, tid="pu-tap")
+        Chip(label="Start again", on=false, tone="honey", press=reset, tid="pu-reset")

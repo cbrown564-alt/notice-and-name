@@ -10,11 +10,13 @@
     "name": "Notice & Name"
   },
   "host": {
-    "web": {}
+    "web": {},
+    "linux": {}
   },
   "deploy": {
     "store": {
-      "web": "0"
+      "web": "0",
+      "linux": "0"
     }
   }
 }

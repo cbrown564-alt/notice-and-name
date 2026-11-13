@@ -1,0 +1,247 @@
+// The Language of Touch: four words, pressure, pace, pattern and place, and
+// the stage draws the touch they describe. The caption is the sentence you
+// could say out loud.
+use Eyebrow, Caption, Chip from "./kit.contract"
+
+fn tlStep(p: string): number = p == "feather" ? 0 : p == "light" ? 1 : p == "firm" ? 2 : 3
+fn tlSize(p: string, place: string): number = place == "broad" ? 34 + tlStep(p) * 3 : 8 + tlStep(p) * 3.4
+fn tlWeight(p: string, place: string): number = (place == "broad" ? 22 : 2) + tlStep(p) * (place == "broad" ? 6 : 2.8)
+fn tlAlpha(p: string, place: string): number = (0.5 + tlStep(p) * 0.15) * (place == "broad" ? 0.72 : 1)
+fn tlDur(pace: string, pattern: string): number = pattern == "tap" ? (pace == "slow" ? 1700 : pace == "steady" ? 1000 : 520) : pattern == "circles" ? (pace == "slow" ? 4400 : pace == "steady" ? 2400 : 1150) : (pace == "slow" ? 3600 : pace == "steady" ? 2000 : 950)
+fn tlOffset(place: string): number = place == "beside" ? 46 : 0
+fn tlRadius(place: string): number = place == "around" ? 52 : place == "broad" ? 32 : 16
+
+fn tlWord(v: string): string = v == "feather" ? "Feather" : v == "light" ? "Light" : v == "firm" ? "Firm" : v == "deep" ? "Deep" : v == "still" ? "Still" : v == "slow" ? "Slow" : v == "steady" ? "Steady" : v == "quick" ? "Quick" : v == "circles" ? "Circles" : v == "updown" ? "Up and down" : v == "side" ? "Side to side" : v == "tap" ? "Tapping" : v == "on" ? "Directly on" : v == "beside" ? "Beside" : v == "around" ? "Around" : "Broad"
+fn tlAdj(p: string): string = p == "feather" ? "feather-light" : p
+fn tlAdjCap(p: string): string = p == "feather" ? "Feather-light" : p == "light" ? "Light" : p == "firm" ? "Firm" : "Deep"
+fn tlPaceCap(pace: string): string = pace == "slow" ? "Slow" : pace == "steady" ? "Steady" : "Quick"
+fn tlNoun(pattern: string): string = pattern == "circles" ? "circles" : pattern == "updown" ? "up-and-down strokes" : pattern == "side" ? "side-to-side strokes" : "taps"
+fn tlWhere(place: string): string = place == "on" ? ", directly on it" : place == "beside" ? ", just beside it" : place == "around" ? " around it, never quite on it" : ", wide across the whole area"
+fn tlWhereHeld(place: string): string = place == "on" ? "directly on it" : place == "beside" ? "just beside it" : place == "around" ? "around it, never quite on it" : "over the whole area"
+fn tlBegin(pattern: string): string = pattern == "circles" ? "Choose a pace and the circles begin." : pattern == "tap" ? "Choose a pace and the tapping begins." : "Choose a pace and the strokes begin."
+fn tlSentence(pressure: string, pace: string, pattern: string, place: string): string = pace == "still" ? `${tlAdjCap(pressure)} pressure, held still ${tlWhereHeld(place)}.` : `${tlPaceCap(pace)}, ${tlAdj(pressure)} ${tlNoun(pattern)}${tlWhere(place)}.`
+fn tlLine(pressure: string, pace: string, pattern: string, place: string): string = pace == "still" ? `${tlSentence(pressure, pace, pattern, place)} ${tlBegin(pattern)}` : tlSentence(pressure, pace, pattern, place)
+
+keyframes tl-spin
+  from rotate="0deg"
+  to rotate="360deg"
+
+keyframes tl-swing
+  0% rotate="-58deg"
+  50% rotate="58deg"
+  100% rotate="-58deg"
+
+keyframes tl-ud-s
+  0% translate="0px -24px"
+  50% translate="0px 24px"
+  100% translate="0px -24px"
+
+keyframes tl-ud-l
+  0% translate="0px -52px"
+  50% translate="0px 52px"
+  100% translate="0px -52px"
+
+keyframes tl-ss-s
+  0% translate="-18px 0px"
+  50% translate="18px 0px"
+  100% translate="-18px 0px"
+
+keyframes tl-ss-l
+  0% translate="-64px 0px"
+  50% translate="64px 0px"
+  100% translate="-64px 0px"
+
+keyframes tl-tap
+  0% scale=0.72 opacity=0.25
+  18% scale=1 opacity=1
+  45% scale=1 opacity=1
+  75% scale=0.72 opacity=0.25
+  100% scale=0.72 opacity=0.25
+
+keyframes tl-ripple
+  0% scale=1 opacity=0
+  18% scale=1 opacity=0.7
+  80% scale=2.3 opacity=0
+  100% scale=2.3 opacity=0
+
+keyframes tl-hop
+  0% rotate="0deg"
+  16.6% rotate="0deg"
+  16.7% rotate="60deg"
+  33.3% rotate="60deg"
+  33.4% rotate="120deg"
+  50% rotate="120deg"
+  50.1% rotate="180deg"
+  66.6% rotate="180deg"
+  66.7% rotate="240deg"
+  83.3% rotate="240deg"
+  83.4% rotate="300deg"
+  100% rotate="300deg"
+
+keyframes tl-rest
+  50% scale=1.05
+
+// The fingertip: a soft disc, heavier in the middle the harder it presses.
+component TlTip
+  props
+    x: number
+    y: number
+    r: number
+    alpha: number
+    core: number
+  view
+    g
+      circle cx=x cy=y r=r fill="url(#tl-tip)" opacity=alpha
+      circle cx=x cy=y r=(r * 0.55) fill="sage.deep" opacity=(core * 0.5)
+      circle cx=x cy=y r=r fill="none" stroke="sage.deep" stroke-width=1.1 opacity=(0.35 + alpha * 0.4)
+
+// A moving fingertip and the trail it leaves: twelve copies of one animation,
+// each a little later than the one before and a little fainter.
+component TlTrail
+  props
+    name: string
+    ease: string
+    dur: number
+    x: number
+    y: number
+    r: number
+    alpha: number
+    core: number
+    still: bool
+  view
+    g
+      for j in range(12) key=j
+        g transform-origin="0px 0px" animation=(still ? "none" : `${name} ${dur}ms ${ease} ${round((11 - j) * dur * 0.022 - dur)}ms infinite`)
+          if j == 11
+            TlTip(x=x, y=y, r=r, alpha=alpha, core=core)
+          else if not still
+            circle cx=x cy=y r=(r * (0.45 + j * 0.045)) fill="sage" opacity=(alpha * 0.055 * (j + 1))
+
+component TouchLanguage
+  inject
+    still: bool
+  props
+    uid: string
+  state pressure = "light"
+  state pace = "slow"
+  state pattern = "circles"
+  state place = "beside"
+  derive size = tlSize(pressure, place)
+  derive alpha = tlAlpha(pressure, place)
+  derive core = tlStep(pressure) / 3
+  derive dur = tlDur(pace, pattern)
+  derive held = pace == "still"
+  action setPressure(v: string)
+    pressure = v
+  action setPace(v: string)
+    pace = v
+  action setPattern(v: string)
+    pattern = v
+  action setPlace(v: string)
+    place = v
+  view
+    column gap=14
+      svg id=`tl-${uid}` testId="tl-stage" viewBox="0 0 340 236" width="100%" display="block"
+        role="img" aria-label=tlSentence(pressure, pace, pattern, place)
+        defs
+          radialGradient id="tl-area"
+            stop offset=0 stop-color="rose" stop-opacity=0.7
+            stop offset=0.6 stop-color="rose" stop-opacity=0.3
+            stop offset=1 stop-color="rose" stop-opacity=0
+          radialGradient id="tl-tip" cx="42%" cy="38%" r="70%"
+            stop offset=0 stop-color="sage" stop-opacity=0.7
+            stop offset=1 stop-color="sage" stop-opacity=1
+          radialGradient id="tl-bead" cx="42%" cy="36%" r="75%"
+            stop offset=0 stop-color="ember.light"
+            stop offset=0.55 stop-color="ember"
+            stop offset=1 stop-color="ember.deep"
+          radialGradient id="tl-halo"
+            stop offset=0 stop-color="ember" stop-opacity=0.55
+            stop offset=1 stop-color="ember" stop-opacity=0
+        // The area, and the spot at its centre.
+        ellipse cx=170 cy=120 rx=150 ry=116 fill="url(#tl-area)"
+        ellipse cx=170 cy=120 rx=97 ry=97 fill="none" stroke="ink.faint" stroke-width=1 stroke-dasharray="1 7" stroke-linecap="round" opacity=0.8
+        circle cx=170 cy=120 r=(place == "on" or place == "broad" ? 30 : 20) fill="url(#tl-halo)" transition=(still ? "none" : "r 600ms ease")
+        circle cx=170 cy=120 r=6.5 fill="url(#tl-bead)"
+        circle cx=170 cy=120 r=6.5 fill="none" stroke="ink" stroke-width=0.9 opacity=0.35
+        // The four words, as chosen.
+        text `${tlWord(pressure)} · ${tlWord(pace)} · ${tlWord(pattern)} · ${tlWord(place)}` testId="tl-words" x=170 y=12 text-anchor="middle" font-size=10.5 fill="ink.soft"
+        g font-size=10.5 fill="ink.soft"
+          circle cx=22 cy=225 r=3.6 fill="url(#tl-bead)"
+          text "the spot" x=31 y=228.5
+          circle cx=273 cy=225 r=4.2 fill="sage"
+          text "the touch" x=282 y=228.5
+        // The touch.
+        g translate=`${170 + tlOffset(place)}px 120px` transition=(still ? "none" : "translate 500ms ease")
+          if held
+            // Held still: no path, only where it rests.
+            g transform-box="fill-box" transform-origin="center" animation=(still ? "none" : "tl-rest 4200ms ease-in-out infinite")
+              if place == "around"
+                circle cx=0 cy=0 r=48 fill="none" stroke="sage" stroke-width=(12 + tlStep(pressure) * 5) opacity=alpha
+                circle cx=0 cy=0 r=(54 + tlStep(pressure) * 2.5) fill="none" stroke="sage.deep" stroke-width=1.1 opacity=(0.35 + alpha * 0.4)
+                circle cx=0 cy=0 r=(42 - tlStep(pressure) * 2.5) fill="none" stroke="sage.deep" stroke-width=1.1 opacity=(0.35 + alpha * 0.4)
+              else
+                TlTip(x=0, y=0, r=(place == "broad" ? size * 1.5 : size), alpha=alpha, core=core)
+          else if pattern == "circles"
+            circle cx=0 cy=0 r=tlRadius(place) fill="none" stroke="sage" stroke-width=tlWeight(pressure, place) opacity=(still ? 0.42 : 0.22)
+            TlTrail(name="tl-spin", ease="linear", dur=dur, x=tlRadius(place), y=0, r=size, alpha=alpha, core=core, still=still)
+          else if pattern == "updown"
+            if place == "around"
+              path d="M27.6 -44.1A52 52 0 0 1 27.6 44.1" fill="none" stroke="sage" stroke-width=tlWeight(pressure, place) stroke-linecap="round" opacity=(still ? 0.42 : 0.22)
+              TlTrail(name="tl-swing", ease="ease-in-out", dur=dur, x=52, y=0, r=size, alpha=alpha, core=core, still=still)
+            else
+              line x1=0 y1=(place == "broad" ? -52 : -24) x2=0 y2=(place == "broad" ? 52 : 24) stroke="sage" stroke-width=tlWeight(pressure, place) stroke-linecap="round" opacity=(still ? 0.42 : 0.22)
+              TlTrail(name=(place == "broad" ? "tl-ud-l" : "tl-ud-s"), ease="ease-in-out", dur=dur, x=0, y=0, r=size, alpha=alpha, core=core, still=still)
+          else if pattern == "side"
+            if place == "around"
+              path d="M44.1 27.6A52 52 0 0 1 -44.1 27.6" fill="none" stroke="sage" stroke-width=tlWeight(pressure, place) stroke-linecap="round" opacity=(still ? 0.42 : 0.22)
+              TlTrail(name="tl-swing", ease="ease-in-out", dur=dur, x=0, y=52, r=size, alpha=alpha, core=core, still=still)
+            else
+              line x1=(place == "broad" ? -64 : -18) y1=0 x2=(place == "broad" ? 64 : 18) y2=0 stroke="sage" stroke-width=tlWeight(pressure, place) stroke-linecap="round" opacity=(still ? 0.42 : 0.22)
+              TlTrail(name=(place == "broad" ? "tl-ss-l" : "tl-ss-s"), ease="ease-in-out", dur=dur, x=0, y=0, r=size, alpha=alpha, core=core, still=still)
+          else
+            // Tapping: the fingertip lands and lifts; a ring goes out from each landing.
+            if place == "around"
+              g fill="sage" opacity=0.3
+                for h in range(6) key=h
+                  circle cx=(52 * cos(h * 1.0472)) cy=(52 * sin(h * 1.0472)) r=2.6
+              g transform-origin="0px 0px" animation=(still ? "none" : `tl-hop ${dur * 6}ms linear infinite`)
+                circle cx=52 cy=0 r=size fill="none" stroke="sage" stroke-width=1.6 transform-box="fill-box" transform-origin="center"
+                  opacity=(still ? 0.4 : 0) animation=(still ? "none" : `tl-ripple ${dur}ms ease-out infinite`)
+                g transform-box="fill-box" transform-origin="center" animation=(still ? "none" : `tl-tap ${dur}ms ease-in-out infinite`)
+                  TlTip(x=52, y=0, r=size, alpha=alpha, core=core)
+            else
+              circle cx=0 cy=0 r=size fill="none" stroke="sage" stroke-width=1.6 transform-box="fill-box" transform-origin="center"
+                opacity=(still ? 0.4 : 0) animation=(still ? "none" : `tl-ripple ${dur}ms ease-out infinite`)
+              g transform-box="fill-box" transform-origin="center" animation=(still ? "none" : `tl-tap ${dur}ms ease-in-out infinite`)
+                TlTip(x=0, y=0, r=size, alpha=alpha, core=core)
+      Caption(line=tlLine(pressure, pace, pattern, place))
+      column gap=12 align-items="center"
+        column gap=6 align-items="center" role="group" aria-label="Pressure"
+          text "Pressure" class=Eyebrow
+          row gap=8 justify-content="center" flex-wrap="wrap"
+            Chip(label="Feather", on=(pressure == "feather"), tone="sage", press=setPressure("feather"), tid="tl-pressure-feather")
+            Chip(label="Light", on=(pressure == "light"), tone="sage", press=setPressure("light"), tid="tl-pressure-light")
+            Chip(label="Firm", on=(pressure == "firm"), tone="sage", press=setPressure("firm"), tid="tl-pressure-firm")
+            Chip(label="Deep", on=(pressure == "deep"), tone="sage", press=setPressure("deep"), tid="tl-pressure-deep")
+        column gap=6 align-items="center" role="group" aria-label="Pace"
+          text "Pace" class=Eyebrow
+          row gap=8 justify-content="center" flex-wrap="wrap"
+            Chip(label="Still", on=(pace == "still"), tone="sage", press=setPace("still"), tid="tl-pace-still")
+            Chip(label="Slow", on=(pace == "slow"), tone="sage", press=setPace("slow"), tid="tl-pace-slow")
+            Chip(label="Steady", on=(pace == "steady"), tone="sage", press=setPace("steady"), tid="tl-pace-steady")
+            Chip(label="Quick", on=(pace == "quick"), tone="sage", press=setPace("quick"), tid="tl-pace-quick")
+        column gap=6 align-items="center" role="group" aria-label="Pattern"
+          text "Pattern" class=Eyebrow
+          row gap=8 justify-content="center" flex-wrap="wrap" max-width="17.5rem"
+            Chip(label="Circles", on=(pattern == "circles"), tone="sage", press=setPattern("circles"), tid="tl-pattern-circles")
+            Chip(label="Up and down", on=(pattern == "updown"), tone="sage", press=setPattern("updown"), tid="tl-pattern-updown")
+            Chip(label="Side to side", on=(pattern == "side"), tone="sage", press=setPattern("side"), tid="tl-pattern-side")
+            Chip(label="Tapping", on=(pattern == "tap"), tone="sage", press=setPattern("tap"), tid="tl-pattern-tap")
+        column gap=6 align-items="center" role="group" aria-label="Place"
+          text "Place" class=Eyebrow
+          row gap=8 justify-content="center" flex-wrap="wrap" max-width="17.5rem"
+            Chip(label="Directly on", on=(place == "on"), tone="sage", press=setPlace("on"), tid="tl-place-on")
+            Chip(label="Beside", on=(place == "beside"), tone="sage", press=setPlace("beside"), tid="tl-place-beside")
+            Chip(label="Around", on=(place == "around"), tone="sage", press=setPlace("around"), tid="tl-place-around")
+            Chip(label="Broad", on=(place == "broad"), tone="sage", press=setPlace("broad"), tid="tl-place-broad")

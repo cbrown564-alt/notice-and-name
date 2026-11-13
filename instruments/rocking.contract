@@ -1,0 +1,160 @@
+// Rocking: two bodies as two smooth forms meeting at one point of outside
+// contact. Thrusting lifts them apart with every stroke and the contact goes
+// out; rocking rolls about the point and it never breaks.
+use clamp01, Caption, Chip from "./kit.contract"
+
+fn roLine(mode: string, looping: bool, touching: bool): string = looping ? (mode == "rock" ? "Rocking stays pressed close and rolls. The contact never breaks, so the warmth can build and stay." : "Thrusting pulls the bodies apart with every stroke. The outside contact breaks each time, and the feeling has to start again.") : touching ? "Held close, the glow comes back slowly. Steady contact is what lets it build." : "Pulled apart, the contact is gone at once. Bring them back together and it takes a moment to return."
+fn roWord(mode: string, looping: bool, touching: bool): string = looping ? (mode == "rock" ? "Contact: unbroken" : "Contact: broken each stroke") : touching ? "Contact: held" : "Contact: none"
+
+keyframes ro-thrust
+  0% translate="0px 0px"
+  12% translate="0px 0px"
+  52% translate="24px -34px"
+  92% translate="0px 0px"
+  100% translate="0px 0px"
+
+keyframes ro-rock
+  0% rotate="-6deg"
+  50% rotate="6deg"
+  100% rotate="-6deg"
+
+// The glow under thrusting: out the moment contact breaks, barely back before it breaks again.
+keyframes ro-flicker
+  0% opacity=0.5
+  12% opacity=0.5
+  16% opacity=0
+  90% opacity=0
+  100% opacity=0.5
+
+keyframes ro-build
+  from opacity=0.25
+
+keyframes ro-build-wide
+  from opacity=0
+  40% opacity=0
+
+keyframes ro-swell
+  50% scale=1.14
+
+keyframes ro-settle
+  50% scale=1.012
+
+keyframes ro-flow
+  from stroke-dashoffset=0
+  to stroke-dashoffset=44
+
+keyframes ro-shimmer
+  from stroke-dashoffset=0
+  to stroke-dashoffset=28
+
+component Rocking
+  inject
+    still: bool
+  props
+    uid: string
+  state apart = 0
+  state mode = "thrust"
+  state down = false
+  state grabX = 0
+  state grabApart = 0
+  derive touching = apart < 0.08
+  derive looping = not down and apart < 0.04
+  derive playing = looping and not still
+  action press(e: PointerEvent)
+    down = true
+    grabX = e.offsetX / frame(`ro-${uid}`).width * 340
+    grabApart = apart
+  action drag(e: PointerEvent)
+    if down
+      apart = clamp01(grabApart + (e.offsetX / frame(`ro-${uid}`).width * 340 - grabX) / 130)
+  action release(e: PointerEvent)
+    down = false
+    apart = apart < 0.08 ? 0 : apart
+  action step(k: string, e: KeyboardEvent)
+    if k == "ArrowRight" or k == "ArrowUp"
+      preventDefault()
+      apart = clamp01(apart + 0.1)
+    if k == "ArrowLeft" or k == "ArrowDown"
+      preventDefault()
+      apart = apart - 0.1 < 0.08 ? 0 : apart - 0.1
+  action setMode(m: string)
+    mode = m
+    apart = 0
+  view
+    column gap=14
+      svg id=`ro-${uid}` testId="ro-stage" viewBox="0 0 340 304" width="100%" display="block" touch-action="none" tabindex=0
+        role="slider" aria-label="How far apart the two bodies are" aria-valuetext=roLine(mode, looping, touching) key=step
+        pointerdown=press pointermove=drag pointerup=release
+        outline="none" border-radius=16
+        :focus-visible
+          box-shadow="0 0 0 2px ember"
+        defs
+          radialGradient id="ro-upper" cx="36%" cy="24%" r="90%"
+            stop offset=0 stop-color="ember.light"
+            stop offset=0.3 stop-color="rose"
+            stop offset=1 stop-color="rose.deep"
+          radialGradient id="ro-lower" cx="38%" cy="16%" r="95%"
+            stop offset=0 stop-color="sage" stop-opacity=0.45
+            stop offset=0.5 stop-color="sage" stop-opacity=0.8
+            stop offset=1 stop-color="sage" stop-opacity=1
+          radialGradient id="ro-glow"
+            stop offset=0 stop-color="ember" stop-opacity=0.85
+            stop offset=0.4 stop-color="ember" stop-opacity=0.4
+            stop offset=1 stop-color="ember" stop-opacity=0
+          radialGradient id="ro-bead" cx="42%" cy="36%" r="75%"
+            stop offset=0 stop-color="ember.light"
+            stop offset=0.55 stop-color="ember"
+            stop offset=1 stop-color="ember.deep"
+        rect width=340 height=304 fill="paper" opacity=0
+        // The other body: it stays where it is and breathes.
+        g pointer-events="none" transform-box="fill-box" transform-origin="50% 100%" animation=(still ? "none" : "ro-settle 4600ms ease-in-out infinite")
+          path d="M170 164C232 162 302 182 304 214C306 246 244 258 168 258C92 258 34 246 36 214C38 182 108 166 170 164Z" fill="url(#ro-lower)" opacity=0.92
+          path d="M170 164C232 162 302 182 304 214C306 246 244 258 168 258C92 258 34 246 36 214C38 182 108 166 170 164Z" fill="none" stroke="ink" stroke-width=1.2 opacity=0.4
+        // Reduced motion: the path of the movement, drawn instead of played.
+        if still and looping
+          g pointer-events="none" fill="none" stroke="ink" stroke-width=1 stroke-dasharray="2 5" stroke-linecap="round" opacity=0.45
+            if mode == "rock"
+              path d="M170 166C120 166 84 140 86 104C88 64 132 42 182 44C236 46 276 74 272 112C268 148 222 166 170 166Z" transform="rotate(-7 170 166)"
+              path d="M170 166C120 166 84 140 86 104C88 64 132 42 182 44C236 46 276 74 272 112C268 148 222 166 170 166Z" transform="rotate(7 170 166)"
+            else
+              path d="M170 166C120 166 84 140 86 104C88 64 132 42 182 44C236 46 276 74 272 112C268 148 222 166 170 166Z" transform="translate(24 -34)"
+        // The body that moves.
+        g pointer-events="none" translate=`${apart * 34}px ${0 - apart * 48}px` transition=(down or still ? "none" : "translate 500ms ease")
+          g transform-origin="170px 166px" animation=(playing ? (mode == "rock" ? "ro-rock 3200ms ease-in-out infinite" : "ro-thrust 1700ms ease-in-out infinite") : "none")
+            path d="M170 166C120 166 84 140 86 104C88 64 132 42 182 44C236 46 276 74 272 112C268 148 222 166 170 166Z" fill="url(#ro-upper)" opacity=0.9
+            path d="M170 166C120 166 84 140 86 104C88 64 132 42 182 44C236 46 276 74 272 112C268 148 222 166 170 166Z" fill="none" stroke="ink" stroke-width=1.2 opacity=0.42
+            path d="M112 92C126 68 160 58 190 60" fill="none" stroke="ember.light" stroke-width=3 stroke-linecap="round" opacity=0.45
+            // The bead: the clitoris, where this body meets the other.
+            circle cx=170 cy=163 r=6 fill="url(#ro-bead)"
+            circle cx=170 cy=163 r=6 fill="none" stroke="ink" stroke-width=0.9 opacity=0.35
+        // The warmth at the point of contact: slow to build, gone at once.
+        g pointer-events="none"
+          if playing
+            for m in [mode] key=m
+              g
+                if m == "rock"
+                  circle cx=170 cy=165 r=64 fill="url(#ro-glow)" opacity=0.55 animation="ro-build-wide 5200ms ease-in both"
+                circle cx=170 cy=165 r=34 fill="url(#ro-glow)" transform-box="fill-box" transform-origin="center"
+                  animation=(m == "rock" ? "ro-build 2600ms ease-in both, ro-swell 3200ms ease-in-out infinite" : "ro-flicker 1700ms linear infinite")
+          else
+            circle cx=170 cy=165 r=34 fill="url(#ro-glow)" opacity=(touching ? (still and mode == "thrust" and looping ? 0.4 : 1) : 0)
+              transition=(still ? "none" : touching ? "opacity 1800ms ease-in 150ms" : "opacity 70ms linear")
+        g pointer-events="none"
+          line x1=62 y1=159 x2=156 y2=163 stroke="ink.faint" stroke-width=1
+          text "Contact" x=58 y=163 text-anchor="end" font-size=11.5 fill="ink.soft"
+        // The contact trace: the same thing, read as time.
+        g pointer-events="none" fill="none" stroke-linecap="round"
+          line x1=40 y1=280 x2=300 y2=280 stroke="ink.faint" stroke-width=1.5
+          line x1=40 y1=280 x2=300 y2=280 stroke="ember" stroke-width=4.5 stroke-dasharray="14 30"
+            opacity=(looping and mode == "thrust" ? 0.85 : 0) transition=(still ? "none" : "opacity 400ms ease")
+            animation=(playing and mode == "thrust" ? "ro-flow 1700ms linear infinite" : "none")
+          line x1=40 y1=280 x2=300 y2=280 stroke="ember" stroke-width=4.5
+            opacity=((looping and mode == "rock") or (not looping and touching) ? 1 : 0) transition=(still ? "none" : "opacity 600ms ease")
+          line x1=40 y1=280 x2=300 y2=280 stroke="ember.light" stroke-width=1.6 stroke-dasharray="3 11"
+            opacity=((looping and mode == "rock") or (not looping and touching) ? 0.8 : 0) transition=(still ? "none" : "opacity 600ms ease")
+            animation=(playing and mode == "rock" ? "ro-shimmer 1400ms linear infinite" : "none")
+        text roWord(mode, looping, touching) testId="ro-contact" x=170 y=298 text-anchor="middle" font-size=11 fill="ink.soft" pointer-events="none"
+      Caption(line=roLine(mode, looping, touching))
+      row gap=8 justify-content="center" flex-wrap="wrap"
+        Chip(label="Thrusting", on=(mode == "thrust"), tone="rose.deep", press=setMode("thrust"), tid="ro-thrust")
+        Chip(label="Rocking", on=(mode == "rock"), tone="ember", press=setMode("rock"), tid="ro-rock")

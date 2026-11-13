@@ -5,6 +5,11 @@ use Glyph from "./instruments/glyphs.contract"
 use ClitoralStructure from "./instruments/clitoral-structure.contract"
 use ArousalCurve from "./instruments/arousal.contract"
 use WarmupWindow from "./instruments/warmup-window.contract"
+use NerveDensity from "./instruments/nerve-density.contract"
+use Pulsing from "./instruments/pulsing.contract"
+use Rocking from "./instruments/rocking.contract"
+use GoldenTrio from "./instruments/golden-trio.contract"
+use TouchLanguage from "./instruments/touch-language.contract"
 
 fn conceptName(lib: Library, id: string): string = match first(lib.concepts.filter(c => c.id == id)) { case some(c) => c.name, case none => "" }
 fn conceptChapter(lib: Library, id: string): string = match first(lib.concepts.filter(c => c.id == id)) { case some(c) => c.chapter, case none => "" }
@@ -61,6 +66,16 @@ component ConceptPage
             ArousalCurve(uid=uid, mode=c.id)
           else if c.id == "warmup-window"
             WarmupWindow(uid=uid)
+          else if c.id == "nerve-density"
+            NerveDensity(uid=uid)
+          else if c.id == "pulsing"
+            Pulsing(uid=uid)
+          else if c.id == "rocking"
+            Rocking(uid=uid)
+          else if c.id == "golden-trio"
+            GoldenTrio(uid=uid)
+          else if c.id == "touch-language"
+            TouchLanguage(uid=uid)
           else
             text `instrument: ${c.id}` color="ink.soft" text-align="center" padding=40
       column gap=28 flex="1 1 340px" min-width=0 max-width="42rem" margin="0 auto"

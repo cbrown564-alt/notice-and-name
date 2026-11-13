@@ -1,0 +1,156 @@
+// Nerve Density: slide a lens along the skin. The same fingertip wakes a
+// handful of endings on the thigh and a blaze of them on the glans, so there
+// a small change in touch is a large change in signal.
+// The dot field is a diagram of relative density, not a count of real endings.
+use clamp01, rnd, Serif, Caption, Chip from "./kit.contract"
+
+// 216 endings along the strip: 26 on the thigh, 60 on the outer lips, 130 on the
+// glans. The first two are loose grids, so no stretch of skin is ever empty.
+fn ndX(i: number): number = i < 26 ? 24 + (i % 13) * 9.4 + rnd(i) * 7 : i < 86 ? 152 + ((i - 26) % 15) * 7.1 + rnd(i + 100) * 6.4 : 264.5 + rnd(i + 200) * 53
+fn ndY(i: number): number = i < 26 ? 257.5 + floor(i / 13) * 9 + rnd(i + 350) * 8 : i < 86 ? 251.5 + floor((i - 26) / 15) * 7.4 + rnd(i + 350) * 7 : 251 + rnd(i + 350) * 30
+fn ndLens(x: number): number = 37 + 266 * x
+fn ndRegion(x: number): string = ndLens(x) < 150 ? "thigh" : ndLens(x) < 262 ? "lips" : "glans"
+fn ndName(r: string): string = r == "thigh" ? "Inner thigh" : r == "lips" ? "Outer lips" : "Glans"
+fn ndTip(p: string): number = p == "feather" ? 8 : p == "light" ? 12 : 16.5
+fn ndNear(i: number, lx: number, reach: number): bool = (ndX(i) - lx) * (ndX(i) - lx) + (ndY(i) - 266) * (ndY(i) - 266) < reach * reach
+fn ndFibre(i: number): string = `M${ndX(i)} ${ndY(i)}q${(rnd(i + 5) - 0.5) * 3} 3 ${(rnd(i + 9) - 0.5) * 3.4} 6.4t${(rnd(i + 13) - 0.5) * 3} 9M${ndX(i) + (rnd(i + 9) - 0.5) * 1.5} ${ndY(i) + 3.4}q${(rnd(i + 21) - 0.5) * 2.2 + 1.2} 1.2 ${(rnd(i + 21) - 0.5) * 3 + 2} 3.6`
+fn ndBeat(p: string, flood: bool): number = flood ? 520 : p == "feather" ? 2000 : p == "light" ? 1500 : 1050
+fn ndLine(r: string, p: string): string = r == "thigh" ? (p == "feather" ? "A feather touch on the inner thigh reaches very few endings. The signal is soft and quiet." : p == "light" ? "Light touch on the inner thigh: a handful of endings answer. Easy to take in, unhurried." : "Press firmly on the thigh and it is simply more of the same. There is room here for pressure.") : r == "lips" ? (p == "feather" ? "On the outer lips the endings sit closer together. Even a feather touch says more here." : p == "light" ? "Light touch on the outer lips wakes many endings at once. Touch beside the glans, not on it, can be plenty." : "Firm touch on the outer lips is a full, broad signal. Pressure is often easier to enjoy here than on the glans itself.") : (p == "feather" ? "On the glans, a feather touch already lights a blaze of endings. More than 10,000 nerve fibres reach this small spot." : p == "light" ? "Light touch on the glans is a strong, clear signal. A tiny change in pressure here is a big change in what you feel." : "Firm pressure straight on the glans can flood the signal: too much, all at once. That is sensitivity, not rejection.")
+
+keyframes nd-fire
+  0% scale=1 opacity=0.55
+  22% scale=1.9 opacity=1
+  60% scale=1.15 opacity=0.8
+  100% scale=1 opacity=0.55
+
+keyframes nd-press
+  0% scale=0.9 opacity=0.5
+  30% scale=1.04 opacity=1
+  100% scale=0.9 opacity=0.5
+
+keyframes nd-jitter
+  0% translate="0px 0px"
+  20% translate="1.6px -1px"
+  40% translate="-1.3px 1.4px"
+  60% translate="1.1px 1.2px"
+  80% translate="-1.5px -0.8px"
+  100% translate="0px 0px"
+
+keyframes nd-flood
+  0% opacity=0.3
+  50% opacity=0.55
+  100% opacity=0.3
+
+component NerveDensity
+  inject
+    still: bool
+  props
+    uid: string
+  state x = 0.18
+  state pressure = "light"
+  state down = false
+  derive lx = ndLens(x)
+  derive region = ndRegion(x)
+  derive flood = region == "glans" and pressure == "firm"
+  derive reach = flood ? 17 : ndTip(pressure)
+  derive fired = range(216).filter(i => ndNear(i, lx, reach)).length
+  derive glide = not down and not still
+  action press(e: PointerEvent)
+    down = true
+    x = clamp01((e.offsetX / frame(`nd-${uid}`).width * 340 - 37) / 266)
+  action drag(e: PointerEvent)
+    if down
+      x = clamp01((e.offsetX / frame(`nd-${uid}`).width * 340 - 37) / 266)
+  action release(e: PointerEvent)
+    down = false
+  action step(k: string, e: KeyboardEvent)
+    if k == "ArrowRight" or k == "ArrowUp"
+      preventDefault()
+      x = clamp01(x + 0.05)
+    if k == "ArrowLeft" or k == "ArrowDown"
+      preventDefault()
+      x = clamp01(x - 0.05)
+  action setPressure(p: string)
+    pressure = p
+  view
+    column gap=14
+      svg id=`nd-${uid}` testId="nd-stage" viewBox="0 0 340 318" width="100%" display="block" touch-action="none" tabindex=0
+        role="slider" aria-label="Lens position along the skin" aria-valuetext=`${ndName(region)}. ${ndLine(region, pressure)}` key=step
+        pointerdown=press pointermove=drag pointerup=release
+        outline="none" border-radius=16
+        :focus-visible
+          box-shadow="0 0 0 2px ember"
+        defs
+          clipPath id="nd-clip"
+            circle cx=122 cy=112 r=90
+          linearGradient id="nd-skin" gradientUnits="userSpaceOnUse" x1=20 y1=0 x2=320 y2=0
+            stop offset=0 stop-color="rose" stop-opacity=0.55
+            stop offset=0.7 stop-color="rose" stop-opacity=0.8
+            stop offset=0.82 stop-color="rose.deep" stop-opacity=0.75
+            stop offset=1 stop-color="ember" stop-opacity=0.6
+          radialGradient id="nd-tip"
+            stop offset=0 stop-color="ember.light" stop-opacity=0.7
+            stop offset=0.75 stop-color="ember.light" stop-opacity=0.45
+            stop offset=1 stop-color="ember.light" stop-opacity=0
+          radialGradient id="nd-glass" cx="50%" cy="50%" r="50%"
+            stop offset=0.72 stop-color="paper" stop-opacity=0
+            stop offset=1 stop-color="ink" stop-opacity=0.14
+        rect width=340 height=318 fill="paper" opacity=0
+        // The lens throws what is under it up into the big circle.
+        g stroke="ink.faint" stroke-width=1 fill="none" pointer-events="none"
+          path d=`M${lx - 14} 256.5L58 175.5` transition=(glide ? "d 300ms ease" : "none")
+          path d=`M${lx + 14} 256.5L186 175.5` transition=(glide ? "d 300ms ease" : "none")
+        // The magnified view.
+        g pointer-events="none"
+          circle cx=122 cy=112 r=90 fill="paper"
+          g clip-path="url(#nd-clip)"
+            g animation=(flood and not still ? "nd-jitter 260ms linear infinite" : "none")
+              g translate=`${122 - lx * 5.3}px ${112 - 266 * 5.3}px` scale=5.3 transform-origin="0px 0px" transition=(glide ? "translate 300ms ease" : "none")
+                rect x=-40 y=230 width=420 height=72 fill="url(#nd-skin)"
+                g fill="none" stroke="rose.deep" stroke-width=0.2 stroke-linecap="round" opacity=0.75
+                  for i in range(216) key=i
+                    path d=ndFibre(i) stroke=(ndNear(i, lx, reach) ? "ember" : "rose.deep")
+                for i in range(216) key=i
+                  circle cx=ndX(i) cy=ndY(i) r=0.72 fill=(ndNear(i, lx, reach) ? "ember" : "ink.soft")
+                    opacity=(ndNear(i, lx, reach) ? 1 : 0.6) transform-box="fill-box" transform-origin="center"
+                    animation=(ndNear(i, lx, reach) and not still ? `nd-fire ${ndBeat(pressure, flood)}ms ease-out ${floor(rnd(i + 7) * 6) * (flood ? 45 : 120)}ms infinite` : "none")
+            // The fingertip, pulsing in the middle of the view.
+            circle cx=122 cy=112 r=(ndTip(pressure) * 5.3) fill="url(#nd-tip)"
+              transform-box="fill-box" transform-origin="center" transition=(still ? "none" : "r 400ms ease")
+              animation=(still ? "none" : `nd-press ${ndBeat(pressure, flood)}ms ease-out infinite`)
+            circle cx=122 cy=112 r=(ndTip(pressure) * 5.3 * 0.86) fill="none" stroke="ember" stroke-width=1 stroke-dasharray="1 5" stroke-linecap="round" opacity=(flood ? 0 : 0.55)
+              transition=(still ? "none" : "r 400ms ease")
+            circle cx=122 cy=112 r=90 fill="ember" opacity=(flood ? 0.4 : 0) transition=(still ? "none" : "opacity 500ms ease")
+              animation=(flood and not still ? "nd-flood 520ms ease-in-out infinite" : "none")
+            circle cx=122 cy=112 r=90 fill="url(#nd-glass)"
+          circle cx=122 cy=112 r=90 fill="none" stroke=(flood ? "ember" : "ink") stroke-width=(flood ? 2 : 1.3) opacity=(flood ? 1 : 0.5)
+            transition=(still ? "none" : "stroke 400ms ease")
+          path d="M52 76A80 80 0 0 1 96 36" fill="none" stroke="ember.light" stroke-width=3 stroke-linecap="round" opacity=0.55
+        // What the view is saying, in a word and a number.
+        g pointer-events="none"
+          text "Under the lens" x=228 y=58 font-size=10.5 fill="ink.soft"
+          text ndName(region) testId="nd-where" x=228 y=80 class=Serif font-size=19 font-weight=600 fill="ink"
+          text `${fired}` testId="nd-count" x=228 y=132 class=Serif font-size=44 font-weight=600 fill=(flood ? "ember" : "ember.deep")
+          text (fired == 1 ? "ending fires" : flood ? "endings, all at once" : "endings fire") testId="nd-signal" x=228 y=150 font-size=11 fill="ink.soft"
+        // The skin.
+        g pointer-events="none"
+          rect x=20 y=246 width=300 height=40 rx=20 fill="url(#nd-skin)"
+          rect x=20 y=246 width=300 height=40 rx=20 fill="none" stroke="ink" stroke-width=1.1 opacity=0.4
+          for i in range(216) key=i
+            circle cx=ndX(i) cy=ndY(i) r=(i < 86 ? 1.15 : 0.9) fill=(ndNear(i, lx, reach) ? "ember" : "ink.soft") opacity=(ndNear(i, lx, reach) ? 1 : 0.7)
+          g stroke="ink.faint" stroke-width=1 stroke-linecap="round"
+            line x1=150 y1=290 x2=150 y2=297
+            line x1=262 y1=290 x2=262 y2=297
+          text "Inner thigh" x=85 y=308 text-anchor="middle" font-size=11 fill="ink.soft" font-weight=(region == "thigh" ? 600 : 400)
+          text "Outer lips" x=206 y=308 text-anchor="middle" font-size=11 fill="ink.soft" font-weight=(region == "lips" ? 600 : 400)
+          text "Glans" x=291 y=308 text-anchor="middle" font-size=11 fill="ink.soft" font-weight=(region == "glans" ? 600 : 400)
+        // The lens.
+        g pointer-events="none" translate=`${lx}px 266px` transition=(glide ? "translate 300ms ease" : "none")
+          circle cx=0 cy=0 r=ndTip(pressure) fill="ember.light" opacity=0.5 transition=(still ? "none" : "r 400ms ease")
+          circle cx=0 cy=0 r=17 fill="paper" fill-opacity=0.12 stroke="ink" stroke-width=1.6
+          circle cx=0 cy=0 r=20.5 fill="none" stroke="ember" stroke-width=1.4 opacity=(down ? 0.9 : 0.45)
+      Caption(line=ndLine(region, pressure))
+      row gap=8 justify-content="center" flex-wrap="wrap"
+        Chip(label="Feather", on=(pressure == "feather"), tone="ember", press=setPressure("feather"), tid="nd-feather")
+        Chip(label="Light", on=(pressure == "light"), tone="ember", press=setPressure("light"), tid="nd-light")
+        Chip(label="Firm", on=(pressure == "firm"), tone="ember", press=setPressure("firm"), tid="nd-firm")
