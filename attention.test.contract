@@ -43,7 +43,8 @@ test "spectatoring: bring attention back into the body"
   clock settle
   expect text "spc-sensation" == "Sensation: full"
 
-test "embodied presence: let a thought pass and come back to a sensation"
+// Tapping a shape inside the drawing by its id is the web driver's; the Chips do the same on every host.
+test "embodied presence: let a thought pass and come back to a sensation" on web
   at "/atlas/embodied-presence"
   clock data
   clock +1500
@@ -87,7 +88,7 @@ test "body appreciation: wipe from seen to felt"
   clock settle
   expect text "bap-mostly" == "Felt"
 
-test "sexual self-esteem: turn an old story over, and back"
+test "sexual self-esteem: turn an old story over, and back" on web
   at "/atlas/sexual-self-esteem"
   clock data
   expect text "sse-says-0" == "I take"
@@ -107,3 +108,20 @@ test "sexual self-esteem: turn an old story over, and back"
   tap "sse-old"
   clock settle
   expect text "sse-says-2" == "I shouldn't"
+
+test "embodied presence: the Chip lets the next thought pass"
+  at "/atlas/embodied-presence"
+  clock data
+  tap "ep-pass"
+  clock settle
+  expect text "ep-here" == "breath"
+
+test "sexual self-esteem: the Chips rewrite every story, and restore them"
+  at "/atlas/sexual-self-esteem"
+  clock data
+  tap "sse-new"
+  clock settle
+  expect text "sse-says-0" == "My timing"
+  tap "sse-old"
+  clock settle
+  expect text "sse-says-0" == "I take"

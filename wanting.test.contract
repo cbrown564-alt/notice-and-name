@@ -55,7 +55,7 @@ test "body and mind can disagree, more so in women than in men"
   clock settle
   expect text "nc-r" == "r = .66"
 
-test "the gap measures a bar against heterosexual women"
+test "the gap measures a bar against heterosexual women" on web
   at "/atlas/the-gap"
   expect tree missing "gap-diff"
   tap "gap-bar-lesbian"
@@ -91,3 +91,9 @@ test "three parts make a request a partner can act on"
   clock settle
   expect tree has "ask-spec-1"
   expect text "ask-read" == "taking shape"
+
+test "the gap: a Chip measures lesbian women against heterosexual women"
+  at "/atlas/the-gap"
+  tap "gap-pick-lesbian"
+  clock settle
+  expect text "gap-diff" == "+21 points"
