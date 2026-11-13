@@ -123,8 +123,12 @@ platform's own text. The full rules are in [`INSTRUMENTS.md`](INSTRUMENTS.md).
   neither is wired yet, so every concept is open.
 - **Voice.** The recorded phrases in `archive/audio` match the original 22
   concepts' sentences and could be played from *Say it*.
-- **Native polish.** The app is developed on Exact's web host; iOS and macOS
-  builds run from the same source but have not had a design pass on device.
+- **Native polish.** The app is developed on Exact's web host and its tests
+  also pass on the native Linux host. iOS and macOS build from the same
+  source but have not been run or had a design pass on device.
+- **Text size.** Body text follows the reader's text size without limit and
+  display type follows it to a cap. Labels inside a drawing scale with the
+  drawing instead; what they say is always also in the Caption.
 - **Wider still.** Candidates with a clear instrument: the pelvic floor,
   aftercare and comedown, pain as information, desire across a long
   relationship, and a couple's mode where two people compare maps.

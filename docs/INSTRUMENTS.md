@@ -89,7 +89,10 @@ component Angling
   Chrome otherwise outlines a focused `svg` on every click. A key handler that
   acts on Space or an arrow calls `preventDefault()` first, or the page scrolls.
 - **Press on a shape:** `press=act(arg)` works on any SVG element; add
-  `pointer-events="none"` to decoration drawn over it.
+  `pointer-events="none"` to decoration drawn over it. A pressed shape takes
+  focus and Chrome outlines it, so shapes call a small wrapper action that
+  says `blur()` first (see `tapFlip` in `sexual-self-esteem.contract`), and a
+  Chip always offers the same move to the keyboard.
 - **What transitions and animates:** `opacity`, `translate`, `scale`, `rotate`,
   colours, and SVG `fill`, `stroke`, `stroke-dashoffset`, `r`, `cx`, `cy`, `x`,
   `y`, `rx`, `ry`, `d`. A spring is `transition="cx -exact-spring(170, 18, 1)"`
@@ -120,9 +123,17 @@ bun exact.mjs agent web --url /atlas/angling "clock data" \
 bun exact.mjs test web
 ```
 
-Look at every screenshot, in both schemes. `tap <testId> at <x> <y>` presses a
+`tools/sheet.sh .exact/sheet.png [dark] angling pairing …` lays several
+instruments side by side for review. Look at every screenshot, in both schemes. `tap <testId> at <x> <y>` presses a
 point of a node (CSS pixels from its top left), `tap <testId> down` … `tap up`
 holds, `clock +800` moves time, `prefer prefers-reduced-motion reduce` checks
 the still version, `state` prints every state. Give each control a `testId`
 and add a test to `app.test.contract` that performs the gesture and expects the
 state it should reach.
+
+Tests run on every host, with one difference: `tap "<testId>"` on a shape
+*inside* an SVG is the web driver's. Drive a shape through its Chip, a key on
+the stage, or `tap "<stage>" drag …`, and mark a test that must tap a shape
+`on web` (`test "…" on web`). Give the stage a short readout with a `testId`
+(or read the Caption, whose testId is `caption`): a child component's state is
+not visible to `expect state`, only the root's is.

@@ -43,9 +43,14 @@ git clone https://github.com/expo/exact ../expo/exact
 bun exact.mjs web            # the dev loop: a URL that rebuilds on save
 bun exact.mjs test web       # every *.test.contract, in headless Chrome
 bun exact.mjs verify         # tests, then light/dark/width/large-text checks
+bun exact.mjs linux && bun exact.mjs test linux   # the same tests on a native host, no browser
 bun exact.mjs ios --run      # an iOS Simulator (macOS with Xcode)
 bun exact.mjs mac --run      # a Mac app
 ```
+
+The suite passes on the web host and on Exact's native Linux host, which
+paints the same drawings with no browser involved. iOS and macOS build from
+the same source but need a Mac; they have not been run yet.
 
 Exact is pre-1.0 and changes daily, so the commit above is the one this app is
 developed and tested against (CI pins the same one). Move it deliberately:
