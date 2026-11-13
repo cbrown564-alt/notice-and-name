@@ -1,0 +1,114 @@
+// Brakes & Accelerators: two pedals and one dial. Tap what is true tonight.
+// The brake outweighs the accelerator, so when arousal is not happening,
+// easing a brake usually does more than adding stimulation (the dual control
+// model: Bancroft & Janssen, 2000; Nagoski, 2015).
+use clamp01, Caption, Chip, Eyebrow from "./kit.contract"
+
+// What the accelerator is asking for, and what gets past the brake.
+fn baAsk(accel: number): number = clamp01(0.08 + 0.18 * accel)
+fn baArousal(brake: number, accel: number): number = clamp01(0.08 + 0.18 * accel - 0.3 * brake)
+fn baWord(brake: number, accel: number): string = baArousal(brake, accel) < 0.1 and baAsk(accel) >= 0.2 and brake > 0 ? "held back" : baArousal(brake, accel) < 0.1 ? "quiet" : baArousal(brake, accel) < 0.4 ? "stirring" : baArousal(brake, accel) < 0.75 ? "building" : "flowing"
+fn baLine(brake: number, accel: number, last: string): string = brake == 0 and accel == 0 ? "Nothing pressing on either pedal. Tap what is true tonight, on both sides." : brake == 0 ? (last == "brake-off" ? "The last brake is off, and everything you already had is working." : "All clear: nothing on the brake, so everything on the accelerator counts.") : accel == 0 ? "Only the brake is on tonight. That is reason enough for nothing to be stirring." : last == "brake-off" ? (baArousal(brake, accel) >= 0.1 ? "One brake lifted, and what you already had starts working." : "One brake lifted. The others are still holding everything back.") : baArousal(brake, accel) < 0.15 ? (accel >= 3 ? "Plenty on the accelerator, and the needle barely moves: the brake is still on." : "The accelerator is down, and the needle barely moves: the brake is still on.") : "The accelerator is getting through, with the brake taking its share. Easing a brake would do more than adding anything."
+fn baSpoken(brake: number, accel: number): string = `Brake pressed by ${brake} of 5, accelerator by ${accel} of 5. Arousal: ${baWord(brake, accel)}.`
+// A pedal's spring, from under its plate down to the floor: it shortens as the plate goes down.
+fn baSpring(x: number, top: number): string = range(9).map(k => `${k == 0 ? "M" : "L"}${k == 0 or k == 8 ? x : k % 2 == 1 ? x - 8 : x + 8} ${(top + (196 - top) * k / 8).toFixed(1)}`).join("")
+
+keyframes ba-breathe
+  50% opacity=0.55
+
+component BrakesAccelerators
+  inject
+    still: bool
+  props
+    uid: string
+  state brakes = ["stressed", "head"]
+  state accels = ["close", "touch"]
+  state last = ""
+  derive b = brakes.length
+  derive a = accels.length
+  action brake(id: string)
+    last = brakes.includes(id) ? "brake-off" : ""
+    brakes = brakes.includes(id) ? brakes.filter(x => x != id) : brakes.concat([id])
+  action accel(id: string)
+    last = ""
+    accels = accels.includes(id) ? accels.filter(x => x != id) : accels.concat([id])
+  view
+    column gap=14
+      svg id=`ba-${uid}` testId="ba-stage" viewBox="0 34 340 176" width="100%" display="block"
+        role="img" aria-label=baSpoken(b, a)
+        defs
+          linearGradient id="ba-arc" gradientUnits="userSpaceOnUse" x1=108 y1=0 x2=232 y2=0
+            stop offset=0 stop-color="rose.deep"
+            stop offset=1 stop-color="ember"
+          linearGradient id="ba-plate-brake" x1=0 y1=0 x2=0 y2=1
+            stop offset=0 stop-color="dusk.soft"
+            stop offset=1 stop-color="dusk"
+          linearGradient id="ba-plate-accel" x1=0 y1=0 x2=0 y2=1
+            stop offset=0 stop-color="ember.glow"
+            stop offset=1 stop-color="ember"
+          radialGradient id="ba-hub-glow"
+            stop offset=0 stop-color="ember" stop-opacity=0.5
+            stop offset=1 stop-color="ember" stop-opacity=0
+        line x1=22 y1=198 x2=318 y2=198 stroke="ink.faint" stroke-width=1.2 stroke-linecap="round"
+        // The dial.
+        g
+          text "Arousal" text-anchor="middle" x=170 y=52 font-size=10.5 fill="ink.soft" letter-spacing="0.06em"
+          for k in range(11) key=k
+            line x1=(170 - 74 * cos(k * 0.31416)) y1=(142 - 74 * sin(k * 0.31416)) x2=(170 - (k % 5 == 0 ? 80 : 77.5) * cos(k * 0.31416)) y2=(142 - (k % 5 == 0 ? 80 : 77.5) * sin(k * 0.31416))
+              stroke="ink.faint" stroke-width=1.2 stroke-linecap="round"
+          path d="M108 142A62 62 0 0 1 232 142" fill="none" stroke="paper.sunk" stroke-width=12 stroke-linecap="round"
+          // What the accelerator is asking for: the part the brake holds back shows in dusk.
+          path d="M108 142A62 62 0 0 1 232 142" fill="none" stroke="dusk" stroke-width=12 stroke-linecap="round" opacity=0.55
+            pathLength=1 stroke-dasharray="1 2" stroke-dashoffset=(1 - baAsk(a)) transition=(still ? "none" : "stroke-dashoffset 700ms ease")
+          path d="M108 142A62 62 0 0 1 232 142" fill="none" stroke="url(#ba-arc)" stroke-width=12 stroke-linecap="round" opacity=(baArousal(b, a) > 0.005 ? 1 : 0)
+            pathLength=1 stroke-dasharray="1 2" stroke-dashoffset=(1 - baArousal(b, a)) transition=(still ? "none" : "stroke-dashoffset 700ms ease, opacity 300ms ease")
+          circle cx=170 cy=142 r=(14 + 22 * baArousal(b, a)) fill="url(#ba-hub-glow)" transition=(still ? "none" : "r 700ms ease")
+            animation=(still ? "none" : "ba-breathe 4.4s ease-in-out infinite")
+          g transform="translate(170 142)"
+            g transform-origin="0px 0px" rotate=(180 * baArousal(b, a) - 90) transition=(still ? "none" : "rotate -exact-spring(110, 13, 1)")
+              path d="M-2.6 0L0 -52L2.6 0Z" fill="ink" stroke="ink" stroke-width=1 stroke-linejoin="round"
+            circle r=6.5 fill="paper.raised" stroke="ink" stroke-width=1.6
+          text "low" text-anchor="middle" x=108 y=160 font-size=9.5 fill="ink.soft"
+          text "high" text-anchor="middle" x=232 y=160 font-size=9.5 fill="ink.soft"
+          text baWord(b, a) testId="ba-read" text-anchor="middle" x=170 y=176 font-size=12 font-weight=600 fill=(baWord(b, a) == "held back" ? "dusk.deep" : baWord(b, a) == "quiet" ? "ink.soft" : "ember.deep")
+        // The brake.
+        g
+          text "Brake" text-anchor="middle" x=50 y=52 font-size=11 fill="ink"
+          path d=baSpring(50, 128 + b * 5.4) fill="none" stroke="ink.soft" stroke-width=1.4 stroke-linecap="round" stroke-linejoin="round" opacity=0.7
+            transition=(still ? "none" : "d 520ms cubic-bezier(0.3, 1.5, 0.5, 1)")
+          line x1=34 y1=198 x2=66 y2=198 stroke="ink.soft" stroke-width=3 stroke-linecap="round" opacity=0.7
+          g translate=`0px ${b * 5.4}px` transition=(still ? "none" : "translate 520ms cubic-bezier(0.3, 1.5, 0.5, 1)")
+            rect x=22 y=78 width=56 height=50 rx=13 fill="paper.sunk"
+            rect x=22 y=78 width=56 height=50 rx=13 fill="url(#ba-plate-brake)" opacity=(0.18 + 0.16 * b) transition=(still ? "none" : "opacity 500ms ease")
+            rect x=22 y=78 width=56 height=50 rx=13 fill="none" stroke="ink" stroke-width=1.2 opacity=0.45
+            for k in range(5) key=k
+              line x1=33 x2=67 y1=(88 + k * 7.5) y2=(88 + k * 7.5) stroke=(k < b ? "dusk.deep" : "ink.faint") stroke-width=2.4 stroke-linecap="round" transition=(still ? "none" : "stroke 300ms ease")
+        // The accelerator.
+        g
+          text "Accelerator" text-anchor="middle" x=290 y=52 font-size=11 fill="ink"
+          path d=baSpring(290, 128 + a * 5.4) fill="none" stroke="ink.soft" stroke-width=1.4 stroke-linecap="round" stroke-linejoin="round" opacity=0.7
+            transition=(still ? "none" : "d 520ms cubic-bezier(0.3, 1.5, 0.5, 1)")
+          line x1=274 y1=198 x2=306 y2=198 stroke="ink.soft" stroke-width=3 stroke-linecap="round" opacity=0.7
+          g translate=`0px ${a * 5.4}px` transition=(still ? "none" : "translate 520ms cubic-bezier(0.3, 1.5, 0.5, 1)")
+            rect x=271 y=62 width=38 height=66 rx=13 fill="paper.sunk"
+            rect x=271 y=62 width=38 height=66 rx=13 fill="url(#ba-plate-accel)" opacity=(0.18 + 0.16 * a) transition=(still ? "none" : "opacity 500ms ease")
+            rect x=271 y=62 width=38 height=66 rx=13 fill="none" stroke="ink" stroke-width=1.2 opacity=0.45
+            for k in range(5) key=k
+              line x1=280 x2=300 y1=(75 + k * 10) y2=(75 + k * 10) stroke=(k < a ? "ember.deep" : "ink.faint") stroke-width=2.4 stroke-linecap="round" transition=(still ? "none" : "stroke 300ms ease")
+      Caption(line=baLine(b, a, last))
+      column gap=8 align-items="center"
+        text "Brakes" class=Eyebrow color="dusk.deep"
+        row gap=8 justify-content="center" flex-wrap="wrap"
+          Chip(label="Stressed", on=brakes.includes("stressed"), tone="dusk", press=brake("stressed"), tid="ba-stressed")
+          Chip(label="Rushed", on=brakes.includes("rushed"), tone="dusk", press=brake("rushed"), tid="ba-rushed")
+          Chip(label="Might be interrupted", on=brakes.includes("interrupted"), tone="dusk", press=brake("interrupted"), tid="ba-interrupted")
+          Chip(label="In my head", on=brakes.includes("head"), tone="dusk", press=brake("head"), tid="ba-head")
+          Chip(label="Tired", on=brakes.includes("tired"), tone="dusk", press=brake("tired"), tid="ba-tired")
+      column gap=8 align-items="center"
+        text "Accelerators" class=Eyebrow color="ember.deep"
+        row gap=8 justify-content="center" flex-wrap="wrap"
+          Chip(label="Feeling close", on=accels.includes("close"), tone="ember", press=accel("close"), tid="ba-close")
+          Chip(label="Unhurried", on=accels.includes("unhurried"), tone="ember", press=accel("unhurried"), tid="ba-unhurried")
+          Chip(label="Being wanted", on=accels.includes("wanted"), tone="ember", press=accel("wanted"), tid="ba-wanted")
+          Chip(label="A touch I like", on=accels.includes("touch"), tone="ember", press=accel("touch"), tid="ba-touch")
+          Chip(label="Privacy", on=accels.includes("privacy"), tone="ember", press=accel("privacy"), tid="ba-privacy")

@@ -1,0 +1,126 @@
+// Embodied Presence: thoughts keep drifting past; presence is the coming back.
+// Tap a thought to let it pass, and attention lands on one sensation.
+use clamp01, Caption, Chip from "./kit.contract"
+use Figure, figX, figY from "./figure.contract"
+
+fn epTop(): number = 150
+fn epThought(i: number): string = i == 0 ? "that email" : i == 1 ? "did I lock the door?" : i == 2 ? "my stomach" : i == 3 ? "taking too long?" : "the laundry"
+fn epThoughtW(i: number): number = i == 0 ? 76 : i == 1 ? 130 : i == 2 ? 82 : i == 3 ? 110 : 82
+fn epThoughtX(i: number): number = i == 0 ? 62 : i == 1 ? 232 : i == 2 ? 142 : i == 3 ? 272 : 96
+// Where each thought sits when nothing moves.
+fn epStillY(i: number): number = i == 0 ? 42 : i == 1 ? 30 : i == 2 ? 74 : i == 3 ? 86 : 114
+// The four places attention can come back to, in the figure's own box.
+fn epAnchorX(k: number): number = k == 0 ? figX("chest") : k == 1 ? figX("handFar") : k == 2 ? figX("pelvis") + 9 : figX("footFar")
+fn epAnchorY(k: number): number = k == 0 ? figY("chest") : k == 1 ? figY("handFar") : k == 2 ? figY("pelvis") - 2 : figY("footFar")
+fn epAnchorName(k: number): string = k == 0 ? "breath" : k == 1 ? "warmth" : k == 2 ? "weight" : "contact"
+fn epLabelX(k: number): number = k == 0 ? 96 : k == 1 ? 143 : k == 2 ? 190 : 296
+fn epBack(k: number): string = k == 0 ? "Back to the breath, low in the chest." : k == 1 ? "Back to the warmth under your hand." : k == 2 ? "Back to the weight of your hips, held by the bed." : "Back to your feet, and what they are touching."
+fn epLine(turn: number, gone: number): string = turn == 0 ? "Thoughts will keep arriving. That is what minds do, so the move is the return: tap one and let it pass." : gone == 0 ? "Here they come again, as they always will. The way back has not changed: one sensation, then the next." : gone == 5 ? `${epBack((turn - 1) % 4)} More thoughts will come, and the way back is the same.` : epBack((turn - 1) % 4)
+
+keyframes ep-drift
+  from translate="0px 46px" opacity=0
+  14% opacity=1
+  78% opacity=1
+  to translate="0px -108px" opacity=0
+
+keyframes ep-sway
+  50% translate="7px 0px"
+
+keyframes ep-glow
+  50% opacity=0.5
+
+keyframes ep-bloom
+  from scale=0.3 opacity=0.9
+  to scale=1 opacity=0
+
+component EmbodiedPresence
+  inject
+    still: bool
+  props
+    uid: string
+  state released: number[] = []
+  state turn = 0
+  action pass(i: number)
+    if not released.includes(i)
+      released = released.concat([i])
+      turn = turn + 1
+  action passNext
+    match first(range(5).filter(i => not released.includes(i)))
+      case some(i)
+        released = released.concat([i])
+        turn = turn + 1
+      case none
+        turn = turn
+  action onKey(k: string, e: KeyboardEvent)
+    if k == "Enter" or k == " "
+      preventDefault()
+      match first(range(5).filter(i => not released.includes(i)))
+        case some(i)
+          released = released.concat([i])
+          turn = turn + 1
+        case none
+          turn = turn
+  action comeBack
+    released = []
+  view
+    column gap=14
+      svg id=`ep-${uid}` testId="ep-stage" viewBox="0 0 340 296" width="100%" display="block" tabindex=0 key=onKey
+        role="group" aria-label=`A resting body, and thoughts drifting past it. ${5 - released.length} of 5 thoughts are here. Press Enter to let one pass. ${epLine(turn, released.length)}`
+        outline="none" border-radius=16
+        :focus-visible
+          box-shadow="0 0 0 2px ember"
+        defs
+          radialGradient id="ep-spot"
+            stop offset=0 stop-color="ember.light" stop-opacity=0.95
+            stop offset=0.4 stop-color="ember" stop-opacity=0.7
+            stop offset=1 stop-color="ember" stop-opacity=0
+          radialGradient id="ep-rest"
+            stop offset=0 stop-color="honey" stop-opacity=0.75
+            stop offset=1 stop-color="honey" stop-opacity=0
+        g transform=`translate(0 ${epTop()})`
+          Figure(warmth=(turn == 0 ? 0.08 : 0.22), tone="rose", ghost=false, glide=(not still))
+            // The anchors: quiet until attention comes back to one.
+            for k in range(4) key=k
+              g
+                circle cx=epAnchorX(k) cy=epAnchorY(k) r=13 fill="url(#ep-rest)"
+                  opacity=(turn > 0 and (turn - 1) % 4 == k ? 0 : 0.8) transition=(still ? "none" : "opacity 600ms ease")
+                  animation=(still ? "none" : `ep-glow ${3600 + k * 500}ms ease-in-out ${0 - k * 800}ms infinite`)
+                circle cx=epAnchorX(k) cy=epAnchorY(k) r=(turn > 0 and (turn - 1) % 4 == k ? 30 : 10) fill="url(#ep-spot)"
+                  opacity=(turn > 0 and (turn - 1) % 4 == k ? 1 : 0) transition=(still ? "none" : "opacity 600ms ease, r 900ms ease")
+            // Both feet share the last one.
+            circle cx=figX("footNear") cy=figY("footNear") r=13 fill="url(#ep-rest)" opacity=(turn > 0 and (turn - 1) % 4 == 3 ? 0 : 0.8)
+              transition=(still ? "none" : "opacity 600ms ease") animation=(still ? "none" : "ep-glow 5100ms ease-in-out -2400ms infinite")
+            circle cx=figX("footNear") cy=figY("footNear") r=(turn > 0 and (turn - 1) % 4 == 3 ? 30 : 10) fill="url(#ep-spot)"
+              opacity=(turn > 0 and (turn - 1) % 4 == 3 ? 1 : 0) transition=(still ? "none" : "opacity 600ms ease, r 900ms ease")
+          // A ring opens where attention lands.
+          for k in range(4) key=k
+            if turn > 0 and (turn - 1) % 4 == k
+              circle cx=epAnchorX(k) cy=epAnchorY(k) r=26 fill="none" stroke="ember" stroke-width=1.4 opacity=0 pointer-events="none"
+                transform-box="fill-box" transform-origin="center" animation=(still ? "none" : "ep-bloom 1400ms ease-out both")
+          // Their names, under the body.
+          for k in range(4) key=k
+            g
+              line x1=epLabelX(k) y1=114 x2=epAnchorX(k) y2=(epAnchorY(k) + 12) stroke=(turn > 0 and (turn - 1) % 4 == k ? "ember" : "ink.faint") stroke-width=1
+                opacity=(turn > 0 and (turn - 1) % 4 == k ? 0.9 : 0.8) transition=(still ? "none" : "stroke 500ms ease")
+              text epAnchorName(k) testId=(turn > 0 and (turn - 1) % 4 == k ? "ep-here" : `ep-anchor-${k}`) x=epLabelX(k) y=128 text-anchor="middle" font-size=11 fill=(turn > 0 and (turn - 1) % 4 == k ? "ember.deep" : "ink.soft")
+                font-weight=(turn > 0 and (turn - 1) % 4 == k ? 600 : 400) transition=(still ? "none" : "fill 500ms ease")
+        // The thoughts. Each drifts up past the body; a tap lets it go.
+        for i in range(5) key=i
+          g transform=`translate(${epThoughtX(i)} ${still ? epStillY(i) : 122})`
+            g animation=(still ? "none" : `ep-drift 17000ms linear ${0 - i * 3400}ms infinite`)
+              g animation=(still ? "none" : `ep-sway ${5200 + i * 600}ms ease-in-out ${0 - i * 700}ms infinite`)
+                g pointer-events="none"
+                  opacity=(released.includes(i) ? 0 : 1) translate=(released.includes(i) ? "16px -22px" : "0px 0px") scale=(released.includes(i) ? 0.82 : 1)
+                  transform-box="fill-box" transform-origin="center"
+                  transition=(still ? "none" : "opacity 700ms ease, translate 900ms ease, scale 900ms ease")
+                  rect x=(0 - epThoughtW(i) / 2) y=-12 width=epThoughtW(i) height=24 rx=12 fill="dusk.soft" stroke="dusk" stroke-width=0.8 stroke-opacity=0.55
+                  circle cx=(0 - epThoughtW(i) / 2 + 12) cy=17 r=2.6 fill="dusk.soft" stroke="dusk" stroke-width=0.8 stroke-opacity=0.55
+                  circle cx=(0 - epThoughtW(i) / 2 + 6) cy=23 r=1.5 fill="dusk.soft" stroke="dusk" stroke-width=0.8 stroke-opacity=0.55
+                  text epThought(i) x=0 y=4 text-anchor="middle" font-size=11 fill="dusk.deep"
+                // What a finger lands on: there only while the thought is.
+                if not released.includes(i)
+                  rect testId=`ep-thought-${i}` press=pass(i) x=(0 - epThoughtW(i) / 2 - 4) y=-16 width=(epThoughtW(i) + 8) height=34 rx=14 fill="dusk.soft" opacity=0
+      Caption(line=epLine(turn, released.length))
+      row gap=8 justify-content="center" flex-wrap="wrap"
+        Chip(label="Let one pass", on=false, tone="ember", press=passNext, tid="ep-pass")
+        Chip(label="Let them return", on=false, tone="dusk", press=comeBack, tid="ep-return")

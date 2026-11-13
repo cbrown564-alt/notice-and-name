@@ -1,0 +1,74 @@
+// The Front Wall: three tissues share one small space. Tap each to light it:
+// the clitoris, the urethra with its spongy sleeve, the front wall of the
+// vagina. Where they meet glows a little more with each one, until the three
+// read as what they are: one neighbourhood.
+use clamp01, Caption, Chip from "./kit.contract"
+use Sagittal, sagX, sagY, sagPlace, sagBulbPath, sagShaftPath, sagUrethraPath from "./sagittal.contract"
+
+fn cuvCount(clit: bool, urethra: bool, wall: bool): number = (clit ? 1 : 0) + (urethra ? 1 : 0) + (wall ? 1 : 0)
+fn cuvOne(clit: bool, urethra: bool): string = clit ? "The clitoris. Most of it is inside, reaching back beside the urethra and the front wall." : urethra ? "The urethra, wrapped in spongy tissue, runs just in front of the vaginal wall." : "The front wall of the vagina. The urethra and the internal clitoris lie right against it."
+fn cuvLine(clit: bool, urethra: bool, wall: bool): string = cuvCount(clit, urethra, wall) == 0 ? "Three tissues share this small space. Tap each one to light it." : cuvCount(clit, urethra, wall) == 1 ? cuvOne(clit, urethra) : cuvCount(clit, urethra, wall) == 2 ? "Two of the three. They are joined, not just near: pressure on one moves the other." : "Not a button: a neighbourhood. Clitoris, urethra and front wall respond together, and that is what G-spot names."
+
+keyframes cuv-breathe
+  50% scale=1.07 opacity=0.6
+
+component Clitourethrovaginal
+  inject
+    still: bool
+  props
+    uid: string
+  state clit = false
+  state urethra = false
+  state wall = false
+  action toggle(which: string)
+    if which == "clit"
+      clit = not clit
+    if which == "urethra"
+      urethra = not urethra
+    if which == "wall"
+      wall = not wall
+  view
+    column gap=14
+      svg id=`cuv-${uid}` testId="cuv-stage" viewBox="0 0 340 300" width="100%" display="block"
+        role="group" aria-label=`The pelvis in section. ${cuvLine(clit, urethra, wall)}`
+        defs
+          radialGradient id="cuv-meet"
+            stop offset=0 stop-color="ember.light" stop-opacity=0.95
+            stop offset=0.55 stop-color="ember.light" stop-opacity=0.4
+            stop offset=1 stop-color="ember.light" stop-opacity=0
+        Sagittal(tilt=0, clit=(clit ? 1 : 0), glans=(clit ? 1 : 0), urethra=(urethra ? 1 : 0), wall=(wall ? 1 : 0),
+          dentFrom=0, dentAt=0, dent=0, pulse=false, names=0.7, glide=(not still))
+        // Where they meet: brighter with each tissue, and outlined once all three are lit.
+        g pointer-events="none" transform="rotate(-45 168.4 198.5)"
+          ellipse cx=168.4 cy=198.5 rx=38 ry=19 fill="url(#cuv-meet)" opacity=(cuvCount(clit, urethra, wall) * 0.26)
+            transition=(still ? "none" : "opacity 600ms ease")
+          g opacity=(cuvCount(clit, urethra, wall) == 3 ? 1 : 0) transition=(still ? "none" : "opacity 700ms ease")
+            ellipse cx=168.4 cy=198.5 rx=42 ry=22 fill="none" stroke="ink" stroke-width=1.2 stroke-dasharray="1 4.5" stroke-linecap="round" opacity=0.8
+              transform-box="fill-box" transform-origin="center" animation=(still ? "none" : "cuv-breathe 4.5s ease-in-out infinite")
+        // Each tissue's name arrives with its light.
+        g pointer-events="none" font-size=11.5 fill="ink"
+          g opacity=(clit ? 1 : 0) transition=(still ? "none" : "opacity 500ms ease")
+            line x1=90 y1=235 x2=62 y2=277 stroke="ink.faint" stroke-width=1
+            circle cx=90 cy=235 r=2 fill="ember"
+            text "Clitoris" x=58 y=292 text-anchor="middle"
+          g opacity=(urethra ? 1 : 0) transition=(still ? "none" : "opacity 500ms ease")
+            line x1=132 y1=236 x2=131 y2=277 stroke="ink.faint" stroke-width=1
+            circle cx=132 cy=236 r=2 fill="honey"
+            text "Urethra" x=131 y=292 text-anchor="middle"
+          g opacity=(wall ? 1 : 0) transition=(still ? "none" : "opacity 500ms ease")
+            line x1=145 y1=238 x2=196 y2=277 stroke="ink.faint" stroke-width=1
+            circle cx=145 cy=238 r=2 fill="rose.deep"
+            text "Front wall" x=206 y=292 text-anchor="middle"
+        // What a tap lands on: generous regions over each tissue.
+        g transform=sagPlace() opacity=0
+          path d=sagBulbPath() fill="ink" press=toggle("clit")
+          path d=sagShaftPath() fill="none" stroke="ink" stroke-width=18 stroke-linecap="round" press=toggle("clit")
+          circle cx=99 cy=241 r=14 fill="ink" press=toggle("clit")
+          g transform="translate(142 246) rotate(-45)"
+            rect x=-6 y=-13 width=138 height=13 fill="ink" press=toggle("wall")
+          path d=sagUrethraPath() fill="none" stroke="ink" stroke-width=11 stroke-linecap="round" press=toggle("urethra")
+      Caption(line=cuvLine(clit, urethra, wall))
+      row gap=8 justify-content="center" flex-wrap="wrap"
+        Chip(label="Clitoris", on=clit, tone="ember", press=toggle("clit"), tid="cuv-clit")
+        Chip(label="Urethra", on=urethra, tone="honey", press=toggle("urethra"), tid="cuv-urethra")
+        Chip(label="Front wall", on=wall, tone="rose.deep", press=toggle("wall"), tid="cuv-wall")

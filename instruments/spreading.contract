@@ -1,0 +1,115 @@
+// Spreading: a touch in one place, and how far its warmth travels as attention
+// widens. Tap the body to move the touch; slide the rail from narrow to wide.
+use clamp, clamp01, lerp, Caption, Chip from "./kit.contract"
+use Figure, figSnapX, figSnapY, figRegion from "./figure.contract"
+
+// Where the figure sits on this stage, and where the rail runs.
+fn spTop(): number = 44
+fn spRailA(): number = 78
+fn spRailB(): number = 262
+fn spRailY(): number = 196
+// How far the warmth reaches, in stage units, for an attention width of 0 to 1.
+fn spReach(wide: number): number = 20 + 300 * wide * wide
+fn spWhere(part: string): string = part == "head" ? "your scalp" : part == "calf" ? "your calf" : `your ${part}`
+fn spLine(wide: number, part: string): string = wide < 0.34 ? `With attention held on one spot, the pleasure stays where the touch is: a small warm pool at ${spWhere(part)}.` : wide < 0.72 ? `As attention widens, the warmth leaves ${spWhere(part)} and starts to travel into what is near.` : `Wide open, it moves through the rest of you: out from ${spWhere(part)}, along the limbs, to fingers and feet.`
+
+keyframes sp-ripple
+  from scale=0.04 opacity=0
+  12% opacity=0.85
+  to scale=1 opacity=0
+
+keyframes sp-bead
+  50% scale=1.25 opacity=0.55
+
+component Spreading
+  inject
+    still: bool
+  props
+    uid: string
+  state wide = 0.12
+  state ox = 166
+  state oy = 52
+  state down = ""
+  action press(e: PointerEvent)
+    let x = e.offsetX / frame(`sp-${uid}`).width * 340
+    let y = e.offsetY / frame(`sp-${uid}`).width * 340
+    if y > spRailY() - 24
+      down = "rail"
+      wide = clamp01((x - spRailA()) / (spRailB() - spRailA()))
+    else
+      down = "body"
+      ox = figSnapX(x, y - spTop())
+      oy = figSnapY(x, y - spTop())
+  action drag(e: PointerEvent)
+    let x = e.offsetX / frame(`sp-${uid}`).width * 340
+    let y = e.offsetY / frame(`sp-${uid}`).width * 340
+    if down == "rail"
+      wide = clamp01((x - spRailA()) / (spRailB() - spRailA()))
+    if down == "body"
+      ox = figSnapX(x, y - spTop())
+      oy = figSnapY(x, y - spTop())
+  action release(e: PointerEvent)
+    down = ""
+  action step(k: string, e: KeyboardEvent)
+    if k == "ArrowRight" or k == "ArrowUp"
+      preventDefault()
+      wide = clamp01(wide + 0.1)
+    if k == "ArrowLeft" or k == "ArrowDown"
+      preventDefault()
+      wide = clamp01(wide - 0.1)
+  action go(w: number)
+    wide = w
+  view
+    column gap=14
+      svg id=`sp-${uid}` testId="sp-stage" viewBox="0 0 340 226" width="100%" display="block" touch-action="none" tabindex=0
+        role="slider" aria-label="How wide your attention is" aria-valuetext=spLine(wide, figRegion(ox, oy)) key=step
+        pointerdown=press pointermove=drag pointerup=release
+        outline="none" border-radius=16
+        :focus-visible
+          box-shadow="0 0 0 2px ember"
+        defs
+          radialGradient id="sp-warm"
+            stop offset=0 stop-color="ember" stop-opacity=0.95
+            stop offset=0.22 stop-color="ember" stop-opacity=0.72
+            stop offset=0.55 stop-color="honey" stop-opacity=0.55
+            stop offset=0.85 stop-color="honey" stop-opacity=0.3
+            stop offset=1 stop-color="honey" stop-opacity=0
+          radialGradient id="sp-halo"
+            stop offset=0 stop-color="ember" stop-opacity=0.5
+            stop offset=1 stop-color="ember" stop-opacity=0
+          radialGradient id="sp-core" cx="40%" cy="35%" r="70%"
+            stop offset=0 stop-color="ember.light"
+            stop offset=0.6 stop-color="ember"
+            stop offset=1 stop-color="ember.deep"
+        g transform=`translate(0 ${spTop()})`
+          Figure(warmth=0, tone="rose", ghost=false, glide=false)
+            // The warmth, and the rings that carry it, never leave the body.
+            circle cx=ox cy=oy r=spReach(wide) fill="url(#sp-warm)" pointer-events="none"
+              transition=(down == "" and not still ? "r 800ms ease, cx 500ms ease, cy 500ms ease" : "none")
+            for i in range(3) key=i
+              circle cx=ox cy=oy r=(still ? spReach(wide) * (0.34 + 0.33 * i) : spReach(wide)) fill="none" stroke="ember.light" stroke-width=1.4
+                vector-effect="non-scaling-stroke" opacity=(still ? 0.6 - 0.2 * i : 0) pointer-events="none"
+                transform-box="fill-box" transform-origin="center"
+                animation=(still ? "none" : `sp-ripple 4200ms ease-out ${0 - i * 1400}ms infinite`)
+          // The touch itself.
+          circle cx=ox cy=oy r=13 fill="url(#sp-halo)" pointer-events="none" transform-box="fill-box" transform-origin="center"
+            animation=(still ? "none" : "sp-bead 2800ms ease-in-out infinite")
+            transition=(down == "" and not still ? "cx 500ms ease, cy 500ms ease" : "none")
+          circle cx=ox cy=oy r=5.2 fill="url(#sp-core)" stroke="paper.raised" stroke-width=1 pointer-events="none"
+            transition=(down == "" and not still ? "cx 500ms ease, cy 500ms ease" : "none")
+        // Where the touch is, named as an atlas would.
+        g pointer-events="none"
+          line x1=clamp(ox, 44, 296) y1=31 x2=ox y2=(spTop() + oy - 9) stroke="ink.faint" stroke-width=1
+          text figRegion(ox, oy) testId="sp-where" x=clamp(ox, 44, 296) y=26 text-anchor="middle" font-size=11.5 fill="ink.soft"
+        // The attention rail.
+        g
+          text "Attention" x=170 y=(spRailY() - 16) text-anchor="middle" font-size=11 fill="ink.soft" letter-spacing=0.6
+          line x1=spRailA() y1=spRailY() x2=spRailB() y2=spRailY() stroke="ink.faint" stroke-width=3 stroke-linecap="round"
+          line x1=spRailA() y1=spRailY() x2=lerp(spRailA(), spRailB(), wide) y2=spRailY() stroke="ember" stroke-width=3 stroke-linecap="round"
+          circle cx=lerp(spRailA(), spRailB(), wide) cy=spRailY() r=9 fill="paper" stroke="ember" stroke-width=3
+          text "Narrow" testId=(wide < 0.34 ? "sp-now" : "sp-narrow") x=(spRailA() - 16) y=(spRailY() + 4) text-anchor="end" font-size=11 fill=(wide < 0.34 ? "ink" : "ink.soft")
+          text "Wide" testId=(wide >= 0.72 ? "sp-now" : "sp-wide") x=(spRailB() + 16) y=(spRailY() + 4) font-size=11 fill=(wide >= 0.72 ? "ink" : "ink.soft")
+      Caption(line=spLine(wide, figRegion(ox, oy)))
+      row gap=8 justify-content="center" flex-wrap="wrap"
+        Chip(label="One spot", on=(wide < 0.34), tone="ember", press=go(0.08), tid="sp-one")
+        Chip(label="Let it spread", on=(wide >= 0.72), tone="ember", press=go(1), tid="sp-spread")

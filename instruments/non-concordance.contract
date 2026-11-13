@@ -1,0 +1,153 @@
+// Non-concordance: two meters that do not have to agree. One is what the
+// genitals are doing, the other is how turned on the person feels. Drag either
+// one, or pick a pairing. Below, what "weakly linked" looks like: sixty dots at
+// the correlation found for women (r = .26) or men (r = .66), Chivers et al., 2010.
+use clamp01, rnd, Caption, Chip, Serif from "./kit.contract"
+
+fn ncScene(body: number, mind: number): string = body >= 0.5 and mind < 0.5 ? "body" : body < 0.5 and mind >= 0.5 ? "mind" : body >= 0.5 ? "both" : "neither"
+fn ncLine(scene: string, said: string, group: string): string = said == "group" ? (group == "women" ? "In women the two signals track each other only weakly: r = .26. Knowing one tells you little about the other." : "In men they agree more often, r = .66, and still far from always. For anyone: ask, don't infer.") : scene == "body" ? "The body is responding and the mind is not there. Wetness or an erection is not a yes." : scene == "mind" ? "Very turned on, and the body is quiet. Dryness or softness is not a no." : scene == "both" ? "This time the two agree. It happens, and it is still worth saying out loud." : scene == "neither" ? "Neither signal is up, and nothing is wrong. When you want to know, ask, don't infer." : "Two signals: what the body is doing, and how turned on you feel. Drag either one, or pick a pairing."
+fn ncSpoken(body: number, mind: number): string = `Body ${round(body * 100)} percent, mind ${round(mind * 100)} percent. ${body >= 0.5 and mind >= 0.5 or body < 0.5 and mind < 0.5 ? "They agree." : "They disagree."}`
+// Sixty people. Each has a body reading and some noise of their own; the
+// group's mix of the two sets how tightly mind follows body. The mixes are
+// tuned so that these sixty dots have exactly the published correlations.
+fn ncBody(i: number): number = 0.06 + 0.88 * rnd(i)
+fn ncNoise(i: number): number = (rnd(i + 500) + rnd(i + 900)) / 2
+fn ncMind(i: number, group: string): number = clamp(0.5 + (group == "men" ? 0.699 : 0.296) * (ncBody(i) - 0.5) + (group == "men" ? 0.95 : 1.3) * (ncNoise(i) - 0.5), 0.03, 0.97)
+fn clamp(n: number, lo: number, hi: number): number = min(hi, max(lo, n))
+
+keyframes nc-wave
+  from translate="0px 0px"
+  to translate="-40px 0px"
+
+keyframes nc-breathe
+  50% opacity=0.5
+
+keyframes nc-fade
+  from opacity=0
+
+component NonConcordance
+  inject
+    still: bool
+  props
+    uid: string
+  state body = 0.56
+  state mind = 0.44
+  state scene = ""
+  state group = "women"
+  state said = ""
+  state down = false
+  action set(b: number, m: number)
+    body = b
+    mind = m
+    scene = ncScene(b, m)
+    said = "scene"
+  action pick(g: string)
+    group = g
+    said = "group"
+  action press(e: PointerEvent)
+    let y = e.offsetY / frame(`nc-${uid}`).height * 336
+    let x = e.offsetX / frame(`nc-${uid}`).width * 340
+    let nb = x < 170 ? clamp01((130 - y) / 100) : body
+    let nm = x < 170 ? mind : clamp01((130 - y) / 100)
+    if y < 172
+      down = true
+      said = "scene"
+      body = nb
+      mind = nm
+      scene = ncScene(nb, nm)
+  action drag(e: PointerEvent)
+    let dy = e.offsetY / frame(`nc-${uid}`).height * 336
+    let dx = e.offsetX / frame(`nc-${uid}`).width * 340
+    let db = dx < 170 ? clamp01((130 - dy) / 100) : body
+    let dm = dx < 170 ? mind : clamp01((130 - dy) / 100)
+    if down
+      body = db
+      mind = dm
+      scene = ncScene(db, dm)
+  action release(e: PointerEvent)
+    down = false
+  action step(k: string, e: KeyboardEvent)
+    let kb = k == "ArrowUp" ? clamp01(body + 0.1) : k == "ArrowDown" ? clamp01(body - 0.1) : body
+    let km = k == "ArrowRight" ? clamp01(mind + 0.1) : k == "ArrowLeft" ? clamp01(mind - 0.1) : mind
+    if k == "ArrowUp" or k == "ArrowDown" or k == "ArrowLeft" or k == "ArrowRight"
+      preventDefault()
+      body = kb
+      mind = km
+      scene = ncScene(kb, km)
+      said = "scene"
+  view
+    column gap=14
+      svg id=`nc-${uid}` testId="nc-stage" viewBox="0 0 340 336" width="100%" display="block" touch-action="none" tabindex=0
+        role="slider" aria-label="Body and mind, two signals. Up and down arrows move body, left and right move mind." aria-valuetext=ncSpoken(body, mind) key=step
+        pointerdown=press pointermove=drag pointerup=release
+        outline="none" border-radius=16
+        :focus-visible
+          box-shadow="0 0 0 2px ember"
+        defs
+          linearGradient id="nc-body" x1=0 y1=0 x2=0 y2=1
+            stop offset=0 stop-color="ember"
+            stop offset=1 stop-color="rose.deep"
+          linearGradient id="nc-mind" x1=0 y1=0 x2=0 y2=1
+            stop offset=0 stop-color="honey"
+            stop offset=1 stop-color="honey" stop-opacity=0.6
+          clipPath id="nc-clip-body"
+            rect x=84 y=30 width=40 height=100 rx=20
+          clipPath id="nc-clip-mind"
+            rect x=216 y=30 width=40 height=100 rx=20
+          radialGradient id="nc-here"
+            stop offset=0 stop-color="honey" stop-opacity=0.55
+            stop offset=1 stop-color="honey" stop-opacity=0
+        // Body: what the genitals are doing.
+        g
+          rect x=84 y=30 width=40 height=100 rx=20 fill="paper.sunk"
+          g clip-path="url(#nc-clip-body)"
+            g translate=`0px ${130 - 100 * body}px` transition=(down or still ? "none" : "translate 900ms cubic-bezier(0.3, 0.9, 0.3, 1)")
+              path d="M84 0Q94 -3.2 104 0T124 0T144 0T164 0V110H84Z" fill="url(#nc-body)" animation=(still ? "none" : "nc-wave 3.2s linear infinite")
+          rect x=84 y=30 width=40 height=100 rx=20 fill="none" stroke="ink" stroke-width=1.2 opacity=0.45
+          path d="M92 52V104" fill="none" stroke="ember.light" stroke-width=2 stroke-linecap="round" opacity=0.55
+          circle cx=84 cy=(130 - 100 * body) r=5.5 fill="paper.raised" stroke="ember" stroke-width=2.4 transition=(down or still ? "none" : "cy 900ms cubic-bezier(0.3, 0.9, 0.3, 1)")
+          text "Body" text-anchor="middle" x=104 y=149 font-size=12 font-weight=600 fill="ink"
+          text "genital response" text-anchor="middle" x=104 y=162 font-size=9.5 fill="ink.soft"
+        // Mind: how turned on the person feels.
+        g
+          rect x=216 y=30 width=40 height=100 rx=20 fill="paper.sunk"
+          g clip-path="url(#nc-clip-mind)"
+            g translate=`0px ${130 - 100 * mind}px` transition=(down or still ? "none" : "translate 1300ms cubic-bezier(0.4, 0.7, 0.2, 1) 120ms")
+              path d="M216 0Q226 -3.2 236 0T256 0T276 0T296 0V110H216Z" fill="url(#nc-mind)" animation=(still ? "none" : "nc-wave 4.1s linear infinite")
+          rect x=216 y=30 width=40 height=100 rx=20 fill="none" stroke="ink" stroke-width=1.2 opacity=0.45
+          path d="M224 52V104" fill="none" stroke="ember.light" stroke-width=2 stroke-linecap="round" opacity=0.55
+          circle cx=256 cy=(130 - 100 * mind) r=5.5 fill="paper.raised" stroke="honey" stroke-width=2.4 transition=(down or still ? "none" : "cy 1300ms cubic-bezier(0.4, 0.7, 0.2, 1) 120ms")
+          text "Mind" text-anchor="middle" x=236 y=149 font-size=12 font-weight=600 fill="ink"
+          text "feeling turned on" text-anchor="middle" x=236 y=162 font-size=9.5 fill="ink.soft"
+        text (ncScene(body, mind) == "both" or ncScene(body, mind) == "neither" ? "=" : "≠") testId="nc-sign" text-anchor="middle" x=170 y=90 font-size=30 class=Serif fill="ink.soft"
+        // What a weak link looks like.
+        line x1=24 y1=176 x2=316 y2=176 stroke="ink.faint" stroke-width=1 stroke-dasharray="1 5" stroke-linecap="round"
+        g
+          path d="M66 196V316H190" fill="none" stroke="ink.faint" stroke-width=1.2 stroke-linecap="round" stroke-linejoin="round"
+          line x1=66 y1=316 x2=186 y2=196 stroke="ink.faint" stroke-width=1 stroke-dasharray="2 4" stroke-linecap="round"
+          text "Mind" text-anchor="end" x=60 y=203 font-size=9.5 fill="ink.soft"
+          text "Body" text-anchor="end" x=190 y=329 font-size=9.5 fill="ink.soft"
+          text "60 imagined people" x=66 y=329 font-size=9 fill="ink.soft" opacity=0.8
+          for i in range(60) key=i
+            circle cx=(66 + 120 * ncBody(i)) cy=(316 - 120 * ncMind(i, group)) r=2.7 fill=(group == "men" ? "ink.soft" : "ember") opacity=0.72
+              transition=(still ? "none" : `cy ${700 + rnd(i + 40) * 500}ms cubic-bezier(0.3, 0.8, 0.3, 1), fill 600ms ease`)
+              animation=(still ? "none" : `nc-fade 500ms ease ${i * 12}ms both`)
+          // This moment, placed among them.
+          circle cx=(66 + 120 * body) cy=(316 - 120 * mind) r=13 fill="url(#nc-here)" transition=(down or still ? "none" : "cx 900ms ease, cy 1300ms ease")
+            animation=(still ? "none" : "nc-breathe 3.8s ease-in-out infinite")
+          circle cx=(66 + 120 * body) cy=(316 - 120 * mind) r=5 fill="none" stroke="ink" stroke-width=1.6 transition=(down or still ? "none" : "cx 900ms ease, cy 1300ms ease")
+        g
+          text (group == "men" ? "r = .66" : "r = .26") testId="nc-r" x=214 y=246 font-size=24 font-weight=600 class=Serif fill="ink"
+          text (group == "men" ? "Men" : "Women") x=214 y=264 font-size=11.5 fill=(group == "men" ? "ink.soft" : "ember.deep") font-weight=600
+          text "how closely the two" x=214 y=284 font-size=9.5 fill="ink.soft"
+          text "signals move together" x=214 y=296 font-size=9.5 fill="ink.soft"
+          text "Chivers et al., 2010" x=214 y=316 font-size=9 fill="ink.soft" opacity=0.8
+      Caption(line=ncLine(scene, said, group))
+      row gap=8 justify-content="center" flex-wrap="wrap"
+        Chip(label="Body yes, mind no", on=(scene == "body"), tone="ember", press=set(0.84, 0.14), tid="nc-body")
+        Chip(label="Mind yes, body quiet", on=(scene == "mind"), tone="ember", press=set(0.14, 0.86), tid="nc-mind")
+        Chip(label="Both", on=(scene == "both"), tone="ember", press=set(0.8, 0.84), tid="nc-both")
+        Chip(label="Neither", on=(scene == "neither"), tone="ember", press=set(0.12, 0.1), tid="nc-neither")
+      row gap=8 justify-content="center" flex-wrap="wrap"
+        Chip(label="Women", on=(group == "women"), tone="dusk", press=pick("women"), tid="nc-women")
+        Chip(label="Men", on=(group == "men"), tone="dusk", press=pick("men"), tid="nc-men")

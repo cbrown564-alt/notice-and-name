@@ -1,0 +1,109 @@
+size 420x900
+
+test "spreading: move the touch, then widen attention"
+  at "/atlas/spreading"
+  clock data
+  expect text "sp-where" == "hips"
+  expect text "sp-now" == "Narrow"
+  tap "sp-stage" drag 0 0 from 250 80
+  clock settle
+  expect text "sp-where" == "calf"
+  tap "sp-stage" drag 120 0 from 130 203
+  clock settle
+  expect text "sp-now" == "Wide"
+  tap "sp-one"
+  clock settle
+  expect text "sp-now" == "Narrow"
+  type "sp-stage" key "ArrowRight"
+  type "sp-stage" key "ArrowRight"
+  type "sp-stage" key "ArrowRight"
+  type "sp-stage" key "ArrowRight"
+  expect tree missing "sp-now"
+  tap "sp-spread"
+  clock settle
+  expect text "sp-now" == "Wide"
+
+test "spectatoring: bring attention back into the body"
+  at "/atlas/spectatoring"
+  clock data
+  expect text "spc-sensation" == "Sensation: faint"
+  tap "spc-stage" drag -110 160 from 260 46
+  clock settle
+  expect text "spc-sensation" == "Sensation: full"
+  tap "spc-watching"
+  clock settle
+  expect text "spc-sensation" == "Sensation: faint"
+  type "spc-stage" key "ArrowDown"
+  type "spc-stage" key "ArrowDown"
+  type "spc-stage" key "ArrowDown"
+  type "spc-stage" key "ArrowDown"
+  type "spc-stage" key "ArrowDown"
+  expect text "spc-sensation" == "Sensation: fainter"
+  tap "spc-feeling"
+  clock settle
+  expect text "spc-sensation" == "Sensation: full"
+
+test "embodied presence: let a thought pass and come back to a sensation"
+  at "/atlas/embodied-presence"
+  clock data
+  clock +1500
+  expect tree missing "ep-here"
+  tap "ep-thought-2"
+  clock settle
+  expect tree missing "ep-thought-2"
+  expect text "ep-here" == "breath"
+  tap "ep-thought-3"
+  clock settle
+  expect text "ep-here" == "warmth"
+  tap "ep-pass"
+  clock settle
+  expect tree missing "ep-thought-0"
+  expect text "ep-here" == "weight"
+  type "ep-stage" key "Enter"
+  expect text "ep-here" == "contact"
+  tap "ep-return"
+  clock settle
+  expect tree has "ep-thought-2"
+  expect tree has "ep-thought-0"
+
+test "body appreciation: wipe from seen to felt"
+  at "/atlas/body-appreciation"
+  clock data
+  expect text "bap-mostly" == "Seen"
+  tap "bap-stage" drag 190 0 from 95 150
+  clock settle
+  expect text "bap-mostly" == "Felt"
+  tap "bap-seen"
+  clock settle
+  expect text "bap-mostly" == "Seen"
+  type "bap-stage" key "ArrowRight"
+  type "bap-stage" key "ArrowRight"
+  type "bap-stage" key "ArrowRight"
+  type "bap-stage" key "ArrowRight"
+  type "bap-stage" key "ArrowRight"
+  type "bap-stage" key "ArrowRight"
+  expect text "bap-mostly" == "Felt"
+  tap "bap-felt"
+  clock settle
+  expect text "bap-mostly" == "Felt"
+
+test "sexual self-esteem: turn an old story over, and back"
+  at "/atlas/sexual-self-esteem"
+  clock data
+  expect text "sse-says-0" == "I take"
+  tap "sse-slip-0"
+  clock settle
+  expect text "sse-says-0" == "My timing"
+  expect text "sse-says-3" == "It's selfish"
+  tap "sse-slip-0"
+  clock settle
+  expect text "sse-says-0" == "I take"
+  tap "sse-new"
+  clock settle
+  expect text "sse-says-4" == "My desire has"
+  type "sse-stage" key "ArrowRight"
+  type "sse-stage" key "Enter"
+  expect text "sse-says-1" == "I'm"
+  tap "sse-old"
+  clock settle
+  expect text "sse-says-2" == "I shouldn't"

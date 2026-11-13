@@ -1,0 +1,169 @@
+// Spontaneous Desire: an ordinary day, and a spark that lands in it unasked.
+// Tap anywhere along the day. Wanting comes first, out of nowhere; arousal
+// follows once the person acts on it. One normal pattern, not the standard
+// (Basson, 2000).
+use clamp01, rnd, Caption, Chip from "./kit.contract"
+
+// Where a moment of the day (0 to 1) sits on the stage, and which part of the day it is.
+fn sdX(at: number): number = 24 + 292 * at
+fn sdPart(at: number): number = min(3, floor(at * 4))
+fn sdWhen(at: number): string = sdPart(at) == 0 ? "First thing in the morning" : sdPart(at) == 1 ? "Mid-commute" : sdPart(at) == 2 ? "Halfway through the washing up" : "Late in the evening"
+fn sdPlace(k: number): number = k % 5 == 0 ? 0.33 : k % 5 == 1 ? 0.71 : k % 5 == 2 ? 0.09 : k % 5 == 3 ? 0.9 : 0.52
+fn sdLine(sent: bool, n: number, at: number): string = not sent ? "An ordinary day, with nothing in it that looks like a cue. Tap anywhere along it." : n % 2 == 1 ? `${sdWhen(at)}, wanting arrives first, with nothing obvious setting it off. Arousal follows, once you act on it.` : "However often this happens for you, a lot, rarely or hardly ever, there is no right amount. It is one normal pattern, not the standard."
+fn sdSpoken(sent: bool, at: number): string = sent ? `${sdWhen(at)}: a spark of wanting, then desire rising, then arousal.` : "No spark yet."
+// The thread from the spark up to where the two curves begin.
+fn sdThread(x: number): string = `M${x} 160C${x} 138 62 146 62 122`
+
+keyframes sd-pop
+  from opacity=0 scale=0.2
+
+keyframes sd-fade
+  from opacity=0
+
+keyframes sd-draw
+  from stroke-dashoffset=1
+
+keyframes sd-breathe
+  50% opacity=0.5
+
+keyframes sd-twinkle
+  50% opacity=0.6 scale=1.5
+
+component SpontaneousDesire
+  inject
+    still: bool
+  props
+    uid: string
+  state at = 0.5
+  state sent = false
+  state n = 0
+  // A spark lands on release: a scroll that happens to start on the stage is
+  // cancelled before then, and sends nothing.
+  action land(e: PointerEvent)
+    at = clamp01((e.offsetX / frame(`sd-${uid}`).width * 340 - 24) / 292)
+    sent = true
+    n = n + 1
+  action step(k: string, e: KeyboardEvent)
+    if k == "ArrowRight" or k == "ArrowUp"
+      preventDefault()
+      at = clamp01(at + 0.1)
+      sent = true
+      n = n + 1
+    if k == "ArrowLeft" or k == "ArrowDown"
+      preventDefault()
+      at = clamp01(at - 0.1)
+      sent = true
+      n = n + 1
+    if k == "Enter" or k == " "
+      preventDefault()
+      sent = true
+      n = n + 1
+    if k == "Escape"
+      sent = false
+  action spark
+    at = sdPlace(n)
+    sent = true
+    n = n + 1
+  action clear
+    sent = false
+  view
+    column gap=14
+      svg id=`sd-${uid}` testId="sd-stage" viewBox="0 0 340 250" width="100%" display="block" touch-action="manipulation" tabindex=0
+        role="slider" aria-label="An ordinary day. Choose where a spark of wanting lands." aria-valuetext=sdSpoken(sent, at) key=step
+        pointerup=land
+        outline="none" border-radius=16
+        :focus-visible
+          box-shadow="0 0 0 2px ember"
+        defs
+          linearGradient id="sd-fill-desire" x1=0 y1=0 x2=0 y2=1
+            stop offset=0 stop-color="honey" stop-opacity=0.34
+            stop offset=1 stop-color="honey" stop-opacity=0
+          linearGradient id="sd-fill-arousal" x1=0 y1=0 x2=0 y2=1
+            stop offset=0 stop-color="ember" stop-opacity=0.3
+            stop offset=1 stop-color="ember" stop-opacity=0
+          radialGradient id="sd-halo"
+            stop offset=0 stop-color="honey" stop-opacity=0.7
+            stop offset=1 stop-color="honey" stop-opacity=0
+          linearGradient id="sd-fade" x1=0 y1=0 x2=1 y2=0
+            stop offset=0.55 stop-color="paper" stop-opacity=1
+            stop offset=1 stop-color="paper" stop-opacity=0
+          mask id="sd-soft" mask-type="alpha" maskUnits="userSpaceOnUse" x=56 y=20 width=236 height=110
+            rect x=56 y=20 width=236 height=110 fill="url(#sd-fade)"
+        // The sun's path over an ordinary day. It steps back when a spark arrives.
+        path d="M24 168C60 10 280 10 316 168" fill="none" stroke="ink.faint" stroke-width=1.2 stroke-dasharray="1 5" stroke-linecap="round"
+          opacity=(sent ? 0.35 : 1) transition=(still ? "none" : "opacity 600ms ease")
+        // It could come from anywhere: faint motes over the day.
+        for i in range(7) key=i
+          circle cx=(40 + rnd(i) * 262) cy=(30 + rnd(i + 20) * 96) r=(1.2 + rnd(i + 40) * 1.2) fill="honey" opacity=(sent ? 0.12 : 0.28)
+            transform-box="fill-box" transform-origin="center" transition=(still ? "none" : "opacity 600ms ease")
+            animation=(still ? "none" : `sd-twinkle ${3.4 + rnd(i + 60) * 2.6}s ease-in-out ${0 - rnd(i + 80) * 4}s infinite`)
+        // The day.
+        g
+          line x1=24 y1=168 x2=316 y2=168 stroke="ink.faint" stroke-width=2 stroke-linecap="round"
+          for j in range(4) key=j
+            circle cx=(60.5 + j * 73) cy=168 r=2.2 fill="ink.soft" opacity=0.7
+          g fill="none" stroke="ink.soft" stroke-width=1.3 stroke-linecap="round" stroke-linejoin="round"
+            g transform="translate(60.5 192)" opacity=(sent and sdPart(at) == 0 ? 1 : 0.62)
+              path d="M-10 5H10M-6 5A6 6 0 0 1 6 5M0 -5V-8M-7.4 -1.6L-9.6 -3.4M7.4 -1.6L9.6 -3.4"
+            g transform="translate(133.5 192)" opacity=(sent and sdPart(at) == 1 ? 1 : 0.62)
+              rect x=-10 y=-7 width=20 height=12 rx=3
+              path d="M-10 -1H10M-3.4 -7V-1M3.4 -7V-1"
+              circle cx=-5 cy=7.2 r=1.8
+              circle cx=5 cy=7.2 r=1.8
+            g transform="translate(206.5 192)" opacity=(sent and sdPart(at) == 2 ? 1 : 0.62)
+              path d="M-9 0H9C9 5 5 8 0 8C-5 8 -9 5 -9 0Z"
+              circle cx=-3 cy=-5 r=1.9
+              circle cx=2.6 cy=-7.6 r=1.3
+              circle cx=4.6 cy=-3.6 r=1
+            g transform="translate(279.5 192)" opacity=(sent and sdPart(at) == 3 ? 1 : 0.62)
+              path d="M2 -8A8 8 0 1 0 8 4A6.6 6.6 0 0 1 2 -8Z"
+              path d="M-8 -7V-4M-9.5 -5.5H-6.5"
+          g font-size=10.5
+            text "Morning" text-anchor="middle" x=60.5 y=216 fill=(sent and sdPart(at) == 0 ? "ink" : "ink.soft")
+            text "Commute" text-anchor="middle" x=133.5 y=216 fill=(sent and sdPart(at) == 1 ? "ink" : "ink.soft")
+            text "Washing up" text-anchor="middle" x=206.5 y=216 fill=(sent and sdPart(at) == 2 ? "ink" : "ink.soft")
+            text "Evening" text-anchor="middle" x=279.5 y=216 fill=(sent and sdPart(at) == 3 ? "ink" : "ink.soft")
+        // What follows a spark. Remounted for each one, so it plays from the start.
+        for k in [n].filter(x => sent) key=k
+          g pointer-events="none"
+            path d=sdThread(sdX(at)) fill="none" stroke="honey" stroke-width=1.2 stroke-linecap="round" stroke-dasharray="1 4" opacity=0.9
+              animation=(still ? "none" : "sd-fade 500ms ease 250ms both")
+            line x1=62 y1=122 x2=286 y2=122 stroke="ink.faint" stroke-width=1 stroke-linecap="round"
+              animation=(still ? "none" : "sd-fade 500ms ease 300ms both")
+            circle cx=62 cy=122 r=2.4 fill="honey"
+              animation=(still ? "none" : "sd-fade 400ms ease 500ms both")
+            // Desire: first.
+            path d="M62 122C92 122 100 50 142 44C192 37 240 42 286 36V122Z" fill="url(#sd-fill-desire)" mask="url(#sd-soft)"
+              animation=(still ? "none" : "sd-fade 900ms ease 900ms both")
+            path d="M62 122C92 122 100 50 142 44C192 37 240 42 286 36" fill="none" stroke="honey" stroke-width=2.6 stroke-linecap="round"
+              pathLength=1 stroke-dasharray="1 2" animation=(still ? "none" : "sd-draw 1000ms ease-out 550ms both")
+            text "Desire" testId="sd-desire" x=292 y=40 font-size=11 fill="ink"
+              animation=(still ? "none" : "sd-fade 500ms ease 1400ms both")
+            // Arousal: only after.
+            path d="M126 122C158 122 166 76 206 70C238 65 262 66 286 62V122Z" fill="url(#sd-fill-arousal)" mask="url(#sd-soft)"
+              animation=(still ? "none" : "sd-fade 900ms ease 2000ms both")
+            circle cx=126 cy=122 r=2.4 fill="ember"
+              animation=(still ? "none" : "sd-fade 400ms ease 1600ms both")
+            path d="M126 122C158 122 166 76 206 70C238 65 262 66 286 62" fill="none" stroke="ember" stroke-width=2.6 stroke-linecap="round"
+              pathLength=1 stroke-dasharray="1 2" animation=(still ? "none" : "sd-draw 1000ms ease-out 1650ms both")
+            text "Arousal" testId="sd-arousal" x=292 y=66 font-size=11 fill="ink"
+              animation=(still ? "none" : "sd-fade 500ms ease 2500ms both")
+            // The spark itself.
+            circle cx=sdX(at) cy=168 r=24 fill="url(#sd-halo)" animation=(still ? "none" : "sd-breathe 3.6s ease-in-out infinite")
+            g transform-box="fill-box" transform-origin="center" animation=(still ? "none" : "sd-pop 420ms cubic-bezier(0.2, 1.4, 0.4, 1) both")
+              for i in range(8) key=i
+                line x1=(sdX(at) + 8 * cos(i * 0.7854)) y1=(168 + 8 * sin(i * 0.7854)) x2=(sdX(at) + (i % 2 == 0 ? 15 : 12) * cos(i * 0.7854)) y2=(168 + (i % 2 == 0 ? 15 : 12) * sin(i * 0.7854))
+                  stroke="honey" stroke-width=1.6 stroke-linecap="round"
+              circle cx=sdX(at) cy=168 r=4.6 fill="honey"
+              circle cx=(sdX(at) - 1.2) cy=166.8 r=1.5 fill="ember.light" opacity=0.9
+        // The order, fixed.
+        g font-size=10.5 fill="ink.soft"
+          line x1=92 y1=238 x2=106 y2=238 stroke="honey" stroke-width=2.6 stroke-linecap="round"
+          text "Desire" x=112 y=241.6
+          text "→" x=151 y=241.6
+          line x1=168 y1=238 x2=182 y2=238 stroke="ember" stroke-width=2.6 stroke-linecap="round"
+          text "then arousal" x=188 y=241.6
+      Caption(line=sdLine(sent, n, at))
+      row gap=8 justify-content="center" flex-wrap="wrap"
+        Chip(label="Send a spark", on=false, tone="honey", press=spark, tid="sd-spark")
+        Chip(label="Clear", on=false, tone="honey", press=clear, tid="sd-clear")

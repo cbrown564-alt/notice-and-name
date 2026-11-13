@@ -1,0 +1,96 @@
+// Reaching Inside: drag a point of pressure anywhere in the canal. The line
+// shows how far it is from the internal clitoris, and the tissue glows as the
+// pressure reaches it: toward the front wall a few centimetres in, not deeper.
+use clamp, clamp01, mag, ease, span, Caption, Chip from "./kit.contract"
+use Sagittal, sagX, sagY, sagLen, sagDepth, sagOff, sagBulbX, sagBulbY, sagDist from "./sagittal.contract"
+
+// The pressure point: `depth` along the canal, `aim` from -1 (back wall) to
+// 1 (front wall). It sits up to 4 units off the canal's midline.
+fn isPX(depth: number, aim: number): number = sagX(depth, aim * 4)
+fn isPY(depth: number, aim: number): number = sagY(depth, aim * 4)
+// The nearest point of the internal clitoris, and how far away it is.
+fn isQX(depth: number, aim: number): number = sagBulbX(isPX(depth, aim), isPY(depth, aim))
+fn isQY(depth: number, aim: number): number = sagBulbY(isPX(depth, aim), isPY(depth, aim))
+fn isFar(depth: number, aim: number): number = sagDist(isPX(depth, aim), isPY(depth, aim), isQX(depth, aim), isQY(depth, aim))
+// How much of the pressure arrives: it falls with distance, and it only
+// travels the way it is pushed, so pressing the back wall sends none.
+fn isReach(depth: number, aim: number): number = (1 - ease(span(isFar(depth, aim), 18, 70))) * clamp01(0.28 + 0.72 * aim)
+
+fn isLine(depth: number, aim: number): string = isReach(depth, aim) >= 0.55 ? "Toward the front, a few centimetres in, pressure passes through the wall to the internal clitoris. Fuller, not deeper." : depth > 0.6 ? "Deeper is not closer. Up here the pressure is a long way from the internal clitoris." : aim < -0.35 ? "Toward the back, the pressure heads away from the clitoris. A different feeling, and some people like it." : "Up the middle, the pressure only brushes past. Lean it toward the front wall and watch."
+
+keyframes is-pulse
+  50% opacity=0.55 scale=1.2
+
+keyframes is-march
+  to stroke-dashoffset=-12
+
+component InternalStimulation
+  inject
+    still: bool
+  props
+    uid: string
+  state depth = 0.56
+  state aim = 0
+  state down = false
+  action press(e: PointerEvent)
+    down = true
+    depth = clamp(sagDepth(e.offsetX / frame(`is-${uid}`).width * 340, e.offsetY / frame(`is-${uid}`).width * 340), 0.05, 0.92)
+    aim = clamp(sagOff(e.offsetX / frame(`is-${uid}`).width * 340, e.offsetY / frame(`is-${uid}`).width * 340) / 15, -1, 1)
+  action drag(e: PointerEvent)
+    if down
+      depth = clamp(sagDepth(e.offsetX / frame(`is-${uid}`).width * 340, e.offsetY / frame(`is-${uid}`).width * 340), 0.05, 0.92)
+      aim = clamp(sagOff(e.offsetX / frame(`is-${uid}`).width * 340, e.offsetY / frame(`is-${uid}`).width * 340) / 15, -1, 1)
+  action release(e: PointerEvent)
+    down = false
+  action step(k: string, e: KeyboardEvent)
+    if k == "ArrowUp"
+      preventDefault()
+      depth = clamp(depth + 0.06, 0.05, 0.92)
+    if k == "ArrowDown"
+      preventDefault()
+      depth = clamp(depth - 0.06, 0.05, 0.92)
+    if k == "ArrowLeft"
+      preventDefault()
+      aim = clamp(aim + 0.25, -1, 1)
+    if k == "ArrowRight"
+      preventDefault()
+      aim = clamp(aim - 0.25, -1, 1)
+  action go(d: number, a: number)
+    depth = d
+    aim = a
+  view
+    column gap=14
+      svg id=`is-${uid}` testId="is-stage" viewBox="0 0 340 284" width="100%" display="block" touch-action="none" tabindex=0
+        role="slider" aria-label="Where the pressure is: up and down for depth, left and right for front or back" aria-valuetext=isLine(depth, aim) key=step
+        pointerdown=press pointermove=drag pointerup=release
+        outline="none" border-radius=16
+        :focus-visible
+          box-shadow="0 0 0 2px ember"
+        defs
+          radialGradient id="is-glow"
+            stop offset=0 stop-color="ember" stop-opacity=0.7
+            stop offset=0.5 stop-color="ember" stop-opacity=0.25
+            stop offset=1 stop-color="ember" stop-opacity=0
+        Sagittal(tilt=0, clit=isReach(depth, aim), glans=(isReach(depth, aim) * 0.45), urethra=0, wall=0,
+          dentFrom=max(0, depth * sagLen() - 12), dentAt=(depth * sagLen()), dent=(aim * 4.6),
+          pulse=(isReach(depth, aim) >= 0.55), names=0.7, glide=(not down and not still))
+        g pointer-events="none"
+          // The reach: from the pressure to the nearest internal clitoral tissue.
+          path d=`M${isPX(depth, aim)} ${isPY(depth, aim)}Q${(isPX(depth, aim) + isQX(depth, aim)) / 2 - 0.13 * isFar(depth, aim)} ${(isPY(depth, aim) + isQY(depth, aim)) / 2 - 0.13 * isFar(depth, aim)} ${isQX(depth, aim)} ${isQY(depth, aim)}` fill="none"
+            stroke=(isReach(depth, aim) >= 0.3 ? "ember.deep" : "ink.soft") stroke-width=1.4 stroke-dasharray="2 4" stroke-linecap="round"
+            opacity=(0.55 + 0.45 * isReach(depth, aim))
+            transition=(not down and not still ? "d 500ms ease, stroke 300ms ease" : "none")
+            animation=(still ? "none" : "is-march 1.4s linear infinite")
+          circle cx=isQX(depth, aim) cy=isQY(depth, aim) r=2.6 fill="paper" stroke=(isReach(depth, aim) >= 0.3 ? "ember.deep" : "ink.soft") stroke-width=1.2
+            transition=(not down and not still ? "cx 500ms ease, cy 500ms ease" : "none")
+          // The pressure point, and its push leaning the way it is aimed.
+          circle cx=sagX(depth, aim * 10) cy=sagY(depth, aim * 10) r=19 fill="url(#is-glow)"
+            transform-box="fill-box" transform-origin="center" animation=(still ? "none" : "is-pulse 2.4s ease-in-out infinite")
+            transition=(not down and not still ? "cx 500ms ease, cy 500ms ease" : "none")
+          circle cx=isPX(depth, aim) cy=isPY(depth, aim) r=5.6 fill="ember.light" stroke="ember" stroke-width=2.8
+            transition=(not down and not still ? "cx 500ms ease, cy 500ms ease" : "none")
+      Caption(line=isLine(depth, aim))
+      row gap=8 justify-content="center" flex-wrap="wrap"
+        Chip(label="Deeper", on=(depth > 0.6 and isReach(depth, aim) < 0.55), tone="ember", press=go(0.88, 0), tid="is-deeper")
+        Chip(label="Toward the back", on=(aim < -0.35 and depth <= 0.6), tone="ember", press=go(0.26, -1), tid="is-back")
+        Chip(label="Toward the front", on=(isReach(depth, aim) >= 0.55), tone="ember", press=go(0.26, 1), tid="is-front")

@@ -1,0 +1,91 @@
+// The resting figure: the one drawing four instruments share.
+// A whole body seen from above, lying on its back, head to the left: one closed
+// silhouette, a soft fill and a thin outline, hair as one soft mass. No face, no
+// detail: a body that could be anyone's. `warmth` (0 to 1) glows it from within; `tone` is the fill
+// token; `ghost` draws only a dashed outline in `tone` (the self that watches);
+// `glide` eases changes (turn it off while a finger drags). Nodes indented under
+// a `Figure(…)` are drawn inside the body, clipped to it, beneath the outline.
+//
+// It is drawn in its own box, about 26..318 across and 4..101 down. Place it
+// with a `g transform="translate(0 dy)"`, and add `dy` to the anchors.
+// The outline, anchors and bones below are generated from a skeleton, so they
+// agree with each other: edit them together.
+use clamp01 from "./kit.contract"
+
+// ---- generated: the silhouette, its anchors and its bones --------------------
+// One closed outline, head to the left, in a box about 26..318 wide and 4..98 tall.
+fn figurePath(): string = "M25.5 44.1C25.5 40.9 26.9 37.9 29.1 35.6C35.3 29 46.2 27.8 54.2 31.2C56.2 32.1 58.1 33.2 59.6 34.7C61.4 36.4 63.4 40.5 66.4 39.7C68.4 39.1 70 37.1 71.4 35.7C73.5 33.4 75.8 31.1 77.7 28.6C79.3 26.5 80.5 24.1 82.7 22.4C85.4 20.2 89.2 19.9 92.4 18.6C99.3 15.8 106.2 12.8 113.3 10.3C124.5 6.3 137 3 149 4.3C154.6 4.9 160.2 6.3 165.7 7.6C168.9 8.4 172.1 9.5 175.4 9.8C177.9 10 180.3 9 182.8 8.8C187.4 8.2 192.1 8.1 196.8 8C198.8 8 200.8 8.1 202.8 8.3C204 8.4 205.5 8.4 206.6 9C208.1 9.8 208.3 11.8 207.1 13C206.2 13.9 204.8 14.4 203.7 14.9C197.4 17.8 190 18.9 183.2 18.2C179.7 17.8 176.4 16.4 172.9 16.3C165.6 15.9 158.2 15.9 150.9 15.5C146.1 15.3 140.8 14.3 135.9 15.1C129.1 16.2 122.2 20 116 23C114 23.9 112.1 24.8 110.1 25.8C109.2 26.3 106.5 27.2 106.4 28.5C106.4 30.2 114 30.8 115.3 31.2C118.9 32 122.4 33.1 126 33.9C127.6 34.2 129.3 34.8 130.9 34.6C133.6 34.4 136.4 32.8 138.8 31.6C141 30.5 143.4 29.5 145.8 28.9C149.9 27.7 153.9 27.4 158.1 26.8C160.1 26.6 161.9 25.8 163.9 25.5C168.1 24.8 172.6 24.8 176.9 24.5C187.7 23.9 198.5 23.9 209.3 24.2C215.5 24.4 221.7 24.8 227.8 24.7C232.3 24.6 236.8 23.8 241.3 23.3C246.4 22.8 251.6 22.6 256.7 22.7C268.7 23 280.5 26.5 292.6 25.4C299.3 24.8 303.6 18.1 308.2 13.8C309.8 12.3 311.9 9.7 314.3 9.9C322 10.5 312.8 23.9 310.7 26.3C307.8 29.4 304.5 31.7 300.8 33.8C297.7 35.6 295.4 33.9 292.2 33.8C289.2 33.7 286.1 34.2 283.2 34.5C274.3 35.7 265.5 37.8 256.6 38.9C252 39.5 247.3 40 242.7 40.2C238.7 40.3 234.7 40.3 230.7 40.8C222.6 41.7 214.7 44.2 206.8 46C202.1 47.1 197.3 48.1 192.6 49C190.7 49.4 186.9 49.3 185.4 50.7C184.3 51.8 184.2 55.5 185.2 56.6C186.7 58.1 189.4 59 191.3 60C195.3 62.4 199.3 64.8 203.2 67.3C207.5 69.9 211.7 72.5 216 75.1C218.2 76.4 220.5 78.4 223.1 78.6C225.8 78.8 228.8 77.7 231.4 77C234.9 76 238.4 75 241.9 73.8C249.7 71.2 257.5 69.1 265.3 66.6C270 65 274.9 63.6 279.4 61.5C281.9 60.3 283.8 57.7 286.7 57.6C288.2 57.6 289.7 58 291.2 58.3C298.1 59.7 304.3 63.6 308 69.7C309.1 71.5 310 73.8 308.1 75.4C305.9 77.3 302.9 75.2 300.8 74.2C298.4 73 296.1 71.7 293.7 70.4C291.1 69 288.4 67.5 285.3 68.1C281.2 69 277.2 71.8 273.7 73.9C264.7 79.1 256.8 85.7 247.1 89.7C238.9 93.1 229.3 95.4 220.3 94.7C215.6 94.4 211.2 92.7 206.7 91.5C197.7 89 188.9 86 180.1 82.9C175.7 81.4 171.2 80 166.8 78.6C164.1 77.8 161.4 76.7 158.6 76.2C157 75.9 155.3 75.9 153.7 75.7C151.8 75.4 148.6 74.1 147 75.3C145.9 76.1 145.8 77.7 145.5 78.8C145 80.6 144.5 82.4 143.9 84.1C141.5 91.5 135.4 101.5 126.4 100.7C122.2 100.4 118.4 98.3 114.7 96.5C108.5 93.3 102.6 89.6 96.7 85.7C93.9 83.9 91.2 81.8 88.4 80.2C85.9 78.7 83.2 77.8 81.3 75.5C79.7 73.6 78.7 71.3 77.3 69.3C75.1 66.3 72.6 63.6 70.4 60.7C68.8 58.5 67 55.3 64.4 54.1C62.1 53 59.5 54 57.2 54.8C54.5 55.7 51.8 56.7 49.1 57.3C40.1 59.1 25.7 55.4 25.5 44.1ZM103.5 72.2C103.2 73.7 106.3 75.5 107.3 76.3C109.5 78 111.7 79.8 114 81.4C116.3 83.1 118.7 84.7 121 86.3C122.7 87.4 124.3 88.7 126.1 89.5C128.5 90.5 129.7 87.4 130.8 85.8C132.3 83.8 133.7 81.7 134.9 79.5C136 77.6 138.5 74.2 137.9 71.8C137.4 69.9 135 69.2 133.3 68.5C128.7 66.7 123.8 68.1 119.1 69.1C116.5 69.7 113.9 70.2 111.3 70.6C109.9 70.7 103.9 70.4 103.5 72.2Z"
+// The edge of the hand that rests on the belly, where it lies over the body.
+fn figureHand(): string = "M139.6 69.7C140.6 66.4 139.9 63.2 139.9 59.7C140.1 54.8 140.7 50.1 141.8 45.4C142.3 43.5 142.6 40.9 143.8 39.3C145.2 37.5 147.6 38.1 148.5 39.9C150.6 44 151.1 49.5 150.9 54.1C150.7 57.2 150.2 60.4 149.3 63.4C148.2 66.5 146.9 69.2 146.5 72.5"
+// Hair, as a soft mass around the crown: draw it under the body.
+fn figureHair(): string = "M18.5 43.7C18.4 33.7 25.3 26.3 34.6 23.4C40.7 21.5 47.7 22.7 53.7 24.7C56.3 25.6 58.9 27.2 61.7 27.5C63.4 27.7 65.1 27.4 66.7 27.1C68.1 26.9 70.2 26.1 71.3 27.3C74.1 30.3 64.5 33.9 62.6 34.4C60.9 34.8 59.3 34.8 57.6 34.7C55.5 34.6 53.3 34.1 51.1 34.2C44.2 34.5 36.2 37.8 34.8 45.4C34.3 48.5 35.3 51.5 38.4 52.7C40.1 53.4 42.5 53.6 43.9 54.9C45.4 56.3 45 58.8 43.1 59.7C41.2 60.6 38.4 60.7 36.3 60.9C26.2 61.5 18.5 53.5 18.5 43.7Z"
+// Anchor points: head, chest, belly, pelvis, handNear, handFar, footNear, footFar, kneeNear, kneeFar.
+fn figX(p: string): number = p == "head" ? 44.5 : p == "chest" ? 100 : p == "belly" ? 138 : p == "pelvis" ? 166 : p == "handNear" ? 191 : p == "handFar" ? 145.6 : p == "footNear" ? 307 : p == "footFar" ? 297 : p == "kneeNear" ? 230 : 222
+fn figY(p: string): number = p == "head" ? 43.6 : p == "chest" ? 46.1 : p == "belly" ? 52.2 : p == "pelvis" ? 52 : p == "handNear" ? 13.2 : p == "handFar" ? 53.8 : p == "footNear" ? 22.2 : p == "footFar" ? 66.5 : p == "kneeNear" ? 32.7 : 86.7
+// The bones a touch may sit on: 17 segments, each with a reach and a plain name.
+fn figBoneAX(i: number): number = i == 0 ? 36.5 : i == 1 ? 74 : i == 2 ? 92 : i == 3 ? 118 : i == 4 ? 148 : i == 5 ? 88 : i == 6 ? 134 : i == 7 ? 175 : i == 8 ? 88 : i == 9 ? 128 : i == 10 ? 143.6 : i == 11 ? 166 : i == 12 ? 230 : i == 13 ? 298 : i == 14 ? 166 : i == 15 ? 222 : 287
+fn figBoneAY(i: number): number = i == 0 ? 43.6 : i == 1 ? 47.9 : i == 2 ? 49.8 : i == 3 ? 50.7 : i == 4 ? 51.4 : i == 5 ? 29.1 : i == 6 ? 10.1 : i == 7 ? 13.1 : i == 8 ? 70.1 : i == 9 ? 95.5 : i == 10 ? 68.3 : i == 11 ? 38.9 : i == 12 ? 32.7 : i == 13 ? 30.1 : i == 14 ? 64.1 : i == 15 ? 86.7 : 62.2
+fn figBoneBX(i: number): number = i == 0 ? 53.5 : i == 1 ? 92 : i == 2 ? 118 : i == 3 ? 148 : i == 4 ? 170 : i == 5 ? 134 : i == 6 ? 175 : i == 7 ? 199 : i == 8 ? 128 : i == 9 ? 143.6 : i == 10 ? 146 : i == 11 ? 230 : i == 12 ? 297 : i == 13 ? 314 : i == 14 ? 222 : i == 15 ? 286 : 306
+fn figBoneBY(i: number): number = i == 0 ? 43.6 : i == 1 ? 49.8 : i == 2 ? 50.7 : i == 3 ? 51.4 : i == 4 ? 51.5 : i == 5 ? 10.1 : i == 6 ? 13.1 : i == 7 ? 12.3 : i == 8 ? 95.5 : i == 9 ? 68.3 : i == 10 ? 40.8 : i == 11 ? 32.7 : i == 12 ? 29.4 : i == 13 ? 13.2 : i == 14 ? 86.7 : i == 15 ? 63.1 : 72.9
+fn figBoneReach(i: number): number = i == 0 ? 9 : i == 1 ? 5 : i == 2 ? 13 : i == 3 ? 10 : i == 4 ? 14 : i == 5 ? 4 : i == 6 ? 3 : i == 7 ? 2.5 : i == 8 ? 4 : i == 9 ? 3 : i == 10 ? 2.5 : i == 11 ? 6 : i == 12 ? 4 : i == 13 ? 2.5 : i == 14 ? 6 : i == 15 ? 4 : 2.5
+fn figBoneName(i: number): string = i == 0 ? "head" : i == 1 ? "throat" : i == 2 ? "chest" : i == 3 ? "belly" : i == 4 ? "hips" : i == 5 ? "arm" : i == 6 ? "arm" : i == 7 ? "hand" : i == 8 ? "arm" : i == 9 ? "arm" : i == 10 ? "hand" : i == 11 ? "thigh" : i == 12 ? "calf" : i == 13 ? "foot" : i == 14 ? "thigh" : i == 15 ? "calf" : "foot"
+// ---- end generated ---------------------------------------------------------------
+
+// A square root by Newton's steps: Contract has none, and a touch needs distances.
+fn figHalf(n: number, g: number): number = (g + n / g) / 2
+fn figRoot(n: number): number = n <= 0 ? 0 : figHalf(n, figHalf(n, figHalf(n, figHalf(n, figHalf(n, n < 1 ? 0.5 : n < 16 ? 2 : n < 400 ? 10 : n < 10000 ? 50 : 200)))))
+// How far along bone `i` the point nearest (x, y) lies, and that point.
+fn figBoneT(i: number, x: number, y: number): number = clamp01(((x - figBoneAX(i)) * (figBoneBX(i) - figBoneAX(i)) + (y - figBoneAY(i)) * (figBoneBY(i) - figBoneAY(i))) / ((figBoneBX(i) - figBoneAX(i)) * (figBoneBX(i) - figBoneAX(i)) + (figBoneBY(i) - figBoneAY(i)) * (figBoneBY(i) - figBoneAY(i))))
+fn figBoneX(i: number, x: number, y: number): number = figBoneAX(i) + (figBoneBX(i) - figBoneAX(i)) * figBoneT(i, x, y)
+fn figBoneY(i: number, x: number, y: number): number = figBoneAY(i) + (figBoneBY(i) - figBoneAY(i)) * figBoneT(i, x, y)
+fn figBoneGap(i: number, x: number, y: number): number = figRoot((x - figBoneX(i, x, y)) * (x - figBoneX(i, x, y)) + (y - figBoneY(i, x, y)) * (y - figBoneY(i, x, y)))
+// The bone nearest a point, counting each bone's own thickness.
+fn figNear(x: number, y: number): number = match first(sortBy(range(17), i => figBoneGap(i, x, y) - figBoneReach(i))) { case some(i) => i, case none => 4 }
+fn figPull(i: number, x: number, y: number): number = min(1, figBoneReach(i) / max(0.01, figBoneGap(i, x, y)))
+// A point brought onto the body: itself if it is inside, else the nearest place that is.
+fn figSnapX(x: number, y: number): number = figBoneX(figNear(x, y), x, y) + (x - figBoneX(figNear(x, y), x, y)) * figPull(figNear(x, y), x, y)
+fn figSnapY(x: number, y: number): number = figBoneY(figNear(x, y), x, y) + (y - figBoneY(figNear(x, y), x, y)) * figPull(figNear(x, y), x, y)
+// The plain name of the part of the body a point is on: head, throat, chest,
+// belly, hips, arm, hand, thigh, calf or foot.
+fn figRegion(x: number, y: number): string = figBoneName(figNear(x, y))
+
+component Figure
+  props
+    warmth: number
+    tone: string
+    ghost: bool
+    glide: bool
+  slot
+  view
+    g
+      defs
+        linearGradient id="fig-skin" x1=0 y1=0 x2=1 y2=1
+          stop offset=0 stop-color=tone stop-opacity=0.92
+          stop offset=1 stop-color=tone stop-opacity=0.58
+        radialGradient id="fig-warm" cx="44%" cy="52%" r="62%"
+          stop offset=0 stop-color="ember" stop-opacity=0.92
+          stop offset=0.42 stop-color="ember" stop-opacity=0.6
+          stop offset=1 stop-color="honey" stop-opacity=0.3
+        radialGradient id="fig-ground"
+          stop offset=0 stop-color="ink" stop-opacity=0.1
+          stop offset=0.6 stop-color="ink" stop-opacity=0.05
+          stop offset=1 stop-color="ink" stop-opacity=0
+        clipPath id="fig-clip"
+          path d=figurePath()
+      if not ghost
+        // What it rests on: only a soft shadow.
+        ellipse cx=174 cy=60 rx=166 ry=50 fill="url(#fig-ground)"
+        path d=figureHair() fill="ink" opacity=0.22
+        path d=figurePath() fill="paper.raised"
+        path d=figurePath() fill="url(#fig-skin)"
+        path d=figurePath() fill="url(#fig-warm)" opacity=clamp01(warmth) transition=(glide ? "opacity 700ms ease" : "none")
+      else
+        path d=figureHair() fill=tone opacity=0.16
+        path d=figurePath() fill=tone fill-opacity=0.1
+      // Whatever the instrument draws inside the body stays inside it.
+      g clip-path="url(#fig-clip)"
+        children
+      path d=figureHand() fill="none" stroke=(ghost ? tone : "ink") stroke-width=1 stroke-linecap="round" opacity=(ghost ? 0.7 : 0.34)
+        stroke-dasharray=(ghost ? "1 4" : "none")
+      path d=figurePath() fill="none" stroke=(ghost ? tone : "ink") stroke-width=(ghost ? 1.3 : 1.2) stroke-linejoin="round" stroke-linecap="round"
+        opacity=(ghost ? 1 : 0.5) stroke-dasharray=(ghost ? "1 4" : "none")

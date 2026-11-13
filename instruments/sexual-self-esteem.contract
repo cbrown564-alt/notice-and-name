@@ -1,0 +1,102 @@
+// Sexual Self-Esteem: old stories around a warm core. Tap a slip to turn it
+// over and read what else it could say; the core has more room with each one.
+use clamp01, Caption, Chip from "./kit.contract"
+
+fn sseOldA(i: number): string = i == 0 ? "I take" : i == 1 ? "I'm" : i == 2 ? "I shouldn't" : i == 3 ? "It's selfish" : "I should"
+fn sseOldB(i: number): string = i == 0 ? "too long." : i == 1 ? "too much." : i == 2 ? "need that." : i == 3 ? "to ask." : "want it more."
+fn sseNewA(i: number): string = i == 0 ? "My timing" : i == 1 ? "My wanting" : i == 2 ? "What I need" : i == 3 ? "Asking" : "My desire has"
+fn sseNewB(i: number): string = i == 0 ? "is my timing." : i == 1 ? "is welcome." : i == 2 ? "is information." : i == 3 ? "is generous." : "its own pace."
+fn sseX(i: number): number = i == 0 ? 170 : i == 1 ? 272 : i == 2 ? 252 : i == 3 ? 88 : 68
+fn sseY(i: number): number = i == 0 ? 38 : i == 1 ? 106 : i == 2 ? 226 : i == 3 ? 226 : 106
+fn sseTilt(i: number): number = i == 0 ? -2 : i == 1 ? 3 : i == 2 ? -3 : i == 3 ? 2.5 : -3.5
+fn sseLine(n: number): string = n == 0 ? "An old story, heard often enough, starts to sound like a fact. Tap one to see what else it could say." : n < 5 ? "Each rewrite is a small permission. The warmth at the centre was never out, and now it has a little more room." : "Not confidence every night. Just permission."
+
+keyframes sse-breathe
+  50% scale=1.08 opacity=0.72
+
+keyframes sse-flow
+  to stroke-dashoffset=-14
+
+component SexualSelfEsteem
+  inject
+    still: bool
+  props
+    uid: string
+  state rewritten: number[] = []
+  state cursor = 0
+  state focused = false
+  action flip(i: number)
+    cursor = i
+    rewritten = rewritten.includes(i) ? rewritten.filter(x => x != i) : rewritten.concat([i])
+  action onKey(k: string, e: KeyboardEvent)
+    if k == "ArrowRight" or k == "ArrowDown"
+      preventDefault()
+      cursor = (cursor + 1) % 5
+    if k == "ArrowLeft" or k == "ArrowUp"
+      preventDefault()
+      cursor = (cursor + 4) % 5
+    if k == "Enter" or k == " "
+      preventDefault()
+      rewritten = rewritten.includes(cursor) ? rewritten.filter(x => x != cursor) : rewritten.concat([cursor])
+  action focusIn
+    focused = true
+  action focusOut
+    focused = false
+  action all
+    rewritten = [0, 1, 2, 3, 4]
+  action clear
+    rewritten = []
+  view
+    column gap=14
+      svg id=`sse-${uid}` testId="sse-stage" viewBox="0 0 340 268" width="100%" display="block" tabindex=0 key=onKey focus=focusIn blur=focusOut
+        role="group" aria-label=`A warm core with five stories around it, ${rewritten.length} of 5 rewritten. Arrow keys choose a story, Enter turns it over. Chosen: ${rewritten.includes(cursor) ? `${sseNewA(cursor)} ${sseNewB(cursor)}` : `${sseOldA(cursor)} ${sseOldB(cursor)}`}`
+        outline="none" border-radius=16
+        :focus-visible
+          box-shadow="0 0 0 2px ember"
+        defs
+          radialGradient id="sse-halo"
+            stop offset=0 stop-color="ember" stop-opacity=0.6
+            stop offset=0.45 stop-color="honey" stop-opacity=0.3
+            stop offset=1 stop-color="honey" stop-opacity=0
+          radialGradient id="sse-core" cx="42%" cy="36%" r="72%"
+            stop offset=0 stop-color="ember.light"
+            stop offset=0.55 stop-color="ember"
+            stop offset=1 stop-color="ember.deep"
+          linearGradient id="sse-old" x1=0 y1=0 x2=0 y2=1
+            stop offset=0 stop-color="dusk.soft"
+            stop offset=1 stop-color="dusk.soft" stop-opacity=0.78
+          linearGradient id="sse-new" x1=0 y1=0 x2=0 y2=1
+            stop offset=0 stop-color="honey.soft"
+            stop offset=1 stop-color="ember.glow"
+        // The core: small with no permission given, but never out.
+        circle cx=170 cy=136 r=(30 + 17 * rewritten.length) fill="url(#sse-halo)" transition=(still ? "none" : "r 900ms ease")
+          transform-box="fill-box" transform-origin="center" animation=(still ? "none" : "sse-breathe 4600ms ease-in-out infinite")
+        circle cx=170 cy=136 r=(15 + 5.5 * rewritten.length) fill="none" stroke="honey" stroke-width=1 opacity=0.5 transition=(still ? "none" : "r 900ms ease")
+        // A thread of warmth from each rewritten story.
+        for i in range(5) key=i
+          line x1=sseX(i) y1=sseY(i) x2=170 y2=136 stroke="honey" stroke-width=1.3 stroke-linecap="round" stroke-dasharray="1 6"
+            opacity=(rewritten.includes(i) ? 0.85 : 0) transition=(still ? "none" : "opacity 700ms ease")
+            animation=(still ? "none" : "sse-flow 2400ms linear infinite")
+        circle cx=170 cy=136 r=(8 + 2.8 * rewritten.length) fill="url(#sse-core)" transition=(still ? "none" : "r 900ms ease")
+        // The slips.
+        for i in range(5) key=i
+          g transform=`rotate(${rewritten.includes(i) ? 0 : sseTilt(i)} ${sseX(i)} ${sseY(i)})`
+            g testId=`sse-slip-${i}` press=flip(i)
+              rect x=(sseX(i) - 60) y=(sseY(i) - 21) width=120 height=42 rx=7 fill="paper.raised"
+              rect x=(sseX(i) - 64) y=(sseY(i) - 25) width=128 height=50 rx=10 fill="none" stroke="ink" stroke-width=1.6 opacity=(focused and cursor == i ? 0.8 : 0)
+              // The old side.
+              g opacity=(rewritten.includes(i) ? 0 : 1) scale=(rewritten.includes(i) ? 0.8 : 1) transform-box="fill-box" transform-origin="center"
+                transition=(still ? "none" : rewritten.includes(i) ? "scale 240ms ease-in, opacity 240ms ease" : "scale 360ms ease-out 180ms, opacity 300ms ease 180ms")
+                rect x=(sseX(i) - 60) y=(sseY(i) - 21) width=120 height=42 rx=7 fill="url(#sse-old)" stroke="dusk" stroke-width=0.9 stroke-opacity=0.45
+                text sseOldA(i) testId=(rewritten.includes(i) ? `sse-under-${i}` : `sse-says-${i}`) x=sseX(i) y=(sseY(i) - 3) text-anchor="middle" font-size=11.5 fill="dusk.deep" pointer-events="none"
+                text sseOldB(i) x=sseX(i) y=(sseY(i) + 11) text-anchor="middle" font-size=11.5 fill="dusk.deep" pointer-events="none"
+              // The warm side.
+              g opacity=(rewritten.includes(i) ? 1 : 0) scale=(rewritten.includes(i) ? 1 : 0.8) transform-box="fill-box" transform-origin="center"
+                transition=(still ? "none" : rewritten.includes(i) ? "scale 360ms ease-out 180ms, opacity 300ms ease 180ms" : "scale 240ms ease-in, opacity 240ms ease")
+                rect x=(sseX(i) - 60) y=(sseY(i) - 21) width=120 height=42 rx=7 fill="url(#sse-new)" stroke="honey" stroke-width=1.1 stroke-opacity=0.9
+                text sseNewA(i) testId=(rewritten.includes(i) ? `sse-says-${i}` : `sse-under-${i}`) x=sseX(i) y=(sseY(i) - 3) text-anchor="middle" font-size=11.5 font-weight=600 fill="ink" pointer-events="none"
+                text sseNewB(i) x=sseX(i) y=(sseY(i) + 11) text-anchor="middle" font-size=11.5 font-weight=600 fill="ink" pointer-events="none"
+      Caption(line=sseLine(rewritten.length))
+      row gap=8 justify-content="center" flex-wrap="wrap"
+        Chip(label="Old stories", on=(rewritten.length == 0), tone="dusk", press=clear, tid="sse-old")
+        Chip(label="Rewritten", on=(rewritten.length == 5), tone="ember", press=all, tid="sse-new")

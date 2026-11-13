@@ -1,0 +1,109 @@
+// Angling: drag to tilt the pelvis a few degrees. The pressure keeps to its
+// line; the body turns about the opening, so the same push meets a different
+// place inside. Tilt far enough forward and it lands on the front wall, with
+// the internal clitoris just behind it.
+use clamp, clamp01, mag, span, Caption, Chip from "./kit.contract"
+use Sagittal, sagX, sagY, sagOX, sagOY, sagLen, sagHalf, sagNear from "./sagittal.contract"
+
+// The geometry, in stage units. The pressure form is a capsule 4.5 thick each
+// side of its line that would reach 80 units in. Tilted by `deg`, its line
+// crosses the wall (sagHalf from the canal's middle) at sagHalf / sin(deg)
+// along it: that is where it stops and where the pressure lands.
+fn anSin(deg: number): number = sin(mag(deg) * 0.0174533)
+fn anCos(deg: number): number = cos(deg * 0.0174533)
+fn anReach(deg: number): number = min(80, sagHalf() / max(0.0001, anSin(deg)))
+// The same, as a depth along the fixed line (0 to 1 of the canal's length).
+fn anTip(deg: number): number = anReach(deg) / sagLen()
+// How far the capsule's nose pushes the wall out, and how hard it presses.
+fn anDent(deg: number): number = max(0, anReach(deg) * anSin(deg) + 4.5 - sagHalf() + 0.7)
+fn anPress(deg: number): number = span(anSin(deg), 0.02, 0.15)
+// Depth of the landing point along the canal itself, 0 to 1.
+fn anDepth(deg: number): number = anReach(deg) * anCos(deg) / sagLen()
+// How strongly the landing reaches the internal clitoris: front wall only.
+fn anLit(deg: number): number = deg > 0 ? anPress(deg) * sagNear(anDepth(deg)) : 0
+fn anSide(deg: number): number = deg < 0 ? -1 : 1
+// The protractor: a point `r` from the pivot, `deg` clockwise from the fixed line.
+fn anArcX(r: number, deg: number): number = sagOX() + r * cos((135 + deg) * 0.0174533)
+fn anArcY(r: number, deg: number): number = sagOY() + r * sin((135 + deg) * 0.0174533)
+
+fn anLine(t: number): string = mag(t) < 1.5 ? "In line, the pressure runs straight up the middle and lands nowhere in particular." : t >= 4.5 ? "Same movement, different place. Now it lands on the front wall, where the internal clitoris sits just behind." : t > 0 ? "A few degrees forward, and the same pressure starts to lean on the front wall." : t > -4.5 ? "A few degrees back, and the same pressure starts to lean the other way." : "Tilted back, it meets the back wall instead. Different, not wrong."
+
+keyframes an-pulse
+  50% opacity=0.55 scale=1.25
+
+keyframes an-drift
+  50% translate="-2.2px 2.2px"
+
+component Angling
+  inject
+    still: bool
+  props
+    uid: string
+  state tilt = 0
+  state down = false
+  state y0 = 0
+  state t0 = 0
+  action press(e: PointerEvent)
+    down = true
+    y0 = e.offsetY / frame(`an-${uid}`).height * 312
+    t0 = tilt
+  action drag(e: PointerEvent)
+    if down
+      tilt = clamp(t0 + (e.offsetY / frame(`an-${uid}`).height * 312 - y0) * 0.2, -14, 22)
+  action release(e: PointerEvent)
+    down = false
+  action step(k: string, e: KeyboardEvent)
+    if k == "ArrowUp" or k == "ArrowRight"
+      preventDefault()
+      tilt = clamp(tilt + 2, -14, 22)
+    if k == "ArrowDown" or k == "ArrowLeft"
+      preventDefault()
+      tilt = clamp(tilt - 2, -14, 22)
+  action go(t: number)
+    tilt = t
+  view
+    column gap=14
+      svg id=`an-${uid}` testId="an-stage" viewBox="0 0 340 312" width="100%" display="block" touch-action="none" tabindex=0
+        role="slider" aria-label="Pelvic tilt" aria-valuetext=`${round(tilt)}°. ${anLine(tilt)}` key=step
+        pointerdown=press pointermove=drag pointerup=release
+        outline="none" border-radius=16
+        :focus-visible
+          box-shadow="0 0 0 2px ember"
+        defs
+          linearGradient id="an-form" gradientUnits="userSpaceOnUse" x1=108 y1=278 x2=142 y2=244
+            stop offset=0 stop-color="sage" stop-opacity=0
+            stop offset=1 stop-color="sage" stop-opacity=0.92
+          radialGradient id="an-glow"
+            stop offset=0 stop-color="ember" stop-opacity=0.95
+            stop offset=0.4 stop-color="ember" stop-opacity=0.5
+            stop offset=1 stop-color="ember" stop-opacity=0
+        Sagittal(tilt=tilt, clit=anLit(tilt), glans=(anLit(tilt) * 0.4), urethra=0, wall=0,
+          dentFrom=max(0, anReach(tilt) * anCos(tilt) - 14), dentAt=(anReach(tilt) * anCos(tilt) + 1), dent=(anSide(tilt) * anDent(tilt)),
+          pulse=(anLit(tilt) > 0.35), names=1, glide=(not down and not still))
+        // The protractor: the fixed line, the body's line, and the angle between.
+        g pointer-events="none"
+          path d=`M${anArcX(36, 0)} ${anArcY(36, 0)}L${anArcX(64, 0)} ${anArcY(64, 0)}` fill="none" stroke="ink.soft" stroke-width=1 stroke-dasharray="2 4" stroke-linecap="round" opacity=0.7
+          path d=`M${anArcX(36, tilt)} ${anArcY(36, tilt)}L${anArcX(64, tilt)} ${anArcY(64, tilt)}` fill="none" stroke="ink.soft" stroke-width=1 stroke-linecap="round" opacity=0.8
+            transition=(not down and not still ? "d 700ms ease" : "none")
+          path d=`M${anArcX(56, 0)} ${anArcY(56, 0)}A56 56 0 0 ${tilt < 0 ? 0 : 1} ${anArcX(56, tilt)} ${anArcY(56, tilt)}` fill="none" stroke=(anLit(tilt) > 0.35 ? "ember" : "ink.soft") stroke-width=1.8 stroke-linecap="round"
+            transition=(not down and not still ? "d 700ms ease, stroke 300ms ease" : "none")
+          text `${round(mag(tilt))}°` x=anArcX(78, tilt / 2) y=(anArcY(78, tilt / 2) + 4) text-anchor="middle" font-size=12 font-weight=600 fill=(anLit(tilt) > 0.35 ? "ember.deep" : "ink.soft") testId="an-angle"
+        // The pressure: a soft form on a fixed line. It does not turn; the body does.
+        g pointer-events="none"
+          g animation=(still ? "none" : "an-drift 3.4s ease-in-out infinite")
+            path d=`M${sagX(-0.34, 0)} ${sagY(-0.34, 0)}L${sagX(anTip(tilt), 0)} ${sagY(anTip(tilt), 0)}` fill="none" stroke="url(#an-form)" stroke-width=9 stroke-linecap="round"
+              transition=(not down and not still ? "d 700ms ease" : "none")
+            path d=`M${sagX(-0.2, 1.7)} ${sagY(-0.2, 1.7)}L${sagX(anTip(tilt) - 0.008, 1.7)} ${sagY(anTip(tilt) - 0.008, 1.7)}` fill="none" stroke="paper" stroke-width=1.4 stroke-linecap="round" opacity=0.35
+              transition=(not down and not still ? "d 700ms ease" : "none")
+          // Where it lands.
+          g opacity=anPress(tilt) transition=(not down and not still ? "opacity 500ms ease" : "none")
+            circle cx=sagX(anTip(tilt) + 0.012, anSide(tilt) * 5) cy=sagY(anTip(tilt) + 0.012, anSide(tilt) * 5) r=17 fill="url(#an-glow)"
+              transform-box="fill-box" transform-origin="center" animation=(still ? "none" : "an-pulse 2.4s ease-in-out infinite")
+              transition=(not down and not still ? "cx 700ms ease, cy 700ms ease" : "none")
+            circle cx=sagX(anTip(tilt) + 0.012, anSide(tilt) * 5) cy=sagY(anTip(tilt) + 0.012, anSide(tilt) * 5) r=2.8 fill="ember.light"
+              transition=(not down and not still ? "cx 700ms ease, cy 700ms ease" : "none")
+      Caption(line=anLine(tilt))
+      row gap=8 justify-content="center" flex-wrap="wrap"
+        Chip(label="Tilt back", on=(tilt <= -4.5), tone="sage", press=go(-12), tid="an-back")
+        Chip(label="Neutral", on=(mag(tilt) < 1.5), tone="sage", press=go(0), tid="an-neutral")
+        Chip(label="Tilt forward", on=(tilt >= 4.5), tone="ember", press=go(8), tid="an-forward")

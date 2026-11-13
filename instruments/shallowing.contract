@@ -1,0 +1,102 @@
+// Shallowing: drag a touch along the canal. The touch-sensitive nerve endings
+// crowd the entrance and the first third and thin out fast beyond it, so the
+// number that light up under the touch is how much fine feeling is there.
+use clamp, clamp01, mag, rnd, ease, span, Caption, Chip from "./kit.contract"
+use Sagittal, sagX, sagY, sagLen, sagDepth from "./sagittal.contract"
+
+// Nerve ending `i`: which wall it serves, its depth (crowded toward 0; the
+// back wall's start a little in, where the wall leaves the skin), and where
+// its fibre ends: a little along the canal and some way out from the wall.
+fn shSide(i: number): number = i % 2 == 0 ? 1 : -1
+fn shT(i: number): number = (i % 2 == 0 ? 0.012 : 0.075) + 0.92 * rnd(i) * (0.12 + rnd(i) * (0.33 + 0.55 * rnd(i)))
+fn shTipT(i: number): number = shT(i) + 0.05 * (rnd(i + 200) - 0.5)
+fn shOut(i: number): number = i % 2 == 0 ? 7.5 + 13 * rnd(i + 100) : min(7.5 + 13 * rnd(i + 100), sagLen() * shTipT(i) - 3)
+fn shLit(i: number, depth: number): bool = mag(shT(i) - depth) < 0.075
+// The sensitivity the curve draws: high at the entrance, falling steeply
+// through the first third to a low floor.
+fn shFeel(t: number): number = 0.12 + 0.88 * (1 - span(t, 0.03, 0.55)) * (1 - span(t, 0.03, 0.55))
+fn shCx(t: number): number = 64 + 226 * t
+fn shCy(t: number): number = 326 - 30 * shFeel(t)
+fn shCurve(): string = `M${shCx(0)} ${shCy(0)}L${shCx(0.04)} ${shCy(0.04)}L${shCx(0.1)} ${shCy(0.1)}L${shCx(0.16)} ${shCy(0.16)}L${shCx(0.22)} ${shCy(0.22)}L${shCx(0.28)} ${shCy(0.28)}L${shCx(0.34)} ${shCy(0.34)}L${shCx(0.4)} ${shCy(0.4)}L${shCx(0.46)} ${shCy(0.46)}L${shCx(0.52)} ${shCy(0.52)}L${shCx(0.58)} ${shCy(0.58)}L${shCx(1)} ${shCy(1)}`
+
+fn shLine(d: number): string = d < 0.33 ? "The entrance and the first third are the most densely nerved part of the vagina. Lingering here is not a warm-up." : d < 0.66 ? "Further in, the touch-sensitive nerve endings thin out. Fine touch begins to blur into pressure." : "Deep inside there are few of them. This is felt more as pressure and fullness than as fine touch."
+
+keyframes sh-twinkle
+  50% opacity=0.55
+
+keyframes sh-pulse
+  50% opacity=0.6 scale=1.18
+
+component Shallowing
+  inject
+    still: bool
+  props
+    uid: string
+  state depth = 0.5
+  state down = false
+  action press(e: PointerEvent)
+    down = true
+    depth = clamp01(sagDepth(e.offsetX / frame(`sh-${uid}`).width * 340, e.offsetY / frame(`sh-${uid}`).width * 340))
+  action drag(e: PointerEvent)
+    if down
+      depth = clamp01(sagDepth(e.offsetX / frame(`sh-${uid}`).width * 340, e.offsetY / frame(`sh-${uid}`).width * 340))
+  action release(e: PointerEvent)
+    down = false
+  action step(k: string, e: KeyboardEvent)
+    if k == "ArrowUp" or k == "ArrowRight"
+      preventDefault()
+      depth = clamp01(depth + 0.06)
+    if k == "ArrowDown" or k == "ArrowLeft"
+      preventDefault()
+      depth = clamp01(depth - 0.06)
+  action go(d: number)
+    depth = d
+  view
+    column gap=14
+      svg id=`sh-${uid}` testId="sh-stage" viewBox="0 0 340 340" width="100%" display="block" touch-action="none" tabindex=0
+        role="slider" aria-label="Depth of touch" aria-valuetext=shLine(depth) key=step
+        pointerdown=press pointermove=drag pointerup=release
+        outline="none" border-radius=16
+        :focus-visible
+          box-shadow="0 0 0 2px ember"
+        defs
+          radialGradient id="sh-glow"
+            stop offset=0 stop-color="ember" stop-opacity=0.85
+            stop offset=0.45 stop-color="ember" stop-opacity=0.35
+            stop offset=1 stop-color="ember" stop-opacity=0
+          linearGradient id="sh-area" x1=0 y1=0 x2=1 y2=0
+            stop offset=0 stop-color="ember" stop-opacity=0.55
+            stop offset=0.5 stop-color="ember" stop-opacity=0.22
+            stop offset=1 stop-color="ember" stop-opacity=0.1
+        Sagittal(tilt=0, clit=(0.5 * (1 - span(depth, 0.12, 0.42))), glans=0, urethra=0, wall=0,
+          dentFrom=0, dentAt=0, dent=0, pulse=false, names=0.7, glide=(not down and not still))
+        g pointer-events="none"
+          // The touch.
+          circle cx=sagX(depth, 0) cy=sagY(depth, 0) r=23 fill="url(#sh-glow)"
+            transition=(not down and not still ? "cx 500ms ease, cy 500ms ease" : "none")
+          // Touch-sensitive nerve endings in the two walls.
+          for i in range(84) key=i
+            g opacity=(shLit(i, depth) ? 1 : 0.6) animation=(shLit(i, depth) and not still ? `sh-twinkle 1.6s ease-in-out ${(i % 6) * 130}ms infinite` : "none")
+              circle cx=sagX(shTipT(i), shSide(i) * shOut(i)) cy=sagY(shTipT(i), shSide(i) * shOut(i)) r=(shLit(i, depth) ? 2.7 : 1.5)
+                fill=(shLit(i, depth) ? "ember.light" : "ink.soft") stroke="ember" stroke-width=(shLit(i, depth) ? 1 : 0)
+                transition=(still ? "none" : "r 260ms ease, fill 260ms ease")
+          circle cx=sagX(depth, 0) cy=sagY(depth, 0) r=4.6 fill="ember" stroke="ember.light" stroke-width=1.3
+            transition=(not down and not still ? "cx 500ms ease, cy 500ms ease" : "none")
+        // The curve the touch reads off: sensitivity to fine touch, by depth.
+        g pointer-events="none"
+          path d=`${shCurve()}L${shCx(1)} 326L${shCx(0)} 326Z` fill="url(#sh-area)"
+          path d=shCurve() fill="none" stroke="ember" stroke-width=1.4 stroke-linejoin="round" stroke-linecap="round" opacity=0.8
+          line x1=64 y1=326 x2=290 y2=326 stroke="ink.faint" stroke-width=1 stroke-linecap="round"
+          rect x=(shCx(depth) - 0.6) y=shCy(depth) width=1.2 height=(326 - shCy(depth)) fill="ember"
+            transition=(not down and not still ? "x 500ms ease, y 500ms ease, height 500ms ease" : "none")
+          circle cx=shCx(depth) cy=shCy(depth) r=4.4 fill="paper" stroke="ember" stroke-width=2.4
+            transition=(not down and not still ? "cx 500ms ease, cy 500ms ease" : "none")
+          g font-size=10.5 fill="ink.soft"
+            text "Entrance" x=64 y=338
+            text "Deep" x=290 y=338 text-anchor="end"
+            text "Sensitivity to touch" x=290 y=302 text-anchor="end"
+      Caption(line=shLine(depth))
+      row gap=8 justify-content="center" flex-wrap="wrap"
+        Chip(label="Entrance", on=(depth < 0.33), tone="ember", press=go(0.08), tid="sh-entrance")
+        Chip(label="Middle", on=(depth >= 0.33 and depth < 0.66), tone="ember", press=go(0.5), tid="sh-middle")
+        Chip(label="Deep", on=(depth >= 0.66), tone="ember", press=go(0.95), tid="sh-deep")

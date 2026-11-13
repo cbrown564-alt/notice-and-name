@@ -1,0 +1,133 @@
+// Body Appreciation: one body, two kinds of attention. Drag the divider: on one
+// side it is seen from outside and measured; on the other it is felt from within.
+use clamp01, lerp, span, Caption, Chip from "./kit.contract"
+use figurePath, figureHand, figureHair, figX, figY from "./figure.contract"
+
+fn bapTop(): number = 70
+// The divider's place for a `felt` of 0 to 1: the felt body is to its left.
+fn bapCut(felt: number): number = lerp(14, 326, felt)
+fn bapLine(felt: number): string = felt < 0.34 ? "Seen from outside, a body turns into a list of parts to check." : felt < 0.67 ? "The same body, two kinds of attention. One measures it, the other lives in it." : "From inside there is nothing to grade: warmth, pressure, breath. Satisfaction tends to follow this kind of attention, not the mirror's."
+// The felt side's glows: where, how wide, and which warmth.
+fn bapGlowX(i: number): number = i == 0 ? figX("chest") : i == 1 ? figX("handFar") : i == 2 ? figX("pelvis") + 14 : i == 3 ? figX("kneeNear") - 6 : i == 4 ? figX("footFar") - 8 : i == 5 ? figX("handNear") : figX("head")
+fn bapGlowY(i: number): number = i == 0 ? figY("chest") : i == 1 ? figY("handFar") : i == 2 ? figY("pelvis") : i == 3 ? figY("kneeNear") : i == 4 ? figY("footFar") - 3 : i == 5 ? figY("handNear") : figY("head")
+fn bapGlowR(i: number): number = i == 0 ? 30 : i == 1 ? 24 : i == 2 ? 34 : i == 3 ? 30 : i == 4 ? 24 : i == 5 ? 18 : 20
+
+keyframes bap-breathe
+  50% opacity=0.5 scale=0.86
+
+component BodyAppreciation
+  inject
+    still: bool
+  props
+    uid: string
+  state felt = 0.22
+  state down = false
+  action press(e: PointerEvent)
+    down = true
+    felt = clamp01((e.offsetX / frame(`bap-${uid}`).width * 340 - 14) / 312)
+  action drag(e: PointerEvent)
+    if down
+      felt = clamp01((e.offsetX / frame(`bap-${uid}`).width * 340 - 14) / 312)
+  action release(e: PointerEvent)
+    down = false
+  action step(k: string, e: KeyboardEvent)
+    if k == "ArrowRight" or k == "ArrowUp"
+      preventDefault()
+      felt = clamp01(felt + 0.1)
+    if k == "ArrowLeft" or k == "ArrowDown"
+      preventDefault()
+      felt = clamp01(felt - 0.1)
+  action go(f: number)
+    felt = f
+  view
+    column gap=14
+      svg id=`bap-${uid}` testId="bap-stage" viewBox="0 0 340 250" width="100%" display="block" touch-action="none" tabindex=0
+        role="slider" aria-label="From seeing your body to feeling it" aria-valuetext=bapLine(felt) key=step
+        pointerdown=press pointermove=drag pointerup=release
+        outline="none" border-radius=16
+        :focus-visible
+          box-shadow="0 0 0 2px ember"
+        defs
+          clipPath id="bap-felt"
+            rect x=(bapCut(felt) - 400) y=0 width=400 height=250 transition=(down or still ? "none" : "x 700ms ease")
+          clipPath id="bap-seen"
+            rect x=bapCut(felt) y=0 width=400 height=250 transition=(down or still ? "none" : "x 700ms ease")
+          clipPath id="bap-body"
+            path d=figurePath()
+          linearGradient id="bap-skin" x1=0 y1=0 x2=1 y2=1
+            stop offset=0 stop-color="rose" stop-opacity=0.85
+            stop offset=1 stop-color="rose.deep" stop-opacity=0.55
+          radialGradient id="bap-ember"
+            stop offset=0 stop-color="ember" stop-opacity=0.82
+            stop offset=0.45 stop-color="ember" stop-opacity=0.4
+            stop offset=1 stop-color="ember" stop-opacity=0
+          radialGradient id="bap-honey"
+            stop offset=0 stop-color="honey" stop-opacity=0.85
+            stop offset=0.45 stop-color="honey" stop-opacity=0.42
+            stop offset=1 stop-color="honey" stop-opacity=0
+          radialGradient id="bap-aura"
+            stop offset=0.5 stop-color="honey" stop-opacity=0.1
+            stop offset=1 stop-color="honey" stop-opacity=0
+        // Seen: a flat outline, measured and annotated.
+        g clip-path="url(#bap-seen)"
+          g transform=`translate(0 ${bapTop()})`
+            path d=figureHair() fill="ink.faint"
+            path d=figurePath() fill="paper.sunk" stroke="ink.soft" stroke-width=1.1 stroke-linejoin="round"
+            path d=figureHand() fill="none" stroke="ink.soft" stroke-width=0.9 stroke-linecap="round" opacity=0.7
+            // A rule along its length, and callipers across it.
+            g stroke="dusk" stroke-width=0.9 stroke-linecap="round" opacity=0.75
+              line x1=26 y1=112 x2=318 y2=112
+              for i in range(23) key=i
+                line x1=(26 + i * 13.27) y1=112 x2=(26 + i * 13.27) y2=(i % 5 == 0 ? 105 : 108.5)
+              g stroke-dasharray="2 3"
+                line x1=136 y1=28 x2=136 y2=76
+                line x1=204 y1=18 x2=204 y2=92
+              line x1=132 y1=28 x2=140 y2=28
+              line x1=132 y1=76 x2=140 y2=76
+              line x1=200 y1=18 x2=208 y2=18
+              line x1=200 y1=92 x2=208 y2=92
+        // Felt: no outline to inspect, only what is happening inside it.
+        g clip-path="url(#bap-felt)"
+          g transform=`translate(0 ${bapTop()})`
+            ellipse cx=172 cy=52 rx=176 ry=74 fill="url(#bap-aura)"
+            path d=figureHair() fill="rose.deep" opacity=0.45
+            path d=figurePath() fill="paper.raised"
+            path d=figurePath() fill="url(#bap-skin)"
+            g clip-path="url(#bap-body)"
+              for i in range(7) key=i
+                circle cx=bapGlowX(i) cy=bapGlowY(i) r=bapGlowR(i) fill=(i == 0 or i == 2 or i == 4 ? "url(#bap-ember)" : "url(#bap-honey)")
+                  transform-box="fill-box" transform-origin="center"
+                  animation=(still ? "none" : `bap-breathe ${3800 + i * 450}ms ease-in-out ${0 - i * 700}ms infinite`)
+            path d=figurePath() fill="none" stroke="ember.deep" stroke-width=0.8 stroke-linejoin="round" opacity=0.22
+        // What the looking says: each remark is there while its part is still being looked at.
+        g font-size=11 fill="dusk.deep"
+          g opacity=(bapCut(felt) < 30 ? 1 : 0) transition=(still ? "none" : "opacity 400ms ease")
+            line x1=62 y1=52 x2=80 y2=(bapTop() + 28) stroke="dusk" stroke-width=0.9 opacity=0.7
+            text "from this angle?" x=22 y=48
+          g opacity=(bapCut(felt) < 124 ? 1 : 0) transition=(still ? "none" : "opacity 400ms ease")
+            line x1=146 y1=40 x2=138 y2=(bapTop() + 28) stroke="dusk" stroke-width=0.9 opacity=0.7
+            text "stomach" x=128 y=36
+          g opacity=(bapCut(felt) < 206 ? 1 : 0) transition=(still ? "none" : "opacity 400ms ease")
+            line x1=246 y1=(bapTop() + 124) x2=212 y2=(bapTop() + 92) stroke="dusk" stroke-width=0.9 opacity=0.7
+            text "thighs" x=250 y=(bapTop() + 134)
+          g opacity=(bapCut(felt) < 222 ? 1 : 0) transition=(still ? "none" : "opacity 400ms ease")
+            line x1=262 y1=52 x2=250 y2=(bapTop() + 20) stroke="dusk" stroke-width=0.9 opacity=0.7
+            text "too much? too little?" x=220 y=48
+        // What the feeling says: each word arrives once the divider has passed it.
+        g font-size=11.5 fill="ember.deep" font-style="italic"
+          text "ease" x=30 y=(bapTop() + 78) opacity=(bapCut(felt) > 56 ? 1 : 0) transition=(still ? "none" : "opacity 500ms ease")
+          text "breath" x=84 y=(bapTop() - 2) opacity=(bapCut(felt) > 118 ? 1 : 0) transition=(still ? "none" : "opacity 500ms ease")
+          text "warmth" x=140 y=(bapTop() + 118) opacity=(bapCut(felt) > 180 ? 1 : 0) transition=(still ? "none" : "opacity 500ms ease")
+          text "pressure" x=196 y=(bapTop() + 104) opacity=(bapCut(felt) > 240 ? 1 : 0) transition=(still ? "none" : "opacity 500ms ease")
+          text "tingle" x=270 y=(bapTop() + 4) opacity=(bapCut(felt) > 300 ? 1 : 0) transition=(still ? "none" : "opacity 500ms ease")
+        // The divider and its handle.
+        g translate=`${bapCut(felt)}px 0px` transition=(down or still ? "none" : "translate 700ms ease")
+          line x1=0 y1=30 x2=0 y2=222 stroke="ink" stroke-width=1.2 opacity=0.45
+          circle cx=0 cy=222 r=11 fill="paper" stroke="ember" stroke-width=3
+          path d="M-2.5 218L-5.5 222L-2.5 226M2.5 218L5.5 222L2.5 226" fill="none" stroke="ember" stroke-width=1.4 stroke-linecap="round" stroke-linejoin="round"
+          text "Felt" testId=(felt >= 0.5 ? "bap-mostly" : "bap-less") x=-9 y=24 text-anchor="end" font-size=11.5 font-weight=600 fill="ember.deep" opacity=span(felt, 0.06, 0.16)
+          text "Seen" testId=(felt >= 0.5 ? "bap-less" : "bap-mostly") x=9 y=24 font-size=11.5 font-weight=600 fill="dusk.deep" opacity=span(1 - felt, 0.06, 0.16)
+      Caption(line=bapLine(felt))
+      row gap=8 justify-content="center" flex-wrap="wrap"
+        Chip(label="Seen", on=(felt < 0.34), tone="dusk", press=go(0.04), tid="bap-seen")
+        Chip(label="Felt", on=(felt >= 0.67), tone="ember", press=go(0.96), tid="bap-felt")

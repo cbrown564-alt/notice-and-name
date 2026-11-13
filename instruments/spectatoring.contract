@@ -1,0 +1,124 @@
+// Spectatoring: attention can leave the body to watch it from outside, and
+// sensation dims when it does. Drag the orb between the body and the watcher.
+use clamp01, lerp, span, Caption, Chip from "./kit.contract"
+use Figure from "./figure.contract"
+
+// The body lies low on the stage; the watcher hovers up and to the right.
+fn spcTop(): number = 150
+fn spcAX(): number = 140
+fn spcAY(): number = 203
+fn spcBX(): number = 252
+fn spcBY(): number = 40
+// How far along the line from body to watcher a point lies.
+fn spcAlong(x: number, y: number): number = clamp01(((x - spcAX()) * (spcBX() - spcAX()) + (y - spcAY()) * (spcBY() - spcAY())) / ((spcBX() - spcAX()) * (spcBX() - spcAX()) + (spcBY() - spcAY()) * (spcBY() - spcAY())))
+// The line of sensation along the bottom: a slow swell of height `a`.
+fn spcWave(a: number): string = `M-60 292q15 ${0 - a} 30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0`
+fn spcTag(i: number): string = i == 0 ? "How do I look?" : i == 1 ? "Am I taking too long?" : "What are they thinking?"
+fn spcTagX(i: number): number = i == 0 ? 284 : i == 1 ? 100 : 86
+fn spcTagY(i: number): number = i == 0 ? 92 : i == 1 ? 34 : 76
+fn spcTagW(i: number): number = i == 0 ? 96 : i == 1 ? 134 : 144
+fn spcLine(away: number): string = away < 0.34 ? "Attention is back in the body, on one plain thing: the warm weight of a hand on your belly." : away < 0.67 ? "Part of you has stepped outside to watch. The feeling is still there, only fainter." : "From out here you are your own audience, grading how you look and how long you take. Sensation has less room."
+
+keyframes spc-roll
+  to translate="-60px 0px"
+
+keyframes spc-hover
+  50% translate="0px -3px"
+
+keyframes spc-orb
+  50% scale=1.18 opacity=0.6
+
+component Spectatoring
+  inject
+    still: bool
+  props
+    uid: string
+  state away = 0.86
+  state down = false
+  action press(e: PointerEvent)
+    down = true
+    away = spcAlong(e.offsetX / frame(`spc-${uid}`).width * 340, e.offsetY / frame(`spc-${uid}`).width * 340)
+  action drag(e: PointerEvent)
+    if down
+      away = spcAlong(e.offsetX / frame(`spc-${uid}`).width * 340, e.offsetY / frame(`spc-${uid}`).width * 340)
+  action release(e: PointerEvent)
+    down = false
+  action step(k: string, e: KeyboardEvent)
+    if k == "ArrowUp" or k == "ArrowRight"
+      preventDefault()
+      away = clamp01(away + 0.1)
+    if k == "ArrowDown" or k == "ArrowLeft"
+      preventDefault()
+      away = clamp01(away - 0.1)
+  action go(a: number)
+    away = a
+  view
+    column gap=14
+      svg id=`spc-${uid}` testId="spc-stage" viewBox="0 0 340 312" width="100%" display="block" touch-action="none" tabindex=0
+        role="slider" aria-label="Where your attention is: in your body, or outside it, watching" aria-valuetext=spcLine(away) key=step
+        pointerdown=press pointermove=drag pointerup=release
+        outline="none" border-radius=16
+        :focus-visible
+          box-shadow="0 0 0 2px ember"
+        defs
+          linearGradient id="spc-gaze" x1=0 y1=0 x2=0 y2=1
+            stop offset=0 stop-color="dusk" stop-opacity=0.34
+            stop offset=1 stop-color="dusk" stop-opacity=0
+          radialGradient id="spc-in" cx="40%" cy="35%" r="70%"
+            stop offset=0 stop-color="ember.light"
+            stop offset=0.6 stop-color="ember"
+            stop offset=1 stop-color="ember.deep"
+          radialGradient id="spc-out" cx="40%" cy="35%" r="70%"
+            stop offset=0 stop-color="dusk.soft"
+            stop offset=0.6 stop-color="dusk"
+            stop offset=1 stop-color="dusk.deep"
+          radialGradient id="spc-halo-in"
+            stop offset=0 stop-color="ember" stop-opacity=0.5
+            stop offset=1 stop-color="ember" stop-opacity=0
+          radialGradient id="spc-halo-out"
+            stop offset=0 stop-color="dusk" stop-opacity=0.5
+            stop offset=1 stop-color="dusk" stop-opacity=0
+          clipPath id="spc-strip"
+            rect x=18 y=270 width=304 height=40
+        // The watcher's gaze, falling on the body.
+        path d="M252 46L44 214L316 214Z" fill="url(#spc-gaze)" opacity=span(away, 0.2, 1)
+          transition=(down or still ? "none" : "opacity 600ms ease")
+        // The body. As attention leaves, its warmth drains toward grey.
+        g transform=`translate(0 ${spcTop()})`
+          Figure(warmth=clamp01(1 - away * 1.2), tone="rose", ghost=false, glide=(not down and not still))
+            rect x=0 y=-10 width=340 height=130 fill="bone" opacity=(0.82 * away)
+              transition=(down or still ? "none" : "opacity 700ms ease")
+        // The watcher: the same self, outside, looking on.
+        g opacity=(0.28 + 0.72 * away) transition=(down or still ? "none" : "opacity 600ms ease")
+          g animation=(still ? "none" : "spc-hover 5200ms ease-in-out infinite")
+            g transform="translate(178 14) scale(0.44)"
+              Figure(warmth=0, tone="dusk", ghost=true, glide=false)
+        // What the watcher says.
+        for i in range(3) key=i
+          g opacity=span(away, 0.2 + 0.24 * i, 0.44 + 0.24 * i) transition=(down or still ? "none" : "opacity 500ms ease")
+            g animation=(still ? "none" : `spc-hover ${4600 + i * 700}ms ease-in-out ${0 - i * 900}ms infinite`)
+              rect x=(spcTagX(i) - spcTagW(i) / 2) y=(spcTagY(i) - 11) width=spcTagW(i) height=22 rx=11 fill="dusk.soft" stroke="dusk" stroke-width=0.8 stroke-opacity=0.5
+              text spcTag(i) x=spcTagX(i) y=(spcTagY(i) + 3.8) text-anchor="middle" font-size=11 fill="dusk.deep"
+        // The path attention travels, and attention itself.
+        line x1=spcAX() y1=spcAY() x2=spcBX() y2=spcBY() stroke="ink.faint" stroke-width=1.4 stroke-linecap="round" stroke-dasharray="1 6"
+        g translate=`${(spcBX() - spcAX()) * away}px ${(spcBY() - spcAY()) * away}px`
+          transition=(down or still ? "none" : "translate 700ms ease")
+          g opacity=(1 - away) transition=(down or still ? "none" : "opacity 500ms ease")
+            circle cx=spcAX() cy=spcAY() r=20 fill="url(#spc-halo-in)" transform-box="fill-box" transform-origin="center"
+              animation=(still ? "none" : "spc-orb 3200ms ease-in-out infinite")
+            circle cx=spcAX() cy=spcAY() r=9 fill="url(#spc-in)"
+          g opacity=away transition=(down or still ? "none" : "opacity 500ms ease")
+            circle cx=spcAX() cy=spcAY() r=20 fill="url(#spc-halo-out)"
+            circle cx=spcAX() cy=spcAY() r=9 fill="url(#spc-out)"
+          circle cx=spcAX() cy=spcAY() r=9 fill="none" stroke="paper.raised" stroke-width=1.4
+        // Sensation: full and slow in the body, a flat line from outside.
+        text (away < 0.34 ? "Sensation: full" : away < 0.67 ? "Sensation: fainter" : "Sensation: faint") testId="spc-sensation" x=20 y=268 font-size=11 fill="ink.soft"
+        g clip-path="url(#spc-strip)"
+          line x1=18 y1=292 x2=322 y2=292 stroke="ink.faint" stroke-width=1
+          g animation=(still ? "none" : "spc-roll 6400ms linear infinite")
+            path d=spcWave(0.5 + 15 * (1 - away)) fill="none" stroke="ember" stroke-width=2.2 stroke-linecap="round"
+              opacity=(0.3 + 0.7 * (1 - away)) transition=(down or still ? "none" : "d 700ms ease, opacity 700ms ease")
+      Caption(line=spcLine(away))
+      row gap=8 justify-content="center" flex-wrap="wrap"
+        Chip(label="Watching", on=(away >= 0.67), tone="dusk", press=go(1), tid="spc-watching")
+        Chip(label="Feeling", on=(away < 0.34), tone="ember", press=go(0), tid="spc-feeling")

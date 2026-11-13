@@ -1,0 +1,91 @@
+// Pairing: inside touch and outside touch are two ways in to the same organ.
+// Switch each on and watch where it arrives; switch both on and the whole
+// clitoris lights end to end, in one rhythm.
+use clamp01, Caption, Chip from "./kit.contract"
+use Sagittal, sagPlace, sagShaftPath from "./sagittal.contract"
+
+fn paLine(inside: bool, outside: bool): string = inside and outside ? "One organ, reached from both ends. Together they add up to more than either alone." : inside ? "Inside only: pressure reaches the inner part of the clitoris through the wall. For about 18 in 100 women, this alone is enough for orgasm." : outside ? "Outside only: touch on the glans, the tip with the most nerve endings. The rest of the organ is waiting inside." : "Inside touch and outside touch reach the same organ from two ends. Switch each one on."
+// Half the height of the meter's joined band.
+fn paBand(inside: bool, outside: bool): number = inside and outside ? 7 : inside or outside ? 2.2 : 1.2
+
+keyframes pa-travel
+  from cx=16
+  to cx=114
+
+keyframes pa-ripple
+  from r=7 opacity=0.75
+  to r=24 opacity=0
+
+keyframes pa-flow
+  to stroke-dashoffset=-24
+
+component Pairing
+  inject
+    still: bool
+  props
+    uid: string
+  state inside = false
+  state outside = false
+  // When the shared beat began, and how far into it each touch joined, so
+  // everything that pulses stays in step.
+  state beatAt = 0
+  state inPhase = 0
+  state outPhase = 0
+  action toggle(which: string)
+    let now = performanceNow()
+    let start = inside or outside ? beatAt : now
+    beatAt = start
+    if which == "inside"
+      inPhase = round(now - start) % 2400
+      inside = not inside
+    if which == "outside"
+      outPhase = round(now - start) % 2400
+      outside = not outside
+  view
+    column gap=14
+      svg id=`pa-${uid}` testId="pa-stage" viewBox="0 0 340 340" width="100%" display="block"
+        role="group" aria-label=`The pelvis in section. ${paLine(inside, outside)}`
+        defs
+          radialGradient id="pa-glow"
+            stop offset=0 stop-color="ember" stop-opacity=0.8
+            stop offset=0.5 stop-color="ember" stop-opacity=0.3
+            stop offset=1 stop-color="ember" stop-opacity=0
+          linearGradient id="pa-band" x1=0 y1=0 x2=1 y2=0
+            stop offset=0 stop-color="ember"
+            stop offset=1 stop-color="ember.deep"
+        Sagittal(tilt=0, clit=(inside ? (outside ? 1 : 0.42) : 0), glans=(outside ? 1 : 0), urethra=0, wall=0,
+          dentFrom=0, dentAt=0, dent=0, pulse=(inside or outside), names=0.7, glide=(not still))
+        // Inside: a soft pressure travelling the canal.
+        g pointer-events="none" transform="translate(150 236) rotate(-45)" opacity=(inside ? 1 : 0) transition=(still ? "none" : "opacity 500ms ease")
+          circle cx=46 cy=0 r=16 fill="url(#pa-glow)"
+            animation=(inside and not still ? `pa-travel 1200ms ease-in-out -${inPhase}ms infinite alternate` : "none")
+        // Outside: a slow ripple at the glans.
+        g pointer-events="none" opacity=(outside ? 1 : 0) transition=(still ? "none" : "opacity 500ms ease")
+          circle cx=94.1 cy=229.5 r=13 fill="none" stroke="ember" stroke-width=1.6 opacity=0.5
+            animation=(outside and not still ? `pa-ripple 2400ms ease-out -${outPhase}ms infinite` : "none")
+        // Two into one: each touch is a stream; together they are more than the sum.
+        g pointer-events="none"
+          path d="M36 302L118 302C158 302 162 313 200 313" fill="none" stroke=(inside ? "ember" : "ink.faint") stroke-width=3 stroke-linecap="round" transition=(still ? "none" : "stroke 400ms ease")
+          path d="M36 324L118 324C158 324 162 313 200 313" fill="none" stroke=(outside ? "ember" : "ink.faint") stroke-width=3 stroke-linecap="round" transition=(still ? "none" : "stroke 400ms ease")
+          path d=`M194 313C206 313 208 ${313 - paBand(inside, outside)} 222 ${313 - paBand(inside, outside)}L298 ${313 - paBand(inside, outside)}A${paBand(inside, outside)} ${paBand(inside, outside)} 0 0 1 298 ${313 + paBand(inside, outside)}L222 ${313 + paBand(inside, outside)}C208 ${313 + paBand(inside, outside)} 206 313 194 313Z`
+            fill=(inside or outside ? "url(#pa-band)" : "ink.faint") transition=(still ? "none" : "d 700ms ease")
+          g opacity=(inside ? 0.7 : 0) transition=(still ? "none" : "opacity 400ms ease")
+            path d="M36 302L118 302C158 302 162 313 200 313L300 313" fill="none" stroke="ember.light" stroke-width=1.2 stroke-linecap="round" stroke-dasharray="2 22"
+              animation=(inside and not still ? "pa-flow 1.6s linear infinite" : "none")
+          g opacity=(outside ? 0.7 : 0) transition=(still ? "none" : "opacity 400ms ease")
+            path d="M36 324L118 324C158 324 162 313 200 313L300 313" fill="none" stroke="ember.light" stroke-width=1.2 stroke-linecap="round" stroke-dasharray="2 22" stroke-dashoffset=12
+              animation=(outside and not still ? "pa-flow 1.6s linear -800ms infinite" : "none")
+          g font-size=10.5 fill="ink.soft"
+            text "Inside" x=36 y=295
+            text "Outside" x=36 y=338
+            text "Together" x=305 y=297 text-anchor="end" opacity=(inside and outside ? 1 : 0) transition=(still ? "none" : "opacity 500ms ease")
+        // What a tap lands on: the canal, and the glans with the body behind it.
+        g transform=sagPlace() opacity=0
+          g transform="translate(142 246) rotate(-45)"
+            rect x=2 y=-17 width=132 height=34 rx=10 fill="ink" press=toggle("inside")
+          path d=sagShaftPath() fill="none" stroke="ink" stroke-width=20 stroke-linecap="round" press=toggle("outside")
+          circle cx=99 cy=241 r=20 fill="ink" press=toggle("outside")
+      Caption(line=paLine(inside, outside))
+      row gap=8 justify-content="center" flex-wrap="wrap"
+        Chip(label="Inside", on=inside, tone="ember", press=toggle("inside"), tid="pa-inside")
+        Chip(label="Outside", on=outside, tone="ember", press=toggle("outside"), tid="pa-outside")

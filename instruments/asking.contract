@@ -1,0 +1,149 @@
+// Asking: two people and a gap. A request a partner can act on has three
+// parts: something warm, something specific, an invitation. Each part chosen
+// lays a span of the bridge; all three and it carries. "Vague" shows the
+// alternative: kind, and it does not reach (Herbenick et al., 2019).
+// A row folds down to its chosen phrase so the stage stays in view; tap the
+// phrase again to open the row and choose another.
+use Caption, Chip, Eyebrow from "./kit.contract"
+
+fn askOpen(i: number): string = i == 0 ? "I love when you" : i == 1 ? "It feels so good when you" : "I've been thinking about when you"
+fn askSpec(i: number): string = i == 0 ? "slow right down" : i == 1 ? "stay exactly there" : i == 2 ? "use a lighter touch" : "kiss my neck first"
+fn askInvite(i: number): string = i == 0 ? "Can we do more of that?" : i == 1 ? "Would you try that tonight?" : "What would you like, too?"
+fn askLine(o: number, s: number, i: number, vague: bool): string = vague ? "“Maybe a bit different?” Kind, and hard to act on: it does not say what, or how." : o >= 0 and s >= 0 and i >= 0 ? `${askOpen(o)} ${askSpec(s)}. ${askInvite(i)}` : o >= 0 and s >= 0 ? `“${askOpen(o)} ${askSpec(s)}.” Warm and clear. Now leave room for an answer.` : o >= 0 and i >= 0 ? `“${askOpen(o)}… ${askInvite(i)}” Warm and open. The missing piece is the specific thing.` : s >= 0 and i >= 0 ? `“…${askSpec(s)}. ${askInvite(i)}” Nearly there. Begin with something warm.` : o >= 0 ? `“${askOpen(o)}…” A warm start. Now say exactly what.` : s >= 0 ? `“…${askSpec(s)}.” Clear. A warm start helps it land as a wish, not a correction.` : i >= 0 ? `“${askInvite(i)}” An open door. It needs something specific to point at.` : "The commonest reason people stay quiet is to protect a partner's feelings. A request in three parts does that too: choose one from each row."
+fn askRead(o: number, s: number, i: number, vague: bool): string = vague ? "what, exactly?" : o >= 0 and s >= 0 and i >= 0 ? "something to act on" : o >= 0 or s >= 0 or i >= 0 ? "taking shape" : "unsaid"
+fn askSpoken(o: number, s: number, i: number, vague: bool): string = vague ? "Two people. A vague request falls short of the other side." : `Two people and a bridge in three spans. Warm: ${o >= 0 ? "laid" : "missing"}. Specific: ${s >= 0 ? "laid" : "missing"}. Invitation: ${i >= 0 ? "laid" : "missing"}.`
+
+keyframes ask-cross
+  0% cx=78 cy=132 opacity=0
+  8% opacity=1
+  17% cx=99.4 cy=99.4
+  33% cx=131.8 cy=77.7
+  50% cx=170 cy=70
+  67% cx=208.2 cy=77.7
+  83% cx=240.6 cy=99.4
+  92% opacity=1
+  100% cx=262 cy=132 opacity=0
+
+keyframes ask-receive
+  40% scale=1.3 opacity=1
+
+keyframes ask-breathe
+  50% opacity=0.5
+
+keyframes ask-fade
+  from opacity=0
+
+component Asking
+  inject
+    still: bool
+  props
+    uid: string
+  state open = -1
+  state specific = -1
+  state invite = -1
+  state vague = false
+  state sends = 0
+  derive whole = open >= 0 and specific >= 0 and invite >= 0 and not vague
+  action setOpen(i: number)
+    open = open == i ? -1 : i
+    vague = false
+  action setSpecific(i: number)
+    specific = specific == i ? -1 : i
+    vague = false
+  action setInvite(i: number)
+    invite = invite == i ? -1 : i
+    vague = false
+  action beVague
+    vague = not vague
+  // Touching the stage sends a finished sentence across again.
+  action again(e: PointerEvent)
+    sends = sends + 1
+  view
+    column gap=14
+      svg id=`ask-${uid}` testId="ask-stage" viewBox="0 38 340 172" width="100%" display="block" touch-action="manipulation"
+        role="img" aria-label=askSpoken(open, specific, invite, vague) pointerup=again
+        defs
+          radialGradient id="ask-shine-you" cx="38%" cy="32%" r="70%"
+            stop offset=0 stop-color="ember.light" stop-opacity=0.6
+            stop offset=1 stop-color="ember.light" stop-opacity=0
+          radialGradient id="ask-shine-them" cx="62%" cy="32%" r="70%"
+            stop offset=0 stop-color="ember.light" stop-opacity=0.5
+            stop offset=1 stop-color="ember.light" stop-opacity=0
+          radialGradient id="ask-you-halo"
+            stop offset=0.4 stop-color="rose.deep" stop-opacity=0.4
+            stop offset=1 stop-color="rose.deep" stop-opacity=0
+          radialGradient id="ask-them-halo"
+            stop offset=0.4 stop-color="sage" stop-opacity=0.4
+            stop offset=1 stop-color="sage" stop-opacity=0
+          radialGradient id="ask-pulse"
+            stop offset=0 stop-color="ember.light"
+            stop offset=0.4 stop-color="honey"
+            stop offset=1 stop-color="honey" stop-opacity=0
+        // The gap, as it stands: three spans not yet laid.
+        g fill="none" stroke="ink.faint" stroke-width=3 stroke-linecap="round" stroke-dasharray="0.1 7"
+          path d="M78 132A99.3 99.3 0 0 1 127.6 79.5"
+          path d="M133.9 76.8A99.3 99.3 0 0 1 206.1 76.8"
+          path d="M212.4 79.5A99.3 99.3 0 0 1 262 132"
+        // The whole bridge glows a little once it carries.
+        g opacity=(whole ? 1 : 0) transition=(still ? "none" : "opacity 900ms ease 500ms")
+          path d="M78 132A99.3 99.3 0 0 1 262 132" fill="none" stroke="honey.soft" stroke-width=15 stroke-linecap="round"
+            animation=(still ? "none" : "ask-breathe 4.6s ease-in-out infinite")
+        // The three spans.
+        g fill="none" stroke="honey" stroke-width=5 stroke-linecap="round" opacity=(vague ? 0.18 : 1) transition=(still ? "none" : "opacity 400ms ease")
+          path d="M78 132A99.3 99.3 0 0 1 127.6 79.5" pathLength=1 stroke-dasharray="1 2" stroke-dashoffset=(open >= 0 ? 0 : 1)
+            transition=(still ? "none" : "stroke-dashoffset 700ms cubic-bezier(0.3, 0.8, 0.3, 1)")
+          path d="M133.9 76.8A99.3 99.3 0 0 1 206.1 76.8" pathLength=1 stroke-dasharray="1 2" stroke-dashoffset=(specific >= 0 ? 0 : 1)
+            transition=(still ? "none" : "stroke-dashoffset 700ms cubic-bezier(0.3, 0.8, 0.3, 1)")
+          path d="M212.4 79.5A99.3 99.3 0 0 1 262 132" pathLength=1 stroke-dasharray="1 2" stroke-dashoffset=(invite >= 0 ? 0 : 1)
+            transition=(still ? "none" : "stroke-dashoffset 700ms cubic-bezier(0.3, 0.8, 0.3, 1)")
+        // All three laid: the joins close and the bridge is one piece.
+        path d="M78 132A99.3 99.3 0 0 1 262 132" fill="none" stroke="honey" stroke-width=5 stroke-linecap="round" opacity=(whole ? 1 : 0)
+          transition=(still ? "none" : `opacity ${whole ? 500 : 200}ms ease ${whole ? 450 : 0}ms`)
+        g font-size=10.5
+          text "warm" text-anchor="end" x=92 y=92 fill=(open >= 0 and not vague ? "ink" : "ink.soft") opacity=(vague ? 0.4 : 1)
+          text "specific" text-anchor="middle" x=170 y=56 fill=(specific >= 0 and not vague ? "ink" : "ink.soft") opacity=(vague ? 0.4 : 1)
+          text "invitation" x=248 y=92 fill=(invite >= 0 and not vague ? "ink" : "ink.soft") opacity=(vague ? 0.4 : 1)
+        // The vague version: it sets out, and comes down short.
+        if vague
+          g animation=(still ? "none" : "ask-fade 600ms ease both")
+            path d="M78 132C92 100 124 86 150 96C164 102 172 112 175 126" fill="none" stroke="ink.soft" stroke-width=2.6 stroke-linecap="round" stroke-dasharray="2 7"
+            text "?" x=181 y=122 font-size=14 fill="ink.soft"
+        // The two of them.
+        g
+          circle cx=54 cy=150 r=42 fill="url(#ask-you-halo)" animation=(still ? "none" : "ask-breathe 5s ease-in-out infinite")
+          circle cx=54 cy=150 r=24 fill="rose.deep"
+          circle cx=54 cy=150 r=24 fill="url(#ask-shine-you)"
+          circle cx=54 cy=150 r=24 fill="none" stroke="ink" stroke-width=1.2 opacity=0.35
+          text "You" text-anchor="middle" x=54 y=198 font-size=10.5 fill="ink.soft"
+        g
+          circle cx=286 cy=150 r=42 fill="url(#ask-them-halo)" animation=(still ? "none" : "ask-breathe 5s ease-in-out -2.5s infinite")
+          for k in [sends].filter(x => whole) key=k
+            circle cx=286 cy=150 r=42 fill="url(#ask-them-halo)" opacity=0 transform-box="fill-box" transform-origin="center"
+              animation=(still ? "none" : "ask-receive 1100ms ease-out 1700ms both")
+          circle cx=286 cy=150 r=24 fill="sage"
+          circle cx=286 cy=150 r=24 fill="url(#ask-shine-them)"
+          circle cx=286 cy=150 r=24 fill="none" stroke="ink" stroke-width=1.2 opacity=0.35
+          text "Partner" text-anchor="middle" x=286 y=198 font-size=10.5 fill="ink.soft"
+        text askRead(open, specific, invite, vague) testId="ask-read" text-anchor="middle" x=170 y=154 font-size=11 fill=(whole ? "ink" : "ink.soft") font-weight=(whole ? 600 : 400)
+        // Whole: the sentence crosses, once.
+        for k in [sends].filter(x => whole) key=k
+          circle cx=262 cy=132 r=11 fill="url(#ask-pulse)" opacity=0 pointer-events="none"
+            animation=(still ? "none" : "ask-cross 1300ms linear 600ms both")
+      Caption(line=askLine(open, specific, invite, vague))
+      column gap=8 align-items="center"
+        text "Start warm" class=Eyebrow
+        row gap=8 justify-content="center" flex-wrap="wrap"
+          for i in range(3).filter(x => open < 0 or open == x) key=i
+            Chip(label=`${askOpen(i)}…`, on=(open == i), tone="ember", press=setOpen(i), tid=`ask-open-${i}`)
+      column gap=8 align-items="center"
+        text "Be specific" class=Eyebrow
+        row gap=8 justify-content="center" flex-wrap="wrap"
+          for i in range(4).filter(x => specific < 0 or specific == x) key=i
+            Chip(label=`…${askSpec(i)}`, on=(specific == i), tone="ember", press=setSpecific(i), tid=`ask-spec-${i}`)
+      column gap=8 align-items="center"
+        text "Invite" class=Eyebrow
+        row gap=8 justify-content="center" flex-wrap="wrap"
+          for i in range(3).filter(x => invite < 0 or invite == x) key=i
+            Chip(label=askInvite(i), on=(invite == i), tone="ember", press=setInvite(i), tid=`ask-invite-${i}`)
+      row gap=8 justify-content="center" flex-wrap="wrap"
+        Chip(label="Vague", on=vague, tone="ink.soft", press=beVague, tid="ask-vague")

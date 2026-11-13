@@ -1,0 +1,93 @@
+test "a spark lands in an ordinary day: desire first, then arousal"
+  at "/atlas/spontaneous-desire"
+  expect tree missing "sd-desire"
+  tap "sd-spark"
+  clock settle
+  expect text "sd-desire" == "Desire"
+  expect text "sd-arousal" == "Arousal"
+  tap "sd-clear"
+  expect tree missing "sd-desire"
+  expect tree missing "sd-arousal"
+
+test "context warms the coal: arousal first, desire at three of four"
+  at "/atlas/responsive-desire"
+  tap "rd-time"
+  tap "rd-close"
+  clock settle
+  expect tree missing "rd-desire"
+  tap "rd-touch"
+  clock settle
+  expect text "rd-desire" == "Desire"
+  tap "rd-close"
+  clock settle
+  expect tree missing "rd-desire"
+
+test "easing a brake does more than adding accelerators"
+  at "/atlas/brakes-accelerators"
+  expect text "ba-read" == "held back"
+  tap "ba-wanted"
+  tap "ba-unhurried"
+  tap "ba-privacy"
+  tap "ba-tired"
+  clock settle
+  expect text "ba-read" == "held back"
+  tap "ba-stressed"
+  clock settle
+  expect text "ba-read" == "stirring"
+  tap "ba-head"
+  tap "ba-tired"
+  clock settle
+  expect text "ba-read" == "flowing"
+
+test "body and mind can disagree, more so in women than in men"
+  at "/atlas/non-concordance"
+  expect text "nc-r" == "r = .26"
+  tap "nc-body"
+  clock settle
+  expect text "nc-sign" == "≠"
+  tap "nc-both"
+  clock settle
+  expect text "nc-sign" == "="
+  tap "nc-mind"
+  clock settle
+  expect text "nc-sign" == "≠"
+  tap "nc-men"
+  clock settle
+  expect text "nc-r" == "r = .66"
+
+test "the gap measures a bar against heterosexual women"
+  at "/atlas/the-gap"
+  expect tree missing "gap-diff"
+  tap "gap-bar-lesbian"
+  clock settle
+  expect text "gap-diff" == "+21 points"
+  tap "gap-bar-het-men"
+  clock settle
+  expect text "gap-diff" == "+30 points"
+  tap "gap-bar-het-women"
+  clock settle
+  expect tree missing "gap-diff"
+  tap "gap-pick-lesbian"
+  clock settle
+  expect text "gap-diff" == "+21 points"
+  tap "gap-clear"
+  expect tree missing "gap-diff"
+
+test "three parts make a request a partner can act on"
+  at "/atlas/asking"
+  expect text "ask-read" == "unsaid"
+  tap "ask-open-0"
+  tap "ask-spec-0"
+  clock settle
+  expect text "ask-read" == "taking shape"
+  expect tree missing "ask-spec-1"
+  tap "ask-invite-0"
+  clock settle
+  expect text "ask-read" == "something to act on"
+  tap "ask-vague"
+  clock settle
+  expect text "ask-read" == "what, exactly?"
+  tap "ask-spec-0"
+  clock settle
+  expect tree has "ask-spec-1"
+  expect text "ask-read" == "taking shape"

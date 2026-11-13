@@ -1,0 +1,91 @@
+// The Orgasm Gap: six bars from one large survey. Tap a bar and a bracket
+// measures it against heterosexual women. The story is among the women's bars:
+// the same bodies, twenty-one points apart, depending on the script.
+// Frederick et al., 2018 (N = 52,588): usually or always orgasm in partnered sex.
+use Caption, Chip from "./kit.contract"
+
+fn gapId(i: number): string = i == 0 ? "het-men" : i == 1 ? "gay-men" : i == 2 ? "bi-men" : i == 3 ? "lesbian" : i == 4 ? "bi-women" : "het-women"
+fn gapName(i: number): string = i == 0 ? "Heterosexual men" : i == 1 ? "Gay men" : i == 2 ? "Bisexual men" : i == 3 ? "Lesbian women" : i == 4 ? "Bisexual women" : "Heterosexual women"
+fn gapPct(i: number): number = i == 0 ? 95 : i == 1 ? 89 : i == 2 ? 88 : i == 3 ? 86 : i == 4 ? 66 : 65
+fn gapRow(id: string): number = id == "het-men" ? 0 : id == "gay-men" ? 1 : id == "bi-men" ? 2 : id == "lesbian" ? 3 : id == "bi-women" ? 4 : id == "het-women" ? 5 : -1
+// Where a percentage sits on the stage, and where a row begins.
+fn gapX(p: number): number = 20 + p * 2.5
+fn gapY(i: number): number = 30 + i * 44
+fn gapPoints(n: number): string = `+${n} ${n == 1 ? "point" : "points"}`
+// What a screen reader hears: every bar when none is chosen, else the chosen one and its distance from the baseline.
+fn gapSpoken(id: string): string = gapRow(id) < 0 ? "Heterosexual men 95 percent, gay men 89 percent, bisexual men 88 percent, lesbian women 86 percent, bisexual women 66 percent, heterosexual women 65 percent." : gapRow(id) == 5 ? "Heterosexual women: 65 percent. The baseline." : `${gapName(gapRow(id))}: ${gapPct(gapRow(id))} percent, ${gapPoints(gapPct(gapRow(id)) - 65)} on heterosexual women.`
+fn gapLine(id: string): string = id == "lesbian" ? "Women with women: 86. Women with men: 65. Same bodies, different script." : id == "het-men" ? "Heterosexual men: 95. Heterosexual women: 65. A thirty-point gap, inside the same kind of sex." : id == "het-women" ? "The baseline: 65 in 100 heterosexual women usually orgasm with a partner. Every other bar reaches past it." : id == "gay-men" ? "Gay men: 89. Among men the bars barely move, whoever the partner is." : id == "bi-men" ? "Bisexual men: 88. All three bars for men sit within seven points of each other." : id == "bi-women" ? "Bisexual women: 66. One point above heterosexual women, twenty below lesbian women." : "Who usually orgasms in partnered sex, from a survey of 52,588 adults. Tap a bar to measure it against heterosexual women."
+
+keyframes gap-grow
+  from stroke-dashoffset=1
+
+keyframes gap-fade
+  from opacity=0
+
+keyframes gap-breathe
+  50% opacity=0.25
+
+component TheGap
+  inject
+    still: bool
+  props
+    uid: string
+  state picked = ""
+  action pick(id: string)
+    picked = picked == id ? "" : id
+  action step(k: string, e: KeyboardEvent)
+    if k == "ArrowDown" or k == "ArrowRight"
+      preventDefault()
+      picked = gapId(min(5, gapRow(picked) + 1))
+    if k == "ArrowUp" or k == "ArrowLeft"
+      preventDefault()
+      picked = gapId(max(0, gapRow(picked) - 1))
+    if k == "Escape"
+      picked = ""
+  action clear
+    picked = ""
+  view
+    column gap=14
+      svg id=`gap-${uid}` testId="gap-stage" viewBox="0 0 340 300" width="100%" display="block"
+        role="slider" tabindex=0 key=step aria-label="Who usually or always orgasms in partnered sex, by group. Arrow keys choose a bar." aria-valuetext=gapSpoken(picked)
+        outline="none" border-radius=16
+        :focus-visible
+          box-shadow="0 0 0 2px ember"
+        defs
+          linearGradient id="gap-women" gradientUnits="userSpaceOnUse" x1=20 y1=0 x2=270 y2=0
+            stop offset=0 stop-color="rose.deep"
+            stop offset=1 stop-color="ember"
+          linearGradient id="gap-men" gradientUnits="userSpaceOnUse" x1=20 y1=0 x2=270 y2=0
+            stop offset=0 stop-color="ink.faint"
+            stop offset=1 stop-color="ink.soft"
+        text "Usually or always orgasm with a partner" x=20 y=16 font-size=10.5 fill="ink.soft" letter-spacing="0.02em"
+        // The baseline: where heterosexual women's bar ends, carried up the chart.
+        path d=`M${gapX(65)} ${gapY(5) + 16}V${gapRow(picked) < 0 ? gapY(5) + 16 : gapRow(picked) == 5 ? gapY(0) + 12 : gapY(gapRow(picked)) + 7}`
+          fill="none" stroke="ink.soft" stroke-width=1 stroke-dasharray="2 4" stroke-linecap="round" opacity=(picked == "" ? 0 : 0.9)
+          transition=(still ? "none" : "d 500ms ease, opacity 300ms ease")
+        for i in range(6) key=i
+          g testId=`gap-bar-${gapId(i)}` press=pick(gapId(i))
+            opacity=(picked == "" or picked == gapId(i) or i == 5 ? 1 : 0.5) transition=(still ? "none" : "opacity 320ms ease")
+            rect x=0 y=(gapY(i) - 2) width=340 height=44 fill="none" pointer-events="all"
+            text gapName(i) x=20 y=(gapY(i) + 10) font-size=11.5 fill=(picked == gapId(i) ? "ink" : "ink.soft") font-weight=(picked == gapId(i) ? 600 : 400)
+            rect x=20 y=(gapY(i) + 16) width=250 height=14 rx=7 fill="paper.sunk"
+            line x1=27 x2=(gapX(gapPct(i)) - 7) y1=(gapY(i) + 23) y2=(gapY(i) + 23) stroke=(i < 3 ? "url(#gap-men)" : "url(#gap-women)") stroke-width=14 stroke-linecap="round"
+              opacity=(i < 3 ? 0.8 : 1) pathLength=1 stroke-dasharray="1 2"
+              animation=(still ? "none" : `gap-grow 900ms cubic-bezier(0.2, 0.7, 0.2, 1) ${120 + i * 90}ms both`)
+            text `${gapPct(i)}%` x=(gapX(gapPct(i)) + 8) y=(gapY(i) + 27) font-size=12 font-weight=600 fill=(i < 3 ? "ink.soft" : "ember.deep")
+              animation=(still ? "none" : `gap-fade 500ms ease ${700 + i * 90}ms both`)
+        // The baseline keeps a small light at its end.
+        circle cx=(gapX(65) - 7) cy=(gapY(5) + 23) r=3 fill="ember.light" pointer-events="none"
+          animation=(still ? "none" : "gap-breathe 4.2s ease-in-out 1600ms infinite")
+        // The bracket: from the baseline to the picked bar's end.
+        for id in [picked].filter(p => gapRow(p) >= 0 and gapRow(p) < 5) key=id
+          g pointer-events="none" animation=(still ? "none" : "gap-fade 420ms ease 120ms both")
+            path d=`M${gapX(65)} ${gapY(gapRow(id)) + 12}V${gapY(gapRow(id)) + 7}H${gapX(gapPct(gapRow(id)))}V${gapY(gapRow(id)) + 12}`
+              fill="none" stroke="honey" stroke-width=1.6 stroke-linecap="round" stroke-linejoin="round"
+            text gapPoints(gapPct(gapRow(id)) - 65) testId="gap-diff" x=((gapX(65) + gapX(gapPct(gapRow(id)))) / 2) y=(gapY(gapRow(id)) + 1)
+              text-anchor="middle" font-size=11 font-weight=600 fill="ink"
+      Caption(line=gapLine(picked))
+      row gap=8 justify-content="center" flex-wrap="wrap"
+        Chip(label="Lesbian women", on=(picked == "lesbian"), tone="ember", press=pick("lesbian"), tid="gap-pick-lesbian")
+        Chip(label="Heterosexual men", on=(picked == "het-men"), tone="ember", press=pick("het-men"), tid="gap-pick-het-men")
+        Chip(label="Clear", on=false, tone="ember", press=clear, tid="gap-clear")

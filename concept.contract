@@ -5,6 +5,22 @@ use Glyph from "./instruments/glyphs.contract"
 use ClitoralStructure from "./instruments/clitoral-structure.contract"
 use ArousalCurve from "./instruments/arousal.contract"
 use WarmupWindow from "./instruments/warmup-window.contract"
+use Angling from "./instruments/angling.contract"
+use Shallowing from "./instruments/shallowing.contract"
+use InternalStimulation from "./instruments/internal-stimulation.contract"
+use Clitourethrovaginal from "./instruments/clitourethrovaginal.contract"
+use Pairing from "./instruments/pairing.contract"
+use SpontaneousDesire from "./instruments/spontaneous-desire.contract"
+use ResponsiveDesire from "./instruments/responsive-desire.contract"
+use BrakesAccelerators from "./instruments/brakes-accelerators.contract"
+use NonConcordance from "./instruments/non-concordance.contract"
+use TheGap from "./instruments/the-gap.contract"
+use Asking from "./instruments/asking.contract"
+use Spreading from "./instruments/spreading.contract"
+use Spectatoring from "./instruments/spectatoring.contract"
+use EmbodiedPresence from "./instruments/embodied-presence.contract"
+use BodyAppreciation from "./instruments/body-appreciation.contract"
+use SexualSelfEsteem from "./instruments/sexual-self-esteem.contract"
 use NerveDensity from "./instruments/nerve-density.contract"
 use Pulsing from "./instruments/pulsing.contract"
 use Rocking from "./instruments/rocking.contract"
@@ -66,6 +82,38 @@ component ConceptPage
             ArousalCurve(uid=uid, mode=c.id)
           else if c.id == "warmup-window"
             WarmupWindow(uid=uid)
+          else if c.id == "angling"
+            Angling(uid=uid)
+          else if c.id == "shallowing"
+            Shallowing(uid=uid)
+          else if c.id == "internal-stimulation"
+            InternalStimulation(uid=uid)
+          else if c.id == "clitourethrovaginal"
+            Clitourethrovaginal(uid=uid)
+          else if c.id == "pairing"
+            Pairing(uid=uid)
+          else if c.id == "spontaneous-desire"
+            SpontaneousDesire(uid=uid)
+          else if c.id == "responsive-desire"
+            ResponsiveDesire(uid=uid)
+          else if c.id == "brakes-accelerators"
+            BrakesAccelerators(uid=uid)
+          else if c.id == "non-concordance"
+            NonConcordance(uid=uid)
+          else if c.id == "the-gap"
+            TheGap(uid=uid)
+          else if c.id == "asking"
+            Asking(uid=uid)
+          else if c.id == "spreading"
+            Spreading(uid=uid)
+          else if c.id == "spectatoring"
+            Spectatoring(uid=uid)
+          else if c.id == "embodied-presence"
+            EmbodiedPresence(uid=uid)
+          else if c.id == "body-appreciation"
+            BodyAppreciation(uid=uid)
+          else if c.id == "sexual-self-esteem"
+            SexualSelfEsteem(uid=uid)
           else if c.id == "nerve-density"
             NerveDensity(uid=uid)
           else if c.id == "pulsing"
