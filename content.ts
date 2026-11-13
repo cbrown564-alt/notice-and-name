@@ -238,8 +238,8 @@ export const concepts: Concept[] = [
     "reflect": "When internal pressure or wider contact felt good, where did it land — and does that change what you reach for next?",
     "source": "O'Connell et al., 2005; clitoral anatomy research",
     "stat": {
-      "value": "9–11 cm",
-      "label": "from tip to the ends of its legs; only the glans shows",
+      "value": "≈ 9 cm",
+      "label": "long in all; only the glans, a few millimetres across, can be seen",
       "source": "O'Connell et al., 2005",
       "percent": 0
     },

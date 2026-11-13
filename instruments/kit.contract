@@ -36,7 +36,7 @@ component Caption
     line: string
   view
     column min-height="4.4em" justify-content="center" padding="0 6px"
-      text line aria-live="polite" class=Serif font-size="1.0625rem" line-height=1.4 color="ink" text-align="center" text-wrap="balance"
+      text line testId="caption" aria-live="polite" class=Serif font-size="1.0625rem" line-height=1.4 color="ink" text-align="center" text-wrap="balance"
 
 component Chip
   props

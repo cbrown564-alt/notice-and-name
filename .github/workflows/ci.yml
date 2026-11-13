@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  # The Exact commit this app is developed against. Exact is pre-1.0 and has no
+  # compatibility promise: move this pin deliberately, with `bun exact.mjs update`.
+  EXACT_REF: 4465ccd98c1b686ed4c93bbb5bfc113c11379720
+  EXACT_FEEDBACK: '0'
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: notice-and-name
+      - uses: actions/checkout@v4
+        with:
+          repository: expo/exact
+          ref: ${{ env.EXACT_REF }}
+          path: expo/exact
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.2
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            expo/exact/target
+          key: exact-${{ runner.os }}-${{ env.EXACT_REF }}
+      - name: Set up Exact
+        working-directory: expo/exact
+        run: bun scripts/exact.mjs setup
+      - name: Compile
+        working-directory: notice-and-name
+        run: bun exact.mjs contract build app.contract --json --errors-only
+      - name: Test on the web host
+        working-directory: notice-and-name
+        run: bun exact.mjs test web

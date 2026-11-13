@@ -1,4 +1,95 @@
+epoch "2026-11-13T12:00:00Z"
+time-zone "Europe/London"
+
+test "the welcome begins with the map and is not shown again"
+  expect tree has "welcome"
+  tap "welcome-begin"
+  clock settle
+  expect text "concept-name" == "The Whole Clitoris"
+  expect state opened.0 == "clitoral-structure"
+  reload
+  tap "tab-today"
+  expect tree missing "welcome"
+
+test "today offers one prompt and its idea"
+  tap "welcome-dismiss"
+  expect text "prompt" == "When you feel something good, notice whether it stays in one place or travels."
+  tap "prompt-concept"
+  clock settle
+  expect text "concept-name" == "Spreading"
+
 test "the atlas opens a concept"
-  tap "tab-atlas"
+  at "/atlas"
   tap "atlas-angling"
+  clock settle
   expect text "concept-name" == "Angling"
+  expect text "hint" == "Drag to tilt the pelvis"
+
+test "going beneath the skin shows the whole clitoris"
+  at "/atlas/clitoral-structure"
+  expect text "caption" == "From outside, the clitoris is a small bead under a hood. That bead is the glans: only the tip."
+  tap "cs-legs"
+  clock settle
+  expect text "caption" == "Two legs, the crura, reach back along the pelvic bone. All of this is the clitoris: about nine centimetres, mostly unseen."
+
+test "the warm-up window fills with time"
+  at "/atlas/warmup-window"
+  tap "ww-25"
+  clock settle
+  expect text "caption" == "Fully engorged: larger, firmer, far more responsive. Nothing was wrong earlier. It simply was not time yet."
+
+test "holding builds arousal slowly, and a pause is not a reset"
+  at "/atlas/building"
+  expect state aLevel == 0
+  type "ar-stage" key " " down
+  clock +2000
+  expect state aLevel <= 0.2
+  clock +5000
+  expect state aLevel >= 0.6
+  type "ar-stage" key " " up
+  clock +2000
+  expect state aLevel >= 0.4
+  expect text "caption" == "You paused, and it did not vanish. Arousal fades slowly: a pause is not a reset."
+
+test "steady touch holds a plateau"
+  at "/atlas/plateauing"
+  tap "ar-hold"
+  clock +20000
+  expect state aLevel >= 0.6
+  expect state aLevel <= 0.8
+  expect text "caption" == "Holding. Not climbing, not fading: a hover you can stay in for as long as it is good."
+
+test "easing back from the edge counts as an approach, and going over releases"
+  at "/atlas/edging"
+  type "ar-stage" key " " down
+  clock +9800
+  expect state aLevel >= 0.82
+  type "ar-stage" key " " up
+  clock +5000
+  expect state aEdges == 1
+  expect state aReleasing == false
+  type "ar-stage" key " " down
+  clock +7000
+  expect state aReleasing == true
+  expect text "caption" == "Over the edge. After approaching and easing back, release often lands deeper."
+
+test "a word, a phrase and a note are kept, shown in Yours, and can be erased"
+  at "/atlas/angling"
+  tap "status-resonates"
+  tap "keep-angling-partner-request"
+  type "note-draft" "A small tilt forward."
+  tap "note-save"
+  clock data
+  expect state resonates.0 == "angling"
+  reload
+  tap "tab-yours"
+  expect text "word-angling" == "Angling"
+  expect text "kept-angling-partner-request" == "Can we play with tilting my hips a little and see what shifts? I'll show you when something lands."
+  expect text "yours-note-1" == "A small tilt forward."
+  tap "erase-open"
+  clock settle
+  tap "erase-confirm"
+  clock data
+  expect tree has "words-empty"
+  expect tree has "notes-empty"
+  expect state kept == []
