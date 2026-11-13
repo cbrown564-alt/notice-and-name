@@ -17,7 +17,7 @@ style Serif
   font-family="ui-serif, 'New York', 'Iowan Old Style', Georgia, serif"
 
 style Eyebrow
-  font-size="0.75rem"
+  font-size="min(-exact-caption1, 22px)"
   font-weight=600
   letter-spacing="0.08em"
   text-transform="uppercase"
@@ -36,7 +36,7 @@ component Caption
     line: string
   view
     column min-height="4.4em" justify-content="center" padding="0 6px"
-      text line testId="caption" aria-live="polite" class=Serif font-size="1.0625rem" line-height=1.4 color="ink" text-align="center" text-wrap="balance"
+      text line testId="caption" aria-live="polite" class=Serif font-size="min(-exact-body, 30px)" line-height=1.4 color="ink" text-align="center" text-wrap="balance"
 
 // A lit Chip's fill: a tone dark enough (light enough, in dark mode) for its label.
 fn chipFill(tone: string): string = tone == "ember" or tone == "rose" or tone == "rose.deep" or tone == "ember.deep" ? "chip.ember" : tone == "honey" ? "chip.honey" : tone == "sage" ? "chip.sage" : tone == "dusk" ? "chip.dusk" : "chip.ink"
@@ -51,7 +51,7 @@ component Chip
   view
     button press=press testId=tid appearance="none" aria-pressed=on padding="9px 15px" border-radius=999
       background-color=(on ? chipFill(tone) : "paper.sunk") color=(on ? "ink.on-chip" : "ink")
-      font-size="0.9375rem" font-weight=500 transition="background-color 180ms ease, color 180ms ease"
+      font-size="min(-exact-subheadline, 26px)" font-weight=500
       text label
 
 // A hundred people, `percent` of them lit: a statistic you can count.

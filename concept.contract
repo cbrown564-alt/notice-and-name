@@ -129,18 +129,18 @@ component ConceptPage
       column gap=28 flex="1 1 340px" min-width=0 max-width="42rem" margin="0 auto"
         column gap=8
           text chapterName(lib, c.chapter) class=Eyebrow color=toneOf(c.chapter)
-          text c.name role="heading" aria-level=1 class=Serif font-size="2rem" font-weight=600 line-height=1.15 testId="concept-name"
+          text c.name role="heading" aria-level=1 class=Serif font-size="min(-exact-large-title, 46px)" font-weight=600 line-height=1.15 testId="concept-name"
           text c.definition class=Body color="ink.soft"
         column gap=8
           text "Notice" class=Eyebrow
-          text c.notice class=Serif font-size="1.3125rem" line-height=1.4 font-style="italic"
+          text c.notice class=Serif font-size="min(-exact-title3, 34px)" line-height=1.4 font-style="italic"
         column gap=8
           text "Understand" class=Eyebrow
           text c.understand class=Body
           if c.stat.value != ""
             column class=Card gap=10 margin-top=8
               row align-items="baseline" gap=12
-                text c.stat.value class=Serif font-size="2.25rem" font-weight=600 color=toneOf(c.chapter) flex-shrink=0
+                text c.stat.value class=Serif font-size="min(-exact-large-title, 46px)" font-weight=600 color=toneOf(c.chapter) flex-shrink=0
                 text c.stat.label font-size="0.9375rem" line-height=1.4 color="ink" flex=1 min-width=0
               if c.stat.percent > 0
                 Crowd(percent=c.stat.percent, tone=toneOf(c.chapter), still=still)
@@ -154,7 +154,7 @@ component ConceptPage
           for p in c.phrases key=p.id
             column class=Card gap=8
               text p.label font-size="0.8125rem" font-weight=600 color="ink.soft"
-              text p.body class=Serif font-size="1.125rem" line-height=1.4 testId=`phrase-${p.id}`
+              text p.body class=Serif font-size="min(-exact-body, 30px)" line-height=1.4 testId=`phrase-${p.id}`
               row gap=8 justify-content="flex-end"
                 button press=send(p.body) aria-label="Share this phrase" testId=`share-${p.id}`
                   image "symbol:share"
@@ -163,7 +163,7 @@ component ConceptPage
                   image (kept.includes(p.id) ? "symbol:bookmark-fill" : "symbol:bookmark")
         column gap=10
           text "Reflect" class=Eyebrow
-          text c.reflect class=Serif font-size="1.3125rem" line-height=1.4
+          text c.reflect class=Serif font-size="min(-exact-title3, 34px)" line-height=1.4
           textarea value=draft input=edit placeholder="A private note. It stays on this device." aria-label="Private note"
             testId="note-draft" min-height=96
           row
@@ -188,11 +188,11 @@ component ConceptPage
             for r in c.related key=r
               link href=`/${tab}/${r}` testId=`related-${r}` display="flex" align-items="center" gap=14 class=Card padding=12 text-decoration="none" color="ink"
                 Glyph(id=r, chapter=conceptChapter(lib, r))
-                text conceptName(lib, r) class=Serif font-size="1.125rem" font-weight=600 flex=1 min-width=0
+                text conceptName(lib, r) class=Serif font-size="min(-exact-body, 30px)" font-weight=600 flex=1 min-width=0
                 image "symbol:forward-chevron" color="ink.soft"
         if nextId(lib, c.id) != ""
           link href=`/${tab}/${nextId(lib, c.id)}` testId="next-concept" display="flex" align-items="center" gap=14 padding="14px 4px" text-decoration="none" color="ink"
             column flex=1 min-width=0 gap=2
               text "Next in the atlas" class=Eyebrow
-              text conceptName(lib, nextId(lib, c.id)) class=Serif font-size="1.3125rem" font-weight=600
+              text conceptName(lib, nextId(lib, c.id)) class=Serif font-size="min(-exact-title3, 34px)" font-weight=600
             image "symbol:forward-chevron" color="ink.soft"

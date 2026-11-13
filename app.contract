@@ -126,7 +126,7 @@ component App
                       for ch in lib.chapters key=ch.id
                         column gap=12
                           column gap=4
-                            text ch.name role="heading" aria-level=2 class=Serif font-size="1.625rem" font-weight=600
+                            text ch.name role="heading" aria-level=2 class=Serif font-size="min(-exact-title1, 40px)" font-weight=600
                             text ch.blurb color="ink.soft" font-size="0.9375rem"
                           row flex-wrap="wrap" gap=12
                             for c in lib.concepts.filter(x => x.chapter == ch.id) key=c.id
@@ -134,7 +134,7 @@ component App
                                 flex="1 1 280px" min-width=0 box-sizing="border-box"
                                 Glyph(id=c.id, chapter=c.chapter)
                                 column flex=1 min-width=0 gap=2
-                                  text c.name class=Serif font-size="1.125rem" font-weight=600
+                                  text c.name class=Serif font-size="min(-exact-body, 30px)" font-weight=600
                                   text c.tagline font-size="0.9375rem" color="ink.soft"
                                 if statusOf(c.id, resonates, curious, passed) != ""
                                   box width=9 height=9 border-radius=5 flex-shrink=0 role="img"
@@ -147,7 +147,7 @@ component App
                         column class=Card gap=16 padding=22 testId="welcome"
                           Emblem(still=still)
                           column gap=8
-                            text "Notice what you like. Name it." role="heading" aria-level=2 class=Serif font-size="1.75rem" font-weight=600 line-height=1.2
+                            text "Notice what you like. Name it." role="heading" aria-level=2 class=Serif font-size="min(-exact-title1, 42px)" font-weight=600 line-height=1.2
                             text "An atlas of pleasure you learn with your hands: every idea here is a drawing you can touch, built on published research." class=Lead color="ink.soft"
                           column gap=10
                             for line in ["Private: no account, nothing leaves this device.", "Unhurried: nothing to finish, score or keep up.", "Yours: keep the words that fit, pass on the rest."] key=line
@@ -162,21 +162,21 @@ component App
                       for p in lib.prompts.slice(promptAt, promptAt + 1) key=p.id
                         column gap=12
                           text day class=Eyebrow
-                          text p.text role="heading" aria-level=2 class=Serif font-size="1.625rem" line-height=1.3 testId="prompt"
+                          text p.text role="heading" aria-level=2 class=Serif font-size="min(-exact-title1, 40px)" line-height=1.3 testId="prompt"
                           link href=`/today/${p.conceptId}` testId="prompt-concept" display="flex" align-items="center" gap=14 class=Card padding=12 text-decoration="none" color="ink"
                             Glyph(id=p.conceptId, chapter=chapterOf(lib, p.conceptId))
                             column flex=1 min-width=0 gap=2
                               text "Today's idea" font-size="0.8125rem" font-weight=600 color="ink.soft"
-                              text nameOf(lib, p.conceptId) class=Serif font-size="1.125rem" font-weight=600
+                              text nameOf(lib, p.conceptId) class=Serif font-size="min(-exact-body, 30px)" font-weight=600
                             image "symbol:forward-chevron" color="ink.soft"
                       column gap=12
                         column gap=4
-                          text "Paths" role="heading" aria-level=2 class=Serif font-size="1.625rem" font-weight=600
+                          text "Paths" role="heading" aria-level=2 class=Serif font-size="min(-exact-title1, 40px)" font-weight=600
                           text "Five ways through the atlas. Take any of them, in any order." color="ink.soft" font-size="0.9375rem"
                         for w in lib.pathways key=w.id
                           column class=Card gap=10 testId=`path-${w.id}`
                             column gap=3
-                              text w.name class=Serif font-size="1.1875rem" font-weight=600
+                              text w.name class=Serif font-size="min(-exact-title3, 32px)" font-weight=600
                               text w.summary font-size="0.9375rem" line-height=1.4 color="ink.soft"
                             row gap=6 align-items="center" role="img" aria-label=`${w.conceptIds.filter(id => opened.includes(id)).length} of ${w.conceptIds.length} opened`
                               for id in w.conceptIds key=id
@@ -190,11 +190,11 @@ component App
                   else
                     column class=Page
                       column gap=6
-                        text "Your vocabulary" role="heading" aria-level=2 class=Serif font-size="1.625rem" font-weight=600
+                        text "Your vocabulary" role="heading" aria-level=2 class=Serif font-size="min(-exact-title1, 40px)" font-weight=600
                         text "The words that fit you, the sentences worth keeping, and what you have noticed." color="ink.soft" font-size="0.9375rem"
                       if resonates.length + curious.length + passed.length == 0
                         column class=Card gap=10 testId="words-empty"
-                          text "No words yet" class=Serif font-size="1.1875rem" font-weight=600
+                          text "No words yet" class=Serif font-size="min(-exact-title3, 32px)" font-weight=600
                           text "Open any idea in the Atlas and say how it lands: resonates, curious, or not for me. Each one is useful to know." font-size="0.9375rem" line-height=1.45 color="ink.soft"
                           row
                             button press=pick("atlas") buttonStyle="bordered" testId="words-open-atlas"
@@ -215,7 +215,7 @@ component App
                         for p in keptPhrases key=p.id
                           column class=Card gap=8
                             text p.label font-size="0.8125rem" font-weight=600 color="ink.soft"
-                            text p.body class=Serif font-size="1.125rem" line-height=1.4 testId=`kept-${p.id}`
+                            text p.body class=Serif font-size="min(-exact-body, 30px)" line-height=1.4 testId=`kept-${p.id}`
                             row justify-content="flex-end"
                               button press=toggleKeep(p.id) aria-label="Remove from kept phrases" testId=`unkeep-${p.id}`
                                 image "symbol:bookmark-fill"
@@ -225,7 +225,7 @@ component App
                           text "Private notes you write under any idea's “Reflect” appear here." font-size="0.9375rem" line-height=1.45 color="ink.soft" testId="notes-empty"
                         for n in notes key=n.id
                           column class=Card gap=6
-                            row gap=8 align-items="baseline"
+                            row gap=8 align-items="baseline" flex-wrap="wrap"
                               link href=`/yours/${n.conceptId}` text-decoration="none" color="ember.deep" font-weight=600 font-size="0.9375rem" flex=1 min-width=0
                                 text nameOf(lib, n.conceptId)
                               text n.day font-size="0.8125rem" color="ink.soft"
@@ -234,7 +234,7 @@ component App
                               button press=removeNote(n.id) testId=`yours-note-remove-${n.id}`
                                 text "Delete"
                       column class=Card gap=10
-                        text "Private by design" class=Serif font-size="1.1875rem" font-weight=600
+                        text "Private by design" class=Serif font-size="min(-exact-title3, 32px)" font-weight=600
                         text "There is no account and no server. Your words, phrases and notes are stored only on this device, and you can erase them at any moment." font-size="0.9375rem" line-height=1.45 color="ink.soft"
                         row
                           button commandfor="erase-all" command="show-modal" testId="erase-open"
