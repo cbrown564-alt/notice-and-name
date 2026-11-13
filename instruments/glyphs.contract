@@ -1,0 +1,10 @@
+// One small drawing per concept: its mark in lists. Placeholder set, by chapter.
+
+component Glyph
+  props
+    id: string
+    chapter: string
+  view
+    svg viewBox="0 0 48 48" width=48 height=48 flex-shrink=0 aria-hidden=true
+      rect width=48 height=48 rx=14 fill="paper.sunk"
+      circle cx=24 cy=24 r=9 fill=(chapter == "map" ? "rose.deep" : chapter == "curve" ? "ember" : chapter == "wanting" ? "honey" : chapter == "attention" ? "dusk" : chapter == "touch" ? "sage" : "ink.soft")

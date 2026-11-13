@@ -1,0 +1,60 @@
+// The clitoris, front view: the one drawing three instruments share.
+// `reveal` peels the skin away (0 the vulva as seen, 1 the whole organ);
+// `swell` engorges the erectile tissue (0 at rest, 1 fully aroused);
+// `focus` names a part to light: "glans", "body", "bulbs", "crura" or "".
+use clamp01, span from "./kit.contract"
+
+fn partOpacity(on: number, focus: string, part: string): number = on * (focus == "" or focus == part ? 1 : 0.28)
+
+component Organ
+  props
+    reveal: number
+    swell: number
+    focus: string
+    glide: bool
+  view
+    g
+      defs
+        radialGradient id="organ-glans" cx="45%" cy="35%" r="75%"
+          stop offset=0 stop-color="ember.light"
+          stop offset=0.55 stop-color="ember"
+          stop offset=1 stop-color="ember.deep"
+        linearGradient id="organ-tissue" x1=0 y1=0 x2=0 y2=1
+          stop offset=0 stop-color="ember"
+          stop offset=1 stop-color="rose.deep"
+        linearGradient id="organ-bulb" x1=0 y1=0 x2=0 y2=1
+          stop offset=0 stop-color="rose.deep"
+          stop offset=1 stop-color="ember"
+        radialGradient id="organ-halo"
+          stop offset=0 stop-color="ember" stop-opacity=0.55
+          stop offset=1 stop-color="ember" stop-opacity=0
+      // The skin: outer lips, inner lips, hood. It thins to a trace as you go in.
+      g opacity=(1 - 0.9 * span(reveal, 0, 0.5)) transition=(glide ? "opacity 500ms ease" : "none")
+        path d="M170 30C120 36 94 104 100 178C106 242 138 298 170 308C202 298 234 242 240 178C246 104 220 36 170 30Z" fill="rose" opacity=0.55
+        path d="M170 84C144 108 138 172 148 226C153 252 163 270 170 276C177 270 187 252 192 226C202 172 196 108 170 84Z" fill="rose.deep" opacity=0.35
+      g fill="none" stroke="ink" stroke-linecap="round" opacity=(0.55 - 0.4 * span(reveal, 0, 0.6)) transition=(glide ? "opacity 500ms ease" : "none")
+        path d="M170 30C120 36 94 104 100 178C106 242 138 298 170 308C202 298 234 242 240 178C246 104 220 36 170 30Z" stroke-width=1.2
+        path d="M170 84C144 108 138 172 148 226C153 252 163 270 170 276" stroke-width=1
+        path d="M170 84C196 108 202 172 192 226C187 252 177 270 170 276" stroke-width=1
+        path d="M155 104C156 78 184 78 185 104" stroke-width=1.4
+      // The openings, for orientation at every depth.
+      ellipse cx=170 cy=158 rx=2.6 ry=3.4 fill="ink" opacity=0.45
+      ellipse cx=170 cy=216 rx=8 ry=20 fill="ink" opacity=0.22
+      // The legs (crura): the deepest part, a wishbone along the pelvic bone.
+      g opacity=partOpacity(span(reveal, 0.62, 0.95), focus, "crura") transition=(glide ? "opacity 500ms ease" : "none")
+        path d="M72 232C98 132 140 54 170 50C200 54 242 132 268 232C271 243 257 247 254 236C236 172 204 108 170 90C136 108 104 172 86 236C83 247 69 243 72 232Z" fill="url(#organ-tissue)"
+          transform-box="fill-box" transform-origin="50% 0%" scale=(1 + 0.06 * swell) transition=(glide ? "scale 900ms ease" : "none")
+      // The bulbs: either side of the vaginal opening.
+      g opacity=partOpacity(span(reveal, 0.36, 0.66), focus, "bulbs") transition=(glide ? "opacity 500ms ease" : "none")
+        path d="M160 110C134 118 112 156 120 204C126 236 148 252 156 236C164 214 160 150 164 116Z" fill="url(#organ-bulb)"
+          transform-box="fill-box" transform-origin="100% 20%" scale=(1 + 0.2 * swell) transition=(glide ? "scale 900ms ease" : "none")
+        path d="M180 110C206 118 228 156 220 204C214 236 192 252 184 236C176 214 180 150 176 116Z" fill="url(#organ-bulb)"
+          transform-box="fill-box" transform-origin="0% 20%" scale=(1 + 0.2 * swell) transition=(glide ? "scale 900ms ease" : "none")
+      // The body: up and back from the glans, then it turns.
+      g opacity=partOpacity(span(reveal, 0.1, 0.36), focus, "body") transition=(glide ? "opacity 500ms ease" : "none")
+        path d="M162 100C160 78 160 62 170 54C180 62 180 78 178 100Z" fill="url(#organ-tissue)"
+          transform-box="fill-box" transform-origin="50% 100%" scale=(1 + 0.12 * swell) transition=(glide ? "scale 900ms ease" : "none")
+      // The glans: the only part at the surface, so it is always here.
+      circle cx=170 cy=102 r=(20 + 14 * swell) fill="url(#organ-halo)" opacity=(focus == "" or focus == "glans" ? 1 : 0.3)
+      circle cx=170 cy=102 r=(8 + 2.5 * swell) fill="url(#organ-glans)" opacity=(focus == "" or focus == "glans" ? 1 : 0.4)
+        transition=(glide ? "r 900ms ease" : "none")

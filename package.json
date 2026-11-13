@@ -1,35 +1,9 @@
 {
-  "name": "pleasure-vocab",
-  "version": "1.0.0",
+  "name": "notice-and-name",
   "private": true,
   "scripts": {
-    "compress-assets": "node scripts/compress-assets.js",
-    "generate-concept-audit": "node scripts/generate-concept-audit.js",
-    "mark-qa-batch": "node scripts/mark-qa-batch.js",
-    "bundle-report": "node scripts/bundle-report.js",
-    "generate-v2-full-bundle": "node scripts/generate-v2-full-bundle.js",
-    "lint-v2-content": "node scripts/lint-v2-content.js",
-    "preview-v2-content": "node scripts/preview-v2-content.js",
-    "validate-manifest": "node scripts/validate-manifest.js",
-    "validate-manifest:strict": "STRICT=1 node scripts/validate-manifest.js",
-    "validate-v2-bundle": "node scripts/validate-v2-bundle.js",
-    "validate-v2-bundle:full": "node scripts/validate-v2-bundle.js content/v2/bundles/v2-full.bundle.json",
-    "sync-registry": "node scripts/sync-registry.js",
-    "reference-renders": "node scripts/reference-renders.js",
-    "migrate-illustration-prompts": "node scripts/migrate-illustration-prompts.js",
-    "pilot-review": "node scripts/pilot-compare.js",
-    "pilot-compare": "node scripts/pilot-compare.js",
-    "swap-pilot-winner": "node scripts/swap-pilot-winner.js",
-    "wire-concept-video": "node scripts/wire-concept-video.js",
-    "asset-dashboard": "node scripts/asset-dashboard.js",
-    "media-master-sheet": "node scripts/generate-media-master-sheet.js --write-md && node scripts/preview-media-master-sheet.js",
-    "sync-ios-media": "node scripts/sync-ios-media.js",
-    "batch-asset-queue": "node scripts/batch-asset-queue.js",
-    "enrich-illustration-prompts": "node scripts/enrich-illustration-prompts.js",
-    "sync-ios-audio": "node scripts/sync-ios-audio.js"
+    "build": "bun exact.mjs web-build --out dist",
+    "start": "bun exact.mjs serve dist"
   },
-  "devDependencies": {
-    "sharp": "^0.34.5",
-    "typescript": "~5.9.2"
-  }
+  "dependencies": {}
 }

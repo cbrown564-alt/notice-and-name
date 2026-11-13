@@ -1,0 +1,69 @@
+// The records app.ts answers with (content.ts holds the editorial ones).
+
+shape Phrase
+  id: string
+  kind: string
+  label: string
+  body: string
+
+shape Stat
+  value: string
+  label: string
+  source: string
+  percent: number
+
+shape Concept
+  id: string
+  name: string
+  chapter: string
+  tagline: string
+  hint: string
+  isNew: bool
+  definition: string
+  notice: string
+  understand: string
+  tryIt: string
+  reflect: string
+  source: string
+  stat: Stat
+  related: string[]
+  phrases: Phrase[]
+
+shape Chapter
+  id: string
+  name: string
+  blurb: string
+  conceptIds: string[]
+
+shape Pathway
+  id: string
+  name: string
+  summary: string
+  conceptIds: string[]
+
+shape Prompt
+  id: string
+  conceptId: string
+  text: string
+
+shape Library
+  chapters: Chapter[]
+  concepts: Concept[]
+  pathways: Pathway[]
+  prompts: Prompt[]
+
+shape Note
+  id: string
+  conceptId: string
+  text: string
+  day: string
+
+shape Reply
+  ok: bool
+
+shape Time
+  epochAtZero: number
+  utcOffset: number
+
+shape Media
+  prefersReducedMotion: bool

@@ -1,0 +1,113 @@
+// A concept's page: its instrument first, then the words around it.
+use Concept, Library, Note from "./shapes.contract"
+use Serif, Eyebrow, Crowd, Chip from "./instruments/kit.contract"
+use Glyph from "./instruments/glyphs.contract"
+use ClitoralStructure from "./instruments/clitoral-structure.contract"
+
+fn conceptName(lib: Library, id: string): string = match first(lib.concepts.filter(c => c.id == id)) { case some(c) => c.name, case none => "" }
+fn conceptChapter(lib: Library, id: string): string = match first(lib.concepts.filter(c => c.id == id)) { case some(c) => c.chapter, case none => "" }
+fn chapterName(lib: Library, id: string): string = match first(lib.chapters.filter(c => c.id == id)) { case some(c) => c.name, case none => "" }
+fn toneOf(chapter: string): string = chapter == "map" ? "rose.deep" : chapter == "curve" ? "ember" : chapter == "wanting" ? "honey" : chapter == "attention" ? "dusk" : chapter == "touch" ? "sage" : "ember.deep"
+
+style Card
+  background-color="paper.raised"
+  border-radius=22
+  padding=18
+
+style Body
+  font-size="1.0625rem"
+  line-height=1.55
+  color="ink"
+
+component ConceptPage
+  inject
+    still: bool
+  props
+    c: Concept
+    lib: Library
+    tab: string
+    uid: string
+    status: string
+    kept: string[]
+    notes: Note[]
+    setStatus: action
+    toggleKeep: action
+    addNote: action
+    removeNote: action
+  state draft = ""
+  action edit(v: string)
+    draft = v
+  action save
+    if draft.trim() != ""
+      addNote(c.id, draft.trim())
+      draft = ""
+  view
+    column gap=28 padding="8px 20px 48px" max-width="42rem" width="100%" margin="0 auto" box-sizing="border-box"
+      column gap=10
+        text c.hint class=Eyebrow text-align="center" testId="hint"
+        column class=Card padding=14 testId="stage"
+          if c.id == "clitoral-structure"
+            ClitoralStructure(uid=uid)
+          else
+            text `instrument: ${c.id}` color="ink.soft" text-align="center" padding=40
+      column gap=8
+        text chapterName(lib, c.chapter) class=Eyebrow color=toneOf(c.chapter)
+        text c.name role="heading" aria-level=1 class=Serif font-size="2rem" font-weight=600 line-height=1.15 testId="concept-name"
+        text c.definition class=Body color="ink.soft"
+      column gap=8
+        text "Notice" class=Eyebrow
+        text c.notice class=Serif font-size="1.3125rem" line-height=1.4 font-style="italic"
+      column gap=8
+        text "Understand" class=Eyebrow
+        text c.understand class=Body
+        if c.stat.value != ""
+          column class=Card gap=10 margin-top=8
+            row align-items="baseline" gap=12
+              text c.stat.value class=Serif font-size="2.25rem" font-weight=600 color=toneOf(c.chapter) flex-shrink=0
+              text c.stat.label font-size="0.9375rem" line-height=1.4 color="ink" flex=1 min-width=0
+            if c.stat.percent > 0
+              Crowd(percent=c.stat.percent, tone=toneOf(c.chapter), still=still)
+            text c.stat.source font-size="0.8125rem" color="ink.soft"
+        text c.source font-size="0.8125rem" color="ink.soft"
+      column gap=8
+        text "Try" class=Eyebrow
+        text c.tryIt class=Body
+      column gap=10
+        text "Say it" class=Eyebrow
+        for p in c.phrases key=p.id
+          row class=Card gap=12 align-items="flex-start"
+            column flex=1 min-width=0 gap=4
+              text p.label font-size="0.8125rem" font-weight=600 color="ink.soft"
+              text p.body class=Serif font-size="1.125rem" line-height=1.4 testId=`phrase-${p.id}`
+            button press=toggleKeep(p.id) aria-label=(kept.includes(p.id) ? "Remove from kept phrases" : "Keep this phrase")
+              aria-pressed=kept.includes(p.id) testId=`keep-${p.id}`
+              image (kept.includes(p.id) ? "symbol:bookmark-fill" : "symbol:bookmark")
+      column gap=10
+        text "Reflect" class=Eyebrow
+        text c.reflect class=Serif font-size="1.3125rem" line-height=1.4
+        textarea value=draft input=edit placeholder="A private note. It stays on this device." aria-label="Private note"
+          testId="note-draft" min-height=96
+        row
+          button press=save disabled=(draft.trim() == "") buttonStyle="filled" testId="note-save"
+            text "Keep note"
+        for n in notes key=n.id
+          column class=Card gap=6
+            text n.day font-size="0.8125rem" color="ink.soft"
+            text n.text class=Body white-space="pre-wrap" testId=`note-${n.id}`
+            row
+              button press=removeNote(n.id) testId=`note-remove-${n.id}`
+                text "Delete"
+      column gap=10
+        text "How does this land?" class=Eyebrow
+        row gap=8 flex-wrap="wrap" role="group" aria-label="How does this land?"
+          Chip(label="Resonates", on=(status == "resonates"), tone="ember", press=setStatus(c.id, "resonates"), tid="status-resonates")
+          Chip(label="Curious", on=(status == "curious"), tone="honey", press=setStatus(c.id, "curious"), tid="status-curious")
+          Chip(label="Not for me", on=(status == "passed"), tone="ink.soft", press=setStatus(c.id, "passed"), tid="status-passed")
+      if c.related.length > 0
+        column gap=10
+          text "Related" class=Eyebrow
+          for r in c.related key=r
+            link href=`/${tab}/${r}` testId=`related-${r}` display="flex" align-items="center" gap=14 class=Card padding=12 text-decoration="none" color="ink"
+              Glyph(id=r, chapter=conceptChapter(lib, r))
+              text conceptName(lib, r) class=Serif font-size="1.125rem" font-weight=600 flex=1 min-width=0
+              image "symbol:forward-chevron" color="ink.soft"

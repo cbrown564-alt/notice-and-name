@@ -1,0 +1,109 @@
+// Notice & Name: a private atlas of pleasure, taught by drawings you can touch.
+// This file is the shell: three tabs, each its own stack. A concept's page is
+// concept.contract; every instrument is a file under instruments/.
+use Concept, Chapter, Pathway, Prompt, Library, Note, Reply, Time, Media from "./shapes.contract"
+use ConceptPage from "./concept.contract"
+use Serif, Eyebrow from "./instruments/kit.contract"
+use Glyph from "./instruments/glyphs.contract"
+
+routes nav
+  tab today "/"
+    todayConcept "/today/:id"
+  tab atlas "/atlas"
+    concept "/atlas/:id"
+  tab yours "/yours"
+    yoursConcept "/yours/:id"
+
+fn isConcept(name: string): bool = name == "concept" or name == "todayConcept" or name == "yoursConcept"
+fn nameOf(lib: Library, id: string): string = match first(lib.concepts.filter(c => c.id == id)) { case some(c) => c.name, case none => "" }
+fn statusOf(id: string, resonates: string[], curious: string[], passed: string[]): string = resonates.includes(id) ? "resonates" : curious.includes(id) ? "curious" : passed.includes(id) ? "passed" : ""
+
+style Page
+  gap=28
+  padding="8px 20px 48px"
+  max-width="42rem"
+  width="100%"
+  margin="0 auto"
+  box-sizing="border-box"
+
+style Card
+  background-color="paper.raised"
+  border-radius=22
+  padding=18
+
+component App
+  resource lib = library() as shape Library else empty()
+  resource notes = loadNotes() as shape Note[] else empty()
+  resource time = exactTime() as shape Time
+  resource media = exactViewport() as shape Media
+  mutation noted as shape Reply queue refreshes notes
+  state resonates: string[] = [] persist
+  state curious: string[] = [] persist
+  state passed: string[] = [] persist
+  state kept: string[] = [] persist
+  derive still = media.prefersReducedMotion
+  derive day = formatDate(time.epochAtZero + performanceNow(), time.utcOffset, "medium")
+  provide
+    still
+  action pick(name: string)
+    nav = select(nav, name)
+  action follow(url: string)
+    nav = go(nav, url)
+  action setStatus(id: string, s: string)
+    let was = statusOf(id, resonates, curious, passed)
+    resonates = s == "resonates" and was != s ? resonates.filter(x => x != id).concat([id]) : resonates.filter(x => x != id)
+    curious = s == "curious" and was != s ? curious.filter(x => x != id).concat([id]) : curious.filter(x => x != id)
+    passed = s == "passed" and was != s ? passed.filter(x => x != id).concat([id]) : passed.filter(x => x != id)
+  action toggleKeep(id: string)
+    kept = kept.includes(id) ? kept.filter(k => k != id) : kept.concat([id])
+  action addNote(conceptId: string, body: string)
+    send noted = addNote(conceptId, body, day)
+  action removeNote(id: string)
+    send noted = removeNote(id)
+  view
+    main navigationKey=`${top(nav).id}` navigationBack="back" navigate=follow testId="app" width="100%" height="100%"
+      display="flex" flex-direction="column" background-color="paper" color="ink"
+      column flex=1 min-height=0 position="relative"
+        for t in nav.tabs key=t.name
+          column role="tabpanel" id=`panel-${t.name}` position="absolute" inset=0
+            for e in t.stack key=e.id
+              column navigationKey=`${e.id}` navigationScroll=`content-${e.id}` position="absolute" inset=0
+                display="flex" flex-direction="column" background-color="paper"
+                header display="flex" align-items="center" gap=8 padding="8px 16px"
+                  text (e.name == "today" ? "Today" : e.name == "atlas" ? "Atlas" : e.name == "yours" ? "Yours" : nameOf(lib, e.params.id))
+                    role="heading" aria-level=(isConcept(e.name) ? 2 : 1) flex=1
+                scroll id=`content-${e.id}` flex=1 min-height=0
+                  if isConcept(e.name)
+                    for c in lib.concepts.filter(x => x.id == e.params.id) key=c.id
+                      ConceptPage(c=c, lib=lib, tab=t.name, uid=`${e.id}`, status=statusOf(c.id, resonates, curious, passed), kept=kept,
+                        notes=notes.filter(n => n.conceptId == c.id), setStatus=setStatus, toggleKeep=toggleKeep, addNote=addNote, removeNote=removeNote)
+                  else if e.name == "atlas"
+                    column class=Page
+                      for ch in lib.chapters key=ch.id
+                        column gap=12
+                          column gap=4
+                            text ch.name role="heading" aria-level=2 class=Serif font-size="1.625rem" font-weight=600
+                            text ch.blurb color="ink.soft" font-size="0.9375rem"
+                          for c in lib.concepts.filter(x => x.chapter == ch.id) key=c.id
+                            link href=path("concept", c.id) testId=`atlas-${c.id}` display="flex" align-items="center" gap=14 class=Card padding=12 text-decoration="none" color="ink"
+                              Glyph(id=c.id, chapter=c.chapter)
+                              column flex=1 min-width=0 gap=2
+                                text c.name class=Serif font-size="1.125rem" font-weight=600
+                                text c.tagline font-size="0.9375rem" color="ink.soft"
+                              image "symbol:forward-chevron" color="ink.soft"
+                  else if e.name == "today"
+                    column class=Page
+                      text "Today" class=Serif font-size="2rem" font-weight=600
+                  else
+                    column class=Page
+                      text "Yours" class=Serif font-size="2rem" font-weight=600
+      row role="tablist" testId="tabs"
+        button role="tab" aria-controls="panel-today" aria-selected=(nav.tab == "today") press=pick("today") testId="tab-today" flex=1
+          image "symbol:sparkles"
+          text "Today"
+        button role="tab" aria-controls="panel-atlas" aria-selected=(nav.tab == "atlas") press=pick("atlas") testId="tab-atlas" flex=1
+          image "symbol:layers"
+          text "Atlas"
+        button role="tab" aria-controls="panel-yours" aria-selected=(nav.tab == "yours") press=pick("yours") testId="tab-yours" flex=1
+          image "symbol:bookmark"
+          text "Yours"

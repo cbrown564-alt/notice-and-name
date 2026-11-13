@@ -1,0 +1,26 @@
+tamber brand
+
+theme
+  AccentColor = light-dark(#C24A2C, #D9603F)
+  paper = light-dark(#FAF6F1, #151117)
+  paper.raised = light-dark(#F3ECE3, #1F1921)
+  paper.sunk = light-dark(#EADFD3, #2B232E)
+  ink = light-dark(#2B1F2B, #F3EADF)  pair=paper
+  ink.soft = light-dark(#66575F, #BBADB4)  pair=paper.raised
+  ink.faint = light-dark(#CFC2B9, #4B404E)
+  ember = light-dark(#E8603C, #F27D5C)
+  ember.deep = light-dark(#B03F26, #F6A187)  pair=paper.raised
+  ember.glow = light-dark(#FFD5C6, #5C2B22)
+  ember.light = light-dark(#FFE3D8, #FFD9CC)
+  sage = light-dark(#5E8468, #8DB497)
+  sage.deep = light-dark(#426349, #A9CBB1)  pair=paper.raised
+  sage.soft = light-dark(#D7E4D8, #26372B)
+  dusk = light-dark(#6F68C9, #A29CF0)
+  dusk.deep = light-dark(#4F48A6, #BDB8F5)  pair=paper.raised
+  dusk.soft = light-dark(#E1DFF6, #2B2848)
+  honey = light-dark(#D99A2B, #EDB957)
+  honey.soft = light-dark(#F7E8C6, #4A3A1C)
+  rose = light-dark(#EDBFB2, #7E4F49)
+  rose.deep = light-dark(#CE8172, #B87064)
+  bone = light-dark(#E6DCCF, #3B333D)
+  ink.on-ember = #FFFFFF  scheme=fixed

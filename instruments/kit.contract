@@ -1,0 +1,66 @@
+// The shared kit: maths, type styles and the small parts every instrument uses.
+// An instrument is one component: an SVG stage the person touches, then its
+// Caption (what the picture is saying right now) and its controls.
+
+fn clamp(n: number, lo: number, hi: number): number = min(hi, max(lo, n))
+fn clamp01(n: number): number = min(1, max(0, n))
+fn lerp(a: number, b: number, t: number): number = a + (b - a) * t
+fn mag(n: number): number = max(n, 0 - n)
+fn fract(n: number): number = n - floor(n)
+// A fixed scatter: the same "random" number for the same index on every host.
+fn rnd(i: number): number = fract(sin(i * 12.9898 + 4.1) * 43758.5453)
+fn ease(t: number): number = clamp01(t) * clamp01(t) * (3 - 2 * clamp01(t))
+// How far `t` is through the window [a, b], clamped.
+fn span(t: number, a: number, b: number): number = clamp01((t - a) / (b - a))
+
+style Serif
+  font-family="ui-serif, 'New York', 'Iowan Old Style', Georgia, serif"
+
+style Eyebrow
+  font-size="0.75rem"
+  font-weight=600
+  letter-spacing="0.08em"
+  text-transform="uppercase"
+  color="ink.soft"
+
+keyframes kit-breathe
+  50% opacity=0.45
+
+keyframes kit-pop
+  from opacity=0 scale=0.4
+
+// The instrument's voice: one or two lines under the stage that change as the
+// person plays. A fixed minimum height keeps the controls below from jumping.
+component Caption
+  props
+    line: string
+  view
+    column min-height="4.4em" justify-content="center" padding="0 6px"
+      text line aria-live="polite" class=Serif font-size="1.0625rem" line-height=1.4 color="ink" text-align="center" text-wrap="balance"
+
+component Chip
+  props
+    label: string
+    on: bool
+    tone: string
+    press: action
+    tid: string
+  view
+    button press=press testId=tid appearance="none" aria-pressed=on padding="9px 15px" border-radius=999
+      background-color=(on ? tone : "paper.sunk") color=(on ? "ink.on-ember" : "ink")
+      font-size="0.9375rem" font-weight=500 transition="background-color 180ms ease, color 180ms ease"
+      text label
+
+// A hundred people, `percent` of them lit: a statistic you can count.
+component Crowd
+  props
+    percent: number
+    tone: string
+    still: bool
+  view
+    svg viewBox="0 0 340 86" width="100%" display="block" role="img" aria-label=`${round(percent)} in 100`
+      for i in range(100) key=i
+        circle cx=(13 + (i % 20) * 16.5) cy=(11 + floor(i / 20) * 16) r=5.4
+          fill=(i < round(percent) ? tone : "ink.faint") opacity=(i < round(percent) ? 1 : 0.55)
+          transform-box="fill-box" transform-origin="center"
+          animation=(still ? "none" : `kit-pop 360ms ease-out ${i * 9}ms both`)

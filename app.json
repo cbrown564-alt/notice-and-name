@@ -1,0 +1,20 @@
+{
+  "$schema": "../expo/exact/scripts/app.schema.json",
+  "name": "Notice & Name",
+  "short_name": "Notice & Name",
+  "id": "com.noticeandname.app",
+  "start_url": "/",
+  "display": "standalone",
+  "app": {
+    "id": "com.noticeandname.app",
+    "name": "Notice & Name"
+  },
+  "host": {
+    "web": {}
+  },
+  "deploy": {
+    "store": {
+      "web": "0"
+    }
+  }
+}

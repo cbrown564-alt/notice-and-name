@@ -1,65 +1,8 @@
-# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
-
-# dependencies
-node_modules/
-
-# Native
-.kotlin/
-*.orig.*
-*.jks
-*.p8
-*.p12
-*.key
-*.mobileprovision
-
-# debug
-npm-debug.*
-yarn-debug.*
-yarn-error.*
-
-# macOS
-.DS_Store
-*.pem
-
-# local env files
-.env*.local
-
-# typescript
-*.tsbuildinfo
-
-# generated build output
-build/
-ios/.build/
-ios/.swiftpm/
-ios/DerivedData/
-ios/PleasureVocabulary.xcodeproj/xcuserdata/
-ios/PleasureVocabulary.xcodeproj/project.xcworkspace/xcuserdata/
-
-# retired Expo output that may remain in existing checkouts
-.expo/
-dist/
-expo-env.d.ts
-ios-native/
-components/
-
-# iOS concept media — generated from assets/ via npm run sync-ios-media
-ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/*
-!ios/Sources/PleasureVocabularyApp/Resources/media/illustrations/.gitkeep
-ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/*
-!ios/Sources/PleasureVocabularyApp/Resources/media/thumbnails/.gitkeep
-ios/Sources/PleasureVocabularyApp/Resources/media/videos/*
-!ios/Sources/PleasureVocabularyApp/Resources/media/videos/.gitkeep
-ios/Sources/PleasureVocabularyApp/Resources/media/explainers/*
-!ios/Sources/PleasureVocabularyApp/Resources/media/explainers/.gitkeep
-
-# iOS audio — generated from assets/audio via sync-ios-media / sync-ios-audio
-ios/Sources/PleasureVocabularyApp/Resources/media/audio/phrases/*
-!ios/Sources/PleasureVocabularyApp/Resources/media/audio/phrases/.gitkeep
-ios/Sources/PleasureVocabularyApp/Resources/media/audio/onboarding/*
-!ios/Sources/PleasureVocabularyApp/Resources/media/audio/onboarding/.gitkeep
-ios/Sources/PleasureVocabularyApp/Resources/media/audio/notice-moments/*
-!ios/Sources/PleasureVocabularyApp/Resources/media/audio/notice-moments/.gitkeep
-ios/Sources/PleasureVocabularyApp/Resources/media/audio/explainers/*
-!ios/Sources/PleasureVocabularyApp/Resources/media/audio/explainers/.gitkeep
-ios/Sources/PleasureVocabularyApp/Resources/media/audio/sfx/*
-!ios/Sources/PleasureVocabularyApp/Resources/media/audio/sfx/.gitkeep
+/target/
+/dist/
+/dist.*
+/dist-windows/
+/node_modules/
+/app.contract.d.ts
+/.exact/
+/.env.local

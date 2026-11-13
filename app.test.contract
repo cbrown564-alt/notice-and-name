@@ -1,0 +1,4 @@
+test "the atlas opens a concept"
+  tap "tab-atlas"
+  tap "atlas-angling"
+  expect text "concept-name" == "Angling"
