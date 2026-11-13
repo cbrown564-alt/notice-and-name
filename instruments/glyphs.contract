@@ -1,10 +1,110 @@
-// One small drawing per concept: its mark in lists. Placeholder set, by chapter.
+// One small drawing per concept: its mark in lists and links. Each is a few
+// strokes in its chapter's tone on a 48-unit tile.
+
+fn glyphTone(chapter: string): string = chapter == "map" ? "rose.deep" : chapter == "curve" ? "ember" : chapter == "wanting" ? "honey" : chapter == "attention" ? "dusk" : chapter == "touch" ? "sage" : "ember.deep"
 
 component Glyph
   props
     id: string
     chapter: string
   view
-    svg viewBox="0 0 48 48" width=48 height=48 flex-shrink=0 aria-hidden=true
+    svg viewBox="0 0 48 48" width=48 height=48 flex-shrink=0 aria-hidden=true color=glyphTone(chapter)
       rect width=48 height=48 rx=14 fill="paper.sunk"
-      circle cx=24 cy=24 r=9 fill=(chapter == "map" ? "rose.deep" : chapter == "curve" ? "ember" : chapter == "wanting" ? "honey" : chapter == "attention" ? "dusk" : chapter == "touch" ? "sage" : "ink.soft")
+      g fill="none" stroke="currentcolor" stroke-width=2.2 stroke-linecap="round" stroke-linejoin="round"
+        if id == "clitoral-structure"
+          path d="M12 37C15 24 20 15 24 14C28 15 33 24 36 37"
+          path d="M20 36C19 28 21 23 24 21C27 23 29 28 28 36" opacity=0.5
+          circle cx=24 cy=14 r=3 fill="currentcolor" stroke="none"
+        else if id == "nerve-density"
+          for i in range(13) key=i
+            circle cx=(24 + 5.5 * cos(i * 2.4) * (i % 3 == 0 ? 0.4 : 1)) cy=(24 + 5.5 * sin(i * 2.4) * (i % 3 == 0 ? 0.4 : 1)) r=1.3 fill="currentcolor" stroke="none"
+          for i in range(7) key=i
+            circle cx=(24 + 14 * cos(i * 0.9 + 0.4)) cy=(24 + 14 * sin(i * 0.9 + 0.4)) r=1.1 fill="currentcolor" stroke="none" opacity=0.45
+        else if id == "clitourethrovaginal"
+          circle cx=19 cy=21 r=8
+          circle cx=29 cy=21 r=8 opacity=0.7
+          circle cx=24 cy=29 r=8 opacity=0.45
+        else if id == "internal-stimulation"
+          path d="M14 38C16 28 22 20 34 12" opacity=0.45
+          path d="M20 38C22 30 28 23 38 17" opacity=0.45
+          path d="M30 30L22 25"
+          path d="M22 30L22 25L27 25"
+          circle cx=19 cy=22 r=3 fill="currentcolor" stroke="none"
+        else if id == "warmup-window"
+          path d="M24 10A14 14 0 1 1 10 24" opacity=0.45
+          path d="M24 15L24 24L31 28"
+          circle cx=24 cy=10 r=2.6 fill="currentcolor" stroke="none"
+        else if id == "building"
+          path d="M10 36C24 35 32 30 38 12"
+          circle cx=38 cy=12 r=2.8 fill="currentcolor" stroke="none"
+        else if id == "plateauing"
+          path d="M10 36C18 34 20 20 26 19L38 19"
+          circle cx=38 cy=19 r=2.8 fill="currentcolor" stroke="none"
+        else if id == "edging"
+          path d="M10 12L38 12" stroke-dasharray="1 5" opacity=0.6
+          path d="M9 36C14 34 16 17 20 17C23 17 23 27 26 27C29 27 29 16 33 16C36 16 37 24 39 26"
+        else if id == "pulsing"
+          circle cx=24 cy=24 r=3 fill="currentcolor" stroke="none"
+          circle cx=24 cy=24 r=8 opacity=0.75
+          circle cx=24 cy=24 r=14 opacity=0.4
+        else if id == "spreading"
+          circle cx=16 cy=30 r=3 fill="currentcolor" stroke="none"
+          path d="M16 20A10 10 0 0 1 26 30" opacity=0.85
+          path d="M16 13A17 17 0 0 1 33 30" opacity=0.55
+          path d="M17 7A23 23 0 0 1 39 29" opacity=0.3
+        else if id == "spontaneous-desire"
+          path d="M24 9C25 19 29 23 39 24C29 25 25 29 24 39C23 29 19 25 9 24C19 23 23 19 24 9Z" fill="currentcolor" stroke="none"
+        else if id == "responsive-desire"
+          path d="M10 34C18 34 22 32 26 26" opacity=0.5
+          path d="M24 31C30 31 35 26 35 19C31 20 29 18 28 13C24 17 21 21 21 26C21 29 22 31 24 31Z" fill="currentcolor" stroke="none"
+        else if id == "brakes-accelerators"
+          rect x=11 y=20 width=10 height=18 rx=4 opacity=0.5
+          rect x=27 y=10 width=10 height=28 rx=4 fill="currentcolor" stroke="none"
+        else if id == "non-concordance"
+          path d="M9 19C14 11 19 11 24 19C29 27 34 27 39 19"
+          path d="M9 31C14 37 19 37 24 31C29 25 34 25 39 31" opacity=0.5
+        else if id == "spectatoring"
+          path d="M9 24C14 15 34 15 39 24C34 33 14 33 9 24Z"
+          circle cx=24 cy=24 r=4 fill="currentcolor" stroke="none"
+        else if id == "embodied-presence"
+          circle cx=24 cy=24 r=14 opacity=0.4
+          circle cx=24 cy=24 r=6 fill="currentcolor" stroke="none"
+        else if id == "body-appreciation"
+          path d="M24 10C19 10 17 15 19 19C14 22 13 30 16 38L32 38C35 30 34 22 29 19C31 15 29 10 24 10Z" opacity=0.5
+          circle cx=24 cy=28 r=4.5 fill="currentcolor" stroke="none"
+        else if id == "sexual-self-esteem"
+          circle cx=24 cy=26 r=6 fill="currentcolor" stroke="none"
+          path d="M24 10L24 14M12 16L15 19M36 16L33 19M8 28L12 28M40 28L36 28" opacity=0.7
+        else if id == "touch-language"
+          path d="M24 24C24 21 28 21 28 25C28 30 20 30 20 23C20 15 33 15 33 25C33 35 15 35 15 23"
+          circle cx=15 cy=23 r=2.8 fill="currentcolor" stroke="none"
+        else if id == "angling"
+          path d="M10 36L38 36" opacity=0.45
+          path d="M10 36L35 18"
+          path d="M26 36A16 16 0 0 0 23 27" opacity=0.7
+        else if id == "rocking"
+          path d="M10 26A14 14 0 0 0 38 26" 
+          path d="M13 16C17 12 21 11 24 11M35 16C31 12 27 11 24 11" opacity=0.5
+          circle cx=24 cy=26 r=2.8 fill="currentcolor" stroke="none"
+        else if id == "shallowing"
+          path d="M14 10C10 18 10 30 14 38" 
+          path d="M24 13C21 19 21 29 24 35" opacity=0.5
+          path d="M33 16C31 20 31 28 33 32" opacity=0.25
+          circle cx=11 cy=24 r=2.8 fill="currentcolor" stroke="none"
+        else if id == "pairing"
+          path d="M14 30C14 14 34 14 34 30" opacity=0.55
+          circle cx=14 cy=31 r=3.4 fill="currentcolor" stroke="none"
+          circle cx=34 cy=31 r=3.4 fill="currentcolor" stroke="none"
+        else if id == "golden-trio"
+          path d="M24 13L13 33L35 33Z" opacity=0.5
+          circle cx=24 cy=13 r=3.4 fill="currentcolor" stroke="none"
+          circle cx=13 cy=33 r=3.4 fill="currentcolor" stroke="none"
+          circle cx=35 cy=33 r=3.4 fill="currentcolor" stroke="none"
+        else if id == "the-gap"
+          path d="M11 17L37 17" stroke-width=5
+          path d="M11 31L28 31" stroke-width=5 opacity=0.5
+        else if id == "asking"
+          path d="M12 13L36 13C38 13 39 14 39 16L39 28C39 30 38 31 36 31L22 31L15 37L15 31L12 31C10 31 9 30 9 28L9 16C9 14 10 13 12 13Z"
+          path d="M16 22L32 22" opacity=0.5
+        else
+          circle cx=24 cy=24 r=8 fill="currentcolor" stroke="none"

@@ -1,0 +1,28 @@
+keyframes emblem-drift
+  50% translate="0px -5px"
+
+keyframes emblem-breathe
+  50% opacity=0.55
+
+// The mark on the welcome: the organ's wishbone as a quiet landscape, an ember rising in it.
+component Emblem
+  props
+    still: bool
+  view
+    svg viewBox="0 0 340 150" width="100%" display="block" aria-hidden=true
+      defs
+        radialGradient id="em-sun"
+          stop offset=0 stop-color="ember.light"
+          stop offset=0.5 stop-color="ember"
+          stop offset=1 stop-color="ember" stop-opacity=0
+        linearGradient id="em-arc" x1=0 y1=0 x2=0 y2=1
+          stop offset=0 stop-color="ember"
+          stop offset=1 stop-color="rose.deep" stop-opacity=0.25
+      for i in range(4) key=i
+        circle cx=170 cy=66 r=(26 + i * 20) fill="none" stroke="ember" stroke-width=1 opacity=(0.34 - i * 0.07)
+          animation=(still ? "none" : `emblem-breathe 4.8s ease-in-out ${i * 0.5}s infinite`)
+      path d="M40 150C70 74 132 22 170 20C208 22 270 74 300 150L282 150C254 92 212 52 170 48C128 52 86 92 58 150Z" fill="url(#em-arc)" opacity=0.85
+      path d="M124 150C122 112 142 84 164 74C168 98 166 128 160 150ZM216 150C218 112 198 84 176 74C172 98 174 128 180 150Z" fill="rose.deep" opacity=0.45
+      g animation=(still ? "none" : "emblem-drift 6s ease-in-out infinite")
+        circle cx=170 cy=66 r=30 fill="url(#em-sun)"
+        circle cx=170 cy=66 r=8 fill="ember"

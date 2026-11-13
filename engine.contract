@@ -1,0 +1,76 @@
+// The arousal engine: the one simulation in the app, and so the one timer.
+// Building, Plateauing and Edging are three ways of playing the same model:
+// touch feeds arousal, arousal feeds itself, and without touch it fades slowly
+// (a pause is not a reset). It is a root member because only the root may own
+// a task; instruments reach it through `inject`.
+use clamp01 from "./instruments/kit.contract"
+
+// Per second. Touch counts for more the more aroused you already are, which
+// is what makes the slow start slow; the last factor levels the climb off.
+fn aRise(input: number, level: number): number = input * (0.04 + 0.26 * level) * (1.15 - level)
+fn aFall(input: number, level: number): number = (1 - input) * (0.02 + 0.05 * level)
+// Plateauing opens part-way up: its lesson is the hover, not the climb.
+fn aStart(mode: string): number = mode == "plateauing" ? 0.5 : 0
+fn aCap(mode: string): number = mode == "building" ? 0.93 : mode == "plateauing" ? 0.96 : 1.2
+// After the edge: six seconds of descent, pulsing about every 0.8 s.
+fn aAfter(seconds: number): number = clamp01(1.04 * (1 - seconds / 6)) * (1 + 0.05 * sin(seconds * 7.85))
+
+members App
+  state aMode = ""
+  state aLevel = 0
+  state aInput = 0
+  state aLast = 0
+  state aSampled = 0
+  state aTrace: number[] = []
+  state aNear = false
+  state aEdges = 0
+  state aReleasing = false
+  state aReleasedAt = 0
+  state aTouched = false
+  derive aBusy = aMode != "" and (aInput > 0 or aLevel > 0 or aReleasing)
+  task aEngine when aBusy
+    every(frame, aStep)
+  // A touch begins or changes: `input` is how much, 0 to 1.
+  action aBegin(mode: string, input: number)
+    if aMode != mode
+      aMode = mode
+      aLevel = aStart(mode)
+      aTrace = []
+      aEdges = 0
+      aNear = false
+      aReleasing = false
+    aInput = input
+    aTouched = true
+    if not aBusy
+      aLast = performanceNow()
+  action aEnd
+    aInput = 0
+  action aReset(mode: string)
+    aMode = mode
+    aLevel = aStart(mode)
+    aInput = 0
+    aTrace = []
+    aEdges = 0
+    aNear = false
+    aReleasing = false
+    aTouched = false
+  action aStep
+    let now = performanceNow()
+    let dt = min(0.1, max(0, now - aLast) / 1000)
+    let since = (now - aReleasedAt) / 1000
+    let grown = aLevel + (aRise(aInput, aLevel) - aFall(aInput, aLevel)) * dt
+    let over = aMode == "edging" and not aReleasing and grown >= 1
+    let next = over ? 1 : aReleasing ? (since >= 6 ? 0 : aAfter(since)) : grown < 0.004 and aInput == 0 ? 0 : min(aCap(aMode), max(0, grown))
+    let ending = aReleasing and since >= 6
+    let edged = not over and not aReleasing and aNear and next < 0.66
+    let near = over or aReleasing ? false : next >= 0.82 ? true : edged ? false : aNear
+    aLast = now
+    aLevel = next
+    aNear = near
+    aEdges = edged ? aEdges + 1 : aEdges
+    aReleasing = over ? true : ending ? false : aReleasing
+    aReleasedAt = over ? now : aReleasedAt
+    aInput = ending ? 0 : aInput
+    if now - aSampled >= 150
+      aSampled = now
+      aTrace = aTrace.concat([next]).slice(max(0, aTrace.length - 111))

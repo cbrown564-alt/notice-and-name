@@ -29,6 +29,7 @@ const sources: Sources = {
     return save(storage, [{ id: String(next), conceptId, text, day }, ...all]);
   },
   removeNote: async ([id], _store, storage) => save(storage, (await load(storage)).filter((n) => n.id !== id)),
+  eraseNotes: (_args, _store, storage) => save(storage, []),
 };
 
 export const answer: Answer = (source, args, store, storage, native) =>

@@ -3,6 +3,8 @@ use Concept, Library, Note from "./shapes.contract"
 use Serif, Eyebrow, Crowd, Chip from "./instruments/kit.contract"
 use Glyph from "./instruments/glyphs.contract"
 use ClitoralStructure from "./instruments/clitoral-structure.contract"
+use ArousalCurve from "./instruments/arousal.contract"
+use WarmupWindow from "./instruments/warmup-window.contract"
 
 fn conceptName(lib: Library, id: string): string = match first(lib.concepts.filter(c => c.id == id)) { case some(c) => c.name, case none => "" }
 fn conceptChapter(lib: Library, id: string): string = match first(lib.concepts.filter(c => c.id == id)) { case some(c) => c.chapter, case none => "" }
@@ -48,6 +50,10 @@ component ConceptPage
         column class=Card padding=14 testId="stage"
           if c.id == "clitoral-structure"
             ClitoralStructure(uid=uid)
+          else if c.id == "building" or c.id == "plateauing" or c.id == "edging"
+            ArousalCurve(uid=uid, mode=c.id)
+          else if c.id == "warmup-window"
+            WarmupWindow(uid=uid)
           else
             text `instrument: ${c.id}` color="ink.soft" text-align="center" padding=40
       column gap=8

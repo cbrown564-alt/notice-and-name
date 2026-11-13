@@ -1,0 +1,71 @@
+// The Warm-up Window: scrub through the minutes and watch what arousal does
+// to the tissue itself. The point is physical: touch that felt like nothing
+// at minute two can feel good at minute twenty because the organ has changed.
+use clamp01, ease, span, Caption, Chip from "./kit.contract"
+use Organ from "./organ.contract"
+
+// How engorged, 0 to 1, after `t` of the half hour (0 to 1): slow, then filling.
+fn wwSwell(t: number): number = ease(span(t, 0.04, 0.78))
+fn wwLine(t: number): string = t < 0.1 ? "At rest. The tissue is soft and the glans is at its most exposed, so direct touch can feel sharp, or like nothing much." : t < 0.36 ? "Blood is arriving. The bulbs and legs begin to fill: warmth, a first fullness." : t < 0.68 ? "Filling out. Swollen tissue cushions the nerves, and firmer, more direct touch starts to feel good." : "Fully engorged: larger, firmer, far more responsive. Nothing was wrong earlier. It simply was not time yet."
+
+keyframes ww-flow
+  from stroke-dashoffset=28
+  to stroke-dashoffset=0
+
+component WarmupWindow
+  inject
+    still: bool
+  props
+    uid: string
+  state t = 0
+  state down = false
+  action press(e: PointerEvent)
+    down = true
+    t = clamp01((e.offsetX / frame(`ww-${uid}`).width * 340 - 40) / 260)
+  action drag(e: PointerEvent)
+    if down
+      t = clamp01((e.offsetX / frame(`ww-${uid}`).width * 340 - 40) / 260)
+  action release(e: PointerEvent)
+    down = false
+  action step(k: string, e: KeyboardEvent)
+    if k == "ArrowRight" or k == "ArrowUp"
+      t = clamp01(t + 0.1)
+    if k == "ArrowLeft" or k == "ArrowDown"
+      t = clamp01(t - 0.1)
+  action go(v: number)
+    t = v
+  view
+    column gap=14
+      svg id=`ww-${uid}` testId="ww-stage" viewBox="0 0 340 340" width="100%" display="block" touch-action="none" tabindex=0
+        role="slider" aria-label="Minutes of unhurried arousal" aria-valuetext=`${round(t * 30) == 1 ? "1 minute" : `${round(t * 30)} minutes`}. ${wwLine(t)}` key=step
+        pointerdown=press pointermove=drag pointerup=release
+        g translate="0px -22px"
+          Organ(reveal=0.86, swell=wwSwell(t), focus="", glide=(not down and not still))
+          // Blood arriving along the legs: fastest while the tissue is filling.
+          g fill="none" stroke="ember.light" stroke-width=2 stroke-linecap="round" stroke-dasharray="2 12"
+            opacity=(0.9 * span(t, 0.05, 0.3) * (1 - span(t, 0.72, 0.98))) transition=(down ? "none" : "opacity 500ms ease")
+            path d="M80 230C100 150 138 84 168 68" animation=(still ? "none" : "ww-flow 1.4s linear infinite")
+            path d="M260 230C240 150 202 84 172 68" animation=(still ? "none" : "ww-flow 1.4s linear infinite")
+            path d="M138 236C124 200 132 150 160 118" animation=(still ? "none" : "ww-flow 1.4s linear infinite")
+            path d="M202 236C216 200 208 150 180 118" animation=(still ? "none" : "ww-flow 1.4s linear infinite")
+        text `${round(t * 30)}` x=34 y=52 class=WwNumber fill="ink"
+        text "min" x=(round(t * 30) < 10 ? 58 : 80) y=52 font-size=12 fill="ink.soft"
+        // The minutes.
+        g
+          line x1=40 y1=300 x2=300 y2=300 stroke="paper.sunk" stroke-width=8 stroke-linecap="round"
+          line x1=40 y1=300 x2=(40 + 260 * t) y2=300 stroke="ember" stroke-width=8 stroke-linecap="round" opacity=0.55
+          for m in [0, 10, 20, 30] key=m
+            text `${m}` x=(40 + 260 * m / 30) y=328 text-anchor="middle" font-size=10.5 fill="ink.soft"
+          circle cx=(40 + 260 * t) cy=300 r=12 fill="paper" stroke="ember" stroke-width=3
+            transition=(down ? "none" : "cx 600ms ease")
+      Caption(line=wwLine(t))
+      row gap=8 justify-content="center" flex-wrap="wrap"
+        Chip(label="At rest", on=(t < 0.1), tone="ember", press=go(0), tid="ww-rest")
+        Chip(label="5 min", on=(t >= 0.1 and t < 0.36), tone="ember", press=go(0.1667), tid="ww-5")
+        Chip(label="15 min", on=(t >= 0.36 and t < 0.68), tone="ember", press=go(0.5), tid="ww-15")
+        Chip(label="25 min", on=(t >= 0.68), tone="ember", press=go(0.8333), tid="ww-25")
+
+style WwNumber
+  font-family="ui-serif, 'New York', 'Iowan Old Style', Georgia, serif"
+  font-size=30
+  font-weight=600
