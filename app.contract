@@ -182,7 +182,7 @@ component App
                               for id in w.conceptIds key=id
                                 box height=6 flex=1 border-radius=3 background-color=(opened.includes(id) ? "ember" : "paper.sunk") transition="background-color 400ms ease"
                             for id in w.conceptIds.filter(x => not opened.includes(x)).slice(0, 1) key=id
-                              link href=`/today/${id}` testId=`path-next-${w.id}` display="flex" align-items="center" gap=8 text-decoration="none" color="ember.deep" font-weight=600 font-size="0.9375rem"
+                              link href=`/today/${id}` testId=`path-next-${w.id}` display="flex" align-items="center" gap=8 text-decoration="none" color="ember.deep" font-weight=600 font-size="min(-exact-subheadline, 26px)"
                                 text `Next: ${nameOf(lib, id)}` flex=1 min-width=0
                                 image "symbol:forward-chevron"
                             if w.conceptIds.filter(x => not opened.includes(x)).length == 0
@@ -225,8 +225,8 @@ component App
                           text "Private notes you write under any idea's “Reflect” appear here." font-size="0.9375rem" line-height=1.45 color="ink.soft" testId="notes-empty"
                         for n in notes key=n.id
                           column class=Card gap=6
-                            row gap=8 align-items="baseline" flex-wrap="wrap"
-                              link href=`/yours/${n.conceptId}` text-decoration="none" color="ember.deep" font-weight=600 font-size="0.9375rem" flex=1 min-width=0
+                            column gap=2
+                              link href=`/yours/${n.conceptId}` text-decoration="none" color="ember.deep" font-weight=600 font-size="min(-exact-subheadline, 26px)"
                                 text nameOf(lib, n.conceptId)
                               text n.day font-size="0.8125rem" color="ink.soft"
                             text n.text class=Lead white-space="pre-wrap" testId=`yours-note-${n.id}`
