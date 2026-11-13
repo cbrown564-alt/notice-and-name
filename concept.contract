@@ -24,6 +24,7 @@ style Body
 component ConceptPage
   inject
     still: bool
+    wide: bool
   props
     c: Concept
     lib: Library
@@ -39,13 +40,16 @@ component ConceptPage
   state draft = ""
   action edit(v: string)
     draft = v
+  action send(body: string)
+    share(text=body)
   action save
     if draft.trim() != ""
       addNote(c.id, draft.trim())
       draft = ""
   view
-    column gap=28 padding="8px 20px 48px" max-width="42rem" width="100%" margin="0 auto" box-sizing="border-box"
-      column gap=10
+    // Stacked on a phone; on a wide window the instrument stays beside the words.
+    row flex-wrap="wrap" align-items="flex-start" gap=28 padding="8px 20px 48px" max-width="68rem" width="100%" margin="0 auto" box-sizing="border-box"
+      column gap=10 flex="1 1 340px" min-width=0 max-width="30rem" margin="0 auto" position=(wide ? "sticky" : "static") top=8
         text c.hint class=Eyebrow text-align="center" testId="hint"
         column class=Card padding=14 testId="stage"
           if c.id == "clitoral-structure"
@@ -56,64 +60,67 @@ component ConceptPage
             WarmupWindow(uid=uid)
           else
             text `instrument: ${c.id}` color="ink.soft" text-align="center" padding=40
-      column gap=8
-        text chapterName(lib, c.chapter) class=Eyebrow color=toneOf(c.chapter)
-        text c.name role="heading" aria-level=1 class=Serif font-size="2rem" font-weight=600 line-height=1.15 testId="concept-name"
-        text c.definition class=Body color="ink.soft"
-      column gap=8
-        text "Notice" class=Eyebrow
-        text c.notice class=Serif font-size="1.3125rem" line-height=1.4 font-style="italic"
-      column gap=8
-        text "Understand" class=Eyebrow
-        text c.understand class=Body
-        if c.stat.value != ""
-          column class=Card gap=10 margin-top=8
-            row align-items="baseline" gap=12
-              text c.stat.value class=Serif font-size="2.25rem" font-weight=600 color=toneOf(c.chapter) flex-shrink=0
-              text c.stat.label font-size="0.9375rem" line-height=1.4 color="ink" flex=1 min-width=0
-            if c.stat.percent > 0
-              Crowd(percent=c.stat.percent, tone=toneOf(c.chapter), still=still)
-            text c.stat.source font-size="0.8125rem" color="ink.soft"
-        text c.source font-size="0.8125rem" color="ink.soft"
-      column gap=8
-        text "Try" class=Eyebrow
-        text c.tryIt class=Body
-      column gap=10
-        text "Say it" class=Eyebrow
-        for p in c.phrases key=p.id
-          row class=Card gap=12 align-items="flex-start"
-            column flex=1 min-width=0 gap=4
-              text p.label font-size="0.8125rem" font-weight=600 color="ink.soft"
-              text p.body class=Serif font-size="1.125rem" line-height=1.4 testId=`phrase-${p.id}`
-            button press=toggleKeep(p.id) aria-label=(kept.includes(p.id) ? "Remove from kept phrases" : "Keep this phrase")
-              aria-pressed=kept.includes(p.id) testId=`keep-${p.id}`
-              image (kept.includes(p.id) ? "symbol:bookmark-fill" : "symbol:bookmark")
-      column gap=10
-        text "Reflect" class=Eyebrow
-        text c.reflect class=Serif font-size="1.3125rem" line-height=1.4
-        textarea value=draft input=edit placeholder="A private note. It stays on this device." aria-label="Private note"
-          testId="note-draft" min-height=96
-        row
-          button press=save disabled=(draft.trim() == "") buttonStyle="filled" testId="note-save"
-            text "Keep note"
-        for n in notes key=n.id
-          column class=Card gap=6
-            text n.day font-size="0.8125rem" color="ink.soft"
-            text n.text class=Body white-space="pre-wrap" testId=`note-${n.id}`
-            row
-              button press=removeNote(n.id) testId=`note-remove-${n.id}`
-                text "Delete"
-      column gap=10
-        text "How does this land?" class=Eyebrow
-        row gap=8 flex-wrap="wrap" role="group" aria-label="How does this land?"
-          Chip(label="Resonates", on=(status == "resonates"), tone="ember", press=setStatus(c.id, "resonates"), tid="status-resonates")
-          Chip(label="Curious", on=(status == "curious"), tone="honey", press=setStatus(c.id, "curious"), tid="status-curious")
-          Chip(label="Not for me", on=(status == "passed"), tone="ink.soft", press=setStatus(c.id, "passed"), tid="status-passed")
-      if c.related.length > 0
+      column gap=28 flex="1 1 340px" min-width=0 max-width="42rem" margin="0 auto"
+        column gap=8
+          text chapterName(lib, c.chapter) class=Eyebrow color=toneOf(c.chapter)
+          text c.name role="heading" aria-level=1 class=Serif font-size="2rem" font-weight=600 line-height=1.15 testId="concept-name"
+          text c.definition class=Body color="ink.soft"
+        column gap=8
+          text "Notice" class=Eyebrow
+          text c.notice class=Serif font-size="1.3125rem" line-height=1.4 font-style="italic"
+        column gap=8
+          text "Understand" class=Eyebrow
+          text c.understand class=Body
+          if c.stat.value != ""
+            column class=Card gap=10 margin-top=8
+              row align-items="baseline" gap=12
+                text c.stat.value class=Serif font-size="2.25rem" font-weight=600 color=toneOf(c.chapter) flex-shrink=0
+                text c.stat.label font-size="0.9375rem" line-height=1.4 color="ink" flex=1 min-width=0
+              if c.stat.percent > 0
+                Crowd(percent=c.stat.percent, tone=toneOf(c.chapter), still=still)
+              text c.stat.source font-size="0.8125rem" color="ink.soft"
+          text c.source font-size="0.8125rem" color="ink.soft"
+        column gap=8
+          text "Try" class=Eyebrow
+          text c.tryIt class=Body
         column gap=10
-          text "Related" class=Eyebrow
-          for r in c.related key=r
-            link href=`/${tab}/${r}` testId=`related-${r}` display="flex" align-items="center" gap=14 class=Card padding=12 text-decoration="none" color="ink"
-              Glyph(id=r, chapter=conceptChapter(lib, r))
-              text conceptName(lib, r) class=Serif font-size="1.125rem" font-weight=600 flex=1 min-width=0
-              image "symbol:forward-chevron" color="ink.soft"
+          text "Say it" class=Eyebrow
+          for p in c.phrases key=p.id
+            row class=Card gap=12 align-items="flex-start"
+              column flex=1 min-width=0 gap=4
+                text p.label font-size="0.8125rem" font-weight=600 color="ink.soft"
+                text p.body class=Serif font-size="1.125rem" line-height=1.4 testId=`phrase-${p.id}`
+              button press=send(p.body) aria-label="Share this phrase" testId=`share-${p.id}`
+                image "symbol:share"
+              button press=toggleKeep(p.id) aria-label=(kept.includes(p.id) ? "Remove from kept phrases" : "Keep this phrase")
+                aria-pressed=kept.includes(p.id) testId=`keep-${p.id}`
+                image (kept.includes(p.id) ? "symbol:bookmark-fill" : "symbol:bookmark")
+        column gap=10
+          text "Reflect" class=Eyebrow
+          text c.reflect class=Serif font-size="1.3125rem" line-height=1.4
+          textarea value=draft input=edit placeholder="A private note. It stays on this device." aria-label="Private note"
+            testId="note-draft" min-height=96
+          row
+            button press=save disabled=(draft.trim() == "") buttonStyle="filled" testId="note-save"
+              text "Keep note"
+          for n in notes key=n.id
+            column class=Card gap=6
+              text n.day font-size="0.8125rem" color="ink.soft"
+              text n.text class=Body white-space="pre-wrap" testId=`note-${n.id}`
+              row
+                button press=removeNote(n.id) testId=`note-remove-${n.id}`
+                  text "Delete"
+        column gap=10
+          text "How does this land?" class=Eyebrow
+          row gap=8 flex-wrap="wrap" role="group" aria-label="How does this land?"
+            Chip(label="Resonates", on=(status == "resonates"), tone="ember", press=setStatus(c.id, "resonates"), tid="status-resonates")
+            Chip(label="Curious", on=(status == "curious"), tone="honey", press=setStatus(c.id, "curious"), tid="status-curious")
+            Chip(label="Not for me", on=(status == "passed"), tone="ink.soft", press=setStatus(c.id, "passed"), tid="status-passed")
+        if c.related.length > 0
+          column gap=10
+            text "Related" class=Eyebrow
+            for r in c.related key=r
+              link href=`/${tab}/${r}` testId=`related-${r}` display="flex" align-items="center" gap=14 class=Card padding=12 text-decoration="none" color="ink"
+                Glyph(id=r, chapter=conceptChapter(lib, r))
+                text conceptName(lib, r) class=Serif font-size="1.125rem" font-weight=600 flex=1 min-width=0
+                image "symbol:forward-chevron" color="ink.soft"

@@ -84,6 +84,10 @@ component Angling
   `let x = e.offsetX / frame(`an-${uid}`).width * 340`. `frame()` takes a
   computed id; `measure()` does not. `pointermove` also fires for a hovering
   mouse, so keep a `down` state. `pan=act(dx, dy)` gives deltas instead.
+- **Focus and keys.** A focusable stage says `outline="none" border-radius=16`
+  and, on the next lines, `:focus-visible` then `box-shadow="0 0 0 2px ember"`:
+  Chrome otherwise outlines a focused `svg` on every click. A key handler that
+  acts on Space or an arrow calls `preventDefault()` first, or the page scrolls.
 - **Press on a shape:** `press=act(arg)` works on any SVG element; add
   `pointer-events="none"` to decoration drawn over it.
 - **What transitions and animates:** `opacity`, `translate`, `scale`, `rotate`,

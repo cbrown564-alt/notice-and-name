@@ -29,8 +29,10 @@ component WarmupWindow
     down = false
   action step(k: string, e: KeyboardEvent)
     if k == "ArrowRight" or k == "ArrowUp"
+      preventDefault()
       t = clamp01(t + 0.1)
     if k == "ArrowLeft" or k == "ArrowDown"
+      preventDefault()
       t = clamp01(t - 0.1)
   action go(v: number)
     t = v
@@ -39,6 +41,9 @@ component WarmupWindow
       svg id=`ww-${uid}` testId="ww-stage" viewBox="0 0 340 340" width="100%" display="block" touch-action="none" tabindex=0
         role="slider" aria-label="Minutes of unhurried arousal" aria-valuetext=`${round(t * 30) == 1 ? "1 minute" : `${round(t * 30)} minutes`}. ${wwLine(t)}` key=step
         pointerdown=press pointermove=drag pointerup=release
+        outline="none" border-radius=16
+        :focus-visible
+          box-shadow="0 0 0 2px ember"
         g translate="0px -22px"
           Organ(reveal=0.86, swell=wwSwell(t), focus="", glide=(not down and not still))
           // Blood arriving along the legs: fastest while the tissue is filling.

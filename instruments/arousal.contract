@@ -64,11 +64,14 @@ component ArousalCurve
   action keydown(k: string, e: KeyboardEvent)
     if mode == "plateauing"
       if k == "ArrowRight" or k == "ArrowUp"
+        preventDefault()
         aBegin(mode, clamp01(input + 0.1))
       if k == "ArrowLeft" or k == "ArrowDown"
+        preventDefault()
         aBegin(mode, clamp01(input - 0.1))
     else
       if k == " " or k == "Enter"
+        preventDefault()
         aBegin(mode, 1)
   action keyup(k: string, e: KeyboardEvent)
     if mode != "plateauing"
@@ -82,6 +85,9 @@ component ArousalCurve
       svg id=`ar-${uid}` testId="ar-stage" viewBox="0 0 340 300" width="100%" display="block" touch-action="none" tabindex=0
         role=(mode == "plateauing" ? "slider" : "button") aria-label=(mode == "plateauing" ? "How much touch" : "Press and hold to build arousal")
         aria-valuetext=line key=keydown keyup=keyup pointerdown=press pointermove=drag pointerup=release
+        outline="none" border-radius=16
+        :focus-visible
+          box-shadow="0 0 0 2px ember"
         defs
           linearGradient id="ar-fill" x1=0 y1=0 x2=0 y2=1
             stop offset=0 stop-color="ember" stop-opacity=0.5
@@ -130,9 +136,9 @@ component ArousalCurve
         else
           g
             rect x=24 y=238 width=292 height=48 rx=24 fill=(input > 0 ? "ember.glow" : "paper.sunk") transition="fill 240ms ease"
-            circle cx=170 cy=262 r=(input > 0 ? 15 : 9) fill="ember" opacity=(input > 0 ? 0.9 : 0.35) transition="r 240ms ease, opacity 240ms ease"
-            text (input > 0 ? "holding" : "press and hold") x=170 y=266 text-anchor="middle" font-size=11.5 fill="ink.soft"
-              opacity=(input > 0 ? 0 : 1) translate="0px 24px" pointer-events="none"
+            circle cx=(input > 0 ? 170 : 122) cy=262 r=(input > 0 ? 15 : 8) fill="ember" opacity=(input > 0 ? 0.9 : 0.4)
+              transition=(still ? "none" : "r 240ms ease, opacity 240ms ease, cx 240ms ease")
+            text "press and hold" x=140 y=266 font-size=12 fill="ink.soft" opacity=(input > 0 ? 0 : 1) transition="opacity 200ms ease" pointer-events="none"
       Caption(line=line)
       row gap=8 justify-content="center" flex-wrap="wrap"
         if mode == "plateauing"

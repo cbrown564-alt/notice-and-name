@@ -67,3 +67,4 @@ shape Time
 
 shape Media
   prefersReducedMotion: bool
+  width: number
