@@ -1,0 +1,50 @@
+// The five instruments drawn on the pelvis in section: make each one's main
+// gesture and read what its Caption says back.
+
+test "angling: tilting forward lands pressure on the front wall, tilting back on the back"
+  at "/atlas/angling"
+  expect text "an-angle" == "0°"
+  tap "an-forward"
+  clock settle
+  expect text "an-angle" == "8°"
+  expect text "caption" == "Same movement, different place. Now it lands on the front wall, where the internal clitoris sits just behind."
+  tap "an-back"
+  clock settle
+  expect text "caption" == "Tilted back, it meets the back wall instead. Different, not wrong."
+
+test "shallowing: the entrance is the most densely nerved part"
+  at "/atlas/shallowing"
+  tap "sh-deep"
+  clock settle
+  expect text "caption" == "Deep inside there are few of them. This is felt more as pressure and fullness than as fine touch."
+  tap "sh-entrance"
+  clock settle
+  expect text "caption" == "The entrance and the first third are the most densely nerved part of the vagina. Lingering here is not a warm-up."
+
+test "reaching inside: toward the front reaches the internal clitoris, deeper does not"
+  at "/atlas/internal-stimulation"
+  tap "is-deeper"
+  clock settle
+  expect text "caption" == "Deeper is not closer. Up here the pressure is a long way from the internal clitoris."
+  tap "is-front"
+  clock settle
+  expect text "caption" == "Toward the front, a few centimetres in, pressure passes through the wall to the internal clitoris. Fuller, not deeper."
+
+test "the front wall: three tissues make one neighbourhood"
+  at "/atlas/clitourethrovaginal"
+  tap "cuv-clit"
+  clock settle
+  expect text "caption" == "The clitoris. Most of it is inside, reaching back beside the urethra and the front wall."
+  tap "cuv-urethra"
+  tap "cuv-wall"
+  clock settle
+  expect text "caption" == "Not a button: a neighbourhood. Clitoris, urethra and front wall respond together, and that is what G-spot names."
+
+test "pairing: inside and outside reach one organ from both ends"
+  at "/atlas/pairing"
+  tap "pa-inside"
+  clock settle
+  expect text "caption" == "Inside only: pressure reaches the inner part of the clitoris through the wall. For about 18 in 100 women, this alone is enough for orgasm."
+  tap "pa-outside"
+  clock settle
+  expect text "caption" == "One organ, reached from both ends. Together they add up to more than either alone."

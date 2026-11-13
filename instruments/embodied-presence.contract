@@ -40,6 +40,10 @@ component EmbodiedPresence
     uid: string
   state released: number[] = []
   state turn = 0
+  // A press on a drawn shape: Chrome outlines a focused SVG shape on every click, so let the focus go.
+  action tapPass(i: number)
+    blur()
+    pass(i)
   action pass(i: number)
     if not released.includes(i)
       released = released.concat([i])
@@ -119,7 +123,7 @@ component EmbodiedPresence
                   text epThought(i) x=0 y=4 text-anchor="middle" font-size=11 fill="dusk.deep"
                 // What a finger lands on: there only while the thought is.
                 if not released.includes(i)
-                  rect testId=`ep-thought-${i}` press=pass(i) x=(0 - epThoughtW(i) / 2 - 4) y=-16 width=(epThoughtW(i) + 8) height=34 rx=14 fill="dusk.soft" opacity=0
+                  rect testId=`ep-thought-${i}` press=tapPass(i) x=(0 - epThoughtW(i) / 2 - 4) y=-16 width=(epThoughtW(i) + 8) height=34 rx=14 fill="dusk.soft" opacity=0
       Caption(line=epLine(turn, released.length))
       row gap=8 justify-content="center" flex-wrap="wrap"
         Chip(label="Let one pass", on=false, tone="ember", press=passNext, tid="ep-pass")

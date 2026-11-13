@@ -31,6 +31,10 @@ component Pairing
   state beatAt = 0
   state inPhase = 0
   state outPhase = 0
+  // A press on a drawn shape: Chrome outlines a focused SVG shape on every click, so let the focus go.
+  action tapToggle(which: string)
+    blur()
+    toggle(which)
   action toggle(which: string)
     let now = performanceNow()
     let start = inside or outside ? beatAt : now
@@ -82,9 +86,9 @@ component Pairing
         // What a tap lands on: the canal, and the glans with the body behind it.
         g transform=sagPlace() opacity=0
           g transform="translate(142 246) rotate(-45)"
-            rect x=2 y=-17 width=132 height=34 rx=10 fill="ink" press=toggle("inside")
-          path d=sagShaftPath() fill="none" stroke="ink" stroke-width=20 stroke-linecap="round" press=toggle("outside")
-          circle cx=99 cy=241 r=20 fill="ink" press=toggle("outside")
+            rect x=2 y=-17 width=132 height=34 rx=10 fill="ink" press=tapToggle("inside")
+          path d=sagShaftPath() fill="none" stroke="ink" stroke-width=20 stroke-linecap="round" press=tapToggle("outside")
+          circle cx=99 cy=241 r=20 fill="ink" press=tapToggle("outside")
       Caption(line=paLine(inside, outside))
       row gap=8 justify-content="center" flex-wrap="wrap"
         Chip(label="Inside", on=inside, tone="ember", press=toggle("inside"), tid="pa-inside")

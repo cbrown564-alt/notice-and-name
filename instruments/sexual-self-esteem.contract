@@ -25,6 +25,10 @@ component SexualSelfEsteem
   state rewritten: number[] = []
   state cursor = 0
   state focused = false
+  // A press on a drawn shape: Chrome outlines a focused SVG shape on every click, so let the focus go.
+  action tapFlip(i: number)
+    blur()
+    flip(i)
   action flip(i: number)
     cursor = i
     rewritten = rewritten.includes(i) ? rewritten.filter(x => x != i) : rewritten.concat([i])
@@ -81,7 +85,7 @@ component SexualSelfEsteem
         // The slips.
         for i in range(5) key=i
           g transform=`rotate(${rewritten.includes(i) ? 0 : sseTilt(i)} ${sseX(i)} ${sseY(i)})`
-            g testId=`sse-slip-${i}` press=flip(i)
+            g testId=`sse-slip-${i}` press=tapFlip(i)
               rect x=(sseX(i) - 60) y=(sseY(i) - 21) width=120 height=42 rx=7 fill="paper.raised"
               rect x=(sseX(i) - 64) y=(sseY(i) - 25) width=128 height=50 rx=10 fill="none" stroke="ink" stroke-width=1.6 opacity=(focused and cursor == i ? 0.8 : 0)
               // The old side.

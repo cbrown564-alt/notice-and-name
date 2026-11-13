@@ -20,6 +20,10 @@ component Clitourethrovaginal
   state clit = false
   state urethra = false
   state wall = false
+  // A press on a drawn shape: Chrome outlines a focused SVG shape on every click, so let the focus go.
+  action tapToggle(which: string)
+    blur()
+    toggle(which)
   action toggle(which: string)
     if which == "clit"
       clit = not clit
@@ -61,12 +65,12 @@ component Clitourethrovaginal
             text "Front wall" x=206 y=292 text-anchor="middle"
         // What a tap lands on: generous regions over each tissue.
         g transform=sagPlace() opacity=0
-          path d=sagBulbPath() fill="ink" press=toggle("clit")
-          path d=sagShaftPath() fill="none" stroke="ink" stroke-width=18 stroke-linecap="round" press=toggle("clit")
-          circle cx=99 cy=241 r=14 fill="ink" press=toggle("clit")
+          path d=sagBulbPath() fill="ink" press=tapToggle("clit")
+          path d=sagShaftPath() fill="none" stroke="ink" stroke-width=18 stroke-linecap="round" press=tapToggle("clit")
+          circle cx=99 cy=241 r=14 fill="ink" press=tapToggle("clit")
           g transform="translate(142 246) rotate(-45)"
-            rect x=-6 y=-13 width=138 height=13 fill="ink" press=toggle("wall")
-          path d=sagUrethraPath() fill="none" stroke="ink" stroke-width=11 stroke-linecap="round" press=toggle("urethra")
+            rect x=-6 y=-13 width=138 height=13 fill="ink" press=tapToggle("wall")
+          path d=sagUrethraPath() fill="none" stroke="ink" stroke-width=11 stroke-linecap="round" press=tapToggle("urethra")
       Caption(line=cuvLine(clit, urethra, wall))
       row gap=8 justify-content="center" flex-wrap="wrap"
         Chip(label="Clitoris", on=clit, tone="ember", press=toggle("clit"), tid="cuv-clit")

@@ -31,6 +31,10 @@ component TheGap
   props
     uid: string
   state picked = ""
+  // A press on a drawn shape: Chrome outlines a focused SVG shape on every click, so let the focus go.
+  action tapPick(id: string)
+    blur()
+    pick(id)
   action pick(id: string)
     picked = picked == id ? "" : id
   action step(k: string, e: KeyboardEvent)
@@ -64,7 +68,7 @@ component TheGap
           fill="none" stroke="ink.soft" stroke-width=1 stroke-dasharray="2 4" stroke-linecap="round" opacity=(picked == "" ? 0 : 0.9)
           transition=(still ? "none" : "d 500ms ease, opacity 300ms ease")
         for i in range(6) key=i
-          g testId=`gap-bar-${gapId(i)}` press=pick(gapId(i))
+          g testId=`gap-bar-${gapId(i)}` press=tapPick(gapId(i))
             opacity=(picked == "" or picked == gapId(i) or i == 5 ? 1 : 0.5) transition=(still ? "none" : "opacity 320ms ease")
             rect x=0 y=(gapY(i) - 2) width=340 height=44 fill="none" pointer-events="all"
             text gapName(i) x=20 y=(gapY(i) + 10) font-size=11.5 fill=(picked == gapId(i) ? "ink" : "ink.soft") font-weight=(picked == gapId(i) ? 600 : 400)
